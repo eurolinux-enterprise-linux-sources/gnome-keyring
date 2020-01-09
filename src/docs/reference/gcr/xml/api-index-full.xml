@@ -1,0 +1,87 @@
+<?xml version="1.0"?>
+<!DOCTYPE indexdiv PUBLIC "-//OASIS//DTD DocBook XML V4.1.2//EN"
+               "http://www.oasis-open.org/docbook/xml/4.1.2/docbookx.dtd">
+<indexdiv>
+<indexdiv><title>G</title>
+<indexentry><primaryie linkends="GcrCertificate"><link linkend="GcrCertificate">GcrCertificate</link></primaryie></indexentry>
+<indexentry><primaryie linkends="GcrCertificateBasicsWidget-struct"><link linkend="GcrCertificateBasicsWidget">GcrCertificateBasicsWidget</link></primaryie></indexentry>
+<indexentry><primaryie linkends="GcrCertificateBasicsWidget--certificate"><link linkend="GcrCertificateBasicsWidget--certificate">GcrCertificateBasicsWidget:certificate</link></primaryie></indexentry>
+<indexentry><primaryie linkends="GcrCertificateBasicsWidgetPrivate"><link linkend="GcrCertificateBasicsWidgetPrivate">GcrCertificateBasicsWidgetPrivate</link></primaryie></indexentry>
+<indexentry><primaryie linkends="GcrCertificateDetailsWidget-struct"><link linkend="GcrCertificateDetailsWidget">GcrCertificateDetailsWidget</link></primaryie></indexentry>
+<indexentry><primaryie linkends="GcrCertificateDetailsWidget--certificate"><link linkend="GcrCertificateDetailsWidget--certificate">GcrCertificateDetailsWidget:certificate</link></primaryie></indexentry>
+<indexentry><primaryie linkends="GcrCertificateDetailsWidgetPrivate"><link linkend="GcrCertificateDetailsWidgetPrivate">GcrCertificateDetailsWidgetPrivate</link></primaryie></indexentry>
+<indexentry><primaryie linkends="GcrCertificateIface-struct"><link linkend="GcrCertificateIface">GcrCertificateIface</link></primaryie></indexentry>
+<indexentry><primaryie linkends="GcrImportDialog"><link linkend="GcrImportDialog">GcrImportDialog</link></primaryie></indexentry>
+<indexentry><primaryie linkends="GcrImportDialogPrivate"><link linkend="GcrImportDialogPrivate">GcrImportDialogPrivate</link></primaryie></indexentry>
+<indexentry><primaryie linkends="GcrImporter-struct"><link linkend="GcrImporter">GcrImporter</link></primaryie></indexentry>
+<indexentry><primaryie linkends="GcrImporter-imported"><link linkend="GcrImporter-imported">GcrImporter::imported</link></primaryie></indexentry>
+<indexentry><primaryie linkends="GcrImporter--parser"><link linkend="GcrImporter--parser">GcrImporter:parser</link></primaryie></indexentry>
+<indexentry><primaryie linkends="GcrImporter--prompt-behavior"><link linkend="GcrImporter--prompt-behavior">GcrImporter:prompt-behavior</link></primaryie></indexentry>
+<indexentry><primaryie linkends="GcrImporter--slot"><link linkend="GcrImporter--slot">GcrImporter:slot</link></primaryie></indexentry>
+<indexentry><primaryie linkends="GcrImporterPrivate"><link linkend="GcrImporterPrivate">GcrImporterPrivate</link></primaryie></indexentry>
+<indexentry><primaryie linkends="GcrImporterPromptBehavior"><link linkend="GcrImporterPromptBehavior">GcrImporterPromptBehavior</link></primaryie></indexentry>
+<indexentry><primaryie linkends="GcrParsedItem"><link linkend="GcrParsedItem">GcrParsedItem</link></primaryie></indexentry>
+<indexentry><primaryie linkends="GcrParser-struct"><link linkend="GcrParser">GcrParser</link></primaryie></indexentry>
+<indexentry><primaryie linkends="GcrParser-authenticate"><link linkend="GcrParser-authenticate">GcrParser::authenticate</link></primaryie></indexentry>
+<indexentry><primaryie linkends="GcrParser-parsed"><link linkend="GcrParser-parsed">GcrParser::parsed</link></primaryie></indexentry>
+<indexentry><primaryie linkends="GcrParser--parsed-attributes"><link linkend="GcrParser--parsed-attributes">GcrParser:parsed-attributes</link></primaryie></indexentry>
+<indexentry><primaryie linkends="GcrParser--parsed-description"><link linkend="GcrParser--parsed-description">GcrParser:parsed-description</link></primaryie></indexentry>
+<indexentry><primaryie linkends="GcrParser--parsed-label"><link linkend="GcrParser--parsed-label">GcrParser:parsed-label</link></primaryie></indexentry>
+<indexentry><primaryie linkends="GcrParserPrivate"><link linkend="GcrParserPrivate">GcrParserPrivate</link></primaryie></indexentry>
+<indexentry><primaryie linkends="GcrSimpleCertificate-struct"><link linkend="GcrSimpleCertificate">GcrSimpleCertificate</link></primaryie></indexentry>
+<indexentry><primaryie linkends="GcrSimpleCertificatePrivate"><link linkend="GcrSimpleCertificatePrivate">GcrSimpleCertificatePrivate</link></primaryie></indexentry>
+<indexentry><primaryie linkends="GcrTokenManager"><link linkend="GcrTokenManager">GcrTokenManager</link></primaryie></indexentry>
+<indexentry><primaryie linkends="GcrTokenManagerPrivate"><link linkend="GcrTokenManagerPrivate">GcrTokenManagerPrivate</link></primaryie></indexentry>
+<indexentry><primaryie linkends="gcr-certificate-basics-widget-get-certificate"><link linkend="gcr-certificate-basics-widget-get-certificate">gcr_certificate_basics_widget_get_certificate</link></primaryie></indexentry>
+<indexentry><primaryie linkends="gcr-certificate-basics-widget-new"><link linkend="gcr-certificate-basics-widget-new">gcr_certificate_basics_widget_new</link></primaryie></indexentry>
+<indexentry><primaryie linkends="gcr-certificate-basics-widget-set-certificate"><link linkend="gcr-certificate-basics-widget-set-certificate">gcr_certificate_basics_widget_set_certificate</link></primaryie></indexentry>
+<indexentry><primaryie linkends="gcr-certificate-details-widget-get-certificate"><link linkend="gcr-certificate-details-widget-get-certificate">gcr_certificate_details_widget_get_certificate</link></primaryie></indexentry>
+<indexentry><primaryie linkends="gcr-certificate-details-widget-new"><link linkend="gcr-certificate-details-widget-new">gcr_certificate_details_widget_new</link></primaryie></indexentry>
+<indexentry><primaryie linkends="gcr-certificate-details-widget-set-certificate"><link linkend="gcr-certificate-details-widget-set-certificate">gcr_certificate_details_widget_set_certificate</link></primaryie></indexentry>
+<indexentry><primaryie linkends="gcr-certificate-get-der-data"><link linkend="gcr-certificate-get-der-data">gcr_certificate_get_der_data</link></primaryie></indexentry>
+<indexentry><primaryie linkends="gcr-certificate-get-expiry-date"><link linkend="gcr-certificate-get-expiry-date">gcr_certificate_get_expiry_date</link></primaryie></indexentry>
+<indexentry><primaryie linkends="gcr-certificate-get-fingerprint"><link linkend="gcr-certificate-get-fingerprint">gcr_certificate_get_fingerprint</link></primaryie></indexentry>
+<indexentry><primaryie linkends="gcr-certificate-get-fingerprint-hex"><link linkend="gcr-certificate-get-fingerprint-hex">gcr_certificate_get_fingerprint_hex</link></primaryie></indexentry>
+<indexentry><primaryie linkends="GCR-CERTIFICATE-GET-INTERFACE--CAPS"><link linkend="GCR-CERTIFICATE-GET-INTERFACE--CAPS">GCR_CERTIFICATE_GET_INTERFACE</link></primaryie></indexentry>
+<indexentry><primaryie linkends="gcr-certificate-get-issued-date"><link linkend="gcr-certificate-get-issued-date">gcr_certificate_get_issued_date</link></primaryie></indexentry>
+<indexentry><primaryie linkends="gcr-certificate-get-issuer-cn"><link linkend="gcr-certificate-get-issuer-cn">gcr_certificate_get_issuer_cn</link></primaryie></indexentry>
+<indexentry><primaryie linkends="gcr-certificate-get-issuer-dn"><link linkend="gcr-certificate-get-issuer-dn">gcr_certificate_get_issuer_dn</link></primaryie></indexentry>
+<indexentry><primaryie linkends="gcr-certificate-get-issuer-part"><link linkend="gcr-certificate-get-issuer-part">gcr_certificate_get_issuer_part</link></primaryie></indexentry>
+<indexentry><primaryie linkends="gcr-certificate-get-key-size"><link linkend="gcr-certificate-get-key-size">gcr_certificate_get_key_size</link></primaryie></indexentry>
+<indexentry><primaryie linkends="gcr-certificate-get-serial-number"><link linkend="gcr-certificate-get-serial-number">gcr_certificate_get_serial_number</link></primaryie></indexentry>
+<indexentry><primaryie linkends="gcr-certificate-get-serial-number-hex"><link linkend="gcr-certificate-get-serial-number-hex">gcr_certificate_get_serial_number_hex</link></primaryie></indexentry>
+<indexentry><primaryie linkends="gcr-certificate-get-subject-cn"><link linkend="gcr-certificate-get-subject-cn">gcr_certificate_get_subject_cn</link></primaryie></indexentry>
+<indexentry><primaryie linkends="gcr-certificate-get-subject-dn"><link linkend="gcr-certificate-get-subject-dn">gcr_certificate_get_subject_dn</link></primaryie></indexentry>
+<indexentry><primaryie linkends="gcr-certificate-get-subject-part"><link linkend="gcr-certificate-get-subject-part">gcr_certificate_get_subject_part</link></primaryie></indexentry>
+<indexentry><primaryie linkends="GCR-DATA-ERROR--CAPS"><link linkend="GCR-DATA-ERROR--CAPS">GCR_DATA_ERROR</link></primaryie></indexentry>
+<indexentry><primaryie linkends="gcr-data-error-get-domain"><link linkend="gcr-data-error-get-domain">gcr_data_error_get_domain</link></primaryie></indexentry>
+<indexentry><primaryie linkends="gcr-importer-get-parser"><link linkend="gcr-importer-get-parser">gcr_importer_get_parser</link></primaryie></indexentry>
+<indexentry><primaryie linkends="gcr-importer-get-prompt-behavior"><link linkend="gcr-importer-get-prompt-behavior">gcr_importer_get_prompt_behavior</link></primaryie></indexentry>
+<indexentry><primaryie linkends="gcr-importer-get-slot"><link linkend="gcr-importer-get-slot">gcr_importer_get_slot</link></primaryie></indexentry>
+<indexentry><primaryie linkends="gcr-importer-import"><link linkend="gcr-importer-import">gcr_importer_import</link></primaryie></indexentry>
+<indexentry><primaryie linkends="gcr-importer-import-async"><link linkend="gcr-importer-import-async">gcr_importer_import_async</link></primaryie></indexentry>
+<indexentry><primaryie linkends="gcr-importer-import-finish"><link linkend="gcr-importer-import-finish">gcr_importer_import_finish</link></primaryie></indexentry>
+<indexentry><primaryie linkends="gcr-importer-new"><link linkend="gcr-importer-new">gcr_importer_new</link></primaryie></indexentry>
+<indexentry><primaryie linkends="gcr-importer-set-parser"><link linkend="gcr-importer-set-parser">gcr_importer_set_parser</link></primaryie></indexentry>
+<indexentry><primaryie linkends="gcr-importer-set-prompt-behavior"><link linkend="gcr-importer-set-prompt-behavior">gcr_importer_set_prompt_behavior</link></primaryie></indexentry>
+<indexentry><primaryie linkends="gcr-importer-set-slot"><link linkend="gcr-importer-set-slot">gcr_importer_set_slot</link></primaryie></indexentry>
+<indexentry><primaryie linkends="gcr-parser-add-password"><link linkend="gcr-parser-add-password">gcr_parser_add_password</link></primaryie></indexentry>
+<indexentry><primaryie linkends="gcr-parser-format-disable"><link linkend="gcr-parser-format-disable">gcr_parser_format_disable</link></primaryie></indexentry>
+<indexentry><primaryie linkends="gcr-parser-format-enable"><link linkend="gcr-parser-format-enable">gcr_parser_format_enable</link></primaryie></indexentry>
+<indexentry><primaryie linkends="gcr-parser-format-supported"><link linkend="gcr-parser-format-supported">gcr_parser_format_supported</link></primaryie></indexentry>
+<indexentry><primaryie linkends="gcr-parser-get-parsed-attributes"><link linkend="gcr-parser-get-parsed-attributes">gcr_parser_get_parsed_attributes</link></primaryie></indexentry>
+<indexentry><primaryie linkends="gcr-parser-get-parsed-description"><link linkend="gcr-parser-get-parsed-description">gcr_parser_get_parsed_description</link></primaryie></indexentry>
+<indexentry><primaryie linkends="gcr-parser-get-parsed-label"><link linkend="gcr-parser-get-parsed-label">gcr_parser_get_parsed_label</link></primaryie></indexentry>
+<indexentry><primaryie linkends="gcr-parser-new"><link linkend="gcr-parser-new">gcr_parser_new</link></primaryie></indexentry>
+<indexentry><primaryie linkends="gcr-parser-parse-data"><link linkend="gcr-parser-parse-data">gcr_parser_parse_data</link></primaryie></indexentry>
+<indexentry><primaryie linkends="gcr-simple-certificate-new"><link linkend="gcr-simple-certificate-new">gcr_simple_certificate_new</link></primaryie></indexentry>
+<indexentry><primaryie linkends="gcr-token-manager-change-pin"><link linkend="gcr-token-manager-change-pin">gcr_token_manager_change_pin</link></primaryie></indexentry>
+<indexentry><primaryie linkends="gcr-token-manager-change-pin-async"><link linkend="gcr-token-manager-change-pin-async">gcr_token_manager_change_pin_async</link></primaryie></indexentry>
+<indexentry><primaryie linkends="gcr-token-manager-change-pin-finish"><link linkend="gcr-token-manager-change-pin-finish">gcr_token_manager_change_pin_finish</link></primaryie></indexentry>
+<indexentry><primaryie linkends="gcr-token-manager-get-slot"><link linkend="gcr-token-manager-get-slot">gcr_token_manager_get_slot</link></primaryie></indexentry>
+<indexentry><primaryie linkends="gcr-token-manager-initialize"><link linkend="gcr-token-manager-initialize">gcr_token_manager_initialize</link></primaryie></indexentry>
+<indexentry><primaryie linkends="gcr-token-manager-initialize-async"><link linkend="gcr-token-manager-initialize-async">gcr_token_manager_initialize_async</link></primaryie></indexentry>
+<indexentry><primaryie linkends="gcr-token-manager-initialize-finish"><link linkend="gcr-token-manager-initialize-finish">gcr_token_manager_initialize_finish</link></primaryie></indexentry>
+<indexentry><primaryie linkends="gcr-token-manager-new"><link linkend="gcr-token-manager-new">gcr_token_manager_new</link></primaryie></indexentry>
+</indexdiv>
+</indexdiv>

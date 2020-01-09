@@ -1,0 +1,204 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>GcrCertificateDetailsWidget</title>
+<meta name="generator" content="DocBook XSL Stylesheets V1.75.1">
+<link rel="home" href="index.html" title="gcr Reference Manual">
+<link rel="up" href="ch01.html" title="[Insert title here]">
+<link rel="prev" href="gcr-GcrImportDialog.html" title="GcrImportDialog">
+<link rel="next" href="GcrCertificateBasicsWidget.html" title="GcrCertificateBasicsWidget">
+<meta name="generator" content="GTK-Doc V1.11 (XML mode)">
+<link rel="stylesheet" href="style.css" type="text/css">
+<link rel="chapter" href="ch01.html" title="[Insert title here]">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<table class="navigation" id="top" width="100%" summary="Navigation header" cellpadding="2" cellspacing="2">
+<tr valign="middle">
+<td><a accesskey="p" href="gcr-GcrImportDialog.html"><img src="left.png" width="24" height="24" border="0" alt="Prev"></a></td>
+<td><a accesskey="u" href="ch01.html"><img src="up.png" width="24" height="24" border="0" alt="Up"></a></td>
+<td><a accesskey="h" href="index.html"><img src="home.png" width="24" height="24" border="0" alt="Home"></a></td>
+<th width="100%" align="center">gcr Reference Manual</th>
+<td><a accesskey="n" href="GcrCertificateBasicsWidget.html"><img src="right.png" width="24" height="24" border="0" alt="Next"></a></td>
+</tr>
+<tr><td colspan="5" class="shortcuts">
+<a href="#GcrCertificateDetailsWidget.synopsis" class="shortcut">Top</a>
+                 | 
+                <a href="#GcrCertificateDetailsWidget.description" class="shortcut">Description</a>
+                 | 
+                <a href="#GcrCertificateDetailsWidget.object-hierarchy" class="shortcut">Object Hierarchy</a>
+                 | 
+                <a href="#GcrCertificateDetailsWidget.implemented-interfaces" class="shortcut">Implemented Interfaces</a>
+                 | 
+                <a href="#GcrCertificateDetailsWidget.properties" class="shortcut">Properties</a>
+</td></tr>
+</table>
+<div class="refentry" title="GcrCertificateDetailsWidget">
+<a name="GcrCertificateDetailsWidget"></a><div class="titlepage"></div>
+<div class="refnamediv"><table width="100%"><tr>
+<td valign="top">
+<h2><span class="refentrytitle"><a name="GcrCertificateDetailsWidget.top_of_page"></a>GcrCertificateDetailsWidget</span></h2>
+<p>GcrCertificateDetailsWidget</p>
+</td>
+<td valign="top" align="right"></td>
+</tr></table></div>
+<div class="refsynopsisdiv" title="Synopsis">
+<a name="GcrCertificateDetailsWidget.synopsis"></a><h2>Synopsis</h2>
+<pre class="synopsis">
+                    <a class="link" href="GcrCertificateDetailsWidget.html#GcrCertificateDetailsWidgetPrivate" title="GcrCertificateDetailsWidgetPrivate">GcrCertificateDetailsWidgetPrivate</a>;
+                    <a class="link" href="GcrCertificateDetailsWidget.html#GcrCertificateDetailsWidget-struct" title="GcrCertificateDetailsWidget">GcrCertificateDetailsWidget</a>;
+<a class="link" href="GcrCertificateDetailsWidget.html" title="GcrCertificateDetailsWidget">GcrCertificateDetailsWidget</a>* <a class="link" href="GcrCertificateDetailsWidget.html#gcr-certificate-details-widget-new" title="gcr_certificate_details_widget_new ()">gcr_certificate_details_widget_new</a>
+                                                        (<a class="link" href="gcr-gcr-certificate.html#GcrCertificate" title="GcrCertificate">GcrCertificate</a> *cert);
+<a class="link" href="gcr-gcr-certificate.html#GcrCertificate" title="GcrCertificate">GcrCertificate</a>*     <a class="link" href="GcrCertificateDetailsWidget.html#gcr-certificate-details-widget-get-certificate" title="gcr_certificate_details_widget_get_certificate ()">gcr_certificate_details_widget_get_certificate</a>
+                                                        (<a class="link" href="GcrCertificateDetailsWidget.html" title="GcrCertificateDetailsWidget">GcrCertificateDetailsWidget</a> *details);
+void                <a class="link" href="GcrCertificateDetailsWidget.html#gcr-certificate-details-widget-set-certificate" title="gcr_certificate_details_widget_set_certificate ()">gcr_certificate_details_widget_set_certificate</a>
+                                                        (<a class="link" href="GcrCertificateDetailsWidget.html" title="GcrCertificateDetailsWidget">GcrCertificateDetailsWidget</a> *details,
+                                                         <a class="link" href="gcr-gcr-certificate.html#GcrCertificate" title="GcrCertificate">GcrCertificate</a> *cert);
+</pre>
+</div>
+<div class="refsect1" title="Object Hierarchy">
+<a name="GcrCertificateDetailsWidget.object-hierarchy"></a><h2>Object Hierarchy</h2>
+<pre class="synopsis">
+  <a
+href="http://library.gnome.org/devel/gobject/unstable/gobject-The-Base-Object-Type.html#GObject"
+>GObject</a>
+   +----<a
+href="http://library.gnome.org/devel/gobject/unstable/gobject-The-Base-Object-Type.html#GInitiallyUnowned"
+>GInitiallyUnowned</a>
+         +----<a
+href="http://library.gnome.org/devel/gtk/unstable/GtkObject.html"
+>GtkObject</a>
+               +----<a
+href="http://library.gnome.org/devel/gtk/unstable/GtkWidget.html"
+>GtkWidget</a>
+                     +----<a
+href="http://library.gnome.org/devel/gtk/unstable/GtkContainer.html"
+>GtkContainer</a>
+                           +----<a
+href="http://library.gnome.org/devel/gtk/unstable/GtkBin.html"
+>GtkBin</a>
+                                 +----<a
+href="http://library.gnome.org/devel/gtk/unstable/GtkAlignment.html"
+>GtkAlignment</a>
+                                       +----GcrCertificateDetailsWidget
+</pre>
+</div>
+<div class="refsect1" title="Implemented Interfaces">
+<a name="GcrCertificateDetailsWidget.implemented-interfaces"></a><h2>Implemented Interfaces</h2>
+<p>
+GcrCertificateDetailsWidget implements
+ <a
+href="http://library.gnome.org/devel/gtk/unstable/gtk-gtkbuildable.html#GtkBuildable"
+>GtkBuildable</a> and  AtkImplementorIface.</p>
+</div>
+<div class="refsect1" title="Properties">
+<a name="GcrCertificateDetailsWidget.properties"></a><h2>Properties</h2>
+<pre class="synopsis">
+  "<a class="link" href="GcrCertificateDetailsWidget.html#GcrCertificateDetailsWidget--certificate" title='The "certificate" property'>certificate</a>"              <a class="link" href="gcr-gcr-certificate.html#GcrCertificateIface">GcrCertificateIface</a>*  : Read / Write
+</pre>
+</div>
+<div class="refsect1" title="Description">
+<a name="GcrCertificateDetailsWidget.description"></a><h2>Description</h2>
+<p>
+</p>
+</div>
+<div class="refsect1" title="Details">
+<a name="GcrCertificateDetailsWidget.details"></a><h2>Details</h2>
+<div class="refsect2" title="GcrCertificateDetailsWidgetPrivate">
+<a name="GcrCertificateDetailsWidgetPrivate"></a><h3>GcrCertificateDetailsWidgetPrivate</h3>
+<pre class="programlisting">typedef struct _GcrCertificateDetailsWidgetPrivate GcrCertificateDetailsWidgetPrivate;</pre>
+<p>
+</p>
+</div>
+<hr>
+<div class="refsect2" title="GcrCertificateDetailsWidget">
+<a name="GcrCertificateDetailsWidget-struct"></a><h3>GcrCertificateDetailsWidget</h3>
+<pre class="programlisting">typedef struct _GcrCertificateDetailsWidget GcrCertificateDetailsWidget;</pre>
+<p>
+</p>
+</div>
+<hr>
+<div class="refsect2" title="gcr_certificate_details_widget_new ()">
+<a name="gcr-certificate-details-widget-new"></a><h3>gcr_certificate_details_widget_new ()</h3>
+<pre class="programlisting"><a class="link" href="GcrCertificateDetailsWidget.html" title="GcrCertificateDetailsWidget">GcrCertificateDetailsWidget</a>* gcr_certificate_details_widget_new
+                                                        (<a class="link" href="gcr-gcr-certificate.html#GcrCertificate" title="GcrCertificate">GcrCertificate</a> *cert);</pre>
+<p>
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>cert</code></em> :</span></p></td>
+<td>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td>
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" title="gcr_certificate_details_widget_get_certificate ()">
+<a name="gcr-certificate-details-widget-get-certificate"></a><h3>gcr_certificate_details_widget_get_certificate ()</h3>
+<pre class="programlisting"><a class="link" href="gcr-gcr-certificate.html#GcrCertificate" title="GcrCertificate">GcrCertificate</a>*     gcr_certificate_details_widget_get_certificate
+                                                        (<a class="link" href="GcrCertificateDetailsWidget.html" title="GcrCertificateDetailsWidget">GcrCertificateDetailsWidget</a> *details);</pre>
+<p>
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>details</code></em> :</span></p></td>
+<td>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td>
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" title="gcr_certificate_details_widget_set_certificate ()">
+<a name="gcr-certificate-details-widget-set-certificate"></a><h3>gcr_certificate_details_widget_set_certificate ()</h3>
+<pre class="programlisting">void                gcr_certificate_details_widget_set_certificate
+                                                        (<a class="link" href="GcrCertificateDetailsWidget.html" title="GcrCertificateDetailsWidget">GcrCertificateDetailsWidget</a> *details,
+                                                         <a class="link" href="gcr-gcr-certificate.html#GcrCertificate" title="GcrCertificate">GcrCertificate</a> *cert);</pre>
+<p>
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>details</code></em> :</span></p></td>
+<td>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>cert</code></em> :</span></p></td>
+<td>
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+</div>
+<div class="refsect1" title="Property Details">
+<a name="GcrCertificateDetailsWidget.property-details"></a><h2>Property Details</h2>
+<div class="refsect2" title='The "certificate" property'>
+<a name="GcrCertificateDetailsWidget--certificate"></a><h3>The <code class="literal">"certificate"</code> property</h3>
+<pre class="programlisting">  "certificate"              <a class="link" href="gcr-gcr-certificate.html#GcrCertificateIface">GcrCertificateIface</a>*  : Read / Write</pre>
+<p>Certificate to display.</p>
+</div>
+</div>
+</div>
+<div class="footer">
+<hr>
+          Generated by GTK-Doc V1.11</div>
+</body>
+</html>

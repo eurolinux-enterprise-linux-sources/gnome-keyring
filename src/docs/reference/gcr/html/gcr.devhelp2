@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<!DOCTYPE book PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "">
+<book xmlns="http://www.devhelp.net/book" title="gcr Reference Manual" link="index.html" author="" name="gcr" version="2" language="c">
+  <chapters>
+    <sub name="[Insert title here]" link="ch01.html">
+      <sub name="GcrImportDialog" link="gcr-GcrImportDialog.html"/>
+      <sub name="GcrCertificateDetailsWidget" link="GcrCertificateDetailsWidget.html"/>
+      <sub name="GcrCertificateBasicsWidget" link="GcrCertificateBasicsWidget.html"/>
+      <sub name="GcrParser" link="GcrParser.html"/>
+      <sub name="GcrCertificate" link="gcr-gcr-certificate.html"/>
+      <sub name="GcrTokenManager" link="gcr-GcrTokenManager.html"/>
+      <sub name="GcrImporter" link="GcrImporter.html"/>
+      <sub name="GcrSimpleCertificate" link="GcrSimpleCertificate.html"/>
+      <sub name="GcrXxx" link="gcr-GcrXxx.html"/>
+      <sub name="gcr-types" link="gcr-gcr-types.html"/>
+    </sub>
+  </chapters>
+  <functions>
+    <keyword type="struct" name="GcrImportDialogPrivate" link="gcr-GcrImportDialog.html#GcrImportDialogPrivate"/>
+    <keyword type="struct" name="GcrImportDialog" link="gcr-GcrImportDialog.html#GcrImportDialog"/>
+    <keyword type="struct" name="GcrCertificateDetailsWidgetPrivate" link="GcrCertificateDetailsWidget.html#GcrCertificateDetailsWidgetPrivate"/>
+    <keyword type="struct" name="GcrCertificateDetailsWidget" link="GcrCertificateDetailsWidget.html#GcrCertificateDetailsWidget-struct"/>
+    <keyword type="function" name="gcr_certificate_details_widget_new ()" link="GcrCertificateDetailsWidget.html#gcr-certificate-details-widget-new"/>
+    <keyword type="function" name="gcr_certificate_details_widget_get_certificate ()" link="GcrCertificateDetailsWidget.html#gcr-certificate-details-widget-get-certificate"/>
+    <keyword type="function" name="gcr_certificate_details_widget_set_certificate ()" link="GcrCertificateDetailsWidget.html#gcr-certificate-details-widget-set-certificate"/>
+    <keyword type="property" name="The &quot;certificate&quot; property" link="GcrCertificateDetailsWidget.html#GcrCertificateDetailsWidget--certificate"/>
+    <keyword type="struct" name="GcrCertificateBasicsWidgetPrivate" link="GcrCertificateBasicsWidget.html#GcrCertificateBasicsWidgetPrivate"/>
+    <keyword type="struct" name="GcrCertificateBasicsWidget" link="GcrCertificateBasicsWidget.html#GcrCertificateBasicsWidget-struct"/>
+    <keyword type="function" name="gcr_certificate_basics_widget_new ()" link="GcrCertificateBasicsWidget.html#gcr-certificate-basics-widget-new"/>
+    <keyword type="function" name="gcr_certificate_basics_widget_get_certificate ()" link="GcrCertificateBasicsWidget.html#gcr-certificate-basics-widget-get-certificate"/>
+    <keyword type="function" name="gcr_certificate_basics_widget_set_certificate ()" link="GcrCertificateBasicsWidget.html#gcr-certificate-basics-widget-set-certificate"/>
+    <keyword type="property" name="The &quot;certificate&quot; property" link="GcrCertificateBasicsWidget.html#GcrCertificateBasicsWidget--certificate"/>
+    <keyword type="struct" name="GcrParsedItem" link="GcrParser.html#GcrParsedItem"/>
+    <keyword type="struct" name="GcrParserPrivate" link="GcrParser.html#GcrParserPrivate"/>
+    <keyword type="struct" name="GcrParser" link="GcrParser.html#GcrParser-struct"/>
+    <keyword type="function" name="gcr_parser_new ()" link="GcrParser.html#gcr-parser-new"/>
+    <keyword type="function" name="gcr_parser_format_enable ()" link="GcrParser.html#gcr-parser-format-enable"/>
+    <keyword type="function" name="gcr_parser_format_disable ()" link="GcrParser.html#gcr-parser-format-disable"/>
+    <keyword type="function" name="gcr_parser_format_supported ()" link="GcrParser.html#gcr-parser-format-supported"/>
+    <keyword type="function" name="gcr_parser_parse_data ()" link="GcrParser.html#gcr-parser-parse-data"/>
+    <keyword type="function" name="gcr_parser_add_password ()" link="GcrParser.html#gcr-parser-add-password"/>
+    <keyword type="function" name="gcr_parser_get_parsed_label ()" link="GcrParser.html#gcr-parser-get-parsed-label"/>
+    <keyword type="function" name="gcr_parser_get_parsed_description ()" link="GcrParser.html#gcr-parser-get-parsed-description"/>
+    <keyword type="function" name="gcr_parser_get_parsed_attributes ()" link="GcrParser.html#gcr-parser-get-parsed-attributes"/>
+    <keyword type="property" name="The &quot;parsed-attributes&quot; property" link="GcrParser.html#GcrParser--parsed-attributes"/>
+    <keyword type="property" name="The &quot;parsed-description&quot; property" link="GcrParser.html#GcrParser--parsed-description"/>
+    <keyword type="property" name="The &quot;parsed-label&quot; property" link="GcrParser.html#GcrParser--parsed-label"/>
+    <keyword type="signal" name="The &quot;authenticate&quot; signal" link="GcrParser.html#GcrParser-authenticate"/>
+    <keyword type="signal" name="The &quot;parsed&quot; signal" link="GcrParser.html#GcrParser-parsed"/>
+    <keyword type="macro" name="GCR_CERTIFICATE_GET_INTERFACE()" link="gcr-gcr-certificate.html#GCR-CERTIFICATE-GET-INTERFACE--CAPS"/>
+    <keyword type="struct" name="GcrCertificate" link="gcr-gcr-certificate.html#GcrCertificate"/>
+    <keyword type="struct" name="GcrCertificateIface" link="gcr-gcr-certificate.html#GcrCertificateIface-struct"/>
+    <keyword type="function" name="gcr_certificate_get_der_data ()" link="gcr-gcr-certificate.html#gcr-certificate-get-der-data"/>
+    <keyword type="function" name="gcr_certificate_get_issuer_cn ()" link="gcr-gcr-certificate.html#gcr-certificate-get-issuer-cn"/>
+    <keyword type="function" name="gcr_certificate_get_issuer_dn ()" link="gcr-gcr-certificate.html#gcr-certificate-get-issuer-dn"/>
+    <keyword type="function" name="gcr_certificate_get_issuer_part ()" link="gcr-gcr-certificate.html#gcr-certificate-get-issuer-part"/>
+    <keyword type="function" name="gcr_certificate_get_subject_cn ()" link="gcr-gcr-certificate.html#gcr-certificate-get-subject-cn"/>
+    <keyword type="function" name="gcr_certificate_get_subject_dn ()" link="gcr-gcr-certificate.html#gcr-certificate-get-subject-dn"/>
+    <keyword type="function" name="gcr_certificate_get_subject_part ()" link="gcr-gcr-certificate.html#gcr-certificate-get-subject-part"/>
+    <keyword type="function" name="gcr_certificate_get_issued_date ()" link="gcr-gcr-certificate.html#gcr-certificate-get-issued-date"/>
+    <keyword type="function" name="gcr_certificate_get_expiry_date ()" link="gcr-gcr-certificate.html#gcr-certificate-get-expiry-date"/>
+    <keyword type="function" name="gcr_certificate_get_serial_number ()" link="gcr-gcr-certificate.html#gcr-certificate-get-serial-number"/>
+    <keyword type="function" name="gcr_certificate_get_serial_number_hex ()" link="gcr-gcr-certificate.html#gcr-certificate-get-serial-number-hex"/>
+    <keyword type="function" name="gcr_certificate_get_key_size ()" link="gcr-gcr-certificate.html#gcr-certificate-get-key-size"/>
+    <keyword type="function" name="gcr_certificate_get_fingerprint ()" link="gcr-gcr-certificate.html#gcr-certificate-get-fingerprint"/>
+    <keyword type="function" name="gcr_certificate_get_fingerprint_hex ()" link="gcr-gcr-certificate.html#gcr-certificate-get-fingerprint-hex"/>
+    <keyword type="struct" name="GcrTokenManagerPrivate" link="gcr-GcrTokenManager.html#GcrTokenManagerPrivate"/>
+    <keyword type="struct" name="GcrTokenManager" link="gcr-GcrTokenManager.html#GcrTokenManager"/>
+    <keyword type="function" name="gcr_token_manager_new ()" link="gcr-GcrTokenManager.html#gcr-token-manager-new"/>
+    <keyword type="function" name="gcr_token_manager_get_slot ()" link="gcr-GcrTokenManager.html#gcr-token-manager-get-slot"/>
+    <keyword type="function" name="gcr_token_manager_initialize ()" link="gcr-GcrTokenManager.html#gcr-token-manager-initialize"/>
+    <keyword type="function" name="gcr_token_manager_initialize_async ()" link="gcr-GcrTokenManager.html#gcr-token-manager-initialize-async"/>
+    <keyword type="function" name="gcr_token_manager_initialize_finish ()" link="gcr-GcrTokenManager.html#gcr-token-manager-initialize-finish"/>
+    <keyword type="function" name="gcr_token_manager_change_pin ()" link="gcr-GcrTokenManager.html#gcr-token-manager-change-pin"/>
+    <keyword type="function" name="gcr_token_manager_change_pin_async ()" link="gcr-GcrTokenManager.html#gcr-token-manager-change-pin-async"/>
+    <keyword type="function" name="gcr_token_manager_change_pin_finish ()" link="gcr-GcrTokenManager.html#gcr-token-manager-change-pin-finish"/>
+    <keyword type="enum" name="enum GcrImporterPromptBehavior" link="GcrImporter.html#GcrImporterPromptBehavior"/>
+    <keyword type="struct" name="GcrImporterPrivate" link="GcrImporter.html#GcrImporterPrivate"/>
+    <keyword type="struct" name="GcrImporter" link="GcrImporter.html#GcrImporter-struct"/>
+    <keyword type="function" name="gcr_importer_new ()" link="GcrImporter.html#gcr-importer-new"/>
+    <keyword type="function" name="gcr_importer_get_parser ()" link="GcrImporter.html#gcr-importer-get-parser"/>
+    <keyword type="function" name="gcr_importer_set_parser ()" link="GcrImporter.html#gcr-importer-set-parser"/>
+    <keyword type="function" name="gcr_importer_get_slot ()" link="GcrImporter.html#gcr-importer-get-slot"/>
+    <keyword type="function" name="gcr_importer_set_slot ()" link="GcrImporter.html#gcr-importer-set-slot"/>
+    <keyword type="function" name="gcr_importer_get_prompt_behavior ()" link="GcrImporter.html#gcr-importer-get-prompt-behavior"/>
+    <keyword type="function" name="gcr_importer_set_prompt_behavior ()" link="GcrImporter.html#gcr-importer-set-prompt-behavior"/>
+    <keyword type="function" name="gcr_importer_import ()" link="GcrImporter.html#gcr-importer-import"/>
+    <keyword type="function" name="gcr_importer_import_async ()" link="GcrImporter.html#gcr-importer-import-async"/>
+    <keyword type="function" name="gcr_importer_import_finish ()" link="GcrImporter.html#gcr-importer-import-finish"/>
+    <keyword type="property" name="The &quot;parser&quot; property" link="GcrImporter.html#GcrImporter--parser"/>
+    <keyword type="property" name="The &quot;prompt-behavior&quot; property" link="GcrImporter.html#GcrImporter--prompt-behavior"/>
+    <keyword type="property" name="The &quot;slot&quot; property" link="GcrImporter.html#GcrImporter--slot"/>
+    <keyword type="signal" name="The &quot;imported&quot; signal" link="GcrImporter.html#GcrImporter-imported"/>
+    <keyword type="struct" name="GcrSimpleCertificatePrivate" link="GcrSimpleCertificate.html#GcrSimpleCertificatePrivate"/>
+    <keyword type="struct" name="GcrSimpleCertificate" link="GcrSimpleCertificate.html#GcrSimpleCertificate-struct"/>
+    <keyword type="function" name="gcr_simple_certificate_new ()" link="GcrSimpleCertificate.html#gcr-simple-certificate-new"/>
+    <keyword type="macro" name="GCR_DATA_ERROR" link="gcr-gcr-types.html#GCR-DATA-ERROR--CAPS"/>
+    <keyword type="function" name="gcr_data_error_get_domain ()" link="gcr-gcr-types.html#gcr-data-error-get-domain"/>
+  </functions>
+</book>

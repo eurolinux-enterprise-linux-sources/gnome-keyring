@@ -1,0 +1,133 @@
+<?xml version="1.0"?>
+<!DOCTYPE refentry PUBLIC "-//OASIS//DTD DocBook XML V4.1.2//EN"
+               "http://www.oasis-open.org/docbook/xml/4.1.2/docbookx.dtd">
+<refentry id="GcrCertificateDetailsWidget">
+<refmeta>
+<refentrytitle role="top_of_page" id="GcrCertificateDetailsWidget.top_of_page">GcrCertificateDetailsWidget</refentrytitle>
+<manvolnum>3</manvolnum>
+<refmiscinfo>GCR Library</refmiscinfo>
+</refmeta>
+
+<refnamediv>
+<refname>GcrCertificateDetailsWidget</refname>
+<refpurpose></refpurpose>
+</refnamediv>
+
+<refsynopsisdiv id="GcrCertificateDetailsWidget.synopsis" role="synopsis">
+<title role="synopsis.title">Synopsis</title>
+
+<synopsis>
+                    <link linkend="GcrCertificateDetailsWidgetPrivate">GcrCertificateDetailsWidgetPrivate</link>;
+                    <link linkend="GcrCertificateDetailsWidget-struct">GcrCertificateDetailsWidget</link>;
+<link linkend="GcrCertificateDetailsWidget">GcrCertificateDetailsWidget</link>* <link linkend="gcr-certificate-details-widget-new">gcr_certificate_details_widget_new</link>
+                                                        (<link linkend="GcrCertificate">GcrCertificate</link> *cert);
+<link linkend="GcrCertificate">GcrCertificate</link>*     <link linkend="gcr-certificate-details-widget-get-certificate">gcr_certificate_details_widget_get_certificate</link>
+                                                        (<link linkend="GcrCertificateDetailsWidget">GcrCertificateDetailsWidget</link> *details);
+<link linkend="void">void</link>                <link linkend="gcr-certificate-details-widget-set-certificate">gcr_certificate_details_widget_set_certificate</link>
+                                                        (<link linkend="GcrCertificateDetailsWidget">GcrCertificateDetailsWidget</link> *details,
+                                                         <link linkend="GcrCertificate">GcrCertificate</link> *cert);
+</synopsis>
+</refsynopsisdiv>
+
+<refsect1 id="GcrCertificateDetailsWidget.object-hierarchy" role="object_hierarchy">
+<title role="object_hierarchy.title">Object Hierarchy</title>
+<synopsis>
+  <link linkend="GObject">GObject</link>
+   +----<link linkend="GInitiallyUnowned">GInitiallyUnowned</link>
+         +----<link linkend="GtkObject">GtkObject</link>
+               +----<link linkend="GtkWidget">GtkWidget</link>
+                     +----<link linkend="GtkContainer">GtkContainer</link>
+                           +----<link linkend="GtkBin">GtkBin</link>
+                                 +----<link linkend="GtkAlignment">GtkAlignment</link>
+                                       +----GcrCertificateDetailsWidget
+</synopsis>
+</refsect1>
+
+
+
+<refsect1 id="GcrCertificateDetailsWidget.implemented-interfaces" role="impl_interfaces">
+<title role="impl_interfaces.title">Implemented Interfaces</title>
+<para>
+GcrCertificateDetailsWidget implements
+ <link linkend="GtkBuildable">GtkBuildable</link> and  <link linkend="AtkImplementorIface">AtkImplementorIface</link>.</para>
+</refsect1>
+
+
+<refsect1 id="GcrCertificateDetailsWidget.properties" role="properties">
+<title role="properties.title">Properties</title>
+<synopsis>
+  &quot;<link linkend="GcrCertificateDetailsWidget--certificate">certificate</link>&quot;              <link linkend="GcrCertificateIface">GcrCertificateIface</link>*  : Read / Write
+</synopsis>
+</refsect1>
+
+
+
+<refsect1 id="GcrCertificateDetailsWidget.description" role="desc">
+<title role="desc.title">Description</title>
+<para>
+</para>
+</refsect1>
+
+<refsect1 id="GcrCertificateDetailsWidget.details" role="details">
+<title role="details.title">Details</title>
+<refsect2 id="GcrCertificateDetailsWidgetPrivate" role="struct">
+<title>GcrCertificateDetailsWidgetPrivate</title>
+<indexterm zone="GcrCertificateDetailsWidgetPrivate"><primary sortas="GcrCertificateDetailsWidgetPrivate">GcrCertificateDetailsWidgetPrivate</primary></indexterm><programlisting>typedef struct _GcrCertificateDetailsWidgetPrivate GcrCertificateDetailsWidgetPrivate;</programlisting>
+<para>
+</para></refsect2>
+<refsect2 id="GcrCertificateDetailsWidget-struct" role="struct">
+<title>GcrCertificateDetailsWidget</title>
+<indexterm zone="GcrCertificateDetailsWidget-struct"><primary sortas="GcrCertificateDetailsWidget">GcrCertificateDetailsWidget</primary></indexterm><programlisting>typedef struct _GcrCertificateDetailsWidget GcrCertificateDetailsWidget;</programlisting>
+<para>
+</para></refsect2>
+<refsect2 id="gcr-certificate-details-widget-new" role="function">
+<title>gcr_certificate_details_widget_new ()</title>
+<indexterm zone="gcr-certificate-details-widget-new"><primary sortas="gcr_certificate_details_widget_new">gcr_certificate_details_widget_new</primary></indexterm><programlisting><link linkend="GcrCertificateDetailsWidget">GcrCertificateDetailsWidget</link>* gcr_certificate_details_widget_new
+                                                        (<link linkend="GcrCertificate">GcrCertificate</link> *cert);</programlisting>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>cert</parameter>&#160;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara>
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="gcr-certificate-details-widget-get-certificate" role="function">
+<title>gcr_certificate_details_widget_get_certificate ()</title>
+<indexterm zone="gcr-certificate-details-widget-get-certificate"><primary sortas="gcr_certificate_details_widget_get_certificate">gcr_certificate_details_widget_get_certificate</primary></indexterm><programlisting><link linkend="GcrCertificate">GcrCertificate</link>*     gcr_certificate_details_widget_get_certificate
+                                                        (<link linkend="GcrCertificateDetailsWidget">GcrCertificateDetailsWidget</link> *details);</programlisting>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>details</parameter>&#160;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara>
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="gcr-certificate-details-widget-set-certificate" role="function">
+<title>gcr_certificate_details_widget_set_certificate ()</title>
+<indexterm zone="gcr-certificate-details-widget-set-certificate"><primary sortas="gcr_certificate_details_widget_set_certificate">gcr_certificate_details_widget_set_certificate</primary></indexterm><programlisting><link linkend="void">void</link>                gcr_certificate_details_widget_set_certificate
+                                                        (<link linkend="GcrCertificateDetailsWidget">GcrCertificateDetailsWidget</link> *details,
+                                                         <link linkend="GcrCertificate">GcrCertificate</link> *cert);</programlisting>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>details</parameter>&#160;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>cert</parameter>&#160;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+
+</refsect1>
+<refsect1 id="GcrCertificateDetailsWidget.property-details" role="property_details">
+<title role="property_details.title">Property Details</title>
+<refsect2 id="GcrCertificateDetailsWidget--certificate" role="property"><title>The <literal>&quot;certificate&quot;</literal> property</title>
+<indexterm zone="GcrCertificateDetailsWidget--certificate"><primary sortas="GcrCertificateDetailsWidget:certificate">GcrCertificateDetailsWidget:certificate</primary></indexterm><programlisting>  &quot;certificate&quot;              <link linkend="GcrCertificateIface">GcrCertificateIface</link>*  : Read / Write</programlisting>
+<para>Certificate to display.</para></refsect2>
+</refsect1>
+
+
+
+
+</refentry>

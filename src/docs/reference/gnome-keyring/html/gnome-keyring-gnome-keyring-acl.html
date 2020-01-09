@@ -1,0 +1,459 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Item ACLs</title>
+<meta name="generator" content="DocBook XSL Stylesheets V1.75.1">
+<link rel="home" href="index.html" title="gnome-keyring Reference Manual">
+<link rel="up" href="ch01.html" title="gnome-keyring API Reference">
+<link rel="prev" href="gnome-keyring-gnome-keyring-attributes.html" title="Item Attributes">
+<link rel="next" href="gnome-keyring-gnome-keyring-find.html" title="Search Functionality">
+<meta name="generator" content="GTK-Doc V1.11 (XML mode)">
+<link rel="stylesheet" href="style.css" type="text/css">
+<link rel="chapter" href="ch01.html" title="gnome-keyring API Reference">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<table class="navigation" id="top" width="100%" summary="Navigation header" cellpadding="2" cellspacing="2">
+<tr valign="middle">
+<td><a accesskey="p" href="gnome-keyring-gnome-keyring-attributes.html"><img src="left.png" width="24" height="24" border="0" alt="Prev"></a></td>
+<td><a accesskey="u" href="ch01.html"><img src="up.png" width="24" height="24" border="0" alt="Up"></a></td>
+<td><a accesskey="h" href="index.html"><img src="home.png" width="24" height="24" border="0" alt="Home"></a></td>
+<th width="100%" align="center">gnome-keyring Reference Manual</th>
+<td><a accesskey="n" href="gnome-keyring-gnome-keyring-find.html"><img src="right.png" width="24" height="24" border="0" alt="Next"></a></td>
+</tr>
+<tr><td colspan="5" class="shortcuts">
+<a href="#gnome-keyring-gnome-keyring-acl.synopsis" class="shortcut">Top</a>
+                 | 
+                <a href="#gnome-keyring-gnome-keyring-acl.description" class="shortcut">Description</a>
+</td></tr>
+</table>
+<div class="refentry" title="Item ACLs">
+<a name="gnome-keyring-gnome-keyring-acl"></a><div class="titlepage"></div>
+<div class="refnamediv"><table width="100%"><tr>
+<td valign="top">
+<h2><span class="refentrytitle"><a name="gnome-keyring-gnome-keyring-acl.top_of_page"></a>Item ACLs</span></h2>
+<p>Item ACLs — Access control lists for keyring items.</p>
+</td>
+<td valign="top" align="right"></td>
+</tr></table></div>
+<div class="refsynopsisdiv" title="Synopsis">
+<a name="gnome-keyring-gnome-keyring-acl.synopsis"></a><h2>Synopsis</h2>
+<pre class="synopsis">
+typedef             <a class="link" href="gnome-keyring-gnome-keyring-acl.html#GnomeKeyringAccessControl" title="GnomeKeyringAccessControl">GnomeKeyringAccessControl</a>;
+typedef             <a class="link" href="gnome-keyring-gnome-keyring-acl.html#GnomeKeyringApplicationRef" title="GnomeKeyringApplicationRef">GnomeKeyringApplicationRef</a>;
+enum                <a class="link" href="gnome-keyring-gnome-keyring-acl.html#GnomeKeyringAccessType" title="enum GnomeKeyringAccessType">GnomeKeyringAccessType</a>;
+<a class="link" href="gnome-keyring-gnome-keyring-acl.html#GnomeKeyringApplicationRef" title="GnomeKeyringApplicationRef">GnomeKeyringApplicationRef</a> * <a class="link" href="gnome-keyring-gnome-keyring-acl.html#gnome-keyring-application-ref-new" title="gnome_keyring_application_ref_new ()">gnome_keyring_application_ref_new</a>
+                                                        (void);
+<a class="link" href="gnome-keyring-gnome-keyring-acl.html#GnomeKeyringApplicationRef" title="GnomeKeyringApplicationRef">GnomeKeyringApplicationRef</a> * <a class="link" href="gnome-keyring-gnome-keyring-acl.html#gnome-keyring-application-ref-copy" title="gnome_keyring_application_ref_copy ()">gnome_keyring_application_ref_copy</a>
+                                                        (const <a class="link" href="gnome-keyring-gnome-keyring-acl.html#GnomeKeyringApplicationRef" title="GnomeKeyringApplicationRef">GnomeKeyringApplicationRef</a> *app);
+void                <a class="link" href="gnome-keyring-gnome-keyring-acl.html#gnome-keyring-application-ref-free" title="gnome_keyring_application_ref_free ()">gnome_keyring_application_ref_free</a>  (<a class="link" href="gnome-keyring-gnome-keyring-acl.html#GnomeKeyringApplicationRef" title="GnomeKeyringApplicationRef">GnomeKeyringApplicationRef</a> *app);
+<a class="link" href="gnome-keyring-gnome-keyring-acl.html#GnomeKeyringAccessControl" title="GnomeKeyringAccessControl">GnomeKeyringAccessControl</a> * <a class="link" href="gnome-keyring-gnome-keyring-acl.html#gnome-keyring-access-control-new" title="gnome_keyring_access_control_new ()">gnome_keyring_access_control_new</a>
+                                                        (const <a class="link" href="gnome-keyring-gnome-keyring-acl.html#GnomeKeyringApplicationRef" title="GnomeKeyringApplicationRef">GnomeKeyringApplicationRef</a> *application,
+                                                         <a class="link" href="gnome-keyring-gnome-keyring-acl.html#GnomeKeyringAccessType" title="enum GnomeKeyringAccessType">GnomeKeyringAccessType</a> types_allowed);
+<a class="link" href="gnome-keyring-gnome-keyring-acl.html#GnomeKeyringAccessControl" title="GnomeKeyringAccessControl">GnomeKeyringAccessControl</a> * <a class="link" href="gnome-keyring-gnome-keyring-acl.html#gnome-keyring-access-control-copy" title="gnome_keyring_access_control_copy ()">gnome_keyring_access_control_copy</a>
+                                                        (<a class="link" href="gnome-keyring-gnome-keyring-acl.html#GnomeKeyringAccessControl" title="GnomeKeyringAccessControl">GnomeKeyringAccessControl</a> *ac);
+void                <a class="link" href="gnome-keyring-gnome-keyring-acl.html#gnome-keyring-access-control-free" title="gnome_keyring_access_control_free ()">gnome_keyring_access_control_free</a>   (<a class="link" href="gnome-keyring-gnome-keyring-acl.html#GnomeKeyringAccessControl" title="GnomeKeyringAccessControl">GnomeKeyringAccessControl</a> *ac);
+<a
+href="http://library.gnome.org/devel/glib/unstable/glib-Doubly-Linked-Lists.html#GList"
+>GList</a> *             <a class="link" href="gnome-keyring-gnome-keyring-acl.html#gnome-keyring-acl-copy" title="gnome_keyring_acl_copy ()">gnome_keyring_acl_copy</a>              (<a
+href="http://library.gnome.org/devel/glib/unstable/glib-Doubly-Linked-Lists.html#GList"
+>GList</a> *list);
+void                <a class="link" href="gnome-keyring-gnome-keyring-acl.html#gnome-keyring-acl-free" title="gnome_keyring_acl_free ()">gnome_keyring_acl_free</a>              (<a
+href="http://library.gnome.org/devel/glib/unstable/glib-Doubly-Linked-Lists.html#GList"
+>GList</a> *acl);
+char *              <a class="link" href="gnome-keyring-gnome-keyring-acl.html#gnome-keyring-item-ac-get-display-name" title="gnome_keyring_item_ac_get_display_name ()">gnome_keyring_item_ac_get_display_name</a>
+                                                        (<a class="link" href="gnome-keyring-gnome-keyring-acl.html#GnomeKeyringAccessControl" title="GnomeKeyringAccessControl">GnomeKeyringAccessControl</a> *ac);
+void                <a class="link" href="gnome-keyring-gnome-keyring-acl.html#gnome-keyring-item-ac-set-display-name" title="gnome_keyring_item_ac_set_display_name ()">gnome_keyring_item_ac_set_display_name</a>
+                                                        (<a class="link" href="gnome-keyring-gnome-keyring-acl.html#GnomeKeyringAccessControl" title="GnomeKeyringAccessControl">GnomeKeyringAccessControl</a> *ac,
+                                                         const char *value);
+char *              <a class="link" href="gnome-keyring-gnome-keyring-acl.html#gnome-keyring-item-ac-get-path-name" title="gnome_keyring_item_ac_get_path_name ()">gnome_keyring_item_ac_get_path_name</a> (<a class="link" href="gnome-keyring-gnome-keyring-acl.html#GnomeKeyringAccessControl" title="GnomeKeyringAccessControl">GnomeKeyringAccessControl</a> *ac);
+void                <a class="link" href="gnome-keyring-gnome-keyring-acl.html#gnome-keyring-item-ac-set-path-name" title="gnome_keyring_item_ac_set_path_name ()">gnome_keyring_item_ac_set_path_name</a> (<a class="link" href="gnome-keyring-gnome-keyring-acl.html#GnomeKeyringAccessControl" title="GnomeKeyringAccessControl">GnomeKeyringAccessControl</a> *ac,
+                                                         const char *value);
+<a class="link" href="gnome-keyring-gnome-keyring-acl.html#GnomeKeyringAccessType" title="enum GnomeKeyringAccessType">GnomeKeyringAccessType</a>  <a class="link" href="gnome-keyring-gnome-keyring-acl.html#gnome-keyring-item-ac-get-access-type" title="gnome_keyring_item_ac_get_access_type ()">gnome_keyring_item_ac_get_access_type</a>
+                                                        (<a class="link" href="gnome-keyring-gnome-keyring-acl.html#GnomeKeyringAccessControl" title="GnomeKeyringAccessControl">GnomeKeyringAccessControl</a> *ac);
+void                <a class="link" href="gnome-keyring-gnome-keyring-acl.html#gnome-keyring-item-ac-set-access-type" title="gnome_keyring_item_ac_set_access_type ()">gnome_keyring_item_ac_set_access_type</a>
+                                                        (<a class="link" href="gnome-keyring-gnome-keyring-acl.html#GnomeKeyringAccessControl" title="GnomeKeyringAccessControl">GnomeKeyringAccessControl</a> *ac,
+                                                         const <a class="link" href="gnome-keyring-gnome-keyring-acl.html#GnomeKeyringAccessType" title="enum GnomeKeyringAccessType">GnomeKeyringAccessType</a> value);
+</pre>
+</div>
+<div class="refsect1" title="Description">
+<a name="gnome-keyring-gnome-keyring-acl.description"></a><h2>Description</h2>
+<p>
+Each item has an access control list, which specifies the applications that 
+can read, write or delete an item. The read access applies only to reading the secret.
+All applications can read other parts of the item. ACLs are accessed and changed
+<a class="link" href="gnome-keyring-gnome-keyring-items.html#gnome-keyring-item-get-acl" title="gnome_keyring_item_get_acl ()"><code class="function">gnome_keyring_item_get_acl()</code></a> and <a class="link" href="gnome-keyring-gnome-keyring-items.html#gnome-keyring-item-set-acl" title="gnome_keyring_item_set_acl ()"><code class="function">gnome_keyring_item_set_acl()</code></a>.</p>
+<p>
+</p>
+</div>
+<div class="refsect1" title="Details">
+<a name="gnome-keyring-gnome-keyring-acl.details"></a><h2>Details</h2>
+<div class="refsect2" title="GnomeKeyringAccessControl">
+<a name="GnomeKeyringAccessControl"></a><h3>GnomeKeyringAccessControl</h3>
+<pre class="programlisting">typedef struct GnomeKeyringAccessControl GnomeKeyringAccessControl;
+</pre>
+<p>
+</p>
+</div>
+<hr>
+<div class="refsect2" title="GnomeKeyringApplicationRef">
+<a name="GnomeKeyringApplicationRef"></a><h3>GnomeKeyringApplicationRef</h3>
+<pre class="programlisting">typedef struct GnomeKeyringApplicationRef GnomeKeyringApplicationRef;
+</pre>
+<p>
+</p>
+</div>
+<hr>
+<div class="refsect2" title="enum GnomeKeyringAccessType">
+<a name="GnomeKeyringAccessType"></a><h3>enum GnomeKeyringAccessType</h3>
+<pre class="programlisting">typedef enum {
+	GNOME_KEYRING_ACCESS_READ = 1&lt;&lt;0,
+	GNOME_KEYRING_ACCESS_WRITE = 1&lt;&lt;1,
+	GNOME_KEYRING_ACCESS_REMOVE = 1&lt;&lt;2
+} GnomeKeyringAccessType;
+</pre>
+<p>
+</p>
+</div>
+<hr>
+<div class="refsect2" title="gnome_keyring_application_ref_new ()">
+<a name="gnome-keyring-application-ref-new"></a><h3>gnome_keyring_application_ref_new ()</h3>
+<pre class="programlisting"><a class="link" href="gnome-keyring-gnome-keyring-acl.html#GnomeKeyringApplicationRef" title="GnomeKeyringApplicationRef">GnomeKeyringApplicationRef</a> * gnome_keyring_application_ref_new
+                                                        (void);</pre>
+<p>
+Create a new application reference.</p>
+<p>
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody><tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> A new <a class="link" href="gnome-keyring-gnome-keyring-acl.html#GnomeKeyringApplicationRef" title="GnomeKeyringApplicationRef"><span class="type">GnomeKeyringApplicationRef</span></a> pointer.
+</td>
+</tr></tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" title="gnome_keyring_application_ref_copy ()">
+<a name="gnome-keyring-application-ref-copy"></a><h3>gnome_keyring_application_ref_copy ()</h3>
+<pre class="programlisting"><a class="link" href="gnome-keyring-gnome-keyring-acl.html#GnomeKeyringApplicationRef" title="GnomeKeyringApplicationRef">GnomeKeyringApplicationRef</a> * gnome_keyring_application_ref_copy
+                                                        (const <a class="link" href="gnome-keyring-gnome-keyring-acl.html#GnomeKeyringApplicationRef" title="GnomeKeyringApplicationRef">GnomeKeyringApplicationRef</a> *app);</pre>
+<p>
+Copy an application reference.</p>
+<p>
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>app</code></em> :</span></p></td>
+<td> A <a class="link" href="gnome-keyring-gnome-keyring-acl.html#GnomeKeyringApplicationRef" title="GnomeKeyringApplicationRef"><span class="type">GnomeKeyringApplicationRef</span></a> pointer
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> A new <a class="link" href="gnome-keyring-gnome-keyring-acl.html#GnomeKeyringApplicationRef" title="GnomeKeyringApplicationRef"><span class="type">GnomeKeyringApplicationRef</span></a> pointer.
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" title="gnome_keyring_application_ref_free ()">
+<a name="gnome-keyring-application-ref-free"></a><h3>gnome_keyring_application_ref_free ()</h3>
+<pre class="programlisting">void                gnome_keyring_application_ref_free  (<a class="link" href="gnome-keyring-gnome-keyring-acl.html#GnomeKeyringApplicationRef" title="GnomeKeyringApplicationRef">GnomeKeyringApplicationRef</a> *app);</pre>
+<p>
+Free an application reference.</p>
+<p>
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody><tr>
+<td><p><span class="term"><em class="parameter"><code>app</code></em> :</span></p></td>
+<td> A <a class="link" href="gnome-keyring-gnome-keyring-acl.html#GnomeKeyringApplicationRef" title="GnomeKeyringApplicationRef"><span class="type">GnomeKeyringApplicationRef</span></a> pointer
+</td>
+</tr></tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" title="gnome_keyring_access_control_new ()">
+<a name="gnome-keyring-access-control-new"></a><h3>gnome_keyring_access_control_new ()</h3>
+<pre class="programlisting"><a class="link" href="gnome-keyring-gnome-keyring-acl.html#GnomeKeyringAccessControl" title="GnomeKeyringAccessControl">GnomeKeyringAccessControl</a> * gnome_keyring_access_control_new
+                                                        (const <a class="link" href="gnome-keyring-gnome-keyring-acl.html#GnomeKeyringApplicationRef" title="GnomeKeyringApplicationRef">GnomeKeyringApplicationRef</a> *application,
+                                                         <a class="link" href="gnome-keyring-gnome-keyring-acl.html#GnomeKeyringAccessType" title="enum GnomeKeyringAccessType">GnomeKeyringAccessType</a> types_allowed);</pre>
+<p>
+Create a new access control for an item. Combine the various access
+rights allowed.</p>
+<p>
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>application</code></em> :</span></p></td>
+<td> A <a class="link" href="gnome-keyring-gnome-keyring-acl.html#GnomeKeyringApplicationRef" title="GnomeKeyringApplicationRef"><span class="type">GnomeKeyringApplicationRef</span></a> pointer
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>types_allowed</code></em> :</span></p></td>
+<td> Access types allowed.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> The new <a class="link" href="gnome-keyring-gnome-keyring-acl.html#GnomeKeyringAccessControl" title="GnomeKeyringAccessControl"><span class="type">GnomeKeyringAccessControl</span></a> pointer. Use 
+<a class="link" href="gnome-keyring-gnome-keyring-acl.html#gnome-keyring-access-control-free" title="gnome_keyring_access_control_free ()"><code class="function">gnome_keyring_access_control_free()</code></a> to free the memory.
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" title="gnome_keyring_access_control_copy ()">
+<a name="gnome-keyring-access-control-copy"></a><h3>gnome_keyring_access_control_copy ()</h3>
+<pre class="programlisting"><a class="link" href="gnome-keyring-gnome-keyring-acl.html#GnomeKeyringAccessControl" title="GnomeKeyringAccessControl">GnomeKeyringAccessControl</a> * gnome_keyring_access_control_copy
+                                                        (<a class="link" href="gnome-keyring-gnome-keyring-acl.html#GnomeKeyringAccessControl" title="GnomeKeyringAccessControl">GnomeKeyringAccessControl</a> *ac);</pre>
+<p>
+Copy an access control for an item.</p>
+<p>
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>ac</code></em> :</span></p></td>
+<td> A <span class="type">GnomeKeyringAcessControl</span> pointer
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> The new <a class="link" href="gnome-keyring-gnome-keyring-acl.html#GnomeKeyringAccessControl" title="GnomeKeyringAccessControl"><span class="type">GnomeKeyringAccessControl</span></a> pointer. Use 
+<a class="link" href="gnome-keyring-gnome-keyring-acl.html#gnome-keyring-access-control-free" title="gnome_keyring_access_control_free ()"><code class="function">gnome_keyring_access_control_free()</code></a> to free the memory.
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" title="gnome_keyring_access_control_free ()">
+<a name="gnome-keyring-access-control-free"></a><h3>gnome_keyring_access_control_free ()</h3>
+<pre class="programlisting">void                gnome_keyring_access_control_free   (<a class="link" href="gnome-keyring-gnome-keyring-acl.html#GnomeKeyringAccessControl" title="GnomeKeyringAccessControl">GnomeKeyringAccessControl</a> *ac);</pre>
+<p>
+Free an access control for an item.</p>
+<p>
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody><tr>
+<td><p><span class="term"><em class="parameter"><code>ac</code></em> :</span></p></td>
+<td> A <a class="link" href="gnome-keyring-gnome-keyring-acl.html#GnomeKeyringAccessControl" title="GnomeKeyringAccessControl"><span class="type">GnomeKeyringAccessControl</span></a> pointer
+</td>
+</tr></tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" title="gnome_keyring_acl_copy ()">
+<a name="gnome-keyring-acl-copy"></a><h3>gnome_keyring_acl_copy ()</h3>
+<pre class="programlisting"><a
+href="http://library.gnome.org/devel/glib/unstable/glib-Doubly-Linked-Lists.html#GList"
+>GList</a> *             gnome_keyring_acl_copy              (<a
+href="http://library.gnome.org/devel/glib/unstable/glib-Doubly-Linked-Lists.html#GList"
+>GList</a> *list);</pre>
+<p>
+Copy an access control list.</p>
+<p>
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>list</code></em> :</span></p></td>
+<td> A list of <a class="link" href="gnome-keyring-gnome-keyring-acl.html#GnomeKeyringAccessControl" title="GnomeKeyringAccessControl"><span class="type">GnomeKeyringAccessControl</span></a> pointers.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> A new list of <a class="link" href="gnome-keyring-gnome-keyring-acl.html#GnomeKeyringAccessControl" title="GnomeKeyringAccessControl"><span class="type">GnomeKeyringAccessControl</span></a> items. Use 
+<a class="link" href="gnome-keyring-gnome-keyring-acl.html#gnome-keyring-acl-free" title="gnome_keyring_acl_free ()"><code class="function">gnome_keyring_acl_free()</code></a> to free the memory.
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" title="gnome_keyring_acl_free ()">
+<a name="gnome-keyring-acl-free"></a><h3>gnome_keyring_acl_free ()</h3>
+<pre class="programlisting">void                gnome_keyring_acl_free              (<a
+href="http://library.gnome.org/devel/glib/unstable/glib-Doubly-Linked-Lists.html#GList"
+>GList</a> *acl);</pre>
+<p>
+Free an access control list.</p>
+<p>
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody><tr>
+<td><p><span class="term"><em class="parameter"><code>acl</code></em> :</span></p></td>
+<td> A list of <a class="link" href="gnome-keyring-gnome-keyring-acl.html#GnomeKeyringAccessControl" title="GnomeKeyringAccessControl"><span class="type">GnomeKeyringAccessControl</span></a> pointers.
+</td>
+</tr></tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" title="gnome_keyring_item_ac_get_display_name ()">
+<a name="gnome-keyring-item-ac-get-display-name"></a><h3>gnome_keyring_item_ac_get_display_name ()</h3>
+<pre class="programlisting">char *              gnome_keyring_item_ac_get_display_name
+                                                        (<a class="link" href="gnome-keyring-gnome-keyring-acl.html#GnomeKeyringAccessControl" title="GnomeKeyringAccessControl">GnomeKeyringAccessControl</a> *ac);</pre>
+<p>
+Get the access control application's display name.</p>
+<p>
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>ac</code></em> :</span></p></td>
+<td> A <a class="link" href="gnome-keyring-gnome-keyring-acl.html#GnomeKeyringAccessControl" title="GnomeKeyringAccessControl"><span class="type">GnomeKeyringAccessControl</span></a> pointer.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> A newly allocated string containing the display name.
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" title="gnome_keyring_item_ac_set_display_name ()">
+<a name="gnome-keyring-item-ac-set-display-name"></a><h3>gnome_keyring_item_ac_set_display_name ()</h3>
+<pre class="programlisting">void                gnome_keyring_item_ac_set_display_name
+                                                        (<a class="link" href="gnome-keyring-gnome-keyring-acl.html#GnomeKeyringAccessControl" title="GnomeKeyringAccessControl">GnomeKeyringAccessControl</a> *ac,
+                                                         const char *value);</pre>
+<p>
+Set the access control application's display name.</p>
+<p>
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>ac</code></em> :</span></p></td>
+<td> A <span class="type">GnomeKeyringAcccessControl</span> pointer.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>value</code></em> :</span></p></td>
+<td> The new application display name.
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" title="gnome_keyring_item_ac_get_path_name ()">
+<a name="gnome-keyring-item-ac-get-path-name"></a><h3>gnome_keyring_item_ac_get_path_name ()</h3>
+<pre class="programlisting">char *              gnome_keyring_item_ac_get_path_name (<a class="link" href="gnome-keyring-gnome-keyring-acl.html#GnomeKeyringAccessControl" title="GnomeKeyringAccessControl">GnomeKeyringAccessControl</a> *ac);</pre>
+<p>
+Get the access control application's full path name.</p>
+<p>
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>ac</code></em> :</span></p></td>
+<td> A <a class="link" href="gnome-keyring-gnome-keyring-acl.html#GnomeKeyringAccessControl" title="GnomeKeyringAccessControl"><span class="type">GnomeKeyringAccessControl</span></a> pointer.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> A newly allocated string containing the display name.
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" title="gnome_keyring_item_ac_set_path_name ()">
+<a name="gnome-keyring-item-ac-set-path-name"></a><h3>gnome_keyring_item_ac_set_path_name ()</h3>
+<pre class="programlisting">void                gnome_keyring_item_ac_set_path_name (<a class="link" href="gnome-keyring-gnome-keyring-acl.html#GnomeKeyringAccessControl" title="GnomeKeyringAccessControl">GnomeKeyringAccessControl</a> *ac,
+                                                         const char *value);</pre>
+<p>
+Set the access control application's full path name.</p>
+<p>
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>ac</code></em> :</span></p></td>
+<td> A <a class="link" href="gnome-keyring-gnome-keyring-acl.html#GnomeKeyringAccessControl" title="GnomeKeyringAccessControl"><span class="type">GnomeKeyringAccessControl</span></a> pointer
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>value</code></em> :</span></p></td>
+<td> The new application full path.
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" title="gnome_keyring_item_ac_get_access_type ()">
+<a name="gnome-keyring-item-ac-get-access-type"></a><h3>gnome_keyring_item_ac_get_access_type ()</h3>
+<pre class="programlisting"><a class="link" href="gnome-keyring-gnome-keyring-acl.html#GnomeKeyringAccessType" title="enum GnomeKeyringAccessType">GnomeKeyringAccessType</a>  gnome_keyring_item_ac_get_access_type
+                                                        (<a class="link" href="gnome-keyring-gnome-keyring-acl.html#GnomeKeyringAccessControl" title="GnomeKeyringAccessControl">GnomeKeyringAccessControl</a> *ac);</pre>
+<p>
+Get the application access rights for the access control.</p>
+<p>
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>ac</code></em> :</span></p></td>
+<td> A <a class="link" href="gnome-keyring-gnome-keyring-acl.html#GnomeKeyringAccessControl" title="GnomeKeyringAccessControl"><span class="type">GnomeKeyringAccessControl</span></a> pointer.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> The access rights.
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" title="gnome_keyring_item_ac_set_access_type ()">
+<a name="gnome-keyring-item-ac-set-access-type"></a><h3>gnome_keyring_item_ac_set_access_type ()</h3>
+<pre class="programlisting">void                gnome_keyring_item_ac_set_access_type
+                                                        (<a class="link" href="gnome-keyring-gnome-keyring-acl.html#GnomeKeyringAccessControl" title="GnomeKeyringAccessControl">GnomeKeyringAccessControl</a> *ac,
+                                                         const <a class="link" href="gnome-keyring-gnome-keyring-acl.html#GnomeKeyringAccessType" title="enum GnomeKeyringAccessType">GnomeKeyringAccessType</a> value);</pre>
+<p>
+Set the application access rights for the access control.</p>
+<p>
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>ac</code></em> :</span></p></td>
+<td> A <a class="link" href="gnome-keyring-gnome-keyring-acl.html#GnomeKeyringAccessControl" title="GnomeKeyringAccessControl"><span class="type">GnomeKeyringAccessControl</span></a> pointer.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>value</code></em> :</span></p></td>
+<td> The new access rights.
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+</div>
+</div>
+<div class="footer">
+<hr>
+          Generated by GTK-Doc V1.11</div>
+</body>
+</html>

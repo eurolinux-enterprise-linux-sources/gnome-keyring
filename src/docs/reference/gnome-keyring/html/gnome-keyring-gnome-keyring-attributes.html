@@ -1,0 +1,257 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Item Attributes</title>
+<meta name="generator" content="DocBook XSL Stylesheets V1.75.1">
+<link rel="home" href="index.html" title="gnome-keyring Reference Manual">
+<link rel="up" href="ch01.html" title="gnome-keyring API Reference">
+<link rel="prev" href="gnome-keyring-gnome-keyring-item-info.html" title="Item Information">
+<link rel="next" href="gnome-keyring-gnome-keyring-acl.html" title="Item ACLs">
+<meta name="generator" content="GTK-Doc V1.11 (XML mode)">
+<link rel="stylesheet" href="style.css" type="text/css">
+<link rel="chapter" href="ch01.html" title="gnome-keyring API Reference">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<table class="navigation" id="top" width="100%" summary="Navigation header" cellpadding="2" cellspacing="2">
+<tr valign="middle">
+<td><a accesskey="p" href="gnome-keyring-gnome-keyring-item-info.html"><img src="left.png" width="24" height="24" border="0" alt="Prev"></a></td>
+<td><a accesskey="u" href="ch01.html"><img src="up.png" width="24" height="24" border="0" alt="Up"></a></td>
+<td><a accesskey="h" href="index.html"><img src="home.png" width="24" height="24" border="0" alt="Home"></a></td>
+<th width="100%" align="center">gnome-keyring Reference Manual</th>
+<td><a accesskey="n" href="gnome-keyring-gnome-keyring-acl.html"><img src="right.png" width="24" height="24" border="0" alt="Next"></a></td>
+</tr>
+<tr><td colspan="5" class="shortcuts">
+<a href="#gnome-keyring-gnome-keyring-attributes.synopsis" class="shortcut">Top</a>
+                 | 
+                <a href="#gnome-keyring-gnome-keyring-attributes.description" class="shortcut">Description</a>
+</td></tr>
+</table>
+<div class="refentry" title="Item Attributes">
+<a name="gnome-keyring-gnome-keyring-attributes"></a><div class="titlepage"></div>
+<div class="refnamediv"><table width="100%"><tr>
+<td valign="top">
+<h2><span class="refentrytitle"><a name="gnome-keyring-gnome-keyring-attributes.top_of_page"></a>Item Attributes</span></h2>
+<p>Item Attributes — Attributes of individual keyring items.</p>
+</td>
+<td valign="top" align="right"></td>
+</tr></table></div>
+<div class="refsynopsisdiv" title="Synopsis">
+<a name="gnome-keyring-gnome-keyring-attributes.synopsis"></a><h2>Synopsis</h2>
+<pre class="synopsis">
+enum                <a class="link" href="gnome-keyring-gnome-keyring-attributes.html#GnomeKeyringAttributeType" title="enum GnomeKeyringAttributeType">GnomeKeyringAttributeType</a>;
+typedef             <a class="link" href="gnome-keyring-gnome-keyring-attributes.html#GnomeKeyringAttributeList" title="GnomeKeyringAttributeList">GnomeKeyringAttributeList</a>;
+                    <a class="link" href="gnome-keyring-gnome-keyring-attributes.html#GnomeKeyringAttribute" title="GnomeKeyringAttribute">GnomeKeyringAttribute</a>;
+#define             <a class="link" href="gnome-keyring-gnome-keyring-attributes.html#gnome-keyring-attribute-list-index" title="gnome_keyring_attribute_list_index()">gnome_keyring_attribute_list_index</a>  (a, i)
+#define             <a class="link" href="gnome-keyring-gnome-keyring-attributes.html#gnome-keyring-attribute-list-new" title="gnome_keyring_attribute_list_new()">gnome_keyring_attribute_list_new</a>    ()
+void                <a class="link" href="gnome-keyring-gnome-keyring-attributes.html#gnome-keyring-attribute-list-append-string" title="gnome_keyring_attribute_list_append_string ()">gnome_keyring_attribute_list_append_string</a>
+                                                        (<a class="link" href="gnome-keyring-gnome-keyring-attributes.html#GnomeKeyringAttributeList" title="GnomeKeyringAttributeList">GnomeKeyringAttributeList</a> *attributes,
+                                                         const char *name,
+                                                         const char *value);
+void                <a class="link" href="gnome-keyring-gnome-keyring-attributes.html#gnome-keyring-attribute-list-append-uint32" title="gnome_keyring_attribute_list_append_uint32 ()">gnome_keyring_attribute_list_append_uint32</a>
+                                                        (<a class="link" href="gnome-keyring-gnome-keyring-attributes.html#GnomeKeyringAttributeList" title="GnomeKeyringAttributeList">GnomeKeyringAttributeList</a> *attributes,
+                                                         const char *name,
+                                                         <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#guint32"
+>guint32</a> value);
+void                <a class="link" href="gnome-keyring-gnome-keyring-attributes.html#gnome-keyring-attribute-list-free" title="gnome_keyring_attribute_list_free ()">gnome_keyring_attribute_list_free</a>   (<a class="link" href="gnome-keyring-gnome-keyring-attributes.html#GnomeKeyringAttributeList" title="GnomeKeyringAttributeList">GnomeKeyringAttributeList</a> *attributes);
+<a class="link" href="gnome-keyring-gnome-keyring-attributes.html#GnomeKeyringAttributeList" title="GnomeKeyringAttributeList">GnomeKeyringAttributeList</a> * <a class="link" href="gnome-keyring-gnome-keyring-attributes.html#gnome-keyring-attribute-list-copy" title="gnome_keyring_attribute_list_copy ()">gnome_keyring_attribute_list_copy</a>
+                                                        (<a class="link" href="gnome-keyring-gnome-keyring-attributes.html#GnomeKeyringAttributeList" title="GnomeKeyringAttributeList">GnomeKeyringAttributeList</a> *attributes);
+</pre>
+</div>
+<div class="refsect1" title="Description">
+<a name="gnome-keyring-gnome-keyring-attributes.description"></a><h2>Description</h2>
+<p>
+Attributes allow various other pieces of information to be associated with an item. 
+These can also be used to search for relevant items. Use <a class="link" href="gnome-keyring-gnome-keyring-items.html#gnome-keyring-item-get-attributes" title="gnome_keyring_item_get_attributes ()"><code class="function">gnome_keyring_item_get_attributes()</code></a> 
+or <a class="link" href="gnome-keyring-gnome-keyring-items.html#gnome-keyring-item-set-attributes" title="gnome_keyring_item_set_attributes ()"><code class="function">gnome_keyring_item_set_attributes()</code></a>.
+</p>
+<p>
+Each attribute has either a string, or unsigned integer value.</p>
+<p>
+</p>
+</div>
+<div class="refsect1" title="Details">
+<a name="gnome-keyring-gnome-keyring-attributes.details"></a><h2>Details</h2>
+<div class="refsect2" title="enum GnomeKeyringAttributeType">
+<a name="GnomeKeyringAttributeType"></a><h3>enum GnomeKeyringAttributeType</h3>
+<pre class="programlisting">typedef enum {
+	GNOME_KEYRING_ATTRIBUTE_TYPE_STRING,
+	GNOME_KEYRING_ATTRIBUTE_TYPE_UINT32
+} GnomeKeyringAttributeType;
+</pre>
+<p>
+</p>
+</div>
+<hr>
+<div class="refsect2" title="GnomeKeyringAttributeList">
+<a name="GnomeKeyringAttributeList"></a><h3>GnomeKeyringAttributeList</h3>
+<pre class="programlisting">typedef GArray GnomeKeyringAttributeList;
+</pre>
+<p>
+</p>
+</div>
+<hr>
+<div class="refsect2" title="GnomeKeyringAttribute">
+<a name="GnomeKeyringAttribute"></a><h3>GnomeKeyringAttribute</h3>
+<pre class="programlisting">typedef struct {
+	char *name;
+	GnomeKeyringAttributeType type;
+	union {
+		char *string;
+		guint32 integer;
+	} value;
+} GnomeKeyringAttribute;
+</pre>
+<p>
+</p>
+</div>
+<hr>
+<div class="refsect2" title="gnome_keyring_attribute_list_index()">
+<a name="gnome-keyring-attribute-list-index"></a><h3>gnome_keyring_attribute_list_index()</h3>
+<pre class="programlisting">#define             gnome_keyring_attribute_list_index(a, i)</pre>
+<p>
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>a</code></em> :</span></p></td>
+<td>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>i</code></em> :</span></p></td>
+<td>
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" title="gnome_keyring_attribute_list_new()">
+<a name="gnome-keyring-attribute-list-new"></a><h3>gnome_keyring_attribute_list_new()</h3>
+<pre class="programlisting">#define             gnome_keyring_attribute_list_new()</pre>
+<p>
+</p>
+</div>
+<hr>
+<div class="refsect2" title="gnome_keyring_attribute_list_append_string ()">
+<a name="gnome-keyring-attribute-list-append-string"></a><h3>gnome_keyring_attribute_list_append_string ()</h3>
+<pre class="programlisting">void                gnome_keyring_attribute_list_append_string
+                                                        (<a class="link" href="gnome-keyring-gnome-keyring-attributes.html#GnomeKeyringAttributeList" title="GnomeKeyringAttributeList">GnomeKeyringAttributeList</a> *attributes,
+                                                         const char *name,
+                                                         const char *value);</pre>
+<p>
+Store a key-value-pair with a string value in <em class="parameter"><code>attributes</code></em>.</p>
+<p>
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>attributes</code></em> :</span></p></td>
+<td> A <a class="link" href="gnome-keyring-gnome-keyring-attributes.html#GnomeKeyringAttributeList" title="GnomeKeyringAttributeList"><span class="type">GnomeKeyringAttributeList</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>name</code></em> :</span></p></td>
+<td> The name of the new attribute
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>value</code></em> :</span></p></td>
+<td> The value to store in <em class="parameter"><code>attributes</code></em>
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" title="gnome_keyring_attribute_list_append_uint32 ()">
+<a name="gnome-keyring-attribute-list-append-uint32"></a><h3>gnome_keyring_attribute_list_append_uint32 ()</h3>
+<pre class="programlisting">void                gnome_keyring_attribute_list_append_uint32
+                                                        (<a class="link" href="gnome-keyring-gnome-keyring-attributes.html#GnomeKeyringAttributeList" title="GnomeKeyringAttributeList">GnomeKeyringAttributeList</a> *attributes,
+                                                         const char *name,
+                                                         <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#guint32"
+>guint32</a> value);</pre>
+<p>
+Store a key-value-pair with an unsigned 32bit number value in <em class="parameter"><code>attributes</code></em>.</p>
+<p>
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>attributes</code></em> :</span></p></td>
+<td> A <a class="link" href="gnome-keyring-gnome-keyring-attributes.html#GnomeKeyringAttributeList" title="GnomeKeyringAttributeList"><span class="type">GnomeKeyringAttributeList</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>name</code></em> :</span></p></td>
+<td> The name of the new attribute
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>value</code></em> :</span></p></td>
+<td> The value to store in <em class="parameter"><code>attributes</code></em>
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" title="gnome_keyring_attribute_list_free ()">
+<a name="gnome-keyring-attribute-list-free"></a><h3>gnome_keyring_attribute_list_free ()</h3>
+<pre class="programlisting">void                gnome_keyring_attribute_list_free   (<a class="link" href="gnome-keyring-gnome-keyring-attributes.html#GnomeKeyringAttributeList" title="GnomeKeyringAttributeList">GnomeKeyringAttributeList</a> *attributes);</pre>
+<p>
+Free the memory used by <em class="parameter"><code>attributes</code></em>.
+</p>
+<p>
+If a <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Standard-Macros.html#NULL--CAPS"
+><code class="literal">NULL</code></a> pointer is passed, it is ignored.</p>
+<p>
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody><tr>
+<td><p><span class="term"><em class="parameter"><code>attributes</code></em> :</span></p></td>
+<td> A <a class="link" href="gnome-keyring-gnome-keyring-attributes.html#GnomeKeyringAttributeList" title="GnomeKeyringAttributeList"><span class="type">GnomeKeyringAttributeList</span></a>
+</td>
+</tr></tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" title="gnome_keyring_attribute_list_copy ()">
+<a name="gnome-keyring-attribute-list-copy"></a><h3>gnome_keyring_attribute_list_copy ()</h3>
+<pre class="programlisting"><a class="link" href="gnome-keyring-gnome-keyring-attributes.html#GnomeKeyringAttributeList" title="GnomeKeyringAttributeList">GnomeKeyringAttributeList</a> * gnome_keyring_attribute_list_copy
+                                                        (<a class="link" href="gnome-keyring-gnome-keyring-attributes.html#GnomeKeyringAttributeList" title="GnomeKeyringAttributeList">GnomeKeyringAttributeList</a> *attributes);</pre>
+<p>
+Copy a list of item attributes.</p>
+<p>
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>attributes</code></em> :</span></p></td>
+<td> A <a class="link" href="gnome-keyring-gnome-keyring-attributes.html#GnomeKeyringAttributeList" title="GnomeKeyringAttributeList"><span class="type">GnomeKeyringAttributeList</span></a> to copy.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> The new <a class="link" href="gnome-keyring-gnome-keyring-attributes.html#GnomeKeyringAttributeList" title="GnomeKeyringAttributeList"><span class="type">GnomeKeyringAttributeList</span></a>
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+</div>
+</div>
+<div class="footer">
+<hr>
+          Generated by GTK-Doc V1.11</div>
+</body>
+</html>

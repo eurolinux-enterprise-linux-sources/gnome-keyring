@@ -1,0 +1,637 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Network Passwords</title>
+<meta name="generator" content="DocBook XSL Stylesheets V1.75.1">
+<link rel="home" href="index.html" title="gnome-keyring Reference Manual">
+<link rel="up" href="ch01.html" title="gnome-keyring API Reference">
+<link rel="prev" href="gnome-keyring-gnome-keyring-find.html" title="Search Functionality">
+<link rel="next" href="gnome-keyring-gnome-keyring-memory.html" title="Non-pageable Memory">
+<meta name="generator" content="GTK-Doc V1.11 (XML mode)">
+<link rel="stylesheet" href="style.css" type="text/css">
+<link rel="chapter" href="ch01.html" title="gnome-keyring API Reference">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<table class="navigation" id="top" width="100%" summary="Navigation header" cellpadding="2" cellspacing="2">
+<tr valign="middle">
+<td><a accesskey="p" href="gnome-keyring-gnome-keyring-find.html"><img src="left.png" width="24" height="24" border="0" alt="Prev"></a></td>
+<td><a accesskey="u" href="ch01.html"><img src="up.png" width="24" height="24" border="0" alt="Up"></a></td>
+<td><a accesskey="h" href="index.html"><img src="home.png" width="24" height="24" border="0" alt="Home"></a></td>
+<th width="100%" align="center">gnome-keyring Reference Manual</th>
+<td><a accesskey="n" href="gnome-keyring-gnome-keyring-memory.html"><img src="right.png" width="24" height="24" border="0" alt="Next"></a></td>
+</tr>
+<tr><td colspan="5" class="shortcuts">
+<a href="#gnome-keyring-gnome-keyring-network.synopsis" class="shortcut">Top</a>
+                 | 
+                <a href="#gnome-keyring-gnome-keyring-network.description" class="shortcut">Description</a>
+</td></tr>
+</table>
+<div class="refentry" title="Network Passwords">
+<a name="gnome-keyring-gnome-keyring-network"></a><div class="titlepage"></div>
+<div class="refnamediv"><table width="100%"><tr>
+<td valign="top">
+<h2><span class="refentrytitle"><a name="gnome-keyring-gnome-keyring-network.top_of_page"></a>Network Passwords</span></h2>
+<p>Network Passwords — Saving of network passwords.</p>
+</td>
+<td valign="top" align="right"></td>
+</tr></table></div>
+<div class="refsynopsisdiv" title="Synopsis">
+<a name="gnome-keyring-gnome-keyring-network.synopsis"></a><h2>Synopsis</h2>
+<pre class="synopsis">
+                    <a class="link" href="gnome-keyring-gnome-keyring-network.html#GnomeKeyringNetworkPasswordData" title="GnomeKeyringNetworkPasswordData">GnomeKeyringNetworkPasswordData</a>;
+void                <a class="link" href="gnome-keyring-gnome-keyring-network.html#gnome-keyring-network-password-free" title="gnome_keyring_network_password_free ()">gnome_keyring_network_password_free</a> (<a class="link" href="gnome-keyring-gnome-keyring-network.html#GnomeKeyringNetworkPasswordData" title="GnomeKeyringNetworkPasswordData">GnomeKeyringNetworkPasswordData</a> *data);
+void                <a class="link" href="gnome-keyring-gnome-keyring-network.html#gnome-keyring-network-password-list-free" title="gnome_keyring_network_password_list_free ()">gnome_keyring_network_password_list_free</a>
+                                                        (<a
+href="http://library.gnome.org/devel/glib/unstable/glib-Doubly-Linked-Lists.html#GList"
+>GList</a> *list);
+<a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gpointer"
+>gpointer</a>            <a class="link" href="gnome-keyring-gnome-keyring-network.html#gnome-keyring-find-network-password" title="gnome_keyring_find_network_password ()">gnome_keyring_find_network_password</a> (const char *user,
+                                                         const char *domain,
+                                                         const char *server,
+                                                         const char *object,
+                                                         const char *protocol,
+                                                         const char *authtype,
+                                                         <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#guint32"
+>guint32</a> port,
+                                                         <a class="link" href="gnome-keyring-gnome-keyring-generic-callbacks.html#GnomeKeyringOperationGetListCallback" title="GnomeKeyringOperationGetListCallback ()">GnomeKeyringOperationGetListCallback</a> callback,
+                                                         <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gpointer"
+>gpointer</a> data,
+                                                         <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Datasets.html#GDestroyNotify"
+>GDestroyNotify</a> destroy_data);
+<a class="link" href="gnome-keyring-gnome-keyring-result.html#GnomeKeyringResult" title="enum GnomeKeyringResult">GnomeKeyringResult</a>  <a class="link" href="gnome-keyring-gnome-keyring-network.html#gnome-keyring-find-network-password-sync" title="gnome_keyring_find_network_password_sync ()">gnome_keyring_find_network_password_sync</a>
+                                                        (const char *user,
+                                                         const char *domain,
+                                                         const char *server,
+                                                         const char *object,
+                                                         const char *protocol,
+                                                         const char *authtype,
+                                                         <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#guint32"
+>guint32</a> port,
+                                                         <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Doubly-Linked-Lists.html#GList"
+>GList</a> **results);
+<a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gpointer"
+>gpointer</a>            <a class="link" href="gnome-keyring-gnome-keyring-network.html#gnome-keyring-set-network-password" title="gnome_keyring_set_network_password ()">gnome_keyring_set_network_password</a>  (const char *keyring,
+                                                         const char *user,
+                                                         const char *domain,
+                                                         const char *server,
+                                                         const char *object,
+                                                         const char *protocol,
+                                                         const char *authtype,
+                                                         <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#guint32"
+>guint32</a> port,
+                                                         const char *password,
+                                                         <a class="link" href="gnome-keyring-gnome-keyring-generic-callbacks.html#GnomeKeyringOperationGetIntCallback" title="GnomeKeyringOperationGetIntCallback ()">GnomeKeyringOperationGetIntCallback</a> callback,
+                                                         <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gpointer"
+>gpointer</a> data,
+                                                         <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Datasets.html#GDestroyNotify"
+>GDestroyNotify</a> destroy_data);
+<a class="link" href="gnome-keyring-gnome-keyring-result.html#GnomeKeyringResult" title="enum GnomeKeyringResult">GnomeKeyringResult</a>  <a class="link" href="gnome-keyring-gnome-keyring-network.html#gnome-keyring-set-network-password-sync" title="gnome_keyring_set_network_password_sync ()">gnome_keyring_set_network_password_sync</a>
+                                                        (const char *keyring,
+                                                         const char *user,
+                                                         const char *domain,
+                                                         const char *server,
+                                                         const char *object,
+                                                         const char *protocol,
+                                                         const char *authtype,
+                                                         <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#guint32"
+>guint32</a> port,
+                                                         const char *password,
+                                                         <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#guint32"
+>guint32</a> *item_id);
+</pre>
+</div>
+<div class="refsect1" title="Description">
+<a name="gnome-keyring-gnome-keyring-network.description"></a><h2>Description</h2>
+<p>
+Networks passwords are a simple way of saving passwords associated with a 
+certain user/server/protocol and other fields.</p>
+<p>
+</p>
+</div>
+<div class="refsect1" title="Details">
+<a name="gnome-keyring-gnome-keyring-network.details"></a><h2>Details</h2>
+<div class="refsect2" title="GnomeKeyringNetworkPasswordData">
+<a name="GnomeKeyringNetworkPasswordData"></a><h3>GnomeKeyringNetworkPasswordData</h3>
+<pre class="programlisting">typedef struct {
+	char *keyring;
+	guint32 item_id;
+
+	char *protocol;
+	char *server;
+	char *object;
+	char *authtype;
+	guint32 port;
+
+	char *user;
+	char *domain;
+	char *password;
+} GnomeKeyringNetworkPasswordData;
+</pre>
+<p>
+</p>
+</div>
+<hr>
+<div class="refsect2" title="gnome_keyring_network_password_free ()">
+<a name="gnome-keyring-network-password-free"></a><h3>gnome_keyring_network_password_free ()</h3>
+<pre class="programlisting">void                gnome_keyring_network_password_free (<a class="link" href="gnome-keyring-gnome-keyring-network.html#GnomeKeyringNetworkPasswordData" title="GnomeKeyringNetworkPasswordData">GnomeKeyringNetworkPasswordData</a> *data);</pre>
+<p>
+Free a network password data pointer. If <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Standard-Macros.html#NULL--CAPS"
+><code class="literal">NULL</code></a> is passed in,
+nothing happens.</p>
+<p>
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody><tr>
+<td><p><span class="term"><em class="parameter"><code>data</code></em> :</span></p></td>
+<td> A <a class="link" href="gnome-keyring-gnome-keyring-network.html#GnomeKeyringNetworkPasswordData" title="GnomeKeyringNetworkPasswordData"><span class="type">GnomeKeyringNetworkPasswordData</span></a> pointer.
+</td>
+</tr></tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" title="gnome_keyring_network_password_list_free ()">
+<a name="gnome-keyring-network-password-list-free"></a><h3>gnome_keyring_network_password_list_free ()</h3>
+<pre class="programlisting">void                gnome_keyring_network_password_list_free
+                                                        (<a
+href="http://library.gnome.org/devel/glib/unstable/glib-Doubly-Linked-Lists.html#GList"
+>GList</a> *list);</pre>
+<p>
+Free a list of network password data.</p>
+<p>
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody><tr>
+<td><p><span class="term"><em class="parameter"><code>list</code></em> :</span></p></td>
+<td> A list of <a class="link" href="gnome-keyring-gnome-keyring-network.html#GnomeKeyringNetworkPasswordData" title="GnomeKeyringNetworkPasswordData"><span class="type">GnomeKeyringNetworkPasswordData</span></a> pointers.
+</td>
+</tr></tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" title="gnome_keyring_find_network_password ()">
+<a name="gnome-keyring-find-network-password"></a><h3>gnome_keyring_find_network_password ()</h3>
+<pre class="programlisting"><a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gpointer"
+>gpointer</a>            gnome_keyring_find_network_password (const char *user,
+                                                         const char *domain,
+                                                         const char *server,
+                                                         const char *object,
+                                                         const char *protocol,
+                                                         const char *authtype,
+                                                         <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#guint32"
+>guint32</a> port,
+                                                         <a class="link" href="gnome-keyring-gnome-keyring-generic-callbacks.html#GnomeKeyringOperationGetListCallback" title="GnomeKeyringOperationGetListCallback ()">GnomeKeyringOperationGetListCallback</a> callback,
+                                                         <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gpointer"
+>gpointer</a> data,
+                                                         <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Datasets.html#GDestroyNotify"
+>GDestroyNotify</a> destroy_data);</pre>
+<p>
+Find a previously stored network password. Searches all keyrings.
+</p>
+<p>
+A <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Doubly-Linked-Lists.html#GList"
+><code class="literal">GList</code></a> of <a class="link" href="gnome-keyring-gnome-keyring-network.html#GnomeKeyringNetworkPasswordData" title="GnomeKeyringNetworkPasswordData"><span class="type">GnomeKeyringNetworkPasswordData</span></a> structures are passed to the 
+<em class="parameter"><code>callback</code></em>. The list and structures are freed after the callback returns.
+</p>
+<p>
+The user may have been prompted to unlock necessary keyrings, and user will 
+have been prompted for access to the items if needed. 
+</p>
+<p>
+Network passwords are items with the item type <code class="literal">GNOME_KEYRING_ITEM_NETWORK_PASSWORD</code></p>
+<p>
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>user</code></em> :</span></p></td>
+<td> The user name or <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Standard-Macros.html#NULL--CAPS"
+><code class="literal">NULL</code></a> for any user.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>domain</code></em> :</span></p></td>
+<td> The domain name <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Standard-Macros.html#NULL--CAPS"
+><code class="literal">NULL</code></a> for any domain.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>server</code></em> :</span></p></td>
+<td> The server or <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Standard-Macros.html#NULL--CAPS"
+><code class="literal">NULL</code></a> for any server.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>object</code></em> :</span></p></td>
+<td> The remote object or <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Standard-Macros.html#NULL--CAPS"
+><code class="literal">NULL</code></a> for any object.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>protocol</code></em> :</span></p></td>
+<td> The network protorol or <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Standard-Macros.html#NULL--CAPS"
+><code class="literal">NULL</code></a> for any protocol.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>authtype</code></em> :</span></p></td>
+<td> The authentication type or <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Standard-Macros.html#NULL--CAPS"
+><code class="literal">NULL</code></a> for any type.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>port</code></em> :</span></p></td>
+<td> The network port or zero for any port.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>callback</code></em> :</span></p></td>
+<td> Callback which is called when the operation completes
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>data</code></em> :</span></p></td>
+<td> Data to be passed to callback
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>destroy_data</code></em> :</span></p></td>
+<td> Function to be called when data is no longer needed.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> The asychronous request, which can be passed to <a class="link" href="gnome-keyring-gnome-keyring-misc.html#gnome-keyring-cancel-request" title="gnome_keyring_cancel_request ()"><code class="function">gnome_keyring_cancel_request()</code></a>.
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" title="gnome_keyring_find_network_password_sync ()">
+<a name="gnome-keyring-find-network-password-sync"></a><h3>gnome_keyring_find_network_password_sync ()</h3>
+<pre class="programlisting"><a class="link" href="gnome-keyring-gnome-keyring-result.html#GnomeKeyringResult" title="enum GnomeKeyringResult">GnomeKeyringResult</a>  gnome_keyring_find_network_password_sync
+                                                        (const char *user,
+                                                         const char *domain,
+                                                         const char *server,
+                                                         const char *object,
+                                                         const char *protocol,
+                                                         const char *authtype,
+                                                         <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#guint32"
+>guint32</a> port,
+                                                         <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Doubly-Linked-Lists.html#GList"
+>GList</a> **results);</pre>
+<p>
+Find a previously stored network password. Searches all keyrings.
+</p>
+<p>
+A <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Doubly-Linked-Lists.html#GList"
+><code class="literal">GList</code></a> of <a class="link" href="gnome-keyring-gnome-keyring-network.html#GnomeKeyringNetworkPasswordData" title="GnomeKeyringNetworkPasswordData"><span class="type">GnomeKeyringNetworkPasswordData</span></a> structures are returned in the 
+<em class="parameter"><code>out_list</code></em> argument. The list should be freed with <a class="link" href="gnome-keyring-gnome-keyring-network.html#gnome-keyring-network-password-list-free" title="gnome_keyring_network_password_list_free ()"><code class="function">gnome_keyring_network_password_list_free()</code></a>
+</p>
+<p>
+The user may have been prompted to unlock necessary keyrings, and user will 
+have been prompted for access to the items if needed. 
+</p>
+<p>
+Network passwords are items with the item type <code class="literal">GNOME_KEYRING_ITEM_NETWORK_PASSWORD</code></p>
+<p>
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>user</code></em> :</span></p></td>
+<td> The user name or <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Standard-Macros.html#NULL--CAPS"
+><code class="literal">NULL</code></a>.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>domain</code></em> :</span></p></td>
+<td> The domain name <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Standard-Macros.html#NULL--CAPS"
+><code class="literal">NULL</code></a>.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>server</code></em> :</span></p></td>
+<td> The server or <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Standard-Macros.html#NULL--CAPS"
+><code class="literal">NULL</code></a>.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>object</code></em> :</span></p></td>
+<td> The remote object or <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Standard-Macros.html#NULL--CAPS"
+><code class="literal">NULL</code></a>.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>protocol</code></em> :</span></p></td>
+<td> The network protorol or <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Standard-Macros.html#NULL--CAPS"
+><code class="literal">NULL</code></a>.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>authtype</code></em> :</span></p></td>
+<td> The authentication type or <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Standard-Macros.html#NULL--CAPS"
+><code class="literal">NULL</code></a>.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>port</code></em> :</span></p></td>
+<td> The network port or zero.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>results</code></em> :</span></p></td>
+<td> A location to return a <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Doubly-Linked-Lists.html#GList"
+><code class="literal">GList</code></a> of <a class="link" href="gnome-keyring-gnome-keyring-network.html#GnomeKeyringNetworkPasswordData" title="GnomeKeyringNetworkPasswordData"><span class="type">GnomeKeyringNetworkPasswordData</span></a> pointers.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> <code class="literal">GNOME_KEYRING_RESULT_OK</code> if the operation was succcessful or 
+an error result otherwise. 
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" title="gnome_keyring_set_network_password ()">
+<a name="gnome-keyring-set-network-password"></a><h3>gnome_keyring_set_network_password ()</h3>
+<pre class="programlisting"><a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gpointer"
+>gpointer</a>            gnome_keyring_set_network_password  (const char *keyring,
+                                                         const char *user,
+                                                         const char *domain,
+                                                         const char *server,
+                                                         const char *object,
+                                                         const char *protocol,
+                                                         const char *authtype,
+                                                         <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#guint32"
+>guint32</a> port,
+                                                         const char *password,
+                                                         <a class="link" href="gnome-keyring-gnome-keyring-generic-callbacks.html#GnomeKeyringOperationGetIntCallback" title="GnomeKeyringOperationGetIntCallback ()">GnomeKeyringOperationGetIntCallback</a> callback,
+                                                         <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gpointer"
+>gpointer</a> data,
+                                                         <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Datasets.html#GDestroyNotify"
+>GDestroyNotify</a> destroy_data);</pre>
+<p>
+Store a network password.
+</p>
+<p>
+If an item already exists for with this network info (ie: user, server etc...)
+then it will be updated. 
+</p>
+<p>
+Whether a new item is created or not, id of the item will be passed to 
+the <em class="parameter"><code>callback</code></em>. 
+</p>
+<p>
+Network passwords are items with the item type <code class="literal">GNOME_KEYRING_ITEM_NETWORK_PASSWORD</code></p>
+<p>
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>keyring</code></em> :</span></p></td>
+<td> The keyring to store the password in, or <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Standard-Macros.html#NULL--CAPS"
+><code class="literal">NULL</code></a> for the default keyring.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>user</code></em> :</span></p></td>
+<td> The user name or <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Standard-Macros.html#NULL--CAPS"
+><code class="literal">NULL</code></a>.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>domain</code></em> :</span></p></td>
+<td> The domain name <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Standard-Macros.html#NULL--CAPS"
+><code class="literal">NULL</code></a>.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>server</code></em> :</span></p></td>
+<td> The server or <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Standard-Macros.html#NULL--CAPS"
+><code class="literal">NULL</code></a>.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>object</code></em> :</span></p></td>
+<td> The remote object or <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Standard-Macros.html#NULL--CAPS"
+><code class="literal">NULL</code></a>.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>protocol</code></em> :</span></p></td>
+<td> The network protorol or <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Standard-Macros.html#NULL--CAPS"
+><code class="literal">NULL</code></a>.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>authtype</code></em> :</span></p></td>
+<td> The authentication type or <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Standard-Macros.html#NULL--CAPS"
+><code class="literal">NULL</code></a>.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>port</code></em> :</span></p></td>
+<td> The network port or zero.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>password</code></em> :</span></p></td>
+<td> The password to store, must not be <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Standard-Macros.html#NULL--CAPS"
+><code class="literal">NULL</code></a>.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>callback</code></em> :</span></p></td>
+<td> Callback which is called when the operation completes
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>data</code></em> :</span></p></td>
+<td> Data to be passed to callback
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>destroy_data</code></em> :</span></p></td>
+<td> Function to be called when data is no longer needed.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> The asychronous request, which can be passed to <a class="link" href="gnome-keyring-gnome-keyring-misc.html#gnome-keyring-cancel-request" title="gnome_keyring_cancel_request ()"><code class="function">gnome_keyring_cancel_request()</code></a>.
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" title="gnome_keyring_set_network_password_sync ()">
+<a name="gnome-keyring-set-network-password-sync"></a><h3>gnome_keyring_set_network_password_sync ()</h3>
+<pre class="programlisting"><a class="link" href="gnome-keyring-gnome-keyring-result.html#GnomeKeyringResult" title="enum GnomeKeyringResult">GnomeKeyringResult</a>  gnome_keyring_set_network_password_sync
+                                                        (const char *keyring,
+                                                         const char *user,
+                                                         const char *domain,
+                                                         const char *server,
+                                                         const char *object,
+                                                         const char *protocol,
+                                                         const char *authtype,
+                                                         <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#guint32"
+>guint32</a> port,
+                                                         const char *password,
+                                                         <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#guint32"
+>guint32</a> *item_id);</pre>
+<p>
+Store a network password.
+</p>
+<p>
+If an item already exists for with this network info (ie: user, server etc...)
+then it will be updated. 
+</p>
+<p>
+The created or updated item id will be returned in <em class="parameter"><code>item_id</code></em>.
+</p>
+<p>
+Network passwords are items with the item type <code class="literal">GNOME_KEYRING_ITEM_NETWORK_PASSWORD</code></p>
+<p>
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>keyring</code></em> :</span></p></td>
+<td> The keyring to store the password in, or <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Standard-Macros.html#NULL--CAPS"
+><code class="literal">NULL</code></a> for the default keyring.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>user</code></em> :</span></p></td>
+<td> The user name or <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Standard-Macros.html#NULL--CAPS"
+><code class="literal">NULL</code></a>.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>domain</code></em> :</span></p></td>
+<td> The domain name <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Standard-Macros.html#NULL--CAPS"
+><code class="literal">NULL</code></a>.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>server</code></em> :</span></p></td>
+<td> The server or <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Standard-Macros.html#NULL--CAPS"
+><code class="literal">NULL</code></a>.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>object</code></em> :</span></p></td>
+<td> The remote object or <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Standard-Macros.html#NULL--CAPS"
+><code class="literal">NULL</code></a>.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>protocol</code></em> :</span></p></td>
+<td> The network protorol or <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Standard-Macros.html#NULL--CAPS"
+><code class="literal">NULL</code></a>.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>authtype</code></em> :</span></p></td>
+<td> The authentication type or <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Standard-Macros.html#NULL--CAPS"
+><code class="literal">NULL</code></a>.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>port</code></em> :</span></p></td>
+<td> The network port or zero.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>password</code></em> :</span></p></td>
+<td> The password to store, must not be <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Standard-Macros.html#NULL--CAPS"
+><code class="literal">NULL</code></a>.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>item_id</code></em> :</span></p></td>
+<td> A location to store the resulting item's id.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> <code class="literal">GNOME_KEYRING_RESULT_OK</code> if the operation was succcessful or 
+an error result otherwise. 
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+</div>
+</div>
+<div class="footer">
+<hr>
+          Generated by GTK-Doc V1.11</div>
+</body>
+</html>

@@ -1,0 +1,969 @@
+<?xml version="1.0"?>
+<!DOCTYPE refentry PUBLIC "-//OASIS//DTD DocBook XML V4.1.2//EN" 
+               "http://www.oasis-open.org/docbook/xml/4.1.2/docbookx.dtd">
+<refentry id="gnome-keyring-gnome-keyring-items">
+<refmeta>
+<refentrytitle role="top_of_page" id="gnome-keyring-gnome-keyring-items.top_of_page">Keyring Items</refentrytitle>
+<manvolnum>3</manvolnum>
+<refmiscinfo>GNOME-KEYRING Library</refmiscinfo>
+</refmeta>
+
+<refnamediv>
+<refname>Keyring Items</refname>
+<refpurpose>Keyring items each hold a secret and a number of attributes.</refpurpose>
+</refnamediv>
+
+<refsynopsisdiv id="gnome-keyring-gnome-keyring-items.synopsis" role="synopsis">
+<title role="synopsis.title">Synopsis</title>
+
+<synopsis>
+enum                <link linkend="GnomeKeyringItemInfoFlags">GnomeKeyringItemInfoFlags</link>;
+<link linkend="void">void</link>                (<link linkend="GnomeKeyringOperationGetItemInfoCallback">*GnomeKeyringOperationGetItemInfoCallback</link>)
+                                                        (<link linkend="GnomeKeyringResult">GnomeKeyringResult</link> result,
+                                                         <link linkend="GnomeKeyringItemInfo">GnomeKeyringItemInfo</link> *info,
+                                                         <link linkend="gpointer">gpointer</link> data);
+<link linkend="void">void</link>                (<link linkend="GnomeKeyringOperationGetAttributesCallback">*GnomeKeyringOperationGetAttributesCallback</link>)
+                                                        (<link linkend="GnomeKeyringResult">GnomeKeyringResult</link> result,
+                                                         <link linkend="GnomeKeyringAttributeList">GnomeKeyringAttributeList</link> *attributes,
+                                                         <link linkend="gpointer">gpointer</link> data);
+<link linkend="gpointer">gpointer</link>            <link linkend="gnome-keyring-item-create">gnome_keyring_item_create</link>           (const <link linkend="char">char</link> *keyring,
+                                                         <link linkend="GnomeKeyringItemType">GnomeKeyringItemType</link> type,
+                                                         const <link linkend="char">char</link> *display_name,
+                                                         <link linkend="GnomeKeyringAttributeList">GnomeKeyringAttributeList</link> *attributes,
+                                                         const <link linkend="char">char</link> *secret,
+                                                         <link linkend="gboolean">gboolean</link> update_if_exists,
+                                                         <link linkend="GnomeKeyringOperationGetIntCallback">GnomeKeyringOperationGetIntCallback</link> callback,
+                                                         <link linkend="gpointer">gpointer</link> data,
+                                                         <link linkend="GDestroyNotify">GDestroyNotify</link> destroy_data);
+<link linkend="GnomeKeyringResult">GnomeKeyringResult</link>  <link linkend="gnome-keyring-item-create-sync">gnome_keyring_item_create_sync</link>      (const <link linkend="char">char</link> *keyring,
+                                                         <link linkend="GnomeKeyringItemType">GnomeKeyringItemType</link> type,
+                                                         const <link linkend="char">char</link> *display_name,
+                                                         <link linkend="GnomeKeyringAttributeList">GnomeKeyringAttributeList</link> *attributes,
+                                                         const <link linkend="char">char</link> *secret,
+                                                         <link linkend="gboolean">gboolean</link> update_if_exists,
+                                                         <link linkend="guint32">guint32</link> *item_id);
+<link linkend="gpointer">gpointer</link>            <link linkend="gnome-keyring-item-delete">gnome_keyring_item_delete</link>           (const <link linkend="char">char</link> *keyring,
+                                                         <link linkend="guint32">guint32</link> id,
+                                                         <link linkend="GnomeKeyringOperationDoneCallback">GnomeKeyringOperationDoneCallback</link> callback,
+                                                         <link linkend="gpointer">gpointer</link> data,
+                                                         <link linkend="GDestroyNotify">GDestroyNotify</link> destroy_data);
+<link linkend="GnomeKeyringResult">GnomeKeyringResult</link>  <link linkend="gnome-keyring-item-delete-sync">gnome_keyring_item_delete_sync</link>      (const <link linkend="char">char</link> *keyring,
+                                                         <link linkend="guint32">guint32</link> id);
+<link linkend="gpointer">gpointer</link>            <link linkend="gnome-keyring-item-get-info">gnome_keyring_item_get_info</link>         (const <link linkend="char">char</link> *keyring,
+                                                         <link linkend="guint32">guint32</link> id,
+                                                         <link linkend="GnomeKeyringOperationGetItemInfoCallback">GnomeKeyringOperationGetItemInfoCallback</link> callback,
+                                                         <link linkend="gpointer">gpointer</link> data,
+                                                         <link linkend="GDestroyNotify">GDestroyNotify</link> destroy_data);
+<link linkend="gpointer">gpointer</link>            <link linkend="gnome-keyring-item-get-info-full">gnome_keyring_item_get_info_full</link>    (const <link linkend="char">char</link> *keyring,
+                                                         <link linkend="guint32">guint32</link> id,
+                                                         <link linkend="guint32">guint32</link> flags,
+                                                         <link linkend="GnomeKeyringOperationGetItemInfoCallback">GnomeKeyringOperationGetItemInfoCallback</link> callback,
+                                                         <link linkend="gpointer">gpointer</link> data,
+                                                         <link linkend="GDestroyNotify">GDestroyNotify</link> destroy_data);
+<link linkend="GnomeKeyringResult">GnomeKeyringResult</link>  <link linkend="gnome-keyring-item-get-info-full-sync">gnome_keyring_item_get_info_full_sync</link>
+                                                        (const <link linkend="char">char</link> *keyring,
+                                                         <link linkend="guint32">guint32</link> id,
+                                                         <link linkend="guint32">guint32</link> flags,
+                                                         <link linkend="GnomeKeyringItemInfo">GnomeKeyringItemInfo</link> **info);
+<link linkend="GnomeKeyringResult">GnomeKeyringResult</link>  <link linkend="gnome-keyring-item-get-info-sync">gnome_keyring_item_get_info_sync</link>    (const <link linkend="char">char</link> *keyring,
+                                                         <link linkend="guint32">guint32</link> id,
+                                                         <link linkend="GnomeKeyringItemInfo">GnomeKeyringItemInfo</link> **info);
+<link linkend="gpointer">gpointer</link>            <link linkend="gnome-keyring-item-set-info">gnome_keyring_item_set_info</link>         (const <link linkend="char">char</link> *keyring,
+                                                         <link linkend="guint32">guint32</link> id,
+                                                         <link linkend="GnomeKeyringItemInfo">GnomeKeyringItemInfo</link> *info,
+                                                         <link linkend="GnomeKeyringOperationDoneCallback">GnomeKeyringOperationDoneCallback</link> callback,
+                                                         <link linkend="gpointer">gpointer</link> data,
+                                                         <link linkend="GDestroyNotify">GDestroyNotify</link> destroy_data);
+<link linkend="GnomeKeyringResult">GnomeKeyringResult</link>  <link linkend="gnome-keyring-item-set-info-sync">gnome_keyring_item_set_info_sync</link>    (const <link linkend="char">char</link> *keyring,
+                                                         <link linkend="guint32">guint32</link> id,
+                                                         <link linkend="GnomeKeyringItemInfo">GnomeKeyringItemInfo</link> *info);
+<link linkend="gpointer">gpointer</link>            <link linkend="gnome-keyring-item-get-attributes">gnome_keyring_item_get_attributes</link>   (const <link linkend="char">char</link> *keyring,
+                                                         <link linkend="guint32">guint32</link> id,
+                                                         <link linkend="GnomeKeyringOperationGetAttributesCallback">GnomeKeyringOperationGetAttributesCallback</link> callback,
+                                                         <link linkend="gpointer">gpointer</link> data,
+                                                         <link linkend="GDestroyNotify">GDestroyNotify</link> destroy_data);
+<link linkend="GnomeKeyringResult">GnomeKeyringResult</link>  <link linkend="gnome-keyring-item-get-attributes-sync">gnome_keyring_item_get_attributes_sync</link>
+                                                        (const <link linkend="char">char</link> *keyring,
+                                                         <link linkend="guint32">guint32</link> id,
+                                                         <link linkend="GnomeKeyringAttributeList">GnomeKeyringAttributeList</link> **attributes);
+<link linkend="gpointer">gpointer</link>            <link linkend="gnome-keyring-item-set-attributes">gnome_keyring_item_set_attributes</link>   (const <link linkend="char">char</link> *keyring,
+                                                         <link linkend="guint32">guint32</link> id,
+                                                         <link linkend="GnomeKeyringAttributeList">GnomeKeyringAttributeList</link> *attributes,
+                                                         <link linkend="GnomeKeyringOperationDoneCallback">GnomeKeyringOperationDoneCallback</link> callback,
+                                                         <link linkend="gpointer">gpointer</link> data,
+                                                         <link linkend="GDestroyNotify">GDestroyNotify</link> destroy_data);
+<link linkend="GnomeKeyringResult">GnomeKeyringResult</link>  <link linkend="gnome-keyring-item-set-attributes-sync">gnome_keyring_item_set_attributes_sync</link>
+                                                        (const <link linkend="char">char</link> *keyring,
+                                                         <link linkend="guint32">guint32</link> id,
+                                                         <link linkend="GnomeKeyringAttributeList">GnomeKeyringAttributeList</link> *attributes);
+<link linkend="gpointer">gpointer</link>            <link linkend="gnome-keyring-item-get-acl">gnome_keyring_item_get_acl</link>          (const <link linkend="char">char</link> *keyring,
+                                                         <link linkend="guint32">guint32</link> id,
+                                                         <link linkend="GnomeKeyringOperationGetListCallback">GnomeKeyringOperationGetListCallback</link> callback,
+                                                         <link linkend="gpointer">gpointer</link> data,
+                                                         <link linkend="GDestroyNotify">GDestroyNotify</link> destroy_data);
+<link linkend="GnomeKeyringResult">GnomeKeyringResult</link>  <link linkend="gnome-keyring-item-get-acl-sync">gnome_keyring_item_get_acl_sync</link>     (const <link linkend="char">char</link> *keyring,
+                                                         <link linkend="guint32">guint32</link> id,
+                                                         <link linkend="GList">GList</link> **acl);
+<link linkend="gpointer">gpointer</link>            <link linkend="gnome-keyring-item-set-acl">gnome_keyring_item_set_acl</link>          (const <link linkend="char">char</link> *keyring,
+                                                         <link linkend="guint32">guint32</link> id,
+                                                         <link linkend="GList">GList</link> *acl,
+                                                         <link linkend="GnomeKeyringOperationDoneCallback">GnomeKeyringOperationDoneCallback</link> callback,
+                                                         <link linkend="gpointer">gpointer</link> data,
+                                                         <link linkend="GDestroyNotify">GDestroyNotify</link> destroy_data);
+<link linkend="GnomeKeyringResult">GnomeKeyringResult</link>  <link linkend="gnome-keyring-item-set-acl-sync">gnome_keyring_item_set_acl_sync</link>     (const <link linkend="char">char</link> *keyring,
+                                                         <link linkend="guint32">guint32</link> id,
+                                                         <link linkend="GList">GList</link> *acl);
+<link linkend="gpointer">gpointer</link>            <link linkend="gnome-keyring-item-grant-access-rights">gnome_keyring_item_grant_access_rights</link>
+                                                        (const <link linkend="gchar">gchar</link> *keyring,
+                                                         const <link linkend="gchar">gchar</link> *display_name,
+                                                         const <link linkend="gchar">gchar</link> *full_path,
+                                                         const <link linkend="guint32">guint32</link> id,
+                                                         const <link linkend="GnomeKeyringAccessType">GnomeKeyringAccessType</link> rights,
+                                                         <link linkend="GnomeKeyringOperationDoneCallback">GnomeKeyringOperationDoneCallback</link> callback,
+                                                         <link linkend="gpointer">gpointer</link> data,
+                                                         <link linkend="GDestroyNotify">GDestroyNotify</link> destroy_data);
+<link linkend="GnomeKeyringResult">GnomeKeyringResult</link>  <link linkend="gnome-keyring-item-grant-access-rights-sync">gnome_keyring_item_grant_access_rights_sync</link>
+                                                        (const <link linkend="char">char</link> *keyring,
+                                                         const <link linkend="char">char</link> *display_name,
+                                                         const <link linkend="char">char</link> *full_path,
+                                                         const <link linkend="guint32">guint32</link> id,
+                                                         const <link linkend="GnomeKeyringAccessType">GnomeKeyringAccessType</link> rights);
+</synopsis>
+</refsynopsisdiv>
+
+
+
+
+
+
+
+
+
+<refsect1 id="gnome-keyring-gnome-keyring-items.description" role="desc">
+<title role="desc.title">Description</title>
+<para>
+A keyring contains multiple items. Each item has a secret, attributes and access 
+information associated with it.
+</para>
+<para>
+An item is identified by an unsigned integer unique to the keyring in which it 
+exists. An item's name is for displaying to the user. Each item has a single secret, 
+which is a null-terminated string. This secret is stored in non-pageable memory, and 
+encrypted on disk. All of this information is exposed via <link linkend="GnomeKeyringItemInfo"><type>GnomeKeyringItemInfo</type></link>
+pointers.
+</para>
+<para>
+Attributes allow various other pieces of information to be associated with an item. 
+These can also be used to search for relevant items. Attributes are accessed with 
+<link linkend="GnomeKeyringAttribute"><type>GnomeKeyringAttribute</type></link> structures and built into lists using <link linkend="GnomeKeyringAttributeList"><type>GnomeKeyringAttributeList</type></link>.
+</para>
+<para>
+Each item has an access control list, which specifies the applications that 
+can read, write or delete an item. The read access applies only to reading the secret.
+All applications can read other parts of the item. ACLs are accessed and changed
+through <link linkend="GnomeKeyringAccessControl"><type>GnomeKeyringAccessControl</type></link> pointers.</para>
+<para>
+</para>
+</refsect1>
+
+<refsect1 id="gnome-keyring-gnome-keyring-items.details" role="details">
+<title role="details.title">Details</title>
+<refsect2 id="GnomeKeyringItemInfoFlags" role="enum">
+<title>enum GnomeKeyringItemInfoFlags</title>
+<indexterm zone="GnomeKeyringItemInfoFlags"><primary sortas="GnomeKeyringItemInfoFlags">GnomeKeyringItemInfoFlags</primary></indexterm><programlisting>typedef enum {
+	GNOME_KEYRING_ITEM_INFO_BASICS = 0,
+	GNOME_KEYRING_ITEM_INFO_SECRET = 1&lt;&lt;0
+} GnomeKeyringItemInfoFlags;
+</programlisting>
+<para>
+</para></refsect2>
+<refsect2 id="GnomeKeyringOperationGetItemInfoCallback" role="function">
+<title>GnomeKeyringOperationGetItemInfoCallback ()</title>
+<indexterm zone="GnomeKeyringOperationGetItemInfoCallback"><primary sortas="GnomeKeyringOperationGetItemInfoCallback">GnomeKeyringOperationGetItemInfoCallback</primary></indexterm><programlisting><link linkend="void">void</link>                (*GnomeKeyringOperationGetItemInfoCallback)
+                                                        (<link linkend="GnomeKeyringResult">GnomeKeyringResult</link> result,
+                                                         <link linkend="GnomeKeyringItemInfo">GnomeKeyringItemInfo</link> *info,
+                                                         <link linkend="gpointer">gpointer</link> data);</programlisting>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>result</parameter>&#160;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>info</parameter>&#160;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>data</parameter>&#160;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="GnomeKeyringOperationGetAttributesCallback" role="function">
+<title>GnomeKeyringOperationGetAttributesCallback ()</title>
+<indexterm zone="GnomeKeyringOperationGetAttributesCallback"><primary sortas="GnomeKeyringOperationGetAttributesCallback">GnomeKeyringOperationGetAttributesCallback</primary></indexterm><programlisting><link linkend="void">void</link>                (*GnomeKeyringOperationGetAttributesCallback)
+                                                        (<link linkend="GnomeKeyringResult">GnomeKeyringResult</link> result,
+                                                         <link linkend="GnomeKeyringAttributeList">GnomeKeyringAttributeList</link> *attributes,
+                                                         <link linkend="gpointer">gpointer</link> data);</programlisting>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>result</parameter>&#160;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>attributes</parameter>&#160;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>data</parameter>&#160;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="gnome-keyring-item-create" role="function">
+<title>gnome_keyring_item_create ()</title>
+<indexterm zone="gnome-keyring-item-create"><primary sortas="gnome_keyring_item_create">gnome_keyring_item_create</primary></indexterm><programlisting><link linkend="gpointer">gpointer</link>            gnome_keyring_item_create           (const <link linkend="char">char</link> *keyring,
+                                                         <link linkend="GnomeKeyringItemType">GnomeKeyringItemType</link> type,
+                                                         const <link linkend="char">char</link> *display_name,
+                                                         <link linkend="GnomeKeyringAttributeList">GnomeKeyringAttributeList</link> *attributes,
+                                                         const <link linkend="char">char</link> *secret,
+                                                         <link linkend="gboolean">gboolean</link> update_if_exists,
+                                                         <link linkend="GnomeKeyringOperationGetIntCallback">GnomeKeyringOperationGetIntCallback</link> callback,
+                                                         <link linkend="gpointer">gpointer</link> data,
+                                                         <link linkend="GDestroyNotify">GDestroyNotify</link> destroy_data);</programlisting>
+<para>
+Create a new item in a keyring. 
+</para>
+<para>
+The <parameter>secret</parameter> must be a null terminated string. It should be allocated using secure 
+memory whenever possible. See <link linkend="gnome-keyring-memory-strdup"><function>gnome_keyring_memory_strdup()</function></link> 
+</para>
+<para>
+The user may have been prompted to unlock necessary keyrings. If <link linkend="NULL--CAPS"><literal>NULL</literal></link> is 
+specified as the <parameter>keyring</parameter> and no default keyring exists, the user will be 
+prompted to create a new keyring.
+</para>
+<para>
+When <parameter>update_if_exists</parameter> is set to <link linkend="TRUE--CAPS"><literal>TRUE</literal></link>, the user may be prompted for access
+to the previously existing item.
+</para>
+<para>
+Whether a new item is created or not, id of the item will be passed to 
+the <parameter>callback</parameter>. 
+</para>
+<para>
+For a synchronous version of this function see <link linkend="gnome-keyring-item-create-sync"><function>gnome_keyring_item_create_sync()</function></link>.</para>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>keyring</parameter>&#160;:</term>
+<listitem><simpara> The name of the keyring in which to create the item, or NULL for the default keyring.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>type</parameter>&#160;:</term>
+<listitem><simpara> The item type.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>display_name</parameter>&#160;:</term>
+<listitem><simpara> The name of the item. This will be displayed to the user where necessary.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>attributes</parameter>&#160;:</term>
+<listitem><simpara> A (possibly empty) list of attributes to store with the item. 
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>secret</parameter>&#160;:</term>
+<listitem><simpara> The password or secret of the item.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>update_if_exists</parameter>&#160;:</term>
+<listitem><simpara> If true, then another item matching the type, and attributes
+ will be updated instead of creating a new item.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>callback</parameter>&#160;:</term>
+<listitem><simpara> A callback which will be called when the request completes or fails.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>data</parameter>&#160;:</term>
+<listitem><simpara> A pointer to arbitrary data that will be passed to the <parameter>callback</parameter>.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>destroy_data</parameter>&#160;:</term>
+<listitem><simpara> A function to free <parameter>data</parameter> when it's no longer needed.
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara> The asychronous request, which can be passed to <link linkend="gnome-keyring-cancel-request"><function>gnome_keyring_cancel_request()</function></link>.
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="gnome-keyring-item-create-sync" role="function">
+<title>gnome_keyring_item_create_sync ()</title>
+<indexterm zone="gnome-keyring-item-create-sync"><primary sortas="gnome_keyring_item_create_sync">gnome_keyring_item_create_sync</primary></indexterm><programlisting><link linkend="GnomeKeyringResult">GnomeKeyringResult</link>  gnome_keyring_item_create_sync      (const <link linkend="char">char</link> *keyring,
+                                                         <link linkend="GnomeKeyringItemType">GnomeKeyringItemType</link> type,
+                                                         const <link linkend="char">char</link> *display_name,
+                                                         <link linkend="GnomeKeyringAttributeList">GnomeKeyringAttributeList</link> *attributes,
+                                                         const <link linkend="char">char</link> *secret,
+                                                         <link linkend="gboolean">gboolean</link> update_if_exists,
+                                                         <link linkend="guint32">guint32</link> *item_id);</programlisting>
+<para>
+Create a new item in a keyring. 
+</para>
+<para>
+The <parameter>secret</parameter> must be a null terminated string. It should be allocated using secure 
+memory whenever possible. See <link linkend="gnome-keyring-memory-strdup"><function>gnome_keyring_memory_strdup()</function></link> 
+</para>
+<para>
+The user may have been prompted to unlock necessary keyrings. If <link linkend="NULL--CAPS"><literal>NULL</literal></link> is 
+specified as the <parameter>keyring</parameter> and no default keyring exists, the user will be 
+prompted to create a new keyring.
+</para>
+<para>
+When <parameter>update_if_exists</parameter> is set to <link linkend="TRUE--CAPS"><literal>TRUE</literal></link>, the user may be prompted for access
+to the previously existing item.
+</para>
+<para>
+For an asynchronous version of this function see <link linkend="gnome-keyring-create"><function>gnome_keyring_create()</function></link>.</para>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>keyring</parameter>&#160;:</term>
+<listitem><simpara> The name of the keyring in which to create the item, or NULL for the default keyring.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>type</parameter>&#160;:</term>
+<listitem><simpara> The item type.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>display_name</parameter>&#160;:</term>
+<listitem><simpara> The name of the item. This will be displayed to the user where necessary.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>attributes</parameter>&#160;:</term>
+<listitem><simpara> A (possibly empty) list of attributes to store with the item. 
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>secret</parameter>&#160;:</term>
+<listitem><simpara> The password or secret of the item.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>update_if_exists</parameter>&#160;:</term>
+<listitem><simpara> If true, then another item matching the type, and attributes
+ will be updated instead of creating a new item.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>item_id</parameter>&#160;:</term>
+<listitem><simpara> return location for the id of the created/updated keyring item.
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara> <link linkend="GNOME-KEYRING-RESULT-OK--CAPS"><literal>GNOME_KEYRING_RESULT_OK</literal></link> if the operation was succcessful or 
+an error result otherwise. 
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="gnome-keyring-item-delete" role="function">
+<title>gnome_keyring_item_delete ()</title>
+<indexterm zone="gnome-keyring-item-delete"><primary sortas="gnome_keyring_item_delete">gnome_keyring_item_delete</primary></indexterm><programlisting><link linkend="gpointer">gpointer</link>            gnome_keyring_item_delete           (const <link linkend="char">char</link> *keyring,
+                                                         <link linkend="guint32">guint32</link> id,
+                                                         <link linkend="GnomeKeyringOperationDoneCallback">GnomeKeyringOperationDoneCallback</link> callback,
+                                                         <link linkend="gpointer">gpointer</link> data,
+                                                         <link linkend="GDestroyNotify">GDestroyNotify</link> destroy_data);</programlisting>
+<para>
+Delete an item in a keyring. 
+</para>
+<para>
+The user may be prompted if the calling application doesn't have necessary
+access to delete the item.
+</para>
+<para>
+For an asynchronous version of this function see <link linkend="gnome-keyring-delete"><function>gnome_keyring_delete()</function></link>.</para>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>keyring</parameter>&#160;:</term>
+<listitem><simpara> The name of the keyring from which to delete the item, or NULL for the default keyring.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>id</parameter>&#160;:</term>
+<listitem><simpara> The id of the item
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>callback</parameter>&#160;:</term>
+<listitem><simpara> A callback which will be called when the request completes or fails.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>data</parameter>&#160;:</term>
+<listitem><simpara> A pointer to arbitrary data that will be passed to the <parameter>callback</parameter>.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>destroy_data</parameter>&#160;:</term>
+<listitem><simpara> A function to free <parameter>data</parameter> when it's no longer needed.
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara> The asychronous request, which can be passed to <link linkend="gnome-keyring-cancel-request"><function>gnome_keyring_cancel_request()</function></link>.
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="gnome-keyring-item-delete-sync" role="function">
+<title>gnome_keyring_item_delete_sync ()</title>
+<indexterm zone="gnome-keyring-item-delete-sync"><primary sortas="gnome_keyring_item_delete_sync">gnome_keyring_item_delete_sync</primary></indexterm><programlisting><link linkend="GnomeKeyringResult">GnomeKeyringResult</link>  gnome_keyring_item_delete_sync      (const <link linkend="char">char</link> *keyring,
+                                                         <link linkend="guint32">guint32</link> id);</programlisting>
+<para>
+Delete an item in a keyring. 
+</para>
+<para>
+The user may be prompted if the calling application doesn't have necessary
+access to delete the item.
+</para>
+<para>
+For an asynchronous version of this function see <link linkend="gnome-keyring-item-delete"><function>gnome_keyring_item_delete()</function></link>.</para>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>keyring</parameter>&#160;:</term>
+<listitem><simpara> The name of the keyring from which to delete the item, or NULL for the default keyring.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>id</parameter>&#160;:</term>
+<listitem><simpara> The id of the item
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara> <link linkend="GNOME-KEYRING-RESULT-OK--CAPS"><literal>GNOME_KEYRING_RESULT_OK</literal></link> if the operation was succcessful or 
+an error result otherwise. 
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="gnome-keyring-item-get-info" role="function">
+<title>gnome_keyring_item_get_info ()</title>
+<indexterm zone="gnome-keyring-item-get-info"><primary sortas="gnome_keyring_item_get_info">gnome_keyring_item_get_info</primary></indexterm><programlisting><link linkend="gpointer">gpointer</link>            gnome_keyring_item_get_info         (const <link linkend="char">char</link> *keyring,
+                                                         <link linkend="guint32">guint32</link> id,
+                                                         <link linkend="GnomeKeyringOperationGetItemInfoCallback">GnomeKeyringOperationGetItemInfoCallback</link> callback,
+                                                         <link linkend="gpointer">gpointer</link> data,
+                                                         <link linkend="GDestroyNotify">GDestroyNotify</link> destroy_data);</programlisting>
+<para>
+Get information about an item and its secret.
+</para>
+<para>
+The user may be prompted if the calling application doesn't have necessary
+access to read the item with its secret.
+</para>
+<para>
+A <link linkend="GnomeKeyringItemInfo"><type>GnomeKeyringItemInfo</type></link> structure will be passed to the <parameter>callback</parameter>. This structure
+will be freed after <parameter>callback</parameter> returns.
+</para>
+<para>
+For a synchronous version of this function see <link linkend="gnome-keyring-item-get-info-sync"><function>gnome_keyring_item_get_info_sync()</function></link>.</para>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>keyring</parameter>&#160;:</term>
+<listitem><simpara> The name of the keyring in which the item exists, or NULL for the default keyring.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>id</parameter>&#160;:</term>
+<listitem><simpara> The id of the item
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>callback</parameter>&#160;:</term>
+<listitem><simpara> A callback which will be called when the request completes or fails.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>data</parameter>&#160;:</term>
+<listitem><simpara> A pointer to arbitrary data that will be passed to the <parameter>callback</parameter>.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>destroy_data</parameter>&#160;:</term>
+<listitem><simpara> A function to free <parameter>data</parameter> when it's no longer needed.
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara> The asychronous request, which can be passed to <link linkend="gnome-keyring-cancel-request"><function>gnome_keyring_cancel_request()</function></link>.
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="gnome-keyring-item-get-info-full" role="function">
+<title>gnome_keyring_item_get_info_full ()</title>
+<indexterm zone="gnome-keyring-item-get-info-full"><primary sortas="gnome_keyring_item_get_info_full">gnome_keyring_item_get_info_full</primary></indexterm><programlisting><link linkend="gpointer">gpointer</link>            gnome_keyring_item_get_info_full    (const <link linkend="char">char</link> *keyring,
+                                                         <link linkend="guint32">guint32</link> id,
+                                                         <link linkend="guint32">guint32</link> flags,
+                                                         <link linkend="GnomeKeyringOperationGetItemInfoCallback">GnomeKeyringOperationGetItemInfoCallback</link> callback,
+                                                         <link linkend="gpointer">gpointer</link> data,
+                                                         <link linkend="GDestroyNotify">GDestroyNotify</link> destroy_data);</programlisting>
+<para>
+Get information about an item, optionally retrieving its secret.
+</para>
+<para>
+If <parameter>flags</parameter> includes <link linkend="GNOME-KEYRING-ITEM-INFO-SECRET--CAPS"><literal>GNOME_KEYRING_ITEM_INFO_SECRET</literal></link> then the user may be 
+prompted if the calling application doesn't have necessary access to read 
+the item with its secret.
+</para>
+<para>
+A <link linkend="GnomeKeyringItemInfo"><type>GnomeKeyringItemInfo</type></link> pointer will be passed to the <parameter>callback</parameter>. Certain fields
+of this structure may be NULL or zero if they were not specified in <parameter>flags</parameter>. This 
+structure will be freed after <parameter>callback</parameter> returns.
+</para>
+<para>
+For a synchronous version of this function see <link linkend="gnome-keyring-item-get-info-full-sync"><function>gnome_keyring_item_get_info_full_sync()</function></link>.</para>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>keyring</parameter>&#160;:</term>
+<listitem><simpara> The name of the keyring in which the item exists, or NULL for the default keyring.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>id</parameter>&#160;:</term>
+<listitem><simpara> The id of the item
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>flags</parameter>&#160;:</term>
+<listitem><simpara> The parts of the item to retrieve.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>callback</parameter>&#160;:</term>
+<listitem><simpara> A callback which will be called when the request completes or fails.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>data</parameter>&#160;:</term>
+<listitem><simpara> A pointer to arbitrary data that will be passed to the <parameter>callback</parameter>.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>destroy_data</parameter>&#160;:</term>
+<listitem><simpara> A function to free <parameter>data</parameter> when it's no longer needed.
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara> The asychronous request, which can be passed to <link linkend="gnome-keyring-cancel-request"><function>gnome_keyring_cancel_request()</function></link>.
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="gnome-keyring-item-get-info-full-sync" role="function">
+<title>gnome_keyring_item_get_info_full_sync ()</title>
+<indexterm zone="gnome-keyring-item-get-info-full-sync"><primary sortas="gnome_keyring_item_get_info_full_sync">gnome_keyring_item_get_info_full_sync</primary></indexterm><programlisting><link linkend="GnomeKeyringResult">GnomeKeyringResult</link>  gnome_keyring_item_get_info_full_sync
+                                                        (const <link linkend="char">char</link> *keyring,
+                                                         <link linkend="guint32">guint32</link> id,
+                                                         <link linkend="guint32">guint32</link> flags,
+                                                         <link linkend="GnomeKeyringItemInfo">GnomeKeyringItemInfo</link> **info);</programlisting>
+<para>
+Get information about an item, optionally retrieving its secret.
+</para>
+<para>
+If <parameter>flags</parameter> includes <link linkend="GNOME-KEYRING-ITEM-INFO-SECRET--CAPS"><literal>GNOME_KEYRING_ITEM_INFO_SECRET</literal></link> then the user may be 
+prompted if the calling application doesn't have necessary access to read 
+the item with its secret.
+</para>
+<para>
+A <link linkend="GnomeKeyringItemInfo"><type>GnomeKeyringItemInfo</type></link> structure will be returned in <parameter>info</parameter>. Certain fields
+of this structure may be NULL or zero if they were not specified in <parameter>flags</parameter>. 
+This must be freed using <link linkend="gnome-keyring-item-info-free"><function>gnome_keyring_item_info_free()</function></link>.
+</para>
+<para>
+For an asynchronous version of this function see <link linkend="gnome-keyring-item-get-info-full"><function>gnome_keyring_item_get_info_full()</function></link>.</para>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>keyring</parameter>&#160;:</term>
+<listitem><simpara> The name of the keyring in which the item exists, or NULL for the default keyring.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>id</parameter>&#160;:</term>
+<listitem><simpara> The id of the item
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>flags</parameter>&#160;:</term>
+<listitem><simpara> The parts of the item to retrieve.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>info</parameter>&#160;:</term>
+<listitem><simpara> The location to return a <link linkend="GnomeKeyringItemInfo"><type>GnomeKeyringItemInfo</type></link> pointer.
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara> <link linkend="GNOME-KEYRING-RESULT-OK--CAPS"><literal>GNOME_KEYRING_RESULT_OK</literal></link> if the operation was succcessful or 
+an error result otherwise. 
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="gnome-keyring-item-get-info-sync" role="function">
+<title>gnome_keyring_item_get_info_sync ()</title>
+<indexterm zone="gnome-keyring-item-get-info-sync"><primary sortas="gnome_keyring_item_get_info_sync">gnome_keyring_item_get_info_sync</primary></indexterm><programlisting><link linkend="GnomeKeyringResult">GnomeKeyringResult</link>  gnome_keyring_item_get_info_sync    (const <link linkend="char">char</link> *keyring,
+                                                         <link linkend="guint32">guint32</link> id,
+                                                         <link linkend="GnomeKeyringItemInfo">GnomeKeyringItemInfo</link> **info);</programlisting>
+<para>
+Get information about an item and its secret.
+</para>
+<para>
+The user may be prompted if the calling application doesn't have necessary
+access to read the item with its secret. 
+</para>
+<para>
+A <link linkend="GnomeKeyringItemInfo"><type>GnomeKeyringItemInfo</type></link> structure will be returned in <parameter>info</parameter>. This must be
+freed using <link linkend="gnome-keyring-item-info-free"><function>gnome_keyring_item_info_free()</function></link>.
+</para>
+<para>
+For an asynchronous version of this function see <link linkend="gnome-keyring-item-get-info"><function>gnome_keyring_item_get_info()</function></link>.</para>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>keyring</parameter>&#160;:</term>
+<listitem><simpara> The name of the keyring in which the item exists, or NULL for the default keyring.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>id</parameter>&#160;:</term>
+<listitem><simpara> The id of the item
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>info</parameter>&#160;:</term>
+<listitem><simpara> The location to return a <link linkend="GnomeKeyringItemInfo"><type>GnomeKeyringItemInfo</type></link> pointer.
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara> <link linkend="GNOME-KEYRING-RESULT-OK--CAPS"><literal>GNOME_KEYRING_RESULT_OK</literal></link> if the operation was succcessful or 
+an error result otherwise. 
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="gnome-keyring-item-set-info" role="function">
+<title>gnome_keyring_item_set_info ()</title>
+<indexterm zone="gnome-keyring-item-set-info"><primary sortas="gnome_keyring_item_set_info">gnome_keyring_item_set_info</primary></indexterm><programlisting><link linkend="gpointer">gpointer</link>            gnome_keyring_item_set_info         (const <link linkend="char">char</link> *keyring,
+                                                         <link linkend="guint32">guint32</link> id,
+                                                         <link linkend="GnomeKeyringItemInfo">GnomeKeyringItemInfo</link> *info,
+                                                         <link linkend="GnomeKeyringOperationDoneCallback">GnomeKeyringOperationDoneCallback</link> callback,
+                                                         <link linkend="gpointer">gpointer</link> data,
+                                                         <link linkend="GDestroyNotify">GDestroyNotify</link> destroy_data);</programlisting>
+<para>
+Set information on an item, like its display name, secret etc...
+</para>
+<para>
+Only the fields in the <parameter>info</parameter> pointer that are non-null or non-zero will be 
+set on the item. 
+</para>
+<para>
+For a synchronous version of this function see <link linkend="gnome-keyring-item-set-info-sync"><function>gnome_keyring_item_set_info_sync()</function></link>.</para>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>keyring</parameter>&#160;:</term>
+<listitem><simpara> The name of the keyring in which the item exists, or NULL for the default keyring.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>id</parameter>&#160;:</term>
+<listitem><simpara> The id of the item
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>info</parameter>&#160;:</term>
+<listitem><simpara> The item info to save into the item. 
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>callback</parameter>&#160;:</term>
+<listitem><simpara> A callback which will be called when the request completes or fails.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>data</parameter>&#160;:</term>
+<listitem><simpara> A pointer to arbitrary data that will be passed to the <parameter>callback</parameter>.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>destroy_data</parameter>&#160;:</term>
+<listitem><simpara> A function to free <parameter>data</parameter> when it's no longer needed.
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara> The asychronous request, which can be passed to <link linkend="gnome-keyring-cancel-request"><function>gnome_keyring_cancel_request()</function></link>.
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="gnome-keyring-item-set-info-sync" role="function">
+<title>gnome_keyring_item_set_info_sync ()</title>
+<indexterm zone="gnome-keyring-item-set-info-sync"><primary sortas="gnome_keyring_item_set_info_sync">gnome_keyring_item_set_info_sync</primary></indexterm><programlisting><link linkend="GnomeKeyringResult">GnomeKeyringResult</link>  gnome_keyring_item_set_info_sync    (const <link linkend="char">char</link> *keyring,
+                                                         <link linkend="guint32">guint32</link> id,
+                                                         <link linkend="GnomeKeyringItemInfo">GnomeKeyringItemInfo</link> *info);</programlisting>
+<para>
+Set information on an item, like its display name, secret etc...
+</para>
+<para>
+Only the fields in the <parameter>info</parameter> pointer that are non-null or non-zero will be 
+set on the item.
+ 
+For an asynchronous version of this function see <link linkend="gnome-keyring-item-set-info"><function>gnome_keyring_item_set_info()</function></link>.</para>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>keyring</parameter>&#160;:</term>
+<listitem><simpara> The name of the keyring in which the item exists, or NULL for the default keyring.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>id</parameter>&#160;:</term>
+<listitem><simpara> The id of the item
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>info</parameter>&#160;:</term>
+<listitem><simpara> The item info to save into the item.
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara> <link linkend="GNOME-KEYRING-RESULT-OK--CAPS"><literal>GNOME_KEYRING_RESULT_OK</literal></link> if the operation was succcessful or 
+an error result otherwise. 
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="gnome-keyring-item-get-attributes" role="function">
+<title>gnome_keyring_item_get_attributes ()</title>
+<indexterm zone="gnome-keyring-item-get-attributes"><primary sortas="gnome_keyring_item_get_attributes">gnome_keyring_item_get_attributes</primary></indexterm><programlisting><link linkend="gpointer">gpointer</link>            gnome_keyring_item_get_attributes   (const <link linkend="char">char</link> *keyring,
+                                                         <link linkend="guint32">guint32</link> id,
+                                                         <link linkend="GnomeKeyringOperationGetAttributesCallback">GnomeKeyringOperationGetAttributesCallback</link> callback,
+                                                         <link linkend="gpointer">gpointer</link> data,
+                                                         <link linkend="GDestroyNotify">GDestroyNotify</link> destroy_data);</programlisting>
+<para>
+Get all the attributes for an item.
+</para>
+<para>
+A <link linkend="GnomeKeyringAttributeList"><type>GnomeKeyringAttributeList</type></link> will be passed to the <parameter>callback</parameter>. This list will 
+be freed after <parameter>callback</parameter> returns.
+</para>
+<para>
+For a synchronous version of this function see <link linkend="gnome-keyring-item-get-attributes-sync"><function>gnome_keyring_item_get_attributes_sync()</function></link>.</para>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>keyring</parameter>&#160;:</term>
+<listitem><simpara> The name of the keyring in which the item exists, or NULL for the default keyring.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>id</parameter>&#160;:</term>
+<listitem><simpara> The id of the item
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>callback</parameter>&#160;:</term>
+<listitem><simpara> A callback which will be called when the request completes or fails.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>data</parameter>&#160;:</term>
+<listitem><simpara> A pointer to arbitrary data that will be passed to the <parameter>callback</parameter>.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>destroy_data</parameter>&#160;:</term>
+<listitem><simpara> A function to free <parameter>data</parameter> when it's no longer needed.
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara> The asychronous request, which can be passed to <link linkend="gnome-keyring-cancel-request"><function>gnome_keyring_cancel_request()</function></link>.
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="gnome-keyring-item-get-attributes-sync" role="function">
+<title>gnome_keyring_item_get_attributes_sync ()</title>
+<indexterm zone="gnome-keyring-item-get-attributes-sync"><primary sortas="gnome_keyring_item_get_attributes_sync">gnome_keyring_item_get_attributes_sync</primary></indexterm><programlisting><link linkend="GnomeKeyringResult">GnomeKeyringResult</link>  gnome_keyring_item_get_attributes_sync
+                                                        (const <link linkend="char">char</link> *keyring,
+                                                         <link linkend="guint32">guint32</link> id,
+                                                         <link linkend="GnomeKeyringAttributeList">GnomeKeyringAttributeList</link> **attributes);</programlisting>
+<para>
+Get all attributes for an item.
+</para>
+<para>
+A <link linkend="GnomeKeyringAttributeList"><type>GnomeKeyringAttributeList</type></link> will be returned in <parameter>attributes</parameter>. This should be 
+freed using <link linkend="gnome-keyring-attribute-list-free"><function>gnome_keyring_attribute_list_free()</function></link>. 
+ 
+For an asynchronous version of this function see <link linkend="gnome-keyring-item-get-attributes"><function>gnome_keyring_item_get_attributes()</function></link>.</para>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>keyring</parameter>&#160;:</term>
+<listitem><simpara> The name of the keyring in which the item exists, or NULL for the default keyring.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>id</parameter>&#160;:</term>
+<listitem><simpara> The id of the item
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>attributes</parameter>&#160;:</term>
+<listitem><simpara> The location to return a pointer to the attribute list.
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara> <link linkend="GNOME-KEYRING-RESULT-OK--CAPS"><literal>GNOME_KEYRING_RESULT_OK</literal></link> if the operation was succcessful or 
+an error result otherwise. 
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="gnome-keyring-item-set-attributes" role="function">
+<title>gnome_keyring_item_set_attributes ()</title>
+<indexterm zone="gnome-keyring-item-set-attributes"><primary sortas="gnome_keyring_item_set_attributes">gnome_keyring_item_set_attributes</primary></indexterm><programlisting><link linkend="gpointer">gpointer</link>            gnome_keyring_item_set_attributes   (const <link linkend="char">char</link> *keyring,
+                                                         <link linkend="guint32">guint32</link> id,
+                                                         <link linkend="GnomeKeyringAttributeList">GnomeKeyringAttributeList</link> *attributes,
+                                                         <link linkend="GnomeKeyringOperationDoneCallback">GnomeKeyringOperationDoneCallback</link> callback,
+                                                         <link linkend="gpointer">gpointer</link> data,
+                                                         <link linkend="GDestroyNotify">GDestroyNotify</link> destroy_data);</programlisting>
+<para>
+Set all the attributes for an item. This will replace any previous attributes
+set on the item. 
+</para>
+<para>
+For a synchronous version of this function see <link linkend="gnome-keyring-item-set-attributes-sync"><function>gnome_keyring_item_set_attributes_sync()</function></link>.</para>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>keyring</parameter>&#160;:</term>
+<listitem><simpara> The name of the keyring in which the item exists, or NULL for the default keyring.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>id</parameter>&#160;:</term>
+<listitem><simpara> The id of the item
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>attributes</parameter>&#160;:</term>
+<listitem><simpara> The full list of attributes to set on the item.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>callback</parameter>&#160;:</term>
+<listitem><simpara> A callback which will be called when the request completes or fails.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>data</parameter>&#160;:</term>
+<listitem><simpara> A pointer to arbitrary data that will be passed to the <parameter>callback</parameter>.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>destroy_data</parameter>&#160;:</term>
+<listitem><simpara> A function to free <parameter>data</parameter> when it's no longer needed.
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara> The asychronous request, which can be passed to <link linkend="gnome-keyring-cancel-request"><function>gnome_keyring_cancel_request()</function></link>.
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="gnome-keyring-item-set-attributes-sync" role="function">
+<title>gnome_keyring_item_set_attributes_sync ()</title>
+<indexterm zone="gnome-keyring-item-set-attributes-sync"><primary sortas="gnome_keyring_item_set_attributes_sync">gnome_keyring_item_set_attributes_sync</primary></indexterm><programlisting><link linkend="GnomeKeyringResult">GnomeKeyringResult</link>  gnome_keyring_item_set_attributes_sync
+                                                        (const <link linkend="char">char</link> *keyring,
+                                                         <link linkend="guint32">guint32</link> id,
+                                                         <link linkend="GnomeKeyringAttributeList">GnomeKeyringAttributeList</link> *attributes);</programlisting>
+<para>
+Set all the attributes for an item. This will replace any previous attributes
+set on the item.
+</para>
+<para>
+For an asynchronous version of this function see <link linkend="gnome-keyring-item-set-attributes"><function>gnome_keyring_item_set_attributes()</function></link>.</para>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>keyring</parameter>&#160;:</term>
+<listitem><simpara> The name of the keyring in which the item exists, or NULL for the default keyring.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>id</parameter>&#160;:</term>
+<listitem><simpara> The id of the item
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>attributes</parameter>&#160;:</term>
+<listitem><simpara> The full list of attributes to set on the item.
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara> <link linkend="GNOME-KEYRING-RESULT-OK--CAPS"><literal>GNOME_KEYRING_RESULT_OK</literal></link> if the operation was succcessful or 
+an error result otherwise. 
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="gnome-keyring-item-get-acl" role="function">
+<title>gnome_keyring_item_get_acl ()</title>
+<indexterm zone="gnome-keyring-item-get-acl"><primary sortas="gnome_keyring_item_get_acl">gnome_keyring_item_get_acl</primary></indexterm><programlisting><link linkend="gpointer">gpointer</link>            gnome_keyring_item_get_acl          (const <link linkend="char">char</link> *keyring,
+                                                         <link linkend="guint32">guint32</link> id,
+                                                         <link linkend="GnomeKeyringOperationGetListCallback">GnomeKeyringOperationGetListCallback</link> callback,
+                                                         <link linkend="gpointer">gpointer</link> data,
+                                                         <link linkend="GDestroyNotify">GDestroyNotify</link> destroy_data);</programlisting>
+<para>
+Get the access control list for an item.
+</para>
+<para>
+A <link linkend="GList"><literal>GList</literal></link> of <link linkend="GnomeKeyringAccessControl"><type>GnomeKeyringAccessControl</type></link> pointers will be passed to the <parameter>callback</parameter>. 
+This list and its contents will be freed after <parameter>callback</parameter> returns.
+</para>
+<para>
+For a synchronous version of this function see <link linkend="gnome-keyring-item-get-acl-sync"><function>gnome_keyring_item_get_acl_sync()</function></link>.</para>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>keyring</parameter>&#160;:</term>
+<listitem><simpara> The name of the keyring in which the item exists, or NULL for the default keyring.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>id</parameter>&#160;:</term>
+<listitem><simpara> The id of the item
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>callback</parameter>&#160;:</term>
+<listitem><simpara> A callback which will be called when the request completes or fails.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>data</parameter>&#160;:</term>
+<listitem><simpara> A pointer to arbitrary data that will be passed to the <parameter>callback</parameter>.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>destroy_data</parameter>&#160;:</term>
+<listitem><simpara> A function to free <parameter>data</parameter> when it's no longer needed.
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara> The asychronous request, which can be passed to <link linkend="gnome-keyring-cancel-request"><function>gnome_keyring_cancel_request()</function></link>.
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="gnome-keyring-item-get-acl-sync" role="function">
+<title>gnome_keyring_item_get_acl_sync ()</title>
+<indexterm zone="gnome-keyring-item-get-acl-sync"><primary sortas="gnome_keyring_item_get_acl_sync">gnome_keyring_item_get_acl_sync</primary></indexterm><programlisting><link linkend="GnomeKeyringResult">GnomeKeyringResult</link>  gnome_keyring_item_get_acl_sync     (const <link linkend="char">char</link> *keyring,
+                                                         <link linkend="guint32">guint32</link> id,
+                                                         <link linkend="GList">GList</link> **acl);</programlisting>
+<para>
+Get the access control list for an item.
+</para>
+<para>
+A <link linkend="GList"><literal>GList</literal></link> of <link linkend="GnomeKeyringAccessControl"><type>GnomeKeyringAccessControl</type></link> pointers will be passed to the <parameter>callback</parameter>. 
+This list should be freed using <link linkend="gnome-keyring-access-control-list-free"><function>gnome_keyring_access_control_list_free()</function></link>. 
+ 
+For an asynchronous version of this function see <link linkend="gnome-keyring-item-get-acl"><function>gnome_keyring_item_get_acl()</function></link>.</para>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>keyring</parameter>&#160;:</term>
+<listitem><simpara> The name of the keyring in which the item exists, or NULL for the default keyring.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>id</parameter>&#160;:</term>
+<listitem><simpara> The id of the item
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>acl</parameter>&#160;:</term>
+<listitem><simpara> The location to return a pointer to the access control list.
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara> <link linkend="GNOME-KEYRING-RESULT-OK--CAPS"><literal>GNOME_KEYRING_RESULT_OK</literal></link> if the operation was succcessful or 
+an error result otherwise. 
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="gnome-keyring-item-set-acl" role="function">
+<title>gnome_keyring_item_set_acl ()</title>
+<indexterm zone="gnome-keyring-item-set-acl"><primary sortas="gnome_keyring_item_set_acl">gnome_keyring_item_set_acl</primary></indexterm><programlisting><link linkend="gpointer">gpointer</link>            gnome_keyring_item_set_acl          (const <link linkend="char">char</link> *keyring,
+                                                         <link linkend="guint32">guint32</link> id,
+                                                         <link linkend="GList">GList</link> *acl,
+                                                         <link linkend="GnomeKeyringOperationDoneCallback">GnomeKeyringOperationDoneCallback</link> callback,
+                                                         <link linkend="gpointer">gpointer</link> data,
+                                                         <link linkend="GDestroyNotify">GDestroyNotify</link> destroy_data);</programlisting>
+<para>
+Set the full access control list on an item. This replaces any previous ACL 
+setup on the item. 
+</para>
+<para>
+For a synchronous version of this function see <link linkend="gnome-keyring-item-set-acl-sync"><function>gnome_keyring_item_set_acl_sync()</function></link>.</para>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>keyring</parameter>&#160;:</term>
+<listitem><simpara> The name of the keyring in which the item exists, or NULL for the default keyring.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>id</parameter>&#160;:</term>
+<listitem><simpara> The id of the item
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>acl</parameter>&#160;:</term>
+<listitem><simpara> The access control list to set on the item.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>callback</parameter>&#160;:</term>
+<listitem><simpara> A callback which will be called when the request completes or fails.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>data</parameter>&#160;:</term>
+<listitem><simpara> A pointer to arbitrary data that will be passed to the <parameter>callback</parameter>.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>destroy_data</parameter>&#160;:</term>
+<listitem><simpara> A function to free <parameter>data</parameter> when it's no longer needed.
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara> The asychronous request, which can be passed to <link linkend="gnome-keyring-cancel-request"><function>gnome_keyring_cancel_request()</function></link>.
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="gnome-keyring-item-set-acl-sync" role="function">
+<title>gnome_keyring_item_set_acl_sync ()</title>
+<indexterm zone="gnome-keyring-item-set-acl-sync"><primary sortas="gnome_keyring_item_set_acl_sync">gnome_keyring_item_set_acl_sync</primary></indexterm><programlisting><link linkend="GnomeKeyringResult">GnomeKeyringResult</link>  gnome_keyring_item_set_acl_sync     (const <link linkend="char">char</link> *keyring,
+                                                         <link linkend="guint32">guint32</link> id,
+                                                         <link linkend="GList">GList</link> *acl);</programlisting>
+<para>
+Set the full access control list on an item. This  replaces any previous
+ACL setup on the item.
+</para>
+<para>
+For an asynchronous version of this function see <link linkend="gnome-keyring-item-set-acl"><function>gnome_keyring_item_set_acl()</function></link>.</para>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>keyring</parameter>&#160;:</term>
+<listitem><simpara> The name of the keyring in which the item exists, or NULL for the default keyring.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>id</parameter>&#160;:</term>
+<listitem><simpara> The id of the item
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>acl</parameter>&#160;:</term>
+<listitem><simpara> The access control list to set on the item.
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara> <link linkend="GNOME-KEYRING-RESULT-OK--CAPS"><literal>GNOME_KEYRING_RESULT_OK</literal></link> if the operation was succcessful or 
+an error result otherwise. 
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="gnome-keyring-item-grant-access-rights" role="function" condition="since:2.20">
+<title>gnome_keyring_item_grant_access_rights ()</title>
+<indexterm zone="gnome-keyring-item-grant-access-rights" role="2.20"><primary sortas="gnome_keyring_item_grant_access_rights">gnome_keyring_item_grant_access_rights</primary></indexterm><programlisting><link linkend="gpointer">gpointer</link>            gnome_keyring_item_grant_access_rights
+                                                        (const <link linkend="gchar">gchar</link> *keyring,
+                                                         const <link linkend="gchar">gchar</link> *display_name,
+                                                         const <link linkend="gchar">gchar</link> *full_path,
+                                                         const <link linkend="guint32">guint32</link> id,
+                                                         const <link linkend="GnomeKeyringAccessType">GnomeKeyringAccessType</link> rights,
+                                                         <link linkend="GnomeKeyringOperationDoneCallback">GnomeKeyringOperationDoneCallback</link> callback,
+                                                         <link linkend="gpointer">gpointer</link> data,
+                                                         <link linkend="GDestroyNotify">GDestroyNotify</link> destroy_data);</programlisting>
+<para>
+Will grant the application access rights to the item, provided 
+callee has write access to said item.
+</para>
+<para>
+This is similar to calling <link linkend="gnome-keyring-item-get-acl"><function>gnome_keyring_item_get_acl()</function></link> and 
+<link linkend="gnome-keyring-item-set-acl"><function>gnome_keyring_item_set_acl()</function></link> with appropriate parameters.
+</para>
+<para>
+For a synchronous version of this function see <link linkend="gnome-keyring-item-grant-access-rights"><function>gnome_keyring_item_grant_access_rights()</function></link>.</para>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>keyring</parameter>&#160;:</term>
+<listitem><simpara> The keyring name, or NULL for the default keyring.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>display_name</parameter>&#160;:</term>
+<listitem><simpara> The display name for the application, as returned by <link linkend="g-get-application-name"><function>g_get_application_name()</function></link>.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>full_path</parameter>&#160;:</term>
+<listitem><simpara> The full filepath to the application.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>id</parameter>&#160;:</term>
+<listitem><simpara> The id of the item to grant access to.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>rights</parameter>&#160;:</term>
+<listitem><simpara> The type of rights to grant.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>callback</parameter>&#160;:</term>
+<listitem><simpara> Callback which is called when the operation completes
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>data</parameter>&#160;:</term>
+<listitem><simpara> Data to be passed to callback
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>destroy_data</parameter>&#160;:</term>
+<listitem><simpara> Function to be called when data is no longer needed.
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara> The asychronous request, which can be passed to <link linkend="gnome-keyring-cancel-request"><function>gnome_keyring_cancel_request()</function></link>.
+</simpara></listitem></varlistentry>
+</variablelist><para role="since">Since 2.20</para></refsect2>
+<refsect2 id="gnome-keyring-item-grant-access-rights-sync" role="function">
+<title>gnome_keyring_item_grant_access_rights_sync ()</title>
+<indexterm zone="gnome-keyring-item-grant-access-rights-sync"><primary sortas="gnome_keyring_item_grant_access_rights_sync">gnome_keyring_item_grant_access_rights_sync</primary></indexterm><programlisting><link linkend="GnomeKeyringResult">GnomeKeyringResult</link>  gnome_keyring_item_grant_access_rights_sync
+                                                        (const <link linkend="char">char</link> *keyring,
+                                                         const <link linkend="char">char</link> *display_name,
+                                                         const <link linkend="char">char</link> *full_path,
+                                                         const <link linkend="guint32">guint32</link> id,
+                                                         const <link linkend="GnomeKeyringAccessType">GnomeKeyringAccessType</link> rights);</programlisting>
+<para>
+Will grant the application access rights to the item, provided 
+callee has write access to said item.</para>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>keyring</parameter>&#160;:</term>
+<listitem><simpara> The keyring name, or NULL for the default keyring.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>display_name</parameter>&#160;:</term>
+<listitem><simpara> The display name for the application, as returned by <link linkend="g-get-application-name"><function>g_get_application_name()</function></link>.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>full_path</parameter>&#160;:</term>
+<listitem><simpara> The full filepath to the application.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>id</parameter>&#160;:</term>
+<listitem><simpara> The id of the item to grant access to.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>rights</parameter>&#160;:</term>
+<listitem><simpara> The type of rights to grant.
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara> <link linkend="GNOME-KEYRING-RESULT-OK--CAPS"><literal>GNOME_KEYRING_RESULT_OK</literal></link> if the operation was succcessful or 
+an error result otherwise. 
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+
+</refsect1>
+
+
+
+
+</refentry>

@@ -1,0 +1,90 @@
+<?xml version="1.0"?>
+<!DOCTYPE refentry PUBLIC "-//OASIS//DTD DocBook XML V4.1.2//EN" 
+               "http://www.oasis-open.org/docbook/xml/4.1.2/docbookx.dtd">
+<refentry id="gnome-keyring-gnome-keyring-result">
+<refmeta>
+<refentrytitle role="top_of_page" id="gnome-keyring-gnome-keyring-result.top_of_page">Result Codes</refentrytitle>
+<manvolnum>3</manvolnum>
+<refmiscinfo>GNOME-KEYRING Library</refmiscinfo>
+</refmeta>
+
+<refnamediv>
+<refname>Result Codes</refname>
+<refpurpose>Gnome Keyring Result Codes</refpurpose>
+</refnamediv>
+
+<refsynopsisdiv id="gnome-keyring-gnome-keyring-result.synopsis" role="synopsis">
+<title role="synopsis.title">Synopsis</title>
+
+<synopsis>
+const <link linkend="gchar">gchar</link>*        <link linkend="gnome-keyring-result-to-message">gnome_keyring_result_to_message</link>     (<link linkend="GnomeKeyringResult">GnomeKeyringResult</link> res);
+enum                <link linkend="GnomeKeyringResult">GnomeKeyringResult</link>;
+</synopsis>
+</refsynopsisdiv>
+
+
+
+
+
+
+
+
+
+<refsect1 id="gnome-keyring-gnome-keyring-result.description" role="desc">
+<title role="desc.title">Description</title>
+<para>
+<para>
+Result codes used through out GNOME Keyring. Additional result codes may be 
+added from time to time and these should be handled gracefully.
+</para></para>
+<para>
+</para>
+</refsect1>
+
+<refsect1 id="gnome-keyring-gnome-keyring-result.details" role="details">
+<title role="details.title">Details</title>
+<refsect2 id="gnome-keyring-result-to-message" role="function">
+<title>gnome_keyring_result_to_message ()</title>
+<indexterm zone="gnome-keyring-result-to-message"><primary sortas="gnome_keyring_result_to_message">gnome_keyring_result_to_message</primary></indexterm><programlisting>const <link linkend="gchar">gchar</link>*        gnome_keyring_result_to_message     (<link linkend="GnomeKeyringResult">GnomeKeyringResult</link> res);</programlisting>
+<para>
+The <link linkend="GNOME-KEYRING-RESULT-OK--CAPS"><type>GNOME_KEYRING_RESULT_OK</type></link> and <link linkend="GNOME-KEYRING-RESULT-CANCELLED--CAPS"><type>GNOME_KEYRING_RESULT_CANCELLED</type></link>
+codes will return an empty string. 
+</para>
+<para>
+Note that there are some results for which the application will need to 
+take appropriate action rather than just display an error message to 
+the user.</para>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>res</parameter>&#160;:</term>
+<listitem><simpara> A <link linkend="GnomeKeyringResult"><type>GnomeKeyringResult</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara> a string suitable for display to the user for a given 
+<link linkend="GnomeKeyringResult"><type>GnomeKeyringResult</type></link>, or an empty string if the message wouldn't make 
+sense to a user.
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="GnomeKeyringResult" role="enum">
+<title>enum GnomeKeyringResult</title>
+<indexterm zone="GnomeKeyringResult"><primary sortas="GnomeKeyringResult">GnomeKeyringResult</primary></indexterm><programlisting>typedef enum {
+	GNOME_KEYRING_RESULT_OK,
+	GNOME_KEYRING_RESULT_DENIED,
+	GNOME_KEYRING_RESULT_NO_KEYRING_DAEMON,
+	GNOME_KEYRING_RESULT_ALREADY_UNLOCKED,
+	GNOME_KEYRING_RESULT_NO_SUCH_KEYRING,
+	GNOME_KEYRING_RESULT_BAD_ARGUMENTS,
+	GNOME_KEYRING_RESULT_IO_ERROR,
+	GNOME_KEYRING_RESULT_CANCELLED,
+	GNOME_KEYRING_RESULT_KEYRING_ALREADY_EXISTS,
+	GNOME_KEYRING_RESULT_NO_MATCH
+} GnomeKeyringResult;
+</programlisting>
+<para>
+</para></refsect2>
+
+</refsect1>
+
+
+
+
+</refentry>

@@ -1,0 +1,274 @@
+<?xml version="1.0"?>
+<!DOCTYPE refentry PUBLIC "-//OASIS//DTD DocBook XML V4.1.2//EN" 
+               "http://www.oasis-open.org/docbook/xml/4.1.2/docbookx.dtd">
+<refentry id="gnome-keyring-gnome-keyring-find">
+<refmeta>
+<refentrytitle role="top_of_page" id="gnome-keyring-gnome-keyring-find.top_of_page">Search Functionality</refentrytitle>
+<manvolnum>3</manvolnum>
+<refmiscinfo>GNOME-KEYRING Library</refmiscinfo>
+</refmeta>
+
+<refnamediv>
+<refname>Search Functionality</refname>
+<refpurpose>Find Keyring Items</refpurpose>
+</refnamediv>
+
+<refsynopsisdiv id="gnome-keyring-gnome-keyring-find.synopsis" role="synopsis">
+<title role="synopsis.title">Synopsis</title>
+
+<synopsis>
+                    <link linkend="GnomeKeyringFound">GnomeKeyringFound</link>;
+<link linkend="void">void</link>                <link linkend="gnome-keyring-found-free">gnome_keyring_found_free</link>            (<link linkend="GnomeKeyringFound">GnomeKeyringFound</link> *found);
+<link linkend="void">void</link>                <link linkend="gnome-keyring-found-list-free">gnome_keyring_found_list_free</link>       (<link linkend="GList">GList</link> *found_list);
+<link linkend="gpointer">gpointer</link>            <link linkend="gnome-keyring-find-items">gnome_keyring_find_items</link>            (<link linkend="GnomeKeyringItemType">GnomeKeyringItemType</link> type,
+                                                         <link linkend="GnomeKeyringAttributeList">GnomeKeyringAttributeList</link> *attributes,
+                                                         <link linkend="GnomeKeyringOperationGetListCallback">GnomeKeyringOperationGetListCallback</link> callback,
+                                                         <link linkend="gpointer">gpointer</link> data,
+                                                         <link linkend="GDestroyNotify">GDestroyNotify</link> destroy_data);
+<link linkend="gpointer">gpointer</link>            <link linkend="gnome-keyring-find-itemsv">gnome_keyring_find_itemsv</link>           (<link linkend="GnomeKeyringItemType">GnomeKeyringItemType</link> type,
+                                                         <link linkend="GnomeKeyringOperationGetListCallback">GnomeKeyringOperationGetListCallback</link> callback,
+                                                         <link linkend="gpointer">gpointer</link> data,
+                                                         <link linkend="GDestroyNotify">GDestroyNotify</link> destroy_data,
+                                                         ...);
+<link linkend="GnomeKeyringResult">GnomeKeyringResult</link>  <link linkend="gnome-keyring-find-items-sync">gnome_keyring_find_items_sync</link>       (<link linkend="GnomeKeyringItemType">GnomeKeyringItemType</link> type,
+                                                         <link linkend="GnomeKeyringAttributeList">GnomeKeyringAttributeList</link> *attributes,
+                                                         <link linkend="GList">GList</link> **found);
+<link linkend="GnomeKeyringResult">GnomeKeyringResult</link>  <link linkend="gnome-keyring-find-itemsv-sync">gnome_keyring_find_itemsv_sync</link>      (<link linkend="GnomeKeyringItemType">GnomeKeyringItemType</link> type,
+                                                         <link linkend="GList">GList</link> **found,
+                                                         ...);
+</synopsis>
+</refsynopsisdiv>
+
+
+
+
+
+
+
+
+
+<refsect1 id="gnome-keyring-gnome-keyring-find.description" role="desc">
+<title role="desc.title">Description</title>
+<para>
+A find operation searches through all keyrings for items that match the 
+attributes. The user may have been prompted to unlock necessary keyrings, and 
+user will have been prompted for access to the items if needed.
+</para>
+<para>
+A find operation may return multiple or zero results.</para>
+<para>
+</para>
+</refsect1>
+
+<refsect1 id="gnome-keyring-gnome-keyring-find.details" role="details">
+<title role="details.title">Details</title>
+<refsect2 id="GnomeKeyringFound" role="struct">
+<title>GnomeKeyringFound</title>
+<indexterm zone="GnomeKeyringFound"><primary sortas="GnomeKeyringFound">GnomeKeyringFound</primary></indexterm><programlisting>typedef struct {
+	char *keyring;
+	guint item_id;
+	GnomeKeyringAttributeList *attributes;
+	char *secret;
+} GnomeKeyringFound;
+</programlisting>
+<para>
+</para></refsect2>
+<refsect2 id="gnome-keyring-found-free" role="function">
+<title>gnome_keyring_found_free ()</title>
+<indexterm zone="gnome-keyring-found-free"><primary sortas="gnome_keyring_found_free">gnome_keyring_found_free</primary></indexterm><programlisting><link linkend="void">void</link>                gnome_keyring_found_free            (<link linkend="GnomeKeyringFound">GnomeKeyringFound</link> *found);</programlisting>
+<para>
+Free the memory used by a <link linkend="GnomeKeyringFound"><type>GnomeKeyringFound</type></link> item.
+</para>
+<para>
+You usually want to use <link linkend="gnome-keyring-found-list-free"><function>gnome_keyring_found_list_free()</function></link> on the list of
+results.</para>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>found</parameter>&#160;:</term>
+<listitem><simpara> a <link linkend="GnomeKeyringFound"><type>GnomeKeyringFound</type></link>
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="gnome-keyring-found-list-free" role="function">
+<title>gnome_keyring_found_list_free ()</title>
+<indexterm zone="gnome-keyring-found-list-free"><primary sortas="gnome_keyring_found_list_free">gnome_keyring_found_list_free</primary></indexterm><programlisting><link linkend="void">void</link>                gnome_keyring_found_list_free       (<link linkend="GList">GList</link> *found_list);</programlisting>
+<para>
+Free the memory used by the <link linkend="GnomeKeyringFound"><type>GnomeKeyringFound</type></link> items in <parameter>found_list</parameter>.</para>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>found_list</parameter>&#160;:</term>
+<listitem><simpara> a <link linkend="GList"><type>GList</type></link> of <link linkend="GnomeKeyringFound"><type>GnomeKeyringFound</type></link>
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="gnome-keyring-find-items" role="function">
+<title>gnome_keyring_find_items ()</title>
+<indexterm zone="gnome-keyring-find-items"><primary sortas="gnome_keyring_find_items">gnome_keyring_find_items</primary></indexterm><programlisting><link linkend="gpointer">gpointer</link>            gnome_keyring_find_items            (<link linkend="GnomeKeyringItemType">GnomeKeyringItemType</link> type,
+                                                         <link linkend="GnomeKeyringAttributeList">GnomeKeyringAttributeList</link> *attributes,
+                                                         <link linkend="GnomeKeyringOperationGetListCallback">GnomeKeyringOperationGetListCallback</link> callback,
+                                                         <link linkend="gpointer">gpointer</link> data,
+                                                         <link linkend="GDestroyNotify">GDestroyNotify</link> destroy_data);</programlisting>
+<para>
+Searches through all keyrings for items that match the <parameter>attributes</parameter>. The matches
+are for exact equality. 
+</para>
+<para>
+A <link linkend="GList"><literal>GList</literal></link> of GnomeKeyringFound structures are passed to the <parameter>callback</parameter>. The 
+list and structures are freed after the callback returns.
+</para>
+<para>
+The user may have been prompted to unlock necessary keyrings, and user will 
+have been prompted for access to the items if needed. 
+</para>
+<para>
+For a synchronous version of this function see <link linkend="gnome-keyring-find-items-sync"><function>gnome_keyring_find_items_sync()</function></link>.</para>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>type</parameter>&#160;:</term>
+<listitem><simpara> The type of items to find. 
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>attributes</parameter>&#160;:</term>
+<listitem><simpara> A list of attributes to search for. This cannot be an empty list.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>callback</parameter>&#160;:</term>
+<listitem><simpara> A callback which will be called when the request completes or fails.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>data</parameter>&#160;:</term>
+<listitem><simpara> A pointer to arbitrary data that will be passed to the <parameter>callback</parameter>.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>destroy_data</parameter>&#160;:</term>
+<listitem><simpara> A function to free <parameter>data</parameter> when it's no longer needed.
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara> The asychronous request, which can be passed to <link linkend="gnome-keyring-cancel-request"><function>gnome_keyring_cancel_request()</function></link>.
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="gnome-keyring-find-itemsv" role="function">
+<title>gnome_keyring_find_itemsv ()</title>
+<indexterm zone="gnome-keyring-find-itemsv"><primary sortas="gnome_keyring_find_itemsv">gnome_keyring_find_itemsv</primary></indexterm><programlisting><link linkend="gpointer">gpointer</link>            gnome_keyring_find_itemsv           (<link linkend="GnomeKeyringItemType">GnomeKeyringItemType</link> type,
+                                                         <link linkend="GnomeKeyringOperationGetListCallback">GnomeKeyringOperationGetListCallback</link> callback,
+                                                         <link linkend="gpointer">gpointer</link> data,
+                                                         <link linkend="GDestroyNotify">GDestroyNotify</link> destroy_data,
+                                                         ...);</programlisting>
+<para>
+Searches through all keyrings for items that match the specified attributes. 
+The matches are for exact equality.
+</para>
+<para>
+The variable argument list should contain a) The attribute name as a null 
+terminated string, followed by b) The attribute type, either 
+<link linkend="GNOME-KEYRING-ATTRIBUTE-TYPE-STRING--CAPS"><literal>GNOME_KEYRING_ATTRIBUTE_TYPE_STRING</literal></link> or <link linkend="GNOME-KEYRING-ATTRIBUTE-TYPE-UINT32--CAPS"><literal>GNOME_KEYRING_ATTRIBUTE_TYPE_UINT32</literal></link>
+and then the c) attribute value, either a character string, or 32-bit 
+unsigned int. The list should be terminated with a NULL. 
+</para>
+<para>
+A <link linkend="GList"><literal>GList</literal></link> of GnomeKeyringFound structures are passed to the <parameter>callback</parameter>. The 
+list and structures are freed after the callback returns.
+</para>
+<para>
+The user may have been prompted to unlock necessary keyrings, and user will 
+have been prompted for access to the items if needed. 
+</para>
+<para>
+For a synchronous version of this function see <link linkend="gnome-keyring-find-itemsv-sync"><function>gnome_keyring_find_itemsv_sync()</function></link>.</para>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>type</parameter>&#160;:</term>
+<listitem><simpara> The type of items to find. 
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>callback</parameter>&#160;:</term>
+<listitem><simpara> A callback which will be called when the request completes or fails.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>data</parameter>&#160;:</term>
+<listitem><simpara> A pointer to arbitrary data that will be passed to the <parameter>callback</parameter>.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>destroy_data</parameter>&#160;:</term>
+<listitem><simpara> A function to free <parameter>data</parameter> when it's no longer needed.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>...</parameter>&#160;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara> The asychronous request, which can be passed to <link linkend="gnome-keyring-cancel-request"><function>gnome_keyring_cancel_request()</function></link>.
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="gnome-keyring-find-items-sync" role="function">
+<title>gnome_keyring_find_items_sync ()</title>
+<indexterm zone="gnome-keyring-find-items-sync"><primary sortas="gnome_keyring_find_items_sync">gnome_keyring_find_items_sync</primary></indexterm><programlisting><link linkend="GnomeKeyringResult">GnomeKeyringResult</link>  gnome_keyring_find_items_sync       (<link linkend="GnomeKeyringItemType">GnomeKeyringItemType</link> type,
+                                                         <link linkend="GnomeKeyringAttributeList">GnomeKeyringAttributeList</link> *attributes,
+                                                         <link linkend="GList">GList</link> **found);</programlisting>
+<para>
+Searches through all keyrings for items that match the <parameter>attributes</parameter> and <parameter>type</parameter>. 
+The matches are for exact equality. 
+</para>
+<para>
+A <link linkend="GList"><literal>GList</literal></link> of GnomeKeyringFound structures is returned in <parameter>found</parameter>. The list may 
+have zero items if nothing matched the criteria. The list should be freed 
+using <link linkend="gnome-keyring-found-list-free"><function>gnome_keyring_found_list_free()</function></link>.
+</para>
+<para>
+The user may have been prompted to unlock necessary keyrings, and user will 
+have been prompted for access to the items if needed. 
+</para>
+<para>
+For an asynchronous version of this function see <link linkend="gnome-keyring-find-items"><function>gnome_keyring_find_items()</function></link>.</para>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>type</parameter>&#160;:</term>
+<listitem><simpara> The type of items to find. 
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>attributes</parameter>&#160;:</term>
+<listitem><simpara> A list of attributes to search for. This cannot be an empty list.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>found</parameter>&#160;:</term>
+<listitem><simpara> The location to return a list of <link linkend="GnomeKeyringFound"><type>GnomeKeyringFound</type></link> pointers.
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara> <link linkend="GNOME-KEYRING-RESULT-OK--CAPS"><literal>GNOME_KEYRING_RESULT_OK</literal></link> if the operation was succcessful or 
+an error result otherwise. 
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="gnome-keyring-find-itemsv-sync" role="function">
+<title>gnome_keyring_find_itemsv_sync ()</title>
+<indexterm zone="gnome-keyring-find-itemsv-sync"><primary sortas="gnome_keyring_find_itemsv_sync">gnome_keyring_find_itemsv_sync</primary></indexterm><programlisting><link linkend="GnomeKeyringResult">GnomeKeyringResult</link>  gnome_keyring_find_itemsv_sync      (<link linkend="GnomeKeyringItemType">GnomeKeyringItemType</link> type,
+                                                         <link linkend="GList">GList</link> **found,
+                                                         ...);</programlisting>
+<para>
+Searches through all keyrings for items that match the <parameter>attributes</parameter> and <parameter>type</parameter>. 
+The matches are for exact equality. 
+</para>
+<para>
+The variable argument list should contain a) The attribute name as a null 
+terminated string, followed by b) The attribute type, either 
+<link linkend="GNOME-KEYRING-ATTRIBUTE-TYPE-STRING--CAPS"><literal>GNOME_KEYRING_ATTRIBUTE_TYPE_STRING</literal></link> or <link linkend="GNOME-KEYRING-ATTRIBUTE-TYPE-UINT32--CAPS"><literal>GNOME_KEYRING_ATTRIBUTE_TYPE_UINT32</literal></link>
+and then the c) attribute value, either a character string, or 32-bit 
+unsigned int. The list should be terminated with a NULL. 
+</para>
+<para>
+A <link linkend="GList"><literal>GList</literal></link> of GnomeKeyringFound structures is returned in <parameter>found</parameter>. The list may 
+have zero items if nothing matched the criteria. The list should be freed 
+using <link linkend="gnome-keyring-found-list-free"><function>gnome_keyring_found_list_free()</function></link>.
+</para>
+<para>
+The user may have been prompted to unlock necessary keyrings, and user will 
+have been prompted for access to the items if needed. 
+</para>
+<para>
+For an asynchronous version of this function see <link linkend="gnome-keyring-find-items"><function>gnome_keyring_find_items()</function></link>.</para>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>type</parameter>&#160;:</term>
+<listitem><simpara> The type of items to find. 
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>found</parameter>&#160;:</term>
+<listitem><simpara> The location to return a list of <link linkend="GnomeKeyringFound"><type>GnomeKeyringFound</type></link> pointers.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>...</parameter>&#160;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara> <link linkend="GNOME-KEYRING-RESULT-OK--CAPS"><literal>GNOME_KEYRING_RESULT_OK</literal></link> if the operation was succcessful or 
+an error result otherwise. 
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+
+</refsect1>
+
+
+
+
+</refentry>

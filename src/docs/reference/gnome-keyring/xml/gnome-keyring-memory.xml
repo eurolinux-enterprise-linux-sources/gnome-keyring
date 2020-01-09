@@ -1,0 +1,212 @@
+<?xml version="1.0"?>
+<!DOCTYPE refentry PUBLIC "-//OASIS//DTD DocBook XML V4.1.2//EN" 
+               "http://www.oasis-open.org/docbook/xml/4.1.2/docbookx.dtd">
+<refentry id="gnome-keyring-gnome-keyring-memory">
+<refmeta>
+<refentrytitle role="top_of_page" id="gnome-keyring-gnome-keyring-memory.top_of_page">Non-pageable Memory</refentrytitle>
+<manvolnum>3</manvolnum>
+<refmiscinfo>GNOME-KEYRING Library</refmiscinfo>
+</refmeta>
+
+<refnamediv>
+<refname>Non-pageable Memory</refname>
+<refpurpose>Secure Non-pageable Memory</refpurpose>
+</refnamediv>
+
+<refsynopsisdiv id="gnome-keyring-gnome-keyring-memory.synopsis" role="synopsis">
+<title role="synopsis.title">Synopsis</title>
+
+<synopsis>
+#define             <link linkend="gnome-keyring-memory-new">gnome_keyring_memory_new</link>            (type, n_objects)
+<link linkend="gpointer">gpointer</link>            <link linkend="gnome-keyring-memory-alloc">gnome_keyring_memory_alloc</link>          (<link linkend="gulong">gulong</link> sz);
+<link linkend="gpointer">gpointer</link>            <link linkend="gnome-keyring-memory-try-alloc">gnome_keyring_memory_try_alloc</link>      (<link linkend="gulong">gulong</link> sz);
+<link linkend="gpointer">gpointer</link>            <link linkend="gnome-keyring-memory-realloc">gnome_keyring_memory_realloc</link>        (<link linkend="gpointer">gpointer</link> p,
+                                                         <link linkend="gulong">gulong</link> sz);
+<link linkend="gpointer">gpointer</link>            <link linkend="gnome-keyring-memory-try-realloc">gnome_keyring_memory_try_realloc</link>    (<link linkend="gpointer">gpointer</link> p,
+                                                         <link linkend="gulong">gulong</link> sz);
+<link linkend="void">void</link>                <link linkend="gnome-keyring-memory-free">gnome_keyring_memory_free</link>           (<link linkend="gpointer">gpointer</link> p);
+<link linkend="gboolean">gboolean</link>            <link linkend="gnome-keyring-memory-is-secure">gnome_keyring_memory_is_secure</link>      (<link linkend="gpointer">gpointer</link> p);
+<link linkend="gchar">gchar</link>*              <link linkend="gnome-keyring-memory-strdup">gnome_keyring_memory_strdup</link>         (const <link linkend="gchar">gchar</link> *str);
+</synopsis>
+</refsynopsisdiv>
+
+
+
+
+
+
+
+
+
+<refsect1 id="gnome-keyring-gnome-keyring-memory.description" role="desc">
+<title role="desc.title">Description</title>
+<para>
+Normal allocated memory can be paged to disk at the whim of the operating system. 
+This can be a serious problem for sensitive information like passwords, keys and secrets.
+</para>
+<para>
+GNOME Keyring holds passwords in non-pageable, or locked memory. This happens
+both in the daemon and in the library. This is only possible if the OS contains
+support for it.
+</para>
+<para>
+These functions allow applications to use to hold passwords and other 
+sensitive information.</para>
+<para>
+</para>
+</refsect1>
+
+<refsect1 id="gnome-keyring-gnome-keyring-memory.details" role="details">
+<title role="details.title">Details</title>
+<refsect2 id="gnome-keyring-memory-new" role="macro">
+<title>gnome_keyring_memory_new()</title>
+<indexterm zone="gnome-keyring-memory-new"><primary sortas="gnome_keyring_memory_new">gnome_keyring_memory_new</primary></indexterm><programlisting>#define             gnome_keyring_memory_new(type, n_objects)</programlisting>
+<para>
+Allocate objects in non-pageable gnome-keyring memory.</para>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>type</parameter>&#160;:</term>
+<listitem><simpara> The C type of the objects to allocate
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>n_objects</parameter>&#160;:</term>
+<listitem><simpara> The number of objects to allocate. 
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="gnome-keyring-memory-alloc" role="function">
+<title>gnome_keyring_memory_alloc ()</title>
+<indexterm zone="gnome-keyring-memory-alloc"><primary sortas="gnome_keyring_memory_alloc">gnome_keyring_memory_alloc</primary></indexterm><programlisting><link linkend="gpointer">gpointer</link>            gnome_keyring_memory_alloc          (<link linkend="gulong">gulong</link> sz);</programlisting>
+<para>
+Allocate a block of gnome-keyring non-pageable memory. 
+</para>
+<para>
+If non-pageable memory cannot be allocated then normal memory will be 
+returned.</para>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>sz</parameter>&#160;:</term>
+<listitem><simpara> The new desired size of the memory block.
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara>  The new memory block which should be freed with 
+<link linkend="gnome-keyring-memory-free"><function>gnome_keyring_memory_free()</function></link>
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="gnome-keyring-memory-try-alloc" role="function">
+<title>gnome_keyring_memory_try_alloc ()</title>
+<indexterm zone="gnome-keyring-memory-try-alloc"><primary sortas="gnome_keyring_memory_try_alloc">gnome_keyring_memory_try_alloc</primary></indexterm><programlisting><link linkend="gpointer">gpointer</link>            gnome_keyring_memory_try_alloc      (<link linkend="gulong">gulong</link> sz);</programlisting>
+<para>
+Allocate a block of gnome-keyring non-pageable memory.
+</para>
+<para>
+If non-pageable memory cannot be allocated, then NULL is returned.</para>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>sz</parameter>&#160;:</term>
+<listitem><simpara> The new desired size of the memory block.
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara> The new block, or NULL if memory cannot be allocated.
+The memory block should be freed with <link linkend="gnome-keyring-memory-free"><function>gnome_keyring_memory_free()</function></link>
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="gnome-keyring-memory-realloc" role="function">
+<title>gnome_keyring_memory_realloc ()</title>
+<indexterm zone="gnome-keyring-memory-realloc"><primary sortas="gnome_keyring_memory_realloc">gnome_keyring_memory_realloc</primary></indexterm><programlisting><link linkend="gpointer">gpointer</link>            gnome_keyring_memory_realloc        (<link linkend="gpointer">gpointer</link> p,
+                                                         <link linkend="gulong">gulong</link> sz);</programlisting>
+<para>
+Reallocate a block of gnome-keyring non-pageable memory.
+</para>
+<para>
+Glib memory is also reallocated correctly. If called with a null pointer, 
+then a new block of memory is allocated. If called with a zero size, 
+then the block of memory is freed.
+</para>
+<para>
+If non-pageable memory cannot be allocated then normal memory will be 
+returned.</para>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>p</parameter>&#160;:</term>
+<listitem><simpara> The pointer to reallocate or NULL to allocate a new block.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>sz</parameter>&#160;:</term>
+<listitem><simpara> The new desired size of the memory block, or 0 to free the memory. 
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara> The new block, or NULL if the block was freed.
+The memory block should be freed with <link linkend="gnome-keyring-memory-free"><function>gnome_keyring_memory_free()</function></link>
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="gnome-keyring-memory-try-realloc" role="function">
+<title>gnome_keyring_memory_try_realloc ()</title>
+<indexterm zone="gnome-keyring-memory-try-realloc"><primary sortas="gnome_keyring_memory_try_realloc">gnome_keyring_memory_try_realloc</primary></indexterm><programlisting><link linkend="gpointer">gpointer</link>            gnome_keyring_memory_try_realloc    (<link linkend="gpointer">gpointer</link> p,
+                                                         <link linkend="gulong">gulong</link> sz);</programlisting>
+<para>
+Reallocate a block of gnome-keyring non-pageable memory.
+</para>
+<para>
+Glib memory is also reallocated correctly when passed to this function.
+If called with a null pointer, then a new block of memory is allocated. 
+If called with a zero size, then the block of memory is freed.
+</para>
+<para>
+If memory cannot be allocated, NULL is returned and the original block
+of memory remains intact.</para>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>p</parameter>&#160;:</term>
+<listitem><simpara> The pointer to reallocate or NULL to allocate a new block.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>sz</parameter>&#160;:</term>
+<listitem><simpara> The new desired size of the memory block.
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara> The new block, or NULL if memory cannot be allocated.
+The memory block should be freed with <link linkend="gnome-keyring-memory-free"><function>gnome_keyring_memory_free()</function></link>
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="gnome-keyring-memory-free" role="function">
+<title>gnome_keyring_memory_free ()</title>
+<indexterm zone="gnome-keyring-memory-free"><primary sortas="gnome_keyring_memory_free">gnome_keyring_memory_free</primary></indexterm><programlisting><link linkend="void">void</link>                gnome_keyring_memory_free           (<link linkend="gpointer">gpointer</link> p);</programlisting>
+<para>
+Free a block of gnome-keyring non-pageable memory. 
+</para>
+<para>
+Glib memory is also freed correctly when passed to this function. If called
+with a null pointer then no action is taken.</para>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>p</parameter>&#160;:</term>
+<listitem><simpara> The pointer to the beginning of the block of memory to free.  
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="gnome-keyring-memory-is-secure" role="function">
+<title>gnome_keyring_memory_is_secure ()</title>
+<indexterm zone="gnome-keyring-memory-is-secure"><primary sortas="gnome_keyring_memory_is_secure">gnome_keyring_memory_is_secure</primary></indexterm><programlisting><link linkend="gboolean">gboolean</link>            gnome_keyring_memory_is_secure      (<link linkend="gpointer">gpointer</link> p);</programlisting>
+<para>
+Check if a pointer is in non-pageable memory allocated by gnome-keyring.</para>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>p</parameter>&#160;:</term>
+<listitem><simpara> The pointer to check 
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara> Whether the memory is non-pageable or not
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="gnome-keyring-memory-strdup" role="function">
+<title>gnome_keyring_memory_strdup ()</title>
+<indexterm zone="gnome-keyring-memory-strdup"><primary sortas="gnome_keyring_memory_strdup">gnome_keyring_memory_strdup</primary></indexterm><programlisting><link linkend="gchar">gchar</link>*              gnome_keyring_memory_strdup         (const <link linkend="gchar">gchar</link> *str);</programlisting>
+<para>
+Copy a string into non-pageable memory. If the input string is <link linkend="NULL--CAPS"><literal>NULL</literal></link>, then 
+<link linkend="NULL--CAPS"><literal>NULL</literal></link> will be returned.</para>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>str</parameter>&#160;:</term>
+<listitem><simpara> The null terminated string to copy 
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara> The copied string, should be freed with <link linkend="gnome-keyring-memory-free"><function>gnome_keyring_memory_free()</function></link>
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+
+</refsect1>
+
+
+
+
+</refentry>

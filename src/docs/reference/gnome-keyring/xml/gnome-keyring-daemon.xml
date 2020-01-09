@@ -1,0 +1,85 @@
+<?xml version="1.0"?>
+<!DOCTYPE refentry PUBLIC "-//OASIS//DTD DocBook XML V4.1.2//EN" 
+               "http://www.oasis-open.org/docbook/xml/4.1.2/docbookx.dtd">
+<refentry id="gnome-keyring-gnome-keyring-daemon">
+<refmeta>
+<refentrytitle role="top_of_page" id="gnome-keyring-gnome-keyring-daemon.top_of_page">Daemon Management Functions</refentrytitle>
+<manvolnum>3</manvolnum>
+<refmiscinfo>GNOME-KEYRING Library</refmiscinfo>
+</refmeta>
+
+<refnamediv>
+<refname>Daemon Management Functions</refname>
+<refpurpose>Functions used by session to run the Gnome Keyring Daemon.</refpurpose>
+</refnamediv>
+
+<refsynopsisdiv id="gnome-keyring-gnome-keyring-daemon.synopsis" role="synopsis">
+<title role="synopsis.title">Synopsis</title>
+
+<synopsis>
+<link linkend="GnomeKeyringResult">GnomeKeyringResult</link>  <link linkend="gnome-keyring-daemon-set-display-sync">gnome_keyring_daemon_set_display_sync</link>
+                                                        (const <link linkend="char">char</link> *display);
+<link linkend="GnomeKeyringResult">GnomeKeyringResult</link>  <link linkend="gnome-keyring-daemon-prepare-environment-sync">gnome_keyring_daemon_prepare_environment_sync</link>
+                                                        (void);
+</synopsis>
+</refsynopsisdiv>
+
+
+
+
+
+
+
+
+
+<refsect1 id="gnome-keyring-gnome-keyring-daemon.description" role="desc">
+<title role="desc.title">Description</title>
+<para>
+These functions are not used by most applications using Gnome Keyring.</para>
+<para>
+</para>
+</refsect1>
+
+<refsect1 id="gnome-keyring-gnome-keyring-daemon.details" role="details">
+<title role="details.title">Details</title>
+<refsect2 id="gnome-keyring-daemon-set-display-sync" role="function">
+<title>gnome_keyring_daemon_set_display_sync ()</title>
+<indexterm zone="gnome-keyring-daemon-set-display-sync"><primary sortas="gnome_keyring_daemon_set_display_sync">gnome_keyring_daemon_set_display_sync</primary></indexterm><programlisting><link linkend="GnomeKeyringResult">GnomeKeyringResult</link>  gnome_keyring_daemon_set_display_sync
+                                                        (const <link linkend="char">char</link> *display);</programlisting>
+<para>
+Deprecated. Use <link linkend="gnome-keyring-daemon-prepare-environment-sync"><function>gnome_keyring_daemon_prepare_environment_sync()</function></link></para>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>display</parameter>&#160;:</term>
+<listitem><simpara> Deprecated 
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara>
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="gnome-keyring-daemon-prepare-environment-sync" role="function">
+<title>gnome_keyring_daemon_prepare_environment_sync ()</title>
+<indexterm zone="gnome-keyring-daemon-prepare-environment-sync"><primary sortas="gnome_keyring_daemon_prepare_environment_sync">gnome_keyring_daemon_prepare_environment_sync</primary></indexterm><programlisting><link linkend="GnomeKeyringResult">GnomeKeyringResult</link>  gnome_keyring_daemon_prepare_environment_sync
+                                                        (void);</programlisting>
+<para>
+Used by session managers or applications that manage the gnome-keyring-daemon
+process. Prepares the environment of both the daemon and the application
+for successful communication. 
+</para>
+<para>
+This includes telling the daemon the DBUS addresses, X display and related 
+information to use for communication and display. This information is only 
+used by the daemon if it does not already have it. For example the X display
+of the daemon cannot be changed using this call.</para>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara> <link linkend="GNOME-KEYRING-RESULT-OK--CAPS"><literal>GNOME_KEYRING_RESULT_OK</literal></link> if the operation was succcessful or 
+an error result otherwise. 
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+
+</refsect1>
+
+
+
+
+</refentry>

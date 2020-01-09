@@ -1,0 +1,87 @@
+<?xml version="1.0"?>
+<!DOCTYPE refentry PUBLIC "-//OASIS//DTD DocBook XML V4.1.2//EN" 
+               "http://www.oasis-open.org/docbook/xml/4.1.2/docbookx.dtd">
+<refentry id="gnome-keyring-gnome-keyring-misc">
+<refmeta>
+<refentrytitle role="top_of_page" id="gnome-keyring-gnome-keyring-misc.top_of_page">Miscellaneous Functions</refentrytitle>
+<manvolnum>3</manvolnum>
+<refmiscinfo>GNOME-KEYRING Library</refmiscinfo>
+</refmeta>
+
+<refnamediv>
+<refname>Miscellaneous Functions</refname>
+<refpurpose>Miscellaneous functions.</refpurpose>
+</refnamediv>
+
+<refsynopsisdiv id="gnome-keyring-gnome-keyring-misc.synopsis" role="synopsis">
+<title role="synopsis.title">Synopsis</title>
+
+<synopsis>
+<link linkend="gboolean">gboolean</link>            <link linkend="gnome-keyring-is-available">gnome_keyring_is_available</link>          (void);
+<link linkend="void">void</link>                <link linkend="gnome-keyring-cancel-request">gnome_keyring_cancel_request</link>        (<link linkend="gpointer">gpointer</link> request);
+<link linkend="void">void</link>                <link linkend="gnome-keyring-string-list-free">gnome_keyring_string_list_free</link>      (<link linkend="GList">GList</link> *strings);
+</synopsis>
+</refsynopsisdiv>
+
+
+
+
+
+
+
+
+
+<refsect1 id="gnome-keyring-gnome-keyring-misc.description" role="desc">
+<title role="desc.title">Description</title>
+<para>
+</para>
+<para>
+</para>
+</refsect1>
+
+<refsect1 id="gnome-keyring-gnome-keyring-misc.details" role="details">
+<title role="details.title">Details</title>
+<refsect2 id="gnome-keyring-is-available" role="function">
+<title>gnome_keyring_is_available ()</title>
+<indexterm zone="gnome-keyring-is-available"><primary sortas="gnome_keyring_is_available">gnome_keyring_is_available</primary></indexterm><programlisting><link linkend="gboolean">gboolean</link>            gnome_keyring_is_available          (void);</programlisting>
+<para>
+Check whether you can communicate with a gnome-keyring-daemon.</para>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara> <link linkend="FALSE--CAPS"><literal>FALSE</literal></link> if you can't communicate with the daemon (so you 
+can't load and save passwords).
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="gnome-keyring-cancel-request" role="function">
+<title>gnome_keyring_cancel_request ()</title>
+<indexterm zone="gnome-keyring-cancel-request"><primary sortas="gnome_keyring_cancel_request">gnome_keyring_cancel_request</primary></indexterm><programlisting><link linkend="void">void</link>                gnome_keyring_cancel_request        (<link linkend="gpointer">gpointer</link> request);</programlisting>
+<para>
+Cancel an asynchronous request. 
+</para>
+<para>
+If a callback was registered when making the asynchronous request, that callback
+function will be called with a result of <link linkend="GNOME-KEYRING-RESULT-CANCELLED--CAPS"><literal>GNOME_KEYRING_RESULT_CANCELLED</literal></link></para>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>request</parameter>&#160;:</term>
+<listitem><simpara> The request returned from the asynchronous call function. 
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="gnome-keyring-string-list-free" role="function">
+<title>gnome_keyring_string_list_free ()</title>
+<indexterm zone="gnome-keyring-string-list-free"><primary sortas="gnome_keyring_string_list_free">gnome_keyring_string_list_free</primary></indexterm><programlisting><link linkend="void">void</link>                gnome_keyring_string_list_free      (<link linkend="GList">GList</link> *strings);</programlisting>
+<para>
+Free a list of string pointers.</para>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>strings</parameter>&#160;:</term>
+<listitem><simpara> A <link linkend="GList"><literal>GList</literal></link> of string pointers. 
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+
+</refsect1>
+
+
+
+
+</refentry>

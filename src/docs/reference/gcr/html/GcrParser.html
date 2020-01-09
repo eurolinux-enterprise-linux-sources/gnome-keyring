@@ -1,0 +1,511 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>GcrParser</title>
+<meta name="generator" content="DocBook XSL Stylesheets V1.75.1">
+<link rel="home" href="index.html" title="gcr Reference Manual">
+<link rel="up" href="ch01.html" title="[Insert title here]">
+<link rel="prev" href="GcrCertificateBasicsWidget.html" title="GcrCertificateBasicsWidget">
+<link rel="next" href="gcr-gcr-certificate.html" title="GcrCertificate">
+<meta name="generator" content="GTK-Doc V1.11 (XML mode)">
+<link rel="stylesheet" href="style.css" type="text/css">
+<link rel="chapter" href="ch01.html" title="[Insert title here]">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<table class="navigation" id="top" width="100%" summary="Navigation header" cellpadding="2" cellspacing="2">
+<tr valign="middle">
+<td><a accesskey="p" href="GcrCertificateBasicsWidget.html"><img src="left.png" width="24" height="24" border="0" alt="Prev"></a></td>
+<td><a accesskey="u" href="ch01.html"><img src="up.png" width="24" height="24" border="0" alt="Up"></a></td>
+<td><a accesskey="h" href="index.html"><img src="home.png" width="24" height="24" border="0" alt="Home"></a></td>
+<th width="100%" align="center">gcr Reference Manual</th>
+<td><a accesskey="n" href="gcr-gcr-certificate.html"><img src="right.png" width="24" height="24" border="0" alt="Next"></a></td>
+</tr>
+<tr><td colspan="5" class="shortcuts">
+<a href="#GcrParser.synopsis" class="shortcut">Top</a>
+                 | 
+                <a href="#GcrParser.description" class="shortcut">Description</a>
+                 | 
+                <a href="#GcrParser.object-hierarchy" class="shortcut">Object Hierarchy</a>
+                 | 
+                <a href="#GcrParser.properties" class="shortcut">Properties</a>
+                 | 
+                <a href="#GcrParser.signals" class="shortcut">Signals</a>
+</td></tr>
+</table>
+<div class="refentry" title="GcrParser">
+<a name="GcrParser"></a><div class="titlepage"></div>
+<div class="refnamediv"><table width="100%"><tr>
+<td valign="top">
+<h2><span class="refentrytitle"><a name="GcrParser.top_of_page"></a>GcrParser</span></h2>
+<p>GcrParser</p>
+</td>
+<td valign="top" align="right"></td>
+</tr></table></div>
+<div class="refsynopsisdiv" title="Synopsis">
+<a name="GcrParser.synopsis"></a><h2>Synopsis</h2>
+<pre class="synopsis">
+                    <a class="link" href="GcrParser.html#GcrParsedItem" title="GcrParsedItem">GcrParsedItem</a>;
+                    <a class="link" href="GcrParser.html#GcrParserPrivate" title="GcrParserPrivate">GcrParserPrivate</a>;
+                    <a class="link" href="GcrParser.html#GcrParser-struct" title="GcrParser">GcrParser</a>;
+<a class="link" href="GcrParser.html" title="GcrParser">GcrParser</a>*          <a class="link" href="GcrParser.html#gcr-parser-new" title="gcr_parser_new ()">gcr_parser_new</a>                      (void);
+<a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"
+>gboolean</a>            <a class="link" href="GcrParser.html#gcr-parser-format-enable" title="gcr_parser_format_enable ()">gcr_parser_format_enable</a>            (<a class="link" href="GcrParser.html" title="GcrParser">GcrParser</a> *self,
+                                                         <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gint"
+>gint</a> format);
+<a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"
+>gboolean</a>            <a class="link" href="GcrParser.html#gcr-parser-format-disable" title="gcr_parser_format_disable ()">gcr_parser_format_disable</a>           (<a class="link" href="GcrParser.html" title="GcrParser">GcrParser</a> *self,
+                                                         <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gint"
+>gint</a> format);
+<a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"
+>gboolean</a>            <a class="link" href="GcrParser.html#gcr-parser-format-supported" title="gcr_parser_format_supported ()">gcr_parser_format_supported</a>         (<a class="link" href="GcrParser.html" title="GcrParser">GcrParser</a> *self,
+                                                         <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gint"
+>gint</a> format);
+<a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"
+>gboolean</a>            <a class="link" href="GcrParser.html#gcr-parser-parse-data" title="gcr_parser_parse_data ()">gcr_parser_parse_data</a>               (<a class="link" href="GcrParser.html" title="GcrParser">GcrParser</a> *self,
+                                                         const <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#guchar"
+>guchar</a> *data,
+                                                         <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gsize"
+>gsize</a> n_data,
+                                                         <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Error-Reporting.html#GError"
+>GError</a> **err);
+void                <a class="link" href="GcrParser.html#gcr-parser-add-password" title="gcr_parser_add_password ()">gcr_parser_add_password</a>             (<a class="link" href="GcrParser.html" title="GcrParser">GcrParser</a> *self,
+                                                         const <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"
+>gchar</a> *password);
+const <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"
+>gchar</a>*        <a class="link" href="GcrParser.html#gcr-parser-get-parsed-label" title="gcr_parser_get_parsed_label ()">gcr_parser_get_parsed_label</a>         (<a class="link" href="GcrParser.html" title="GcrParser">GcrParser</a> *self);
+const <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"
+>gchar</a>*        <a class="link" href="GcrParser.html#gcr-parser-get-parsed-description" title="gcr_parser_get_parsed_description ()">gcr_parser_get_parsed_description</a>   (<a class="link" href="GcrParser.html" title="GcrParser">GcrParser</a> *self);
+struct <a
+href="http://library.gnome.org/devel/gp11/unstable/gp11-gp11-attributes.html#GP11Attributes"
+>_GP11Attributes</a>* <a class="link" href="GcrParser.html#gcr-parser-get-parsed-attributes" title="gcr_parser_get_parsed_attributes ()">gcr_parser_get_parsed_attributes</a>
+                                                        (<a class="link" href="GcrParser.html" title="GcrParser">GcrParser</a> *self);
+</pre>
+</div>
+<div class="refsect1" title="Object Hierarchy">
+<a name="GcrParser.object-hierarchy"></a><h2>Object Hierarchy</h2>
+<pre class="synopsis">
+  <a
+href="http://library.gnome.org/devel/gobject/unstable/gobject-The-Base-Object-Type.html#GObject"
+>GObject</a>
+   +----GcrParser
+</pre>
+</div>
+<div class="refsect1" title="Properties">
+<a name="GcrParser.properties"></a><h2>Properties</h2>
+<pre class="synopsis">
+  "<a class="link" href="GcrParser.html#GcrParser--parsed-attributes" title='The "parsed-attributes" property'>parsed-attributes</a>"        <a
+href="http://library.gnome.org/devel/gp11/unstable/gp11-gp11-attributes.html#GP11Attributes"
+>GP11Attributes</a>*       : Read
+  "<a class="link" href="GcrParser.html#GcrParser--parsed-description" title='The "parsed-description" property'>parsed-description</a>"       <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"
+>gchar</a>*                : Read
+  "<a class="link" href="GcrParser.html#GcrParser--parsed-label" title='The "parsed-label" property'>parsed-label</a>"             <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"
+>gchar</a>*                : Read
+</pre>
+</div>
+<div class="refsect1" title="Signals">
+<a name="GcrParser.signals"></a><h2>Signals</h2>
+<pre class="synopsis">
+  "<a class="link" href="GcrParser.html#GcrParser-authenticate" title='The "authenticate" signal'>authenticate</a>"                                   : Run Last
+  "<a class="link" href="GcrParser.html#GcrParser-parsed" title='The "parsed" signal'>parsed</a>"                                         : Run First
+</pre>
+</div>
+<div class="refsect1" title="Description">
+<a name="GcrParser.description"></a><h2>Description</h2>
+<p>
+</p>
+</div>
+<div class="refsect1" title="Details">
+<a name="GcrParser.details"></a><h2>Details</h2>
+<div class="refsect2" title="GcrParsedItem">
+<a name="GcrParsedItem"></a><h3>GcrParsedItem</h3>
+<pre class="programlisting">typedef struct _GcrParsedItem GcrParsedItem;</pre>
+<p>
+</p>
+</div>
+<hr>
+<div class="refsect2" title="GcrParserPrivate">
+<a name="GcrParserPrivate"></a><h3>GcrParserPrivate</h3>
+<pre class="programlisting">typedef struct _GcrParserPrivate GcrParserPrivate;</pre>
+<p>
+</p>
+</div>
+<hr>
+<div class="refsect2" title="GcrParser">
+<a name="GcrParser-struct"></a><h3>GcrParser</h3>
+<pre class="programlisting">typedef struct _GcrParser GcrParser;</pre>
+<p>
+</p>
+</div>
+<hr>
+<div class="refsect2" title="gcr_parser_new ()">
+<a name="gcr-parser-new"></a><h3>gcr_parser_new ()</h3>
+<pre class="programlisting"><a class="link" href="GcrParser.html" title="GcrParser">GcrParser</a>*          gcr_parser_new                      (void);</pre>
+<p>
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody><tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td>
+</td>
+</tr></tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" title="gcr_parser_format_enable ()">
+<a name="gcr-parser-format-enable"></a><h3>gcr_parser_format_enable ()</h3>
+<pre class="programlisting"><a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"
+>gboolean</a>            gcr_parser_format_enable            (<a class="link" href="GcrParser.html" title="GcrParser">GcrParser</a> *self,
+                                                         <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gint"
+>gint</a> format);</pre>
+<p>
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
+<td>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>format</code></em> :</span></p></td>
+<td>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td>
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" title="gcr_parser_format_disable ()">
+<a name="gcr-parser-format-disable"></a><h3>gcr_parser_format_disable ()</h3>
+<pre class="programlisting"><a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"
+>gboolean</a>            gcr_parser_format_disable           (<a class="link" href="GcrParser.html" title="GcrParser">GcrParser</a> *self,
+                                                         <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gint"
+>gint</a> format);</pre>
+<p>
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
+<td>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>format</code></em> :</span></p></td>
+<td>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td>
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" title="gcr_parser_format_supported ()">
+<a name="gcr-parser-format-supported"></a><h3>gcr_parser_format_supported ()</h3>
+<pre class="programlisting"><a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"
+>gboolean</a>            gcr_parser_format_supported         (<a class="link" href="GcrParser.html" title="GcrParser">GcrParser</a> *self,
+                                                         <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gint"
+>gint</a> format);</pre>
+<p>
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
+<td>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>format</code></em> :</span></p></td>
+<td>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td>
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" title="gcr_parser_parse_data ()">
+<a name="gcr-parser-parse-data"></a><h3>gcr_parser_parse_data ()</h3>
+<pre class="programlisting"><a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"
+>gboolean</a>            gcr_parser_parse_data               (<a class="link" href="GcrParser.html" title="GcrParser">GcrParser</a> *self,
+                                                         const <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#guchar"
+>guchar</a> *data,
+                                                         <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gsize"
+>gsize</a> n_data,
+                                                         <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Error-Reporting.html#GError"
+>GError</a> **err);</pre>
+<p>
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
+<td>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>data</code></em> :</span></p></td>
+<td>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>n_data</code></em> :</span></p></td>
+<td>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>err</code></em> :</span></p></td>
+<td>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td>
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" title="gcr_parser_add_password ()">
+<a name="gcr-parser-add-password"></a><h3>gcr_parser_add_password ()</h3>
+<pre class="programlisting">void                gcr_parser_add_password             (<a class="link" href="GcrParser.html" title="GcrParser">GcrParser</a> *self,
+                                                         const <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"
+>gchar</a> *password);</pre>
+<p>
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
+<td>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>password</code></em> :</span></p></td>
+<td>
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" title="gcr_parser_get_parsed_label ()">
+<a name="gcr-parser-get-parsed-label"></a><h3>gcr_parser_get_parsed_label ()</h3>
+<pre class="programlisting">const <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"
+>gchar</a>*        gcr_parser_get_parsed_label         (<a class="link" href="GcrParser.html" title="GcrParser">GcrParser</a> *self);</pre>
+<p>
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
+<td>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td>
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" title="gcr_parser_get_parsed_description ()">
+<a name="gcr-parser-get-parsed-description"></a><h3>gcr_parser_get_parsed_description ()</h3>
+<pre class="programlisting">const <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"
+>gchar</a>*        gcr_parser_get_parsed_description   (<a class="link" href="GcrParser.html" title="GcrParser">GcrParser</a> *self);</pre>
+<p>
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
+<td>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td>
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" title="gcr_parser_get_parsed_attributes ()">
+<a name="gcr-parser-get-parsed-attributes"></a><h3>gcr_parser_get_parsed_attributes ()</h3>
+<pre class="programlisting">struct <a
+href="http://library.gnome.org/devel/gp11/unstable/gp11-gp11-attributes.html#GP11Attributes"
+>_GP11Attributes</a>* gcr_parser_get_parsed_attributes
+                                                        (<a class="link" href="GcrParser.html" title="GcrParser">GcrParser</a> *self);</pre>
+<p>
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
+<td>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td>
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+</div>
+<div class="refsect1" title="Property Details">
+<a name="GcrParser.property-details"></a><h2>Property Details</h2>
+<div class="refsect2" title='The "parsed-attributes" property'>
+<a name="GcrParser--parsed-attributes"></a><h3>The <code class="literal">"parsed-attributes"</code> property</h3>
+<pre class="programlisting">  "parsed-attributes"        <a
+href="http://library.gnome.org/devel/gp11/unstable/gp11-gp11-attributes.html#GP11Attributes"
+>GP11Attributes</a>*       : Read</pre>
+<p>Parsed PKCS#11 attributes.</p>
+</div>
+<hr>
+<div class="refsect2" title='The "parsed-description" property'>
+<a name="GcrParser--parsed-description"></a><h3>The <code class="literal">"parsed-description"</code> property</h3>
+<pre class="programlisting">  "parsed-description"       <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"
+>gchar</a>*                : Read</pre>
+<p>Parsed item description.</p>
+<p>Default value: ""</p>
+</div>
+<hr>
+<div class="refsect2" title='The "parsed-label" property'>
+<a name="GcrParser--parsed-label"></a><h3>The <code class="literal">"parsed-label"</code> property</h3>
+<pre class="programlisting">  "parsed-label"             <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"
+>gchar</a>*                : Read</pre>
+<p>Parsed item label.</p>
+<p>Default value: ""</p>
+</div>
+</div>
+<div class="refsect1" title="Signal Details">
+<a name="GcrParser.signal-details"></a><h2>Signal Details</h2>
+<div class="refsect2" title='The "authenticate" signal'>
+<a name="GcrParser-authenticate"></a><h3>The <code class="literal">"authenticate"</code> signal</h3>
+<pre class="programlisting"><a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"
+>gboolean</a>            user_function                      (<a class="link" href="GcrParser.html" title="GcrParser">GcrParser</a> *gcrparser,
+                                                        <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gpointer"
+>gpointer</a>   arg1,
+                                                        <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gpointer"
+>gpointer</a>   user_data)      : Run Last</pre>
+<p>
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>gcrparser</code></em> :</span></p></td>
+<td>the object which received the signal.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>arg1</code></em> :</span></p></td>
+<td>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>user_data</code></em> :</span></p></td>
+<td>user data set when the signal handler was connected.</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td>
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" title='The "parsed" signal'>
+<a name="GcrParser-parsed"></a><h3>The <code class="literal">"parsed"</code> signal</h3>
+<pre class="programlisting">void                user_function                      (<a class="link" href="GcrParser.html" title="GcrParser">GcrParser</a> *gcrparser,
+                                                        <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gpointer"
+>gpointer</a>   user_data)      : Run First</pre>
+<p>
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>gcrparser</code></em> :</span></p></td>
+<td>the object which received the signal.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>user_data</code></em> :</span></p></td>
+<td>user data set when the signal handler was connected.</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+</div>
+</div>
+<div class="footer">
+<hr>
+          Generated by GTK-Doc V1.11</div>
+</body>
+</html>

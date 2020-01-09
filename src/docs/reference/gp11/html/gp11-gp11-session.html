@@ -1,0 +1,2685 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>GP11Session</title>
+<meta name="generator" content="DocBook XSL Stylesheets V1.75.1">
+<link rel="home" href="index.html" title="GP11 Reference Manual">
+<link rel="up" href="ch01.html" title="PKCS#11 GObject Bindings">
+<link rel="prev" href="gp11-gp11-slot.html" title="GP11Slot">
+<link rel="next" href="gp11-gp11-object.html" title="GP11Object">
+<meta name="generator" content="GTK-Doc V1.11 (XML mode)">
+<link rel="stylesheet" href="style.css" type="text/css">
+<link rel="chapter" href="ch01.html" title="PKCS#11 GObject Bindings">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<table class="navigation" id="top" width="100%" summary="Navigation header" cellpadding="2" cellspacing="2">
+<tr valign="middle">
+<td><a accesskey="p" href="gp11-gp11-slot.html"><img src="left.png" width="24" height="24" border="0" alt="Prev"></a></td>
+<td><a accesskey="u" href="ch01.html"><img src="up.png" width="24" height="24" border="0" alt="Up"></a></td>
+<td><a accesskey="h" href="index.html"><img src="home.png" width="24" height="24" border="0" alt="Home"></a></td>
+<th width="100%" align="center">GP11 Reference Manual</th>
+<td><a accesskey="n" href="gp11-gp11-object.html"><img src="right.png" width="24" height="24" border="0" alt="Next"></a></td>
+</tr>
+<tr><td colspan="5" class="shortcuts">
+<a href="#gp11-gp11-session.synopsis" class="shortcut">Top</a>
+                 | 
+                <a href="#gp11-gp11-session.description" class="shortcut">Description</a>
+                 | 
+                <a href="#gp11-gp11-session.object-hierarchy" class="shortcut">Object Hierarchy</a>
+                 | 
+                <a href="#gp11-gp11-session.properties" class="shortcut">Properties</a>
+                 | 
+                <a href="#gp11-gp11-session.signals" class="shortcut">Signals</a>
+</td></tr>
+</table>
+<div class="refentry" title="GP11Session">
+<a name="gp11-gp11-session"></a><div class="titlepage"></div>
+<div class="refnamediv"><table width="100%"><tr>
+<td valign="top">
+<h2><span class="refentrytitle"><a name="gp11-gp11-session.top_of_page"></a>GP11Session</span></h2>
+<p>GP11Session — Represents an open PKCS11 session.</p>
+</td>
+<td valign="top" align="right"></td>
+</tr></table></div>
+<div class="refsynopsisdiv" title="Synopsis">
+<a name="gp11-gp11-session.synopsis"></a><h2>Synopsis</h2>
+<a name="GP11Session"></a><pre class="synopsis">
+                    <a class="link" href="gp11-gp11-session.html#GP11Session-struct" title="GP11Session">GP11Session</a>;
+<a class="link" href="gp11-gp11-session.html#GP11Session">GP11Session</a>*        <a class="link" href="gp11-gp11-session.html#gp11-session-from-handle" title="gp11_session_from_handle ()">gp11_session_from_handle</a>            (<a class="link" href="gp11-gp11-slot.html#GP11Slot">GP11Slot</a> *slot,
+                                                         CK_SESSION_HANDLE handle);
+<a class="link" href="gp11-gp11-module.html#GP11Module">GP11Module</a>*         <a class="link" href="gp11-gp11-session.html#gp11-session-get-module" title="gp11_session_get_module ()">gp11_session_get_module</a>             (<a class="link" href="gp11-gp11-session.html#GP11Session">GP11Session</a> *self);
+<a class="link" href="gp11-gp11-slot.html#GP11Slot">GP11Slot</a>*           <a class="link" href="gp11-gp11-session.html#gp11-session-get-slot" title="gp11_session_get_slot ()">gp11_session_get_slot</a>               (<a class="link" href="gp11-gp11-session.html#GP11Session">GP11Session</a> *self);
+CK_SESSION_HANDLE   <a class="link" href="gp11-gp11-session.html#gp11-session-get-handle" title="gp11_session_get_handle ()">gp11_session_get_handle</a>             (<a class="link" href="gp11-gp11-session.html#GP11Session">GP11Session</a> *self);
+<a class="link" href="gp11-gp11-session.html#GP11SessionInfo" title="GP11SessionInfo">GP11SessionInfo</a>*    <a class="link" href="gp11-gp11-session.html#gp11-session-get-info" title="gp11_session_get_info ()">gp11_session_get_info</a>               (<a class="link" href="gp11-gp11-session.html#GP11Session">GP11Session</a> *self);
+<a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"
+>gboolean</a>            <a class="link" href="gp11-gp11-session.html#gp11-session-login" title="gp11_session_login ()">gp11_session_login</a>                  (<a class="link" href="gp11-gp11-session.html#GP11Session">GP11Session</a> *self,
+                                                         <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gulong"
+>gulong</a> user_type,
+                                                         const <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#guchar"
+>guchar</a> *pin,
+                                                         <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gsize"
+>gsize</a> n_pin,
+                                                         <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Error-Reporting.html#GError"
+>GError</a> **err);
+<a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"
+>gboolean</a>            <a class="link" href="gp11-gp11-session.html#gp11-session-login-full" title="gp11_session_login_full ()">gp11_session_login_full</a>             (<a class="link" href="gp11-gp11-session.html#GP11Session">GP11Session</a> *self,
+                                                         <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gulong"
+>gulong</a> user_type,
+                                                         const <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#guchar"
+>guchar</a> *pin,
+                                                         <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gsize"
+>gsize</a> n_pin,
+                                                         <a
+href="http://library.gnome.org/devel/gio/unstable/GCancellable.html"
+>GCancellable</a> *cancellable,
+                                                         <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Error-Reporting.html#GError"
+>GError</a> **err);
+void                <a class="link" href="gp11-gp11-session.html#gp11-session-login-async" title="gp11_session_login_async ()">gp11_session_login_async</a>            (<a class="link" href="gp11-gp11-session.html#GP11Session">GP11Session</a> *self,
+                                                         <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gulong"
+>gulong</a> user_type,
+                                                         const <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#guchar"
+>guchar</a> *pin,
+                                                         <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gsize"
+>gsize</a> n_pin,
+                                                         <a
+href="http://library.gnome.org/devel/gio/unstable/GCancellable.html"
+>GCancellable</a> *cancellable,
+                                                         <a
+href="http://library.gnome.org/devel/gio/unstable/GAsyncResult.html#GAsyncReadyCallback"
+>GAsyncReadyCallback</a> callback,
+                                                         <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gpointer"
+>gpointer</a> user_data);
+<a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"
+>gboolean</a>            <a class="link" href="gp11-gp11-session.html#gp11-session-login-finish" title="gp11_session_login_finish ()">gp11_session_login_finish</a>           (<a class="link" href="gp11-gp11-session.html#GP11Session">GP11Session</a> *self,
+                                                         <a
+href="http://library.gnome.org/devel/gio/unstable/GAsyncResult.html"
+>GAsyncResult</a> *result,
+                                                         <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Error-Reporting.html#GError"
+>GError</a> **err);
+<a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"
+>gboolean</a>            <a class="link" href="gp11-gp11-session.html#gp11-session-logout" title="gp11_session_logout ()">gp11_session_logout</a>                 (<a class="link" href="gp11-gp11-session.html#GP11Session">GP11Session</a> *self,
+                                                         <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Error-Reporting.html#GError"
+>GError</a> **err);
+<a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"
+>gboolean</a>            <a class="link" href="gp11-gp11-session.html#gp11-session-logout-full" title="gp11_session_logout_full ()">gp11_session_logout_full</a>            (<a class="link" href="gp11-gp11-session.html#GP11Session">GP11Session</a> *self,
+                                                         <a
+href="http://library.gnome.org/devel/gio/unstable/GCancellable.html"
+>GCancellable</a> *cancellable,
+                                                         <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Error-Reporting.html#GError"
+>GError</a> **err);
+void                <a class="link" href="gp11-gp11-session.html#gp11-session-logout-async" title="gp11_session_logout_async ()">gp11_session_logout_async</a>           (<a class="link" href="gp11-gp11-session.html#GP11Session">GP11Session</a> *self,
+                                                         <a
+href="http://library.gnome.org/devel/gio/unstable/GCancellable.html"
+>GCancellable</a> *cancellable,
+                                                         <a
+href="http://library.gnome.org/devel/gio/unstable/GAsyncResult.html#GAsyncReadyCallback"
+>GAsyncReadyCallback</a> callback,
+                                                         <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gpointer"
+>gpointer</a> user_data);
+<a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"
+>gboolean</a>            <a class="link" href="gp11-gp11-session.html#gp11-session-logout-finish" title="gp11_session_logout_finish ()">gp11_session_logout_finish</a>          (<a class="link" href="gp11-gp11-session.html#GP11Session">GP11Session</a> *self,
+                                                         <a
+href="http://library.gnome.org/devel/gio/unstable/GAsyncResult.html"
+>GAsyncResult</a> *result,
+                                                         <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Error-Reporting.html#GError"
+>GError</a> **err);
+<a class="link" href="gp11-gp11-object.html#GP11Object">GP11Object</a>*         <a class="link" href="gp11-gp11-session.html#gp11-session-create-object" title="gp11_session_create_object ()">gp11_session_create_object</a>          (<a class="link" href="gp11-gp11-session.html#GP11Session">GP11Session</a> *self,
+                                                         <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Error-Reporting.html#GError"
+>GError</a> **err);
+void                <a class="link" href="gp11-gp11-session.html#gp11-session-create-object-async" title="gp11_session_create_object_async ()">gp11_session_create_object_async</a>    (<a class="link" href="gp11-gp11-session.html#GP11Session">GP11Session</a> *self,
+                                                         <a class="link" href="gp11-gp11-attributes.html#GP11Attributes" title="GP11Attributes">GP11Attributes</a> *attrs,
+                                                         <a
+href="http://library.gnome.org/devel/gio/unstable/GCancellable.html"
+>GCancellable</a> *cancellable,
+                                                         <a
+href="http://library.gnome.org/devel/gio/unstable/GAsyncResult.html#GAsyncReadyCallback"
+>GAsyncReadyCallback</a> callback,
+                                                         <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gpointer"
+>gpointer</a> user_data);
+<a class="link" href="gp11-gp11-object.html#GP11Object">GP11Object</a>*         <a class="link" href="gp11-gp11-session.html#gp11-session-create-object-finish" title="gp11_session_create_object_finish ()">gp11_session_create_object_finish</a>   (<a class="link" href="gp11-gp11-session.html#GP11Session">GP11Session</a> *self,
+                                                         <a
+href="http://library.gnome.org/devel/gio/unstable/GAsyncResult.html"
+>GAsyncResult</a> *result,
+                                                         <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Error-Reporting.html#GError"
+>GError</a> **err);
+<a
+href="http://library.gnome.org/devel/glib/unstable/glib-Doubly-Linked-Lists.html#GList"
+>GList</a>*              <a class="link" href="gp11-gp11-session.html#gp11-session-find-objects" title="gp11_session_find_objects ()">gp11_session_find_objects</a>           (<a class="link" href="gp11-gp11-session.html#GP11Session">GP11Session</a> *self,
+                                                         <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Error-Reporting.html#GError"
+>GError</a> **err);
+void                <a class="link" href="gp11-gp11-session.html#gp11-session-find-objects-async" title="gp11_session_find_objects_async ()">gp11_session_find_objects_async</a>     (<a class="link" href="gp11-gp11-session.html#GP11Session">GP11Session</a> *self,
+                                                         <a class="link" href="gp11-gp11-attributes.html#GP11Attributes" title="GP11Attributes">GP11Attributes</a> *attrs,
+                                                         <a
+href="http://library.gnome.org/devel/gio/unstable/GCancellable.html"
+>GCancellable</a> *cancellable,
+                                                         <a
+href="http://library.gnome.org/devel/gio/unstable/GAsyncResult.html#GAsyncReadyCallback"
+>GAsyncReadyCallback</a> callback,
+                                                         <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gpointer"
+>gpointer</a> user_data);
+<a
+href="http://library.gnome.org/devel/glib/unstable/glib-Doubly-Linked-Lists.html#GList"
+>GList</a>*              <a class="link" href="gp11-gp11-session.html#gp11-session-find-objects-finish" title="gp11_session_find_objects_finish ()">gp11_session_find_objects_finish</a>    (<a class="link" href="gp11-gp11-session.html#GP11Session">GP11Session</a> *self,
+                                                         <a
+href="http://library.gnome.org/devel/gio/unstable/GAsyncResult.html"
+>GAsyncResult</a> *result,
+                                                         <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Error-Reporting.html#GError"
+>GError</a> **err);
+<a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#guchar"
+>guchar</a>*             <a class="link" href="gp11-gp11-session.html#gp11-session-encrypt" title="gp11_session_encrypt ()">gp11_session_encrypt</a>                (<a class="link" href="gp11-gp11-session.html#GP11Session">GP11Session</a> *self,
+                                                         <a class="link" href="gp11-gp11-object.html#GP11Object">GP11Object</a> *key,
+                                                         <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gulong"
+>gulong</a> mech_type,
+                                                         const <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#guchar"
+>guchar</a> *input,
+                                                         <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gsize"
+>gsize</a> n_input,
+                                                         <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gsize"
+>gsize</a> *n_result,
+                                                         <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Error-Reporting.html#GError"
+>GError</a> **err);
+<a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#guchar"
+>guchar</a>*             <a class="link" href="gp11-gp11-session.html#gp11-session-encrypt-full" title="gp11_session_encrypt_full ()">gp11_session_encrypt_full</a>           (<a class="link" href="gp11-gp11-session.html#GP11Session">GP11Session</a> *self,
+                                                         <a class="link" href="gp11-gp11-object.html#GP11Object">GP11Object</a> *key,
+                                                         <a class="link" href="gp11-gp11-session.html#GP11Mechanism" title="GP11Mechanism">GP11Mechanism</a> *mech_args,
+                                                         const <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#guchar"
+>guchar</a> *input,
+                                                         <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gsize"
+>gsize</a> n_input,
+                                                         <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gsize"
+>gsize</a> *n_result,
+                                                         <a
+href="http://library.gnome.org/devel/gio/unstable/GCancellable.html"
+>GCancellable</a> *cancellable,
+                                                         <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Error-Reporting.html#GError"
+>GError</a> **err);
+void                <a class="link" href="gp11-gp11-session.html#gp11-session-encrypt-async" title="gp11_session_encrypt_async ()">gp11_session_encrypt_async</a>          (<a class="link" href="gp11-gp11-session.html#GP11Session">GP11Session</a> *self,
+                                                         <a class="link" href="gp11-gp11-object.html#GP11Object">GP11Object</a> *key,
+                                                         <a class="link" href="gp11-gp11-session.html#GP11Mechanism" title="GP11Mechanism">GP11Mechanism</a> *mech_args,
+                                                         const <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#guchar"
+>guchar</a> *input,
+                                                         <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gsize"
+>gsize</a> n_input,
+                                                         <a
+href="http://library.gnome.org/devel/gio/unstable/GCancellable.html"
+>GCancellable</a> *cancellable,
+                                                         <a
+href="http://library.gnome.org/devel/gio/unstable/GAsyncResult.html#GAsyncReadyCallback"
+>GAsyncReadyCallback</a> callback,
+                                                         <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gpointer"
+>gpointer</a> user_data);
+<a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#guchar"
+>guchar</a>*             <a class="link" href="gp11-gp11-session.html#gp11-session-encrypt-finish" title="gp11_session_encrypt_finish ()">gp11_session_encrypt_finish</a>         (<a class="link" href="gp11-gp11-session.html#GP11Session">GP11Session</a> *self,
+                                                         <a
+href="http://library.gnome.org/devel/gio/unstable/GAsyncResult.html"
+>GAsyncResult</a> *result,
+                                                         <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gsize"
+>gsize</a> *n_result,
+                                                         <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Error-Reporting.html#GError"
+>GError</a> **err);
+<a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#guchar"
+>guchar</a>*             <a class="link" href="gp11-gp11-session.html#gp11-session-decrypt" title="gp11_session_decrypt ()">gp11_session_decrypt</a>                (<a class="link" href="gp11-gp11-session.html#GP11Session">GP11Session</a> *self,
+                                                         <a class="link" href="gp11-gp11-object.html#GP11Object">GP11Object</a> *key,
+                                                         <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gulong"
+>gulong</a> mech_type,
+                                                         const <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#guchar"
+>guchar</a> *input,
+                                                         <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gsize"
+>gsize</a> n_input,
+                                                         <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gsize"
+>gsize</a> *n_result,
+                                                         <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Error-Reporting.html#GError"
+>GError</a> **err);
+<a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#guchar"
+>guchar</a>*             <a class="link" href="gp11-gp11-session.html#gp11-session-decrypt-full" title="gp11_session_decrypt_full ()">gp11_session_decrypt_full</a>           (<a class="link" href="gp11-gp11-session.html#GP11Session">GP11Session</a> *self,
+                                                         <a class="link" href="gp11-gp11-object.html#GP11Object">GP11Object</a> *key,
+                                                         <a class="link" href="gp11-gp11-session.html#GP11Mechanism" title="GP11Mechanism">GP11Mechanism</a> *mech_args,
+                                                         const <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#guchar"
+>guchar</a> *input,
+                                                         <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gsize"
+>gsize</a> n_input,
+                                                         <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gsize"
+>gsize</a> *n_result,
+                                                         <a
+href="http://library.gnome.org/devel/gio/unstable/GCancellable.html"
+>GCancellable</a> *cancellable,
+                                                         <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Error-Reporting.html#GError"
+>GError</a> **err);
+void                <a class="link" href="gp11-gp11-session.html#gp11-session-decrypt-async" title="gp11_session_decrypt_async ()">gp11_session_decrypt_async</a>          (<a class="link" href="gp11-gp11-session.html#GP11Session">GP11Session</a> *self,
+                                                         <a class="link" href="gp11-gp11-object.html#GP11Object">GP11Object</a> *key,
+                                                         <a class="link" href="gp11-gp11-session.html#GP11Mechanism" title="GP11Mechanism">GP11Mechanism</a> *mech_args,
+                                                         const <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#guchar"
+>guchar</a> *input,
+                                                         <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gsize"
+>gsize</a> n_input,
+                                                         <a
+href="http://library.gnome.org/devel/gio/unstable/GCancellable.html"
+>GCancellable</a> *cancellable,
+                                                         <a
+href="http://library.gnome.org/devel/gio/unstable/GAsyncResult.html#GAsyncReadyCallback"
+>GAsyncReadyCallback</a> callback,
+                                                         <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gpointer"
+>gpointer</a> user_data);
+<a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#guchar"
+>guchar</a>*             <a class="link" href="gp11-gp11-session.html#gp11-session-decrypt-finish" title="gp11_session_decrypt_finish ()">gp11_session_decrypt_finish</a>         (<a class="link" href="gp11-gp11-session.html#GP11Session">GP11Session</a> *self,
+                                                         <a
+href="http://library.gnome.org/devel/gio/unstable/GAsyncResult.html"
+>GAsyncResult</a> *result,
+                                                         <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gsize"
+>gsize</a> *n_result,
+                                                         <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Error-Reporting.html#GError"
+>GError</a> **err);
+<a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#guchar"
+>guchar</a>*             <a class="link" href="gp11-gp11-session.html#gp11-session-sign" title="gp11_session_sign ()">gp11_session_sign</a>                   (<a class="link" href="gp11-gp11-session.html#GP11Session">GP11Session</a> *self,
+                                                         <a class="link" href="gp11-gp11-object.html#GP11Object">GP11Object</a> *key,
+                                                         <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gulong"
+>gulong</a> mech_type,
+                                                         const <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#guchar"
+>guchar</a> *input,
+                                                         <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gsize"
+>gsize</a> n_input,
+                                                         <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gsize"
+>gsize</a> *n_result,
+                                                         <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Error-Reporting.html#GError"
+>GError</a> **err);
+<a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#guchar"
+>guchar</a>*             <a class="link" href="gp11-gp11-session.html#gp11-session-sign-full" title="gp11_session_sign_full ()">gp11_session_sign_full</a>              (<a class="link" href="gp11-gp11-session.html#GP11Session">GP11Session</a> *self,
+                                                         <a class="link" href="gp11-gp11-object.html#GP11Object">GP11Object</a> *key,
+                                                         <a class="link" href="gp11-gp11-session.html#GP11Mechanism" title="GP11Mechanism">GP11Mechanism</a> *mech_args,
+                                                         const <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#guchar"
+>guchar</a> *input,
+                                                         <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gsize"
+>gsize</a> n_input,
+                                                         <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gsize"
+>gsize</a> *n_result,
+                                                         <a
+href="http://library.gnome.org/devel/gio/unstable/GCancellable.html"
+>GCancellable</a> *cancellable,
+                                                         <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Error-Reporting.html#GError"
+>GError</a> **err);
+void                <a class="link" href="gp11-gp11-session.html#gp11-session-sign-async" title="gp11_session_sign_async ()">gp11_session_sign_async</a>             (<a class="link" href="gp11-gp11-session.html#GP11Session">GP11Session</a> *self,
+                                                         <a class="link" href="gp11-gp11-object.html#GP11Object">GP11Object</a> *key,
+                                                         <a class="link" href="gp11-gp11-session.html#GP11Mechanism" title="GP11Mechanism">GP11Mechanism</a> *mech_args,
+                                                         const <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#guchar"
+>guchar</a> *input,
+                                                         <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gsize"
+>gsize</a> n_input,
+                                                         <a
+href="http://library.gnome.org/devel/gio/unstable/GCancellable.html"
+>GCancellable</a> *cancellable,
+                                                         <a
+href="http://library.gnome.org/devel/gio/unstable/GAsyncResult.html#GAsyncReadyCallback"
+>GAsyncReadyCallback</a> callback,
+                                                         <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gpointer"
+>gpointer</a> user_data);
+<a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#guchar"
+>guchar</a>*             <a class="link" href="gp11-gp11-session.html#gp11-session-sign-finish" title="gp11_session_sign_finish ()">gp11_session_sign_finish</a>            (<a class="link" href="gp11-gp11-session.html#GP11Session">GP11Session</a> *self,
+                                                         <a
+href="http://library.gnome.org/devel/gio/unstable/GAsyncResult.html"
+>GAsyncResult</a> *result,
+                                                         <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gsize"
+>gsize</a> *n_result,
+                                                         <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Error-Reporting.html#GError"
+>GError</a> **err);
+<a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"
+>gboolean</a>            <a class="link" href="gp11-gp11-session.html#gp11-session-verify" title="gp11_session_verify ()">gp11_session_verify</a>                 (<a class="link" href="gp11-gp11-session.html#GP11Session">GP11Session</a> *self,
+                                                         <a class="link" href="gp11-gp11-object.html#GP11Object">GP11Object</a> *key,
+                                                         <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gulong"
+>gulong</a> mech_type,
+                                                         const <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#guchar"
+>guchar</a> *input,
+                                                         <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gsize"
+>gsize</a> n_input,
+                                                         const <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#guchar"
+>guchar</a> *signature,
+                                                         <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gsize"
+>gsize</a> n_signature,
+                                                         <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Error-Reporting.html#GError"
+>GError</a> **err);
+<a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"
+>gboolean</a>            <a class="link" href="gp11-gp11-session.html#gp11-session-verify-full" title="gp11_session_verify_full ()">gp11_session_verify_full</a>            (<a class="link" href="gp11-gp11-session.html#GP11Session">GP11Session</a> *self,
+                                                         <a class="link" href="gp11-gp11-object.html#GP11Object">GP11Object</a> *key,
+                                                         <a class="link" href="gp11-gp11-session.html#GP11Mechanism" title="GP11Mechanism">GP11Mechanism</a> *mech_args,
+                                                         const <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#guchar"
+>guchar</a> *input,
+                                                         <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gsize"
+>gsize</a> n_input,
+                                                         const <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#guchar"
+>guchar</a> *signature,
+                                                         <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gsize"
+>gsize</a> n_signature,
+                                                         <a
+href="http://library.gnome.org/devel/gio/unstable/GCancellable.html"
+>GCancellable</a> *cancellable,
+                                                         <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Error-Reporting.html#GError"
+>GError</a> **err);
+void                <a class="link" href="gp11-gp11-session.html#gp11-session-verify-async" title="gp11_session_verify_async ()">gp11_session_verify_async</a>           (<a class="link" href="gp11-gp11-session.html#GP11Session">GP11Session</a> *self,
+                                                         <a class="link" href="gp11-gp11-object.html#GP11Object">GP11Object</a> *key,
+                                                         <a class="link" href="gp11-gp11-session.html#GP11Mechanism" title="GP11Mechanism">GP11Mechanism</a> *mechanism,
+                                                         const <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#guchar"
+>guchar</a> *input,
+                                                         <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gsize"
+>gsize</a> n_input,
+                                                         const <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#guchar"
+>guchar</a> *signature,
+                                                         <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gsize"
+>gsize</a> n_signature,
+                                                         <a
+href="http://library.gnome.org/devel/gio/unstable/GCancellable.html"
+>GCancellable</a> *cancellable,
+                                                         <a
+href="http://library.gnome.org/devel/gio/unstable/GAsyncResult.html#GAsyncReadyCallback"
+>GAsyncReadyCallback</a> callback,
+                                                         <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gpointer"
+>gpointer</a> user_data);
+<a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"
+>gboolean</a>            <a class="link" href="gp11-gp11-session.html#gp11-session-verify-finish" title="gp11_session_verify_finish ()">gp11_session_verify_finish</a>          (<a class="link" href="gp11-gp11-session.html#GP11Session">GP11Session</a> *self,
+                                                         <a
+href="http://library.gnome.org/devel/gio/unstable/GAsyncResult.html"
+>GAsyncResult</a> *result,
+                                                         <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Error-Reporting.html#GError"
+>GError</a> **err);
+                    <a class="link" href="gp11-gp11-session.html#GP11SessionInfo" title="GP11SessionInfo">GP11SessionInfo</a>;
+void                <a class="link" href="gp11-gp11-session.html#gp11-session-info-free" title="gp11_session_info_free ()">gp11_session_info_free</a>              (<a class="link" href="gp11-gp11-session.html#GP11SessionInfo" title="GP11SessionInfo">GP11SessionInfo</a> *session_info);
+                    <a class="link" href="gp11-gp11-session.html#GP11Mechanism" title="GP11Mechanism">GP11Mechanism</a>;
+</pre>
+</div>
+<div class="refsect1" title="Object Hierarchy">
+<a name="gp11-gp11-session.object-hierarchy"></a><h2>Object Hierarchy</h2>
+<pre class="synopsis">
+  <a
+href="http://library.gnome.org/devel/gobject/unstable/gobject-The-Base-Object-Type.html#GObject"
+>GObject</a>
+   +----GP11Session
+</pre>
+</div>
+<div class="refsect1" title="Properties">
+<a name="gp11-gp11-session.properties"></a><h2>Properties</h2>
+<pre class="synopsis">
+  "<a class="link" href="gp11-gp11-session.html#GP11Session--handle" title='The "handle" property'>handle</a>"                   <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gulong"
+>gulong</a>                : Read / Write / Construct Only
+  "<a class="link" href="gp11-gp11-session.html#GP11Session--module" title='The "module" property'>module</a>"                   <a class="link" href="gp11-gp11-module.html#GP11Module">GP11Module</a>*           : Read / Write / Construct Only
+  "<a class="link" href="gp11-gp11-session.html#GP11Session--slot" title='The "slot" property'>slot</a>"                     <a class="link" href="gp11-gp11-slot.html#GP11Slot">GP11Slot</a>*             : Read / Write / Construct Only
+</pre>
+</div>
+<div class="refsect1" title="Signals">
+<a name="gp11-gp11-session.signals"></a><h2>Signals</h2>
+<pre class="synopsis">
+  "<a class="link" href="gp11-gp11-session.html#GP11Session-discard-handle" title='The "discard-handle" signal'>discard-handle</a>"                                 : Run Last
+</pre>
+</div>
+<div class="refsect1" title="Description">
+<a name="gp11-gp11-session.description"></a><h2>Description</h2>
+<p>
+Before performing any PKCS11 operations, a session must be opened. This is 
+analogous to an open database handle, or a file handle.</p>
+<p>
+</p>
+</div>
+<div class="refsect1" title="Details">
+<a name="gp11-gp11-session.details"></a><h2>Details</h2>
+<div class="refsect2" title="GP11Session">
+<a name="GP11Session-struct"></a><h3>GP11Session</h3>
+<pre class="programlisting">typedef struct _GP11Session GP11Session;</pre>
+<p>
+Represents an open PKCS11 session.</p>
+<p>
+</p>
+</div>
+<hr>
+<div class="refsect2" title="gp11_session_from_handle ()">
+<a name="gp11-session-from-handle"></a><h3>gp11_session_from_handle ()</h3>
+<pre class="programlisting"><a class="link" href="gp11-gp11-session.html#GP11Session">GP11Session</a>*        gp11_session_from_handle            (<a class="link" href="gp11-gp11-slot.html#GP11Slot">GP11Slot</a> *slot,
+                                                         CK_SESSION_HANDLE handle);</pre>
+<p>
+Initialize a GP11Session object from a raw PKCS<span class="type">11</span> session handle.
+Usually one would use the <a class="link" href="gp11-gp11-slot.html#gp11-slot-open-session" title="gp11_slot_open_session ()"><code class="function">gp11_slot_open_session()</code></a> function to 
+create a session.</p>
+<p>
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>slot</code></em> :</span></p></td>
+<td> The slot which the session belongs to.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>handle</code></em> :</span></p></td>
+<td> The raw PKCS<span class="type">11</span> handle of the session.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> The new GP11Session object.
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" title="gp11_session_get_module ()">
+<a name="gp11-session-get-module"></a><h3>gp11_session_get_module ()</h3>
+<pre class="programlisting"><a class="link" href="gp11-gp11-module.html#GP11Module">GP11Module</a>*         gp11_session_get_module             (<a class="link" href="gp11-gp11-session.html#GP11Session">GP11Session</a> *self);</pre>
+<p>
+Get the PKCS<span class="type">11</span> module to which this session belongs.</p>
+<p>
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
+<td> The session object.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> The module, which should be unreffed after use.
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" title="gp11_session_get_slot ()">
+<a name="gp11-session-get-slot"></a><h3>gp11_session_get_slot ()</h3>
+<pre class="programlisting"><a class="link" href="gp11-gp11-slot.html#GP11Slot">GP11Slot</a>*           gp11_session_get_slot               (<a class="link" href="gp11-gp11-session.html#GP11Session">GP11Session</a> *self);</pre>
+<p>
+Get the PKCS<span class="type">11</span> slot to which this session belongs.</p>
+<p>
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
+<td> The session object.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> The slot, which should be unreffed after use.
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" title="gp11_session_get_handle ()">
+<a name="gp11-session-get-handle"></a><h3>gp11_session_get_handle ()</h3>
+<pre class="programlisting">CK_SESSION_HANDLE   gp11_session_get_handle             (<a class="link" href="gp11-gp11-session.html#GP11Session">GP11Session</a> *self);</pre>
+<p>
+Get the raw PKCS<span class="type">11</span> session handle from a GP11Session object.</p>
+<p>
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
+<td> The session object.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> The raw session handle.
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" title="gp11_session_get_info ()">
+<a name="gp11-session-get-info"></a><h3>gp11_session_get_info ()</h3>
+<pre class="programlisting"><a class="link" href="gp11-gp11-session.html#GP11SessionInfo" title="GP11SessionInfo">GP11SessionInfo</a>*    gp11_session_get_info               (<a class="link" href="gp11-gp11-session.html#GP11Session">GP11Session</a> *self);</pre>
+<p>
+Get information about the session.</p>
+<p>
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
+<td> The session object.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> The session info. Use the <a class="link" href="gp11-gp11-session.html#gp11-session-info-free" title="gp11_session_info_free ()"><code class="function">gp11_session_info_free()</code></a> to release
+when done.
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" title="gp11_session_login ()">
+<a name="gp11-session-login"></a><h3>gp11_session_login ()</h3>
+<pre class="programlisting"><a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"
+>gboolean</a>            gp11_session_login                  (<a class="link" href="gp11-gp11-session.html#GP11Session">GP11Session</a> *self,
+                                                         <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gulong"
+>gulong</a> user_type,
+                                                         const <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#guchar"
+>guchar</a> *pin,
+                                                         <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gsize"
+>gsize</a> n_pin,
+                                                         <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Error-Reporting.html#GError"
+>GError</a> **err);</pre>
+<p>
+Login the user on the session. This call may block
+for an indefinite period.</p>
+<p>
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
+<td> Log into this session.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>user_type</code></em> :</span></p></td>
+<td> The type of login user.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>pin</code></em> :</span></p></td>
+<td> The user's PIN, or NULL for protected authentication path.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>n_pin</code></em> :</span></p></td>
+<td> The length of the PIN.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>err</code></em> :</span></p></td>
+<td> A location to return an error.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> Whether successful or not.
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" title="gp11_session_login_full ()">
+<a name="gp11-session-login-full"></a><h3>gp11_session_login_full ()</h3>
+<pre class="programlisting"><a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"
+>gboolean</a>            gp11_session_login_full             (<a class="link" href="gp11-gp11-session.html#GP11Session">GP11Session</a> *self,
+                                                         <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gulong"
+>gulong</a> user_type,
+                                                         const <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#guchar"
+>guchar</a> *pin,
+                                                         <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gsize"
+>gsize</a> n_pin,
+                                                         <a
+href="http://library.gnome.org/devel/gio/unstable/GCancellable.html"
+>GCancellable</a> *cancellable,
+                                                         <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Error-Reporting.html#GError"
+>GError</a> **err);</pre>
+<p>
+Login the user on the session. This call may block for 
+an indefinite period.</p>
+<p>
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
+<td> Log into this session.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>user_type</code></em> :</span></p></td>
+<td> The type of login user.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>pin</code></em> :</span></p></td>
+<td> The user's PIN, or NULL for protected authentication path.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>n_pin</code></em> :</span></p></td>
+<td> The length of the PIN.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>cancellable</code></em> :</span></p></td>
+<td> Optional cancellation object, or NULL.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>err</code></em> :</span></p></td>
+<td> A location to return an error.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> Whether successful or not.
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" title="gp11_session_login_async ()">
+<a name="gp11-session-login-async"></a><h3>gp11_session_login_async ()</h3>
+<pre class="programlisting">void                gp11_session_login_async            (<a class="link" href="gp11-gp11-session.html#GP11Session">GP11Session</a> *self,
+                                                         <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gulong"
+>gulong</a> user_type,
+                                                         const <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#guchar"
+>guchar</a> *pin,
+                                                         <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gsize"
+>gsize</a> n_pin,
+                                                         <a
+href="http://library.gnome.org/devel/gio/unstable/GCancellable.html"
+>GCancellable</a> *cancellable,
+                                                         <a
+href="http://library.gnome.org/devel/gio/unstable/GAsyncResult.html#GAsyncReadyCallback"
+>GAsyncReadyCallback</a> callback,
+                                                         <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gpointer"
+>gpointer</a> user_data);</pre>
+<p>
+Login the user on the session. This call will return 
+immediately and completes asynchronously.</p>
+<p>
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
+<td> Log into this session.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>user_type</code></em> :</span></p></td>
+<td> The type of login user.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>pin</code></em> :</span></p></td>
+<td> The user's PIN, or NULL for protected authentication path.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>n_pin</code></em> :</span></p></td>
+<td> The length of the PIN.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>cancellable</code></em> :</span></p></td>
+<td> Optional cancellation object, or NULL.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>callback</code></em> :</span></p></td>
+<td> Called when the operation completes.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>user_data</code></em> :</span></p></td>
+<td> Data to pass to the callback.
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" title="gp11_session_login_finish ()">
+<a name="gp11-session-login-finish"></a><h3>gp11_session_login_finish ()</h3>
+<pre class="programlisting"><a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"
+>gboolean</a>            gp11_session_login_finish           (<a class="link" href="gp11-gp11-session.html#GP11Session">GP11Session</a> *self,
+                                                         <a
+href="http://library.gnome.org/devel/gio/unstable/GAsyncResult.html"
+>GAsyncResult</a> *result,
+                                                         <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Error-Reporting.html#GError"
+>GError</a> **err);</pre>
+<p>
+Get the result of a login operation.</p>
+<p>
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
+<td> The session logged into.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>result</code></em> :</span></p></td>
+<td> The result passed to the callback.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>err</code></em> :</span></p></td>
+<td> A location to return an error.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> Whether the operation was successful or not.
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" title="gp11_session_logout ()">
+<a name="gp11-session-logout"></a><h3>gp11_session_logout ()</h3>
+<pre class="programlisting"><a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"
+>gboolean</a>            gp11_session_logout                 (<a class="link" href="gp11-gp11-session.html#GP11Session">GP11Session</a> *self,
+                                                         <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Error-Reporting.html#GError"
+>GError</a> **err);</pre>
+<p>
+Log out of the session. This call may block for an indefinite period.</p>
+<p>
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
+<td> Logout of this session.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>err</code></em> :</span></p></td>
+<td> A location to return an error.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> Whether the logout was successful or not.
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" title="gp11_session_logout_full ()">
+<a name="gp11-session-logout-full"></a><h3>gp11_session_logout_full ()</h3>
+<pre class="programlisting"><a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"
+>gboolean</a>            gp11_session_logout_full            (<a class="link" href="gp11-gp11-session.html#GP11Session">GP11Session</a> *self,
+                                                         <a
+href="http://library.gnome.org/devel/gio/unstable/GCancellable.html"
+>GCancellable</a> *cancellable,
+                                                         <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Error-Reporting.html#GError"
+>GError</a> **err);</pre>
+<p>
+Log out of the session. This call may block for an indefinite period.</p>
+<p>
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
+<td> Logout of this session.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>cancellable</code></em> :</span></p></td>
+<td> Optional cancellation object, or NULL.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>err</code></em> :</span></p></td>
+<td> A location to return an error.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> Whether the logout was successful or not.
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" title="gp11_session_logout_async ()">
+<a name="gp11-session-logout-async"></a><h3>gp11_session_logout_async ()</h3>
+<pre class="programlisting">void                gp11_session_logout_async           (<a class="link" href="gp11-gp11-session.html#GP11Session">GP11Session</a> *self,
+                                                         <a
+href="http://library.gnome.org/devel/gio/unstable/GCancellable.html"
+>GCancellable</a> *cancellable,
+                                                         <a
+href="http://library.gnome.org/devel/gio/unstable/GAsyncResult.html#GAsyncReadyCallback"
+>GAsyncReadyCallback</a> callback,
+                                                         <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gpointer"
+>gpointer</a> user_data);</pre>
+<p>
+Log out of the session. This call returns immediately and completes
+asynchronously.</p>
+<p>
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
+<td> Logout of this session.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>cancellable</code></em> :</span></p></td>
+<td> Optional cancellation object, or NULL.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>callback</code></em> :</span></p></td>
+<td> Called when the operation completes.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>user_data</code></em> :</span></p></td>
+<td> Data to pass to the callback.
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" title="gp11_session_logout_finish ()">
+<a name="gp11-session-logout-finish"></a><h3>gp11_session_logout_finish ()</h3>
+<pre class="programlisting"><a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"
+>gboolean</a>            gp11_session_logout_finish          (<a class="link" href="gp11-gp11-session.html#GP11Session">GP11Session</a> *self,
+                                                         <a
+href="http://library.gnome.org/devel/gio/unstable/GAsyncResult.html"
+>GAsyncResult</a> *result,
+                                                         <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Error-Reporting.html#GError"
+>GError</a> **err);</pre>
+<p>
+Get the result of logging out of a session.</p>
+<p>
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
+<td> Logout of this session.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>result</code></em> :</span></p></td>
+<td> The result passed to the callback.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>err</code></em> :</span></p></td>
+<td> A location to return an error.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> Whether the logout was successful or not.
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" title="gp11_session_create_object ()">
+<a name="gp11-session-create-object"></a><h3>gp11_session_create_object ()</h3>
+<pre class="programlisting"><a class="link" href="gp11-gp11-object.html#GP11Object">GP11Object</a>*         gp11_session_create_object          (<a class="link" href="gp11-gp11-session.html#GP11Session">GP11Session</a> *self,
+                                                         <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Error-Reporting.html#GError"
+>GError</a> **err);</pre>
+<p>
+Create a new PKCS<span class="type">11</span> object. This call may block 
+for an indefinite period.
+</p>
+<p>
+The arguments must be triples of: attribute type, data type, value
+</p>
+<p>
+</p>
+<p>The variable argument list should contain:
+	</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term">a)</span></p></td>
+<td><p>The gulong attribute type (ie: CKA_LABEL). </p></td>
+</tr>
+<tr>
+<td><p><span class="term">b)</span></p></td>
+<td><p>The attribute data type (one of GP11_BOOLEAN, GP11_ULONG, 
+				GP11_STRING, GP11_DATE) orthe raw attribute value length.</p></td>
+</tr>
+<tr>
+<td><p><span class="term">c)</span></p></td>
+<td><p>The attribute value, either a gboolean, gulong, gchar*, GDate* or 
+				a pointer to a raw attribute value.</p></td>
+</tr>
+</tbody>
+</table></div>
+<p>
+</p>
+<p>
+</p>
+<p>
+The variable argument list should be terminated with GP11_INVALID.</p>
+<p>
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
+<td> The session to create the object on.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>err</code></em> :</span></p></td>
+<td> A location to store an error.
+...: The attributes to create the new object with.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> The newly created object, or NULL if an error occurred.
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" title="gp11_session_create_object_async ()">
+<a name="gp11-session-create-object-async"></a><h3>gp11_session_create_object_async ()</h3>
+<pre class="programlisting">void                gp11_session_create_object_async    (<a class="link" href="gp11-gp11-session.html#GP11Session">GP11Session</a> *self,
+                                                         <a class="link" href="gp11-gp11-attributes.html#GP11Attributes" title="GP11Attributes">GP11Attributes</a> *attrs,
+                                                         <a
+href="http://library.gnome.org/devel/gio/unstable/GCancellable.html"
+>GCancellable</a> *cancellable,
+                                                         <a
+href="http://library.gnome.org/devel/gio/unstable/GAsyncResult.html#GAsyncReadyCallback"
+>GAsyncReadyCallback</a> callback,
+                                                         <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gpointer"
+>gpointer</a> user_data);</pre>
+<p>
+Create a new PKCS<span class="type">11</span> object. This call will return immediately
+and complete asynchronously.</p>
+<p>
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
+<td> The session to create the object on.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>attrs</code></em> :</span></p></td>
+<td> The attributes to create the object with.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>cancellable</code></em> :</span></p></td>
+<td> Optional cancellation object or NULL.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>callback</code></em> :</span></p></td>
+<td> Called when the operation completes.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>user_data</code></em> :</span></p></td>
+<td> Data to pass to the callback.
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" title="gp11_session_create_object_finish ()">
+<a name="gp11-session-create-object-finish"></a><h3>gp11_session_create_object_finish ()</h3>
+<pre class="programlisting"><a class="link" href="gp11-gp11-object.html#GP11Object">GP11Object</a>*         gp11_session_create_object_finish   (<a class="link" href="gp11-gp11-session.html#GP11Session">GP11Session</a> *self,
+                                                         <a
+href="http://library.gnome.org/devel/gio/unstable/GAsyncResult.html"
+>GAsyncResult</a> *result,
+                                                         <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Error-Reporting.html#GError"
+>GError</a> **err);</pre>
+<p>
+Get the result of creating a new PKCS<span class="type">11</span> object.</p>
+<p>
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
+<td> The session to create the object on.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>result</code></em> :</span></p></td>
+<td> The result passed to the callback.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>err</code></em> :</span></p></td>
+<td> A location to return an error, or NULL.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> The newly created object or NULL if an error occurred.
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" title="gp11_session_find_objects ()">
+<a name="gp11-session-find-objects"></a><h3>gp11_session_find_objects ()</h3>
+<pre class="programlisting"><a
+href="http://library.gnome.org/devel/glib/unstable/glib-Doubly-Linked-Lists.html#GList"
+>GList</a>*              gp11_session_find_objects           (<a class="link" href="gp11-gp11-session.html#GP11Session">GP11Session</a> *self,
+                                                         <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Error-Reporting.html#GError"
+>GError</a> **err);</pre>
+<p>
+Find objects matching the passed attributes. This call may 
+block for an indefinite period.
+</p>
+<p>
+The arguments must be triples of: attribute type, data type, value
+</p>
+<p>
+</p>
+<p>The variable argument list should contain:
+	</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term">a)</span></p></td>
+<td><p>The gulong attribute type (ie: CKA_LABEL). </p></td>
+</tr>
+<tr>
+<td><p><span class="term">b)</span></p></td>
+<td><p>The attribute data type (one of GP11_BOOLEAN, GP11_ULONG, 
+				GP11_STRING, GP11_DATE) orthe raw attribute value length.</p></td>
+</tr>
+<tr>
+<td><p><span class="term">c)</span></p></td>
+<td><p>The attribute value, either a gboolean, gulong, gchar*, GDate* or 
+				a pointer to a raw attribute value.</p></td>
+</tr>
+</tbody>
+</table></div>
+<p>
+The variable argument list should be terminated with GP11_INVALID.</p>
+<p>
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
+<td> The session to find objects on.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>err</code></em> :</span></p></td>
+<td> A location to return an error or NULL.
+...: The attributes to match.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> A list of the matching objects, which may be empty.  
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" title="gp11_session_find_objects_async ()">
+<a name="gp11-session-find-objects-async"></a><h3>gp11_session_find_objects_async ()</h3>
+<pre class="programlisting">void                gp11_session_find_objects_async     (<a class="link" href="gp11-gp11-session.html#GP11Session">GP11Session</a> *self,
+                                                         <a class="link" href="gp11-gp11-attributes.html#GP11Attributes" title="GP11Attributes">GP11Attributes</a> *attrs,
+                                                         <a
+href="http://library.gnome.org/devel/gio/unstable/GCancellable.html"
+>GCancellable</a> *cancellable,
+                                                         <a
+href="http://library.gnome.org/devel/gio/unstable/GAsyncResult.html#GAsyncReadyCallback"
+>GAsyncReadyCallback</a> callback,
+                                                         <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gpointer"
+>gpointer</a> user_data);</pre>
+<p>
+Find the objects matching the passed attributes. This call will 
+return immediately and complete asynchronously.</p>
+<p>
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
+<td> The session to find objects on.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>attrs</code></em> :</span></p></td>
+<td> The attributes to match.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>cancellable</code></em> :</span></p></td>
+<td> Optional cancellation object or NULL.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>callback</code></em> :</span></p></td>
+<td> Called when the operation completes.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>user_data</code></em> :</span></p></td>
+<td> Data to pass to the callback.
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" title="gp11_session_find_objects_finish ()">
+<a name="gp11-session-find-objects-finish"></a><h3>gp11_session_find_objects_finish ()</h3>
+<pre class="programlisting"><a
+href="http://library.gnome.org/devel/glib/unstable/glib-Doubly-Linked-Lists.html#GList"
+>GList</a>*              gp11_session_find_objects_finish    (<a class="link" href="gp11-gp11-session.html#GP11Session">GP11Session</a> *self,
+                                                         <a
+href="http://library.gnome.org/devel/gio/unstable/GAsyncResult.html"
+>GAsyncResult</a> *result,
+                                                         <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Error-Reporting.html#GError"
+>GError</a> **err);</pre>
+<p>
+Get the result of a find operation.</p>
+<p>
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
+<td> The session to find objects on.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>result</code></em> :</span></p></td>
+<td> The attributes to match.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>err</code></em> :</span></p></td>
+<td> A location to return an error.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> A list of the matching objects, which may be empty.
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" title="gp11_session_encrypt ()">
+<a name="gp11-session-encrypt"></a><h3>gp11_session_encrypt ()</h3>
+<pre class="programlisting"><a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#guchar"
+>guchar</a>*             gp11_session_encrypt                (<a class="link" href="gp11-gp11-session.html#GP11Session">GP11Session</a> *self,
+                                                         <a class="link" href="gp11-gp11-object.html#GP11Object">GP11Object</a> *key,
+                                                         <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gulong"
+>gulong</a> mech_type,
+                                                         const <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#guchar"
+>guchar</a> *input,
+                                                         <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gsize"
+>gsize</a> n_input,
+                                                         <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gsize"
+>gsize</a> *n_result,
+                                                         <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Error-Reporting.html#GError"
+>GError</a> **err);</pre>
+<p>
+Encrypt data in a mechanism specific manner. This call may 
+block for an indefinite period.</p>
+<p>
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
+<td> The session.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>key</code></em> :</span></p></td>
+<td> The key to encrypt with.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>mech_type</code></em> :</span></p></td>
+<td> The mechanism type to use for encryption.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>input</code></em> :</span></p></td>
+<td> The data to encrypt.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>n_input</code></em> :</span></p></td>
+<td> The length of the data to encrypt.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>n_result</code></em> :</span></p></td>
+<td> A location to store the length of the result data.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>err</code></em> :</span></p></td>
+<td> A location to place error information.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> The data that was encrypted, or NULL if an error occured.
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" title="gp11_session_encrypt_full ()">
+<a name="gp11-session-encrypt-full"></a><h3>gp11_session_encrypt_full ()</h3>
+<pre class="programlisting"><a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#guchar"
+>guchar</a>*             gp11_session_encrypt_full           (<a class="link" href="gp11-gp11-session.html#GP11Session">GP11Session</a> *self,
+                                                         <a class="link" href="gp11-gp11-object.html#GP11Object">GP11Object</a> *key,
+                                                         <a class="link" href="gp11-gp11-session.html#GP11Mechanism" title="GP11Mechanism">GP11Mechanism</a> *mech_args,
+                                                         const <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#guchar"
+>guchar</a> *input,
+                                                         <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gsize"
+>gsize</a> n_input,
+                                                         <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gsize"
+>gsize</a> *n_result,
+                                                         <a
+href="http://library.gnome.org/devel/gio/unstable/GCancellable.html"
+>GCancellable</a> *cancellable,
+                                                         <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Error-Reporting.html#GError"
+>GError</a> **err);</pre>
+<p>
+Encrypt data in a mechanism specific manner. This call may 
+block for an indefinite period.</p>
+<p>
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
+<td> The session.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>key</code></em> :</span></p></td>
+<td> The key to encrypt with.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>mech_args</code></em> :</span></p></td>
+<td> The mechanism type and parameters to use for encryption.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>input</code></em> :</span></p></td>
+<td> The data to encrypt.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>n_input</code></em> :</span></p></td>
+<td> The length of the data to encrypt.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>n_result</code></em> :</span></p></td>
+<td> A location to store the length of the result data.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>cancellable</code></em> :</span></p></td>
+<td> A GCancellable which can be used to cancel the operation.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>err</code></em> :</span></p></td>
+<td> A location to place error information.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> The data that was encrypted, or NULL if an error occured.
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" title="gp11_session_encrypt_async ()">
+<a name="gp11-session-encrypt-async"></a><h3>gp11_session_encrypt_async ()</h3>
+<pre class="programlisting">void                gp11_session_encrypt_async          (<a class="link" href="gp11-gp11-session.html#GP11Session">GP11Session</a> *self,
+                                                         <a class="link" href="gp11-gp11-object.html#GP11Object">GP11Object</a> *key,
+                                                         <a class="link" href="gp11-gp11-session.html#GP11Mechanism" title="GP11Mechanism">GP11Mechanism</a> *mech_args,
+                                                         const <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#guchar"
+>guchar</a> *input,
+                                                         <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gsize"
+>gsize</a> n_input,
+                                                         <a
+href="http://library.gnome.org/devel/gio/unstable/GCancellable.html"
+>GCancellable</a> *cancellable,
+                                                         <a
+href="http://library.gnome.org/devel/gio/unstable/GAsyncResult.html#GAsyncReadyCallback"
+>GAsyncReadyCallback</a> callback,
+                                                         <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gpointer"
+>gpointer</a> user_data);</pre>
+<p>
+Encrypt data in a mechanism specific manner. This call will 
+return immediately and complete asynchronously.</p>
+<p>
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
+<td> The session.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>key</code></em> :</span></p></td>
+<td> The key to encrypt with.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>mech_args</code></em> :</span></p></td>
+<td> The mechanism type and parameters to use for encryption.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>input</code></em> :</span></p></td>
+<td> The data to encrypt.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>n_input</code></em> :</span></p></td>
+<td> The length of the data to encrypt.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>cancellable</code></em> :</span></p></td>
+<td> A GCancellable which can be used to cancel the operation.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>callback</code></em> :</span></p></td>
+<td> Called when the operation completes.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>user_data</code></em> :</span></p></td>
+<td> A pointer to pass to the callback.
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" title="gp11_session_encrypt_finish ()">
+<a name="gp11-session-encrypt-finish"></a><h3>gp11_session_encrypt_finish ()</h3>
+<pre class="programlisting"><a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#guchar"
+>guchar</a>*             gp11_session_encrypt_finish         (<a class="link" href="gp11-gp11-session.html#GP11Session">GP11Session</a> *self,
+                                                         <a
+href="http://library.gnome.org/devel/gio/unstable/GAsyncResult.html"
+>GAsyncResult</a> *result,
+                                                         <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gsize"
+>gsize</a> *n_result,
+                                                         <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Error-Reporting.html#GError"
+>GError</a> **err);</pre>
+<p>
+Get the result of an encryption operation.</p>
+<p>
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
+<td> The session.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>result</code></em> :</span></p></td>
+<td> The result object passed to the callback.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>n_result</code></em> :</span></p></td>
+<td> A location to store the length of the result data.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>err</code></em> :</span></p></td>
+<td> A location to place error information.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> The data that was encrypted, or NULL if an error occurred.
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" title="gp11_session_decrypt ()">
+<a name="gp11-session-decrypt"></a><h3>gp11_session_decrypt ()</h3>
+<pre class="programlisting"><a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#guchar"
+>guchar</a>*             gp11_session_decrypt                (<a class="link" href="gp11-gp11-session.html#GP11Session">GP11Session</a> *self,
+                                                         <a class="link" href="gp11-gp11-object.html#GP11Object">GP11Object</a> *key,
+                                                         <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gulong"
+>gulong</a> mech_type,
+                                                         const <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#guchar"
+>guchar</a> *input,
+                                                         <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gsize"
+>gsize</a> n_input,
+                                                         <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gsize"
+>gsize</a> *n_result,
+                                                         <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Error-Reporting.html#GError"
+>GError</a> **err);</pre>
+<p>
+Decrypt data in a mechanism specific manner. This call may 
+block for an indefinite period.</p>
+<p>
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
+<td> The session.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>key</code></em> :</span></p></td>
+<td> The key to decrypt with.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>mech_type</code></em> :</span></p></td>
+<td> The mechanism type to use for decryption.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>input</code></em> :</span></p></td>
+<td> The data to decrypt.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>n_input</code></em> :</span></p></td>
+<td> The length of the data to decrypt.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>n_result</code></em> :</span></p></td>
+<td> A location to store the length of the result data.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>err</code></em> :</span></p></td>
+<td> A location to place an error.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> The data that was decrypted, or NULL if an error occured.
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" title="gp11_session_decrypt_full ()">
+<a name="gp11-session-decrypt-full"></a><h3>gp11_session_decrypt_full ()</h3>
+<pre class="programlisting"><a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#guchar"
+>guchar</a>*             gp11_session_decrypt_full           (<a class="link" href="gp11-gp11-session.html#GP11Session">GP11Session</a> *self,
+                                                         <a class="link" href="gp11-gp11-object.html#GP11Object">GP11Object</a> *key,
+                                                         <a class="link" href="gp11-gp11-session.html#GP11Mechanism" title="GP11Mechanism">GP11Mechanism</a> *mech_args,
+                                                         const <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#guchar"
+>guchar</a> *input,
+                                                         <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gsize"
+>gsize</a> n_input,
+                                                         <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gsize"
+>gsize</a> *n_result,
+                                                         <a
+href="http://library.gnome.org/devel/gio/unstable/GCancellable.html"
+>GCancellable</a> *cancellable,
+                                                         <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Error-Reporting.html#GError"
+>GError</a> **err);</pre>
+<p>
+Decrypt data in a mechanism specific manner. This call may 
+block for an indefinite period.</p>
+<p>
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
+<td> The session.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>key</code></em> :</span></p></td>
+<td> The key to decrypt with.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>mech_args</code></em> :</span></p></td>
+<td> The mechanism type and parameters to use for decryption.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>input</code></em> :</span></p></td>
+<td> The data to decrypt.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>n_input</code></em> :</span></p></td>
+<td> The length of the data to decrypt.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>n_result</code></em> :</span></p></td>
+<td> A location to store the length of the result data.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>cancellable</code></em> :</span></p></td>
+<td> A GCancellable which can be used to cancel the operation.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>err</code></em> :</span></p></td>
+<td> A location to place error information.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> The data that was decrypted, or NULL if an error occured.
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" title="gp11_session_decrypt_async ()">
+<a name="gp11-session-decrypt-async"></a><h3>gp11_session_decrypt_async ()</h3>
+<pre class="programlisting">void                gp11_session_decrypt_async          (<a class="link" href="gp11-gp11-session.html#GP11Session">GP11Session</a> *self,
+                                                         <a class="link" href="gp11-gp11-object.html#GP11Object">GP11Object</a> *key,
+                                                         <a class="link" href="gp11-gp11-session.html#GP11Mechanism" title="GP11Mechanism">GP11Mechanism</a> *mech_args,
+                                                         const <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#guchar"
+>guchar</a> *input,
+                                                         <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gsize"
+>gsize</a> n_input,
+                                                         <a
+href="http://library.gnome.org/devel/gio/unstable/GCancellable.html"
+>GCancellable</a> *cancellable,
+                                                         <a
+href="http://library.gnome.org/devel/gio/unstable/GAsyncResult.html#GAsyncReadyCallback"
+>GAsyncReadyCallback</a> callback,
+                                                         <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gpointer"
+>gpointer</a> user_data);</pre>
+<p>
+Decrypt data in a mechanism specific manner. This call will 
+return immediately and complete asynchronously.</p>
+<p>
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
+<td> The session.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>key</code></em> :</span></p></td>
+<td> The key to decrypt with.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>mech_args</code></em> :</span></p></td>
+<td> The mechanism type and parameters to use for decryption.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>input</code></em> :</span></p></td>
+<td> The data to decrypt.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>n_input</code></em> :</span></p></td>
+<td> The length of the data to decrypt.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>cancellable</code></em> :</span></p></td>
+<td> A GCancellable which can be used to cancel the operation.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>callback</code></em> :</span></p></td>
+<td> Called when the operation completes.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>user_data</code></em> :</span></p></td>
+<td> A pointer to pass to the callback.
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" title="gp11_session_decrypt_finish ()">
+<a name="gp11-session-decrypt-finish"></a><h3>gp11_session_decrypt_finish ()</h3>
+<pre class="programlisting"><a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#guchar"
+>guchar</a>*             gp11_session_decrypt_finish         (<a class="link" href="gp11-gp11-session.html#GP11Session">GP11Session</a> *self,
+                                                         <a
+href="http://library.gnome.org/devel/gio/unstable/GAsyncResult.html"
+>GAsyncResult</a> *result,
+                                                         <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gsize"
+>gsize</a> *n_result,
+                                                         <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Error-Reporting.html#GError"
+>GError</a> **err);</pre>
+<p>
+Get the result of an decryption operation.</p>
+<p>
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
+<td> The session.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>result</code></em> :</span></p></td>
+<td> The result object passed to the callback.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>n_result</code></em> :</span></p></td>
+<td> A location to store the length of the result data.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>err</code></em> :</span></p></td>
+<td> A location to place error information.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> The data that was decrypted, or NULL if an error occurred.
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" title="gp11_session_sign ()">
+<a name="gp11-session-sign"></a><h3>gp11_session_sign ()</h3>
+<pre class="programlisting"><a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#guchar"
+>guchar</a>*             gp11_session_sign                   (<a class="link" href="gp11-gp11-session.html#GP11Session">GP11Session</a> *self,
+                                                         <a class="link" href="gp11-gp11-object.html#GP11Object">GP11Object</a> *key,
+                                                         <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gulong"
+>gulong</a> mech_type,
+                                                         const <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#guchar"
+>guchar</a> *input,
+                                                         <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gsize"
+>gsize</a> n_input,
+                                                         <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gsize"
+>gsize</a> *n_result,
+                                                         <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Error-Reporting.html#GError"
+>GError</a> **err);</pre>
+<p>
+Sign data in a mechanism specific manner. This call may 
+block for an indefinite period.</p>
+<p>
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
+<td> The session.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>key</code></em> :</span></p></td>
+<td> The key to sign with.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>mech_type</code></em> :</span></p></td>
+<td> The mechanism type to use for signing.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>input</code></em> :</span></p></td>
+<td> The data to sign.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>n_input</code></em> :</span></p></td>
+<td> The length of the data to sign.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>n_result</code></em> :</span></p></td>
+<td> A location to store the length of the result data.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>err</code></em> :</span></p></td>
+<td> A location to place an error.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> The data that was signed, or NULL if an error occured.
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" title="gp11_session_sign_full ()">
+<a name="gp11-session-sign-full"></a><h3>gp11_session_sign_full ()</h3>
+<pre class="programlisting"><a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#guchar"
+>guchar</a>*             gp11_session_sign_full              (<a class="link" href="gp11-gp11-session.html#GP11Session">GP11Session</a> *self,
+                                                         <a class="link" href="gp11-gp11-object.html#GP11Object">GP11Object</a> *key,
+                                                         <a class="link" href="gp11-gp11-session.html#GP11Mechanism" title="GP11Mechanism">GP11Mechanism</a> *mech_args,
+                                                         const <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#guchar"
+>guchar</a> *input,
+                                                         <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gsize"
+>gsize</a> n_input,
+                                                         <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gsize"
+>gsize</a> *n_result,
+                                                         <a
+href="http://library.gnome.org/devel/gio/unstable/GCancellable.html"
+>GCancellable</a> *cancellable,
+                                                         <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Error-Reporting.html#GError"
+>GError</a> **err);</pre>
+<p>
+Sign data in a mechanism specific manner. This call may 
+block for an indefinite period.</p>
+<p>
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
+<td> The session.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>key</code></em> :</span></p></td>
+<td> The key to sign with.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>mech_args</code></em> :</span></p></td>
+<td> The mechanism type and parameters to use for signing.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>input</code></em> :</span></p></td>
+<td> The data to sign.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>n_input</code></em> :</span></p></td>
+<td> The length of the data to sign.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>n_result</code></em> :</span></p></td>
+<td> A location to store the length of the result data.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>cancellable</code></em> :</span></p></td>
+<td> A GCancellable which can be used to cancel the operation.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>err</code></em> :</span></p></td>
+<td> A location to place error information.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> The data that was signed, or NULL if an error occured.
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" title="gp11_session_sign_async ()">
+<a name="gp11-session-sign-async"></a><h3>gp11_session_sign_async ()</h3>
+<pre class="programlisting">void                gp11_session_sign_async             (<a class="link" href="gp11-gp11-session.html#GP11Session">GP11Session</a> *self,
+                                                         <a class="link" href="gp11-gp11-object.html#GP11Object">GP11Object</a> *key,
+                                                         <a class="link" href="gp11-gp11-session.html#GP11Mechanism" title="GP11Mechanism">GP11Mechanism</a> *mech_args,
+                                                         const <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#guchar"
+>guchar</a> *input,
+                                                         <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gsize"
+>gsize</a> n_input,
+                                                         <a
+href="http://library.gnome.org/devel/gio/unstable/GCancellable.html"
+>GCancellable</a> *cancellable,
+                                                         <a
+href="http://library.gnome.org/devel/gio/unstable/GAsyncResult.html#GAsyncReadyCallback"
+>GAsyncReadyCallback</a> callback,
+                                                         <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gpointer"
+>gpointer</a> user_data);</pre>
+<p>
+Sign data in a mechanism specific manner. This call will 
+return immediately and complete asynchronously.</p>
+<p>
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
+<td> The session.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>key</code></em> :</span></p></td>
+<td> The key to sign with.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>mech_args</code></em> :</span></p></td>
+<td> The mechanism type and parameters to use for signing.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>input</code></em> :</span></p></td>
+<td> The data to sign.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>n_input</code></em> :</span></p></td>
+<td> The length of the data to sign.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>cancellable</code></em> :</span></p></td>
+<td> A GCancellable which can be used to cancel the operation.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>callback</code></em> :</span></p></td>
+<td> Called when the operation completes.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>user_data</code></em> :</span></p></td>
+<td> A pointer to pass to the callback.
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" title="gp11_session_sign_finish ()">
+<a name="gp11-session-sign-finish"></a><h3>gp11_session_sign_finish ()</h3>
+<pre class="programlisting"><a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#guchar"
+>guchar</a>*             gp11_session_sign_finish            (<a class="link" href="gp11-gp11-session.html#GP11Session">GP11Session</a> *self,
+                                                         <a
+href="http://library.gnome.org/devel/gio/unstable/GAsyncResult.html"
+>GAsyncResult</a> *result,
+                                                         <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gsize"
+>gsize</a> *n_result,
+                                                         <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Error-Reporting.html#GError"
+>GError</a> **err);</pre>
+<p>
+Get the result of an signing operation.</p>
+<p>
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
+<td> The session.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>result</code></em> :</span></p></td>
+<td> The result object passed to the callback.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>n_result</code></em> :</span></p></td>
+<td> A location to store the length of the result data.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>err</code></em> :</span></p></td>
+<td> A location to place error information.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> The data that was signed, or NULL if an error occurred.
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" title="gp11_session_verify ()">
+<a name="gp11-session-verify"></a><h3>gp11_session_verify ()</h3>
+<pre class="programlisting"><a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"
+>gboolean</a>            gp11_session_verify                 (<a class="link" href="gp11-gp11-session.html#GP11Session">GP11Session</a> *self,
+                                                         <a class="link" href="gp11-gp11-object.html#GP11Object">GP11Object</a> *key,
+                                                         <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gulong"
+>gulong</a> mech_type,
+                                                         const <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#guchar"
+>guchar</a> *input,
+                                                         <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gsize"
+>gsize</a> n_input,
+                                                         const <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#guchar"
+>guchar</a> *signature,
+                                                         <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gsize"
+>gsize</a> n_signature,
+                                                         <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Error-Reporting.html#GError"
+>GError</a> **err);</pre>
+<p>
+Verify data in a mechanism specific manner. This call may 
+block for an indefinite period.</p>
+<p>
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
+<td> The session.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>key</code></em> :</span></p></td>
+<td> The key to verify with.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>mech_type</code></em> :</span></p></td>
+<td> The mechanism type to use for verifying.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>input</code></em> :</span></p></td>
+<td> The data to verify.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>n_input</code></em> :</span></p></td>
+<td> The length of the data to verify.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>signature</code></em> :</span></p></td>
+<td> The signature.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>n_signature</code></em> :</span></p></td>
+<td> The length of the signature.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>err</code></em> :</span></p></td>
+<td> A location to place an error.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> TRUE if the data verified correctly, otherwise a failure or error occurred.
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" title="gp11_session_verify_full ()">
+<a name="gp11-session-verify-full"></a><h3>gp11_session_verify_full ()</h3>
+<pre class="programlisting"><a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"
+>gboolean</a>            gp11_session_verify_full            (<a class="link" href="gp11-gp11-session.html#GP11Session">GP11Session</a> *self,
+                                                         <a class="link" href="gp11-gp11-object.html#GP11Object">GP11Object</a> *key,
+                                                         <a class="link" href="gp11-gp11-session.html#GP11Mechanism" title="GP11Mechanism">GP11Mechanism</a> *mech_args,
+                                                         const <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#guchar"
+>guchar</a> *input,
+                                                         <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gsize"
+>gsize</a> n_input,
+                                                         const <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#guchar"
+>guchar</a> *signature,
+                                                         <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gsize"
+>gsize</a> n_signature,
+                                                         <a
+href="http://library.gnome.org/devel/gio/unstable/GCancellable.html"
+>GCancellable</a> *cancellable,
+                                                         <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Error-Reporting.html#GError"
+>GError</a> **err);</pre>
+<p>
+Verify data in a mechanism specific manner. This call may 
+block for an indefinite period.</p>
+<p>
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
+<td> The session.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>key</code></em> :</span></p></td>
+<td> The key to verify with.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>mech_args</code></em> :</span></p></td>
+<td> The mechanism type and parameters to use for signing.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>input</code></em> :</span></p></td>
+<td> The data to verify.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>n_input</code></em> :</span></p></td>
+<td> The length of the data to verify.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>signature</code></em> :</span></p></td>
+<td> The signature.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>n_signature</code></em> :</span></p></td>
+<td> The length of the signature.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>cancellable</code></em> :</span></p></td>
+<td> A GCancellable which can be used to cancel the operation.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>err</code></em> :</span></p></td>
+<td> A location to place an error.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> TRUE if the data verified correctly, otherwise a failure or error occurred.
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" title="gp11_session_verify_async ()">
+<a name="gp11-session-verify-async"></a><h3>gp11_session_verify_async ()</h3>
+<pre class="programlisting">void                gp11_session_verify_async           (<a class="link" href="gp11-gp11-session.html#GP11Session">GP11Session</a> *self,
+                                                         <a class="link" href="gp11-gp11-object.html#GP11Object">GP11Object</a> *key,
+                                                         <a class="link" href="gp11-gp11-session.html#GP11Mechanism" title="GP11Mechanism">GP11Mechanism</a> *mechanism,
+                                                         const <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#guchar"
+>guchar</a> *input,
+                                                         <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gsize"
+>gsize</a> n_input,
+                                                         const <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#guchar"
+>guchar</a> *signature,
+                                                         <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gsize"
+>gsize</a> n_signature,
+                                                         <a
+href="http://library.gnome.org/devel/gio/unstable/GCancellable.html"
+>GCancellable</a> *cancellable,
+                                                         <a
+href="http://library.gnome.org/devel/gio/unstable/GAsyncResult.html#GAsyncReadyCallback"
+>GAsyncReadyCallback</a> callback,
+                                                         <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gpointer"
+>gpointer</a> user_data);</pre>
+<p>
+Verify data in a mechanism specific manner. This call returns 
+immediately and completes asynchronously.</p>
+<p>
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
+<td> The session.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>key</code></em> :</span></p></td>
+<td> The key to verify with.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>mechanism</code></em> :</span></p></td>
+<td>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>input</code></em> :</span></p></td>
+<td> The data to verify.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>n_input</code></em> :</span></p></td>
+<td> The length of the data to verify.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>signature</code></em> :</span></p></td>
+<td> The signature.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>n_signature</code></em> :</span></p></td>
+<td> The length of the signature.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>cancellable</code></em> :</span></p></td>
+<td> A GCancellable which can be used to cancel the operation.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>callback</code></em> :</span></p></td>
+<td> Called when the operation completes.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>user_data</code></em> :</span></p></td>
+<td> A pointer to pass to the callback.
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" title="gp11_session_verify_finish ()">
+<a name="gp11-session-verify-finish"></a><h3>gp11_session_verify_finish ()</h3>
+<pre class="programlisting"><a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"
+>gboolean</a>            gp11_session_verify_finish          (<a class="link" href="gp11-gp11-session.html#GP11Session">GP11Session</a> *self,
+                                                         <a
+href="http://library.gnome.org/devel/gio/unstable/GAsyncResult.html"
+>GAsyncResult</a> *result,
+                                                         <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Error-Reporting.html#GError"
+>GError</a> **err);</pre>
+<p>
+Get the result of an verify operation.</p>
+<p>
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>self</code></em> :</span></p></td>
+<td> The session.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>result</code></em> :</span></p></td>
+<td> The result object passed to the callback.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>err</code></em> :</span></p></td>
+<td> A location to place error information.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> TRUE if the data verified correctly, otherwise a failure or error occurred.
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" title="GP11SessionInfo">
+<a name="GP11SessionInfo"></a><h3>GP11SessionInfo</h3>
+<pre class="programlisting">typedef struct {
+	gulong slot_id;
+	gulong state;
+	gulong flags;
+	gulong device_error;
+} GP11SessionInfo;
+</pre>
+<p>
+Information about the session. This is analogous to a CK_SESSION_INFO structure.
+</p>
+<p>
+When done with this structure, release it using <a class="link" href="gp11-gp11-session.html#gp11-session-info-free" title="gp11_session_info_free ()"><code class="function">gp11_session_info_free()</code></a>.</p>
+<p>
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gulong"
+>gulong</a> <em class="structfield"><code>slot_id</code></em>;</span></p></td>
+<td> The handle of the PKCS11 slot that this session is opened on.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gulong"
+>gulong</a> <em class="structfield"><code>state</code></em>;</span></p></td>
+<td> The user login state of the session.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gulong"
+>gulong</a> <em class="structfield"><code>flags</code></em>;</span></p></td>
+<td> Various PKCS11 flags.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gulong"
+>gulong</a> <em class="structfield"><code>device_error</code></em>;</span></p></td>
+<td> The last device error that occurred from an operation on this session.
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" title="gp11_session_info_free ()">
+<a name="gp11-session-info-free"></a><h3>gp11_session_info_free ()</h3>
+<pre class="programlisting">void                gp11_session_info_free              (<a class="link" href="gp11-gp11-session.html#GP11SessionInfo" title="GP11SessionInfo">GP11SessionInfo</a> *session_info);</pre>
+<p>
+Free the GP11SessionInfo structure and all associated memory.</p>
+<p>
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody><tr>
+<td><p><span class="term"><em class="parameter"><code>session_info</code></em> :</span></p></td>
+<td> Session info to free.
+</td>
+</tr></tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" title="GP11Mechanism">
+<a name="GP11Mechanism"></a><h3>GP11Mechanism</h3>
+<pre class="programlisting">typedef struct {
+	gulong type;
+	gpointer parameter;
+	gulong n_parameter;
+} GP11Mechanism;
+</pre>
+<p>
+Represents a mechanism used with crypto operations.</p>
+<p>
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gulong"
+>gulong</a> <em class="structfield"><code>type</code></em>;</span></p></td>
+<td> The mechanism type
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gpointer"
+>gpointer</a> <em class="structfield"><code>parameter</code></em>;</span></p></td>
+<td> Mechanism specific data.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gulong"
+>gulong</a> <em class="structfield"><code>n_parameter</code></em>;</span></p></td>
+<td> Length of mechanism specific data.
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+</div>
+<div class="refsect1" title="Property Details">
+<a name="gp11-gp11-session.property-details"></a><h2>Property Details</h2>
+<div class="refsect2" title='The "handle" property'>
+<a name="GP11Session--handle"></a><h3>The <code class="literal">"handle"</code> property</h3>
+<pre class="programlisting">  "handle"                   <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gulong"
+>gulong</a>                : Read / Write / Construct Only</pre>
+<p>
+The raw CK_SESSION_HANDLE handle of this session.</p>
+<p>
+</p>
+</div>
+<hr>
+<div class="refsect2" title='The "module" property'>
+<a name="GP11Session--module"></a><h3>The <code class="literal">"module"</code> property</h3>
+<pre class="programlisting">  "module"                   <a class="link" href="gp11-gp11-module.html#GP11Module">GP11Module</a>*           : Read / Write / Construct Only</pre>
+<p>
+The GP11Module that this session is opened on.</p>
+<p>
+</p>
+</div>
+<hr>
+<div class="refsect2" title='The "slot" property'>
+<a name="GP11Session--slot"></a><h3>The <code class="literal">"slot"</code> property</h3>
+<pre class="programlisting">  "slot"                     <a class="link" href="gp11-gp11-slot.html#GP11Slot">GP11Slot</a>*             : Read / Write / Construct Only</pre>
+<p>
+The GP11Slot this session is opened on.</p>
+<p>
+</p>
+</div>
+</div>
+<div class="refsect1" title="Signal Details">
+<a name="gp11-gp11-session.signal-details"></a><h2>Signal Details</h2>
+<div class="refsect2" title='The "discard-handle" signal'>
+<a name="GP11Session-discard-handle"></a><h3>The <code class="literal">"discard-handle"</code> signal</h3>
+<pre class="programlisting"><a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"
+>gboolean</a>            user_function                      (<a class="link" href="gp11-gp11-session.html#GP11Session">GP11Session</a> *session,
+                                                        <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gulong"
+>gulong</a>       handle,
+                                                        <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gpointer"
+>gpointer</a>     user_data)      : Run Last</pre>
+<p>
+When a GP11Session is being disposed of it emits this signal to allow
+a session pool to pick up the handle and keep it around. 
+</p>
+<p>
+If no signal handler claims the handle, then it is closed. This is used by 
+<a class="link" href="gp11-gp11-module.html#gp11-module-set-pool-sessions" title="gp11_module_set_pool_sessions ()"><code class="function">gp11_module_set_pool_sessions()</code></a> to implement the module session pool.</p>
+<p>
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>session</code></em> :</span></p></td>
+<td> The session.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>handle</code></em> :</span></p></td>
+<td> The handle being discarded.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>user_data</code></em> :</span></p></td>
+<td>user data set when the signal handler was connected.</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> Whether or not this handle was claimed.
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+</div>
+</div>
+<div class="footer">
+<hr>
+          Generated by GTK-Doc V1.11</div>
+</body>
+</html>

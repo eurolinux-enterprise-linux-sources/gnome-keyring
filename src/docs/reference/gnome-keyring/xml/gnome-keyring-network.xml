@@ -1,0 +1,380 @@
+<?xml version="1.0"?>
+<!DOCTYPE refentry PUBLIC "-//OASIS//DTD DocBook XML V4.1.2//EN" 
+               "http://www.oasis-open.org/docbook/xml/4.1.2/docbookx.dtd">
+<refentry id="gnome-keyring-gnome-keyring-network">
+<refmeta>
+<refentrytitle role="top_of_page" id="gnome-keyring-gnome-keyring-network.top_of_page">Network Passwords</refentrytitle>
+<manvolnum>3</manvolnum>
+<refmiscinfo>GNOME-KEYRING Library</refmiscinfo>
+</refmeta>
+
+<refnamediv>
+<refname>Network Passwords</refname>
+<refpurpose>Saving of network passwords.</refpurpose>
+</refnamediv>
+
+<refsynopsisdiv id="gnome-keyring-gnome-keyring-network.synopsis" role="synopsis">
+<title role="synopsis.title">Synopsis</title>
+
+<synopsis>
+                    <link linkend="GnomeKeyringNetworkPasswordData">GnomeKeyringNetworkPasswordData</link>;
+<link linkend="void">void</link>                <link linkend="gnome-keyring-network-password-free">gnome_keyring_network_password_free</link> (<link linkend="GnomeKeyringNetworkPasswordData">GnomeKeyringNetworkPasswordData</link> *data);
+<link linkend="void">void</link>                <link linkend="gnome-keyring-network-password-list-free">gnome_keyring_network_password_list_free</link>
+                                                        (<link linkend="GList">GList</link> *list);
+<link linkend="gpointer">gpointer</link>            <link linkend="gnome-keyring-find-network-password">gnome_keyring_find_network_password</link> (const <link linkend="char">char</link> *user,
+                                                         const <link linkend="char">char</link> *domain,
+                                                         const <link linkend="char">char</link> *server,
+                                                         const <link linkend="char">char</link> *object,
+                                                         const <link linkend="char">char</link> *protocol,
+                                                         const <link linkend="char">char</link> *authtype,
+                                                         <link linkend="guint32">guint32</link> port,
+                                                         <link linkend="GnomeKeyringOperationGetListCallback">GnomeKeyringOperationGetListCallback</link> callback,
+                                                         <link linkend="gpointer">gpointer</link> data,
+                                                         <link linkend="GDestroyNotify">GDestroyNotify</link> destroy_data);
+<link linkend="GnomeKeyringResult">GnomeKeyringResult</link>  <link linkend="gnome-keyring-find-network-password-sync">gnome_keyring_find_network_password_sync</link>
+                                                        (const <link linkend="char">char</link> *user,
+                                                         const <link linkend="char">char</link> *domain,
+                                                         const <link linkend="char">char</link> *server,
+                                                         const <link linkend="char">char</link> *object,
+                                                         const <link linkend="char">char</link> *protocol,
+                                                         const <link linkend="char">char</link> *authtype,
+                                                         <link linkend="guint32">guint32</link> port,
+                                                         <link linkend="GList">GList</link> **results);
+<link linkend="gpointer">gpointer</link>            <link linkend="gnome-keyring-set-network-password">gnome_keyring_set_network_password</link>  (const <link linkend="char">char</link> *keyring,
+                                                         const <link linkend="char">char</link> *user,
+                                                         const <link linkend="char">char</link> *domain,
+                                                         const <link linkend="char">char</link> *server,
+                                                         const <link linkend="char">char</link> *object,
+                                                         const <link linkend="char">char</link> *protocol,
+                                                         const <link linkend="char">char</link> *authtype,
+                                                         <link linkend="guint32">guint32</link> port,
+                                                         const <link linkend="char">char</link> *password,
+                                                         <link linkend="GnomeKeyringOperationGetIntCallback">GnomeKeyringOperationGetIntCallback</link> callback,
+                                                         <link linkend="gpointer">gpointer</link> data,
+                                                         <link linkend="GDestroyNotify">GDestroyNotify</link> destroy_data);
+<link linkend="GnomeKeyringResult">GnomeKeyringResult</link>  <link linkend="gnome-keyring-set-network-password-sync">gnome_keyring_set_network_password_sync</link>
+                                                        (const <link linkend="char">char</link> *keyring,
+                                                         const <link linkend="char">char</link> *user,
+                                                         const <link linkend="char">char</link> *domain,
+                                                         const <link linkend="char">char</link> *server,
+                                                         const <link linkend="char">char</link> *object,
+                                                         const <link linkend="char">char</link> *protocol,
+                                                         const <link linkend="char">char</link> *authtype,
+                                                         <link linkend="guint32">guint32</link> port,
+                                                         const <link linkend="char">char</link> *password,
+                                                         <link linkend="guint32">guint32</link> *item_id);
+</synopsis>
+</refsynopsisdiv>
+
+
+
+
+
+
+
+
+
+<refsect1 id="gnome-keyring-gnome-keyring-network.description" role="desc">
+<title role="desc.title">Description</title>
+<para>
+Networks passwords are a simple way of saving passwords associated with a 
+certain user/server/protocol and other fields.</para>
+<para>
+</para>
+</refsect1>
+
+<refsect1 id="gnome-keyring-gnome-keyring-network.details" role="details">
+<title role="details.title">Details</title>
+<refsect2 id="GnomeKeyringNetworkPasswordData" role="struct">
+<title>GnomeKeyringNetworkPasswordData</title>
+<indexterm zone="GnomeKeyringNetworkPasswordData"><primary sortas="GnomeKeyringNetworkPasswordData">GnomeKeyringNetworkPasswordData</primary></indexterm><programlisting>typedef struct {
+	char *keyring;
+	guint32 item_id;
+
+	char *protocol;
+	char *server;
+	char *object;
+	char *authtype;
+	guint32 port;
+
+	char *user;
+	char *domain;
+	char *password;
+} GnomeKeyringNetworkPasswordData;
+</programlisting>
+<para>
+</para></refsect2>
+<refsect2 id="gnome-keyring-network-password-free" role="function">
+<title>gnome_keyring_network_password_free ()</title>
+<indexterm zone="gnome-keyring-network-password-free"><primary sortas="gnome_keyring_network_password_free">gnome_keyring_network_password_free</primary></indexterm><programlisting><link linkend="void">void</link>                gnome_keyring_network_password_free (<link linkend="GnomeKeyringNetworkPasswordData">GnomeKeyringNetworkPasswordData</link> *data);</programlisting>
+<para>
+Free a network password data pointer. If <link linkend="NULL--CAPS"><literal>NULL</literal></link> is passed in,
+nothing happens.</para>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>data</parameter>&#160;:</term>
+<listitem><simpara> A <link linkend="GnomeKeyringNetworkPasswordData"><type>GnomeKeyringNetworkPasswordData</type></link> pointer.
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="gnome-keyring-network-password-list-free" role="function">
+<title>gnome_keyring_network_password_list_free ()</title>
+<indexterm zone="gnome-keyring-network-password-list-free"><primary sortas="gnome_keyring_network_password_list_free">gnome_keyring_network_password_list_free</primary></indexterm><programlisting><link linkend="void">void</link>                gnome_keyring_network_password_list_free
+                                                        (<link linkend="GList">GList</link> *list);</programlisting>
+<para>
+Free a list of network password data.</para>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>list</parameter>&#160;:</term>
+<listitem><simpara> A list of <link linkend="GnomeKeyringNetworkPasswordData"><type>GnomeKeyringNetworkPasswordData</type></link> pointers.
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="gnome-keyring-find-network-password" role="function">
+<title>gnome_keyring_find_network_password ()</title>
+<indexterm zone="gnome-keyring-find-network-password"><primary sortas="gnome_keyring_find_network_password">gnome_keyring_find_network_password</primary></indexterm><programlisting><link linkend="gpointer">gpointer</link>            gnome_keyring_find_network_password (const <link linkend="char">char</link> *user,
+                                                         const <link linkend="char">char</link> *domain,
+                                                         const <link linkend="char">char</link> *server,
+                                                         const <link linkend="char">char</link> *object,
+                                                         const <link linkend="char">char</link> *protocol,
+                                                         const <link linkend="char">char</link> *authtype,
+                                                         <link linkend="guint32">guint32</link> port,
+                                                         <link linkend="GnomeKeyringOperationGetListCallback">GnomeKeyringOperationGetListCallback</link> callback,
+                                                         <link linkend="gpointer">gpointer</link> data,
+                                                         <link linkend="GDestroyNotify">GDestroyNotify</link> destroy_data);</programlisting>
+<para>
+Find a previously stored network password. Searches all keyrings.
+</para>
+<para>
+A <link linkend="GList"><literal>GList</literal></link> of <link linkend="GnomeKeyringNetworkPasswordData"><type>GnomeKeyringNetworkPasswordData</type></link> structures are passed to the 
+<parameter>callback</parameter>. The list and structures are freed after the callback returns.
+</para>
+<para>
+The user may have been prompted to unlock necessary keyrings, and user will 
+have been prompted for access to the items if needed. 
+</para>
+<para>
+Network passwords are items with the item type <link linkend="GNOME-KEYRING-ITEM-NETWORK-PASSWORD--CAPS"><literal>GNOME_KEYRING_ITEM_NETWORK_PASSWORD</literal></link></para>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>user</parameter>&#160;:</term>
+<listitem><simpara> The user name or <link linkend="NULL--CAPS"><literal>NULL</literal></link> for any user.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>domain</parameter>&#160;:</term>
+<listitem><simpara> The domain name <link linkend="NULL--CAPS"><literal>NULL</literal></link> for any domain.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>server</parameter>&#160;:</term>
+<listitem><simpara> The server or <link linkend="NULL--CAPS"><literal>NULL</literal></link> for any server.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>object</parameter>&#160;:</term>
+<listitem><simpara> The remote object or <link linkend="NULL--CAPS"><literal>NULL</literal></link> for any object.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>protocol</parameter>&#160;:</term>
+<listitem><simpara> The network protorol or <link linkend="NULL--CAPS"><literal>NULL</literal></link> for any protocol.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>authtype</parameter>&#160;:</term>
+<listitem><simpara> The authentication type or <link linkend="NULL--CAPS"><literal>NULL</literal></link> for any type.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>port</parameter>&#160;:</term>
+<listitem><simpara> The network port or zero for any port.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>callback</parameter>&#160;:</term>
+<listitem><simpara> Callback which is called when the operation completes
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>data</parameter>&#160;:</term>
+<listitem><simpara> Data to be passed to callback
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>destroy_data</parameter>&#160;:</term>
+<listitem><simpara> Function to be called when data is no longer needed.
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara> The asychronous request, which can be passed to <link linkend="gnome-keyring-cancel-request"><function>gnome_keyring_cancel_request()</function></link>.
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="gnome-keyring-find-network-password-sync" role="function">
+<title>gnome_keyring_find_network_password_sync ()</title>
+<indexterm zone="gnome-keyring-find-network-password-sync"><primary sortas="gnome_keyring_find_network_password_sync">gnome_keyring_find_network_password_sync</primary></indexterm><programlisting><link linkend="GnomeKeyringResult">GnomeKeyringResult</link>  gnome_keyring_find_network_password_sync
+                                                        (const <link linkend="char">char</link> *user,
+                                                         const <link linkend="char">char</link> *domain,
+                                                         const <link linkend="char">char</link> *server,
+                                                         const <link linkend="char">char</link> *object,
+                                                         const <link linkend="char">char</link> *protocol,
+                                                         const <link linkend="char">char</link> *authtype,
+                                                         <link linkend="guint32">guint32</link> port,
+                                                         <link linkend="GList">GList</link> **results);</programlisting>
+<para>
+Find a previously stored network password. Searches all keyrings.
+</para>
+<para>
+A <link linkend="GList"><literal>GList</literal></link> of <link linkend="GnomeKeyringNetworkPasswordData"><type>GnomeKeyringNetworkPasswordData</type></link> structures are returned in the 
+<parameter>out_list</parameter> argument. The list should be freed with <link linkend="gnome-keyring-network-password-list-free"><function>gnome_keyring_network_password_list_free()</function></link>
+</para>
+<para>
+The user may have been prompted to unlock necessary keyrings, and user will 
+have been prompted for access to the items if needed. 
+</para>
+<para>
+Network passwords are items with the item type <link linkend="GNOME-KEYRING-ITEM-NETWORK-PASSWORD--CAPS"><literal>GNOME_KEYRING_ITEM_NETWORK_PASSWORD</literal></link></para>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>user</parameter>&#160;:</term>
+<listitem><simpara> The user name or <link linkend="NULL--CAPS"><literal>NULL</literal></link>.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>domain</parameter>&#160;:</term>
+<listitem><simpara> The domain name <link linkend="NULL--CAPS"><literal>NULL</literal></link>.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>server</parameter>&#160;:</term>
+<listitem><simpara> The server or <link linkend="NULL--CAPS"><literal>NULL</literal></link>.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>object</parameter>&#160;:</term>
+<listitem><simpara> The remote object or <link linkend="NULL--CAPS"><literal>NULL</literal></link>.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>protocol</parameter>&#160;:</term>
+<listitem><simpara> The network protorol or <link linkend="NULL--CAPS"><literal>NULL</literal></link>.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>authtype</parameter>&#160;:</term>
+<listitem><simpara> The authentication type or <link linkend="NULL--CAPS"><literal>NULL</literal></link>.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>port</parameter>&#160;:</term>
+<listitem><simpara> The network port or zero.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>results</parameter>&#160;:</term>
+<listitem><simpara> A location to return a <link linkend="GList"><literal>GList</literal></link> of <link linkend="GnomeKeyringNetworkPasswordData"><type>GnomeKeyringNetworkPasswordData</type></link> pointers.
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara> <link linkend="GNOME-KEYRING-RESULT-OK--CAPS"><literal>GNOME_KEYRING_RESULT_OK</literal></link> if the operation was succcessful or 
+an error result otherwise. 
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="gnome-keyring-set-network-password" role="function">
+<title>gnome_keyring_set_network_password ()</title>
+<indexterm zone="gnome-keyring-set-network-password"><primary sortas="gnome_keyring_set_network_password">gnome_keyring_set_network_password</primary></indexterm><programlisting><link linkend="gpointer">gpointer</link>            gnome_keyring_set_network_password  (const <link linkend="char">char</link> *keyring,
+                                                         const <link linkend="char">char</link> *user,
+                                                         const <link linkend="char">char</link> *domain,
+                                                         const <link linkend="char">char</link> *server,
+                                                         const <link linkend="char">char</link> *object,
+                                                         const <link linkend="char">char</link> *protocol,
+                                                         const <link linkend="char">char</link> *authtype,
+                                                         <link linkend="guint32">guint32</link> port,
+                                                         const <link linkend="char">char</link> *password,
+                                                         <link linkend="GnomeKeyringOperationGetIntCallback">GnomeKeyringOperationGetIntCallback</link> callback,
+                                                         <link linkend="gpointer">gpointer</link> data,
+                                                         <link linkend="GDestroyNotify">GDestroyNotify</link> destroy_data);</programlisting>
+<para>
+Store a network password.
+</para>
+<para>
+If an item already exists for with this network info (ie: user, server etc...)
+then it will be updated. 
+</para>
+<para>
+Whether a new item is created or not, id of the item will be passed to 
+the <parameter>callback</parameter>. 
+</para>
+<para>
+Network passwords are items with the item type <link linkend="GNOME-KEYRING-ITEM-NETWORK-PASSWORD--CAPS"><literal>GNOME_KEYRING_ITEM_NETWORK_PASSWORD</literal></link></para>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>keyring</parameter>&#160;:</term>
+<listitem><simpara> The keyring to store the password in, or <link linkend="NULL--CAPS"><literal>NULL</literal></link> for the default keyring.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>user</parameter>&#160;:</term>
+<listitem><simpara> The user name or <link linkend="NULL--CAPS"><literal>NULL</literal></link>.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>domain</parameter>&#160;:</term>
+<listitem><simpara> The domain name <link linkend="NULL--CAPS"><literal>NULL</literal></link>.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>server</parameter>&#160;:</term>
+<listitem><simpara> The server or <link linkend="NULL--CAPS"><literal>NULL</literal></link>.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>object</parameter>&#160;:</term>
+<listitem><simpara> The remote object or <link linkend="NULL--CAPS"><literal>NULL</literal></link>.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>protocol</parameter>&#160;:</term>
+<listitem><simpara> The network protorol or <link linkend="NULL--CAPS"><literal>NULL</literal></link>.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>authtype</parameter>&#160;:</term>
+<listitem><simpara> The authentication type or <link linkend="NULL--CAPS"><literal>NULL</literal></link>.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>port</parameter>&#160;:</term>
+<listitem><simpara> The network port or zero.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>password</parameter>&#160;:</term>
+<listitem><simpara> The password to store, must not be <link linkend="NULL--CAPS"><literal>NULL</literal></link>.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>callback</parameter>&#160;:</term>
+<listitem><simpara> Callback which is called when the operation completes
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>data</parameter>&#160;:</term>
+<listitem><simpara> Data to be passed to callback
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>destroy_data</parameter>&#160;:</term>
+<listitem><simpara> Function to be called when data is no longer needed.
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara> The asychronous request, which can be passed to <link linkend="gnome-keyring-cancel-request"><function>gnome_keyring_cancel_request()</function></link>.
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="gnome-keyring-set-network-password-sync" role="function">
+<title>gnome_keyring_set_network_password_sync ()</title>
+<indexterm zone="gnome-keyring-set-network-password-sync"><primary sortas="gnome_keyring_set_network_password_sync">gnome_keyring_set_network_password_sync</primary></indexterm><programlisting><link linkend="GnomeKeyringResult">GnomeKeyringResult</link>  gnome_keyring_set_network_password_sync
+                                                        (const <link linkend="char">char</link> *keyring,
+                                                         const <link linkend="char">char</link> *user,
+                                                         const <link linkend="char">char</link> *domain,
+                                                         const <link linkend="char">char</link> *server,
+                                                         const <link linkend="char">char</link> *object,
+                                                         const <link linkend="char">char</link> *protocol,
+                                                         const <link linkend="char">char</link> *authtype,
+                                                         <link linkend="guint32">guint32</link> port,
+                                                         const <link linkend="char">char</link> *password,
+                                                         <link linkend="guint32">guint32</link> *item_id);</programlisting>
+<para>
+Store a network password.
+</para>
+<para>
+If an item already exists for with this network info (ie: user, server etc...)
+then it will be updated. 
+</para>
+<para>
+The created or updated item id will be returned in <parameter>item_id</parameter>.
+</para>
+<para>
+Network passwords are items with the item type <link linkend="GNOME-KEYRING-ITEM-NETWORK-PASSWORD--CAPS"><literal>GNOME_KEYRING_ITEM_NETWORK_PASSWORD</literal></link></para>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>keyring</parameter>&#160;:</term>
+<listitem><simpara> The keyring to store the password in, or <link linkend="NULL--CAPS"><literal>NULL</literal></link> for the default keyring.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>user</parameter>&#160;:</term>
+<listitem><simpara> The user name or <link linkend="NULL--CAPS"><literal>NULL</literal></link>.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>domain</parameter>&#160;:</term>
+<listitem><simpara> The domain name <link linkend="NULL--CAPS"><literal>NULL</literal></link>.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>server</parameter>&#160;:</term>
+<listitem><simpara> The server or <link linkend="NULL--CAPS"><literal>NULL</literal></link>.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>object</parameter>&#160;:</term>
+<listitem><simpara> The remote object or <link linkend="NULL--CAPS"><literal>NULL</literal></link>.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>protocol</parameter>&#160;:</term>
+<listitem><simpara> The network protorol or <link linkend="NULL--CAPS"><literal>NULL</literal></link>.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>authtype</parameter>&#160;:</term>
+<listitem><simpara> The authentication type or <link linkend="NULL--CAPS"><literal>NULL</literal></link>.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>port</parameter>&#160;:</term>
+<listitem><simpara> The network port or zero.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>password</parameter>&#160;:</term>
+<listitem><simpara> The password to store, must not be <link linkend="NULL--CAPS"><literal>NULL</literal></link>.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>item_id</parameter>&#160;:</term>
+<listitem><simpara> A location to store the resulting item's id.
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara> <link linkend="GNOME-KEYRING-RESULT-OK--CAPS"><literal>GNOME_KEYRING_RESULT_OK</literal></link> if the operation was succcessful or 
+an error result otherwise. 
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+
+</refsect1>
+
+
+
+
+</refentry>

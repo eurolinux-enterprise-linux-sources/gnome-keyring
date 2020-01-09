@@ -1,0 +1,95 @@
+<?xml version="1.0"?>
+<!DOCTYPE refentry PUBLIC "-//OASIS//DTD DocBook XML V4.1.2//EN"
+               "http://www.oasis-open.org/docbook/xml/4.1.2/docbookx.dtd">
+<refentry id="gp11-gp11-error">
+<refmeta>
+<refentrytitle role="top_of_page" id="gp11-gp11-error.top_of_page">Errors</refentrytitle>
+<manvolnum>3</manvolnum>
+<refmiscinfo>GP11 Library</refmiscinfo>
+</refmeta>
+
+<refnamediv>
+<refname>Errors</refname>
+<refpurpose>GP11 Errors and error codes.</refpurpose>
+</refnamediv>
+
+<refsynopsisdiv id="gp11-gp11-error.synopsis" role="synopsis">
+<title role="synopsis.title">Synopsis</title>
+
+<synopsis>
+#define             <link linkend="GP11-VENDOR-CODE--CAPS">GP11_VENDOR_CODE</link>
+#define             <link linkend="GP11-ERROR--CAPS">GP11_ERROR</link>
+const <link linkend="gchar">gchar</link>*        <link linkend="gp11-message-from-rv">gp11_message_from_rv</link>                (<link linkend="CK-RV--CAPS">CK_RV</link> rv);
+#define             <link linkend="CKR-GP11-MODULE-PROBLEM--CAPS">CKR_GP11_MODULE_PROBLEM</link>
+</synopsis>
+</refsynopsisdiv>
+
+
+
+
+
+
+
+
+
+<refsect1 id="gp11-gp11-error.description" role="desc">
+<title role="desc.title">Description</title>
+<para>
+GP11 errors are returned as GError structures. The code member of GError 
+contains the raw PKCS11 CK_RV result value.</para>
+<para>
+</para>
+</refsect1>
+
+<refsect1 id="gp11-gp11-error.details" role="details">
+<title role="details.title">Details</title>
+<refsect2 id="GP11-VENDOR-CODE--CAPS" role="macro">
+<title>GP11_VENDOR_CODE</title>
+<indexterm zone="GP11-VENDOR-CODE--CAPS"><primary sortas="GP11_VENDOR_CODE">GP11_VENDOR_CODE</primary></indexterm><programlisting>#define             GP11_VENDOR_CODE                        0x47503131 /* GP11 */
+</programlisting>
+<para>
+Custom PKCS11 errors that originate from the GP11 library, are 
+based at this error code.</para>
+<para>
+</para></refsect2>
+<refsect2 id="GP11-ERROR--CAPS" role="macro">
+<title>GP11_ERROR</title>
+<indexterm zone="GP11-ERROR--CAPS"><primary sortas="GP11_ERROR">GP11_ERROR</primary></indexterm><programlisting>#define             GP11_ERROR                              (gp11_get_error_quark ())
+</programlisting>
+<para>
+The error domain for GP11 library errors.</para>
+<para>
+</para></refsect2>
+<refsect2 id="gp11-message-from-rv" role="function">
+<title>gp11_message_from_rv ()</title>
+<indexterm zone="gp11-message-from-rv"><primary sortas="gp11_message_from_rv">gp11_message_from_rv</primary></indexterm><programlisting>const <link linkend="gchar">gchar</link>*        gp11_message_from_rv                (<link linkend="CK-RV--CAPS">CK_RV</link> rv);</programlisting>
+<para>
+Get a message for a PKCS<link linkend="11--CAPS"><type>11</type></link> return value or error code. Do not 
+pass CKR_OK or other such non errors to this function.</para>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>rv</parameter>&#160;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara> The user readable message. 
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="CKR-GP11-MODULE-PROBLEM--CAPS" role="macro">
+<title>CKR_GP11_MODULE_PROBLEM</title>
+<indexterm zone="CKR-GP11-MODULE-PROBLEM--CAPS"><primary sortas="CKR_GP11_MODULE_PROBLEM">CKR_GP11_MODULE_PROBLEM</primary></indexterm><programlisting>#define             CKR_GP11_MODULE_PROBLEM                 (CKR_VENDOR_DEFINED | (GP11_VENDOR_CODE + 1)) 
+</programlisting>
+<para>
+A result code that signifies there was a problem loading a PKCS11
+module, usually a shared library.
+</para>
+<para>
+More details can be found in the error string.</para>
+<para>
+</para></refsect2>
+
+</refsect1>
+
+
+
+
+</refentry>

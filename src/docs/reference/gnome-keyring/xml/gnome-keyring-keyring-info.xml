@@ -1,0 +1,199 @@
+<?xml version="1.0"?>
+<!DOCTYPE refentry PUBLIC "-//OASIS//DTD DocBook XML V4.1.2//EN" 
+               "http://www.oasis-open.org/docbook/xml/4.1.2/docbookx.dtd">
+<refentry id="gnome-keyring-gnome-keyring-keyring-info">
+<refmeta>
+<refentrytitle role="top_of_page" id="gnome-keyring-gnome-keyring-keyring-info.top_of_page">Keyring Info</refentrytitle>
+<manvolnum>3</manvolnum>
+<refmiscinfo>GNOME-KEYRING Library</refmiscinfo>
+</refmeta>
+
+<refnamediv>
+<refname>Keyring Info</refname>
+<refpurpose>Keyring Information</refpurpose>
+</refnamediv>
+
+<refsynopsisdiv id="gnome-keyring-gnome-keyring-keyring-info.synopsis" role="synopsis">
+<title role="synopsis.title">Synopsis</title>
+
+<synopsis>
+typedef             <link linkend="GnomeKeyringInfo">GnomeKeyringInfo</link>;
+<link linkend="void">void</link>                <link linkend="gnome-keyring-info-free">gnome_keyring_info_free</link>             (<link linkend="GnomeKeyringInfo">GnomeKeyringInfo</link> *keyring_info);
+<link linkend="GnomeKeyringInfo">GnomeKeyringInfo</link> *  <link linkend="gnome-keyring-info-copy">gnome_keyring_info_copy</link>             (<link linkend="GnomeKeyringInfo">GnomeKeyringInfo</link> *keyring_info);
+<link linkend="void">void</link>                <link linkend="gnome-keyring-info-set-lock-on-idle">gnome_keyring_info_set_lock_on_idle</link> (<link linkend="GnomeKeyringInfo">GnomeKeyringInfo</link> *keyring_info,
+                                                         <link linkend="gboolean">gboolean</link> value);
+<link linkend="gboolean">gboolean</link>            <link linkend="gnome-keyring-info-get-lock-on-idle">gnome_keyring_info_get_lock_on_idle</link> (<link linkend="GnomeKeyringInfo">GnomeKeyringInfo</link> *keyring_info);
+<link linkend="void">void</link>                <link linkend="gnome-keyring-info-set-lock-timeout">gnome_keyring_info_set_lock_timeout</link> (<link linkend="GnomeKeyringInfo">GnomeKeyringInfo</link> *keyring_info,
+                                                         <link linkend="guint32">guint32</link> value);
+<link linkend="guint32">guint32</link>             <link linkend="gnome-keyring-info-get-lock-timeout">gnome_keyring_info_get_lock_timeout</link> (<link linkend="GnomeKeyringInfo">GnomeKeyringInfo</link> *keyring_info);
+<link linkend="time-t">time_t</link>              <link linkend="gnome-keyring-info-get-mtime">gnome_keyring_info_get_mtime</link>        (<link linkend="GnomeKeyringInfo">GnomeKeyringInfo</link> *keyring_info);
+<link linkend="time-t">time_t</link>              <link linkend="gnome-keyring-info-get-ctime">gnome_keyring_info_get_ctime</link>        (<link linkend="GnomeKeyringInfo">GnomeKeyringInfo</link> *keyring_info);
+<link linkend="gboolean">gboolean</link>            <link linkend="gnome-keyring-info-get-is-locked">gnome_keyring_info_get_is_locked</link>    (<link linkend="GnomeKeyringInfo">GnomeKeyringInfo</link> *keyring_info);
+</synopsis>
+</refsynopsisdiv>
+
+
+
+
+
+
+
+
+
+<refsect1 id="gnome-keyring-gnome-keyring-keyring-info.description" role="desc">
+<title role="desc.title">Description</title>
+<para>
+Use <link linkend="gnome-keyring-get-info"><function>gnome_keyring_get_info()</function></link> or <link linkend="gnome-keyring-get-info-sync"><function>gnome_keyring_get_info_sync()</function></link> to get a <link linkend="GnomeKeyringInfo"><type>GnomeKeyringInfo</type></link>
+pointer to use with these functions.</para>
+<para>
+</para>
+</refsect1>
+
+<refsect1 id="gnome-keyring-gnome-keyring-keyring-info.details" role="details">
+<title role="details.title">Details</title>
+<refsect2 id="GnomeKeyringInfo" role="typedef">
+<title>GnomeKeyringInfo</title>
+<indexterm zone="GnomeKeyringInfo"><primary sortas="GnomeKeyringInfo">GnomeKeyringInfo</primary></indexterm><programlisting>typedef struct GnomeKeyringInfo GnomeKeyringInfo;
+</programlisting>
+<para>
+</para></refsect2>
+<refsect2 id="gnome-keyring-info-free" role="function">
+<title>gnome_keyring_info_free ()</title>
+<indexterm zone="gnome-keyring-info-free"><primary sortas="gnome_keyring_info_free">gnome_keyring_info_free</primary></indexterm><programlisting><link linkend="void">void</link>                gnome_keyring_info_free             (<link linkend="GnomeKeyringInfo">GnomeKeyringInfo</link> *keyring_info);</programlisting>
+<para>
+Free a <link linkend="GnomeKeyringInfo"><type>GnomeKeyringInfo</type></link> object. If a <link linkend="NULL--CAPS"><literal>NULL</literal></link> pointer is passed
+nothing occurs.</para>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>keyring_info</parameter>&#160;:</term>
+<listitem><simpara> The keyring info to free.
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="gnome-keyring-info-copy" role="function">
+<title>gnome_keyring_info_copy ()</title>
+<indexterm zone="gnome-keyring-info-copy"><primary sortas="gnome_keyring_info_copy">gnome_keyring_info_copy</primary></indexterm><programlisting><link linkend="GnomeKeyringInfo">GnomeKeyringInfo</link> *  gnome_keyring_info_copy             (<link linkend="GnomeKeyringInfo">GnomeKeyringInfo</link> *keyring_info);</programlisting>
+<para>
+Copy a <link linkend="GnomeKeyringInfo"><type>GnomeKeyringInfo</type></link> object.</para>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>keyring_info</parameter>&#160;:</term>
+<listitem><simpara> The keyring info to copy.
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara> The newly allocated <link linkend="GnomeKeyringInfo"><type>GnomeKeyringInfo</type></link>. This must be freed with 
+<link linkend="gnome-keyring-info-free"><function>gnome_keyring_info_free()</function></link>
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="gnome-keyring-info-set-lock-on-idle" role="function">
+<title>gnome_keyring_info_set_lock_on_idle ()</title>
+<indexterm zone="gnome-keyring-info-set-lock-on-idle"><primary sortas="gnome_keyring_info_set_lock_on_idle">gnome_keyring_info_set_lock_on_idle</primary></indexterm><programlisting><link linkend="void">void</link>                gnome_keyring_info_set_lock_on_idle (<link linkend="GnomeKeyringInfo">GnomeKeyringInfo</link> *keyring_info,
+                                                         <link linkend="gboolean">gboolean</link> value);</programlisting>
+<para>
+Set whether or not to lock a keyring after a certain amount of idle time.
+</para>
+<para>
+See also <link linkend="gnome-keyring-info-set-lock-timeout"><function>gnome_keyring_info_set_lock_timeout()</function></link>.</para>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>keyring_info</parameter>&#160;:</term>
+<listitem><simpara> The keyring info.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>value</parameter>&#160;:</term>
+<listitem><simpara> Whether to lock or not.
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="gnome-keyring-info-get-lock-on-idle" role="function">
+<title>gnome_keyring_info_get_lock_on_idle ()</title>
+<indexterm zone="gnome-keyring-info-get-lock-on-idle"><primary sortas="gnome_keyring_info_get_lock_on_idle">gnome_keyring_info_get_lock_on_idle</primary></indexterm><programlisting><link linkend="gboolean">gboolean</link>            gnome_keyring_info_get_lock_on_idle (<link linkend="GnomeKeyringInfo">GnomeKeyringInfo</link> *keyring_info);</programlisting>
+<para>
+Get whether or not to lock a keyring after a certain amount of idle time.
+</para>
+<para>
+See also <link linkend="gnome-keyring-info-get-lock-timeout"><function>gnome_keyring_info_get_lock_timeout()</function></link>.</para>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>keyring_info</parameter>&#160;:</term>
+<listitem><simpara> The keyring info.
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara> Whether to lock or not.
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="gnome-keyring-info-set-lock-timeout" role="function">
+<title>gnome_keyring_info_set_lock_timeout ()</title>
+<indexterm zone="gnome-keyring-info-set-lock-timeout"><primary sortas="gnome_keyring_info_set_lock_timeout">gnome_keyring_info_set_lock_timeout</primary></indexterm><programlisting><link linkend="void">void</link>                gnome_keyring_info_set_lock_timeout (<link linkend="GnomeKeyringInfo">GnomeKeyringInfo</link> *keyring_info,
+                                                         <link linkend="guint32">guint32</link> value);</programlisting>
+<para>
+Set the idle timeout, in seconds, after which to lock the keyring. 
+</para>
+<para>
+See also <link linkend="gnome-keyring-info-set-lock-on-idle"><function>gnome_keyring_info_set_lock_on_idle()</function></link>.</para>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>keyring_info</parameter>&#160;:</term>
+<listitem><simpara> The keyring info.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>value</parameter>&#160;:</term>
+<listitem><simpara> The lock timeout in seconds.
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="gnome-keyring-info-get-lock-timeout" role="function">
+<title>gnome_keyring_info_get_lock_timeout ()</title>
+<indexterm zone="gnome-keyring-info-get-lock-timeout"><primary sortas="gnome_keyring_info_get_lock_timeout">gnome_keyring_info_get_lock_timeout</primary></indexterm><programlisting><link linkend="guint32">guint32</link>             gnome_keyring_info_get_lock_timeout (<link linkend="GnomeKeyringInfo">GnomeKeyringInfo</link> *keyring_info);</programlisting>
+<para>
+Get the idle timeout, in seconds, after which to lock the keyring. 
+</para>
+<para>
+See also <link linkend="gnome-keyring-info-get-lock-on-idle"><function>gnome_keyring_info_get_lock_on_idle()</function></link>.</para>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>keyring_info</parameter>&#160;:</term>
+<listitem><simpara> The keyring info.
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara> The idle timeout, in seconds.
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="gnome-keyring-info-get-mtime" role="function">
+<title>gnome_keyring_info_get_mtime ()</title>
+<indexterm zone="gnome-keyring-info-get-mtime"><primary sortas="gnome_keyring_info_get_mtime">gnome_keyring_info_get_mtime</primary></indexterm><programlisting><link linkend="time-t">time_t</link>              gnome_keyring_info_get_mtime        (<link linkend="GnomeKeyringInfo">GnomeKeyringInfo</link> *keyring_info);</programlisting>
+<para>
+Get the time at which the keyring was last modified.</para>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>keyring_info</parameter>&#160;:</term>
+<listitem><simpara> The keyring info.
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara> The last modified time.
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="gnome-keyring-info-get-ctime" role="function">
+<title>gnome_keyring_info_get_ctime ()</title>
+<indexterm zone="gnome-keyring-info-get-ctime"><primary sortas="gnome_keyring_info_get_ctime">gnome_keyring_info_get_ctime</primary></indexterm><programlisting><link linkend="time-t">time_t</link>              gnome_keyring_info_get_ctime        (<link linkend="GnomeKeyringInfo">GnomeKeyringInfo</link> *keyring_info);</programlisting>
+<para>
+Get the time at which the keyring was created.</para>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>keyring_info</parameter>&#160;:</term>
+<listitem><simpara> The keyring info.
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara> The created time.
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="gnome-keyring-info-get-is-locked" role="function">
+<title>gnome_keyring_info_get_is_locked ()</title>
+<indexterm zone="gnome-keyring-info-get-is-locked"><primary sortas="gnome_keyring_info_get_is_locked">gnome_keyring_info_get_is_locked</primary></indexterm><programlisting><link linkend="gboolean">gboolean</link>            gnome_keyring_info_get_is_locked    (<link linkend="GnomeKeyringInfo">GnomeKeyringInfo</link> *keyring_info);</programlisting>
+<para>
+Get whether the keyring is locked or not.</para>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>keyring_info</parameter>&#160;:</term>
+<listitem><simpara> The keyring info.
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara> Whether the keyring is locked or not.
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+
+</refsect1>
+
+
+
+
+</refentry>

@@ -1,0 +1,973 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>GP11Attribute</title>
+<meta name="generator" content="DocBook XSL Stylesheets V1.75.1">
+<link rel="home" href="index.html" title="GP11 Reference Manual">
+<link rel="up" href="ch01.html" title="PKCS#11 GObject Bindings">
+<link rel="prev" href="gp11-gp11-object.html" title="GP11Object">
+<link rel="next" href="gp11-gp11-attributes.html" title="GP11Attributes">
+<meta name="generator" content="GTK-Doc V1.11 (XML mode)">
+<link rel="stylesheet" href="style.css" type="text/css">
+<link rel="chapter" href="ch01.html" title="PKCS#11 GObject Bindings">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<table class="navigation" id="top" width="100%" summary="Navigation header" cellpadding="2" cellspacing="2">
+<tr valign="middle">
+<td><a accesskey="p" href="gp11-gp11-object.html"><img src="left.png" width="24" height="24" border="0" alt="Prev"></a></td>
+<td><a accesskey="u" href="ch01.html"><img src="up.png" width="24" height="24" border="0" alt="Up"></a></td>
+<td><a accesskey="h" href="index.html"><img src="home.png" width="24" height="24" border="0" alt="Home"></a></td>
+<th width="100%" align="center">GP11 Reference Manual</th>
+<td><a accesskey="n" href="gp11-gp11-attributes.html"><img src="right.png" width="24" height="24" border="0" alt="Next"></a></td>
+</tr>
+<tr><td colspan="5" class="shortcuts">
+<a href="#gp11-gp11-attribute.synopsis" class="shortcut">Top</a>
+                 | 
+                <a href="#gp11-gp11-attribute.description" class="shortcut">Description</a>
+</td></tr>
+</table>
+<div class="refentry" title="GP11Attribute">
+<a name="gp11-gp11-attribute"></a><div class="titlepage"></div>
+<div class="refnamediv"><table width="100%"><tr>
+<td valign="top">
+<h2><span class="refentrytitle"><a name="gp11-gp11-attribute.top_of_page"></a>GP11Attribute</span></h2>
+<p>GP11Attribute — A PKCS11 attribute.</p>
+</td>
+<td valign="top" align="right"></td>
+</tr></table></div>
+<div class="refsynopsisdiv" title="Synopsis">
+<a name="gp11-gp11-attribute.synopsis"></a><h2>Synopsis</h2>
+<pre class="synopsis">
+                    <a class="link" href="gp11-gp11-attribute.html#GP11Attribute" title="GP11Attribute">GP11Attribute</a>;
+void                <a class="link" href="gp11-gp11-attribute.html#gp11-attribute-init" title="gp11_attribute_init ()">gp11_attribute_init</a>                 (<a class="link" href="gp11-gp11-attribute.html#GP11Attribute" title="GP11Attribute">GP11Attribute</a> *attr,
+                                                         <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gulong"
+>gulong</a> attr_type,
+                                                         <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gconstpointer"
+>gconstpointer</a> value,
+                                                         <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gsize"
+>gsize</a> length);
+void                <a class="link" href="gp11-gp11-attribute.html#gp11-attribute-init-invalid" title="gp11_attribute_init_invalid ()">gp11_attribute_init_invalid</a>         (<a class="link" href="gp11-gp11-attribute.html#GP11Attribute" title="GP11Attribute">GP11Attribute</a> *attr,
+                                                         <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gulong"
+>gulong</a> attr_type);
+void                <a class="link" href="gp11-gp11-attribute.html#gp11-attribute-init-empty" title="gp11_attribute_init_empty ()">gp11_attribute_init_empty</a>           (<a class="link" href="gp11-gp11-attribute.html#GP11Attribute" title="GP11Attribute">GP11Attribute</a> *attr,
+                                                         <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gulong"
+>gulong</a> attr_type);
+void                <a class="link" href="gp11-gp11-attribute.html#gp11-attribute-init-boolean" title="gp11_attribute_init_boolean ()">gp11_attribute_init_boolean</a>         (<a class="link" href="gp11-gp11-attribute.html#GP11Attribute" title="GP11Attribute">GP11Attribute</a> *attr,
+                                                         <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gulong"
+>gulong</a> attr_type,
+                                                         <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"
+>gboolean</a> value);
+void                <a class="link" href="gp11-gp11-attribute.html#gp11-attribute-init-date" title="gp11_attribute_init_date ()">gp11_attribute_init_date</a>            (<a class="link" href="gp11-gp11-attribute.html#GP11Attribute" title="GP11Attribute">GP11Attribute</a> *attr,
+                                                         <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gulong"
+>gulong</a> attr_type,
+                                                         const <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Date-and-Time-Functions.html#GDate"
+>GDate</a> *value);
+void                <a class="link" href="gp11-gp11-attribute.html#gp11-attribute-init-ulong" title="gp11_attribute_init_ulong ()">gp11_attribute_init_ulong</a>           (<a class="link" href="gp11-gp11-attribute.html#GP11Attribute" title="GP11Attribute">GP11Attribute</a> *attr,
+                                                         <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gulong"
+>gulong</a> attr_type,
+                                                         <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gulong"
+>gulong</a> value);
+void                <a class="link" href="gp11-gp11-attribute.html#gp11-attribute-init-string" title="gp11_attribute_init_string ()">gp11_attribute_init_string</a>          (<a class="link" href="gp11-gp11-attribute.html#GP11Attribute" title="GP11Attribute">GP11Attribute</a> *attr,
+                                                         <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gulong"
+>gulong</a> attr_type,
+                                                         const <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"
+>gchar</a> *value);
+void                <a class="link" href="gp11-gp11-attribute.html#gp11-attribute-init-copy" title="gp11_attribute_init_copy ()">gp11_attribute_init_copy</a>            (<a class="link" href="gp11-gp11-attribute.html#GP11Attribute" title="GP11Attribute">GP11Attribute</a> *dest,
+                                                         const <a class="link" href="gp11-gp11-attribute.html#GP11Attribute" title="GP11Attribute">GP11Attribute</a> *src);
+<a class="link" href="gp11-gp11-attribute.html#GP11Attribute" title="GP11Attribute">GP11Attribute</a>*      <a class="link" href="gp11-gp11-attribute.html#gp11-attribute-new" title="gp11_attribute_new ()">gp11_attribute_new</a>                  (<a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gulong"
+>gulong</a> attr_type,
+                                                         <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gpointer"
+>gpointer</a> value,
+                                                         <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gsize"
+>gsize</a> length);
+<a class="link" href="gp11-gp11-attribute.html#GP11Attribute" title="GP11Attribute">GP11Attribute</a>*      <a class="link" href="gp11-gp11-attribute.html#gp11-attribute-new-invalid" title="gp11_attribute_new_invalid ()">gp11_attribute_new_invalid</a>          (<a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gulong"
+>gulong</a> attr_type);
+<a class="link" href="gp11-gp11-attribute.html#GP11Attribute" title="GP11Attribute">GP11Attribute</a>*      <a class="link" href="gp11-gp11-attribute.html#gp11-attribute-new-empty" title="gp11_attribute_new_empty ()">gp11_attribute_new_empty</a>            (<a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gulong"
+>gulong</a> attr_type);
+<a class="link" href="gp11-gp11-attribute.html#GP11Attribute" title="GP11Attribute">GP11Attribute</a>*      <a class="link" href="gp11-gp11-attribute.html#gp11-attribute-new-boolean" title="gp11_attribute_new_boolean ()">gp11_attribute_new_boolean</a>          (<a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gulong"
+>gulong</a> attr_type,
+                                                         <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"
+>gboolean</a> value);
+<a class="link" href="gp11-gp11-attribute.html#GP11Attribute" title="GP11Attribute">GP11Attribute</a>*      <a class="link" href="gp11-gp11-attribute.html#gp11-attribute-new-date" title="gp11_attribute_new_date ()">gp11_attribute_new_date</a>             (<a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gulong"
+>gulong</a> attr_type,
+                                                         const <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Date-and-Time-Functions.html#GDate"
+>GDate</a> *value);
+<a class="link" href="gp11-gp11-attribute.html#GP11Attribute" title="GP11Attribute">GP11Attribute</a>*      <a class="link" href="gp11-gp11-attribute.html#gp11-attribute-new-ulong" title="gp11_attribute_new_ulong ()">gp11_attribute_new_ulong</a>            (<a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gulong"
+>gulong</a> attr_type,
+                                                         <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gulong"
+>gulong</a> value);
+<a class="link" href="gp11-gp11-attribute.html#GP11Attribute" title="GP11Attribute">GP11Attribute</a>*      <a class="link" href="gp11-gp11-attribute.html#gp11-attribute-new-string" title="gp11_attribute_new_string ()">gp11_attribute_new_string</a>           (<a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gulong"
+>gulong</a> attr_type,
+                                                         const <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"
+>gchar</a> *value);
+<a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"
+>gboolean</a>            <a class="link" href="gp11-gp11-attribute.html#gp11-attribute-is-invalid" title="gp11_attribute_is_invalid ()">gp11_attribute_is_invalid</a>           (<a class="link" href="gp11-gp11-attribute.html#GP11Attribute" title="GP11Attribute">GP11Attribute</a> *attr);
+<a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"
+>gboolean</a>            <a class="link" href="gp11-gp11-attribute.html#gp11-attribute-get-boolean" title="gp11_attribute_get_boolean ()">gp11_attribute_get_boolean</a>          (<a class="link" href="gp11-gp11-attribute.html#GP11Attribute" title="GP11Attribute">GP11Attribute</a> *attr);
+<a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gulong"
+>gulong</a>              <a class="link" href="gp11-gp11-attribute.html#gp11-attribute-get-ulong" title="gp11_attribute_get_ulong ()">gp11_attribute_get_ulong</a>            (<a class="link" href="gp11-gp11-attribute.html#GP11Attribute" title="GP11Attribute">GP11Attribute</a> *attr);
+<a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"
+>gchar</a>*              <a class="link" href="gp11-gp11-attribute.html#gp11-attribute-get-string" title="gp11_attribute_get_string ()">gp11_attribute_get_string</a>           (<a class="link" href="gp11-gp11-attribute.html#GP11Attribute" title="GP11Attribute">GP11Attribute</a> *attr);
+void                <a class="link" href="gp11-gp11-attribute.html#gp11-attribute-get-date" title="gp11_attribute_get_date ()">gp11_attribute_get_date</a>             (<a class="link" href="gp11-gp11-attribute.html#GP11Attribute" title="GP11Attribute">GP11Attribute</a> *attr,
+                                                         <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Date-and-Time-Functions.html#GDate"
+>GDate</a> *value);
+<a class="link" href="gp11-gp11-attribute.html#GP11Attribute" title="GP11Attribute">GP11Attribute</a>*      <a class="link" href="gp11-gp11-attribute.html#gp11-attribute-dup" title="gp11_attribute_dup ()">gp11_attribute_dup</a>                  (<a class="link" href="gp11-gp11-attribute.html#GP11Attribute" title="GP11Attribute">GP11Attribute</a> *attr);
+void                <a class="link" href="gp11-gp11-attribute.html#gp11-attribute-clear" title="gp11_attribute_clear ()">gp11_attribute_clear</a>                (<a class="link" href="gp11-gp11-attribute.html#GP11Attribute" title="GP11Attribute">GP11Attribute</a> *attr);
+void                <a class="link" href="gp11-gp11-attribute.html#gp11-attribute-free" title="gp11_attribute_free ()">gp11_attribute_free</a>                 (<a class="link" href="gp11-gp11-attribute.html#GP11Attribute" title="GP11Attribute">GP11Attribute</a> *attr);
+</pre>
+</div>
+<div class="refsect1" title="Description">
+<a name="gp11-gp11-attribute.description"></a><h2>Description</h2>
+<p>
+This structure represents a PKCS11 CK_ATTRIBUTE. These attributes contain information
+about a PKCS11 object. Use <a class="link" href="gp11-gp11-object.html#gp11-object-get" title="gp11_object_get ()"><code class="function">gp11_object_get()</code></a> or <a class="link" href="gp11-gp11-object.html#gp11-object-set" title="gp11_object_set ()"><code class="function">gp11_object_set()</code></a> to set and retrieve
+attributes on an object.</p>
+<p>
+</p>
+</div>
+<div class="refsect1" title="Details">
+<a name="gp11-gp11-attribute.details"></a><h2>Details</h2>
+<div class="refsect2" title="GP11Attribute">
+<a name="GP11Attribute"></a><h3>GP11Attribute</h3>
+<pre class="programlisting">typedef struct {
+	gulong type;
+	guchar *value;
+	gulong length;
+} GP11Attribute;
+</pre>
+<p>
+This structure represents a PKCS11 CK_ATTRIBUTE.</p>
+<p>
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gulong"
+>gulong</a> <em class="structfield"><code>type</code></em>;</span></p></td>
+<td> The attribute type, such as CKA_LABEL.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#guchar"
+>guchar</a> *<em class="structfield"><code>value</code></em>;</span></p></td>
+<td> The value of the attribute. May be NULL.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gulong"
+>gulong</a> <em class="structfield"><code>length</code></em>;</span></p></td>
+<td> The length of the attribute. May be G_MAXULONG if the attribute is invalid.
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" title="gp11_attribute_init ()">
+<a name="gp11-attribute-init"></a><h3>gp11_attribute_init ()</h3>
+<pre class="programlisting">void                gp11_attribute_init                 (<a class="link" href="gp11-gp11-attribute.html#GP11Attribute" title="GP11Attribute">GP11Attribute</a> *attr,
+                                                         <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gulong"
+>gulong</a> attr_type,
+                                                         <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gconstpointer"
+>gconstpointer</a> value,
+                                                         <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gsize"
+>gsize</a> length);</pre>
+<p>
+Initialize a PKCS<span class="type">11</span> attribute. This copies the value memory 
+into an internal buffer.
+</p>
+<p>
+When done with the attribute you should use <a class="link" href="gp11-gp11-attribute.html#gp11-attribute-clear" title="gp11_attribute_clear ()"><code class="function">gp11_attribute_clear()</code></a>
+to free the internal memory.</p>
+<p>
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>attr</code></em> :</span></p></td>
+<td> An uninitialized attribute.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>attr_type</code></em> :</span></p></td>
+<td> The PKCS<span class="type">11</span> attribute type to set on the attribute.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>value</code></em> :</span></p></td>
+<td> The raw value of the attribute.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>length</code></em> :</span></p></td>
+<td> The length of the raw value.
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" title="gp11_attribute_init_invalid ()">
+<a name="gp11-attribute-init-invalid"></a><h3>gp11_attribute_init_invalid ()</h3>
+<pre class="programlisting">void                gp11_attribute_init_invalid         (<a class="link" href="gp11-gp11-attribute.html#GP11Attribute" title="GP11Attribute">GP11Attribute</a> *attr,
+                                                         <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gulong"
+>gulong</a> attr_type);</pre>
+<p>
+Initialize a PKCS<span class="type">11</span> attribute to an 'invalid' or 'not found' 
+state. Specifically this sets the value length to (CK_ULONG)-1
+as specified in the PKCS<span class="type">11</span> specification.
+</p>
+<p>
+When done with the attribute you should use <a class="link" href="gp11-gp11-attribute.html#gp11-attribute-clear" title="gp11_attribute_clear ()"><code class="function">gp11_attribute_clear()</code></a>
+to free the internal memory.</p>
+<p>
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>attr</code></em> :</span></p></td>
+<td> An uninitialized attribute.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>attr_type</code></em> :</span></p></td>
+<td> The PKCS<span class="type">11</span> attribute type to set on the attribute.
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" title="gp11_attribute_init_empty ()">
+<a name="gp11-attribute-init-empty"></a><h3>gp11_attribute_init_empty ()</h3>
+<pre class="programlisting">void                gp11_attribute_init_empty           (<a class="link" href="gp11-gp11-attribute.html#GP11Attribute" title="GP11Attribute">GP11Attribute</a> *attr,
+                                                         <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gulong"
+>gulong</a> attr_type);</pre>
+<p>
+Initialize a PKCS<span class="type">11</span> attribute to an empty state. The attribute
+type will be set, but no data will be set.
+</p>
+<p>
+When done with the attribute you should use <a class="link" href="gp11-gp11-attribute.html#gp11-attribute-clear" title="gp11_attribute_clear ()"><code class="function">gp11_attribute_clear()</code></a>
+to free the internal memory.</p>
+<p>
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>attr</code></em> :</span></p></td>
+<td> An uninitialized attribute.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>attr_type</code></em> :</span></p></td>
+<td> The PKCS<span class="type">11</span> attribute type to set on the attribute.
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" title="gp11_attribute_init_boolean ()">
+<a name="gp11-attribute-init-boolean"></a><h3>gp11_attribute_init_boolean ()</h3>
+<pre class="programlisting">void                gp11_attribute_init_boolean         (<a class="link" href="gp11-gp11-attribute.html#GP11Attribute" title="GP11Attribute">GP11Attribute</a> *attr,
+                                                         <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gulong"
+>gulong</a> attr_type,
+                                                         <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"
+>gboolean</a> value);</pre>
+<p>
+Initialize a PKCS<span class="type">11</span> attribute to boolean. This will result
+in a CK_BBOOL attribute from the PKCS<span class="type">11</span> specs.
+</p>
+<p>
+When done with the attribute you should use <a class="link" href="gp11-gp11-attribute.html#gp11-attribute-clear" title="gp11_attribute_clear ()"><code class="function">gp11_attribute_clear()</code></a>
+to free the internal memory.</p>
+<p>
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>attr</code></em> :</span></p></td>
+<td> An uninitialized attribute.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>attr_type</code></em> :</span></p></td>
+<td> The PKCS<span class="type">11</span> attribute type to set on the attribute.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>value</code></em> :</span></p></td>
+<td> The boolean value of the attribute.
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" title="gp11_attribute_init_date ()">
+<a name="gp11-attribute-init-date"></a><h3>gp11_attribute_init_date ()</h3>
+<pre class="programlisting">void                gp11_attribute_init_date            (<a class="link" href="gp11-gp11-attribute.html#GP11Attribute" title="GP11Attribute">GP11Attribute</a> *attr,
+                                                         <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gulong"
+>gulong</a> attr_type,
+                                                         const <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Date-and-Time-Functions.html#GDate"
+>GDate</a> *value);</pre>
+<p>
+Initialize a PKCS<span class="type">11</span> attribute to a date. This will result
+in a CK_DATE attribute from the PKCS<span class="type">11</span> specs.
+</p>
+<p>
+When done with the attribute you should use <a class="link" href="gp11-gp11-attribute.html#gp11-attribute-clear" title="gp11_attribute_clear ()"><code class="function">gp11_attribute_clear()</code></a>
+to free the internal memory.</p>
+<p>
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>attr</code></em> :</span></p></td>
+<td> An uninitialized attribute.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>attr_type</code></em> :</span></p></td>
+<td> The PKCS<span class="type">11</span> attribute type to set on the attribute.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>value</code></em> :</span></p></td>
+<td> The date value of the attribute.
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" title="gp11_attribute_init_ulong ()">
+<a name="gp11-attribute-init-ulong"></a><h3>gp11_attribute_init_ulong ()</h3>
+<pre class="programlisting">void                gp11_attribute_init_ulong           (<a class="link" href="gp11-gp11-attribute.html#GP11Attribute" title="GP11Attribute">GP11Attribute</a> *attr,
+                                                         <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gulong"
+>gulong</a> attr_type,
+                                                         <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gulong"
+>gulong</a> value);</pre>
+<p>
+Initialize a PKCS<span class="type">11</span> attribute to a unsigned long. This will result
+in a CK_ULONG attribute from the PKCS<span class="type">11</span> specs.
+</p>
+<p>
+When done with the attribute you should use <a class="link" href="gp11-gp11-attribute.html#gp11-attribute-clear" title="gp11_attribute_clear ()"><code class="function">gp11_attribute_clear()</code></a>
+to free the internal memory.</p>
+<p>
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>attr</code></em> :</span></p></td>
+<td> An uninitialized attribute.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>attr_type</code></em> :</span></p></td>
+<td> The PKCS<span class="type">11</span> attribute type to set on the attribute.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>value</code></em> :</span></p></td>
+<td> The ulong value of the attribute.
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" title="gp11_attribute_init_string ()">
+<a name="gp11-attribute-init-string"></a><h3>gp11_attribute_init_string ()</h3>
+<pre class="programlisting">void                gp11_attribute_init_string          (<a class="link" href="gp11-gp11-attribute.html#GP11Attribute" title="GP11Attribute">GP11Attribute</a> *attr,
+                                                         <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gulong"
+>gulong</a> attr_type,
+                                                         const <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"
+>gchar</a> *value);</pre>
+<p>
+Initialize a PKCS<span class="type">11</span> attribute to a string. This will result
+in an attribute containing the text, but not the null terminator. 
+The text in the attribute will be of the same encoding as you pass 
+to this function.
+</p>
+<p>
+When done with the attribute you should use <a class="link" href="gp11-gp11-attribute.html#gp11-attribute-clear" title="gp11_attribute_clear ()"><code class="function">gp11_attribute_clear()</code></a>
+to free the internal memory.</p>
+<p>
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>attr</code></em> :</span></p></td>
+<td> An uninitialized attribute.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>attr_type</code></em> :</span></p></td>
+<td> The PKCS<span class="type">11</span> attribute type to set on the attribute.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>value</code></em> :</span></p></td>
+<td> The null terminated string value of the attribute.
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" title="gp11_attribute_init_copy ()">
+<a name="gp11-attribute-init-copy"></a><h3>gp11_attribute_init_copy ()</h3>
+<pre class="programlisting">void                gp11_attribute_init_copy            (<a class="link" href="gp11-gp11-attribute.html#GP11Attribute" title="GP11Attribute">GP11Attribute</a> *dest,
+                                                         const <a class="link" href="gp11-gp11-attribute.html#GP11Attribute" title="GP11Attribute">GP11Attribute</a> *src);</pre>
+<p>
+Initialize a PKCS<span class="type">11</span> attribute as a copy of another attribute. 
+This copies the value memory as well.
+</p>
+<p>
+When done with the copied attribute you should use 
+<a class="link" href="gp11-gp11-attribute.html#gp11-attribute-clear" title="gp11_attribute_clear ()"><code class="function">gp11_attribute_clear()</code></a> to free the internal memory.</p>
+<p>
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>dest</code></em> :</span></p></td>
+<td> An uninitialized attribute.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>src</code></em> :</span></p></td>
+<td> An attribute to copy.
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" title="gp11_attribute_new ()">
+<a name="gp11-attribute-new"></a><h3>gp11_attribute_new ()</h3>
+<pre class="programlisting"><a class="link" href="gp11-gp11-attribute.html#GP11Attribute" title="GP11Attribute">GP11Attribute</a>*      gp11_attribute_new                  (<a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gulong"
+>gulong</a> attr_type,
+                                                         <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gpointer"
+>gpointer</a> value,
+                                                         <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gsize"
+>gsize</a> length);</pre>
+<p>
+Create a new PKCS<span class="type">11</span> attribute. The value will be copied 
+into the new attribute.</p>
+<p>
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>attr_type</code></em> :</span></p></td>
+<td> The PKCS<span class="type">11</span> attribute type to set on the attribute.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>value</code></em> :</span></p></td>
+<td> The raw value of the attribute.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>length</code></em> :</span></p></td>
+<td> The length of the attribute. 
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> The new attribute. When done with the attribute use 
+<a class="link" href="gp11-gp11-attribute.html#gp11-attribute-free" title="gp11_attribute_free ()"><code class="function">gp11_attribute_free()</code></a> to free it. 
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" title="gp11_attribute_new_invalid ()">
+<a name="gp11-attribute-new-invalid"></a><h3>gp11_attribute_new_invalid ()</h3>
+<pre class="programlisting"><a class="link" href="gp11-gp11-attribute.html#GP11Attribute" title="GP11Attribute">GP11Attribute</a>*      gp11_attribute_new_invalid          (<a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gulong"
+>gulong</a> attr_type);</pre>
+<p>
+Create a new PKCS<span class="type">11</span> attribute as 'invalid' or 'not found' 
+state. Specifically this sets the value length to (CK_ULONG)-1
+as specified in the PKCS<span class="type">11</span> specification.</p>
+<p>
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>attr_type</code></em> :</span></p></td>
+<td> The PKCS<span class="type">11</span> attribute type to set on the attribute.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> The new attribute. When done with the attribute use 
+<a class="link" href="gp11-gp11-attribute.html#gp11-attribute-free" title="gp11_attribute_free ()"><code class="function">gp11_attribute_free()</code></a> to free it. 
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" title="gp11_attribute_new_empty ()">
+<a name="gp11-attribute-new-empty"></a><h3>gp11_attribute_new_empty ()</h3>
+<pre class="programlisting"><a class="link" href="gp11-gp11-attribute.html#GP11Attribute" title="GP11Attribute">GP11Attribute</a>*      gp11_attribute_new_empty            (<a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gulong"
+>gulong</a> attr_type);</pre>
+<p>
+Create a new PKCS<span class="type">11</span> attribute with empty data.</p>
+<p>
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>attr_type</code></em> :</span></p></td>
+<td> The PKCS<span class="type">11</span> attribute type to set on the attribute.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> The new attribute. When done with the attribute use 
+<a class="link" href="gp11-gp11-attribute.html#gp11-attribute-free" title="gp11_attribute_free ()"><code class="function">gp11_attribute_free()</code></a> to free it.
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" title="gp11_attribute_new_boolean ()">
+<a name="gp11-attribute-new-boolean"></a><h3>gp11_attribute_new_boolean ()</h3>
+<pre class="programlisting"><a class="link" href="gp11-gp11-attribute.html#GP11Attribute" title="GP11Attribute">GP11Attribute</a>*      gp11_attribute_new_boolean          (<a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gulong"
+>gulong</a> attr_type,
+                                                         <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"
+>gboolean</a> value);</pre>
+<p>
+Initialize a PKCS<span class="type">11</span> attribute to boolean. This will result
+in a CK_BBOOL attribute from the PKCS<span class="type">11</span> specs.</p>
+<p>
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>attr_type</code></em> :</span></p></td>
+<td> The PKCS<span class="type">11</span> attribute type to set on the attribute.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>value</code></em> :</span></p></td>
+<td> The boolean value of the attribute.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> The new attribute. When done with the attribute use 
+<a class="link" href="gp11-gp11-attribute.html#gp11-attribute-free" title="gp11_attribute_free ()"><code class="function">gp11_attribute_free()</code></a> to free it. 
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" title="gp11_attribute_new_date ()">
+<a name="gp11-attribute-new-date"></a><h3>gp11_attribute_new_date ()</h3>
+<pre class="programlisting"><a class="link" href="gp11-gp11-attribute.html#GP11Attribute" title="GP11Attribute">GP11Attribute</a>*      gp11_attribute_new_date             (<a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gulong"
+>gulong</a> attr_type,
+                                                         const <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Date-and-Time-Functions.html#GDate"
+>GDate</a> *value);</pre>
+<p>
+Initialize a PKCS<span class="type">11</span> attribute to a date. This will result
+in a CK_DATE attribute from the PKCS<span class="type">11</span> specs.</p>
+<p>
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>attr_type</code></em> :</span></p></td>
+<td> The PKCS<span class="type">11</span> attribute type to set on the attribute.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>value</code></em> :</span></p></td>
+<td> The date value of the attribute.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> The new attribute. When done with the attribute use 
+<a class="link" href="gp11-gp11-attribute.html#gp11-attribute-free" title="gp11_attribute_free ()"><code class="function">gp11_attribute_free()</code></a> to free it. 
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" title="gp11_attribute_new_ulong ()">
+<a name="gp11-attribute-new-ulong"></a><h3>gp11_attribute_new_ulong ()</h3>
+<pre class="programlisting"><a class="link" href="gp11-gp11-attribute.html#GP11Attribute" title="GP11Attribute">GP11Attribute</a>*      gp11_attribute_new_ulong            (<a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gulong"
+>gulong</a> attr_type,
+                                                         <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gulong"
+>gulong</a> value);</pre>
+<p>
+Initialize a PKCS<span class="type">11</span> attribute to a unsigned long. This will result
+in a CK_ULONG attribute from the PKCS<span class="type">11</span> specs.</p>
+<p>
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>attr_type</code></em> :</span></p></td>
+<td> The PKCS<span class="type">11</span> attribute type to set on the attribute.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>value</code></em> :</span></p></td>
+<td> The ulong value of the attribute.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> The new attribute. When done with the attribute use 
+<a class="link" href="gp11-gp11-attribute.html#gp11-attribute-free" title="gp11_attribute_free ()"><code class="function">gp11_attribute_free()</code></a> to free it. 
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" title="gp11_attribute_new_string ()">
+<a name="gp11-attribute-new-string"></a><h3>gp11_attribute_new_string ()</h3>
+<pre class="programlisting"><a class="link" href="gp11-gp11-attribute.html#GP11Attribute" title="GP11Attribute">GP11Attribute</a>*      gp11_attribute_new_string           (<a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gulong"
+>gulong</a> attr_type,
+                                                         const <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"
+>gchar</a> *value);</pre>
+<p>
+Initialize a PKCS<span class="type">11</span> attribute to a string. This will result
+in an attribute containing the text, but not the null terminator. 
+The text in the attribute will be of the same encoding as you pass 
+to this function.</p>
+<p>
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>attr_type</code></em> :</span></p></td>
+<td> The PKCS<span class="type">11</span> attribute type to set on the attribute.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>value</code></em> :</span></p></td>
+<td> The null terminated string value of the attribute.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> The new attribute. When done with the attribute use 
+<a class="link" href="gp11-gp11-attribute.html#gp11-attribute-free" title="gp11_attribute_free ()"><code class="function">gp11_attribute_free()</code></a> to free it. 
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" title="gp11_attribute_is_invalid ()">
+<a name="gp11-attribute-is-invalid"></a><h3>gp11_attribute_is_invalid ()</h3>
+<pre class="programlisting"><a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"
+>gboolean</a>            gp11_attribute_is_invalid           (<a class="link" href="gp11-gp11-attribute.html#GP11Attribute" title="GP11Attribute">GP11Attribute</a> *attr);</pre>
+<p>
+Check if the PKCS<span class="type">11</span> attribute represents 'invalid' or 'not found' 
+according to the PKCS<span class="type">11</span> spec. That is, having length 
+of (CK_ULONG)-1.</p>
+<p>
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>attr</code></em> :</span></p></td>
+<td> The attribute to check.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> Whether the attribute represents invalid or not.
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" title="gp11_attribute_get_boolean ()">
+<a name="gp11-attribute-get-boolean"></a><h3>gp11_attribute_get_boolean ()</h3>
+<pre class="programlisting"><a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gboolean"
+>gboolean</a>            gp11_attribute_get_boolean          (<a class="link" href="gp11-gp11-attribute.html#GP11Attribute" title="GP11Attribute">GP11Attribute</a> *attr);</pre>
+<p>
+Get the CK_BBOOL of a PKCS<span class="type">11</span> attribute. No conversion
+is performed. It is an error to pass an attribute to this
+function unless you're know it's supposed to contain a 
+boolean value.</p>
+<p>
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>attr</code></em> :</span></p></td>
+<td> The attribute to retrieve value from.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> The boolean value of the attribute.
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" title="gp11_attribute_get_ulong ()">
+<a name="gp11-attribute-get-ulong"></a><h3>gp11_attribute_get_ulong ()</h3>
+<pre class="programlisting"><a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gulong"
+>gulong</a>              gp11_attribute_get_ulong            (<a class="link" href="gp11-gp11-attribute.html#GP11Attribute" title="GP11Attribute">GP11Attribute</a> *attr);</pre>
+<p>
+Get the CK_ULONG value of a PKCS<span class="type">11</span> attribute. No 
+conversion is performed. It is an error to pass an attribute 
+to this function unless you're know it's supposed to contain 
+a value of the right type.</p>
+<p>
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>attr</code></em> :</span></p></td>
+<td> The attribute to retrieve value from.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> The ulong value of the attribute.
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" title="gp11_attribute_get_string ()">
+<a name="gp11-attribute-get-string"></a><h3>gp11_attribute_get_string ()</h3>
+<pre class="programlisting"><a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"
+>gchar</a>*              gp11_attribute_get_string           (<a class="link" href="gp11-gp11-attribute.html#GP11Attribute" title="GP11Attribute">GP11Attribute</a> *attr);</pre>
+<p>
+Get the string value of a PKCS<span class="type">11</span> attribute. No 
+conversion is performed. It is an error to pass an attribute 
+to this function unless you're know it's supposed to contain 
+a value of the right type.</p>
+<p>
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>attr</code></em> :</span></p></td>
+<td> The attribute to retrieve value from.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> A null terminated string, to be freed with <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Memory-Allocation.html#g-free"
+><code class="function">g_free()</code></a>, 
+or NULL if the value contained a NULL string.
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" title="gp11_attribute_get_date ()">
+<a name="gp11-attribute-get-date"></a><h3>gp11_attribute_get_date ()</h3>
+<pre class="programlisting">void                gp11_attribute_get_date             (<a class="link" href="gp11-gp11-attribute.html#GP11Attribute" title="GP11Attribute">GP11Attribute</a> *attr,
+                                                         <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Date-and-Time-Functions.html#GDate"
+>GDate</a> *value);</pre>
+<p>
+Get the CK_DATE of a PKCS<span class="type">11</span> attribute. No 
+conversion is performed. It is an error to pass an attribute 
+to this function unless you're know it's supposed to contain 
+a value of the right type.</p>
+<p>
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>attr</code></em> :</span></p></td>
+<td> The attribute to retrieve value from.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>value</code></em> :</span></p></td>
+<td> The date value to fill in with the parsed date.
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" title="gp11_attribute_dup ()">
+<a name="gp11-attribute-dup"></a><h3>gp11_attribute_dup ()</h3>
+<pre class="programlisting"><a class="link" href="gp11-gp11-attribute.html#GP11Attribute" title="GP11Attribute">GP11Attribute</a>*      gp11_attribute_dup                  (<a class="link" href="gp11-gp11-attribute.html#GP11Attribute" title="GP11Attribute">GP11Attribute</a> *attr);</pre>
+<p>
+Duplicate the PKCS<span class="type">11</span> attribute. All value memory is 
+also copied.</p>
+<p>
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>attr</code></em> :</span></p></td>
+<td> The attribute to duplicate.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> The duplicated attribute. Use <a class="link" href="gp11-gp11-attribute.html#gp11-attribute-free" title="gp11_attribute_free ()"><code class="function">gp11_attribute_free()</code></a>
+to free it.
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" title="gp11_attribute_clear ()">
+<a name="gp11-attribute-clear"></a><h3>gp11_attribute_clear ()</h3>
+<pre class="programlisting">void                gp11_attribute_clear                (<a class="link" href="gp11-gp11-attribute.html#GP11Attribute" title="GP11Attribute">GP11Attribute</a> *attr);</pre>
+<p>
+Clear allocated memory held by a statically allocated attribute.
+These are usually initialized with <a class="link" href="gp11-gp11-attribute.html#gp11-attribute-init" title="gp11_attribute_init ()"><code class="function">gp11_attribute_init()</code></a> or a 
+similar function.
+</p>
+<p>
+The type of the attribute will remain set.</p>
+<p>
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody><tr>
+<td><p><span class="term"><em class="parameter"><code>attr</code></em> :</span></p></td>
+<td> Attribute to clear.
+</td>
+</tr></tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" title="gp11_attribute_free ()">
+<a name="gp11-attribute-free"></a><h3>gp11_attribute_free ()</h3>
+<pre class="programlisting">void                gp11_attribute_free                 (<a class="link" href="gp11-gp11-attribute.html#GP11Attribute" title="GP11Attribute">GP11Attribute</a> *attr);</pre>
+<p>
+Free an attribute and its allocated memory. These is usually 
+used with attributes that are allocated by <a class="link" href="gp11-gp11-attribute.html#gp11-attribute-new" title="gp11_attribute_new ()"><code class="function">gp11_attribute_new()</code></a>
+or a similar function.</p>
+<p>
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody><tr>
+<td><p><span class="term"><em class="parameter"><code>attr</code></em> :</span></p></td>
+<td> Attribute to free.
+</td>
+</tr></tbody>
+</table></div>
+</div>
+</div>
+</div>
+<div class="footer">
+<hr>
+          Generated by GTK-Doc V1.11</div>
+</body>
+</html>

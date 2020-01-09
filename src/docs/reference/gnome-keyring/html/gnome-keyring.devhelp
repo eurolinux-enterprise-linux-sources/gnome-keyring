@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<!DOCTYPE book PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "">
+<book xmlns="http://www.devhelp.net/book" title="gnome-keyring Reference Manual" link="index.html" author="" name="gnome-keyring">
+  <chapters>
+    <sub name="gnome-keyring API Reference" link="ch01.html">
+      <sub name="Simple Password Storage" link="gnome-keyring-gnome-keyring-password.html"/>
+      <sub name="Keyrings" link="gnome-keyring-gnome-keyring-keyrings.html"/>
+      <sub name="Keyring Info" link="gnome-keyring-gnome-keyring-keyring-info.html"/>
+      <sub name="Keyring Items" link="gnome-keyring-gnome-keyring-items.html"/>
+      <sub name="Item Information" link="gnome-keyring-gnome-keyring-item-info.html"/>
+      <sub name="Item Attributes" link="gnome-keyring-gnome-keyring-attributes.html"/>
+      <sub name="Item ACLs" link="gnome-keyring-gnome-keyring-acl.html"/>
+      <sub name="Search Functionality" link="gnome-keyring-gnome-keyring-find.html"/>
+      <sub name="Network Passwords" link="gnome-keyring-gnome-keyring-network.html"/>
+      <sub name="Non-pageable Memory" link="gnome-keyring-gnome-keyring-memory.html"/>
+      <sub name="Result Codes" link="gnome-keyring-gnome-keyring-result.html"/>
+      <sub name="Miscellaneous Functions" link="gnome-keyring-gnome-keyring-misc.html"/>
+      <sub name="Daemon Management Functions" link="gnome-keyring-gnome-keyring-daemon.html"/>
+      <sub name="Callbacks" link="gnome-keyring-gnome-keyring-generic-callbacks.html"/>
+    </sub>
+  </chapters>
+  <functions>
+    <function name="GnomeKeyringPasswordSchema" link="gnome-keyring-gnome-keyring-password.html#GnomeKeyringPasswordSchema"/>
+    <function name="GNOME_KEYRING_NETWORK_PASSWORD" link="gnome-keyring-gnome-keyring-password.html#GNOME-KEYRING-NETWORK-PASSWORD--CAPS"/>
+    <function name="GNOME_KEYRING_DEFAULT" link="gnome-keyring-gnome-keyring-password.html#GNOME-KEYRING-DEFAULT--CAPS"/>
+    <function name="GNOME_KEYRING_SESSION" link="gnome-keyring-gnome-keyring-password.html#GNOME-KEYRING-SESSION--CAPS"/>
+    <function name="gnome_keyring_store_password ()" link="gnome-keyring-gnome-keyring-password.html#gnome-keyring-store-password"/>
+    <function name="gnome_keyring_store_password_sync ()" link="gnome-keyring-gnome-keyring-password.html#gnome-keyring-store-password-sync"/>
+    <function name="gnome_keyring_find_password ()" link="gnome-keyring-gnome-keyring-password.html#gnome-keyring-find-password"/>
+    <function name="gnome_keyring_find_password_sync ()" link="gnome-keyring-gnome-keyring-password.html#gnome-keyring-find-password-sync"/>
+    <function name="gnome_keyring_delete_password ()" link="gnome-keyring-gnome-keyring-password.html#gnome-keyring-delete-password"/>
+    <function name="gnome_keyring_delete_password_sync ()" link="gnome-keyring-gnome-keyring-password.html#gnome-keyring-delete-password-sync"/>
+    <function name="gnome_keyring_free_password ()" link="gnome-keyring-gnome-keyring-password.html#gnome-keyring-free-password"/>
+    <function name="GnomeKeyringOperationGetKeyringInfoCallback ()" link="gnome-keyring-gnome-keyring-keyrings.html#GnomeKeyringOperationGetKeyringInfoCallback"/>
+    <function name="gnome_keyring_set_default_keyring ()" link="gnome-keyring-gnome-keyring-keyrings.html#gnome-keyring-set-default-keyring"/>
+    <function name="gnome_keyring_set_default_keyring_sync ()" link="gnome-keyring-gnome-keyring-keyrings.html#gnome-keyring-set-default-keyring-sync"/>
+    <function name="gnome_keyring_get_default_keyring ()" link="gnome-keyring-gnome-keyring-keyrings.html#gnome-keyring-get-default-keyring"/>
+    <function name="gnome_keyring_get_default_keyring_sync ()" link="gnome-keyring-gnome-keyring-keyrings.html#gnome-keyring-get-default-keyring-sync"/>
+    <function name="gnome_keyring_list_keyring_names ()" link="gnome-keyring-gnome-keyring-keyrings.html#gnome-keyring-list-keyring-names"/>
+    <function name="gnome_keyring_list_keyring_names_sync ()" link="gnome-keyring-gnome-keyring-keyrings.html#gnome-keyring-list-keyring-names-sync"/>
+    <function name="gnome_keyring_lock_all ()" link="gnome-keyring-gnome-keyring-keyrings.html#gnome-keyring-lock-all"/>
+    <function name="gnome_keyring_lock_all_sync ()" link="gnome-keyring-gnome-keyring-keyrings.html#gnome-keyring-lock-all-sync"/>
+    <function name="gnome_keyring_create ()" link="gnome-keyring-gnome-keyring-keyrings.html#gnome-keyring-create"/>
+    <function name="gnome_keyring_create_sync ()" link="gnome-keyring-gnome-keyring-keyrings.html#gnome-keyring-create-sync"/>
+    <function name="gnome_keyring_unlock ()" link="gnome-keyring-gnome-keyring-keyrings.html#gnome-keyring-unlock"/>
+    <function name="gnome_keyring_unlock_sync ()" link="gnome-keyring-gnome-keyring-keyrings.html#gnome-keyring-unlock-sync"/>
+    <function name="gnome_keyring_lock ()" link="gnome-keyring-gnome-keyring-keyrings.html#gnome-keyring-lock"/>
+    <function name="gnome_keyring_lock_sync ()" link="gnome-keyring-gnome-keyring-keyrings.html#gnome-keyring-lock-sync"/>
+    <function name="gnome_keyring_delete ()" link="gnome-keyring-gnome-keyring-keyrings.html#gnome-keyring-delete"/>
+    <function name="gnome_keyring_delete_sync ()" link="gnome-keyring-gnome-keyring-keyrings.html#gnome-keyring-delete-sync"/>
+    <function name="gnome_keyring_get_info ()" link="gnome-keyring-gnome-keyring-keyrings.html#gnome-keyring-get-info"/>
+    <function name="gnome_keyring_get_info_sync ()" link="gnome-keyring-gnome-keyring-keyrings.html#gnome-keyring-get-info-sync"/>
+    <function name="gnome_keyring_set_info ()" link="gnome-keyring-gnome-keyring-keyrings.html#gnome-keyring-set-info"/>
+    <function name="gnome_keyring_set_info_sync ()" link="gnome-keyring-gnome-keyring-keyrings.html#gnome-keyring-set-info-sync"/>
+    <function name="gnome_keyring_change_password ()" link="gnome-keyring-gnome-keyring-keyrings.html#gnome-keyring-change-password"/>
+    <function name="gnome_keyring_change_password_sync ()" link="gnome-keyring-gnome-keyring-keyrings.html#gnome-keyring-change-password-sync"/>
+    <function name="gnome_keyring_list_item_ids ()" link="gnome-keyring-gnome-keyring-keyrings.html#gnome-keyring-list-item-ids"/>
+    <function name="gnome_keyring_list_item_ids_sync ()" link="gnome-keyring-gnome-keyring-keyrings.html#gnome-keyring-list-item-ids-sync"/>
+    <function name="GnomeKeyringInfo" link="gnome-keyring-gnome-keyring-keyring-info.html#GnomeKeyringInfo"/>
+    <function name="gnome_keyring_info_free ()" link="gnome-keyring-gnome-keyring-keyring-info.html#gnome-keyring-info-free"/>
+    <function name="gnome_keyring_info_copy ()" link="gnome-keyring-gnome-keyring-keyring-info.html#gnome-keyring-info-copy"/>
+    <function name="gnome_keyring_info_set_lock_on_idle ()" link="gnome-keyring-gnome-keyring-keyring-info.html#gnome-keyring-info-set-lock-on-idle"/>
+    <function name="gnome_keyring_info_get_lock_on_idle ()" link="gnome-keyring-gnome-keyring-keyring-info.html#gnome-keyring-info-get-lock-on-idle"/>
+    <function name="gnome_keyring_info_set_lock_timeout ()" link="gnome-keyring-gnome-keyring-keyring-info.html#gnome-keyring-info-set-lock-timeout"/>
+    <function name="gnome_keyring_info_get_lock_timeout ()" link="gnome-keyring-gnome-keyring-keyring-info.html#gnome-keyring-info-get-lock-timeout"/>
+    <function name="gnome_keyring_info_get_mtime ()" link="gnome-keyring-gnome-keyring-keyring-info.html#gnome-keyring-info-get-mtime"/>
+    <function name="gnome_keyring_info_get_ctime ()" link="gnome-keyring-gnome-keyring-keyring-info.html#gnome-keyring-info-get-ctime"/>
+    <function name="gnome_keyring_info_get_is_locked ()" link="gnome-keyring-gnome-keyring-keyring-info.html#gnome-keyring-info-get-is-locked"/>
+    <function name="enum GnomeKeyringItemInfoFlags" link="gnome-keyring-gnome-keyring-items.html#GnomeKeyringItemInfoFlags"/>
+    <function name="GnomeKeyringOperationGetItemInfoCallback ()" link="gnome-keyring-gnome-keyring-items.html#GnomeKeyringOperationGetItemInfoCallback"/>
+    <function name="GnomeKeyringOperationGetAttributesCallback ()" link="gnome-keyring-gnome-keyring-items.html#GnomeKeyringOperationGetAttributesCallback"/>
+    <function name="gnome_keyring_item_create ()" link="gnome-keyring-gnome-keyring-items.html#gnome-keyring-item-create"/>
+    <function name="gnome_keyring_item_create_sync ()" link="gnome-keyring-gnome-keyring-items.html#gnome-keyring-item-create-sync"/>
+    <function name="gnome_keyring_item_delete ()" link="gnome-keyring-gnome-keyring-items.html#gnome-keyring-item-delete"/>
+    <function name="gnome_keyring_item_delete_sync ()" link="gnome-keyring-gnome-keyring-items.html#gnome-keyring-item-delete-sync"/>
+    <function name="gnome_keyring_item_get_info ()" link="gnome-keyring-gnome-keyring-items.html#gnome-keyring-item-get-info"/>
+    <function name="gnome_keyring_item_get_info_full ()" link="gnome-keyring-gnome-keyring-items.html#gnome-keyring-item-get-info-full"/>
+    <function name="gnome_keyring_item_get_info_full_sync ()" link="gnome-keyring-gnome-keyring-items.html#gnome-keyring-item-get-info-full-sync"/>
+    <function name="gnome_keyring_item_get_info_sync ()" link="gnome-keyring-gnome-keyring-items.html#gnome-keyring-item-get-info-sync"/>
+    <function name="gnome_keyring_item_set_info ()" link="gnome-keyring-gnome-keyring-items.html#gnome-keyring-item-set-info"/>
+    <function name="gnome_keyring_item_set_info_sync ()" link="gnome-keyring-gnome-keyring-items.html#gnome-keyring-item-set-info-sync"/>
+    <function name="gnome_keyring_item_get_attributes ()" link="gnome-keyring-gnome-keyring-items.html#gnome-keyring-item-get-attributes"/>
+    <function name="gnome_keyring_item_get_attributes_sync ()" link="gnome-keyring-gnome-keyring-items.html#gnome-keyring-item-get-attributes-sync"/>
+    <function name="gnome_keyring_item_set_attributes ()" link="gnome-keyring-gnome-keyring-items.html#gnome-keyring-item-set-attributes"/>
+    <function name="gnome_keyring_item_set_attributes_sync ()" link="gnome-keyring-gnome-keyring-items.html#gnome-keyring-item-set-attributes-sync"/>
+    <function name="gnome_keyring_item_get_acl ()" link="gnome-keyring-gnome-keyring-items.html#gnome-keyring-item-get-acl"/>
+    <function name="gnome_keyring_item_get_acl_sync ()" link="gnome-keyring-gnome-keyring-items.html#gnome-keyring-item-get-acl-sync"/>
+    <function name="gnome_keyring_item_set_acl ()" link="gnome-keyring-gnome-keyring-items.html#gnome-keyring-item-set-acl"/>
+    <function name="gnome_keyring_item_set_acl_sync ()" link="gnome-keyring-gnome-keyring-items.html#gnome-keyring-item-set-acl-sync"/>
+    <function name="gnome_keyring_item_grant_access_rights ()" link="gnome-keyring-gnome-keyring-items.html#gnome-keyring-item-grant-access-rights"/>
+    <function name="gnome_keyring_item_grant_access_rights_sync ()" link="gnome-keyring-gnome-keyring-items.html#gnome-keyring-item-grant-access-rights-sync"/>
+    <function name="enum GnomeKeyringItemType" link="gnome-keyring-gnome-keyring-item-info.html#GnomeKeyringItemType"/>
+    <function name="GnomeKeyringItemInfo" link="gnome-keyring-gnome-keyring-item-info.html#GnomeKeyringItemInfo"/>
+    <function name="gnome_keyring_item_info_free ()" link="gnome-keyring-gnome-keyring-item-info.html#gnome-keyring-item-info-free"/>
+    <function name="gnome_keyring_item_info_new ()" link="gnome-keyring-gnome-keyring-item-info.html#gnome-keyring-item-info-new"/>
+    <function name="gnome_keyring_item_info_copy ()" link="gnome-keyring-gnome-keyring-item-info.html#gnome-keyring-item-info-copy"/>
+    <function name="gnome_keyring_item_info_get_type ()" link="gnome-keyring-gnome-keyring-item-info.html#gnome-keyring-item-info-get-type"/>
+    <function name="gnome_keyring_item_info_set_type ()" link="gnome-keyring-gnome-keyring-item-info.html#gnome-keyring-item-info-set-type"/>
+    <function name="gnome_keyring_item_info_get_secret ()" link="gnome-keyring-gnome-keyring-item-info.html#gnome-keyring-item-info-get-secret"/>
+    <function name="gnome_keyring_item_info_set_secret ()" link="gnome-keyring-gnome-keyring-item-info.html#gnome-keyring-item-info-set-secret"/>
+    <function name="gnome_keyring_item_info_get_display_name ()" link="gnome-keyring-gnome-keyring-item-info.html#gnome-keyring-item-info-get-display-name"/>
+    <function name="gnome_keyring_item_info_set_display_name ()" link="gnome-keyring-gnome-keyring-item-info.html#gnome-keyring-item-info-set-display-name"/>
+    <function name="gnome_keyring_item_info_get_mtime ()" link="gnome-keyring-gnome-keyring-item-info.html#gnome-keyring-item-info-get-mtime"/>
+    <function name="gnome_keyring_item_info_get_ctime ()" link="gnome-keyring-gnome-keyring-item-info.html#gnome-keyring-item-info-get-ctime"/>
+    <function name="enum GnomeKeyringAttributeType" link="gnome-keyring-gnome-keyring-attributes.html#GnomeKeyringAttributeType"/>
+    <function name="GnomeKeyringAttributeList" link="gnome-keyring-gnome-keyring-attributes.html#GnomeKeyringAttributeList"/>
+    <function name="GnomeKeyringAttribute" link="gnome-keyring-gnome-keyring-attributes.html#GnomeKeyringAttribute"/>
+    <function name="gnome_keyring_attribute_list_index()" link="gnome-keyring-gnome-keyring-attributes.html#gnome-keyring-attribute-list-index"/>
+    <function name="gnome_keyring_attribute_list_new()" link="gnome-keyring-gnome-keyring-attributes.html#gnome-keyring-attribute-list-new"/>
+    <function name="gnome_keyring_attribute_list_append_string ()" link="gnome-keyring-gnome-keyring-attributes.html#gnome-keyring-attribute-list-append-string"/>
+    <function name="gnome_keyring_attribute_list_append_uint32 ()" link="gnome-keyring-gnome-keyring-attributes.html#gnome-keyring-attribute-list-append-uint32"/>
+    <function name="gnome_keyring_attribute_list_free ()" link="gnome-keyring-gnome-keyring-attributes.html#gnome-keyring-attribute-list-free"/>
+    <function name="gnome_keyring_attribute_list_copy ()" link="gnome-keyring-gnome-keyring-attributes.html#gnome-keyring-attribute-list-copy"/>
+    <function name="GnomeKeyringAccessControl" link="gnome-keyring-gnome-keyring-acl.html#GnomeKeyringAccessControl"/>
+    <function name="GnomeKeyringApplicationRef" link="gnome-keyring-gnome-keyring-acl.html#GnomeKeyringApplicationRef"/>
+    <function name="enum GnomeKeyringAccessType" link="gnome-keyring-gnome-keyring-acl.html#GnomeKeyringAccessType"/>
+    <function name="gnome_keyring_application_ref_new ()" link="gnome-keyring-gnome-keyring-acl.html#gnome-keyring-application-ref-new"/>
+    <function name="gnome_keyring_application_ref_copy ()" link="gnome-keyring-gnome-keyring-acl.html#gnome-keyring-application-ref-copy"/>
+    <function name="gnome_keyring_application_ref_free ()" link="gnome-keyring-gnome-keyring-acl.html#gnome-keyring-application-ref-free"/>
+    <function name="gnome_keyring_access_control_new ()" link="gnome-keyring-gnome-keyring-acl.html#gnome-keyring-access-control-new"/>
+    <function name="gnome_keyring_access_control_copy ()" link="gnome-keyring-gnome-keyring-acl.html#gnome-keyring-access-control-copy"/>
+    <function name="gnome_keyring_access_control_free ()" link="gnome-keyring-gnome-keyring-acl.html#gnome-keyring-access-control-free"/>
+    <function name="gnome_keyring_acl_copy ()" link="gnome-keyring-gnome-keyring-acl.html#gnome-keyring-acl-copy"/>
+    <function name="gnome_keyring_acl_free ()" link="gnome-keyring-gnome-keyring-acl.html#gnome-keyring-acl-free"/>
+    <function name="gnome_keyring_item_ac_get_display_name ()" link="gnome-keyring-gnome-keyring-acl.html#gnome-keyring-item-ac-get-display-name"/>
+    <function name="gnome_keyring_item_ac_set_display_name ()" link="gnome-keyring-gnome-keyring-acl.html#gnome-keyring-item-ac-set-display-name"/>
+    <function name="gnome_keyring_item_ac_get_path_name ()" link="gnome-keyring-gnome-keyring-acl.html#gnome-keyring-item-ac-get-path-name"/>
+    <function name="gnome_keyring_item_ac_set_path_name ()" link="gnome-keyring-gnome-keyring-acl.html#gnome-keyring-item-ac-set-path-name"/>
+    <function name="gnome_keyring_item_ac_get_access_type ()" link="gnome-keyring-gnome-keyring-acl.html#gnome-keyring-item-ac-get-access-type"/>
+    <function name="gnome_keyring_item_ac_set_access_type ()" link="gnome-keyring-gnome-keyring-acl.html#gnome-keyring-item-ac-set-access-type"/>
+    <function name="GnomeKeyringFound" link="gnome-keyring-gnome-keyring-find.html#GnomeKeyringFound"/>
+    <function name="gnome_keyring_found_free ()" link="gnome-keyring-gnome-keyring-find.html#gnome-keyring-found-free"/>
+    <function name="gnome_keyring_found_list_free ()" link="gnome-keyring-gnome-keyring-find.html#gnome-keyring-found-list-free"/>
+    <function name="gnome_keyring_find_items ()" link="gnome-keyring-gnome-keyring-find.html#gnome-keyring-find-items"/>
+    <function name="gnome_keyring_find_itemsv ()" link="gnome-keyring-gnome-keyring-find.html#gnome-keyring-find-itemsv"/>
+    <function name="gnome_keyring_find_items_sync ()" link="gnome-keyring-gnome-keyring-find.html#gnome-keyring-find-items-sync"/>
+    <function name="gnome_keyring_find_itemsv_sync ()" link="gnome-keyring-gnome-keyring-find.html#gnome-keyring-find-itemsv-sync"/>
+    <function name="GnomeKeyringNetworkPasswordData" link="gnome-keyring-gnome-keyring-network.html#GnomeKeyringNetworkPasswordData"/>
+    <function name="gnome_keyring_network_password_free ()" link="gnome-keyring-gnome-keyring-network.html#gnome-keyring-network-password-free"/>
+    <function name="gnome_keyring_network_password_list_free ()" link="gnome-keyring-gnome-keyring-network.html#gnome-keyring-network-password-list-free"/>
+    <function name="gnome_keyring_find_network_password ()" link="gnome-keyring-gnome-keyring-network.html#gnome-keyring-find-network-password"/>
+    <function name="gnome_keyring_find_network_password_sync ()" link="gnome-keyring-gnome-keyring-network.html#gnome-keyring-find-network-password-sync"/>
+    <function name="gnome_keyring_set_network_password ()" link="gnome-keyring-gnome-keyring-network.html#gnome-keyring-set-network-password"/>
+    <function name="gnome_keyring_set_network_password_sync ()" link="gnome-keyring-gnome-keyring-network.html#gnome-keyring-set-network-password-sync"/>
+    <function name="gnome_keyring_memory_new()" link="gnome-keyring-gnome-keyring-memory.html#gnome-keyring-memory-new"/>
+    <function name="gnome_keyring_memory_alloc ()" link="gnome-keyring-gnome-keyring-memory.html#gnome-keyring-memory-alloc"/>
+    <function name="gnome_keyring_memory_try_alloc ()" link="gnome-keyring-gnome-keyring-memory.html#gnome-keyring-memory-try-alloc"/>
+    <function name="gnome_keyring_memory_realloc ()" link="gnome-keyring-gnome-keyring-memory.html#gnome-keyring-memory-realloc"/>
+    <function name="gnome_keyring_memory_try_realloc ()" link="gnome-keyring-gnome-keyring-memory.html#gnome-keyring-memory-try-realloc"/>
+    <function name="gnome_keyring_memory_free ()" link="gnome-keyring-gnome-keyring-memory.html#gnome-keyring-memory-free"/>
+    <function name="gnome_keyring_memory_is_secure ()" link="gnome-keyring-gnome-keyring-memory.html#gnome-keyring-memory-is-secure"/>
+    <function name="gnome_keyring_memory_strdup ()" link="gnome-keyring-gnome-keyring-memory.html#gnome-keyring-memory-strdup"/>
+    <function name="gnome_keyring_result_to_message ()" link="gnome-keyring-gnome-keyring-result.html#gnome-keyring-result-to-message"/>
+    <function name="enum GnomeKeyringResult" link="gnome-keyring-gnome-keyring-result.html#GnomeKeyringResult"/>
+    <function name="gnome_keyring_is_available ()" link="gnome-keyring-gnome-keyring-misc.html#gnome-keyring-is-available"/>
+    <function name="gnome_keyring_cancel_request ()" link="gnome-keyring-gnome-keyring-misc.html#gnome-keyring-cancel-request"/>
+    <function name="gnome_keyring_string_list_free ()" link="gnome-keyring-gnome-keyring-misc.html#gnome-keyring-string-list-free"/>
+    <function name="gnome_keyring_daemon_set_display_sync ()" link="gnome-keyring-gnome-keyring-daemon.html#gnome-keyring-daemon-set-display-sync"/>
+    <function name="gnome_keyring_daemon_prepare_environment_sync ()" link="gnome-keyring-gnome-keyring-daemon.html#gnome-keyring-daemon-prepare-environment-sync"/>
+    <function name="GnomeKeyringOperationDoneCallback ()" link="gnome-keyring-gnome-keyring-generic-callbacks.html#GnomeKeyringOperationDoneCallback"/>
+    <function name="GnomeKeyringOperationGetIntCallback ()" link="gnome-keyring-gnome-keyring-generic-callbacks.html#GnomeKeyringOperationGetIntCallback"/>
+    <function name="GnomeKeyringOperationGetListCallback ()" link="gnome-keyring-gnome-keyring-generic-callbacks.html#GnomeKeyringOperationGetListCallback"/>
+    <function name="GnomeKeyringOperationGetStringCallback ()" link="gnome-keyring-gnome-keyring-generic-callbacks.html#GnomeKeyringOperationGetStringCallback"/>
+  </functions>
+</book>

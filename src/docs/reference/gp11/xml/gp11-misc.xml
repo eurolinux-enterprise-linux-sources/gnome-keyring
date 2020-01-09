@@ -1,0 +1,99 @@
+<?xml version="1.0"?>
+<!DOCTYPE refentry PUBLIC "-//OASIS//DTD DocBook XML V4.1.2//EN"
+               "http://www.oasis-open.org/docbook/xml/4.1.2/docbookx.dtd">
+<refentry id="gp11-gp11-misc">
+<refmeta>
+<refentrytitle role="top_of_page" id="gp11-gp11-misc.top_of_page">Miscellaneous Functions</refentrytitle>
+<manvolnum>3</manvolnum>
+<refmiscinfo>GP11 Library</refmiscinfo>
+</refmeta>
+
+<refnamediv>
+<refname>Miscellaneous Functions</refname>
+<refpurpose>Other miscellaneous functions.</refpurpose>
+</refnamediv>
+
+<refsynopsisdiv id="gp11-gp11-misc.synopsis" role="synopsis">
+<title role="synopsis.title">Synopsis</title>
+
+<synopsis>
+<link linkend="GList">GList</link>*              <link linkend="gp11-list-ref-copy">gp11_list_ref_copy</link>                  (<link linkend="GList">GList</link> *reflist);
+<link linkend="void">void</link>                <link linkend="gp11-list-unref-free">gp11_list_unref_free</link>                (<link linkend="GList">GList</link> *reflist);
+<link linkend="gchar">gchar</link>*              <link linkend="gp11-string-from-chars">gp11_string_from_chars</link>              (const <link linkend="guchar">guchar</link> *data,
+                                                         <link linkend="gsize">gsize</link> max);
+</synopsis>
+</refsynopsisdiv>
+
+
+
+
+
+
+
+
+
+<refsect1 id="gp11-gp11-misc.description" role="desc">
+<title role="desc.title">Description</title>
+<para>
+A few supporting functions that come in handy when dealing with the GP11
+library or PKCS11 in general.</para>
+<para>
+</para>
+</refsect1>
+
+<refsect1 id="gp11-gp11-misc.details" role="details">
+<title role="details.title">Details</title>
+<refsect2 id="gp11-list-ref-copy" role="function">
+<title>gp11_list_ref_copy ()</title>
+<indexterm zone="gp11-list-ref-copy"><primary sortas="gp11_list_ref_copy">gp11_list_ref_copy</primary></indexterm><programlisting><link linkend="GList">GList</link>*              gp11_list_ref_copy                  (<link linkend="GList">GList</link> *reflist);</programlisting>
+<para>
+Copy a list of GObject based pointers. All objects 
+in the list will be reffed and the list will be copied.</para>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>reflist</parameter>&#160;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara> The copied and reffed list. When done, free it with 
+<link linkend="gp11-list-unref-free"><function>gp11_list_unref_free()</function></link>
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="gp11-list-unref-free" role="function">
+<title>gp11_list_unref_free ()</title>
+<indexterm zone="gp11-list-unref-free"><primary sortas="gp11_list_unref_free">gp11_list_unref_free</primary></indexterm><programlisting><link linkend="void">void</link>                gp11_list_unref_free                (<link linkend="GList">GList</link> *reflist);</programlisting>
+<para>
+Free a list of GObject based pointers. All objects in the list
+will be unreffed and then the list itself will be freed.</para>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>reflist</parameter>&#160;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="gp11-string-from-chars" role="function">
+<title>gp11_string_from_chars ()</title>
+<indexterm zone="gp11-string-from-chars"><primary sortas="gp11_string_from_chars">gp11_string_from_chars</primary></indexterm><programlisting><link linkend="gchar">gchar</link>*              gp11_string_from_chars              (const <link linkend="guchar">guchar</link> *data,
+                                                         <link linkend="gsize">gsize</link> max);</programlisting>
+<para>
+Create a string from a set of PKCS<link linkend="11--CAPS"><type>11</type></link> characters. This is 
+similar to g_strndup, except for that it also strips trailing 
+spaces. These space padded strings are often used in PKCS<link linkend="11--CAPS"><type>11</type></link>
+structures.</para>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>data</parameter>&#160;:</term>
+<listitem><simpara> The character data to turn into a null terminated string.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>max</parameter>&#160;:</term>
+<listitem><simpara> The maximum length of the charater data.
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara> The null terminated string.
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+
+</refsect1>
+
+
+
+
+</refentry>

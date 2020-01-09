@@ -1,0 +1,703 @@
+<?xml version="1.0"?>
+<!DOCTYPE refentry PUBLIC "-//OASIS//DTD DocBook XML V4.1.2//EN"
+               "http://www.oasis-open.org/docbook/xml/4.1.2/docbookx.dtd">
+<refentry id="gp11-gp11-slot">
+<refmeta>
+<refentrytitle role="top_of_page" id="gp11-gp11-slot.top_of_page">GP11Slot</refentrytitle>
+<manvolnum>3</manvolnum>
+<refmiscinfo>GP11 Library</refmiscinfo>
+</refmeta>
+
+<refnamediv>
+<refname>GP11Slot</refname>
+<refpurpose>Represents a PKCS11 slot that can contain a token.</refpurpose>
+</refnamediv>
+
+<refsynopsisdiv id="gp11-gp11-slot.synopsis" role="synopsis">
+<title role="synopsis.title">Synopsis</title>
+<anchor id="GP11Slot"/>
+<synopsis>
+                    <link linkend="GP11MechanismInfo">GP11MechanismInfo</link>;
+<link linkend="void">void</link>                <link linkend="gp11-mechanism-info-free">gp11_mechanism_info_free</link>            (<link linkend="GP11MechanismInfo">GP11MechanismInfo</link> *mech_info);
+typedef             <link linkend="GP11Mechanisms">GP11Mechanisms</link>;
+#define             <link linkend="gp11-mechanisms-length">gp11_mechanisms_length</link>              (a)
+#define             <link linkend="gp11-mechanisms-at">gp11_mechanisms_at</link>                  (a, i)
+#define             <link linkend="gp11-mechanisms-free">gp11_mechanisms_free</link>                (a)
+<link linkend="gboolean">gboolean</link>            <link linkend="gp11-mechanisms-check">gp11_mechanisms_check</link>               (<link linkend="GP11Mechanisms">GP11Mechanisms</link> *mechanisms,
+                                                         ...);
+                    <link linkend="GP11Slot-struct">GP11Slot</link>;
+<link linkend="gboolean">gboolean</link>            <link linkend="gp11-slot-equal">gp11_slot_equal</link>                     (<link linkend="gconstpointer">gconstpointer</link> slot1,
+                                                         <link linkend="gconstpointer">gconstpointer</link> slot2);
+<link linkend="guint">guint</link>               <link linkend="gp11-slot-hash">gp11_slot_hash</link>                      (<link linkend="gconstpointer">gconstpointer</link> slot);
+<link linkend="GP11Module">GP11Module</link>*         <link linkend="gp11-slot-get-module">gp11_slot_get_module</link>                (<link linkend="GP11Slot">GP11Slot</link> *self);
+<link linkend="CK-SLOT-ID--CAPS">CK_SLOT_ID</link>          <link linkend="gp11-slot-get-handle">gp11_slot_get_handle</link>                (<link linkend="GP11Slot">GP11Slot</link> *self);
+<link linkend="GP11SlotInfo">GP11SlotInfo</link>*       <link linkend="gp11-slot-get-info">gp11_slot_get_info</link>                  (<link linkend="GP11Slot">GP11Slot</link> *self);
+<link linkend="GP11TokenInfo">GP11TokenInfo</link>*      <link linkend="gp11-slot-get-token-info">gp11_slot_get_token_info</link>            (<link linkend="GP11Slot">GP11Slot</link> *self);
+<link linkend="GP11Mechanisms">GP11Mechanisms</link>*     <link linkend="gp11-slot-get-mechanisms">gp11_slot_get_mechanisms</link>            (<link linkend="GP11Slot">GP11Slot</link> *self);
+<link linkend="GP11MechanismInfo">GP11MechanismInfo</link>*  <link linkend="gp11-slot-get-mechanism-info">gp11_slot_get_mechanism_info</link>        (<link linkend="GP11Slot">GP11Slot</link> *self,
+                                                         <link linkend="gulong">gulong</link> mech_type);
+<link linkend="gboolean">gboolean</link>            <link linkend="gp11-slot-has-flags">gp11_slot_has_flags</link>                 (<link linkend="GP11Slot">GP11Slot</link> *self,
+                                                         <link linkend="gulong">gulong</link> flags);
+<link linkend="GP11Session">GP11Session</link>*        <link linkend="gp11-slot-open-session">gp11_slot_open_session</link>              (<link linkend="GP11Slot">GP11Slot</link> *self,
+                                                         <link linkend="gulong">gulong</link> flags,
+                                                         <link linkend="GError">GError</link> **err);
+<link linkend="GP11Session">GP11Session</link>*        <link linkend="gp11-slot-open-session-full">gp11_slot_open_session_full</link>         (<link linkend="GP11Slot">GP11Slot</link> *self,
+                                                         <link linkend="gulong">gulong</link> flags,
+                                                         <link linkend="GCancellable">GCancellable</link> *cancellable,
+                                                         <link linkend="GError">GError</link> **err);
+<link linkend="void">void</link>                <link linkend="gp11-slot-open-session-async">gp11_slot_open_session_async</link>        (<link linkend="GP11Slot">GP11Slot</link> *self,
+                                                         <link linkend="gulong">gulong</link> flags,
+                                                         <link linkend="GCancellable">GCancellable</link> *cancellable,
+                                                         <link linkend="GAsyncReadyCallback">GAsyncReadyCallback</link> callback,
+                                                         <link linkend="gpointer">gpointer</link> user_data);
+<link linkend="GP11Session">GP11Session</link>*        <link linkend="gp11-slot-open-session-finish">gp11_slot_open_session_finish</link>       (<link linkend="GP11Slot">GP11Slot</link> *self,
+                                                         <link linkend="GAsyncResult">GAsyncResult</link> *result,
+                                                         <link linkend="GError">GError</link> **err);
+                    <link linkend="GP11SlotInfo">GP11SlotInfo</link>;
+<link linkend="void">void</link>                <link linkend="gp11-slot-info-free">gp11_slot_info_free</link>                 (<link linkend="GP11SlotInfo">GP11SlotInfo</link> *slot_info);
+                    <link linkend="GP11TokenInfo">GP11TokenInfo</link>;
+<link linkend="void">void</link>                <link linkend="gp11-token-info-free">gp11_token_info_free</link>                (<link linkend="GP11TokenInfo">GP11TokenInfo</link> *token_info);
+</synopsis>
+</refsynopsisdiv>
+
+<refsect1 id="gp11-gp11-slot.object-hierarchy" role="object_hierarchy">
+<title role="object_hierarchy.title">Object Hierarchy</title>
+<synopsis>
+  <link linkend="GObject">GObject</link>
+   +----GP11Slot
+</synopsis>
+</refsect1>
+
+
+
+
+
+<refsect1 id="gp11-gp11-slot.properties" role="properties">
+<title role="properties.title">Properties</title>
+<synopsis>
+  &quot;<link linkend="GP11Slot--handle">handle</link>&quot;                   <link linkend="gulong">gulong</link>                : Read / Write / Construct Only
+  &quot;<link linkend="GP11Slot--module">module</link>&quot;                   <link linkend="GP11Module">GP11Module</link>*           : Read / Write / Construct Only
+</synopsis>
+</refsect1>
+
+
+
+<refsect1 id="gp11-gp11-slot.description" role="desc">
+<title role="desc.title">Description</title>
+<para>
+A PKCS11 slot can contain a token. As an example, a slot might be a card reader, and the token
+the card. If the PKCS11 module is not a hardware driver, often the slot and token are equivalent.</para>
+<para>
+</para>
+</refsect1>
+
+<refsect1 id="gp11-gp11-slot.details" role="details">
+<title role="details.title">Details</title>
+<refsect2 id="GP11MechanismInfo" role="struct">
+<title>GP11MechanismInfo</title>
+<indexterm zone="GP11MechanismInfo"><primary sortas="GP11MechanismInfo">GP11MechanismInfo</primary></indexterm><programlisting>typedef struct {
+	gulong min_key_size;
+	gulong max_key_size;
+	gulong flags;
+} GP11MechanismInfo;
+</programlisting>
+<para>
+Represents information about a PKCS11 mechanism.
+</para>
+<para>
+This is analogous to a CK_MECHANISM_INFO structure.
+</para>
+<para>
+When you're done with this structure it should be released with 
+<link linkend="gp11-mechanism-info-free"><function>gp11_mechanism_info_free()</function></link>.</para>
+<para>
+</para><variablelist role="struct">
+<varlistentry>
+<term><link linkend="gulong">gulong</link>&#160;<structfield>min_key_size</structfield>;</term>
+<listitem><simpara> The minimum key size that can be used with this mechanism.
+</simpara></listitem>
+</varlistentry>
+<varlistentry>
+<term><link linkend="gulong">gulong</link>&#160;<structfield>max_key_size</structfield>;</term>
+<listitem><simpara> The maximum key size that can be used with this mechanism.
+</simpara></listitem>
+</varlistentry>
+<varlistentry>
+<term><link linkend="gulong">gulong</link>&#160;<structfield>flags</structfield>;</term>
+<listitem><simpara> Various PKCS11 flags that apply to this mechanism.
+</simpara></listitem>
+</varlistentry>
+</variablelist></refsect2>
+<refsect2 id="gp11-mechanism-info-free" role="function">
+<title>gp11_mechanism_info_free ()</title>
+<indexterm zone="gp11-mechanism-info-free"><primary sortas="gp11_mechanism_info_free">gp11_mechanism_info_free</primary></indexterm><programlisting><link linkend="void">void</link>                gp11_mechanism_info_free            (<link linkend="GP11MechanismInfo">GP11MechanismInfo</link> *mech_info);</programlisting>
+<para>
+Free the GP11MechanismInfo and associated resources.</para>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>mech_info</parameter>&#160;:</term>
+<listitem><simpara> The mechanism info to free, or NULL.
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="GP11Mechanisms" role="typedef">
+<title>GP11Mechanisms</title>
+<indexterm zone="GP11Mechanisms"><primary sortas="GP11Mechanisms">GP11Mechanisms</primary></indexterm><programlisting>typedef GArray GP11Mechanisms;
+</programlisting>
+<para>
+A set of GP11MechanismInfo structures.</para>
+<para>
+</para></refsect2>
+<refsect2 id="gp11-mechanisms-length" role="macro">
+<title>gp11_mechanisms_length()</title>
+<indexterm zone="gp11-mechanisms-length"><primary sortas="gp11_mechanisms_length">gp11_mechanisms_length</primary></indexterm><programlisting>#define gp11_mechanisms_length(a)  	((a)-&gt;len)
+</programlisting>
+<para>
+Get the number of GP11MechanismInfo in the set.</para>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>a</parameter>&#160;:</term>
+<listitem><simpara> A GP11Mechanisms set.
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="gp11-mechanisms-at" role="macro">
+<title>gp11_mechanisms_at()</title>
+<indexterm zone="gp11-mechanisms-at"><primary sortas="gp11_mechanisms_at">gp11_mechanisms_at</primary></indexterm><programlisting>#define gp11_mechanisms_at(a, i) 	(g_array_index(a, CK_MECHANISM_TYPE, i))
+</programlisting>
+<para>
+Get a specific GP11MechanismInfo in a the set.</para>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>a</parameter>&#160;:</term>
+<listitem><simpara> A GP11Mechanisms set.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>i</parameter>&#160;:</term>
+<listitem><simpara> The index of a GP11MechanismInfo.
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="gp11-mechanisms-free" role="macro">
+<title>gp11_mechanisms_free()</title>
+<indexterm zone="gp11-mechanisms-free"><primary sortas="gp11_mechanisms_free">gp11_mechanisms_free</primary></indexterm><programlisting>#define gp11_mechanisms_free(a)         (g_array_free(a, TRUE))
+</programlisting>
+<para>
+Free a GP11Mechanisms set.</para>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>a</parameter>&#160;:</term>
+<listitem><simpara> A GP11Mechanisms set.
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="gp11-mechanisms-check" role="function">
+<title>gp11_mechanisms_check ()</title>
+<indexterm zone="gp11-mechanisms-check"><primary sortas="gp11_mechanisms_check">gp11_mechanisms_check</primary></indexterm><programlisting><link linkend="gboolean">gboolean</link>            gp11_mechanisms_check               (<link linkend="GP11Mechanisms">GP11Mechanisms</link> *mechanisms,
+                                                         ...);</programlisting>
+<para>
+Check whether all the mechanism types are in the list.
+</para>
+<para>
+The arguments should be a list of CKM_XXX mechanism types. The last argument
+should be GP11_INVALID.</para>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>mechanisms</parameter>&#160;:</term>
+<listitem><simpara> A list of mechanisms, perhaps retrieved from <link linkend="gp11-slot-get-mechanisms"><function>gp11_slot_get_mechanisms()</function></link>.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>...</parameter>&#160;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara> Whether the mechanism is in the list or not.
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="GP11Slot-struct" role="struct">
+<title>GP11Slot</title>
+<indexterm zone="GP11Slot-struct"><primary sortas="GP11Slot">GP11Slot</primary></indexterm><programlisting>typedef struct _GP11Slot GP11Slot;</programlisting>
+<para>
+Represents a PKCS11 slot.</para>
+<para>
+</para></refsect2>
+<refsect2 id="gp11-slot-equal" role="function">
+<title>gp11_slot_equal ()</title>
+<indexterm zone="gp11-slot-equal"><primary sortas="gp11_slot_equal">gp11_slot_equal</primary></indexterm><programlisting><link linkend="gboolean">gboolean</link>            gp11_slot_equal                     (<link linkend="gconstpointer">gconstpointer</link> slot1,
+                                                         <link linkend="gconstpointer">gconstpointer</link> slot2);</programlisting>
+<para>
+Checks equality of two slots. Two GP11Slot objects can point to the same 
+underlying PKCS<link linkend="11--CAPS"><type>11</type></link> slot.</para>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>slot1</parameter>&#160;:</term>
+<listitem><simpara> A pointer to the first GP11Slot
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>slot2</parameter>&#160;:</term>
+<listitem><simpara> A pointer to the second GP11Slot
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara> TRUE if slot1 and slot2 are equal. FALSE if either is not a GP11Slot.
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="gp11-slot-hash" role="function">
+<title>gp11_slot_hash ()</title>
+<indexterm zone="gp11-slot-hash"><primary sortas="gp11_slot_hash">gp11_slot_hash</primary></indexterm><programlisting><link linkend="guint">guint</link>               gp11_slot_hash                      (<link linkend="gconstpointer">gconstpointer</link> slot);</programlisting>
+<para>
+Create a hash value for the GP11Slot. 
+</para>
+<para>
+This function is intended for easily hashing a GP11Slot to add to 
+a GHashTable or similar data structure.</para>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>slot</parameter>&#160;:</term>
+<listitem><simpara> A pointer to a GP11Slot
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara> An integer that can be used as a hash value, or 0 if invalid.
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="gp11-slot-get-module" role="function">
+<title>gp11_slot_get_module ()</title>
+<indexterm zone="gp11-slot-get-module"><primary sortas="gp11_slot_get_module">gp11_slot_get_module</primary></indexterm><programlisting><link linkend="GP11Module">GP11Module</link>*         gp11_slot_get_module                (<link linkend="GP11Slot">GP11Slot</link> *self);</programlisting>
+<para>
+Get the module that this slot is on.</para>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>self</parameter>&#160;:</term>
+<listitem><simpara> The slot to get the module for.
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara> The module, you must unreference this after you're done with it.
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="gp11-slot-get-handle" role="function">
+<title>gp11_slot_get_handle ()</title>
+<indexterm zone="gp11-slot-get-handle"><primary sortas="gp11_slot_get_handle">gp11_slot_get_handle</primary></indexterm><programlisting><link linkend="CK-SLOT-ID--CAPS">CK_SLOT_ID</link>          gp11_slot_get_handle                (<link linkend="GP11Slot">GP11Slot</link> *self);</programlisting>
+<para>
+Get the raw PKCS<link linkend="11--CAPS"><type>11</type></link> handle of a slot.</para>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>self</parameter>&#160;:</term>
+<listitem><simpara> The slot to get the handle of.
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara> The raw handle.
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="gp11-slot-get-info" role="function">
+<title>gp11_slot_get_info ()</title>
+<indexterm zone="gp11-slot-get-info"><primary sortas="gp11_slot_get_info">gp11_slot_get_info</primary></indexterm><programlisting><link linkend="GP11SlotInfo">GP11SlotInfo</link>*       gp11_slot_get_info                  (<link linkend="GP11Slot">GP11Slot</link> *self);</programlisting>
+<para>
+Get the information for this slot.</para>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>self</parameter>&#160;:</term>
+<listitem><simpara> The slot to get info for.
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara> The slot information. When done, use <link linkend="gp11-slot-info-free"><function>gp11_slot_info_free()</function></link>
+to release it.
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="gp11-slot-get-token-info" role="function">
+<title>gp11_slot_get_token_info ()</title>
+<indexterm zone="gp11-slot-get-token-info"><primary sortas="gp11_slot_get_token_info">gp11_slot_get_token_info</primary></indexterm><programlisting><link linkend="GP11TokenInfo">GP11TokenInfo</link>*      gp11_slot_get_token_info            (<link linkend="GP11Slot">GP11Slot</link> *self);</programlisting>
+<para>
+Get the token information for this slot.</para>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>self</parameter>&#160;:</term>
+<listitem><simpara> The slot to get info for.
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara> The token information. When done, use <link linkend="gp11-token-info-free"><function>gp11_token_info_free()</function></link>
+to release it.
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="gp11-slot-get-mechanisms" role="function">
+<title>gp11_slot_get_mechanisms ()</title>
+<indexterm zone="gp11-slot-get-mechanisms"><primary sortas="gp11_slot_get_mechanisms">gp11_slot_get_mechanisms</primary></indexterm><programlisting><link linkend="GP11Mechanisms">GP11Mechanisms</link>*     gp11_slot_get_mechanisms            (<link linkend="GP11Slot">GP11Slot</link> *self);</programlisting>
+<para>
+Get the available mechanisms for this slot.</para>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>self</parameter>&#160;:</term>
+<listitem><simpara> The slot to get mechanisms for.
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara> A list of the mechanisms for this slot. Use 
+<link linkend="gp11-mechanisms-free"><function>gp11_mechanisms_free()</function></link> when done with this.
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="gp11-slot-get-mechanism-info" role="function">
+<title>gp11_slot_get_mechanism_info ()</title>
+<indexterm zone="gp11-slot-get-mechanism-info"><primary sortas="gp11_slot_get_mechanism_info">gp11_slot_get_mechanism_info</primary></indexterm><programlisting><link linkend="GP11MechanismInfo">GP11MechanismInfo</link>*  gp11_slot_get_mechanism_info        (<link linkend="GP11Slot">GP11Slot</link> *self,
+                                                         <link linkend="gulong">gulong</link> mech_type);</programlisting>
+<para>
+Get information for the specified mechanism.</para>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>self</parameter>&#160;:</term>
+<listitem><simpara> The slot to get mechanism info from.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>mech_type</parameter>&#160;:</term>
+<listitem><simpara> The mechanisms type to get info for.
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara> The mechanism information, or NULL if failed. Use 
+<link linkend="gp11-mechanism-info-free"><function>gp11_mechanism_info_free()</function></link> when done with it.
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="gp11-slot-has-flags" role="function">
+<title>gp11_slot_has_flags ()</title>
+<indexterm zone="gp11-slot-has-flags"><primary sortas="gp11_slot_has_flags">gp11_slot_has_flags</primary></indexterm><programlisting><link linkend="gboolean">gboolean</link>            gp11_slot_has_flags                 (<link linkend="GP11Slot">GP11Slot</link> *self,
+                                                         <link linkend="gulong">gulong</link> flags);</programlisting>
+<para>
+Check if the PKCS11 slot has the given flags.</para>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>self</parameter>&#160;:</term>
+<listitem><simpara> The GP11Slot object.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>flags</parameter>&#160;:</term>
+<listitem><simpara> The flags to check.
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara> Whether one or more flags exist.
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="gp11-slot-open-session" role="function">
+<title>gp11_slot_open_session ()</title>
+<indexterm zone="gp11-slot-open-session"><primary sortas="gp11_slot_open_session">gp11_slot_open_session</primary></indexterm><programlisting><link linkend="GP11Session">GP11Session</link>*        gp11_slot_open_session              (<link linkend="GP11Slot">GP11Slot</link> *self,
+                                                         <link linkend="gulong">gulong</link> flags,
+                                                         <link linkend="GError">GError</link> **err);</programlisting>
+<para>
+Open a session on the slot. If the 'auto reuse' setting is set,
+then this may be a recycled session with the same flags.
+</para>
+<para>
+This call may block for an indefinite period.</para>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>self</parameter>&#160;:</term>
+<listitem><simpara> The slot ot open a session on.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>flags</parameter>&#160;:</term>
+<listitem><simpara> The flags to open a session with.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>err</parameter>&#160;:</term>
+<listitem><simpara> A location to return an error, or NULL.
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara> A new session or NULL if an error occurs.
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="gp11-slot-open-session-full" role="function">
+<title>gp11_slot_open_session_full ()</title>
+<indexterm zone="gp11-slot-open-session-full"><primary sortas="gp11_slot_open_session_full">gp11_slot_open_session_full</primary></indexterm><programlisting><link linkend="GP11Session">GP11Session</link>*        gp11_slot_open_session_full         (<link linkend="GP11Slot">GP11Slot</link> *self,
+                                                         <link linkend="gulong">gulong</link> flags,
+                                                         <link linkend="GCancellable">GCancellable</link> *cancellable,
+                                                         <link linkend="GError">GError</link> **err);</programlisting>
+<para>
+Open a session on the slot. If the 'auto reuse' setting is set,
+then this may be a recycled session with the same flags.
+</para>
+<para>
+This call may block for an indefinite period.</para>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>self</parameter>&#160;:</term>
+<listitem><simpara> The slot to open a session on.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>flags</parameter>&#160;:</term>
+<listitem><simpara> The flags to open a session with.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>cancellable</parameter>&#160;:</term>
+<listitem><simpara> Optional cancellation object, or NULL.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>err</parameter>&#160;:</term>
+<listitem><simpara> A location to return an error, or NULL.
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara> A new session or NULL if an error occurs.
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="gp11-slot-open-session-async" role="function">
+<title>gp11_slot_open_session_async ()</title>
+<indexterm zone="gp11-slot-open-session-async"><primary sortas="gp11_slot_open_session_async">gp11_slot_open_session_async</primary></indexterm><programlisting><link linkend="void">void</link>                gp11_slot_open_session_async        (<link linkend="GP11Slot">GP11Slot</link> *self,
+                                                         <link linkend="gulong">gulong</link> flags,
+                                                         <link linkend="GCancellable">GCancellable</link> *cancellable,
+                                                         <link linkend="GAsyncReadyCallback">GAsyncReadyCallback</link> callback,
+                                                         <link linkend="gpointer">gpointer</link> user_data);</programlisting>
+<para>
+Open a session on the slot. If the 'auto reuse' setting is set,
+then this may be a recycled session with the same flags.
+</para>
+<para>
+This call will return immediately and complete asynchronously.</para>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>self</parameter>&#160;:</term>
+<listitem><simpara> The slot to open a session on.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>flags</parameter>&#160;:</term>
+<listitem><simpara> The flags to open a session with.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>cancellable</parameter>&#160;:</term>
+<listitem><simpara> Optional cancellation object, or NULL.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>callback</parameter>&#160;:</term>
+<listitem><simpara> Called when the operation completes.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>user_data</parameter>&#160;:</term>
+<listitem><simpara> Data to pass to the callback.
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="gp11-slot-open-session-finish" role="function">
+<title>gp11_slot_open_session_finish ()</title>
+<indexterm zone="gp11-slot-open-session-finish"><primary sortas="gp11_slot_open_session_finish">gp11_slot_open_session_finish</primary></indexterm><programlisting><link linkend="GP11Session">GP11Session</link>*        gp11_slot_open_session_finish       (<link linkend="GP11Slot">GP11Slot</link> *self,
+                                                         <link linkend="GAsyncResult">GAsyncResult</link> *result,
+                                                         <link linkend="GError">GError</link> **err);</programlisting>
+<para>
+Get the result of an open session operation. If the 'auto reuse' setting is set,
+then this may be a recycled session with the same flags.</para>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>self</parameter>&#160;:</term>
+<listitem><simpara> The slot to open a session on.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>result</parameter>&#160;:</term>
+<listitem><simpara> The result passed to the callback.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>err</parameter>&#160;:</term>
+<listitem><simpara> A location to return an error or NULL.
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara> The new session or NULL if an error occurs.
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="GP11SlotInfo" role="struct">
+<title>GP11SlotInfo</title>
+<indexterm zone="GP11SlotInfo"><primary sortas="GP11SlotInfo">GP11SlotInfo</primary></indexterm><programlisting>typedef struct {
+	gchar *slot_description;
+	gchar *manufacturer_id;
+	gulong flags;
+	guint8 hardware_version_major;
+	guint8 hardware_version_minor;
+	guint8 firmware_version_major;
+	guint8 firmware_version_minor;
+} GP11SlotInfo;
+</programlisting>
+<para>
+Represents information about a PKCS11 slot.
+</para>
+<para>
+This is analogous to a CK_SLOT_INFO structure, but the 
+strings are far more usable.
+</para>
+<para>
+When you're done with this structure it should be released with 
+<link linkend="gp11-slot-info-free"><function>gp11_slot_info_free()</function></link>.</para>
+<para>
+</para><variablelist role="struct">
+<varlistentry>
+<term><link linkend="gchar">gchar</link>&#160;*<structfield>slot_description</structfield>;</term>
+<listitem><simpara> Description of the slot.
+</simpara></listitem>
+</varlistentry>
+<varlistentry>
+<term><link linkend="gchar">gchar</link>&#160;*<structfield>manufacturer_id</structfield>;</term>
+<listitem><simpara> The manufacturer of this slot.
+</simpara></listitem>
+</varlistentry>
+<varlistentry>
+<term><link linkend="gulong">gulong</link>&#160;<structfield>flags</structfield>;</term>
+<listitem><simpara> Various PKCS11 flags that apply to this slot. 
+</simpara></listitem>
+</varlistentry>
+<varlistentry>
+<term><link linkend="guint8">guint8</link>&#160;<structfield>hardware_version_major</structfield>;</term>
+<listitem><simpara> The major version of the hardware.
+</simpara></listitem>
+</varlistentry>
+<varlistentry>
+<term><link linkend="guint8">guint8</link>&#160;<structfield>hardware_version_minor</structfield>;</term>
+<listitem><simpara> The minor version of the hardware.
+</simpara></listitem>
+</varlistentry>
+<varlistentry>
+<term><link linkend="guint8">guint8</link>&#160;<structfield>firmware_version_major</structfield>;</term>
+<listitem><simpara> The major version of the firmware.
+</simpara></listitem>
+</varlistentry>
+<varlistentry>
+<term><link linkend="guint8">guint8</link>&#160;<structfield>firmware_version_minor</structfield>;</term>
+<listitem><simpara> The minor version of the firmware.
+</simpara></listitem>
+</varlistentry>
+</variablelist></refsect2>
+<refsect2 id="gp11-slot-info-free" role="function">
+<title>gp11_slot_info_free ()</title>
+<indexterm zone="gp11-slot-info-free"><primary sortas="gp11_slot_info_free">gp11_slot_info_free</primary></indexterm><programlisting><link linkend="void">void</link>                gp11_slot_info_free                 (<link linkend="GP11SlotInfo">GP11SlotInfo</link> *slot_info);</programlisting>
+<para>
+Free the GP11SlotInfo and associated resources.</para>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>slot_info</parameter>&#160;:</term>
+<listitem><simpara> The slot info to free, or NULL.
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="GP11TokenInfo" role="struct">
+<title>GP11TokenInfo</title>
+<indexterm zone="GP11TokenInfo"><primary sortas="GP11TokenInfo">GP11TokenInfo</primary></indexterm><programlisting>typedef struct {
+	gchar *label;
+	gchar *manufacturer_id;
+	gchar *model;
+	gchar *serial_number;
+	gulong flags;
+	glong max_session_count;
+	glong session_count;
+	glong max_rw_session_count;
+	glong rw_session_count;
+	glong max_pin_len;
+	glong min_pin_len;
+	glong total_public_memory;
+	glong free_public_memory;
+	glong total_private_memory;
+	glong free_private_memory;
+	guint8 hardware_version_major;
+	guint8 hardware_version_minor;
+	guint8 firmware_version_major;
+	guint8 firmware_version_minor;
+	gint64 utc_time;
+} GP11TokenInfo;
+</programlisting>
+<para>
+Represents information about a PKCS11 token.
+</para>
+<para>
+This is analogous to a CK_TOKEN_INFO structure, but the 
+strings are far more usable.
+</para>
+<para>
+When you're done with this structure it should be released with 
+<link linkend="gp11-token-info-free"><function>gp11_token_info_free()</function></link>.</para>
+<para>
+</para><variablelist role="struct">
+<varlistentry>
+<term><link linkend="gchar">gchar</link>&#160;*<structfield>label</structfield>;</term>
+<listitem><simpara> The displayable token label.
+</simpara></listitem>
+</varlistentry>
+<varlistentry>
+<term><link linkend="gchar">gchar</link>&#160;*<structfield>manufacturer_id</structfield>;</term>
+<listitem><simpara> The manufacturer of this slot.
+</simpara></listitem>
+</varlistentry>
+<varlistentry>
+<term><link linkend="gchar">gchar</link>&#160;*<structfield>model</structfield>;</term>
+<listitem><simpara> The token model number as a string.
+</simpara></listitem>
+</varlistentry>
+<varlistentry>
+<term><link linkend="gchar">gchar</link>&#160;*<structfield>serial_number</structfield>;</term>
+<listitem><simpara> The token serial number as a string.
+</simpara></listitem>
+</varlistentry>
+<varlistentry>
+<term><link linkend="gulong">gulong</link>&#160;<structfield>flags</structfield>;</term>
+<listitem><simpara> Various PKCS11 flags that apply to this token.
+</simpara></listitem>
+</varlistentry>
+<varlistentry>
+<term><link linkend="glong">glong</link>&#160;<structfield>max_session_count</structfield>;</term>
+<listitem><simpara> The maximum number of sessions allowed on this token.
+</simpara></listitem>
+</varlistentry>
+<varlistentry>
+<term><link linkend="glong">glong</link>&#160;<structfield>session_count</structfield>;</term>
+<listitem><simpara> The number of sessions open on this token.
+</simpara></listitem>
+</varlistentry>
+<varlistentry>
+<term><link linkend="glong">glong</link>&#160;<structfield>max_rw_session_count</structfield>;</term>
+<listitem><simpara> The maximum number of read/write sessions allowed on this token.
+</simpara></listitem>
+</varlistentry>
+<varlistentry>
+<term><link linkend="glong">glong</link>&#160;<structfield>rw_session_count</structfield>;</term>
+<listitem><simpara> The number of sessions open on this token.
+</simpara></listitem>
+</varlistentry>
+<varlistentry>
+<term><link linkend="glong">glong</link>&#160;<structfield>max_pin_len</structfield>;</term>
+<listitem><simpara> The maximum length of a PIN for locking this token.
+</simpara></listitem>
+</varlistentry>
+<varlistentry>
+<term><link linkend="glong">glong</link>&#160;<structfield>min_pin_len</structfield>;</term>
+<listitem><simpara> The minimum length of a PIN for locking this token.
+</simpara></listitem>
+</varlistentry>
+<varlistentry>
+<term><link linkend="glong">glong</link>&#160;<structfield>total_public_memory</structfield>;</term>
+<listitem><simpara> The total amount of memory on this token for storing public objects.
+</simpara></listitem>
+</varlistentry>
+<varlistentry>
+<term><link linkend="glong">glong</link>&#160;<structfield>free_public_memory</structfield>;</term>
+<listitem><simpara> The available amount of memory on this token for storing public objects.  
+</simpara></listitem>
+</varlistentry>
+<varlistentry>
+<term><link linkend="glong">glong</link>&#160;<structfield>total_private_memory</structfield>;</term>
+<listitem><simpara> The total amount of memory on this token for storing private objects.
+</simpara></listitem>
+</varlistentry>
+<varlistentry>
+<term><link linkend="glong">glong</link>&#160;<structfield>free_private_memory</structfield>;</term>
+<listitem><simpara> The available amount of memory on this token for storing private objects.  
+</simpara></listitem>
+</varlistentry>
+<varlistentry>
+<term><link linkend="guint8">guint8</link>&#160;<structfield>hardware_version_major</structfield>;</term>
+<listitem><simpara> The major version of the hardware.
+</simpara></listitem>
+</varlistentry>
+<varlistentry>
+<term><link linkend="guint8">guint8</link>&#160;<structfield>hardware_version_minor</structfield>;</term>
+<listitem><simpara> The minor version of the hardware.
+</simpara></listitem>
+</varlistentry>
+<varlistentry>
+<term><link linkend="guint8">guint8</link>&#160;<structfield>firmware_version_major</structfield>;</term>
+<listitem><simpara> The major version of the firmware.
+</simpara></listitem>
+</varlistentry>
+<varlistentry>
+<term><link linkend="guint8">guint8</link>&#160;<structfield>firmware_version_minor</structfield>;</term>
+<listitem><simpara> The minor version of the firmware.
+</simpara></listitem>
+</varlistentry>
+<varlistentry>
+<term><link linkend="gint64">gint64</link>&#160;<structfield>utc_time</structfield>;</term>
+<listitem><simpara> If the token has a hardware clock, this is set to the number of seconds since the epoch.
+</simpara></listitem>
+</varlistentry>
+</variablelist></refsect2>
+<refsect2 id="gp11-token-info-free" role="function">
+<title>gp11_token_info_free ()</title>
+<indexterm zone="gp11-token-info-free"><primary sortas="gp11_token_info_free">gp11_token_info_free</primary></indexterm><programlisting><link linkend="void">void</link>                gp11_token_info_free                (<link linkend="GP11TokenInfo">GP11TokenInfo</link> *token_info);</programlisting>
+<para>
+Free the GP11TokenInfo and associated resources.</para>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>token_info</parameter>&#160;:</term>
+<listitem><simpara> The token info to free, or NULL.
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+
+</refsect1>
+<refsect1 id="gp11-gp11-slot.property-details" role="property_details">
+<title role="property_details.title">Property Details</title>
+<refsect2 id="GP11Slot--handle" role="property"><title>The <literal>&quot;handle&quot;</literal> property</title>
+<indexterm zone="GP11Slot--handle"><primary sortas="GP11Slot:handle">GP11Slot:handle</primary></indexterm><programlisting>  &quot;handle&quot;                   <link linkend="gulong">gulong</link>                : Read / Write / Construct Only</programlisting>
+<para>
+The raw CK_SLOT_ID handle of this slot.</para>
+<para>
+</para></refsect2>
+<refsect2 id="GP11Slot--module" role="property"><title>The <literal>&quot;module&quot;</literal> property</title>
+<indexterm zone="GP11Slot--module"><primary sortas="GP11Slot:module">GP11Slot:module</primary></indexterm><programlisting>  &quot;module&quot;                   <link linkend="GP11Module">GP11Module</link>*           : Read / Write / Construct Only</programlisting>
+<para>
+The PKCS11 object that this slot is a part of.</para>
+<para>
+</para></refsect2>
+</refsect1>
+
+
+
+
+</refentry>

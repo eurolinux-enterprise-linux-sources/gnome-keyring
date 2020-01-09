@@ -1,0 +1,1548 @@
+# translation of el.po to Greek
+# This file is distributed under the same license as the PACKAGE package.
+# Copyright (C) 2006 THE PACKAGE'S COPYRIGHT HOLDER.
+#
+# Kostas Papadimas <pkst@gnome.org>, 2004, 2006.
+# Jennie Petoumenou <epetoumenou@gmail.com>, 2009.
+msgid ""
+msgstr ""
+"Project-Id-Version: el\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2009-03-27 11:13+0000\n"
+"PO-Revision-Date: 2009-03-12 10:56+0100\n"
+"Last-Translator: Jennie Petoumenou <epetoumenou@gmail.com>\n"
+"Language-Team: Greek <team@gnome.gr>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Lokalize 0.2\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: ../common/gkr-location.c:321
+#, c-format
+msgid "Removable Disk: %s"
+msgstr "Αφαιρούμενος δίσκος: %s"
+
+#: ../common/gkr-location.c:323
+msgid "Removable Disk"
+msgstr "Αφαιρούμενος δίσκος"
+
+#: ../common/gkr-location.c:544 ../common/gkr-location.c:556
+msgid "Home"
+msgstr "Αρχικός κατάλογος"
+
+#: ../common/gkr-location.c:1105 ../common/gkr-location.c:1129
+msgid "The disk or drive this file is located on is not present"
+msgstr "Ο δίσκος ή η τοποθεσία που βρίσκεται το αρχείο λείπουν"
+
+#: ../common/gkr-location.c:1137
+#, c-format
+msgid "Couldn't create directory: %s"
+msgstr "Αδυναμία δημιουργίας καταλόγου: %s"
+
+#: ../common/gkr-location.c:1171
+#, c-format
+msgid "Couldn't delete the file: %s"
+msgstr "Αδυναμία διαγραφής του αρχείου: %s"
+
+#. TRANSLATORS: Don't translate text in markup (ie: HTML or XML tags)
+#: ../daemon/gkr-daemon-ops.c:228
+#, c-format
+msgid ""
+"The application '%s' (%s) wants to access the password for '<object "
+"prop='name'/>' in the default keyring."
+msgstr ""
+"Η εφαρμογή '%s' (%s) επιθυμεί πρόσβαση στον κωδικό για το '<object "
+"prop='name'/>' στο προεπιλεγμένο keyring."
+
+#. TRANSLATORS: Don't translate text in markup (ie: HTML or XML tags)
+#: ../daemon/gkr-daemon-ops.c:232
+#, c-format
+msgid ""
+"The application '%s' (%s) wants to access the password for '<object "
+"prop='name'/>' in %s."
+msgstr ""
+"Η εφαρμογή '%s' (%s) επιθυμεί πρόσβαση στον κωδικό για το '<object "
+"prop='name'/>' στο %s."
+
+#. TRANSLATORS: Don't translate text in markup (ie: HTML or XML tags)
+#: ../daemon/gkr-daemon-ops.c:238 ../daemon/gkr-daemon-ops.c:248
+#, c-format
+msgid ""
+"The application '%s' wants to access the password for '<object prop='name'/"
+">' in the default keyring."
+msgstr ""
+"Η εφαρμογή '%s' επιθυμεί πρόσβαση στον κωδικό για το '<object prop='name'/>' "
+"στο προεπιλεγμένο keyring."
+
+#. TRANSLATORS: Don't translate text in markup (ie: HTML or XML tags)
+#: ../daemon/gkr-daemon-ops.c:242 ../daemon/gkr-daemon-ops.c:252
+#, c-format
+msgid ""
+"The application '%s' wants to access the password for '<object prop='name'/"
+">' in %s."
+msgstr ""
+"Η εφαρμογή '%s'  επιθυμεί πρόσβαση στον κωδικό για το '<object prop='name'/"
+">' στο %s."
+
+#. TRANSLATORS: Don't translate text in markup (ie: HTML or XML tags)
+#: ../daemon/gkr-daemon-ops.c:258
+msgid ""
+"An unknown application wants to access the password for '<object prop='name'/"
+">' in the default keyring."
+msgstr ""
+"Μια άγνωστη εφαρμογή επιθυμεί πρόσβαση στον κωδικό για το '<object "
+"prop='name'/>' στο προεπιλεγμένο keyring."
+
+#. TRANSLATORS: Don't translate text in markup (ie: HTML or XML tags)
+#: ../daemon/gkr-daemon-ops.c:261
+#, c-format
+msgid ""
+"An unknown application wants to access the password for '<object prop='name'/"
+">' in %s."
+msgstr ""
+"Μια άγνωστη εφαρμογή επιθυμεί πρόσβαση στον κωδικό για το '<object "
+"prop='name'/>' στο %s."
+
+#. And put together the ask request
+#: ../daemon/gkr-daemon-ops.c:267
+msgid "Allow access"
+msgstr "Να γίνεται έλεγχος πρόσβασης"
+
+#: ../daemon/gkr-daemon-ops.c:267
+msgid "Allow application access to keyring?"
+msgstr "Να επιτρέπεται στην εφαρμογή η πρόσβαση στο keyring?"
+
+#. TRANSLATORS: The default keyring is locked
+#: ../daemon/gkr-daemon-ops.c:309
+#, c-format
+msgid ""
+"The application '%s' (%s) wants access to the default keyring, but it is "
+"locked"
+msgstr ""
+"Η εφαρμογή '%s' (%s) επιθυμεί πρόσβαση στο προεπιλεγμένο keyring, αλλά είναι "
+"κλειδωμένο."
+
+#. TRANSLATORS: The keyring '%s' is locked
+#: ../daemon/gkr-daemon-ops.c:314
+#, c-format
+msgid ""
+"The application '%s' (%s) wants access to the keyring '%s', but it is locked"
+msgstr ""
+"Η εφαρμογή '%s' (%s)  επιθυμεί πρόσβαση στο keyring %s, αλλά είναι "
+"κλειδωμένο."
+
+#. TRANSLATORS: The default keyring is locked
+#: ../daemon/gkr-daemon-ops.c:321 ../daemon/gkr-daemon-ops.c:333
+#, c-format
+msgid ""
+"The application '%s' wants access to the default keyring, but it is locked"
+msgstr ""
+"Η εφαρμογή %s επιθυμεί πρόσβαση στο προεπιλεγμένο keyring, αλλά είναι "
+"κλειδωμένο."
+
+#. TRANSLATORS: The keyring '%s' is locked
+#: ../daemon/gkr-daemon-ops.c:326 ../daemon/gkr-daemon-ops.c:339
+#, c-format
+msgid "The application '%s' wants access to the keyring '%s', but it is locked"
+msgstr ""
+"Η εφαρμογή '%s' επιθυμεί πρόσβαση στο keyring %s, αλλά είναι κλειδωμένο."
+
+#. TRANSLATORS: The default keyring is locked
+#: ../daemon/gkr-daemon-ops.c:346
+#, c-format
+msgid ""
+"An unknown application wants access to the default keyring, but it is locked"
+msgstr ""
+"Μια άγνωστη εφαρμογή επιθυμεί πρόσβαση στο προεπιλεγμένο keyring, αλλά είναι "
+"κλειδωμένο."
+
+#. TRANSLATORS: The keyring '%s' is locked
+#: ../daemon/gkr-daemon-ops.c:351
+#, c-format
+msgid ""
+"An unknown application wants access to the keyring '%s', but it is locked"
+msgstr ""
+"Μια άγνωστη εφαρμογή  επιθυμεί πρόσβαση στο  keyring '%s', αλλά είναι "
+"κλειδωμένο."
+
+#: ../daemon/gkr-daemon-ops.c:358
+msgid "Enter password for default keyring to unlock"
+msgstr "Εισάγετε κωδικό για το προεπιλεγμένο keyring για ξεκλείδωμα"
+
+#: ../daemon/gkr-daemon-ops.c:360
+#, c-format
+msgid "Enter password for keyring '%s' to unlock"
+msgstr "Εισάγετε κωδικό για το keyring '%s' για ξεκλείδωμα"
+
+#. And put together the ask request
+#: ../daemon/gkr-daemon-ops.c:364
+msgid "Unlock Keyring"
+msgstr "Ξεκλείδωμα Keyring"
+
+#: ../daemon/gkr-daemon-ops.c:376
+msgid "Automatically unlock this keyring when I log in."
+msgstr "Αυτόματο ξεκλείδωμα αυτού του keyring  στην είσοδο μου."
+
+#. TRANSLATORS: The password is for the new keyring
+#: ../daemon/gkr-daemon-ops.c:413
+#, c-format
+msgid ""
+"The application '%s' (%s) wants to create a new keyring called '%s'. You "
+"have to choose the password you want to use for it."
+msgstr ""
+"Η εφαρμογή '%s' (%s) επιθυμεί να δημιουργήσει ένα νέο keyring με το όνομα '%"
+"s'. Θα πρέπει να επιλέξετε τον κωδικό που θέλετε να χρησιμοποιήσετε για αυτό."
+
+#. TRANSLATORS: The password is for the new keyring
+#: ../daemon/gkr-daemon-ops.c:418
+#, c-format
+msgid ""
+"The application '%s' (%s) wants to create a new default keyring. You have to "
+"choose the password you want to use for it."
+msgstr ""
+"Η εφαρμογή '%s' (%s) επιθυμεί να δημιουργήσει ένα νέο προεπιλεγμένο keyring. "
+"Θα πρέπει να επιλέξετε τον κωδικό που θέλετε να χρησιμοποιήσετε για αυτό."
+
+#. TRANSLATORS: The password is for the new keyring
+#: ../daemon/gkr-daemon-ops.c:425 ../daemon/gkr-daemon-ops.c:437
+#, c-format
+msgid ""
+"The application '%s' wants to create a new keyring called '%s'. You have to "
+"choose the password you want to use for it."
+msgstr ""
+"Η εφαρμογή '%s' επιθυμεί να δημιουργήσει ένα νέο keyring με το όνομα '%s'. "
+"Θα πρέπει να επιλέξετε τον κωδικό που θέλετε να χρησιμοποιήσετε για αυτό."
+
+#. TRANSLATORS: The password is for the new keyring
+#: ../daemon/gkr-daemon-ops.c:430 ../daemon/gkr-daemon-ops.c:442
+#, c-format
+msgid ""
+"The application '%s' wants to create a new default keyring. You have to "
+"choose the password you want to use for it."
+msgstr ""
+"Η εφαρμογή '%s' επιθυμεί να δημιουργήσει νέο προεπιλεγμένο keyring. Θα "
+"πρέπει να επιλέξετε τον κωδικό που θέλετε να χρησιμοποιήσετε για αυτό."
+
+#. TRANSLATORS: The password is for the new keyring
+#: ../daemon/gkr-daemon-ops.c:449
+#, c-format
+msgid ""
+"An unknown application wants to create a new keyring called '%s'. You have "
+"to choose the password you want to use for it."
+msgstr ""
+"Μια άγνωστη εφαρμογή επιθυμεί να δημιουργήσει ένα νέο keyring με το όνομα '%"
+"s'. Θα πρέπει να επιλέξετε τον κωδικό που θέλετε να χρησιμοποιήσετε για αυτό."
+
+#. TRANSLATORS: The password is for the new keyring
+#: ../daemon/gkr-daemon-ops.c:454
+#, c-format
+msgid ""
+"An unknown application wants to create a new default keyring. You have to "
+"choose the password you want to use for it."
+msgstr ""
+"Μια άγνωστη εφαρμογή επιθυμεί να δημιουργήσει ένα νέο προεπιλεγμένο keyring. "
+"Θα πρέπει να επιλέξετε τον κωδικό που θέλετε να χρησιμοποιήσετε για αυτό."
+
+#. And put together the ask request
+#: ../daemon/gkr-daemon-ops.c:460
+msgid "New Keyring Password"
+msgstr "Νέος κωδικός Keyring"
+
+#: ../daemon/gkr-daemon-ops.c:461
+msgid "Choose password for new keyring"
+msgstr "Επιλέξτε κωδικό για το νέο keyring"
+
+#: ../daemon/gkr-daemon-ops.c:508
+#, c-format
+msgid ""
+"The application '%s' (%s) wants to change the password for the '%s' keyring. "
+"You have to choose the password you want to use for it."
+msgstr ""
+"Η εφαρμογή '%s' (%s) επιθυμεί να αλλάξει το κωδικό για το keyring '%s'. Θα "
+"πρέπει να επιλέξετε τον κωδικό που θέλετε να χρησιμοποιήσετε για αυτό."
+
+#: ../daemon/gkr-daemon-ops.c:512
+#, c-format
+msgid ""
+"The application '%s' (%s) wants to change the password for the default "
+"keyring. You have to choose the password you want to use for it."
+msgstr ""
+"Η εφαρμογή '%s' (%s) επιθυμεί να να αλλάξει το κωδικό για το keyring. Θα "
+"πρέπει να επιλέξετε τον κωδικό που θέλετε να χρησιμοποιήσετε για αυτό."
+
+#: ../daemon/gkr-daemon-ops.c:518 ../daemon/gkr-daemon-ops.c:528
+#, c-format
+msgid ""
+"The application '%s' wants to change the password for the '%s' keyring. You "
+"have to choose the password you want to use for it."
+msgstr ""
+"Η εφαρμογή '%s' επιθυμεί να αλλάξει το κωδικό για το keyring '%s'. Θα πρέπει "
+"να επιλέξετε τον κωδικό που θέλετε να χρησιμοποιήσετε για αυτό."
+
+#: ../daemon/gkr-daemon-ops.c:522 ../daemon/gkr-daemon-ops.c:532
+#, c-format
+msgid ""
+"The application '%s' wants to change the password for the default keyring. "
+"You have to choose the password you want to use for it."
+msgstr ""
+"Η εφαρμογή '%s' επιθυμεί  να αλλάξει το κωδικό για το προεπιλεγμένο keyring. "
+"Θα πρέπει να επιλέξετε τον κωδικό που θέλετε να χρησιμοποιήσετε για αυτό."
+
+#: ../daemon/gkr-daemon-ops.c:538
+#, c-format
+msgid ""
+"An unknown application wants to change the password for the '%s' keyring. "
+"You have to choose the password you want to use for it."
+msgstr ""
+"Μια άγνωστη εφαρμογή επιθυμεί  να αλλάξει το κωδικό για το keyring '%s'. Θα "
+"πρέπει να επιλέξετε τον κωδικό που θέλετε να χρησιμοποιήσετε για αυτό."
+
+#: ../daemon/gkr-daemon-ops.c:542
+#, c-format
+msgid ""
+"An unknown application wants to change the password for the default keyring. "
+"You have to choose the password you want to use for it."
+msgstr ""
+"Μια άγνωστη εφαρμογή επιθυμεί  να αλλάξει το κωδικό για το προεπιλεγμένο "
+"keyring. Θα πρέπει να επιλέξετε τον κωδικό που θέλετε να χρησιμοποιήσετε για "
+"αυτό."
+
+#: ../daemon/gkr-daemon-ops.c:552
+#, c-format
+msgid "Choose a new password for the '%s' keyring. "
+msgstr "Επιλέξτε νέο κωδικό για το keyring '%s'."
+
+#: ../daemon/gkr-daemon-ops.c:554
+#, c-format
+msgid "Choose a new password for the default keyring. "
+msgstr "Επιλέξτε νέο κωδικό για το προεπιλεγμένο keyring"
+
+#. And put together the ask request
+#: ../daemon/gkr-daemon-ops.c:558
+msgid "Change Keyring Password"
+msgstr "Αλλαγή κωδικού Keyring"
+
+#: ../daemon/gkr-daemon-ops.c:631
+#, c-format
+msgid ""
+"The application '%s' (%s) wants to store a password, but there is no default "
+"keyring. To create one, you need to choose the password you wish to use for "
+"it."
+msgstr ""
+"Η εφαρμογή '%s' (%s) επιθυμεί να αποθηκεύσει ένα κωδικό αλλά δεν υπάρχει "
+"προεπιλεγμένο keyring. Για να δημιουργήσετε ένα, θα χρειαστεί να  επιλέξετε "
+"ένα κωδικό που θέλετε να χρησιμοποιήσετε για αυτό."
+
+#: ../daemon/gkr-daemon-ops.c:635 ../daemon/gkr-daemon-ops.c:639
+#, c-format
+msgid ""
+"The application '%s' wants to store a password, but there is no default "
+"keyring. To create one, you need to choose the password you wish to use for "
+"it."
+msgstr ""
+"Η εφαρμογή '%s' επιθυμεί να αποθηκεύσει ένα κωδικό αλλά δεν υπάρχει "
+"προεπιλεγμένο keyring. Για να δημιουργήσετε ένα, θα χρειαστεί να  επιλέξετε "
+"ένα κωδικό που θέλετε να χρησιμοποιήσετε για αυτό."
+
+#: ../daemon/gkr-daemon-ops.c:643
+#, c-format
+msgid ""
+"An unknown application wants to store a password, but there is no default "
+"keyring. To create one, you need to choose the password you wish to use for "
+"it."
+msgstr ""
+"Μια άγνωστη εφαρμογή επιθυμεί να αποθηκεύσει ένα κωδικό αλλά δεν υπάρχει "
+"προεπιλεγμένο keyring. Για να δημιουργήσετε ένα, θα χρειαστεί να  επιλέξετε "
+"ένα κωδικό που θέλετε να χρησιμοποιήσετε για αυτό."
+
+#. And put together the ask request
+#: ../daemon/gkr-daemon-ops.c:648
+msgid "Create Default Keyring"
+msgstr "Δημιουργία προεπιλεγμένου keyring"
+
+#: ../daemon/gkr-daemon-ops.c:648
+msgid "Choose password for default keyring"
+msgstr "Επιλέξτε κωδικό για το προεπιλεγμένο keyring"
+
+#: ../daemon/data/gnome-keyring.schemas.in.h:1
+msgid ""
+"This option enables the PKCS#11 component in the gnome-keyring daemon. It "
+"only takes effect as gnome-keyring-daemon starts, (ie: when the user logs "
+"in). This setting may be overridden when certain command line arguments are "
+"passed to the daemon."
+msgstr ""
+"Αυτή η επιλογή ενεργοποιεί το  PKCS#11 component στο gnome-keyring daemon. "
+"Πραγματοποιείται μόνο όταν ξεκινάει ο  gnome-keyring-daemon, (δηλ. όταν ο "
+"χρήστης συνδέεται). Αυτή η ρύθμιση μπορεί να παρακαμθεί με συγκεκριμένες "
+"εντολές στην γραμμή εντολών στο daemon."
+
+#: ../daemon/data/gnome-keyring.schemas.in.h:2
+msgid ""
+"This option enables the SSH agent in the gnome-keyring daemon. It only takes "
+"effect as gnome-keyring-daemon starts, (ie: when the user logs in). This "
+"setting may be overridden when certain command line arguments are passed to "
+"the daemon."
+msgstr ""
+"Αυτή η επιλογή ενεργοποιεί τον SSH agent στο gnome-keyring daemon. "
+"Πραγματοποιείται μόνο όταν ξεκινάει ο  gnome-keyring-daemon, (δηλ. όταν ο "
+"χρήστης συνδέεται). Αυτή η ρύθμιση μπορεί να παρακαμθεί με συγκεκριμένες "
+"εντολές στην γραμμή εντολών στο daemon."
+
+#: ../daemon/data/gnome-keyring.schemas.in.h:3
+msgid "Whether the gnome-keyring PKCS#11 component is enabled."
+msgstr "Αν θα είναι ενεργοποιημένο το gnome-keyring PKCS#11 component"
+
+#: ../daemon/data/gnome-keyring.schemas.in.h:4
+msgid "Whether the gnome-keyring SSH agent is enabled."
+msgstr "Αν ο gnome-keyring SSH agent θα είναι ενεργοποιημένος."
+
+#: ../daemon/gnome-keyring-daemon.desktop.in.in.h:1
+msgid "GNOME Keyring Daemon"
+msgstr "Δαίμονας κλειδοθήκης GNOME"
+
+#. And put together the ask request
+#: ../daemon/keyrings/gkr-keyring-login.c:98
+msgid "Unlock Login Keyring"
+msgstr "Ξεκλείδωμα Keyring εισόδου"
+
+#: ../daemon/keyrings/gkr-keyring-login.c:98
+msgid "Enter login password to unlock keyring"
+msgstr "Εισαγωγή κωδικού ξεκλειδώματος για το keyring"
+
+#: ../daemon/keyrings/gkr-keyring-login.c:100
+msgid ""
+"Your login keyring was not automatically unlocked when you logged into this "
+"computer."
+msgstr ""
+"Το keyring εισόδου σας δεν ξεκλειδώθηκε αυτόματα όταν συνδεθήκατε σε αυτόν "
+"τον υπολογιστή"
+
+#. And put together the ask request
+#: ../daemon/keyrings/gkr-keyring-login.c:124
+msgid "Create Login Keyring"
+msgstr "Δημιουργία keyring εισόδου"
+
+#: ../daemon/keyrings/gkr-keyring-login.c:124
+msgid "Enter your login password"
+msgstr "Εισάγετε το κωδικό εισόδου σας"
+
+#: ../daemon/keyrings/gkr-keyring-login.c:126
+msgid ""
+"Your login keyring was not automatically created when you logged into this "
+"computer. It will now be created."
+msgstr ""
+"Το keyring εισόδου σας δεν δημιουργήθηκε αυτόματα όταν συνδεθήκατε σε αυτόν "
+"τον υπολογιστή. Θα δημιουργηθεί τώρα."
+
+#: ../daemon/keyrings/gkr-keyring.c:586
+#, c-format
+msgid "Unlock password for %s keyring"
+msgstr "Κωδικός ξεκλειδώματος για το keyring %s"
+
+#: ../daemon/pkcs11/gkr-pkcs11-auth.c:99
+msgid "Unlock private key"
+msgstr "Ξεκλείδωμα ιδιωτικού κλειδιού"
+
+#: ../daemon/pkcs11/gkr-pkcs11-auth.c:101
+msgid "Unlock certificate"
+msgstr "Ξεκλείδωμα πιστοποιητικού"
+
+#: ../daemon/pkcs11/gkr-pkcs11-auth.c:103
+msgid "Unlock public key"
+msgstr "Ξεκλείδωμα δημοσίου κλειδιού"
+
+#: ../daemon/pkcs11/gkr-pkcs11-auth.c:105
+msgid "Unlock"
+msgstr "Ξεκλείδωμα"
+
+#: ../daemon/pkcs11/gkr-pkcs11-auth.c:114 ../gcr/gcr-importer.c:436
+msgid "Enter password to unlock the private key"
+msgstr "Εισάγετε κωδικό για το ξεκλείδωμα του ιδιωτικού κλειδιού"
+
+#: ../daemon/pkcs11/gkr-pkcs11-auth.c:116 ../gcr/gcr-importer.c:438
+msgid "Enter password to unlock the certificate"
+msgstr "Εισάγετε κωδικό για το ξεκλείδωμα του πιστοποιητικού"
+
+#: ../daemon/pkcs11/gkr-pkcs11-auth.c:118
+msgid "Enter password to unlock the public key"
+msgstr "Εισάγετε κωδικό για το ξεκλείδωμα του δημόσιου κλειδιού"
+
+#: ../daemon/pkcs11/gkr-pkcs11-auth.c:120 ../gcr/gcr-importer.c:440
+msgid "Enter password to unlock"
+msgstr "Εισάγετε κωδικό για ξεκλείδωμα"
+
+#. TRANSLATORS: The private key is locked
+#: ../daemon/pkcs11/gkr-pkcs11-auth.c:130
+#, c-format
+msgid "An application wants access to the private key '%s', but it is locked"
+msgstr ""
+"Μια  εφαρμογή  επιθυμεί πρόσβαση στο ιδιωτικό κλειδί '%s', αλλά είναι "
+"κλειδωμένο."
+
+#. TRANSLATORS: The certificate is locked
+#: ../daemon/pkcs11/gkr-pkcs11-auth.c:133
+#, c-format
+msgid "An application wants access to the certificate '%s', but it is locked"
+msgstr ""
+"Μια εφαρμογή επιθυμεί πρόσβαση στο πιστοποιητικό '%s', αλλά είναι κλειδωμένο."
+
+#. TRANSLATORS: The public key is locked
+#: ../daemon/pkcs11/gkr-pkcs11-auth.c:136
+#, c-format
+msgid "An application wants access to the public key '%s', but it is locked"
+msgstr ""
+"Μια εφαρμογή επιθυμεί πρόσβαση στο δημόσιο κλειδί '%s', αλλά είναι "
+"κλειδωμένο."
+
+#. TRANSLATORS: The object '%s' is locked
+#: ../daemon/pkcs11/gkr-pkcs11-auth.c:139
+#, c-format
+msgid "An application wants access to '%s', but it is locked"
+msgstr "Μια εφαρμογή  επιθυμεί πρόσβαση στο '%s', αλλά είναι κλειδωμένο."
+
+#: ../daemon/pkcs11/gkr-pkcs11-auth.c:148
+msgid "Automatically unlock this private key when I log in."
+msgstr "Αυτόματο ξεκλείδωμα αυτού του ιδιωτικού κλειδιού κατά την είσοδο."
+
+#: ../daemon/pkcs11/gkr-pkcs11-auth.c:150
+msgid "Automatically unlock this certificate when I log in."
+msgstr "Αυτόματο ξεκλείδωμα αυτού του πιστοποιητικού κατά την είσοδο."
+
+#: ../daemon/pkcs11/gkr-pkcs11-auth.c:152
+msgid "Automatically unlock this public key when I log in."
+msgstr "Αυτόματο ξεκλείδωμα αυτού του δημόσιου κλειδιού κατά την είσοδο."
+
+#: ../daemon/pkcs11/gkr-pkcs11-auth.c:154
+msgid "Automatically unlock this when I log in"
+msgstr "Αυτόματο ξεκλείδωμα αυτού στην είσοδο μου."
+
+#: ../daemon/pkcs11/gkr-pkcs11-auth.c:393
+msgid "Unlock certificate/key storage"
+msgstr "Ξεκλείδωμα πιστοποιητικού/αποθήκης κλειδιών"
+
+#: ../daemon/pkcs11/gkr-pkcs11-auth.c:394
+msgid "Enter password to unlock the certificate/key storage"
+msgstr ""
+"Εισάγετε κωδικό για το ξεκλείδωμα του πιστοποιητικού/της αποθήκης κλειδιών"
+
+#. TRANSLATORS: The storage is locked, and needs unlocking before the application can use it.
+#: ../daemon/pkcs11/gkr-pkcs11-auth.c:397
+#, c-format
+msgid ""
+"An application wants access to the certificate/key storage '%s', but it is "
+"locked"
+msgstr ""
+"Μια εφαρμογή επιθυμεί πρόσβαση στο πιστοποιητικό/αποθήκη κλειδιών '%s', αλλά "
+"αυτό είναι κλειδωμένο."
+
+#: ../daemon/pkcs11/gkr-pkcs11-auth.c:402
+#: ../daemon/pkcs11/gkr-pkcs11-auth.c:553
+msgid "Automatically unlock secure storage when I log in."
+msgstr "Αυτόματο ξεκλείδωμα της ασφαλούς αποθήκης κατά την είσοδο."
+
+#: ../daemon/pkcs11/gkr-pkcs11-auth.c:545
+msgid "New Password Required"
+msgstr "Απαιτείται νέος κωδικός"
+
+#: ../daemon/pkcs11/gkr-pkcs11-auth.c:546
+msgid "New password required for secure storage"
+msgstr "Απαιτείται νέος κωδικός για την ασφαλή αποθήκη"
+
+#: ../daemon/pkcs11/gkr-pkcs11-auth.c:548
+#, c-format
+msgid ""
+"In order to prepare '%s' for storage of certificates or keys, a password is "
+"required"
+msgstr ""
+"Απαιτείται κωδικός για την προετοιμασία του '%s' για αποθήκευση "
+"πιστοποιητικών ή κλειδιών"
+
+#: ../daemon/ui/gkr-ask-tool.c:230
+msgid ""
+"<b><big>Could not grab your mouse.</big></b>\n"
+"\n"
+"A malicious client may be eavesdropping on your session or you may have just "
+"clicked a menu or some application just decided to get focus.\n"
+"\n"
+"Try again."
+msgstr ""
+"<b><big>Αδυναμία απόκτησης του ελέγχου του ποντικιού σας.</big></b>\n"
+"\n"
+"Ένας κακόβουλος πελάτης μπορεί να υποκλέπτει τη συνεδρία σας, μπορεί μόλις "
+"να επιλέξατε ένα μενού, ή μπορεί μόλις να έγινε εστίαση σε διαφορετική "
+"εφαρμογή .\n"
+"\n"
+"Προσπαθήστε ξανά."
+
+#: ../daemon/ui/gkr-ask-tool.c:239
+msgid ""
+"<b><big>Could not grab your keyboard.</big></b>\n"
+"\n"
+"A malicious client may be eavesdropping on your session or you may have just "
+"clicked a menu or some application just decided to get focus.\n"
+"\n"
+"Try again."
+msgstr ""
+"<b><big>Αδυναμία απόκτησης του ελέγχου του πληκτρολογίου σας.</big></b>\n"
+"\n"
+"Ένας κακόβουλος πελάτης μπορεί να υποκλέπτει τη συνεδρία σας, μπορεί μόλις "
+"να επιλέξατε ένα μενού, ή μπορεί μόλις να έγινε εστίαση σε διαφορετική "
+"εφαρμογή .\n"
+"\n"
+"Προσπαθήστε ξανά."
+
+#: ../daemon/ui/gkr-ask-tool.c:276
+msgid "Store passwords unencrypted?"
+msgstr "Αποθήκευση κωδικών χωρίς κρυπτογράφηση;"
+
+#: ../daemon/ui/gkr-ask-tool.c:277
+msgid ""
+"By choosing to use a blank password, your stored passwords will not be "
+"safely encrypted. They will be accessible by anyone with access to your "
+"files."
+msgstr ""
+"Αν επιλέξετε την χρήση ενός κενού κωδικού, δεν θα κρυπτογραφηθούν με "
+"ασφάλεια οι αποθηκευμένοι σας κωδικοί. Θα είναι προσβάσιμοι στον καθένα που "
+"έχει πρόσβαση στα αρχεία σας."
+
+#: ../daemon/ui/gkr-ask-tool.c:284
+msgid "Use Unsafe Storage"
+msgstr "Χρήση μη ασφαλούς αποθήκευσης"
+
+#: ../daemon/ui/gkr-ask-tool.c:512
+msgid "_Location:"
+msgstr "_Τοποθεσία"
+
+#: ../daemon/ui/gkr-ask-tool.c:525
+msgid "_Old password:"
+msgstr "_Παλιός κωδικός:"
+
+#: ../daemon/ui/gkr-ask-tool.c:545
+msgid "_Password:"
+msgstr "_Κωδικός:"
+
+#: ../daemon/ui/gkr-ask-tool.c:567
+msgid "_Confirm password:"
+msgstr "Επι_βεβαίωση κωδικού:"
+
+#: ../daemon/ui/gkr-ask-tool.c:587
+msgid "New password strength"
+msgstr "Ισχύς νέου κωδικού"
+
+#: ../daemon/ui/gkr-ask-tool.c:645
+msgid "Passwords do not match."
+msgstr "Οι κωδικοί δεν ταιριάζουν."
+
+#: ../daemon/ui/gkr-ask-tool.c:661
+msgid "Password cannot be blank"
+msgstr "Ο κωδικός δεν πρέπει να είναι κενός"
+
+#: ../daemon/ui/gkr-ask-tool.c:712
+msgid "_Deny"
+msgstr "Ά_ρνηση"
+
+#: ../daemon/ui/gkr-ask-tool.c:724
+msgid "C_reate"
+msgstr "_Δημιουργία"
+
+#: ../daemon/ui/gkr-ask-tool.c:728
+msgid "C_hange"
+msgstr "Α_λλαγή"
+
+#: ../daemon/ui/gkr-ask-tool.c:732
+msgid "Allow _Once"
+msgstr "Να επιτρέπεται μια _φορά"
+
+#: ../daemon/ui/gkr-ask-tool.c:736
+msgid "_Always Allow"
+msgstr "Να επιτρέπεται πά_ντα"
+
+#: ../egg/egg-oid.c:41
+msgid "Domain Component"
+msgstr "Συστατικό τομέα"
+
+#: ../egg/egg-oid.c:43
+msgid "User ID"
+msgstr "ID Χρήστη"
+
+#: ../egg/egg-oid.c:46
+msgid "Email"
+msgstr "Email"
+
+#: ../egg/egg-oid.c:54
+msgid "Date of Birth"
+msgstr "Ημερομηνία γέννησης"
+
+#: ../egg/egg-oid.c:56
+msgid "Place of Birth"
+msgstr "Τοποθεσία γέννησης"
+
+#: ../egg/egg-oid.c:58
+msgid "Gender"
+msgstr "Φύλο"
+
+#: ../egg/egg-oid.c:60
+msgid "Country of Citizenship"
+msgstr "Χώρα υπηκοότητας"
+
+#: ../egg/egg-oid.c:62
+msgid "Country of Residence"
+msgstr "Χώρα διαμονής"
+
+#: ../egg/egg-oid.c:65
+msgid "Common Name"
+msgstr "Όνομα, υποκοριστικό"
+
+#: ../egg/egg-oid.c:67
+msgid "Surname"
+msgstr "Επώνυμο"
+
+#: ../egg/egg-oid.c:69 ../gcr/gcr-certificate-basics-widget.glade.h:18
+#: ../gcr/gcr-certificate-details-widget.c:330
+msgid "Serial Number"
+msgstr "Σειριακός αριθμός"
+
+#: ../egg/egg-oid.c:71
+msgid "Country"
+msgstr "Χώρα"
+
+#: ../egg/egg-oid.c:73
+msgid "Locality"
+msgstr "Περιοχή"
+
+#: ../egg/egg-oid.c:75
+msgid "State"
+msgstr "Πολιτεία"
+
+#: ../egg/egg-oid.c:77
+msgid "Street"
+msgstr "Οδός"
+
+#: ../egg/egg-oid.c:79
+msgid "Organization"
+msgstr "Οργανισμός"
+
+#: ../egg/egg-oid.c:81
+msgid "Organizational Unit"
+msgstr "Μονάδα οργανισμού"
+
+#: ../egg/egg-oid.c:83
+msgid "Title"
+msgstr "Τίτλος"
+
+#: ../egg/egg-oid.c:85
+msgid "Telephone Number"
+msgstr "Τηλέφωνο"
+
+#: ../egg/egg-oid.c:87
+msgid "Given Name"
+msgstr "Όνομα, βαφτιστικό"
+
+#: ../egg/egg-oid.c:89
+msgid "Initials"
+msgstr "Αρχικά"
+
+#: ../egg/egg-oid.c:91
+msgid "Generation Qualifier"
+msgstr "Προσδιοριστικό γενιάς"
+
+#: ../egg/egg-oid.c:93
+msgid "DN Qualifier"
+msgstr "Προσδιοριστικό DN"
+
+#: ../egg/egg-oid.c:95
+msgid "Pseudonym"
+msgstr "Ψευδώνυμο"
+
+#: ../egg/egg-oid.c:98
+msgid "RSA"
+msgstr "RSA"
+
+#: ../egg/egg-oid.c:100
+msgid "MD2 with RSA"
+msgstr "MD2 με RSA"
+
+#: ../egg/egg-oid.c:102
+msgid "MD5 with RSA"
+msgstr "MD5 με RSA"
+
+#: ../egg/egg-oid.c:104
+msgid "SHA1 with RSA"
+msgstr "SHA1 με RSA"
+
+#: ../egg/egg-oid.c:107
+msgid "DSA"
+msgstr "DSA"
+
+#: ../egg/egg-oid.c:109
+msgid "SHA1 with DSA"
+msgstr "SHA1 με DSA"
+
+#: ../gcr/gcr-certificate-basics-widget.c:59
+msgid "<i>Not Part of Certificate</i>"
+msgstr "<i>Δεν περιέχεται στο πιστοποιητικό</i>"
+
+#: ../gcr/gcr-certificate-basics-widget.c:80
+msgid "<i>unknown</i>"
+msgstr "<i>άγνωστο</i>"
+
+#: ../gcr/gcr-certificate-basics-widget.glade.h:1
+msgid "<Not Part of Certificate>"
+msgstr "<Δεν περιέχεται στο πιστοποιητικό>"
+
+#: ../gcr/gcr-certificate-basics-widget.glade.h:2
+msgid "<b>Fingerprints</b>"
+msgstr "<b>Αποτυπώματα</b>"
+
+#: ../gcr/gcr-certificate-basics-widget.glade.h:3
+msgid "<b>Issued By</b>"
+msgstr "<b>Εκδόθηκε από</b>"
+
+#: ../gcr/gcr-certificate-basics-widget.glade.h:4
+msgid "<b>Issued To</b>"
+msgstr "<b>Εκδόθηκε για</b>"
+
+#: ../gcr/gcr-certificate-basics-widget.glade.h:5
+msgid "<b>This certificate has been verified for the following uses:</b>"
+msgstr ""
+"<b> Αυτό το πιστοποιητικό έχει επαληθευτεί για τις ακόλουθες χρήσεις:</b>"
+
+#: ../gcr/gcr-certificate-basics-widget.glade.h:6
+msgid "<b>Validity</b>"
+msgstr "<b>Ισχύς</b>"
+
+#: ../gcr/gcr-certificate-basics-widget.glade.h:7
+msgid "Common Name (CN)"
+msgstr "Όνομα, υποκοριστικό (CN)"
+
+#: ../gcr/gcr-certificate-basics-widget.glade.h:8
+msgid "Email Recipient Certificate"
+msgstr "Πιστοποιητικό παραλήπτη email"
+
+#: ../gcr/gcr-certificate-basics-widget.glade.h:9
+msgid "Email Signer Certificate"
+msgstr "Πιστοποιητικό υπογράφοντος email"
+
+#: ../gcr/gcr-certificate-basics-widget.glade.h:10
+msgid "Expires On"
+msgstr "Λήγει στις"
+
+#: ../gcr/gcr-certificate-basics-widget.glade.h:11
+msgid "Issued On"
+msgstr "Εκδόθηκε στις"
+
+#: ../gcr/gcr-certificate-basics-widget.glade.h:12
+msgid "MD5 Fingerprint"
+msgstr "Αποτύπωμα MD5"
+
+#: ../gcr/gcr-certificate-basics-widget.glade.h:13
+msgid "Organization (O)"
+msgstr "Οργανισμός (O)"
+
+#: ../gcr/gcr-certificate-basics-widget.glade.h:14
+msgid "Organizational Unit (OU)"
+msgstr "Μονάδα Οργανισμού (OU)"
+
+#: ../gcr/gcr-certificate-basics-widget.glade.h:15
+msgid "SHA1 Fingerprint"
+msgstr "Αποτύπωμα SHA1 "
+
+#: ../gcr/gcr-certificate-basics-widget.glade.h:16
+msgid "SSL Client Certificate"
+msgstr "Πιστοποιητικό πελάτη SSL"
+
+#: ../gcr/gcr-certificate-basics-widget.glade.h:17
+msgid "SSL Server Certificate"
+msgstr "Πιστοποιητικό εξυπηρετητή SSL"
+
+#: ../gcr/gcr-certificate-details-widget.c:207
+msgid "Extension"
+msgstr "Επέκταση"
+
+#: ../gcr/gcr-certificate-details-widget.c:212
+msgid "Identifier"
+msgstr "Αναγνωριστικό"
+
+#: ../gcr/gcr-certificate-details-widget.c:222
+msgid "Value"
+msgstr "Τιμή"
+
+#: ../gcr/gcr-certificate-details-widget.c:232
+msgid "Yes"
+msgstr "Ναι"
+
+#: ../gcr/gcr-certificate-details-widget.c:234
+msgid "No"
+msgstr "Όχι"
+
+#: ../gcr/gcr-certificate-details-widget.c:237
+msgid "Critical"
+msgstr "Κρίσιμο"
+
+#. The subject
+#: ../gcr/gcr-certificate-details-widget.c:311
+msgid "Subject Name"
+msgstr "Όνομα θέματος"
+
+#. The Issuer
+#: ../gcr/gcr-certificate-details-widget.c:315
+msgid "Issuer Name"
+msgstr "Όνομα εκδότη"
+
+#. The Issued Parameters
+#: ../gcr/gcr-certificate-details-widget.c:319
+msgid "Issued Certificate"
+msgstr "Εκδοθέν πιστοποιητικό"
+
+#: ../gcr/gcr-certificate-details-widget.c:324
+msgid "Version"
+msgstr "Έκδοση"
+
+#: ../gcr/gcr-certificate-details-widget.c:337
+msgid "Not Valid Before"
+msgstr "Έναρξη ισχύος"
+
+#: ../gcr/gcr-certificate-details-widget.c:342
+msgid "Not Valid After"
+msgstr "Λήξη ισχύος"
+
+#. Signature
+#: ../gcr/gcr-certificate-details-widget.c:347
+#: ../gcr/gcr-certificate-details-widget.c:363
+msgid "Signature"
+msgstr "Υπογραφή"
+
+#: ../gcr/gcr-certificate-details-widget.c:351
+msgid "Signature Algorithm"
+msgstr "Αλγόριθμος υπογραφής"
+
+#: ../gcr/gcr-certificate-details-widget.c:356
+msgid "Signature Parameters"
+msgstr "Παράμετροι υπογραφής"
+
+#. Public Key Info
+#: ../gcr/gcr-certificate-details-widget.c:367
+msgid "Public Key Info"
+msgstr "Πληροφορίες Δημοσίου Κλειδιού"
+
+#: ../gcr/gcr-certificate-details-widget.c:371
+msgid "Key Algorithm"
+msgstr "Αλγόριθμος κλειδιού"
+
+#: ../gcr/gcr-certificate-details-widget.c:376
+msgid "Key Parameters"
+msgstr "Παράμετροι κλειδιού"
+
+#: ../gcr/gcr-certificate-details-widget.c:383
+msgid "Key Size"
+msgstr "Μέγεθος κλειδιού"
+
+#: ../gcr/gcr-certificate-details-widget.c:390 ../gcr/gcr-parser.c:202
+msgid "Public Key"
+msgstr "Δημόσιο κλειδί"
+
+#. Fingerprints
+#: ../gcr/gcr-certificate-details-widget.c:394
+msgid "Fingerprints"
+msgstr "Αποτυπώματα"
+
+#: ../gcr/gcr-import-dialog.glade.h:1
+msgid "<span size='large' weight='bold'>Import Certificates and Keys</span>"
+msgstr ""
+"<span size='large' weight='bold'>Εισαγωγή πιστοποιητικών και κλειδιών</span>"
+
+#: ../gcr/gcr-import-dialog.glade.h:2
+msgid "Import Into:"
+msgstr "Εισαγωγή στο:"
+
+#: ../gcr/gcr-import-dialog.glade.h:3
+msgid "Password:"
+msgstr "Κωδικός:"
+
+#: ../gcr/gcr-importer.c:163 ../gcr/gcr-parser.c:1573 ../gp11/gp11-misc.c:98
+msgid "The operation was cancelled"
+msgstr "Η διεργασία ακυρώθηκε"
+
+#: ../gcr/gcr-importer.c:255
+#, c-format
+msgid "No location available to import to"
+msgstr "Δεν υπάρχει τοποθεσία διαθέσιμη για την εισαγωγή."
+
+#: ../gcr/gcr-importer.c:404
+msgid "Import Certificates/Keys"
+msgstr "Εισαγωγή πιστοποιητικών/κλειδιών"
+
+#: ../gcr/gcr-importer.c:411
+msgid "Choose a location to store the imported certificates/keys."
+msgstr ""
+"Επιλέξτε τοποθεσία για την αποθήκευση των εισηγμένων πιστοποιητικών/κλειδιών."
+
+#. TRANSLATORS: The key is locked.
+#: ../gcr/gcr-importer.c:449
+msgid "In order to import the private key, it must be unlocked"
+msgstr ""
+"Για να γίνει εισαγωγή του ιδιωτικού κλειδιού, πρέπει να μην είναι κλειδωμένο"
+
+#. TRANSLATORS: The certificate is locked.
+#: ../gcr/gcr-importer.c:452
+msgid "In order to import the certificate, it must be unlocked"
+msgstr ""
+"Για να γίνει εισαγωγή του πιστοποιητικού, πρέπει να μην είναι κλειδωμένο"
+
+#. TRANSLATORS: The data is locked.
+#: ../gcr/gcr-importer.c:455
+msgid "In order to import the data, it must be unlocked"
+msgstr "Για να γίνει εισαγωγή των δεδομένων, πρέπει να μην είναι κλειδωμένα"
+
+#. TRANSLATORS: The key is locked.
+#: ../gcr/gcr-importer.c:460
+#, c-format
+msgid "In order to import the private key '%s', it must be unlocked"
+msgstr ""
+"Για να γίνει εισαγωγή του ιδιωτικού κλειδιού '%s', πρέπει να μην είναι "
+"κλειδωμένο"
+
+#. TRANSLATORS: The certificate is locked.
+#: ../gcr/gcr-importer.c:463
+#, c-format
+msgid "In order to import the certificate '%s', it must be unlocked"
+msgstr ""
+"Για να γίνει εισαγωγή του πιστοποιητικού '%s', πρέπει να μην είναι κλειδωμένο"
+
+#. TRANSLATORS: The object '%s' is locked.
+#: ../gcr/gcr-importer.c:466
+#, c-format
+msgid "In order to import '%s', it must be unlocked"
+msgstr "Για να γίνει εισαγωγή του '%s', πρέπει να μην είναι κλειδωμένο"
+
+#: ../gcr/gcr-parser.c:196
+msgid "Private Key"
+msgstr "Ιδιωτικό κλειδί"
+
+#: ../gcr/gcr-parser.c:199
+msgid "Certificate"
+msgstr "Πιστοποιητικό"
+
+#: ../gcr/gcr-parser.c:1576
+msgid "Unrecognized or unsupported data."
+msgstr "Μη αναγνωρίσιμα ή μη υποστηριζόμενα δεδομένα."
+
+#: ../gcr/gcr-parser.c:1579
+msgid "Could not parse invalid or corrupted data."
+msgstr "Αδυναμία ανάλυσης μη έγκυρων ή κατεστραμμένων δεδομένων."
+
+#: ../gcr/gcr-parser.c:1582
+msgid "The data is locked"
+msgstr "Τα δεδομένα είναι κλειδωμένα"
+
+#: ../gp11/gp11-misc.c:101
+msgid "Insufficient memory available"
+msgstr "Δεν υπάρχει επαρκής μνήμη"
+
+#: ../gp11/gp11-misc.c:103
+msgid "The specified slot ID is not valid"
+msgstr "Το καθορισμένο slot ID δεν είναι έγκυρο"
+
+#: ../gp11/gp11-misc.c:105
+msgid "Internal error"
+msgstr "Εσωτερικό σφάλμα"
+
+#: ../gp11/gp11-misc.c:107
+msgid "The operation failed"
+msgstr "Η διεργασία απέτυχε"
+
+#: ../gp11/gp11-misc.c:109
+msgid "Invalid arguments"
+msgstr "Μη έγκυροι παράμετροι"
+
+#: ../gp11/gp11-misc.c:111
+msgid "The module cannot create needed threads"
+msgstr "Η λειτουργική μονάδα δεν μπορεί να δημιουργήσει τα απαιτούμενα νήματα"
+
+#: ../gp11/gp11-misc.c:113
+msgid "The module cannot lock data properly"
+msgstr "Αδυναμία έγκυρου κλειδώματος από την λειτουργική μονάδα"
+
+#: ../gp11/gp11-misc.c:115
+msgid "The field is read-only"
+msgstr "Το πεδίο είναι μόνο για ανάγνωση"
+
+#: ../gp11/gp11-misc.c:117
+msgid "The field is sensitive and cannot be revealed"
+msgstr "Το πεδίο είναι ευαίσθητο και δεν μπορεί να αποκαλυφθεί"
+
+#: ../gp11/gp11-misc.c:119
+msgid "The field is invalid or does not exist"
+msgstr "Το πεδίο δεν είναι έγκυρο ή δεν υπάρχει"
+
+#: ../gp11/gp11-misc.c:121
+msgid "Invalid value for field"
+msgstr "Μη έγκυρη τιμή για το πεδίο"
+
+#: ../gp11/gp11-misc.c:123
+msgid "The data is not valid or unrecognized"
+msgstr "Τα δεδομένα είναι άκυρα ή μην αναγνωρίσιμα"
+
+#: ../gp11/gp11-misc.c:125
+msgid "The data is too long"
+msgstr "Τα δεδομένα είναι πολύ μεγάλου μήκους"
+
+#: ../gp11/gp11-misc.c:127
+msgid "An error occurred on the device"
+msgstr "Συνέβηκε ένα σφάλμα στη συσκευή"
+
+#: ../gp11/gp11-misc.c:129
+msgid "Insufficient memory available on device"
+msgstr "Δεν υπάρχει επαρκής μνήμη στην συσκευή"
+
+#: ../gp11/gp11-misc.c:131
+msgid "The device was removed or unplugged"
+msgstr "Η συσκευή απομακρύνθηκε ή αποσυνδέθηκε"
+
+#: ../gp11/gp11-misc.c:133
+msgid "The encrypted data is not valid or unrecognized"
+msgstr "Τα κρυπτογραφημένα δεδομένα δεν είναι έγκυρα ή δεν είναι αναγνωρίσιμα"
+
+#: ../gp11/gp11-misc.c:135
+msgid "The encrypted data is too long"
+msgstr "Τα κρυπτογραφημένα δεδομένα είναι πολύ μεγάλου μήκους"
+
+#: ../gp11/gp11-misc.c:137
+msgid "This operation is not supported"
+msgstr "Η διεργασία δεν υποστηρίζεται"
+
+#: ../gp11/gp11-misc.c:139
+msgid "The key is missing or invalid"
+msgstr "Το κλειδί λείπει ή δεν είναι έγκυρο"
+
+#: ../gp11/gp11-misc.c:141
+msgid "The key is the wrong size"
+msgstr "Το κλειδί έχει λανθασμένο μέγεθος"
+
+#: ../gp11/gp11-misc.c:143
+msgid "The key is of the wrong type"
+msgstr "Το κλειδί έχει λανθασμένο τύπο"
+
+#: ../gp11/gp11-misc.c:145
+msgid "No key is needed"
+msgstr "Δεν χρειάζεται κλειδί"
+
+#: ../gp11/gp11-misc.c:147
+msgid "The key is different than before"
+msgstr "Το κλειδί είναι διαφορετικό από πριν"
+
+#: ../gp11/gp11-misc.c:149
+msgid "A key is needed"
+msgstr "Χρειάζεται ένα κλειδί"
+
+#: ../gp11/gp11-misc.c:151
+msgid "Cannot include the key in digest"
+msgstr "Αδυναμία συμπερίληψης του κλειδιού στο digest"
+
+#: ../gp11/gp11-misc.c:153
+msgid "This operation cannot be done with this key"
+msgstr "Δεν είναι δυνατή η εκτέλεση αυτής της διεργασίας με αυτό το κλειδί"
+
+#: ../gp11/gp11-misc.c:155
+msgid "The key cannot be wrapped"
+msgstr "Δεν είναι δυνατή η αναδίπλωση του κλειδιού"
+
+#: ../gp11/gp11-misc.c:157
+msgid "Cannot export this key"
+msgstr "Αδυναμία εξαγωγής αυτού του κλειδιού"
+
+#: ../gp11/gp11-misc.c:159
+msgid "The crypto mechanism is invalid or unrecognized"
+msgstr "Ο μηχανισμός κρυπτογράφησης δεν είναι έγκυρος ή είναι μη αναγνωρίσιμος"
+
+#: ../gp11/gp11-misc.c:161
+msgid "The crypto mechanism has an invalid argument"
+msgstr "Ο μηχανισμός κρυπτογράφησης έχει μια μη έγκυρη παράμετρο"
+
+#: ../gp11/gp11-misc.c:163
+msgid "The object is missing or invalid"
+msgstr "Το αντικείμενο λείπει ή δεν είναι έγκυρο"
+
+#: ../gp11/gp11-misc.c:165
+msgid "Another operation is already taking place"
+msgstr "Μια άλλη διεργασία εκτελείται ήδη"
+
+#: ../gp11/gp11-misc.c:167
+msgid "No operation is taking place"
+msgstr "Δεν εκτελείται καμιά διεργασία"
+
+#: ../gp11/gp11-misc.c:169
+msgid "The password or PIN is incorrect"
+msgstr "Ο κωδικός ή το PIN είναι λάθος"
+
+#: ../gp11/gp11-misc.c:171
+msgid "The password or PIN is invalid"
+msgstr "Ο κωδικός ή το PIN δεν είναι έγκυρα"
+
+#: ../gp11/gp11-misc.c:173
+msgid "The password or PIN is of an invalid length"
+msgstr "Ο κωδικός ή το PIN δεν έχουν έγκυρο μήκος"
+
+#: ../gp11/gp11-misc.c:175
+msgid "The password or PIN has expired"
+msgstr "Ο κωδικός ή το PIN έχουν λήξει"
+
+#: ../gp11/gp11-misc.c:177
+msgid "The password or PIN is locked"
+msgstr "Ο κωδικός ή το PIN είναι κλειδωμένα."
+
+#: ../gp11/gp11-misc.c:179
+msgid "The session is closed"
+msgstr "Η συνεδρία είναι κλειστή"
+
+#: ../gp11/gp11-misc.c:181
+msgid "Too many sessions are active"
+msgstr "Υπάρχουν πάρα πολλές συνεδρίες ενεργές"
+
+#: ../gp11/gp11-misc.c:183
+msgid "The session is invalid"
+msgstr "Η συνεδρία δεν είναι έγκυρη"
+
+#: ../gp11/gp11-misc.c:185
+msgid "The session is read-only"
+msgstr "Η συνεδρία είναι μόνο για ανάγνωση"
+
+#: ../gp11/gp11-misc.c:187
+msgid "An open session exists"
+msgstr "Μια ανοικτή συνεδρία υπάρχει ήδη"
+
+#: ../gp11/gp11-misc.c:189
+msgid "A read-only session exists"
+msgstr "Υπάρχει μια συνεδρία που είναι μόνο για ανάγνωση"
+
+#: ../gp11/gp11-misc.c:191
+msgid "An administrator session exists"
+msgstr "Υπάρχει μια συνεδρία διαχειριστή"
+
+#: ../gp11/gp11-misc.c:193
+msgid "The signature is bad or corrupted"
+msgstr "Η υπογραφή είναι λάθος ή είναι κατεστραμμένη"
+
+#: ../gp11/gp11-misc.c:195
+msgid "The signature is unrecognized or corrupted"
+msgstr "Η υπογραφή είναι μη αναγνωρίσιμη ή είναι κατεστραμμένη"
+
+#: ../gp11/gp11-misc.c:197
+msgid "Certain required fields are missing"
+msgstr "Λείπουν μερικά απαιτούμενα πεδία"
+
+#: ../gp11/gp11-misc.c:199
+msgid "Certain fields have invalid values"
+msgstr "Μερικά πεδία έχουν μη έγκυρες τιμές"
+
+#: ../gp11/gp11-misc.c:201
+msgid "The device is not present or unplugged"
+msgstr "Η συσκευή δεν είναι παρούσα ή δεν είναι συνδεδεμένη."
+
+#: ../gp11/gp11-misc.c:203
+msgid "The device is invalid or unrecognizable"
+msgstr "Η συσκευή δεν είναι έγκυρη ή είναι μη αναγνωρίσιμη"
+
+#: ../gp11/gp11-misc.c:205
+msgid "The device is write protected"
+msgstr "Η συσκευή έχει προστασία εγγραφής"
+
+#: ../gp11/gp11-misc.c:207
+msgid "Cannot import because the key is invalid"
+msgstr "Αδυναμία εισαγωγής επειδή το κλειδί δεν είναι έγκυρο"
+
+#: ../gp11/gp11-misc.c:209
+msgid "Cannot import because the key is of the wrong size"
+msgstr "Αδυναμία εισαγωγής επειδή το κλειδί είναι λανθασμένου μεγέθους"
+
+#: ../gp11/gp11-misc.c:211
+msgid "Cannot import because the key is of the wrong type"
+msgstr "Αδυναμία εισαγωγής επειδή το κλειδί είναι λανθασμένου τύπου"
+
+#: ../gp11/gp11-misc.c:213
+msgid "You are already logged in"
+msgstr "Έχετε ήδη συνδεθεί"
+
+#: ../gp11/gp11-misc.c:215
+msgid "No user has logged in"
+msgstr "Ο χρήστης δεν είναι συνδεδεμένος"
+
+#: ../gp11/gp11-misc.c:217
+msgid "The user's password or PIN is not set"
+msgstr "Δεν έχει ορισθεί κωδικός ή PIN χρήστη"
+
+#: ../gp11/gp11-misc.c:219
+msgid "The user is of an invalid type"
+msgstr "Δεν είναι έγκυρος ο τύπος χρήστη"
+
+#: ../gp11/gp11-misc.c:221
+msgid "Another user is already logged in"
+msgstr "Ένας άλλος χρήστης είναι ήδη συνδεδεμένος"
+
+#: ../gp11/gp11-misc.c:223
+msgid "Too many users of different types logged in"
+msgstr "Έχουν συνδεθεί πάρα πολλοί χρήστες διαφορετικού τύπου"
+
+#: ../gp11/gp11-misc.c:225
+msgid "Cannot import an invalid key"
+msgstr "Αδυναμία εισαγωγής ενός μη έγκυρου κλειδιού"
+
+#: ../gp11/gp11-misc.c:227
+msgid "Cannot import a key of the wrong size"
+msgstr "Αδυναμία εισαγωγής επειδή το κλειδί είναι λανθασμένου μεγέθους"
+
+#: ../gp11/gp11-misc.c:229
+msgid "Cannot export because the key is invalid"
+msgstr "Αδυναμία εξαγωγής επειδή το κλειδί δεν είναι 'εγκυρο"
+
+#: ../gp11/gp11-misc.c:231
+msgid "Cannot export because the key is of the wrong size"
+msgstr "Αδυναμία εξαγωγής επειδή το κλειδί είναι λανθασμένου μεγέθους"
+
+#: ../gp11/gp11-misc.c:233
+msgid "Cannot export because the key is of the wrong type"
+msgstr "Αδυναμία εξαγωγής επειδή το κλειδί είναι λανθασμένου τύπου"
+
+#: ../gp11/gp11-misc.c:235
+msgid "Unable to initialize the random number generator"
+msgstr "Αδυναμία αρχικοποίησης της γεννήτριας τυχαίων αριθμών"
+
+#: ../gp11/gp11-misc.c:237
+msgid "No random number generator available"
+msgstr "Δεν υπάρχει διαθέσιμη γεννήτρια τυχαίων αριθμών"
+
+#: ../gp11/gp11-misc.c:239
+msgid "The crypto mechanism has an invalid parameter"
+msgstr "Ο μηχανισμός κρυπτογράφησης έχει μια μη έγκυρη παράμετρο"
+
+#: ../gp11/gp11-misc.c:241
+msgid "Not enough space to store the result"
+msgstr ""
+"Δεν υπάρχει αρκετός ελεύθερος χώρος για την αποθήκευση του αποτελέσματος"
+
+#: ../gp11/gp11-misc.c:243
+msgid "The saved state is invalid"
+msgstr "Η αποθηκευμένη κατάσταση δεν είναι έγκυρη"
+
+#: ../gp11/gp11-misc.c:245
+msgid "The information is sensitive and cannot be revealed"
+msgstr "Οι πληροφορίες είναι ευαίσθητες και δεν είναι δυνατή η αποκάλυψη τους"
+
+#: ../gp11/gp11-misc.c:247
+msgid "The state cannot be saved"
+msgstr "Δεν είναι δυνατή η αποθήκευση της κατάστασης"
+
+#: ../gp11/gp11-misc.c:249
+msgid "The module has not been initialized"
+msgstr "Η λειτουργική μονάδα δεν έχει αρχικοποιηθεί"
+
+#: ../gp11/gp11-misc.c:251
+msgid "The module has already been initialized"
+msgstr "Η λειτουργική μονάδα έχει ήδη αρχικοποιηθεί."
+
+#: ../gp11/gp11-misc.c:253
+msgid "Cannot lock data"
+msgstr "Αδυναμία κλειδώματος δεδομένων"
+
+#: ../gp11/gp11-misc.c:255
+msgid "The data cannot be locked"
+msgstr "Δεν είναι δυνατό το κλείδωμα των δεδομένων"
+
+#: ../gp11/gp11-misc.c:257
+msgid "The signature request was rejected by the user"
+msgstr "Η αίτηση υπογραφής απορρίφθηκε από τον χρήστη"
+
+#: ../gp11/gp11-misc.c:261
+msgid "Unknown error"
+msgstr "Άγνωστο σφάλμα"
+
+#: ../library/gnome-keyring-utils.c:168
+msgid "Access Denied"
+msgstr "Άρνηση πρόσβασης"
+
+#: ../library/gnome-keyring-utils.c:170
+msgid "The gnome-keyring-daemon application is not running."
+msgstr "Η εφαρμογή gnome-keyring-daemon δεν εκτελείται"
+
+#: ../library/gnome-keyring-utils.c:172
+msgid "Error communicating with gnome-keyring-daemon"
+msgstr "Σφάλμα επικοινωνίας με gnome-keyring-daemon"
+
+#: ../library/gnome-keyring-utils.c:174
+msgid "A keyring with that name already exists"
+msgstr "Ένα keyring με αυτό το όνομα υπάρχει ήδη"
+
+#: ../library/gnome-keyring-utils.c:176
+msgid "Programmer error: The application sent invalid data."
+msgstr "Σφάλμα προγραμματιστή: Η εφαρμογή έστειλε μη έγκυρα δεδομένα."
+
+#: ../library/gnome-keyring-utils.c:178
+msgid "No matching results"
+msgstr "Δεν βρέθηκαν ταιριάσματα"
+
+#: ../library/gnome-keyring-utils.c:180
+msgid "A keyring with that name does not exist."
+msgstr "Δεν υπάρχει keyring με αυτό το όνομα"
+
+#: ../library/gnome-keyring-utils.c:187
+msgid "The keyring has already been unlocked."
+msgstr "Το keyring έχει ήδη ξεκλειδωθεί"
+
+#: ../pkcs11/gck/gck-certificate.c:710
+msgid "Unnamed Certificate"
+msgstr "Ανώνυμο πιστοποιητικό"
+
+#: ../pkcs11/ssh-store/gck-ssh-private-key.c:309
+msgid "Couldn't parse public SSH key"
+msgstr "Αδυναμία ανάλυσης δημόσιου κλειδιού SSH"
+
+#~ msgid ""
+#~ "A list of paths to PKCS#11 modules to load. No modules are currently "
+#~ "listed by default, as this is still an experimental feature. This is used "
+#~ "by seahorse and other PKCS#11 aware applications."
+#~ msgstr ""
+#~ "Μια λίστα από διαδρομές για φόρτωση λειτουργικών μονάδων  PKCS#11. Δεν "
+#~ "υπάρχει προεπιλεγμένη λίστα λειτουργικών μονάδων, μιας και βρισκόμαστε "
+#~ "ακόμα σε πειραματικό στάδιο.Το παρόν χρησιμοποιείται από το seahorse και "
+#~ "άλλες εφαρμογές που αναγνωρίζουν το PKCS#11. "
+
+#~ msgid "PKCS#11 Modules"
+#~ msgstr "PKCS#11 Modules"
+
+#~ msgid "Import private key"
+#~ msgstr "Εισαγωγή ιδιωτικού κλειδιού"
+
+#~ msgid "Import public key"
+#~ msgstr "Εισαγωγή δημοσίου κλειδιού"
+
+#~ msgid "The system wants to import the public key '%s', but it is locked"
+#~ msgstr ""
+#~ "Το σύστημα επιθυμεί εισαγωγή του δημόσιου κλειδιού '%s', αλλά είναι "
+#~ "κλειδωμένο."
+
+#~ msgid "Create Storage for Key Information"
+#~ msgstr "Δημιουργία αποθηκευτικού χώρου για πληροφορίες κλειδιών"
+
+#~ msgid "Choose password to protect storage"
+#~ msgstr "Επιλέξτε κωδικό για την προστασία αποθηκευτικού χώρου"
+
+#~ msgid ""
+#~ "The system wants to store information about your keys and certificates. "
+#~ "In order to protect this information, choose a password with which it "
+#~ "will be locked."
+#~ msgstr ""
+#~ "Το σύστημα επιθυμεί να αποθηκεύσει πληροφορίες για τα κλειδιά και τα "
+#~ "πιστοποιητικά σας. Για να προστατεύσετε αυτές τις πληροφορίες επιλέξτε "
+#~ "ένα κωδικό με τον οποίο θα τις κλειδώσετε."
+
+#~ msgid "Unlock Storage for Key Information"
+#~ msgstr "Ξεκλείδωμα αποθηκευτικού χώρου για πληροφορίες κλειδιών."
+
+#~ msgid "Enter password to unlock storage"
+#~ msgstr "Εισάγετε κωδικό για ξεκλείδωμα αποθηκευτικού χώρου"
+
+#~ msgid ""
+#~ "The system wants to access information about your keys and certificates, "
+#~ "but it is locked."
+#~ msgstr ""
+#~ "Το σύστημα επιθυμεί την πρόσβαση σε πληροφορίες για τα κλειδιά και τα "
+#~ "πιστοποιητικά σας, αλλά είναι κλειδωμένες."
+
+#~ msgid "Trust Association"
+#~ msgstr "Trust Association"
+
+#~ msgid "Cannot delete '%s' because it is tied to other objects."
+#~ msgstr ""
+#~ "Αδυναμία διαγραφής '%s', επειδή είναι συνδεδεμένο με άλλα αντικείμενα."
+
+#~ msgid "Lock private key"
+#~ msgstr "Κλείδωμα ιδιωτικού κλειδιού"
+
+#~ msgid "Lock"
+#~ msgstr "Κλείδωμα"
+
+#~ msgid "Enter password to protect the private key"
+#~ msgstr "Εισάγετε κωδικό για την προστασία του ιδιωτικού κλειδιού"
+
+#~ msgid ""
+#~ "The system wants to store the private key '%s' on your disk. Please enter "
+#~ "a password to lock it with."
+#~ msgstr ""
+#~ "Το σύστημα επιθυμεί την αποθήκευση του ιδιωτικού κλειδιού '%s' στο δίσκο "
+#~ "σας. Παρακαλώ εισάγετε ένα κωδικό για να το κλειδώσετε."
+
+#~ msgid ""
+#~ "The system wants to store '%s' on your disk. Please enter a password to "
+#~ "lock it with."
+#~ msgstr ""
+#~ "Το σύστημα επιθυμεί να αποθηκεύσει το  '%s' στο δίσκο. Παρακαλώ εισάγετε "
+#~ "ένα κωδικό για κλειδώσετε την πληροφορία."
+
+#~ msgid "Couldn't read secure shell private key: %s"
+#~ msgstr "Αδυναμία ανάγνωσης δημόσιου κλειδιού ασφαλούς κέλυφους: %s"
+
+#~ msgid "Invalid secure shell private key at: %s"
+#~ msgstr "Μη έγκυρο δημόσιο κλειδί ασφαλούς κέλυφους στο: %s"
+
+#~ msgid "Couldn't encrypt the SSH key to store it."
+#~ msgstr "Αδυναμία κρυπτογράφησης του κλειδιού SSH για αποθήκευση."
+
+#~ msgid "Couldn't encode the SSH key to store it."
+#~ msgstr "Αδυναμία αποκωδικοποίησης του κλειδιού SSH για αποθήκευση."
+
+#~ msgid "Unlock password for '%s'"
+#~ msgstr "Ξεκλείδωμα κωδικού για %s"
+
+#~ msgid "Old password cannot be blank."
+#~ msgstr "Ο παλιός κωδικός δεν μπορεί να είναι κενός."
+
+#~ msgid "<span weight=\"bold\">Password strength meter:</span>"
+#~ msgstr "<span weight=\"bold\">Μέτρηση ποιότητας κωδικού:</span>"
+
+#~ msgid ""
+#~ "The application '%s' (%s) wants access to an unknown keyring, but it is "
+#~ "locked"
+#~ msgstr ""
+#~ "Η εφαρμογή '%s' (%s)  επιθυμεί πρόσβαση σε ένα άγνωστο keyring, αλλά "
+#~ "είναι κλειδωμένο."
+
+#~ msgid ""
+#~ "The application '%s' wants access to an unknown keyring, but it is locked"
+#~ msgstr ""
+#~ "Η εφαρμογή '%s' επιθυμεί πρόσβαση σε ένα άγνωστο keyring, αλλά είναι "
+#~ "κλειδωμένο."
+
+#~ msgid ""
+#~ "An unknown application wants access to an unknown keyring, but it is "
+#~ "locked"
+#~ msgstr ""
+#~ "Μια άγνωστη εφαρμογή επιθυμεί πρόσβαση σε ένα άγνωστο keyring, αλλά είναι "
+#~ "κλειδωμένο."
+
+#~ msgid ""
+#~ "The application '%s' (%s) wants to access the password for '%s' in an "
+#~ "unknown keyring."
+#~ msgstr ""
+#~ "Η εφαρμογή '%s' (%s)  επιθυμεί πρόσβαση στον κωδικό για το '%s' σε ένα "
+#~ "άγνωστο keyring."
+
+#~ msgid ""
+#~ "The application '%s' wants to access the password for '%s' in an unknown "
+#~ "keyring."
+#~ msgstr ""
+#~ "Η εφαρμογή '%s' επιθυμεί πρόσβαση στον κωδικό για το '%s' σε ένα άγνωστο "
+#~ "keyring."
+
+#~ msgid ""
+#~ "An unknown application wants to access the password for '%s' in an "
+#~ "unknown keyring."
+#~ msgstr ""
+#~ "Μια άγνωστη εφαρμογή επιθυμεί πρόσβαση στον κωδικό για το '%s' σε ένα "
+#~ "άγνωστο keyring."
+
+#~ msgid "You must specify the type of request to run\n"
+#~ msgstr "Θα πρέπει να καθορίσετε τον τύπο της αίτησης για εκτέλεση\n"
+
+#~ msgid "Unknown request type\n"
+#~ msgstr "Άγνωστος τύπος αίτησης\n"

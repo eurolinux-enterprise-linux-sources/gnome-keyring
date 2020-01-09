@@ -1,0 +1,223 @@
+<?xml version="1.0"?>
+<!DOCTYPE refentry PUBLIC "-//OASIS//DTD DocBook XML V4.1.2//EN"
+               "http://www.oasis-open.org/docbook/xml/4.1.2/docbookx.dtd">
+<refentry id="gcr-GcrTokenManager">
+<refmeta>
+<refentrytitle role="top_of_page" id="gcr-GcrTokenManager.top_of_page">GcrTokenManager</refentrytitle>
+<manvolnum>3</manvolnum>
+<refmiscinfo>GCR Library</refmiscinfo>
+</refmeta>
+
+<refnamediv>
+<refname>GcrTokenManager</refname>
+<refpurpose></refpurpose>
+</refnamediv>
+
+<refsynopsisdiv id="gcr-GcrTokenManager.synopsis" role="synopsis">
+<title role="synopsis.title">Synopsis</title>
+
+<synopsis>
+                    <link linkend="GcrTokenManagerPrivate">GcrTokenManagerPrivate</link>;
+                    <link linkend="GcrTokenManager">GcrTokenManager</link>;
+<link linkend="GcrTokenManager">GcrTokenManager</link>*    <link linkend="gcr-token-manager-new">gcr_token_manager_new</link>               (<link linkend="struct--GP11Slot">struct _GP11Slot</link> *slot);
+struct <link linkend="GP11Slot">_GP11Slot</link>*   <link linkend="gcr-token-manager-get-slot">gcr_token_manager_get_slot</link>          (<link linkend="GcrTokenManager">GcrTokenManager</link> *self);
+<link linkend="gboolean">gboolean</link>            <link linkend="gcr-token-manager-initialize">gcr_token_manager_initialize</link>        (<link linkend="GcrTokenManager">GcrTokenManager</link> *self,
+                                                         <link linkend="GCancellable">GCancellable</link> *cancel,
+                                                         <link linkend="GError">GError</link> **error);
+<link linkend="void">void</link>                <link linkend="gcr-token-manager-initialize-async">gcr_token_manager_initialize_async</link>  (<link linkend="GcrTokenManager">GcrTokenManager</link> *self,
+                                                         <link linkend="GCancellable">GCancellable</link> *cancel,
+                                                         <link linkend="GAsyncReadyCallback">GAsyncReadyCallback</link> callback,
+                                                         <link linkend="gpointer">gpointer</link> user_data);
+<link linkend="gboolean">gboolean</link>            <link linkend="gcr-token-manager-initialize-finish">gcr_token_manager_initialize_finish</link> (<link linkend="GcrTokenManager">GcrTokenManager</link> *self,
+                                                         <link linkend="GAsyncResult">GAsyncResult</link> *res,
+                                                         <link linkend="GError">GError</link> **error);
+<link linkend="gboolean">gboolean</link>            <link linkend="gcr-token-manager-change-pin">gcr_token_manager_change_pin</link>        (<link linkend="GcrTokenManager">GcrTokenManager</link> *self,
+                                                         <link linkend="GCancellable">GCancellable</link> *cancel,
+                                                         <link linkend="GError">GError</link> **error);
+<link linkend="void">void</link>                <link linkend="gcr-token-manager-change-pin-async">gcr_token_manager_change_pin_async</link>  (<link linkend="GcrTokenManager">GcrTokenManager</link> *self,
+                                                         <link linkend="GCancellable">GCancellable</link> *cancel,
+                                                         <link linkend="GAsyncReadyCallback">GAsyncReadyCallback</link> callback,
+                                                         <link linkend="gpointer">gpointer</link> user_data);
+<link linkend="gboolean">gboolean</link>            <link linkend="gcr-token-manager-change-pin-finish">gcr_token_manager_change_pin_finish</link> (<link linkend="GcrTokenManager">GcrTokenManager</link> *self,
+                                                         <link linkend="GAsyncResult">GAsyncResult</link> *res,
+                                                         <link linkend="GError">GError</link> **error);
+</synopsis>
+</refsynopsisdiv>
+
+
+
+
+
+
+
+
+
+<refsect1 id="gcr-GcrTokenManager.description" role="desc">
+<title role="desc.title">Description</title>
+<para>
+</para>
+</refsect1>
+
+<refsect1 id="gcr-GcrTokenManager.details" role="details">
+<title role="details.title">Details</title>
+<refsect2 id="GcrTokenManagerPrivate" role="struct">
+<title>GcrTokenManagerPrivate</title>
+<indexterm zone="GcrTokenManagerPrivate"><primary sortas="GcrTokenManagerPrivate">GcrTokenManagerPrivate</primary></indexterm><programlisting>typedef struct _GcrTokenManagerPrivate GcrTokenManagerPrivate;</programlisting>
+<para>
+</para></refsect2>
+<refsect2 id="GcrTokenManager" role="struct">
+<title>GcrTokenManager</title>
+<indexterm zone="GcrTokenManager"><primary sortas="GcrTokenManager">GcrTokenManager</primary></indexterm><programlisting>typedef struct {
+	GObject parent;
+	GcrTokenManagerPrivate *pv;
+} GcrTokenManager;
+</programlisting>
+<para>
+</para></refsect2>
+<refsect2 id="gcr-token-manager-new" role="function">
+<title>gcr_token_manager_new ()</title>
+<indexterm zone="gcr-token-manager-new"><primary sortas="gcr_token_manager_new">gcr_token_manager_new</primary></indexterm><programlisting><link linkend="GcrTokenManager">GcrTokenManager</link>*    gcr_token_manager_new               (<link linkend="struct--GP11Slot">struct _GP11Slot</link> *slot);</programlisting>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>slot</parameter>&#160;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara>
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="gcr-token-manager-get-slot" role="function">
+<title>gcr_token_manager_get_slot ()</title>
+<indexterm zone="gcr-token-manager-get-slot"><primary sortas="gcr_token_manager_get_slot">gcr_token_manager_get_slot</primary></indexterm><programlisting>struct <link linkend="GP11Slot">_GP11Slot</link>*   gcr_token_manager_get_slot          (<link linkend="GcrTokenManager">GcrTokenManager</link> *self);</programlisting>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>self</parameter>&#160;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara>
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="gcr-token-manager-initialize" role="function">
+<title>gcr_token_manager_initialize ()</title>
+<indexterm zone="gcr-token-manager-initialize"><primary sortas="gcr_token_manager_initialize">gcr_token_manager_initialize</primary></indexterm><programlisting><link linkend="gboolean">gboolean</link>            gcr_token_manager_initialize        (<link linkend="GcrTokenManager">GcrTokenManager</link> *self,
+                                                         <link linkend="GCancellable">GCancellable</link> *cancel,
+                                                         <link linkend="GError">GError</link> **error);</programlisting>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>self</parameter>&#160;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>cancel</parameter>&#160;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>error</parameter>&#160;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara>
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="gcr-token-manager-initialize-async" role="function">
+<title>gcr_token_manager_initialize_async ()</title>
+<indexterm zone="gcr-token-manager-initialize-async"><primary sortas="gcr_token_manager_initialize_async">gcr_token_manager_initialize_async</primary></indexterm><programlisting><link linkend="void">void</link>                gcr_token_manager_initialize_async  (<link linkend="GcrTokenManager">GcrTokenManager</link> *self,
+                                                         <link linkend="GCancellable">GCancellable</link> *cancel,
+                                                         <link linkend="GAsyncReadyCallback">GAsyncReadyCallback</link> callback,
+                                                         <link linkend="gpointer">gpointer</link> user_data);</programlisting>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>self</parameter>&#160;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>cancel</parameter>&#160;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>callback</parameter>&#160;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>user_data</parameter>&#160;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="gcr-token-manager-initialize-finish" role="function">
+<title>gcr_token_manager_initialize_finish ()</title>
+<indexterm zone="gcr-token-manager-initialize-finish"><primary sortas="gcr_token_manager_initialize_finish">gcr_token_manager_initialize_finish</primary></indexterm><programlisting><link linkend="gboolean">gboolean</link>            gcr_token_manager_initialize_finish (<link linkend="GcrTokenManager">GcrTokenManager</link> *self,
+                                                         <link linkend="GAsyncResult">GAsyncResult</link> *res,
+                                                         <link linkend="GError">GError</link> **error);</programlisting>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>self</parameter>&#160;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>res</parameter>&#160;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>error</parameter>&#160;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara>
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="gcr-token-manager-change-pin" role="function">
+<title>gcr_token_manager_change_pin ()</title>
+<indexterm zone="gcr-token-manager-change-pin"><primary sortas="gcr_token_manager_change_pin">gcr_token_manager_change_pin</primary></indexterm><programlisting><link linkend="gboolean">gboolean</link>            gcr_token_manager_change_pin        (<link linkend="GcrTokenManager">GcrTokenManager</link> *self,
+                                                         <link linkend="GCancellable">GCancellable</link> *cancel,
+                                                         <link linkend="GError">GError</link> **error);</programlisting>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>self</parameter>&#160;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>cancel</parameter>&#160;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>error</parameter>&#160;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara>
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="gcr-token-manager-change-pin-async" role="function">
+<title>gcr_token_manager_change_pin_async ()</title>
+<indexterm zone="gcr-token-manager-change-pin-async"><primary sortas="gcr_token_manager_change_pin_async">gcr_token_manager_change_pin_async</primary></indexterm><programlisting><link linkend="void">void</link>                gcr_token_manager_change_pin_async  (<link linkend="GcrTokenManager">GcrTokenManager</link> *self,
+                                                         <link linkend="GCancellable">GCancellable</link> *cancel,
+                                                         <link linkend="GAsyncReadyCallback">GAsyncReadyCallback</link> callback,
+                                                         <link linkend="gpointer">gpointer</link> user_data);</programlisting>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>self</parameter>&#160;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>cancel</parameter>&#160;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>callback</parameter>&#160;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>user_data</parameter>&#160;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="gcr-token-manager-change-pin-finish" role="function">
+<title>gcr_token_manager_change_pin_finish ()</title>
+<indexterm zone="gcr-token-manager-change-pin-finish"><primary sortas="gcr_token_manager_change_pin_finish">gcr_token_manager_change_pin_finish</primary></indexterm><programlisting><link linkend="gboolean">gboolean</link>            gcr_token_manager_change_pin_finish (<link linkend="GcrTokenManager">GcrTokenManager</link> *self,
+                                                         <link linkend="GAsyncResult">GAsyncResult</link> *res,
+                                                         <link linkend="GError">GError</link> **error);</programlisting>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>self</parameter>&#160;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>res</parameter>&#160;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>error</parameter>&#160;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara>
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+
+</refsect1>
+
+
+
+
+</refentry>

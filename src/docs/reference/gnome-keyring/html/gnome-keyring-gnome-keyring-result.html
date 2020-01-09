@@ -1,0 +1,119 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Result Codes</title>
+<meta name="generator" content="DocBook XSL Stylesheets V1.75.1">
+<link rel="home" href="index.html" title="gnome-keyring Reference Manual">
+<link rel="up" href="ch01.html" title="gnome-keyring API Reference">
+<link rel="prev" href="gnome-keyring-gnome-keyring-memory.html" title="Non-pageable Memory">
+<link rel="next" href="gnome-keyring-gnome-keyring-misc.html" title="Miscellaneous Functions">
+<meta name="generator" content="GTK-Doc V1.11 (XML mode)">
+<link rel="stylesheet" href="style.css" type="text/css">
+<link rel="chapter" href="ch01.html" title="gnome-keyring API Reference">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<table class="navigation" id="top" width="100%" summary="Navigation header" cellpadding="2" cellspacing="2">
+<tr valign="middle">
+<td><a accesskey="p" href="gnome-keyring-gnome-keyring-memory.html"><img src="left.png" width="24" height="24" border="0" alt="Prev"></a></td>
+<td><a accesskey="u" href="ch01.html"><img src="up.png" width="24" height="24" border="0" alt="Up"></a></td>
+<td><a accesskey="h" href="index.html"><img src="home.png" width="24" height="24" border="0" alt="Home"></a></td>
+<th width="100%" align="center">gnome-keyring Reference Manual</th>
+<td><a accesskey="n" href="gnome-keyring-gnome-keyring-misc.html"><img src="right.png" width="24" height="24" border="0" alt="Next"></a></td>
+</tr>
+<tr><td colspan="5" class="shortcuts">
+<a href="#gnome-keyring-gnome-keyring-result.synopsis" class="shortcut">Top</a>
+                 | 
+                <a href="#gnome-keyring-gnome-keyring-result.description" class="shortcut">Description</a>
+</td></tr>
+</table>
+<div class="refentry" title="Result Codes">
+<a name="gnome-keyring-gnome-keyring-result"></a><div class="titlepage"></div>
+<div class="refnamediv"><table width="100%"><tr>
+<td valign="top">
+<h2><span class="refentrytitle"><a name="gnome-keyring-gnome-keyring-result.top_of_page"></a>Result Codes</span></h2>
+<p>Result Codes — Gnome Keyring Result Codes</p>
+</td>
+<td valign="top" align="right"></td>
+</tr></table></div>
+<div class="refsynopsisdiv" title="Synopsis">
+<a name="gnome-keyring-gnome-keyring-result.synopsis"></a><h2>Synopsis</h2>
+<pre class="synopsis">
+const <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"
+>gchar</a>*        <a class="link" href="gnome-keyring-gnome-keyring-result.html#gnome-keyring-result-to-message" title="gnome_keyring_result_to_message ()">gnome_keyring_result_to_message</a>     (<a class="link" href="gnome-keyring-gnome-keyring-result.html#GnomeKeyringResult" title="enum GnomeKeyringResult">GnomeKeyringResult</a> res);
+enum                <a class="link" href="gnome-keyring-gnome-keyring-result.html#GnomeKeyringResult" title="enum GnomeKeyringResult">GnomeKeyringResult</a>;
+</pre>
+</div>
+<div class="refsect1" title="Description">
+<a name="gnome-keyring-gnome-keyring-result.description"></a><h2>Description</h2>
+<p>
+</p>
+<p>
+Result codes used through out GNOME Keyring. Additional result codes may be 
+added from time to time and these should be handled gracefully.
+</p>
+<p>
+</p>
+</div>
+<div class="refsect1" title="Details">
+<a name="gnome-keyring-gnome-keyring-result.details"></a><h2>Details</h2>
+<div class="refsect2" title="gnome_keyring_result_to_message ()">
+<a name="gnome-keyring-result-to-message"></a><h3>gnome_keyring_result_to_message ()</h3>
+<pre class="programlisting">const <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"
+>gchar</a>*        gnome_keyring_result_to_message     (<a class="link" href="gnome-keyring-gnome-keyring-result.html#GnomeKeyringResult" title="enum GnomeKeyringResult">GnomeKeyringResult</a> res);</pre>
+<p>
+The <span class="type">GNOME_KEYRING_RESULT_OK</span> and <span class="type">GNOME_KEYRING_RESULT_CANCELLED</span>
+codes will return an empty string. 
+</p>
+<p>
+Note that there are some results for which the application will need to 
+take appropriate action rather than just display an error message to 
+the user.</p>
+<p>
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>res</code></em> :</span></p></td>
+<td> A <a class="link" href="gnome-keyring-gnome-keyring-result.html#GnomeKeyringResult" title="enum GnomeKeyringResult"><span class="type">GnomeKeyringResult</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> a string suitable for display to the user for a given 
+<a class="link" href="gnome-keyring-gnome-keyring-result.html#GnomeKeyringResult" title="enum GnomeKeyringResult"><span class="type">GnomeKeyringResult</span></a>, or an empty string if the message wouldn't make 
+sense to a user.
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" title="enum GnomeKeyringResult">
+<a name="GnomeKeyringResult"></a><h3>enum GnomeKeyringResult</h3>
+<pre class="programlisting">typedef enum {
+	GNOME_KEYRING_RESULT_OK,
+	GNOME_KEYRING_RESULT_DENIED,
+	GNOME_KEYRING_RESULT_NO_KEYRING_DAEMON,
+	GNOME_KEYRING_RESULT_ALREADY_UNLOCKED,
+	GNOME_KEYRING_RESULT_NO_SUCH_KEYRING,
+	GNOME_KEYRING_RESULT_BAD_ARGUMENTS,
+	GNOME_KEYRING_RESULT_IO_ERROR,
+	GNOME_KEYRING_RESULT_CANCELLED,
+	GNOME_KEYRING_RESULT_KEYRING_ALREADY_EXISTS,
+	GNOME_KEYRING_RESULT_NO_MATCH
+} GnomeKeyringResult;
+</pre>
+<p>
+</p>
+</div>
+</div>
+</div>
+<div class="footer">
+<hr>
+          Generated by GTK-Doc V1.11</div>
+</body>
+</html>

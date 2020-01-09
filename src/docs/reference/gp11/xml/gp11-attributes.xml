@@ -1,0 +1,582 @@
+<?xml version="1.0"?>
+<!DOCTYPE refentry PUBLIC "-//OASIS//DTD DocBook XML V4.1.2//EN"
+               "http://www.oasis-open.org/docbook/xml/4.1.2/docbookx.dtd">
+<refentry id="gp11-gp11-attributes">
+<refmeta>
+<refentrytitle role="top_of_page" id="gp11-gp11-attributes.top_of_page">GP11Attributes</refentrytitle>
+<manvolnum>3</manvolnum>
+<refmiscinfo>GP11 Library</refmiscinfo>
+</refmeta>
+
+<refnamediv>
+<refname>GP11Attributes</refname>
+<refpurpose>A set of PKCS11 attributes.</refpurpose>
+</refnamediv>
+
+<refsynopsisdiv id="gp11-gp11-attributes.synopsis" role="synopsis">
+<title role="synopsis.title">Synopsis</title>
+
+<synopsis>
+                    <link linkend="GP11Attributes">GP11Attributes</link>;
+#define             <link linkend="GP11-TYPE-ATTRIBUTES--CAPS">GP11_TYPE_ATTRIBUTES</link>
+<link linkend="GP11Attributes">GP11Attributes</link>*     <link linkend="gp11-attributes-new">gp11_attributes_new</link>                 (void);
+<link linkend="GP11Attributes">GP11Attributes</link>*     <link linkend="gp11-attributes-new-empty">gp11_attributes_new_empty</link>           (<link linkend="gulong">gulong</link> attr_type);
+<link linkend="GP11Attributes">GP11Attributes</link>*     <link linkend="gp11-attributes-newv">gp11_attributes_newv</link>                (<link linkend="gulong">gulong</link> attr_type);
+<link linkend="GP11Attribute">GP11Attribute</link>*      <link linkend="gp11-attributes-at">gp11_attributes_at</link>                  (<link linkend="GP11Attributes">GP11Attributes</link> *attrs,
+                                                         <link linkend="guint">guint</link> index);
+<link linkend="void">void</link>                <link linkend="gp11-attributes-add">gp11_attributes_add</link>                 (<link linkend="GP11Attributes">GP11Attributes</link> *attrs,
+                                                         <link linkend="GP11Attribute">GP11Attribute</link> *attr);
+<link linkend="void">void</link>                <link linkend="gp11-attributes-add-data">gp11_attributes_add_data</link>            (<link linkend="GP11Attributes">GP11Attributes</link> *attrs,
+                                                         <link linkend="gulong">gulong</link> attr_type,
+                                                         <link linkend="gconstpointer">gconstpointer</link> value,
+                                                         <link linkend="gsize">gsize</link> length);
+<link linkend="void">void</link>                <link linkend="gp11-attributes-add-invalid">gp11_attributes_add_invalid</link>         (<link linkend="GP11Attributes">GP11Attributes</link> *attrs,
+                                                         <link linkend="gulong">gulong</link> attr_type);
+<link linkend="void">void</link>                <link linkend="gp11-attributes-add-empty">gp11_attributes_add_empty</link>           (<link linkend="GP11Attributes">GP11Attributes</link> *attrs,
+                                                         <link linkend="gulong">gulong</link> attr_type);
+<link linkend="void">void</link>                <link linkend="gp11-attributes-add-boolean">gp11_attributes_add_boolean</link>         (<link linkend="GP11Attributes">GP11Attributes</link> *attrs,
+                                                         <link linkend="gulong">gulong</link> attr_type,
+                                                         <link linkend="gboolean">gboolean</link> value);
+<link linkend="void">void</link>                <link linkend="gp11-attributes-add-string">gp11_attributes_add_string</link>          (<link linkend="GP11Attributes">GP11Attributes</link> *attrs,
+                                                         <link linkend="gulong">gulong</link> attr_type,
+                                                         const <link linkend="gchar">gchar</link> *string);
+<link linkend="void">void</link>                <link linkend="gp11-attributes-add-date">gp11_attributes_add_date</link>            (<link linkend="GP11Attributes">GP11Attributes</link> *attrs,
+                                                         <link linkend="gulong">gulong</link> attr_type,
+                                                         const <link linkend="GDate">GDate</link> *date);
+<link linkend="void">void</link>                <link linkend="gp11-attributes-add-ulong">gp11_attributes_add_ulong</link>           (<link linkend="GP11Attributes">GP11Attributes</link> *attrs,
+                                                         <link linkend="gulong">gulong</link> attr_type,
+                                                         <link linkend="gulong">gulong</link> value);
+<link linkend="GP11Attribute">GP11Attribute</link>*      <link linkend="gp11-attributes-find">gp11_attributes_find</link>                (<link linkend="GP11Attributes">GP11Attributes</link> *attrs,
+                                                         <link linkend="gulong">gulong</link> attr_type);
+<link linkend="gboolean">gboolean</link>            <link linkend="gp11-attributes-find-boolean">gp11_attributes_find_boolean</link>        (<link linkend="GP11Attributes">GP11Attributes</link> *attrs,
+                                                         <link linkend="gulong">gulong</link> attr_type,
+                                                         <link linkend="gboolean">gboolean</link> *value);
+<link linkend="gboolean">gboolean</link>            <link linkend="gp11-attributes-find-ulong">gp11_attributes_find_ulong</link>          (<link linkend="GP11Attributes">GP11Attributes</link> *attrs,
+                                                         <link linkend="gulong">gulong</link> attr_type,
+                                                         <link linkend="gulong">gulong</link> *value);
+<link linkend="gboolean">gboolean</link>            <link linkend="gp11-attributes-find-string">gp11_attributes_find_string</link>         (<link linkend="GP11Attributes">GP11Attributes</link> *attrs,
+                                                         <link linkend="gulong">gulong</link> attr_type,
+                                                         <link linkend="gchar">gchar</link> **value);
+<link linkend="gboolean">gboolean</link>            <link linkend="gp11-attributes-find-date">gp11_attributes_find_date</link>           (<link linkend="GP11Attributes">GP11Attributes</link> *attrs,
+                                                         <link linkend="gulong">gulong</link> attr_type,
+                                                         <link linkend="GDate">GDate</link> *value);
+<link linkend="gulong">gulong</link>              <link linkend="gp11-attributes-count">gp11_attributes_count</link>               (<link linkend="GP11Attributes">GP11Attributes</link> *attrs);
+<link linkend="GP11Attributes">GP11Attributes</link>*     <link linkend="gp11-attributes-ref">gp11_attributes_ref</link>                 (<link linkend="GP11Attributes">GP11Attributes</link> *attrs);
+<link linkend="void">void</link>                <link linkend="gp11-attributes-unref">gp11_attributes_unref</link>               (<link linkend="GP11Attributes">GP11Attributes</link> *attrs);
+<link linkend="gpointer">gpointer</link>            (<link linkend="GP11Allocator">*GP11Allocator</link>)                    (<link linkend="gpointer">gpointer</link> data,
+                                                         <link linkend="gsize">gsize</link> length);
+#define             <link linkend="GP11-BOOLEAN--CAPS">GP11_BOOLEAN</link>
+#define             <link linkend="GP11-ULONG--CAPS">GP11_ULONG</link>
+#define             <link linkend="GP11-STRING--CAPS">GP11_STRING</link>
+#define             <link linkend="GP11-DATE--CAPS">GP11_DATE</link>
+#define             <link linkend="GP11-INVALID--CAPS">GP11_INVALID</link>
+</synopsis>
+</refsynopsisdiv>
+
+
+
+
+
+
+
+
+
+<refsect1 id="gp11-gp11-attributes.description" role="desc">
+<title role="desc.title">Description</title>
+<para>
+A set of GP11Attribute structures. These attributes contain information
+about a PKCS11 object. Use <link linkend="gp11-object-get"><function>gp11_object_get()</function></link> or <link linkend="gp11-object-set"><function>gp11_object_set()</function></link> to set and retrieve
+attributes on an object.</para>
+<para>
+</para>
+</refsect1>
+
+<refsect1 id="gp11-gp11-attributes.details" role="details">
+<title role="details.title">Details</title>
+<refsect2 id="GP11Attributes" role="struct">
+<title>GP11Attributes</title>
+<indexterm zone="GP11Attributes"><primary sortas="GP11Attributes">GP11Attributes</primary></indexterm><programlisting>typedef struct _GP11Attributes GP11Attributes;</programlisting>
+<para>
+A set of GP11Attribute structures.</para>
+<para>
+</para></refsect2>
+<refsect2 id="GP11-TYPE-ATTRIBUTES--CAPS" role="macro">
+<title>GP11_TYPE_ATTRIBUTES</title>
+<indexterm zone="GP11-TYPE-ATTRIBUTES--CAPS"><primary sortas="GP11_TYPE_ATTRIBUTES">GP11_TYPE_ATTRIBUTES</primary></indexterm><programlisting>#define             GP11_TYPE_ATTRIBUTES                    (gp11_attributes_get_boxed_type ())
+</programlisting>
+<para>
+</para></refsect2>
+<refsect2 id="gp11-attributes-new" role="function">
+<title>gp11_attributes_new ()</title>
+<indexterm zone="gp11-attributes-new"><primary sortas="gp11_attributes_new">gp11_attributes_new</primary></indexterm><programlisting><link linkend="GP11Attributes">GP11Attributes</link>*     gp11_attributes_new                 (void);</programlisting>
+<para>
+Create a new GP11Attributes array.</para>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara> The new attributes array. When done with the array 
+release it with <link linkend="gp11-attributes-unref"><function>gp11_attributes_unref()</function></link>.
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="gp11-attributes-new-empty" role="function">
+<title>gp11_attributes_new_empty ()</title>
+<indexterm zone="gp11-attributes-new-empty"><primary sortas="gp11_attributes_new_empty">gp11_attributes_new_empty</primary></indexterm><programlisting><link linkend="GP11Attributes">GP11Attributes</link>*     gp11_attributes_new_empty           (<link linkend="gulong">gulong</link> attr_type);</programlisting>
+<para>
+Creates an GP11Attributes array with empty attributes. The arguments 
+should be values of attribute types, terminated with -1.</para>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>attr_type</parameter>&#160;:</term>
+<listitem><simpara> The first attribute type to add as empty.
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara> The new attributes array. When done with the array 
+release it with <link linkend="gp11-attributes-unref"><function>gp11_attributes_unref()</function></link>.
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="gp11-attributes-newv" role="function">
+<title>gp11_attributes_newv ()</title>
+<indexterm zone="gp11-attributes-newv"><primary sortas="gp11_attributes_newv">gp11_attributes_newv</primary></indexterm><programlisting><link linkend="GP11Attributes">GP11Attributes</link>*     gp11_attributes_newv                (<link linkend="gulong">gulong</link> attr_type);</programlisting>
+<para>
+Create a new GP11Attributes array.
+</para>
+<para>
+The arguments must be triples of: attribute type, data type, value
+</para>
+<para>
+<para>The variable argument list should contain:
+	<variablelist>
+	<varlistentry>
+			<term>a)</term>
+			<listitem><para>The gulong attribute type (ie: CKA_LABEL). </para></listitem>
+		</varlistentry>
+		<varlistentry>
+			<term>b)</term>
+			<listitem><para>The attribute data type (one of GP11_BOOLEAN, GP11_ULONG, 
+				GP11_STRING, GP11_DATE) orthe raw attribute value length.</para></listitem>
+		</varlistentry>
+		<varlistentry>
+			<term>c)</term>
+			<listitem><para>The attribute value, either a gboolean, gulong, gchar*, GDate* or 
+				a pointer to a raw attribute value.</para></listitem>
+		</varlistentry>
+	</variablelist>
+The variable argument list should be terminated with GP11_INVALID.</para></para>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>attr_type</parameter>&#160;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara> The new attributes array. When done with the array 
+release it with <link linkend="gp11-attributes-unref"><function>gp11_attributes_unref()</function></link>.
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="gp11-attributes-at" role="function">
+<title>gp11_attributes_at ()</title>
+<indexterm zone="gp11-attributes-at"><primary sortas="gp11_attributes_at">gp11_attributes_at</primary></indexterm><programlisting><link linkend="GP11Attribute">GP11Attribute</link>*      gp11_attributes_at                  (<link linkend="GP11Attributes">GP11Attributes</link> *attrs,
+                                                         <link linkend="guint">guint</link> index);</programlisting>
+<para>
+Get attribute at the specified index in the attribute array.
+</para>
+<para>
+Use <link linkend="gp11-attributes-count"><function>gp11_attributes_count()</function></link> to determine how many attributes are 
+in the array.</para>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>attrs</parameter>&#160;:</term>
+<listitem><simpara> The attributes array.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>index</parameter>&#160;:</term>
+<listitem><simpara> The attribute index to retrieve.
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara> The specified attribute.
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="gp11-attributes-add" role="function">
+<title>gp11_attributes_add ()</title>
+<indexterm zone="gp11-attributes-add"><primary sortas="gp11_attributes_add">gp11_attributes_add</primary></indexterm><programlisting><link linkend="void">void</link>                gp11_attributes_add                 (<link linkend="GP11Attributes">GP11Attributes</link> *attrs,
+                                                         <link linkend="GP11Attribute">GP11Attribute</link> *attr);</programlisting>
+<para>
+Add the specified attribute to the array. 
+</para>
+<para>
+The value stored in the attribute will be copied.</para>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>attrs</parameter>&#160;:</term>
+<listitem><simpara> The attributes array to add to
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>attr</parameter>&#160;:</term>
+<listitem><simpara> The attribute to add.
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="gp11-attributes-add-data" role="function">
+<title>gp11_attributes_add_data ()</title>
+<indexterm zone="gp11-attributes-add-data"><primary sortas="gp11_attributes_add_data">gp11_attributes_add_data</primary></indexterm><programlisting><link linkend="void">void</link>                gp11_attributes_add_data            (<link linkend="GP11Attributes">GP11Attributes</link> *attrs,
+                                                         <link linkend="gulong">gulong</link> attr_type,
+                                                         <link linkend="gconstpointer">gconstpointer</link> value,
+                                                         <link linkend="gsize">gsize</link> length);</programlisting>
+<para>
+Add an attribute with the specified type and value to the array. 
+</para>
+<para>
+The value stored in the attribute will be copied.</para>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>attrs</parameter>&#160;:</term>
+<listitem><simpara> The attributes array to add to.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>attr_type</parameter>&#160;:</term>
+<listitem><simpara> The type of attribute to add.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>value</parameter>&#160;:</term>
+<listitem><simpara> The raw memory of the attribute value.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>length</parameter>&#160;:</term>
+<listitem><simpara> The length of the attribute value.
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="gp11-attributes-add-invalid" role="function">
+<title>gp11_attributes_add_invalid ()</title>
+<indexterm zone="gp11-attributes-add-invalid"><primary sortas="gp11_attributes_add_invalid">gp11_attributes_add_invalid</primary></indexterm><programlisting><link linkend="void">void</link>                gp11_attributes_add_invalid         (<link linkend="GP11Attributes">GP11Attributes</link> *attrs,
+                                                         <link linkend="gulong">gulong</link> attr_type);</programlisting>
+<para>
+Add an attribute with the specified type and an 'invalid' value to the array.</para>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>attrs</parameter>&#160;:</term>
+<listitem><simpara> The attributes array to add to.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>attr_type</parameter>&#160;:</term>
+<listitem><simpara> The type of attribute to add.
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="gp11-attributes-add-empty" role="function">
+<title>gp11_attributes_add_empty ()</title>
+<indexterm zone="gp11-attributes-add-empty"><primary sortas="gp11_attributes_add_empty">gp11_attributes_add_empty</primary></indexterm><programlisting><link linkend="void">void</link>                gp11_attributes_add_empty           (<link linkend="GP11Attributes">GP11Attributes</link> *attrs,
+                                                         <link linkend="gulong">gulong</link> attr_type);</programlisting>
+<para>
+Add an attribute with the specified type, with empty data.</para>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>attrs</parameter>&#160;:</term>
+<listitem><simpara> The attributes array to add.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>attr_type</parameter>&#160;:</term>
+<listitem><simpara> The type of attribute to add.
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="gp11-attributes-add-boolean" role="function">
+<title>gp11_attributes_add_boolean ()</title>
+<indexterm zone="gp11-attributes-add-boolean"><primary sortas="gp11_attributes_add_boolean">gp11_attributes_add_boolean</primary></indexterm><programlisting><link linkend="void">void</link>                gp11_attributes_add_boolean         (<link linkend="GP11Attributes">GP11Attributes</link> *attrs,
+                                                         <link linkend="gulong">gulong</link> attr_type,
+                                                         <link linkend="gboolean">gboolean</link> value);</programlisting>
+<para>
+Add an attribute with the specified type and value to the array. 
+</para>
+<para>
+The value will be stored as a CK_BBOOL PKCS<link linkend="11--CAPS"><type>11</type></link> style attribute.</para>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>attrs</parameter>&#160;:</term>
+<listitem><simpara> The attributes array to add to.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>attr_type</parameter>&#160;:</term>
+<listitem><simpara> The type of attribute to add.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>value</parameter>&#160;:</term>
+<listitem><simpara> The boolean value to add.
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="gp11-attributes-add-string" role="function">
+<title>gp11_attributes_add_string ()</title>
+<indexterm zone="gp11-attributes-add-string"><primary sortas="gp11_attributes_add_string">gp11_attributes_add_string</primary></indexterm><programlisting><link linkend="void">void</link>                gp11_attributes_add_string          (<link linkend="GP11Attributes">GP11Attributes</link> *attrs,
+                                                         <link linkend="gulong">gulong</link> attr_type,
+                                                         const <link linkend="gchar">gchar</link> *string);</programlisting>
+<para>
+Add an attribute with the specified type and value to the array. 
+</para>
+<para>
+The value will be copied into the attribute.</para>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>attrs</parameter>&#160;:</term>
+<listitem><simpara> The attributes array to add to.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>attr_type</parameter>&#160;:</term>
+<listitem><simpara> The type of attribute to add.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>string</parameter>&#160;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="gp11-attributes-add-date" role="function">
+<title>gp11_attributes_add_date ()</title>
+<indexterm zone="gp11-attributes-add-date"><primary sortas="gp11_attributes_add_date">gp11_attributes_add_date</primary></indexterm><programlisting><link linkend="void">void</link>                gp11_attributes_add_date            (<link linkend="GP11Attributes">GP11Attributes</link> *attrs,
+                                                         <link linkend="gulong">gulong</link> attr_type,
+                                                         const <link linkend="GDate">GDate</link> *date);</programlisting>
+<para>
+Add an attribute with the specified type and value to the array. 
+</para>
+<para>
+The value will be stored as a CK_DATE PKCS<link linkend="11--CAPS"><type>11</type></link> style attribute.</para>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>attrs</parameter>&#160;:</term>
+<listitem><simpara> The attributes array to add to.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>attr_type</parameter>&#160;:</term>
+<listitem><simpara> The type of attribute to add.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>date</parameter>&#160;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="gp11-attributes-add-ulong" role="function">
+<title>gp11_attributes_add_ulong ()</title>
+<indexterm zone="gp11-attributes-add-ulong"><primary sortas="gp11_attributes_add_ulong">gp11_attributes_add_ulong</primary></indexterm><programlisting><link linkend="void">void</link>                gp11_attributes_add_ulong           (<link linkend="GP11Attributes">GP11Attributes</link> *attrs,
+                                                         <link linkend="gulong">gulong</link> attr_type,
+                                                         <link linkend="gulong">gulong</link> value);</programlisting>
+<para>
+Add an attribute with the specified type and value to the array. 
+</para>
+<para>
+The value will be stored as a CK_ULONG PKCS<link linkend="11--CAPS"><type>11</type></link> style attribute.</para>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>attrs</parameter>&#160;:</term>
+<listitem><simpara> The attributes array to add to.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>attr_type</parameter>&#160;:</term>
+<listitem><simpara> The type of attribute to add.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>value</parameter>&#160;:</term>
+<listitem><simpara> The gulong value to add.
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="gp11-attributes-find" role="function">
+<title>gp11_attributes_find ()</title>
+<indexterm zone="gp11-attributes-find"><primary sortas="gp11_attributes_find">gp11_attributes_find</primary></indexterm><programlisting><link linkend="GP11Attribute">GP11Attribute</link>*      gp11_attributes_find                (<link linkend="GP11Attributes">GP11Attributes</link> *attrs,
+                                                         <link linkend="gulong">gulong</link> attr_type);</programlisting>
+<para>
+Find an attribute with the specified type in the array.</para>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>attrs</parameter>&#160;:</term>
+<listitem><simpara> The attributes array to search.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>attr_type</parameter>&#160;:</term>
+<listitem><simpara> The type of attribute to find.
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara> The first attribute found with the specified type, or NULL.
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="gp11-attributes-find-boolean" role="function">
+<title>gp11_attributes_find_boolean ()</title>
+<indexterm zone="gp11-attributes-find-boolean"><primary sortas="gp11_attributes_find_boolean">gp11_attributes_find_boolean</primary></indexterm><programlisting><link linkend="gboolean">gboolean</link>            gp11_attributes_find_boolean        (<link linkend="GP11Attributes">GP11Attributes</link> *attrs,
+                                                         <link linkend="gulong">gulong</link> attr_type,
+                                                         <link linkend="gboolean">gboolean</link> *value);</programlisting>
+<para>
+Find an attribute with the specified type in the array. 
+</para>
+<para>
+The attribute (if found) must be of the right size to store
+a boolean value (ie: CK_BBOOL). If the attribute is marked invalid 
+then it will be treated as not found.</para>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>attrs</parameter>&#160;:</term>
+<listitem><simpara> The attributes array to search.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>attr_type</parameter>&#160;:</term>
+<listitem><simpara> The type of attribute to find.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>value</parameter>&#160;:</term>
+<listitem><simpara> The resulting gboolean value.
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara> Whether a value was found or not.
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="gp11-attributes-find-ulong" role="function">
+<title>gp11_attributes_find_ulong ()</title>
+<indexterm zone="gp11-attributes-find-ulong"><primary sortas="gp11_attributes_find_ulong">gp11_attributes_find_ulong</primary></indexterm><programlisting><link linkend="gboolean">gboolean</link>            gp11_attributes_find_ulong          (<link linkend="GP11Attributes">GP11Attributes</link> *attrs,
+                                                         <link linkend="gulong">gulong</link> attr_type,
+                                                         <link linkend="gulong">gulong</link> *value);</programlisting>
+<para>
+Find an attribute with the specified type in the array. 
+</para>
+<para>
+The attribute (if found) must be of the right size to store
+a unsigned long value (ie: CK_ULONG). If the attribute is marked invalid 
+then it will be treated as not found.</para>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>attrs</parameter>&#160;:</term>
+<listitem><simpara> The attributes array to search.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>attr_type</parameter>&#160;:</term>
+<listitem><simpara> The type of attribute to find.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>value</parameter>&#160;:</term>
+<listitem><simpara> The resulting gulong value.
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara> Whether a value was found or not.
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="gp11-attributes-find-string" role="function">
+<title>gp11_attributes_find_string ()</title>
+<indexterm zone="gp11-attributes-find-string"><primary sortas="gp11_attributes_find_string">gp11_attributes_find_string</primary></indexterm><programlisting><link linkend="gboolean">gboolean</link>            gp11_attributes_find_string         (<link linkend="GP11Attributes">GP11Attributes</link> *attrs,
+                                                         <link linkend="gulong">gulong</link> attr_type,
+                                                         <link linkend="gchar">gchar</link> **value);</programlisting>
+<para>
+Find an attribute with the specified type in the array. 
+</para>
+<para>
+If the attribute is marked invalid then it will be treated as not found. 
+The resulting string will be null-terminated, and must be freed by the caller 
+using <link linkend="g-free"><function>g_free()</function></link>.</para>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>attrs</parameter>&#160;:</term>
+<listitem><simpara> The attributes array to search.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>attr_type</parameter>&#160;:</term>
+<listitem><simpara> The type of attribute to find.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>value</parameter>&#160;:</term>
+<listitem><simpara> The resulting string value.
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara> Whether a value was found or not.
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="gp11-attributes-find-date" role="function">
+<title>gp11_attributes_find_date ()</title>
+<indexterm zone="gp11-attributes-find-date"><primary sortas="gp11_attributes_find_date">gp11_attributes_find_date</primary></indexterm><programlisting><link linkend="gboolean">gboolean</link>            gp11_attributes_find_date           (<link linkend="GP11Attributes">GP11Attributes</link> *attrs,
+                                                         <link linkend="gulong">gulong</link> attr_type,
+                                                         <link linkend="GDate">GDate</link> *value);</programlisting>
+<para>
+Find an attribute with the specified type in the array. 
+</para>
+<para>
+The attribute (if found) must be of the right size to store
+a date value (ie: CK_DATE). If the attribute is marked invalid 
+then it will be treated as not found.</para>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>attrs</parameter>&#160;:</term>
+<listitem><simpara> The attributes array to search.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>attr_type</parameter>&#160;:</term>
+<listitem><simpara> The type of attribute to find.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>value</parameter>&#160;:</term>
+<listitem><simpara> The resulting GDate value.
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara> Whether a value was found or not.
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="gp11-attributes-count" role="function">
+<title>gp11_attributes_count ()</title>
+<indexterm zone="gp11-attributes-count"><primary sortas="gp11_attributes_count">gp11_attributes_count</primary></indexterm><programlisting><link linkend="gulong">gulong</link>              gp11_attributes_count               (<link linkend="GP11Attributes">GP11Attributes</link> *attrs);</programlisting>
+<para>
+Get the number of attributes in this attribute array.</para>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>attrs</parameter>&#160;:</term>
+<listitem><simpara> The attributes array to count.
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara> The number of contained attributes.
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="gp11-attributes-ref" role="function">
+<title>gp11_attributes_ref ()</title>
+<indexterm zone="gp11-attributes-ref"><primary sortas="gp11_attributes_ref">gp11_attributes_ref</primary></indexterm><programlisting><link linkend="GP11Attributes">GP11Attributes</link>*     gp11_attributes_ref                 (<link linkend="GP11Attributes">GP11Attributes</link> *attrs);</programlisting>
+<para>
+Reference this attributes array.</para>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>attrs</parameter>&#160;:</term>
+<listitem><simpara> An attribute array
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara>
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="gp11-attributes-unref" role="function">
+<title>gp11_attributes_unref ()</title>
+<indexterm zone="gp11-attributes-unref"><primary sortas="gp11_attributes_unref">gp11_attributes_unref</primary></indexterm><programlisting><link linkend="void">void</link>                gp11_attributes_unref               (<link linkend="GP11Attributes">GP11Attributes</link> *attrs);</programlisting>
+<para>
+Unreference this attribute array.
+</para>
+<para>
+When all outstanding references are NULL, the array will be freed.</para>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>attrs</parameter>&#160;:</term>
+<listitem><simpara> An attribute array
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="GP11Allocator" role="function">
+<title>GP11Allocator ()</title>
+<indexterm zone="GP11Allocator"><primary sortas="GP11Allocator">GP11Allocator</primary></indexterm><programlisting><link linkend="gpointer">gpointer</link>            (*GP11Allocator)                    (<link linkend="gpointer">gpointer</link> data,
+                                                         <link linkend="gsize">gsize</link> length);</programlisting>
+<para>
+An allocator used to allocate data for the attributes in this GP11Attributes set.
+</para>
+<para>
+This is a function that acts like g_realloc. Specifically it frees when length is 
+set to zero, it allocates when data is set to NULL, and it reallocates when both 
+are valid.</para>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>data</parameter>&#160;:</term>
+<listitem><simpara> Memory to allocate or deallocate.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>length</parameter>&#160;:</term>
+<listitem><simpara> New length of memory.
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara>
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="GP11-BOOLEAN--CAPS" role="macro">
+<title>GP11_BOOLEAN</title>
+<indexterm zone="GP11-BOOLEAN--CAPS"><primary sortas="GP11_BOOLEAN">GP11_BOOLEAN</primary></indexterm><programlisting>#define GP11_BOOLEAN  ((gssize)-1)
+</programlisting>
+<para>
+</para>
+<para>
+</para></refsect2>
+<refsect2 id="GP11-ULONG--CAPS" role="macro">
+<title>GP11_ULONG</title>
+<indexterm zone="GP11-ULONG--CAPS"><primary sortas="GP11_ULONG">GP11_ULONG</primary></indexterm><programlisting>#define GP11_ULONG    ((gssize)-2)
+</programlisting>
+<para>
+</para>
+<para>
+</para></refsect2>
+<refsect2 id="GP11-STRING--CAPS" role="macro">
+<title>GP11_STRING</title>
+<indexterm zone="GP11-STRING--CAPS"><primary sortas="GP11_STRING">GP11_STRING</primary></indexterm><programlisting>#define GP11_STRING   ((gssize)-3)
+</programlisting>
+<para>
+</para>
+<para>
+</para></refsect2>
+<refsect2 id="GP11-DATE--CAPS" role="macro">
+<title>GP11_DATE</title>
+<indexterm zone="GP11-DATE--CAPS"><primary sortas="GP11_DATE">GP11_DATE</primary></indexterm><programlisting>#define GP11_DATE     ((gssize)-4)
+</programlisting>
+<para>
+</para>
+<para>
+</para></refsect2>
+<refsect2 id="GP11-INVALID--CAPS" role="macro">
+<title>GP11_INVALID</title>
+<indexterm zone="GP11-INVALID--CAPS"><primary sortas="GP11_INVALID">GP11_INVALID</primary></indexterm><programlisting>#define GP11_INVALID G_MAXULONG
+</programlisting>
+<para>
+</para></refsect2>
+
+</refsect1>
+
+
+
+
+</refentry>

@@ -1,0 +1,1426 @@
+<?xml version="1.0"?>
+<!DOCTYPE refentry PUBLIC "-//OASIS//DTD DocBook XML V4.1.2//EN"
+               "http://www.oasis-open.org/docbook/xml/4.1.2/docbookx.dtd">
+<refentry id="gp11-gp11-session">
+<refmeta>
+<refentrytitle role="top_of_page" id="gp11-gp11-session.top_of_page">GP11Session</refentrytitle>
+<manvolnum>3</manvolnum>
+<refmiscinfo>GP11 Library</refmiscinfo>
+</refmeta>
+
+<refnamediv>
+<refname>GP11Session</refname>
+<refpurpose>Represents an open PKCS11 session.</refpurpose>
+</refnamediv>
+
+<refsynopsisdiv id="gp11-gp11-session.synopsis" role="synopsis">
+<title role="synopsis.title">Synopsis</title>
+<anchor id="GP11Session"/>
+<synopsis>
+                    <link linkend="GP11Session-struct">GP11Session</link>;
+<link linkend="GP11Session">GP11Session</link>*        <link linkend="gp11-session-from-handle">gp11_session_from_handle</link>            (<link linkend="GP11Slot">GP11Slot</link> *slot,
+                                                         <link linkend="CK-SESSION-HANDLE--CAPS">CK_SESSION_HANDLE</link> handle);
+<link linkend="GP11Module">GP11Module</link>*         <link linkend="gp11-session-get-module">gp11_session_get_module</link>             (<link linkend="GP11Session">GP11Session</link> *self);
+<link linkend="GP11Slot">GP11Slot</link>*           <link linkend="gp11-session-get-slot">gp11_session_get_slot</link>               (<link linkend="GP11Session">GP11Session</link> *self);
+<link linkend="CK-SESSION-HANDLE--CAPS">CK_SESSION_HANDLE</link>   <link linkend="gp11-session-get-handle">gp11_session_get_handle</link>             (<link linkend="GP11Session">GP11Session</link> *self);
+<link linkend="GP11SessionInfo">GP11SessionInfo</link>*    <link linkend="gp11-session-get-info">gp11_session_get_info</link>               (<link linkend="GP11Session">GP11Session</link> *self);
+<link linkend="gboolean">gboolean</link>            <link linkend="gp11-session-login">gp11_session_login</link>                  (<link linkend="GP11Session">GP11Session</link> *self,
+                                                         <link linkend="gulong">gulong</link> user_type,
+                                                         const <link linkend="guchar">guchar</link> *pin,
+                                                         <link linkend="gsize">gsize</link> n_pin,
+                                                         <link linkend="GError">GError</link> **err);
+<link linkend="gboolean">gboolean</link>            <link linkend="gp11-session-login-full">gp11_session_login_full</link>             (<link linkend="GP11Session">GP11Session</link> *self,
+                                                         <link linkend="gulong">gulong</link> user_type,
+                                                         const <link linkend="guchar">guchar</link> *pin,
+                                                         <link linkend="gsize">gsize</link> n_pin,
+                                                         <link linkend="GCancellable">GCancellable</link> *cancellable,
+                                                         <link linkend="GError">GError</link> **err);
+<link linkend="void">void</link>                <link linkend="gp11-session-login-async">gp11_session_login_async</link>            (<link linkend="GP11Session">GP11Session</link> *self,
+                                                         <link linkend="gulong">gulong</link> user_type,
+                                                         const <link linkend="guchar">guchar</link> *pin,
+                                                         <link linkend="gsize">gsize</link> n_pin,
+                                                         <link linkend="GCancellable">GCancellable</link> *cancellable,
+                                                         <link linkend="GAsyncReadyCallback">GAsyncReadyCallback</link> callback,
+                                                         <link linkend="gpointer">gpointer</link> user_data);
+<link linkend="gboolean">gboolean</link>            <link linkend="gp11-session-login-finish">gp11_session_login_finish</link>           (<link linkend="GP11Session">GP11Session</link> *self,
+                                                         <link linkend="GAsyncResult">GAsyncResult</link> *result,
+                                                         <link linkend="GError">GError</link> **err);
+<link linkend="gboolean">gboolean</link>            <link linkend="gp11-session-logout">gp11_session_logout</link>                 (<link linkend="GP11Session">GP11Session</link> *self,
+                                                         <link linkend="GError">GError</link> **err);
+<link linkend="gboolean">gboolean</link>            <link linkend="gp11-session-logout-full">gp11_session_logout_full</link>            (<link linkend="GP11Session">GP11Session</link> *self,
+                                                         <link linkend="GCancellable">GCancellable</link> *cancellable,
+                                                         <link linkend="GError">GError</link> **err);
+<link linkend="void">void</link>                <link linkend="gp11-session-logout-async">gp11_session_logout_async</link>           (<link linkend="GP11Session">GP11Session</link> *self,
+                                                         <link linkend="GCancellable">GCancellable</link> *cancellable,
+                                                         <link linkend="GAsyncReadyCallback">GAsyncReadyCallback</link> callback,
+                                                         <link linkend="gpointer">gpointer</link> user_data);
+<link linkend="gboolean">gboolean</link>            <link linkend="gp11-session-logout-finish">gp11_session_logout_finish</link>          (<link linkend="GP11Session">GP11Session</link> *self,
+                                                         <link linkend="GAsyncResult">GAsyncResult</link> *result,
+                                                         <link linkend="GError">GError</link> **err);
+<link linkend="GP11Object">GP11Object</link>*         <link linkend="gp11-session-create-object">gp11_session_create_object</link>          (<link linkend="GP11Session">GP11Session</link> *self,
+                                                         <link linkend="GError">GError</link> **err);
+<link linkend="void">void</link>                <link linkend="gp11-session-create-object-async">gp11_session_create_object_async</link>    (<link linkend="GP11Session">GP11Session</link> *self,
+                                                         <link linkend="GP11Attributes">GP11Attributes</link> *attrs,
+                                                         <link linkend="GCancellable">GCancellable</link> *cancellable,
+                                                         <link linkend="GAsyncReadyCallback">GAsyncReadyCallback</link> callback,
+                                                         <link linkend="gpointer">gpointer</link> user_data);
+<link linkend="GP11Object">GP11Object</link>*         <link linkend="gp11-session-create-object-finish">gp11_session_create_object_finish</link>   (<link linkend="GP11Session">GP11Session</link> *self,
+                                                         <link linkend="GAsyncResult">GAsyncResult</link> *result,
+                                                         <link linkend="GError">GError</link> **err);
+<link linkend="GList">GList</link>*              <link linkend="gp11-session-find-objects">gp11_session_find_objects</link>           (<link linkend="GP11Session">GP11Session</link> *self,
+                                                         <link linkend="GError">GError</link> **err);
+<link linkend="void">void</link>                <link linkend="gp11-session-find-objects-async">gp11_session_find_objects_async</link>     (<link linkend="GP11Session">GP11Session</link> *self,
+                                                         <link linkend="GP11Attributes">GP11Attributes</link> *attrs,
+                                                         <link linkend="GCancellable">GCancellable</link> *cancellable,
+                                                         <link linkend="GAsyncReadyCallback">GAsyncReadyCallback</link> callback,
+                                                         <link linkend="gpointer">gpointer</link> user_data);
+<link linkend="GList">GList</link>*              <link linkend="gp11-session-find-objects-finish">gp11_session_find_objects_finish</link>    (<link linkend="GP11Session">GP11Session</link> *self,
+                                                         <link linkend="GAsyncResult">GAsyncResult</link> *result,
+                                                         <link linkend="GError">GError</link> **err);
+<link linkend="guchar">guchar</link>*             <link linkend="gp11-session-encrypt">gp11_session_encrypt</link>                (<link linkend="GP11Session">GP11Session</link> *self,
+                                                         <link linkend="GP11Object">GP11Object</link> *key,
+                                                         <link linkend="gulong">gulong</link> mech_type,
+                                                         const <link linkend="guchar">guchar</link> *input,
+                                                         <link linkend="gsize">gsize</link> n_input,
+                                                         <link linkend="gsize">gsize</link> *n_result,
+                                                         <link linkend="GError">GError</link> **err);
+<link linkend="guchar">guchar</link>*             <link linkend="gp11-session-encrypt-full">gp11_session_encrypt_full</link>           (<link linkend="GP11Session">GP11Session</link> *self,
+                                                         <link linkend="GP11Object">GP11Object</link> *key,
+                                                         <link linkend="GP11Mechanism">GP11Mechanism</link> *mech_args,
+                                                         const <link linkend="guchar">guchar</link> *input,
+                                                         <link linkend="gsize">gsize</link> n_input,
+                                                         <link linkend="gsize">gsize</link> *n_result,
+                                                         <link linkend="GCancellable">GCancellable</link> *cancellable,
+                                                         <link linkend="GError">GError</link> **err);
+<link linkend="void">void</link>                <link linkend="gp11-session-encrypt-async">gp11_session_encrypt_async</link>          (<link linkend="GP11Session">GP11Session</link> *self,
+                                                         <link linkend="GP11Object">GP11Object</link> *key,
+                                                         <link linkend="GP11Mechanism">GP11Mechanism</link> *mech_args,
+                                                         const <link linkend="guchar">guchar</link> *input,
+                                                         <link linkend="gsize">gsize</link> n_input,
+                                                         <link linkend="GCancellable">GCancellable</link> *cancellable,
+                                                         <link linkend="GAsyncReadyCallback">GAsyncReadyCallback</link> callback,
+                                                         <link linkend="gpointer">gpointer</link> user_data);
+<link linkend="guchar">guchar</link>*             <link linkend="gp11-session-encrypt-finish">gp11_session_encrypt_finish</link>         (<link linkend="GP11Session">GP11Session</link> *self,
+                                                         <link linkend="GAsyncResult">GAsyncResult</link> *result,
+                                                         <link linkend="gsize">gsize</link> *n_result,
+                                                         <link linkend="GError">GError</link> **err);
+<link linkend="guchar">guchar</link>*             <link linkend="gp11-session-decrypt">gp11_session_decrypt</link>                (<link linkend="GP11Session">GP11Session</link> *self,
+                                                         <link linkend="GP11Object">GP11Object</link> *key,
+                                                         <link linkend="gulong">gulong</link> mech_type,
+                                                         const <link linkend="guchar">guchar</link> *input,
+                                                         <link linkend="gsize">gsize</link> n_input,
+                                                         <link linkend="gsize">gsize</link> *n_result,
+                                                         <link linkend="GError">GError</link> **err);
+<link linkend="guchar">guchar</link>*             <link linkend="gp11-session-decrypt-full">gp11_session_decrypt_full</link>           (<link linkend="GP11Session">GP11Session</link> *self,
+                                                         <link linkend="GP11Object">GP11Object</link> *key,
+                                                         <link linkend="GP11Mechanism">GP11Mechanism</link> *mech_args,
+                                                         const <link linkend="guchar">guchar</link> *input,
+                                                         <link linkend="gsize">gsize</link> n_input,
+                                                         <link linkend="gsize">gsize</link> *n_result,
+                                                         <link linkend="GCancellable">GCancellable</link> *cancellable,
+                                                         <link linkend="GError">GError</link> **err);
+<link linkend="void">void</link>                <link linkend="gp11-session-decrypt-async">gp11_session_decrypt_async</link>          (<link linkend="GP11Session">GP11Session</link> *self,
+                                                         <link linkend="GP11Object">GP11Object</link> *key,
+                                                         <link linkend="GP11Mechanism">GP11Mechanism</link> *mech_args,
+                                                         const <link linkend="guchar">guchar</link> *input,
+                                                         <link linkend="gsize">gsize</link> n_input,
+                                                         <link linkend="GCancellable">GCancellable</link> *cancellable,
+                                                         <link linkend="GAsyncReadyCallback">GAsyncReadyCallback</link> callback,
+                                                         <link linkend="gpointer">gpointer</link> user_data);
+<link linkend="guchar">guchar</link>*             <link linkend="gp11-session-decrypt-finish">gp11_session_decrypt_finish</link>         (<link linkend="GP11Session">GP11Session</link> *self,
+                                                         <link linkend="GAsyncResult">GAsyncResult</link> *result,
+                                                         <link linkend="gsize">gsize</link> *n_result,
+                                                         <link linkend="GError">GError</link> **err);
+<link linkend="guchar">guchar</link>*             <link linkend="gp11-session-sign">gp11_session_sign</link>                   (<link linkend="GP11Session">GP11Session</link> *self,
+                                                         <link linkend="GP11Object">GP11Object</link> *key,
+                                                         <link linkend="gulong">gulong</link> mech_type,
+                                                         const <link linkend="guchar">guchar</link> *input,
+                                                         <link linkend="gsize">gsize</link> n_input,
+                                                         <link linkend="gsize">gsize</link> *n_result,
+                                                         <link linkend="GError">GError</link> **err);
+<link linkend="guchar">guchar</link>*             <link linkend="gp11-session-sign-full">gp11_session_sign_full</link>              (<link linkend="GP11Session">GP11Session</link> *self,
+                                                         <link linkend="GP11Object">GP11Object</link> *key,
+                                                         <link linkend="GP11Mechanism">GP11Mechanism</link> *mech_args,
+                                                         const <link linkend="guchar">guchar</link> *input,
+                                                         <link linkend="gsize">gsize</link> n_input,
+                                                         <link linkend="gsize">gsize</link> *n_result,
+                                                         <link linkend="GCancellable">GCancellable</link> *cancellable,
+                                                         <link linkend="GError">GError</link> **err);
+<link linkend="void">void</link>                <link linkend="gp11-session-sign-async">gp11_session_sign_async</link>             (<link linkend="GP11Session">GP11Session</link> *self,
+                                                         <link linkend="GP11Object">GP11Object</link> *key,
+                                                         <link linkend="GP11Mechanism">GP11Mechanism</link> *mech_args,
+                                                         const <link linkend="guchar">guchar</link> *input,
+                                                         <link linkend="gsize">gsize</link> n_input,
+                                                         <link linkend="GCancellable">GCancellable</link> *cancellable,
+                                                         <link linkend="GAsyncReadyCallback">GAsyncReadyCallback</link> callback,
+                                                         <link linkend="gpointer">gpointer</link> user_data);
+<link linkend="guchar">guchar</link>*             <link linkend="gp11-session-sign-finish">gp11_session_sign_finish</link>            (<link linkend="GP11Session">GP11Session</link> *self,
+                                                         <link linkend="GAsyncResult">GAsyncResult</link> *result,
+                                                         <link linkend="gsize">gsize</link> *n_result,
+                                                         <link linkend="GError">GError</link> **err);
+<link linkend="gboolean">gboolean</link>            <link linkend="gp11-session-verify">gp11_session_verify</link>                 (<link linkend="GP11Session">GP11Session</link> *self,
+                                                         <link linkend="GP11Object">GP11Object</link> *key,
+                                                         <link linkend="gulong">gulong</link> mech_type,
+                                                         const <link linkend="guchar">guchar</link> *input,
+                                                         <link linkend="gsize">gsize</link> n_input,
+                                                         const <link linkend="guchar">guchar</link> *signature,
+                                                         <link linkend="gsize">gsize</link> n_signature,
+                                                         <link linkend="GError">GError</link> **err);
+<link linkend="gboolean">gboolean</link>            <link linkend="gp11-session-verify-full">gp11_session_verify_full</link>            (<link linkend="GP11Session">GP11Session</link> *self,
+                                                         <link linkend="GP11Object">GP11Object</link> *key,
+                                                         <link linkend="GP11Mechanism">GP11Mechanism</link> *mech_args,
+                                                         const <link linkend="guchar">guchar</link> *input,
+                                                         <link linkend="gsize">gsize</link> n_input,
+                                                         const <link linkend="guchar">guchar</link> *signature,
+                                                         <link linkend="gsize">gsize</link> n_signature,
+                                                         <link linkend="GCancellable">GCancellable</link> *cancellable,
+                                                         <link linkend="GError">GError</link> **err);
+<link linkend="void">void</link>                <link linkend="gp11-session-verify-async">gp11_session_verify_async</link>           (<link linkend="GP11Session">GP11Session</link> *self,
+                                                         <link linkend="GP11Object">GP11Object</link> *key,
+                                                         <link linkend="GP11Mechanism">GP11Mechanism</link> *mechanism,
+                                                         const <link linkend="guchar">guchar</link> *input,
+                                                         <link linkend="gsize">gsize</link> n_input,
+                                                         const <link linkend="guchar">guchar</link> *signature,
+                                                         <link linkend="gsize">gsize</link> n_signature,
+                                                         <link linkend="GCancellable">GCancellable</link> *cancellable,
+                                                         <link linkend="GAsyncReadyCallback">GAsyncReadyCallback</link> callback,
+                                                         <link linkend="gpointer">gpointer</link> user_data);
+<link linkend="gboolean">gboolean</link>            <link linkend="gp11-session-verify-finish">gp11_session_verify_finish</link>          (<link linkend="GP11Session">GP11Session</link> *self,
+                                                         <link linkend="GAsyncResult">GAsyncResult</link> *result,
+                                                         <link linkend="GError">GError</link> **err);
+                    <link linkend="GP11SessionInfo">GP11SessionInfo</link>;
+<link linkend="void">void</link>                <link linkend="gp11-session-info-free">gp11_session_info_free</link>              (<link linkend="GP11SessionInfo">GP11SessionInfo</link> *session_info);
+                    <link linkend="GP11Mechanism">GP11Mechanism</link>;
+</synopsis>
+</refsynopsisdiv>
+
+<refsect1 id="gp11-gp11-session.object-hierarchy" role="object_hierarchy">
+<title role="object_hierarchy.title">Object Hierarchy</title>
+<synopsis>
+  <link linkend="GObject">GObject</link>
+   +----GP11Session
+</synopsis>
+</refsect1>
+
+
+
+
+
+<refsect1 id="gp11-gp11-session.properties" role="properties">
+<title role="properties.title">Properties</title>
+<synopsis>
+  &quot;<link linkend="GP11Session--handle">handle</link>&quot;                   <link linkend="gulong">gulong</link>                : Read / Write / Construct Only
+  &quot;<link linkend="GP11Session--module">module</link>&quot;                   <link linkend="GP11Module">GP11Module</link>*           : Read / Write / Construct Only
+  &quot;<link linkend="GP11Session--slot">slot</link>&quot;                     <link linkend="GP11Slot">GP11Slot</link>*             : Read / Write / Construct Only
+</synopsis>
+</refsect1>
+
+<refsect1 id="gp11-gp11-session.signals" role="signal_proto">
+<title role="signal_proto.title">Signals</title>
+<synopsis>
+  &quot;<link linkend="GP11Session-discard-handle">discard-handle</link>&quot;                                 : Run Last
+</synopsis>
+</refsect1>
+
+
+<refsect1 id="gp11-gp11-session.description" role="desc">
+<title role="desc.title">Description</title>
+<para>
+Before performing any PKCS11 operations, a session must be opened. This is 
+analogous to an open database handle, or a file handle.</para>
+<para>
+</para>
+</refsect1>
+
+<refsect1 id="gp11-gp11-session.details" role="details">
+<title role="details.title">Details</title>
+<refsect2 id="GP11Session-struct" role="struct">
+<title>GP11Session</title>
+<indexterm zone="GP11Session-struct"><primary sortas="GP11Session">GP11Session</primary></indexterm><programlisting>typedef struct _GP11Session GP11Session;</programlisting>
+<para>
+Represents an open PKCS11 session.</para>
+<para>
+</para></refsect2>
+<refsect2 id="gp11-session-from-handle" role="function">
+<title>gp11_session_from_handle ()</title>
+<indexterm zone="gp11-session-from-handle"><primary sortas="gp11_session_from_handle">gp11_session_from_handle</primary></indexterm><programlisting><link linkend="GP11Session">GP11Session</link>*        gp11_session_from_handle            (<link linkend="GP11Slot">GP11Slot</link> *slot,
+                                                         <link linkend="CK-SESSION-HANDLE--CAPS">CK_SESSION_HANDLE</link> handle);</programlisting>
+<para>
+Initialize a GP11Session object from a raw PKCS<link linkend="11--CAPS"><type>11</type></link> session handle.
+Usually one would use the <link linkend="gp11-slot-open-session"><function>gp11_slot_open_session()</function></link> function to 
+create a session.</para>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>slot</parameter>&#160;:</term>
+<listitem><simpara> The slot which the session belongs to.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>handle</parameter>&#160;:</term>
+<listitem><simpara> The raw PKCS<link linkend="11--CAPS"><type>11</type></link> handle of the session.
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara> The new GP11Session object.
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="gp11-session-get-module" role="function">
+<title>gp11_session_get_module ()</title>
+<indexterm zone="gp11-session-get-module"><primary sortas="gp11_session_get_module">gp11_session_get_module</primary></indexterm><programlisting><link linkend="GP11Module">GP11Module</link>*         gp11_session_get_module             (<link linkend="GP11Session">GP11Session</link> *self);</programlisting>
+<para>
+Get the PKCS<link linkend="11--CAPS"><type>11</type></link> module to which this session belongs.</para>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>self</parameter>&#160;:</term>
+<listitem><simpara> The session object.
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara> The module, which should be unreffed after use.
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="gp11-session-get-slot" role="function">
+<title>gp11_session_get_slot ()</title>
+<indexterm zone="gp11-session-get-slot"><primary sortas="gp11_session_get_slot">gp11_session_get_slot</primary></indexterm><programlisting><link linkend="GP11Slot">GP11Slot</link>*           gp11_session_get_slot               (<link linkend="GP11Session">GP11Session</link> *self);</programlisting>
+<para>
+Get the PKCS<link linkend="11--CAPS"><type>11</type></link> slot to which this session belongs.</para>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>self</parameter>&#160;:</term>
+<listitem><simpara> The session object.
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara> The slot, which should be unreffed after use.
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="gp11-session-get-handle" role="function">
+<title>gp11_session_get_handle ()</title>
+<indexterm zone="gp11-session-get-handle"><primary sortas="gp11_session_get_handle">gp11_session_get_handle</primary></indexterm><programlisting><link linkend="CK-SESSION-HANDLE--CAPS">CK_SESSION_HANDLE</link>   gp11_session_get_handle             (<link linkend="GP11Session">GP11Session</link> *self);</programlisting>
+<para>
+Get the raw PKCS<link linkend="11--CAPS"><type>11</type></link> session handle from a GP11Session object.</para>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>self</parameter>&#160;:</term>
+<listitem><simpara> The session object.
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara> The raw session handle.
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="gp11-session-get-info" role="function">
+<title>gp11_session_get_info ()</title>
+<indexterm zone="gp11-session-get-info"><primary sortas="gp11_session_get_info">gp11_session_get_info</primary></indexterm><programlisting><link linkend="GP11SessionInfo">GP11SessionInfo</link>*    gp11_session_get_info               (<link linkend="GP11Session">GP11Session</link> *self);</programlisting>
+<para>
+Get information about the session.</para>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>self</parameter>&#160;:</term>
+<listitem><simpara> The session object.
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara> The session info. Use the <link linkend="gp11-session-info-free"><function>gp11_session_info_free()</function></link> to release
+when done.
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="gp11-session-login" role="function">
+<title>gp11_session_login ()</title>
+<indexterm zone="gp11-session-login"><primary sortas="gp11_session_login">gp11_session_login</primary></indexterm><programlisting><link linkend="gboolean">gboolean</link>            gp11_session_login                  (<link linkend="GP11Session">GP11Session</link> *self,
+                                                         <link linkend="gulong">gulong</link> user_type,
+                                                         const <link linkend="guchar">guchar</link> *pin,
+                                                         <link linkend="gsize">gsize</link> n_pin,
+                                                         <link linkend="GError">GError</link> **err);</programlisting>
+<para>
+Login the user on the session. This call may block
+for an indefinite period.</para>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>self</parameter>&#160;:</term>
+<listitem><simpara> Log into this session.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>user_type</parameter>&#160;:</term>
+<listitem><simpara> The type of login user.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>pin</parameter>&#160;:</term>
+<listitem><simpara> The user's PIN, or NULL for protected authentication path.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>n_pin</parameter>&#160;:</term>
+<listitem><simpara> The length of the PIN.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>err</parameter>&#160;:</term>
+<listitem><simpara> A location to return an error.
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara> Whether successful or not.
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="gp11-session-login-full" role="function">
+<title>gp11_session_login_full ()</title>
+<indexterm zone="gp11-session-login-full"><primary sortas="gp11_session_login_full">gp11_session_login_full</primary></indexterm><programlisting><link linkend="gboolean">gboolean</link>            gp11_session_login_full             (<link linkend="GP11Session">GP11Session</link> *self,
+                                                         <link linkend="gulong">gulong</link> user_type,
+                                                         const <link linkend="guchar">guchar</link> *pin,
+                                                         <link linkend="gsize">gsize</link> n_pin,
+                                                         <link linkend="GCancellable">GCancellable</link> *cancellable,
+                                                         <link linkend="GError">GError</link> **err);</programlisting>
+<para>
+Login the user on the session. This call may block for 
+an indefinite period.</para>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>self</parameter>&#160;:</term>
+<listitem><simpara> Log into this session.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>user_type</parameter>&#160;:</term>
+<listitem><simpara> The type of login user.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>pin</parameter>&#160;:</term>
+<listitem><simpara> The user's PIN, or NULL for protected authentication path.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>n_pin</parameter>&#160;:</term>
+<listitem><simpara> The length of the PIN.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>cancellable</parameter>&#160;:</term>
+<listitem><simpara> Optional cancellation object, or NULL.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>err</parameter>&#160;:</term>
+<listitem><simpara> A location to return an error.
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara> Whether successful or not.
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="gp11-session-login-async" role="function">
+<title>gp11_session_login_async ()</title>
+<indexterm zone="gp11-session-login-async"><primary sortas="gp11_session_login_async">gp11_session_login_async</primary></indexterm><programlisting><link linkend="void">void</link>                gp11_session_login_async            (<link linkend="GP11Session">GP11Session</link> *self,
+                                                         <link linkend="gulong">gulong</link> user_type,
+                                                         const <link linkend="guchar">guchar</link> *pin,
+                                                         <link linkend="gsize">gsize</link> n_pin,
+                                                         <link linkend="GCancellable">GCancellable</link> *cancellable,
+                                                         <link linkend="GAsyncReadyCallback">GAsyncReadyCallback</link> callback,
+                                                         <link linkend="gpointer">gpointer</link> user_data);</programlisting>
+<para>
+Login the user on the session. This call will return 
+immediately and completes asynchronously.</para>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>self</parameter>&#160;:</term>
+<listitem><simpara> Log into this session.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>user_type</parameter>&#160;:</term>
+<listitem><simpara> The type of login user.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>pin</parameter>&#160;:</term>
+<listitem><simpara> The user's PIN, or NULL for protected authentication path.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>n_pin</parameter>&#160;:</term>
+<listitem><simpara> The length of the PIN.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>cancellable</parameter>&#160;:</term>
+<listitem><simpara> Optional cancellation object, or NULL.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>callback</parameter>&#160;:</term>
+<listitem><simpara> Called when the operation completes.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>user_data</parameter>&#160;:</term>
+<listitem><simpara> Data to pass to the callback.
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="gp11-session-login-finish" role="function">
+<title>gp11_session_login_finish ()</title>
+<indexterm zone="gp11-session-login-finish"><primary sortas="gp11_session_login_finish">gp11_session_login_finish</primary></indexterm><programlisting><link linkend="gboolean">gboolean</link>            gp11_session_login_finish           (<link linkend="GP11Session">GP11Session</link> *self,
+                                                         <link linkend="GAsyncResult">GAsyncResult</link> *result,
+                                                         <link linkend="GError">GError</link> **err);</programlisting>
+<para>
+Get the result of a login operation.</para>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>self</parameter>&#160;:</term>
+<listitem><simpara> The session logged into.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>result</parameter>&#160;:</term>
+<listitem><simpara> The result passed to the callback.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>err</parameter>&#160;:</term>
+<listitem><simpara> A location to return an error.
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara> Whether the operation was successful or not.
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="gp11-session-logout" role="function">
+<title>gp11_session_logout ()</title>
+<indexterm zone="gp11-session-logout"><primary sortas="gp11_session_logout">gp11_session_logout</primary></indexterm><programlisting><link linkend="gboolean">gboolean</link>            gp11_session_logout                 (<link linkend="GP11Session">GP11Session</link> *self,
+                                                         <link linkend="GError">GError</link> **err);</programlisting>
+<para>
+Log out of the session. This call may block for an indefinite period.</para>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>self</parameter>&#160;:</term>
+<listitem><simpara> Logout of this session.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>err</parameter>&#160;:</term>
+<listitem><simpara> A location to return an error.
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara> Whether the logout was successful or not.
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="gp11-session-logout-full" role="function">
+<title>gp11_session_logout_full ()</title>
+<indexterm zone="gp11-session-logout-full"><primary sortas="gp11_session_logout_full">gp11_session_logout_full</primary></indexterm><programlisting><link linkend="gboolean">gboolean</link>            gp11_session_logout_full            (<link linkend="GP11Session">GP11Session</link> *self,
+                                                         <link linkend="GCancellable">GCancellable</link> *cancellable,
+                                                         <link linkend="GError">GError</link> **err);</programlisting>
+<para>
+Log out of the session. This call may block for an indefinite period.</para>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>self</parameter>&#160;:</term>
+<listitem><simpara> Logout of this session.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>cancellable</parameter>&#160;:</term>
+<listitem><simpara> Optional cancellation object, or NULL.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>err</parameter>&#160;:</term>
+<listitem><simpara> A location to return an error.
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara> Whether the logout was successful or not.
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="gp11-session-logout-async" role="function">
+<title>gp11_session_logout_async ()</title>
+<indexterm zone="gp11-session-logout-async"><primary sortas="gp11_session_logout_async">gp11_session_logout_async</primary></indexterm><programlisting><link linkend="void">void</link>                gp11_session_logout_async           (<link linkend="GP11Session">GP11Session</link> *self,
+                                                         <link linkend="GCancellable">GCancellable</link> *cancellable,
+                                                         <link linkend="GAsyncReadyCallback">GAsyncReadyCallback</link> callback,
+                                                         <link linkend="gpointer">gpointer</link> user_data);</programlisting>
+<para>
+Log out of the session. This call returns immediately and completes
+asynchronously.</para>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>self</parameter>&#160;:</term>
+<listitem><simpara> Logout of this session.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>cancellable</parameter>&#160;:</term>
+<listitem><simpara> Optional cancellation object, or NULL.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>callback</parameter>&#160;:</term>
+<listitem><simpara> Called when the operation completes.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>user_data</parameter>&#160;:</term>
+<listitem><simpara> Data to pass to the callback.
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="gp11-session-logout-finish" role="function">
+<title>gp11_session_logout_finish ()</title>
+<indexterm zone="gp11-session-logout-finish"><primary sortas="gp11_session_logout_finish">gp11_session_logout_finish</primary></indexterm><programlisting><link linkend="gboolean">gboolean</link>            gp11_session_logout_finish          (<link linkend="GP11Session">GP11Session</link> *self,
+                                                         <link linkend="GAsyncResult">GAsyncResult</link> *result,
+                                                         <link linkend="GError">GError</link> **err);</programlisting>
+<para>
+Get the result of logging out of a session.</para>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>self</parameter>&#160;:</term>
+<listitem><simpara> Logout of this session.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>result</parameter>&#160;:</term>
+<listitem><simpara> The result passed to the callback.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>err</parameter>&#160;:</term>
+<listitem><simpara> A location to return an error.
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara> Whether the logout was successful or not.
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="gp11-session-create-object" role="function">
+<title>gp11_session_create_object ()</title>
+<indexterm zone="gp11-session-create-object"><primary sortas="gp11_session_create_object">gp11_session_create_object</primary></indexterm><programlisting><link linkend="GP11Object">GP11Object</link>*         gp11_session_create_object          (<link linkend="GP11Session">GP11Session</link> *self,
+                                                         <link linkend="GError">GError</link> **err);</programlisting>
+<para>
+Create a new PKCS<link linkend="11--CAPS"><type>11</type></link> object. This call may block 
+for an indefinite period.
+</para>
+<para>
+The arguments must be triples of: attribute type, data type, value
+</para>
+<para>
+<para>The variable argument list should contain:
+	<variablelist>
+	<varlistentry>
+			<term>a)</term>
+			<listitem><para>The gulong attribute type (ie: CKA_LABEL). </para></listitem>
+		</varlistentry>
+		<varlistentry>
+			<term>b)</term>
+			<listitem><para>The attribute data type (one of GP11_BOOLEAN, GP11_ULONG, 
+				GP11_STRING, GP11_DATE) orthe raw attribute value length.</para></listitem>
+		</varlistentry>
+		<varlistentry>
+			<term>c)</term>
+			<listitem><para>The attribute value, either a gboolean, gulong, gchar*, GDate* or 
+				a pointer to a raw attribute value.</para></listitem>
+		</varlistentry>
+	</variablelist>
+</para>
+<para>
+The variable argument list should be terminated with GP11_INVALID.</para></para>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>self</parameter>&#160;:</term>
+<listitem><simpara> The session to create the object on.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>err</parameter>&#160;:</term>
+<listitem><simpara> A location to store an error.
+...: The attributes to create the new object with.
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara> The newly created object, or NULL if an error occurred.
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="gp11-session-create-object-async" role="function">
+<title>gp11_session_create_object_async ()</title>
+<indexterm zone="gp11-session-create-object-async"><primary sortas="gp11_session_create_object_async">gp11_session_create_object_async</primary></indexterm><programlisting><link linkend="void">void</link>                gp11_session_create_object_async    (<link linkend="GP11Session">GP11Session</link> *self,
+                                                         <link linkend="GP11Attributes">GP11Attributes</link> *attrs,
+                                                         <link linkend="GCancellable">GCancellable</link> *cancellable,
+                                                         <link linkend="GAsyncReadyCallback">GAsyncReadyCallback</link> callback,
+                                                         <link linkend="gpointer">gpointer</link> user_data);</programlisting>
+<para>
+Create a new PKCS<link linkend="11--CAPS"><type>11</type></link> object. This call will return immediately
+and complete asynchronously.</para>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>self</parameter>&#160;:</term>
+<listitem><simpara> The session to create the object on.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>attrs</parameter>&#160;:</term>
+<listitem><simpara> The attributes to create the object with.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>cancellable</parameter>&#160;:</term>
+<listitem><simpara> Optional cancellation object or NULL.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>callback</parameter>&#160;:</term>
+<listitem><simpara> Called when the operation completes.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>user_data</parameter>&#160;:</term>
+<listitem><simpara> Data to pass to the callback.
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="gp11-session-create-object-finish" role="function">
+<title>gp11_session_create_object_finish ()</title>
+<indexterm zone="gp11-session-create-object-finish"><primary sortas="gp11_session_create_object_finish">gp11_session_create_object_finish</primary></indexterm><programlisting><link linkend="GP11Object">GP11Object</link>*         gp11_session_create_object_finish   (<link linkend="GP11Session">GP11Session</link> *self,
+                                                         <link linkend="GAsyncResult">GAsyncResult</link> *result,
+                                                         <link linkend="GError">GError</link> **err);</programlisting>
+<para>
+Get the result of creating a new PKCS<link linkend="11--CAPS"><type>11</type></link> object.</para>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>self</parameter>&#160;:</term>
+<listitem><simpara> The session to create the object on.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>result</parameter>&#160;:</term>
+<listitem><simpara> The result passed to the callback.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>err</parameter>&#160;:</term>
+<listitem><simpara> A location to return an error, or NULL.
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara> The newly created object or NULL if an error occurred.
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="gp11-session-find-objects" role="function">
+<title>gp11_session_find_objects ()</title>
+<indexterm zone="gp11-session-find-objects"><primary sortas="gp11_session_find_objects">gp11_session_find_objects</primary></indexterm><programlisting><link linkend="GList">GList</link>*              gp11_session_find_objects           (<link linkend="GP11Session">GP11Session</link> *self,
+                                                         <link linkend="GError">GError</link> **err);</programlisting>
+<para>
+Find objects matching the passed attributes. This call may 
+block for an indefinite period.
+</para>
+<para>
+The arguments must be triples of: attribute type, data type, value
+</para>
+<para>
+<para>The variable argument list should contain:
+	<variablelist>
+	<varlistentry>
+			<term>a)</term>
+			<listitem><para>The gulong attribute type (ie: CKA_LABEL). </para></listitem>
+		</varlistentry>
+		<varlistentry>
+			<term>b)</term>
+			<listitem><para>The attribute data type (one of GP11_BOOLEAN, GP11_ULONG, 
+				GP11_STRING, GP11_DATE) orthe raw attribute value length.</para></listitem>
+		</varlistentry>
+		<varlistentry>
+			<term>c)</term>
+			<listitem><para>The attribute value, either a gboolean, gulong, gchar*, GDate* or 
+				a pointer to a raw attribute value.</para></listitem>
+		</varlistentry>
+	</variablelist>
+The variable argument list should be terminated with GP11_INVALID.</para></para>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>self</parameter>&#160;:</term>
+<listitem><simpara> The session to find objects on.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>err</parameter>&#160;:</term>
+<listitem><simpara> A location to return an error or NULL.
+...: The attributes to match.
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara> A list of the matching objects, which may be empty.  
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="gp11-session-find-objects-async" role="function">
+<title>gp11_session_find_objects_async ()</title>
+<indexterm zone="gp11-session-find-objects-async"><primary sortas="gp11_session_find_objects_async">gp11_session_find_objects_async</primary></indexterm><programlisting><link linkend="void">void</link>                gp11_session_find_objects_async     (<link linkend="GP11Session">GP11Session</link> *self,
+                                                         <link linkend="GP11Attributes">GP11Attributes</link> *attrs,
+                                                         <link linkend="GCancellable">GCancellable</link> *cancellable,
+                                                         <link linkend="GAsyncReadyCallback">GAsyncReadyCallback</link> callback,
+                                                         <link linkend="gpointer">gpointer</link> user_data);</programlisting>
+<para>
+Find the objects matching the passed attributes. This call will 
+return immediately and complete asynchronously.</para>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>self</parameter>&#160;:</term>
+<listitem><simpara> The session to find objects on.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>attrs</parameter>&#160;:</term>
+<listitem><simpara> The attributes to match.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>cancellable</parameter>&#160;:</term>
+<listitem><simpara> Optional cancellation object or NULL.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>callback</parameter>&#160;:</term>
+<listitem><simpara> Called when the operation completes.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>user_data</parameter>&#160;:</term>
+<listitem><simpara> Data to pass to the callback.
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="gp11-session-find-objects-finish" role="function">
+<title>gp11_session_find_objects_finish ()</title>
+<indexterm zone="gp11-session-find-objects-finish"><primary sortas="gp11_session_find_objects_finish">gp11_session_find_objects_finish</primary></indexterm><programlisting><link linkend="GList">GList</link>*              gp11_session_find_objects_finish    (<link linkend="GP11Session">GP11Session</link> *self,
+                                                         <link linkend="GAsyncResult">GAsyncResult</link> *result,
+                                                         <link linkend="GError">GError</link> **err);</programlisting>
+<para>
+Get the result of a find operation.</para>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>self</parameter>&#160;:</term>
+<listitem><simpara> The session to find objects on.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>result</parameter>&#160;:</term>
+<listitem><simpara> The attributes to match.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>err</parameter>&#160;:</term>
+<listitem><simpara> A location to return an error.
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara> A list of the matching objects, which may be empty.
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="gp11-session-encrypt" role="function">
+<title>gp11_session_encrypt ()</title>
+<indexterm zone="gp11-session-encrypt"><primary sortas="gp11_session_encrypt">gp11_session_encrypt</primary></indexterm><programlisting><link linkend="guchar">guchar</link>*             gp11_session_encrypt                (<link linkend="GP11Session">GP11Session</link> *self,
+                                                         <link linkend="GP11Object">GP11Object</link> *key,
+                                                         <link linkend="gulong">gulong</link> mech_type,
+                                                         const <link linkend="guchar">guchar</link> *input,
+                                                         <link linkend="gsize">gsize</link> n_input,
+                                                         <link linkend="gsize">gsize</link> *n_result,
+                                                         <link linkend="GError">GError</link> **err);</programlisting>
+<para>
+Encrypt data in a mechanism specific manner. This call may 
+block for an indefinite period.</para>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>self</parameter>&#160;:</term>
+<listitem><simpara> The session.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>key</parameter>&#160;:</term>
+<listitem><simpara> The key to encrypt with.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>mech_type</parameter>&#160;:</term>
+<listitem><simpara> The mechanism type to use for encryption.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>input</parameter>&#160;:</term>
+<listitem><simpara> The data to encrypt.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>n_input</parameter>&#160;:</term>
+<listitem><simpara> The length of the data to encrypt.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>n_result</parameter>&#160;:</term>
+<listitem><simpara> A location to store the length of the result data.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>err</parameter>&#160;:</term>
+<listitem><simpara> A location to place error information.
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara> The data that was encrypted, or NULL if an error occured.
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="gp11-session-encrypt-full" role="function">
+<title>gp11_session_encrypt_full ()</title>
+<indexterm zone="gp11-session-encrypt-full"><primary sortas="gp11_session_encrypt_full">gp11_session_encrypt_full</primary></indexterm><programlisting><link linkend="guchar">guchar</link>*             gp11_session_encrypt_full           (<link linkend="GP11Session">GP11Session</link> *self,
+                                                         <link linkend="GP11Object">GP11Object</link> *key,
+                                                         <link linkend="GP11Mechanism">GP11Mechanism</link> *mech_args,
+                                                         const <link linkend="guchar">guchar</link> *input,
+                                                         <link linkend="gsize">gsize</link> n_input,
+                                                         <link linkend="gsize">gsize</link> *n_result,
+                                                         <link linkend="GCancellable">GCancellable</link> *cancellable,
+                                                         <link linkend="GError">GError</link> **err);</programlisting>
+<para>
+Encrypt data in a mechanism specific manner. This call may 
+block for an indefinite period.</para>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>self</parameter>&#160;:</term>
+<listitem><simpara> The session.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>key</parameter>&#160;:</term>
+<listitem><simpara> The key to encrypt with.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>mech_args</parameter>&#160;:</term>
+<listitem><simpara> The mechanism type and parameters to use for encryption.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>input</parameter>&#160;:</term>
+<listitem><simpara> The data to encrypt.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>n_input</parameter>&#160;:</term>
+<listitem><simpara> The length of the data to encrypt.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>n_result</parameter>&#160;:</term>
+<listitem><simpara> A location to store the length of the result data.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>cancellable</parameter>&#160;:</term>
+<listitem><simpara> A GCancellable which can be used to cancel the operation.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>err</parameter>&#160;:</term>
+<listitem><simpara> A location to place error information.
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara> The data that was encrypted, or NULL if an error occured.
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="gp11-session-encrypt-async" role="function">
+<title>gp11_session_encrypt_async ()</title>
+<indexterm zone="gp11-session-encrypt-async"><primary sortas="gp11_session_encrypt_async">gp11_session_encrypt_async</primary></indexterm><programlisting><link linkend="void">void</link>                gp11_session_encrypt_async          (<link linkend="GP11Session">GP11Session</link> *self,
+                                                         <link linkend="GP11Object">GP11Object</link> *key,
+                                                         <link linkend="GP11Mechanism">GP11Mechanism</link> *mech_args,
+                                                         const <link linkend="guchar">guchar</link> *input,
+                                                         <link linkend="gsize">gsize</link> n_input,
+                                                         <link linkend="GCancellable">GCancellable</link> *cancellable,
+                                                         <link linkend="GAsyncReadyCallback">GAsyncReadyCallback</link> callback,
+                                                         <link linkend="gpointer">gpointer</link> user_data);</programlisting>
+<para>
+Encrypt data in a mechanism specific manner. This call will 
+return immediately and complete asynchronously.</para>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>self</parameter>&#160;:</term>
+<listitem><simpara> The session.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>key</parameter>&#160;:</term>
+<listitem><simpara> The key to encrypt with.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>mech_args</parameter>&#160;:</term>
+<listitem><simpara> The mechanism type and parameters to use for encryption.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>input</parameter>&#160;:</term>
+<listitem><simpara> The data to encrypt.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>n_input</parameter>&#160;:</term>
+<listitem><simpara> The length of the data to encrypt.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>cancellable</parameter>&#160;:</term>
+<listitem><simpara> A GCancellable which can be used to cancel the operation.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>callback</parameter>&#160;:</term>
+<listitem><simpara> Called when the operation completes.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>user_data</parameter>&#160;:</term>
+<listitem><simpara> A pointer to pass to the callback.
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="gp11-session-encrypt-finish" role="function">
+<title>gp11_session_encrypt_finish ()</title>
+<indexterm zone="gp11-session-encrypt-finish"><primary sortas="gp11_session_encrypt_finish">gp11_session_encrypt_finish</primary></indexterm><programlisting><link linkend="guchar">guchar</link>*             gp11_session_encrypt_finish         (<link linkend="GP11Session">GP11Session</link> *self,
+                                                         <link linkend="GAsyncResult">GAsyncResult</link> *result,
+                                                         <link linkend="gsize">gsize</link> *n_result,
+                                                         <link linkend="GError">GError</link> **err);</programlisting>
+<para>
+Get the result of an encryption operation.</para>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>self</parameter>&#160;:</term>
+<listitem><simpara> The session.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>result</parameter>&#160;:</term>
+<listitem><simpara> The result object passed to the callback.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>n_result</parameter>&#160;:</term>
+<listitem><simpara> A location to store the length of the result data.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>err</parameter>&#160;:</term>
+<listitem><simpara> A location to place error information.
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara> The data that was encrypted, or NULL if an error occurred.
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="gp11-session-decrypt" role="function">
+<title>gp11_session_decrypt ()</title>
+<indexterm zone="gp11-session-decrypt"><primary sortas="gp11_session_decrypt">gp11_session_decrypt</primary></indexterm><programlisting><link linkend="guchar">guchar</link>*             gp11_session_decrypt                (<link linkend="GP11Session">GP11Session</link> *self,
+                                                         <link linkend="GP11Object">GP11Object</link> *key,
+                                                         <link linkend="gulong">gulong</link> mech_type,
+                                                         const <link linkend="guchar">guchar</link> *input,
+                                                         <link linkend="gsize">gsize</link> n_input,
+                                                         <link linkend="gsize">gsize</link> *n_result,
+                                                         <link linkend="GError">GError</link> **err);</programlisting>
+<para>
+Decrypt data in a mechanism specific manner. This call may 
+block for an indefinite period.</para>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>self</parameter>&#160;:</term>
+<listitem><simpara> The session.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>key</parameter>&#160;:</term>
+<listitem><simpara> The key to decrypt with.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>mech_type</parameter>&#160;:</term>
+<listitem><simpara> The mechanism type to use for decryption.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>input</parameter>&#160;:</term>
+<listitem><simpara> The data to decrypt.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>n_input</parameter>&#160;:</term>
+<listitem><simpara> The length of the data to decrypt.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>n_result</parameter>&#160;:</term>
+<listitem><simpara> A location to store the length of the result data.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>err</parameter>&#160;:</term>
+<listitem><simpara> A location to place an error.
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara> The data that was decrypted, or NULL if an error occured.
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="gp11-session-decrypt-full" role="function">
+<title>gp11_session_decrypt_full ()</title>
+<indexterm zone="gp11-session-decrypt-full"><primary sortas="gp11_session_decrypt_full">gp11_session_decrypt_full</primary></indexterm><programlisting><link linkend="guchar">guchar</link>*             gp11_session_decrypt_full           (<link linkend="GP11Session">GP11Session</link> *self,
+                                                         <link linkend="GP11Object">GP11Object</link> *key,
+                                                         <link linkend="GP11Mechanism">GP11Mechanism</link> *mech_args,
+                                                         const <link linkend="guchar">guchar</link> *input,
+                                                         <link linkend="gsize">gsize</link> n_input,
+                                                         <link linkend="gsize">gsize</link> *n_result,
+                                                         <link linkend="GCancellable">GCancellable</link> *cancellable,
+                                                         <link linkend="GError">GError</link> **err);</programlisting>
+<para>
+Decrypt data in a mechanism specific manner. This call may 
+block for an indefinite period.</para>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>self</parameter>&#160;:</term>
+<listitem><simpara> The session.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>key</parameter>&#160;:</term>
+<listitem><simpara> The key to decrypt with.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>mech_args</parameter>&#160;:</term>
+<listitem><simpara> The mechanism type and parameters to use for decryption.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>input</parameter>&#160;:</term>
+<listitem><simpara> The data to decrypt.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>n_input</parameter>&#160;:</term>
+<listitem><simpara> The length of the data to decrypt.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>n_result</parameter>&#160;:</term>
+<listitem><simpara> A location to store the length of the result data.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>cancellable</parameter>&#160;:</term>
+<listitem><simpara> A GCancellable which can be used to cancel the operation.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>err</parameter>&#160;:</term>
+<listitem><simpara> A location to place error information.
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara> The data that was decrypted, or NULL if an error occured.
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="gp11-session-decrypt-async" role="function">
+<title>gp11_session_decrypt_async ()</title>
+<indexterm zone="gp11-session-decrypt-async"><primary sortas="gp11_session_decrypt_async">gp11_session_decrypt_async</primary></indexterm><programlisting><link linkend="void">void</link>                gp11_session_decrypt_async          (<link linkend="GP11Session">GP11Session</link> *self,
+                                                         <link linkend="GP11Object">GP11Object</link> *key,
+                                                         <link linkend="GP11Mechanism">GP11Mechanism</link> *mech_args,
+                                                         const <link linkend="guchar">guchar</link> *input,
+                                                         <link linkend="gsize">gsize</link> n_input,
+                                                         <link linkend="GCancellable">GCancellable</link> *cancellable,
+                                                         <link linkend="GAsyncReadyCallback">GAsyncReadyCallback</link> callback,
+                                                         <link linkend="gpointer">gpointer</link> user_data);</programlisting>
+<para>
+Decrypt data in a mechanism specific manner. This call will 
+return immediately and complete asynchronously.</para>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>self</parameter>&#160;:</term>
+<listitem><simpara> The session.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>key</parameter>&#160;:</term>
+<listitem><simpara> The key to decrypt with.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>mech_args</parameter>&#160;:</term>
+<listitem><simpara> The mechanism type and parameters to use for decryption.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>input</parameter>&#160;:</term>
+<listitem><simpara> The data to decrypt.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>n_input</parameter>&#160;:</term>
+<listitem><simpara> The length of the data to decrypt.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>cancellable</parameter>&#160;:</term>
+<listitem><simpara> A GCancellable which can be used to cancel the operation.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>callback</parameter>&#160;:</term>
+<listitem><simpara> Called when the operation completes.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>user_data</parameter>&#160;:</term>
+<listitem><simpara> A pointer to pass to the callback.
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="gp11-session-decrypt-finish" role="function">
+<title>gp11_session_decrypt_finish ()</title>
+<indexterm zone="gp11-session-decrypt-finish"><primary sortas="gp11_session_decrypt_finish">gp11_session_decrypt_finish</primary></indexterm><programlisting><link linkend="guchar">guchar</link>*             gp11_session_decrypt_finish         (<link linkend="GP11Session">GP11Session</link> *self,
+                                                         <link linkend="GAsyncResult">GAsyncResult</link> *result,
+                                                         <link linkend="gsize">gsize</link> *n_result,
+                                                         <link linkend="GError">GError</link> **err);</programlisting>
+<para>
+Get the result of an decryption operation.</para>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>self</parameter>&#160;:</term>
+<listitem><simpara> The session.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>result</parameter>&#160;:</term>
+<listitem><simpara> The result object passed to the callback.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>n_result</parameter>&#160;:</term>
+<listitem><simpara> A location to store the length of the result data.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>err</parameter>&#160;:</term>
+<listitem><simpara> A location to place error information.
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara> The data that was decrypted, or NULL if an error occurred.
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="gp11-session-sign" role="function">
+<title>gp11_session_sign ()</title>
+<indexterm zone="gp11-session-sign"><primary sortas="gp11_session_sign">gp11_session_sign</primary></indexterm><programlisting><link linkend="guchar">guchar</link>*             gp11_session_sign                   (<link linkend="GP11Session">GP11Session</link> *self,
+                                                         <link linkend="GP11Object">GP11Object</link> *key,
+                                                         <link linkend="gulong">gulong</link> mech_type,
+                                                         const <link linkend="guchar">guchar</link> *input,
+                                                         <link linkend="gsize">gsize</link> n_input,
+                                                         <link linkend="gsize">gsize</link> *n_result,
+                                                         <link linkend="GError">GError</link> **err);</programlisting>
+<para>
+Sign data in a mechanism specific manner. This call may 
+block for an indefinite period.</para>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>self</parameter>&#160;:</term>
+<listitem><simpara> The session.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>key</parameter>&#160;:</term>
+<listitem><simpara> The key to sign with.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>mech_type</parameter>&#160;:</term>
+<listitem><simpara> The mechanism type to use for signing.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>input</parameter>&#160;:</term>
+<listitem><simpara> The data to sign.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>n_input</parameter>&#160;:</term>
+<listitem><simpara> The length of the data to sign.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>n_result</parameter>&#160;:</term>
+<listitem><simpara> A location to store the length of the result data.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>err</parameter>&#160;:</term>
+<listitem><simpara> A location to place an error.
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara> The data that was signed, or NULL if an error occured.
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="gp11-session-sign-full" role="function">
+<title>gp11_session_sign_full ()</title>
+<indexterm zone="gp11-session-sign-full"><primary sortas="gp11_session_sign_full">gp11_session_sign_full</primary></indexterm><programlisting><link linkend="guchar">guchar</link>*             gp11_session_sign_full              (<link linkend="GP11Session">GP11Session</link> *self,
+                                                         <link linkend="GP11Object">GP11Object</link> *key,
+                                                         <link linkend="GP11Mechanism">GP11Mechanism</link> *mech_args,
+                                                         const <link linkend="guchar">guchar</link> *input,
+                                                         <link linkend="gsize">gsize</link> n_input,
+                                                         <link linkend="gsize">gsize</link> *n_result,
+                                                         <link linkend="GCancellable">GCancellable</link> *cancellable,
+                                                         <link linkend="GError">GError</link> **err);</programlisting>
+<para>
+Sign data in a mechanism specific manner. This call may 
+block for an indefinite period.</para>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>self</parameter>&#160;:</term>
+<listitem><simpara> The session.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>key</parameter>&#160;:</term>
+<listitem><simpara> The key to sign with.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>mech_args</parameter>&#160;:</term>
+<listitem><simpara> The mechanism type and parameters to use for signing.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>input</parameter>&#160;:</term>
+<listitem><simpara> The data to sign.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>n_input</parameter>&#160;:</term>
+<listitem><simpara> The length of the data to sign.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>n_result</parameter>&#160;:</term>
+<listitem><simpara> A location to store the length of the result data.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>cancellable</parameter>&#160;:</term>
+<listitem><simpara> A GCancellable which can be used to cancel the operation.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>err</parameter>&#160;:</term>
+<listitem><simpara> A location to place error information.
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara> The data that was signed, or NULL if an error occured.
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="gp11-session-sign-async" role="function">
+<title>gp11_session_sign_async ()</title>
+<indexterm zone="gp11-session-sign-async"><primary sortas="gp11_session_sign_async">gp11_session_sign_async</primary></indexterm><programlisting><link linkend="void">void</link>                gp11_session_sign_async             (<link linkend="GP11Session">GP11Session</link> *self,
+                                                         <link linkend="GP11Object">GP11Object</link> *key,
+                                                         <link linkend="GP11Mechanism">GP11Mechanism</link> *mech_args,
+                                                         const <link linkend="guchar">guchar</link> *input,
+                                                         <link linkend="gsize">gsize</link> n_input,
+                                                         <link linkend="GCancellable">GCancellable</link> *cancellable,
+                                                         <link linkend="GAsyncReadyCallback">GAsyncReadyCallback</link> callback,
+                                                         <link linkend="gpointer">gpointer</link> user_data);</programlisting>
+<para>
+Sign data in a mechanism specific manner. This call will 
+return immediately and complete asynchronously.</para>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>self</parameter>&#160;:</term>
+<listitem><simpara> The session.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>key</parameter>&#160;:</term>
+<listitem><simpara> The key to sign with.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>mech_args</parameter>&#160;:</term>
+<listitem><simpara> The mechanism type and parameters to use for signing.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>input</parameter>&#160;:</term>
+<listitem><simpara> The data to sign.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>n_input</parameter>&#160;:</term>
+<listitem><simpara> The length of the data to sign.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>cancellable</parameter>&#160;:</term>
+<listitem><simpara> A GCancellable which can be used to cancel the operation.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>callback</parameter>&#160;:</term>
+<listitem><simpara> Called when the operation completes.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>user_data</parameter>&#160;:</term>
+<listitem><simpara> A pointer to pass to the callback.
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="gp11-session-sign-finish" role="function">
+<title>gp11_session_sign_finish ()</title>
+<indexterm zone="gp11-session-sign-finish"><primary sortas="gp11_session_sign_finish">gp11_session_sign_finish</primary></indexterm><programlisting><link linkend="guchar">guchar</link>*             gp11_session_sign_finish            (<link linkend="GP11Session">GP11Session</link> *self,
+                                                         <link linkend="GAsyncResult">GAsyncResult</link> *result,
+                                                         <link linkend="gsize">gsize</link> *n_result,
+                                                         <link linkend="GError">GError</link> **err);</programlisting>
+<para>
+Get the result of an signing operation.</para>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>self</parameter>&#160;:</term>
+<listitem><simpara> The session.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>result</parameter>&#160;:</term>
+<listitem><simpara> The result object passed to the callback.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>n_result</parameter>&#160;:</term>
+<listitem><simpara> A location to store the length of the result data.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>err</parameter>&#160;:</term>
+<listitem><simpara> A location to place error information.
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara> The data that was signed, or NULL if an error occurred.
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="gp11-session-verify" role="function">
+<title>gp11_session_verify ()</title>
+<indexterm zone="gp11-session-verify"><primary sortas="gp11_session_verify">gp11_session_verify</primary></indexterm><programlisting><link linkend="gboolean">gboolean</link>            gp11_session_verify                 (<link linkend="GP11Session">GP11Session</link> *self,
+                                                         <link linkend="GP11Object">GP11Object</link> *key,
+                                                         <link linkend="gulong">gulong</link> mech_type,
+                                                         const <link linkend="guchar">guchar</link> *input,
+                                                         <link linkend="gsize">gsize</link> n_input,
+                                                         const <link linkend="guchar">guchar</link> *signature,
+                                                         <link linkend="gsize">gsize</link> n_signature,
+                                                         <link linkend="GError">GError</link> **err);</programlisting>
+<para>
+Verify data in a mechanism specific manner. This call may 
+block for an indefinite period.</para>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>self</parameter>&#160;:</term>
+<listitem><simpara> The session.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>key</parameter>&#160;:</term>
+<listitem><simpara> The key to verify with.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>mech_type</parameter>&#160;:</term>
+<listitem><simpara> The mechanism type to use for verifying.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>input</parameter>&#160;:</term>
+<listitem><simpara> The data to verify.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>n_input</parameter>&#160;:</term>
+<listitem><simpara> The length of the data to verify.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>signature</parameter>&#160;:</term>
+<listitem><simpara> The signature.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>n_signature</parameter>&#160;:</term>
+<listitem><simpara> The length of the signature.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>err</parameter>&#160;:</term>
+<listitem><simpara> A location to place an error.
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara> TRUE if the data verified correctly, otherwise a failure or error occurred.
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="gp11-session-verify-full" role="function">
+<title>gp11_session_verify_full ()</title>
+<indexterm zone="gp11-session-verify-full"><primary sortas="gp11_session_verify_full">gp11_session_verify_full</primary></indexterm><programlisting><link linkend="gboolean">gboolean</link>            gp11_session_verify_full            (<link linkend="GP11Session">GP11Session</link> *self,
+                                                         <link linkend="GP11Object">GP11Object</link> *key,
+                                                         <link linkend="GP11Mechanism">GP11Mechanism</link> *mech_args,
+                                                         const <link linkend="guchar">guchar</link> *input,
+                                                         <link linkend="gsize">gsize</link> n_input,
+                                                         const <link linkend="guchar">guchar</link> *signature,
+                                                         <link linkend="gsize">gsize</link> n_signature,
+                                                         <link linkend="GCancellable">GCancellable</link> *cancellable,
+                                                         <link linkend="GError">GError</link> **err);</programlisting>
+<para>
+Verify data in a mechanism specific manner. This call may 
+block for an indefinite period.</para>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>self</parameter>&#160;:</term>
+<listitem><simpara> The session.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>key</parameter>&#160;:</term>
+<listitem><simpara> The key to verify with.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>mech_args</parameter>&#160;:</term>
+<listitem><simpara> The mechanism type and parameters to use for signing.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>input</parameter>&#160;:</term>
+<listitem><simpara> The data to verify.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>n_input</parameter>&#160;:</term>
+<listitem><simpara> The length of the data to verify.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>signature</parameter>&#160;:</term>
+<listitem><simpara> The signature.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>n_signature</parameter>&#160;:</term>
+<listitem><simpara> The length of the signature.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>cancellable</parameter>&#160;:</term>
+<listitem><simpara> A GCancellable which can be used to cancel the operation.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>err</parameter>&#160;:</term>
+<listitem><simpara> A location to place an error.
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara> TRUE if the data verified correctly, otherwise a failure or error occurred.
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="gp11-session-verify-async" role="function">
+<title>gp11_session_verify_async ()</title>
+<indexterm zone="gp11-session-verify-async"><primary sortas="gp11_session_verify_async">gp11_session_verify_async</primary></indexterm><programlisting><link linkend="void">void</link>                gp11_session_verify_async           (<link linkend="GP11Session">GP11Session</link> *self,
+                                                         <link linkend="GP11Object">GP11Object</link> *key,
+                                                         <link linkend="GP11Mechanism">GP11Mechanism</link> *mechanism,
+                                                         const <link linkend="guchar">guchar</link> *input,
+                                                         <link linkend="gsize">gsize</link> n_input,
+                                                         const <link linkend="guchar">guchar</link> *signature,
+                                                         <link linkend="gsize">gsize</link> n_signature,
+                                                         <link linkend="GCancellable">GCancellable</link> *cancellable,
+                                                         <link linkend="GAsyncReadyCallback">GAsyncReadyCallback</link> callback,
+                                                         <link linkend="gpointer">gpointer</link> user_data);</programlisting>
+<para>
+Verify data in a mechanism specific manner. This call returns 
+immediately and completes asynchronously.</para>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>self</parameter>&#160;:</term>
+<listitem><simpara> The session.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>key</parameter>&#160;:</term>
+<listitem><simpara> The key to verify with.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>mechanism</parameter>&#160;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>input</parameter>&#160;:</term>
+<listitem><simpara> The data to verify.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>n_input</parameter>&#160;:</term>
+<listitem><simpara> The length of the data to verify.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>signature</parameter>&#160;:</term>
+<listitem><simpara> The signature.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>n_signature</parameter>&#160;:</term>
+<listitem><simpara> The length of the signature.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>cancellable</parameter>&#160;:</term>
+<listitem><simpara> A GCancellable which can be used to cancel the operation.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>callback</parameter>&#160;:</term>
+<listitem><simpara> Called when the operation completes.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>user_data</parameter>&#160;:</term>
+<listitem><simpara> A pointer to pass to the callback.
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="gp11-session-verify-finish" role="function">
+<title>gp11_session_verify_finish ()</title>
+<indexterm zone="gp11-session-verify-finish"><primary sortas="gp11_session_verify_finish">gp11_session_verify_finish</primary></indexterm><programlisting><link linkend="gboolean">gboolean</link>            gp11_session_verify_finish          (<link linkend="GP11Session">GP11Session</link> *self,
+                                                         <link linkend="GAsyncResult">GAsyncResult</link> *result,
+                                                         <link linkend="GError">GError</link> **err);</programlisting>
+<para>
+Get the result of an verify operation.</para>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>self</parameter>&#160;:</term>
+<listitem><simpara> The session.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>result</parameter>&#160;:</term>
+<listitem><simpara> The result object passed to the callback.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>err</parameter>&#160;:</term>
+<listitem><simpara> A location to place error information.
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara> TRUE if the data verified correctly, otherwise a failure or error occurred.
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="GP11SessionInfo" role="struct">
+<title>GP11SessionInfo</title>
+<indexterm zone="GP11SessionInfo"><primary sortas="GP11SessionInfo">GP11SessionInfo</primary></indexterm><programlisting>typedef struct {
+	gulong slot_id;
+	gulong state;
+	gulong flags;
+	gulong device_error;
+} GP11SessionInfo;
+</programlisting>
+<para>
+Information about the session. This is analogous to a CK_SESSION_INFO structure.
+</para>
+<para>
+When done with this structure, release it using <link linkend="gp11-session-info-free"><function>gp11_session_info_free()</function></link>.</para>
+<para>
+</para><variablelist role="struct">
+<varlistentry>
+<term><link linkend="gulong">gulong</link>&#160;<structfield>slot_id</structfield>;</term>
+<listitem><simpara> The handle of the PKCS11 slot that this session is opened on.
+</simpara></listitem>
+</varlistentry>
+<varlistentry>
+<term><link linkend="gulong">gulong</link>&#160;<structfield>state</structfield>;</term>
+<listitem><simpara> The user login state of the session.
+</simpara></listitem>
+</varlistentry>
+<varlistentry>
+<term><link linkend="gulong">gulong</link>&#160;<structfield>flags</structfield>;</term>
+<listitem><simpara> Various PKCS11 flags.
+</simpara></listitem>
+</varlistentry>
+<varlistentry>
+<term><link linkend="gulong">gulong</link>&#160;<structfield>device_error</structfield>;</term>
+<listitem><simpara> The last device error that occurred from an operation on this session.
+</simpara></listitem>
+</varlistentry>
+</variablelist></refsect2>
+<refsect2 id="gp11-session-info-free" role="function">
+<title>gp11_session_info_free ()</title>
+<indexterm zone="gp11-session-info-free"><primary sortas="gp11_session_info_free">gp11_session_info_free</primary></indexterm><programlisting><link linkend="void">void</link>                gp11_session_info_free              (<link linkend="GP11SessionInfo">GP11SessionInfo</link> *session_info);</programlisting>
+<para>
+Free the GP11SessionInfo structure and all associated memory.</para>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>session_info</parameter>&#160;:</term>
+<listitem><simpara> Session info to free.
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="GP11Mechanism" role="struct">
+<title>GP11Mechanism</title>
+<indexterm zone="GP11Mechanism"><primary sortas="GP11Mechanism">GP11Mechanism</primary></indexterm><programlisting>typedef struct {
+	gulong type;
+	gpointer parameter;
+	gulong n_parameter;
+} GP11Mechanism;
+</programlisting>
+<para>
+Represents a mechanism used with crypto operations.</para>
+<para>
+</para><variablelist role="struct">
+<varlistentry>
+<term><link linkend="gulong">gulong</link>&#160;<structfield>type</structfield>;</term>
+<listitem><simpara> The mechanism type
+</simpara></listitem>
+</varlistentry>
+<varlistentry>
+<term><link linkend="gpointer">gpointer</link>&#160;<structfield>parameter</structfield>;</term>
+<listitem><simpara> Mechanism specific data.
+</simpara></listitem>
+</varlistentry>
+<varlistentry>
+<term><link linkend="gulong">gulong</link>&#160;<structfield>n_parameter</structfield>;</term>
+<listitem><simpara> Length of mechanism specific data.
+</simpara></listitem>
+</varlistentry>
+</variablelist></refsect2>
+
+</refsect1>
+<refsect1 id="gp11-gp11-session.property-details" role="property_details">
+<title role="property_details.title">Property Details</title>
+<refsect2 id="GP11Session--handle" role="property"><title>The <literal>&quot;handle&quot;</literal> property</title>
+<indexterm zone="GP11Session--handle"><primary sortas="GP11Session:handle">GP11Session:handle</primary></indexterm><programlisting>  &quot;handle&quot;                   <link linkend="gulong">gulong</link>                : Read / Write / Construct Only</programlisting>
+<para>
+The raw CK_SESSION_HANDLE handle of this session.</para>
+<para>
+</para></refsect2>
+<refsect2 id="GP11Session--module" role="property"><title>The <literal>&quot;module&quot;</literal> property</title>
+<indexterm zone="GP11Session--module"><primary sortas="GP11Session:module">GP11Session:module</primary></indexterm><programlisting>  &quot;module&quot;                   <link linkend="GP11Module">GP11Module</link>*           : Read / Write / Construct Only</programlisting>
+<para>
+The GP11Module that this session is opened on.</para>
+<para>
+</para></refsect2>
+<refsect2 id="GP11Session--slot" role="property"><title>The <literal>&quot;slot&quot;</literal> property</title>
+<indexterm zone="GP11Session--slot"><primary sortas="GP11Session:slot">GP11Session:slot</primary></indexterm><programlisting>  &quot;slot&quot;                     <link linkend="GP11Slot">GP11Slot</link>*             : Read / Write / Construct Only</programlisting>
+<para>
+The GP11Slot this session is opened on.</para>
+<para>
+</para></refsect2>
+</refsect1>
+
+<refsect1 id="gp11-gp11-session.signal-details" role="signals">
+<title role="signals.title">Signal Details</title>
+<refsect2 id="GP11Session-discard-handle" role="signal"><title>The <literal>&quot;discard-handle&quot;</literal> signal</title>
+<indexterm zone="GP11Session-discard-handle"><primary sortas="GP11Session::discard-handle">GP11Session::discard-handle</primary></indexterm><programlisting><link linkend="gboolean">gboolean</link>            user_function                      (<link linkend="GP11Session">GP11Session</link> *session,
+                                                        <link linkend="gulong">gulong</link>       handle,
+                                                        <link linkend="gpointer">gpointer</link>     user_data)      : Run Last</programlisting>
+<para>
+When a GP11Session is being disposed of it emits this signal to allow
+a session pool to pick up the handle and keep it around. 
+</para>
+<para>
+If no signal handler claims the handle, then it is closed. This is used by 
+<link linkend="gp11-module-set-pool-sessions"><function>gp11_module_set_pool_sessions()</function></link> to implement the module session pool.</para>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>session</parameter>&#160;:</term>
+<listitem><simpara> The session.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>handle</parameter>&#160;:</term>
+<listitem><simpara> The handle being discarded.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>user_data</parameter>&#160;:</term>
+<listitem><simpara>user data set when the signal handler was connected.</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara> Whether or not this handle was claimed.
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+</refsect1>
+
+
+
+</refentry>

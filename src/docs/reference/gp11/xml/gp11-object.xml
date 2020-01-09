@@ -1,0 +1,712 @@
+<?xml version="1.0"?>
+<!DOCTYPE refentry PUBLIC "-//OASIS//DTD DocBook XML V4.1.2//EN"
+               "http://www.oasis-open.org/docbook/xml/4.1.2/docbookx.dtd">
+<refentry id="gp11-gp11-object">
+<refmeta>
+<refentrytitle role="top_of_page" id="gp11-gp11-object.top_of_page">GP11Object</refentrytitle>
+<manvolnum>3</manvolnum>
+<refmiscinfo>GP11 Library</refmiscinfo>
+</refmeta>
+
+<refnamediv>
+<refname>GP11Object</refname>
+<refpurpose>Represents a PKCS11 object such as a key or certificate.</refpurpose>
+</refnamediv>
+
+<refsynopsisdiv id="gp11-gp11-object.synopsis" role="synopsis">
+<title role="synopsis.title">Synopsis</title>
+<anchor id="GP11Object"/>
+<synopsis>
+                    <link linkend="GP11Object-struct">GP11Object</link>;
+<link linkend="GP11Object">GP11Object</link>*         <link linkend="gp11-object-from-handle">gp11_object_from_handle</link>             (<link linkend="GP11Slot">GP11Slot</link> *slot,
+                                                         <link linkend="CK-OBJECT-HANDLE--CAPS">CK_OBJECT_HANDLE</link> handle);
+<link linkend="GList">GList</link>*              <link linkend="gp11-objects-from-handle-array">gp11_objects_from_handle_array</link>      (<link linkend="GP11Slot">GP11Slot</link> *slot,
+                                                         <link linkend="CK-OBJECT-HANDLE-PTR--CAPS">CK_OBJECT_HANDLE_PTR</link> handles,
+                                                         <link linkend="CK-ULONG--CAPS">CK_ULONG</link> n_handles);
+<link linkend="gboolean">gboolean</link>            <link linkend="gp11-object-equal">gp11_object_equal</link>                   (<link linkend="gconstpointer">gconstpointer</link> slot1,
+                                                         <link linkend="gconstpointer">gconstpointer</link> slot2);
+<link linkend="guint">guint</link>               <link linkend="gp11-object-hash">gp11_object_hash</link>                    (<link linkend="gconstpointer">gconstpointer</link> slot);
+<link linkend="GP11Module">GP11Module</link>*         <link linkend="gp11-object-get-module">gp11_object_get_module</link>              (<link linkend="GP11Object">GP11Object</link> *self);
+<link linkend="GP11Slot">GP11Slot</link>*           <link linkend="gp11-object-get-slot">gp11_object_get_slot</link>                (<link linkend="GP11Object">GP11Object</link> *self);
+<link linkend="CK-OBJECT-HANDLE--CAPS">CK_OBJECT_HANDLE</link>    <link linkend="gp11-object-get-handle">gp11_object_get_handle</link>              (<link linkend="GP11Object">GP11Object</link> *self);
+<link linkend="GP11Session">GP11Session</link>*        <link linkend="gp11-object-get-session">gp11_object_get_session</link>             (<link linkend="GP11Object">GP11Object</link> *self);
+<link linkend="void">void</link>                <link linkend="gp11-object-set-session">gp11_object_set_session</link>             (<link linkend="GP11Object">GP11Object</link> *self,
+                                                         <link linkend="GP11Session">GP11Session</link> *session);
+<link linkend="gboolean">gboolean</link>            <link linkend="gp11-object-destroy">gp11_object_destroy</link>                 (<link linkend="GP11Object">GP11Object</link> *self,
+                                                         <link linkend="GError">GError</link> **err);
+<link linkend="gboolean">gboolean</link>            <link linkend="gp11-object-destroy-full">gp11_object_destroy_full</link>            (<link linkend="GP11Object">GP11Object</link> *self,
+                                                         <link linkend="GCancellable">GCancellable</link> *cancellable,
+                                                         <link linkend="GError">GError</link> **err);
+<link linkend="void">void</link>                <link linkend="gp11-object-destroy-async">gp11_object_destroy_async</link>           (<link linkend="GP11Object">GP11Object</link> *self,
+                                                         <link linkend="GCancellable">GCancellable</link> *cancellable,
+                                                         <link linkend="GAsyncReadyCallback">GAsyncReadyCallback</link> callback,
+                                                         <link linkend="gpointer">gpointer</link> user_data);
+<link linkend="gboolean">gboolean</link>            <link linkend="gp11-object-destroy-finish">gp11_object_destroy_finish</link>          (<link linkend="GP11Object">GP11Object</link> *self,
+                                                         <link linkend="GAsyncResult">GAsyncResult</link> *result,
+                                                         <link linkend="GError">GError</link> **err);
+<link linkend="gboolean">gboolean</link>            <link linkend="gp11-object-set">gp11_object_set</link>                     (<link linkend="GP11Object">GP11Object</link> *self,
+                                                         <link linkend="GError">GError</link> **err);
+<link linkend="void">void</link>                <link linkend="gp11-object-set-async">gp11_object_set_async</link>               (<link linkend="GP11Object">GP11Object</link> *self,
+                                                         <link linkend="GP11Attributes">GP11Attributes</link> *attrs,
+                                                         <link linkend="GCancellable">GCancellable</link> *cancellable,
+                                                         <link linkend="GAsyncReadyCallback">GAsyncReadyCallback</link> callback,
+                                                         <link linkend="gpointer">gpointer</link> user_data);
+<link linkend="gboolean">gboolean</link>            <link linkend="gp11-object-set-finish">gp11_object_set_finish</link>              (<link linkend="GP11Object">GP11Object</link> *self,
+                                                         <link linkend="GAsyncResult">GAsyncResult</link> *result,
+                                                         <link linkend="GError">GError</link> **err);
+<link linkend="GP11Attributes">GP11Attributes</link>*     <link linkend="gp11-object-get">gp11_object_get</link>                     (<link linkend="GP11Object">GP11Object</link> *self,
+                                                         <link linkend="GError">GError</link> **err);
+<link linkend="void">void</link>                <link linkend="gp11-object-get-async">gp11_object_get_async</link>               (<link linkend="GP11Object">GP11Object</link> *self,
+                                                         <link linkend="GP11Attributes">GP11Attributes</link> *attrs,
+                                                         <link linkend="GCancellable">GCancellable</link> *cancellable,
+                                                         <link linkend="GAsyncReadyCallback">GAsyncReadyCallback</link> callback,
+                                                         <link linkend="gpointer">gpointer</link> user_data);
+<link linkend="GP11Attributes">GP11Attributes</link>*     <link linkend="gp11-object-get-finish">gp11_object_get_finish</link>              (<link linkend="GP11Object">GP11Object</link> *self,
+                                                         <link linkend="GAsyncResult">GAsyncResult</link> *result,
+                                                         <link linkend="GError">GError</link> **err);
+<link linkend="gpointer">gpointer</link>            <link linkend="gp11-object-get-data">gp11_object_get_data</link>                (<link linkend="GP11Object">GP11Object</link> *self,
+                                                         <link linkend="gulong">gulong</link> attr_type,
+                                                         <link linkend="gsize">gsize</link> *n_data,
+                                                         <link linkend="GError">GError</link> **err);
+<link linkend="gpointer">gpointer</link>            <link linkend="gp11-object-get-data-full">gp11_object_get_data_full</link>           (<link linkend="GP11Object">GP11Object</link> *self,
+                                                         <link linkend="gulong">gulong</link> attr_type,
+                                                         <link linkend="GP11Allocator">GP11Allocator</link> allocator,
+                                                         <link linkend="GCancellable">GCancellable</link> *cancellable,
+                                                         <link linkend="gsize">gsize</link> *n_data,
+                                                         <link linkend="GError">GError</link> **err);
+<link linkend="void">void</link>                <link linkend="gp11-object-get-data-async">gp11_object_get_data_async</link>          (<link linkend="GP11Object">GP11Object</link> *self,
+                                                         <link linkend="gulong">gulong</link> attr_type,
+                                                         <link linkend="GP11Allocator">GP11Allocator</link> allocator,
+                                                         <link linkend="GCancellable">GCancellable</link> *cancellable,
+                                                         <link linkend="GAsyncReadyCallback">GAsyncReadyCallback</link> callback,
+                                                         <link linkend="gpointer">gpointer</link> user_data);
+<link linkend="gpointer">gpointer</link>            <link linkend="gp11-object-get-data-finish">gp11_object_get_data_finish</link>         (<link linkend="GP11Object">GP11Object</link> *self,
+                                                         <link linkend="GAsyncResult">GAsyncResult</link> *result,
+                                                         <link linkend="gsize">gsize</link> *n_data,
+                                                         <link linkend="GError">GError</link> **err);
+</synopsis>
+</refsynopsisdiv>
+
+<refsect1 id="gp11-gp11-object.object-hierarchy" role="object_hierarchy">
+<title role="object_hierarchy.title">Object Hierarchy</title>
+<synopsis>
+  <link linkend="GObject">GObject</link>
+   +----GP11Object
+</synopsis>
+</refsect1>
+
+
+
+
+
+<refsect1 id="gp11-gp11-object.properties" role="properties">
+<title role="properties.title">Properties</title>
+<synopsis>
+  &quot;<link linkend="GP11Object--handle">handle</link>&quot;                   <link linkend="gulong">gulong</link>                : Read / Write / Construct Only
+  &quot;<link linkend="GP11Object--module">module</link>&quot;                   <link linkend="GP11Module">GP11Module</link>*           : Read / Write / Construct Only
+  &quot;<link linkend="GP11Object--session">session</link>&quot;                  <link linkend="GP11Session">GP11Session</link>*          : Read / Write
+  &quot;<link linkend="GP11Object--slot">slot</link>&quot;                     <link linkend="GP11Slot">GP11Slot</link>*             : Read / Write / Construct Only
+</synopsis>
+</refsect1>
+
+
+
+<refsect1 id="gp11-gp11-object.description" role="desc">
+<title role="desc.title">Description</title>
+<para>
+A GP11Object holds a handle to a PKCS11 object such as a key or certificate. Token objects
+are stored on the token persistently. Others are transient and are called session objects.</para>
+<para>
+</para>
+</refsect1>
+
+<refsect1 id="gp11-gp11-object.details" role="details">
+<title role="details.title">Details</title>
+<refsect2 id="GP11Object-struct" role="struct">
+<title>GP11Object</title>
+<indexterm zone="GP11Object-struct"><primary sortas="GP11Object">GP11Object</primary></indexterm><programlisting>typedef struct _GP11Object GP11Object;</programlisting>
+<para>
+Represents a PKCS11 object handle such as a key or certifiacte.</para>
+<para>
+</para></refsect2>
+<refsect2 id="gp11-object-from-handle" role="function">
+<title>gp11_object_from_handle ()</title>
+<indexterm zone="gp11-object-from-handle"><primary sortas="gp11_object_from_handle">gp11_object_from_handle</primary></indexterm><programlisting><link linkend="GP11Object">GP11Object</link>*         gp11_object_from_handle             (<link linkend="GP11Slot">GP11Slot</link> *slot,
+                                                         <link linkend="CK-OBJECT-HANDLE--CAPS">CK_OBJECT_HANDLE</link> handle);</programlisting>
+<para>
+Initialize a GP11Object from a raw PKCS<link linkend="11--CAPS"><type>11</type></link> handle. Normally you would use 
+<link linkend="gp11-session-create-object"><function>gp11_session_create_object()</function></link> or <link linkend="gp11-session-find-objects"><function>gp11_session_find_objects()</function></link> to access objects.</para>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>slot</parameter>&#160;:</term>
+<listitem><simpara> The slot on which this object is present.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>handle</parameter>&#160;:</term>
+<listitem><simpara> The raw handle of the object. 
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara> The new GP11Object. You should use <link linkend="g-object-unref"><function>g_object_unref()</function></link> when done with this object.
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="gp11-objects-from-handle-array" role="function">
+<title>gp11_objects_from_handle_array ()</title>
+<indexterm zone="gp11-objects-from-handle-array"><primary sortas="gp11_objects_from_handle_array">gp11_objects_from_handle_array</primary></indexterm><programlisting><link linkend="GList">GList</link>*              gp11_objects_from_handle_array      (<link linkend="GP11Slot">GP11Slot</link> *slot,
+                                                         <link linkend="CK-OBJECT-HANDLE-PTR--CAPS">CK_OBJECT_HANDLE_PTR</link> handles,
+                                                         <link linkend="CK-ULONG--CAPS">CK_ULONG</link> n_handles);</programlisting>
+<para>
+Initialize a list of GP11Object from raw PKCS<link linkend="11--CAPS"><type>11</type></link> handles. The handles argument must contain 
+contiguous CK_OBJECT_HANDLE handles in an array.</para>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>slot</parameter>&#160;:</term>
+<listitem><simpara> The slot on which these objects are present.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>handles</parameter>&#160;:</term>
+<listitem><simpara> The raw object handles.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>n_handles</parameter>&#160;:</term>
+<listitem><simpara> The number of raw object handles.
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara> The list of GP11Object. You should use <link linkend="gp11-list-unref-free"><function>gp11_list_unref_free()</function></link> when done with 
+this list. 
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="gp11-object-equal" role="function">
+<title>gp11_object_equal ()</title>
+<indexterm zone="gp11-object-equal"><primary sortas="gp11_object_equal">gp11_object_equal</primary></indexterm><programlisting><link linkend="gboolean">gboolean</link>            gp11_object_equal                   (<link linkend="gconstpointer">gconstpointer</link> slot1,
+                                                         <link linkend="gconstpointer">gconstpointer</link> slot2);</programlisting>
+<para>
+Checks equality of two objects. Two GP11Object objects can point to the same 
+underlying PKCS<link linkend="11--CAPS"><type>11</type></link> object.</para>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>slot1</parameter>&#160;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>slot2</parameter>&#160;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara> TRUE if object1 and object2 are equal. FALSE if either is not a GP11Object.
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="gp11-object-hash" role="function">
+<title>gp11_object_hash ()</title>
+<indexterm zone="gp11-object-hash"><primary sortas="gp11_object_hash">gp11_object_hash</primary></indexterm><programlisting><link linkend="guint">guint</link>               gp11_object_hash                    (<link linkend="gconstpointer">gconstpointer</link> slot);</programlisting>
+<para>
+Create a hash value for the GP11Object. 
+</para>
+<para>
+This function is intended for easily hashing a GP11Object to add to 
+a GHashTable or similar data structure.</para>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>slot</parameter>&#160;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara> An integer that can be used as a hash value, or 0 if invalid.
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="gp11-object-get-module" role="function">
+<title>gp11_object_get_module ()</title>
+<indexterm zone="gp11-object-get-module"><primary sortas="gp11_object_get_module">gp11_object_get_module</primary></indexterm><programlisting><link linkend="GP11Module">GP11Module</link>*         gp11_object_get_module              (<link linkend="GP11Object">GP11Object</link> *self);</programlisting>
+<para>
+Get the PKCS<link linkend="11--CAPS"><type>11</type></link> module to which this object belongs.</para>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>self</parameter>&#160;:</term>
+<listitem><simpara> The object.
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara> The module, which should be unreffed after use.
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="gp11-object-get-slot" role="function">
+<title>gp11_object_get_slot ()</title>
+<indexterm zone="gp11-object-get-slot"><primary sortas="gp11_object_get_slot">gp11_object_get_slot</primary></indexterm><programlisting><link linkend="GP11Slot">GP11Slot</link>*           gp11_object_get_slot                (<link linkend="GP11Object">GP11Object</link> *self);</programlisting>
+<para>
+Get the PKCS<link linkend="11--CAPS"><type>11</type></link> slot to which this object belongs.</para>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>self</parameter>&#160;:</term>
+<listitem><simpara> The object.
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara> The slot, which should be unreffed after use.
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="gp11-object-get-handle" role="function">
+<title>gp11_object_get_handle ()</title>
+<indexterm zone="gp11-object-get-handle"><primary sortas="gp11_object_get_handle">gp11_object_get_handle</primary></indexterm><programlisting><link linkend="CK-OBJECT-HANDLE--CAPS">CK_OBJECT_HANDLE</link>    gp11_object_get_handle              (<link linkend="GP11Object">GP11Object</link> *self);</programlisting>
+<para>
+Get the raw PKCS<link linkend="11--CAPS"><type>11</type></link> handle of a GP11Object.</para>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>self</parameter>&#160;:</term>
+<listitem><simpara> The object.
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara> The raw object handle.
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="gp11-object-get-session" role="function">
+<title>gp11_object_get_session ()</title>
+<indexterm zone="gp11-object-get-session"><primary sortas="gp11_object_get_session">gp11_object_get_session</primary></indexterm><programlisting><link linkend="GP11Session">GP11Session</link>*        gp11_object_get_session             (<link linkend="GP11Object">GP11Object</link> *self);</programlisting>
+<para>
+Get the PKCS<link linkend="11--CAPS"><type>11</type></link> session assigned to make calls on when operating
+on this object.  
+</para>
+<para>
+This will only return a session if it was set explitly on this 
+object. By default an object will open and close sessions 
+appropriate for its calls.</para>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>self</parameter>&#160;:</term>
+<listitem><simpara> The object
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara> The assigned session, which must be unreffed after use.
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="gp11-object-set-session" role="function">
+<title>gp11_object_set_session ()</title>
+<indexterm zone="gp11-object-set-session"><primary sortas="gp11_object_set_session">gp11_object_set_session</primary></indexterm><programlisting><link linkend="void">void</link>                gp11_object_set_session             (<link linkend="GP11Object">GP11Object</link> *self,
+                                                         <link linkend="GP11Session">GP11Session</link> *session);</programlisting>
+<para>
+Set the PKCS<link linkend="11--CAPS"><type>11</type></link> session assigned to make calls on when operating
+on this object.  
+</para>
+<para>
+It isn't always necessary to assign a session to an object. 
+By default an object will open and close sessions appropriate for 
+its calls.
+</para>
+<para>
+If you assign a read-only session, then calls on this object
+that modify the state of the object will probably fail.</para>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>self</parameter>&#160;:</term>
+<listitem><simpara> The object
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>session</parameter>&#160;:</term>
+<listitem><simpara> The assigned session
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="gp11-object-destroy" role="function">
+<title>gp11_object_destroy ()</title>
+<indexterm zone="gp11-object-destroy"><primary sortas="gp11_object_destroy">gp11_object_destroy</primary></indexterm><programlisting><link linkend="gboolean">gboolean</link>            gp11_object_destroy                 (<link linkend="GP11Object">GP11Object</link> *self,
+                                                         <link linkend="GError">GError</link> **err);</programlisting>
+<para>
+Destroy a PKCS<link linkend="11--CAPS"><type>11</type></link> object, deleting it from storage or the session.
+This call may block for an indefinite period.</para>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>self</parameter>&#160;:</term>
+<listitem><simpara> The object to destroy.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>err</parameter>&#160;:</term>
+<listitem><simpara> A location to return an error.
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara> Whether the call was successful or not.
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="gp11-object-destroy-full" role="function">
+<title>gp11_object_destroy_full ()</title>
+<indexterm zone="gp11-object-destroy-full"><primary sortas="gp11_object_destroy_full">gp11_object_destroy_full</primary></indexterm><programlisting><link linkend="gboolean">gboolean</link>            gp11_object_destroy_full            (<link linkend="GP11Object">GP11Object</link> *self,
+                                                         <link linkend="GCancellable">GCancellable</link> *cancellable,
+                                                         <link linkend="GError">GError</link> **err);</programlisting>
+<para>
+Destroy a PKCS<link linkend="11--CAPS"><type>11</type></link> object, deleting it from storage or the session.
+This call may block for an indefinite period.</para>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>self</parameter>&#160;:</term>
+<listitem><simpara> The object to destroy.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>cancellable</parameter>&#160;:</term>
+<listitem><simpara> Optional cancellable object, or NULL to ignore. 
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>err</parameter>&#160;:</term>
+<listitem><simpara> A location to return an error.
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara> Whether the call was successful or not.
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="gp11-object-destroy-async" role="function">
+<title>gp11_object_destroy_async ()</title>
+<indexterm zone="gp11-object-destroy-async"><primary sortas="gp11_object_destroy_async">gp11_object_destroy_async</primary></indexterm><programlisting><link linkend="void">void</link>                gp11_object_destroy_async           (<link linkend="GP11Object">GP11Object</link> *self,
+                                                         <link linkend="GCancellable">GCancellable</link> *cancellable,
+                                                         <link linkend="GAsyncReadyCallback">GAsyncReadyCallback</link> callback,
+                                                         <link linkend="gpointer">gpointer</link> user_data);</programlisting>
+<para>
+Destroy a PKCS<link linkend="11--CAPS"><type>11</type></link> object, deleting it from storage or the session.
+This call will return immediately and complete asynchronously.</para>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>self</parameter>&#160;:</term>
+<listitem><simpara> The object to destroy.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>cancellable</parameter>&#160;:</term>
+<listitem><simpara> Optional cancellable object, or NULL to ignore. 
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>callback</parameter>&#160;:</term>
+<listitem><simpara> Callback which is called when operation completes.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>user_data</parameter>&#160;:</term>
+<listitem><simpara> Data to pass to the callback.
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="gp11-object-destroy-finish" role="function">
+<title>gp11_object_destroy_finish ()</title>
+<indexterm zone="gp11-object-destroy-finish"><primary sortas="gp11_object_destroy_finish">gp11_object_destroy_finish</primary></indexterm><programlisting><link linkend="gboolean">gboolean</link>            gp11_object_destroy_finish          (<link linkend="GP11Object">GP11Object</link> *self,
+                                                         <link linkend="GAsyncResult">GAsyncResult</link> *result,
+                                                         <link linkend="GError">GError</link> **err);</programlisting>
+<para>
+Get the status of the operation to destroy a PKCS<link linkend="11--CAPS"><type>11</type></link> object, begun with 
+<link linkend="gp11-object-destroy-async"><function>gp11_object_destroy_async()</function></link>.</para>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>self</parameter>&#160;:</term>
+<listitem><simpara> The object being destroyed.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>result</parameter>&#160;:</term>
+<listitem><simpara> The result of the destory operation passed to the callback.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>err</parameter>&#160;:</term>
+<listitem><simpara> A location to store an error.
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara> Whether the object was destroyed successfully or not.
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="gp11-object-set" role="function">
+<title>gp11_object_set ()</title>
+<indexterm zone="gp11-object-set"><primary sortas="gp11_object_set">gp11_object_set</primary></indexterm><programlisting><link linkend="gboolean">gboolean</link>            gp11_object_set                     (<link linkend="GP11Object">GP11Object</link> *self,
+                                                         <link linkend="GError">GError</link> **err);</programlisting>
+<para>
+Set PKCS<link linkend="11--CAPS"><type>11</type></link> attributes on an object.
+This call may block for an indefinite period.
+</para>
+<para>
+The arguments must be triples of: attribute type, data type, value
+</para>
+<para>
+<para>The variable argument list should contain:
+	<variablelist>
+	<varlistentry>
+			<term>a)</term>
+			<listitem><para>The gulong attribute type (ie: CKA_LABEL). </para></listitem>
+		</varlistentry>
+		<varlistentry>
+			<term>b)</term>
+			<listitem><para>The attribute data type (one of GP11_BOOLEAN, GP11_ULONG, 
+				GP11_STRING, GP11_DATE) orthe raw attribute value length.</para></listitem>
+		</varlistentry>
+		<varlistentry>
+			<term>c)</term>
+			<listitem><para>The attribute value, either a gboolean, gulong, gchar*, GDate* or 
+				a pointer to a raw attribute value.</para></listitem>
+		</varlistentry>
+	</variablelist>
+The variable argument list should be terminated with GP11_INVALID.</para></para>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>self</parameter>&#160;:</term>
+<listitem><simpara> The object to set attributes on.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>err</parameter>&#160;:</term>
+<listitem><simpara> A location to return an error.
+...: The attributes to set.
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara> Whether the call was successful or not.
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="gp11-object-set-async" role="function">
+<title>gp11_object_set_async ()</title>
+<indexterm zone="gp11-object-set-async"><primary sortas="gp11_object_set_async">gp11_object_set_async</primary></indexterm><programlisting><link linkend="void">void</link>                gp11_object_set_async               (<link linkend="GP11Object">GP11Object</link> *self,
+                                                         <link linkend="GP11Attributes">GP11Attributes</link> *attrs,
+                                                         <link linkend="GCancellable">GCancellable</link> *cancellable,
+                                                         <link linkend="GAsyncReadyCallback">GAsyncReadyCallback</link> callback,
+                                                         <link linkend="gpointer">gpointer</link> user_data);</programlisting>
+<para>
+Set PKCS<link linkend="11--CAPS"><type>11</type></link> attributes on an object. This call will return 
+immediately and completes asynchronously.</para>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>self</parameter>&#160;:</term>
+<listitem><simpara> The object to set attributes on.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>attrs</parameter>&#160;:</term>
+<listitem><simpara> The attributes to set on the object.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>cancellable</parameter>&#160;:</term>
+<listitem><simpara> Optional cancellable object, or NULL to ignore. 
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>callback</parameter>&#160;:</term>
+<listitem><simpara> Callback which is called when operation completes.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>user_data</parameter>&#160;:</term>
+<listitem><simpara> Data to pass to the callback.
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="gp11-object-set-finish" role="function">
+<title>gp11_object_set_finish ()</title>
+<indexterm zone="gp11-object-set-finish"><primary sortas="gp11_object_set_finish">gp11_object_set_finish</primary></indexterm><programlisting><link linkend="gboolean">gboolean</link>            gp11_object_set_finish              (<link linkend="GP11Object">GP11Object</link> *self,
+                                                         <link linkend="GAsyncResult">GAsyncResult</link> *result,
+                                                         <link linkend="GError">GError</link> **err);</programlisting>
+<para>
+Get the status of the operation to set attributes on a PKCS<link linkend="11--CAPS"><type>11</type></link> object, 
+begun with <link linkend="gp11-object-set-async"><function>gp11_object_set_async()</function></link>.</para>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>self</parameter>&#160;:</term>
+<listitem><simpara> The object to set attributes on.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>result</parameter>&#160;:</term>
+<listitem><simpara> The result of the destory operation passed to the callback.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>err</parameter>&#160;:</term>
+<listitem><simpara> A location to store an error.
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara> Whether the attributes were successfully set on the object or not.
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="gp11-object-get" role="function">
+<title>gp11_object_get ()</title>
+<indexterm zone="gp11-object-get"><primary sortas="gp11_object_get">gp11_object_get</primary></indexterm><programlisting><link linkend="GP11Attributes">GP11Attributes</link>*     gp11_object_get                     (<link linkend="GP11Object">GP11Object</link> *self,
+                                                         <link linkend="GError">GError</link> **err);</programlisting>
+<para>
+Get the specified attributes from the object. This call may
+block for an indefinite period.
+</para>
+<para>
+No extra references are added to the returned attributes pointer. 
+During this call you may not access the attributes in any way.</para>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>self</parameter>&#160;:</term>
+<listitem><simpara> The object to get attributes from.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>err</parameter>&#160;:</term>
+<listitem><simpara> A location to store an error.
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara> A pointer to the filled in attributes if successful, 
+or NULL if not. 
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="gp11-object-get-async" role="function">
+<title>gp11_object_get_async ()</title>
+<indexterm zone="gp11-object-get-async"><primary sortas="gp11_object_get_async">gp11_object_get_async</primary></indexterm><programlisting><link linkend="void">void</link>                gp11_object_get_async               (<link linkend="GP11Object">GP11Object</link> *self,
+                                                         <link linkend="GP11Attributes">GP11Attributes</link> *attrs,
+                                                         <link linkend="GCancellable">GCancellable</link> *cancellable,
+                                                         <link linkend="GAsyncReadyCallback">GAsyncReadyCallback</link> callback,
+                                                         <link linkend="gpointer">gpointer</link> user_data);</programlisting>
+<para>
+Get the specified attributes from the object. The attributes will be cleared
+of their current values, and new attributes will be stored. The attributes
+should not be accessed in any way except for referencing and unreferencing 
+them until <link linkend="gp11-object-get-finish"><function>gp11_object_get_finish()</function></link> is called.
+</para>
+<para>
+This call returns immediately and completes asynchronously.</para>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>self</parameter>&#160;:</term>
+<listitem><simpara> The object to get attributes from.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>attrs</parameter>&#160;:</term>
+<listitem><simpara> The attributes to get, initialized with their types.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>cancellable</parameter>&#160;:</term>
+<listitem><simpara> Optional cancellation object, or NULL.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>callback</parameter>&#160;:</term>
+<listitem><simpara> A callback which is called when the operation completes.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>user_data</parameter>&#160;:</term>
+<listitem><simpara> Data to be passed to the callback.
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="gp11-object-get-finish" role="function">
+<title>gp11_object_get_finish ()</title>
+<indexterm zone="gp11-object-get-finish"><primary sortas="gp11_object_get_finish">gp11_object_get_finish</primary></indexterm><programlisting><link linkend="GP11Attributes">GP11Attributes</link>*     gp11_object_get_finish              (<link linkend="GP11Object">GP11Object</link> *self,
+                                                         <link linkend="GAsyncResult">GAsyncResult</link> *result,
+                                                         <link linkend="GError">GError</link> **err);</programlisting>
+<para>
+Get the result of a get operation and return specified attributes from 
+the object. 
+</para>
+<para>
+No extra references are added to the returned attributes pointer.</para>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>self</parameter>&#160;:</term>
+<listitem><simpara> The object to get attributes from.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>result</parameter>&#160;:</term>
+<listitem><simpara> The result passed to the callback.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>err</parameter>&#160;:</term>
+<listitem><simpara> A location to store an error.
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara> The filled in attributes structure if successful or 
+NULL if not successful.
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="gp11-object-get-data" role="function">
+<title>gp11_object_get_data ()</title>
+<indexterm zone="gp11-object-get-data"><primary sortas="gp11_object_get_data">gp11_object_get_data</primary></indexterm><programlisting><link linkend="gpointer">gpointer</link>            gp11_object_get_data                (<link linkend="GP11Object">GP11Object</link> *self,
+                                                         <link linkend="gulong">gulong</link> attr_type,
+                                                         <link linkend="gsize">gsize</link> *n_data,
+                                                         <link linkend="GError">GError</link> **err);</programlisting>
+<para>
+Get the data for the specified attribute from the object. This call 
+may block for an indefinite period.</para>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>self</parameter>&#160;:</term>
+<listitem><simpara> The object to get attribute data from.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>attr_type</parameter>&#160;:</term>
+<listitem><simpara> The attribute to get data for.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>n_data</parameter>&#160;:</term>
+<listitem><simpara> The length of the resulting data.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>err</parameter>&#160;:</term>
+<listitem><simpara> A location to store an error.
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara> The resulting PKCS<link linkend="11--CAPS"><type>11</type></link> attribute data, or NULL if an error occurred. 
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="gp11-object-get-data-full" role="function">
+<title>gp11_object_get_data_full ()</title>
+<indexterm zone="gp11-object-get-data-full"><primary sortas="gp11_object_get_data_full">gp11_object_get_data_full</primary></indexterm><programlisting><link linkend="gpointer">gpointer</link>            gp11_object_get_data_full           (<link linkend="GP11Object">GP11Object</link> *self,
+                                                         <link linkend="gulong">gulong</link> attr_type,
+                                                         <link linkend="GP11Allocator">GP11Allocator</link> allocator,
+                                                         <link linkend="GCancellable">GCancellable</link> *cancellable,
+                                                         <link linkend="gsize">gsize</link> *n_data,
+                                                         <link linkend="GError">GError</link> **err);</programlisting>
+<para>
+Get the data for the specified attribute from the object. This call 
+may block for an indefinite period.</para>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>self</parameter>&#160;:</term>
+<listitem><simpara> The object to get attribute data from.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>attr_type</parameter>&#160;:</term>
+<listitem><simpara> The attribute to get data for.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>allocator</parameter>&#160;:</term>
+<listitem><simpara> An allocator with which to allocate memory for the data, or NULL for default.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>cancellable</parameter>&#160;:</term>
+<listitem><simpara> Optional cancellation object, or NULL.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>n_data</parameter>&#160;:</term>
+<listitem><simpara> The length of the resulting data.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>err</parameter>&#160;:</term>
+<listitem><simpara> A location to store an error.
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara> The resulting PKCS<link linkend="11--CAPS"><type>11</type></link> attribute data, or NULL if an error occurred. 
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="gp11-object-get-data-async" role="function">
+<title>gp11_object_get_data_async ()</title>
+<indexterm zone="gp11-object-get-data-async"><primary sortas="gp11_object_get_data_async">gp11_object_get_data_async</primary></indexterm><programlisting><link linkend="void">void</link>                gp11_object_get_data_async          (<link linkend="GP11Object">GP11Object</link> *self,
+                                                         <link linkend="gulong">gulong</link> attr_type,
+                                                         <link linkend="GP11Allocator">GP11Allocator</link> allocator,
+                                                         <link linkend="GCancellable">GCancellable</link> *cancellable,
+                                                         <link linkend="GAsyncReadyCallback">GAsyncReadyCallback</link> callback,
+                                                         <link linkend="gpointer">gpointer</link> user_data);</programlisting>
+<para>
+Get the data for the specified attribute from the object. This call will
+return immediately and complete asynchronously.</para>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>self</parameter>&#160;:</term>
+<listitem><simpara> The object to get attribute data from.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>attr_type</parameter>&#160;:</term>
+<listitem><simpara> The attribute to get data for.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>allocator</parameter>&#160;:</term>
+<listitem><simpara> An allocator with which to allocate memory for the data, or NULL for default.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>cancellable</parameter>&#160;:</term>
+<listitem><simpara> Optional cancellation object, or NULL.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>callback</parameter>&#160;:</term>
+<listitem><simpara> Called when the operation completes.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>user_data</parameter>&#160;:</term>
+<listitem><simpara> Data to be passed to the callback.
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="gp11-object-get-data-finish" role="function">
+<title>gp11_object_get_data_finish ()</title>
+<indexterm zone="gp11-object-get-data-finish"><primary sortas="gp11_object_get_data_finish">gp11_object_get_data_finish</primary></indexterm><programlisting><link linkend="gpointer">gpointer</link>            gp11_object_get_data_finish         (<link linkend="GP11Object">GP11Object</link> *self,
+                                                         <link linkend="GAsyncResult">GAsyncResult</link> *result,
+                                                         <link linkend="gsize">gsize</link> *n_data,
+                                                         <link linkend="GError">GError</link> **err);</programlisting>
+<para>
+Get the result of an operation to get attribute data from 
+an object.</para>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>self</parameter>&#160;:</term>
+<listitem><simpara> The object to get an attribute from.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>result</parameter>&#160;:</term>
+<listitem><simpara> The result passed to the callback.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>n_data</parameter>&#160;:</term>
+<listitem><simpara> The length of the resulting data.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>err</parameter>&#160;:</term>
+<listitem><simpara> A location to store an error.
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara> The PKCS<link linkend="11--CAPS"><type>11</type></link> attribute data or NULL if an error occurred.
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+
+</refsect1>
+<refsect1 id="gp11-gp11-object.property-details" role="property_details">
+<title role="property_details.title">Property Details</title>
+<refsect2 id="GP11Object--handle" role="property"><title>The <literal>&quot;handle&quot;</literal> property</title>
+<indexterm zone="GP11Object--handle"><primary sortas="GP11Object:handle">GP11Object:handle</primary></indexterm><programlisting>  &quot;handle&quot;                   <link linkend="gulong">gulong</link>                : Read / Write / Construct Only</programlisting>
+<para>
+The raw PKCS11 handle for this object.</para>
+<para>
+</para></refsect2>
+<refsect2 id="GP11Object--module" role="property"><title>The <literal>&quot;module&quot;</literal> property</title>
+<indexterm zone="GP11Object--module"><primary sortas="GP11Object:module">GP11Object:module</primary></indexterm><programlisting>  &quot;module&quot;                   <link linkend="GP11Module">GP11Module</link>*           : Read / Write / Construct Only</programlisting>
+<para>
+The GP11Module that this object belongs to.</para>
+<para>
+</para></refsect2>
+<refsect2 id="GP11Object--session" role="property"><title>The <literal>&quot;session&quot;</literal> property</title>
+<indexterm zone="GP11Object--session"><primary sortas="GP11Object:session">GP11Object:session</primary></indexterm><programlisting>  &quot;session&quot;                  <link linkend="GP11Session">GP11Session</link>*          : Read / Write</programlisting>
+<para>
+The PKCS11 session to make calls on when this object needs to
+perform operations on itself. 
+</para>
+<para>
+If this is NULL then a new session is opened for each operation, 
+such as <link linkend="gp11-object-get"><function>gp11_object_get()</function></link>, <link linkend="gp11-object-set"><function>gp11_object_set()</function></link> or <link linkend="gp11-object-destroy"><function>gp11_object_destroy()</function></link>.</para>
+<para>
+</para></refsect2>
+<refsect2 id="GP11Object--slot" role="property"><title>The <literal>&quot;slot&quot;</literal> property</title>
+<indexterm zone="GP11Object--slot"><primary sortas="GP11Object:slot">GP11Object:slot</primary></indexterm><programlisting>  &quot;slot&quot;                     <link linkend="GP11Slot">GP11Slot</link>*             : Read / Write / Construct Only</programlisting>
+<para>
+The GP11Slot that this object belongs to. 
+</para>
+<para>
+If this is a token object then it will be stored on the token in this slot.
+If this is a session object, then it belongs to a session opened on this slot.</para>
+<para>
+</para></refsect2>
+
+</refsect1>
+
+
+
+
+</refentry>

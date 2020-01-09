@@ -1,0 +1,566 @@
+<?xml version="1.0"?>
+<!DOCTYPE refentry PUBLIC "-//OASIS//DTD DocBook XML V4.1.2//EN"
+               "http://www.oasis-open.org/docbook/xml/4.1.2/docbookx.dtd">
+<refentry id="gp11-gp11-attribute">
+<refmeta>
+<refentrytitle role="top_of_page" id="gp11-gp11-attribute.top_of_page">GP11Attribute</refentrytitle>
+<manvolnum>3</manvolnum>
+<refmiscinfo>GP11 Library</refmiscinfo>
+</refmeta>
+
+<refnamediv>
+<refname>GP11Attribute</refname>
+<refpurpose>A PKCS11 attribute.</refpurpose>
+</refnamediv>
+
+<refsynopsisdiv id="gp11-gp11-attribute.synopsis" role="synopsis">
+<title role="synopsis.title">Synopsis</title>
+
+<synopsis>
+                    <link linkend="GP11Attribute">GP11Attribute</link>;
+<link linkend="void">void</link>                <link linkend="gp11-attribute-init">gp11_attribute_init</link>                 (<link linkend="GP11Attribute">GP11Attribute</link> *attr,
+                                                         <link linkend="gulong">gulong</link> attr_type,
+                                                         <link linkend="gconstpointer">gconstpointer</link> value,
+                                                         <link linkend="gsize">gsize</link> length);
+<link linkend="void">void</link>                <link linkend="gp11-attribute-init-invalid">gp11_attribute_init_invalid</link>         (<link linkend="GP11Attribute">GP11Attribute</link> *attr,
+                                                         <link linkend="gulong">gulong</link> attr_type);
+<link linkend="void">void</link>                <link linkend="gp11-attribute-init-empty">gp11_attribute_init_empty</link>           (<link linkend="GP11Attribute">GP11Attribute</link> *attr,
+                                                         <link linkend="gulong">gulong</link> attr_type);
+<link linkend="void">void</link>                <link linkend="gp11-attribute-init-boolean">gp11_attribute_init_boolean</link>         (<link linkend="GP11Attribute">GP11Attribute</link> *attr,
+                                                         <link linkend="gulong">gulong</link> attr_type,
+                                                         <link linkend="gboolean">gboolean</link> value);
+<link linkend="void">void</link>                <link linkend="gp11-attribute-init-date">gp11_attribute_init_date</link>            (<link linkend="GP11Attribute">GP11Attribute</link> *attr,
+                                                         <link linkend="gulong">gulong</link> attr_type,
+                                                         const <link linkend="GDate">GDate</link> *value);
+<link linkend="void">void</link>                <link linkend="gp11-attribute-init-ulong">gp11_attribute_init_ulong</link>           (<link linkend="GP11Attribute">GP11Attribute</link> *attr,
+                                                         <link linkend="gulong">gulong</link> attr_type,
+                                                         <link linkend="gulong">gulong</link> value);
+<link linkend="void">void</link>                <link linkend="gp11-attribute-init-string">gp11_attribute_init_string</link>          (<link linkend="GP11Attribute">GP11Attribute</link> *attr,
+                                                         <link linkend="gulong">gulong</link> attr_type,
+                                                         const <link linkend="gchar">gchar</link> *value);
+<link linkend="void">void</link>                <link linkend="gp11-attribute-init-copy">gp11_attribute_init_copy</link>            (<link linkend="GP11Attribute">GP11Attribute</link> *dest,
+                                                         const <link linkend="GP11Attribute">GP11Attribute</link> *src);
+<link linkend="GP11Attribute">GP11Attribute</link>*      <link linkend="gp11-attribute-new">gp11_attribute_new</link>                  (<link linkend="gulong">gulong</link> attr_type,
+                                                         <link linkend="gpointer">gpointer</link> value,
+                                                         <link linkend="gsize">gsize</link> length);
+<link linkend="GP11Attribute">GP11Attribute</link>*      <link linkend="gp11-attribute-new-invalid">gp11_attribute_new_invalid</link>          (<link linkend="gulong">gulong</link> attr_type);
+<link linkend="GP11Attribute">GP11Attribute</link>*      <link linkend="gp11-attribute-new-empty">gp11_attribute_new_empty</link>            (<link linkend="gulong">gulong</link> attr_type);
+<link linkend="GP11Attribute">GP11Attribute</link>*      <link linkend="gp11-attribute-new-boolean">gp11_attribute_new_boolean</link>          (<link linkend="gulong">gulong</link> attr_type,
+                                                         <link linkend="gboolean">gboolean</link> value);
+<link linkend="GP11Attribute">GP11Attribute</link>*      <link linkend="gp11-attribute-new-date">gp11_attribute_new_date</link>             (<link linkend="gulong">gulong</link> attr_type,
+                                                         const <link linkend="GDate">GDate</link> *value);
+<link linkend="GP11Attribute">GP11Attribute</link>*      <link linkend="gp11-attribute-new-ulong">gp11_attribute_new_ulong</link>            (<link linkend="gulong">gulong</link> attr_type,
+                                                         <link linkend="gulong">gulong</link> value);
+<link linkend="GP11Attribute">GP11Attribute</link>*      <link linkend="gp11-attribute-new-string">gp11_attribute_new_string</link>           (<link linkend="gulong">gulong</link> attr_type,
+                                                         const <link linkend="gchar">gchar</link> *value);
+<link linkend="gboolean">gboolean</link>            <link linkend="gp11-attribute-is-invalid">gp11_attribute_is_invalid</link>           (<link linkend="GP11Attribute">GP11Attribute</link> *attr);
+<link linkend="gboolean">gboolean</link>            <link linkend="gp11-attribute-get-boolean">gp11_attribute_get_boolean</link>          (<link linkend="GP11Attribute">GP11Attribute</link> *attr);
+<link linkend="gulong">gulong</link>              <link linkend="gp11-attribute-get-ulong">gp11_attribute_get_ulong</link>            (<link linkend="GP11Attribute">GP11Attribute</link> *attr);
+<link linkend="gchar">gchar</link>*              <link linkend="gp11-attribute-get-string">gp11_attribute_get_string</link>           (<link linkend="GP11Attribute">GP11Attribute</link> *attr);
+<link linkend="void">void</link>                <link linkend="gp11-attribute-get-date">gp11_attribute_get_date</link>             (<link linkend="GP11Attribute">GP11Attribute</link> *attr,
+                                                         <link linkend="GDate">GDate</link> *value);
+<link linkend="GP11Attribute">GP11Attribute</link>*      <link linkend="gp11-attribute-dup">gp11_attribute_dup</link>                  (<link linkend="GP11Attribute">GP11Attribute</link> *attr);
+<link linkend="void">void</link>                <link linkend="gp11-attribute-clear">gp11_attribute_clear</link>                (<link linkend="GP11Attribute">GP11Attribute</link> *attr);
+<link linkend="void">void</link>                <link linkend="gp11-attribute-free">gp11_attribute_free</link>                 (<link linkend="GP11Attribute">GP11Attribute</link> *attr);
+</synopsis>
+</refsynopsisdiv>
+
+
+
+
+
+
+
+
+
+<refsect1 id="gp11-gp11-attribute.description" role="desc">
+<title role="desc.title">Description</title>
+<para>
+This structure represents a PKCS11 CK_ATTRIBUTE. These attributes contain information
+about a PKCS11 object. Use <link linkend="gp11-object-get"><function>gp11_object_get()</function></link> or <link linkend="gp11-object-set"><function>gp11_object_set()</function></link> to set and retrieve
+attributes on an object.</para>
+<para>
+</para>
+</refsect1>
+
+<refsect1 id="gp11-gp11-attribute.details" role="details">
+<title role="details.title">Details</title>
+<refsect2 id="GP11Attribute" role="struct">
+<title>GP11Attribute</title>
+<indexterm zone="GP11Attribute"><primary sortas="GP11Attribute">GP11Attribute</primary></indexterm><programlisting>typedef struct {
+	gulong type;
+	guchar *value;
+	gulong length;
+} GP11Attribute;
+</programlisting>
+<para>
+This structure represents a PKCS11 CK_ATTRIBUTE.</para>
+<para>
+</para><variablelist role="struct">
+<varlistentry>
+<term><link linkend="gulong">gulong</link>&#160;<structfield>type</structfield>;</term>
+<listitem><simpara> The attribute type, such as CKA_LABEL.
+</simpara></listitem>
+</varlistentry>
+<varlistentry>
+<term><link linkend="guchar">guchar</link>&#160;*<structfield>value</structfield>;</term>
+<listitem><simpara> The value of the attribute. May be NULL.
+</simpara></listitem>
+</varlistentry>
+<varlistentry>
+<term><link linkend="gulong">gulong</link>&#160;<structfield>length</structfield>;</term>
+<listitem><simpara> The length of the attribute. May be G_MAXULONG if the attribute is invalid.
+</simpara></listitem>
+</varlistentry>
+</variablelist></refsect2>
+<refsect2 id="gp11-attribute-init" role="function">
+<title>gp11_attribute_init ()</title>
+<indexterm zone="gp11-attribute-init"><primary sortas="gp11_attribute_init">gp11_attribute_init</primary></indexterm><programlisting><link linkend="void">void</link>                gp11_attribute_init                 (<link linkend="GP11Attribute">GP11Attribute</link> *attr,
+                                                         <link linkend="gulong">gulong</link> attr_type,
+                                                         <link linkend="gconstpointer">gconstpointer</link> value,
+                                                         <link linkend="gsize">gsize</link> length);</programlisting>
+<para>
+Initialize a PKCS<link linkend="11--CAPS"><type>11</type></link> attribute. This copies the value memory 
+into an internal buffer.
+</para>
+<para>
+When done with the attribute you should use <link linkend="gp11-attribute-clear"><function>gp11_attribute_clear()</function></link>
+to free the internal memory.</para>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>attr</parameter>&#160;:</term>
+<listitem><simpara> An uninitialized attribute.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>attr_type</parameter>&#160;:</term>
+<listitem><simpara> The PKCS<link linkend="11--CAPS"><type>11</type></link> attribute type to set on the attribute.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>value</parameter>&#160;:</term>
+<listitem><simpara> The raw value of the attribute.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>length</parameter>&#160;:</term>
+<listitem><simpara> The length of the raw value.
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="gp11-attribute-init-invalid" role="function">
+<title>gp11_attribute_init_invalid ()</title>
+<indexterm zone="gp11-attribute-init-invalid"><primary sortas="gp11_attribute_init_invalid">gp11_attribute_init_invalid</primary></indexterm><programlisting><link linkend="void">void</link>                gp11_attribute_init_invalid         (<link linkend="GP11Attribute">GP11Attribute</link> *attr,
+                                                         <link linkend="gulong">gulong</link> attr_type);</programlisting>
+<para>
+Initialize a PKCS<link linkend="11--CAPS"><type>11</type></link> attribute to an 'invalid' or 'not found' 
+state. Specifically this sets the value length to (CK_ULONG)-1
+as specified in the PKCS<link linkend="11--CAPS"><type>11</type></link> specification.
+</para>
+<para>
+When done with the attribute you should use <link linkend="gp11-attribute-clear"><function>gp11_attribute_clear()</function></link>
+to free the internal memory.</para>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>attr</parameter>&#160;:</term>
+<listitem><simpara> An uninitialized attribute.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>attr_type</parameter>&#160;:</term>
+<listitem><simpara> The PKCS<link linkend="11--CAPS"><type>11</type></link> attribute type to set on the attribute.
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="gp11-attribute-init-empty" role="function">
+<title>gp11_attribute_init_empty ()</title>
+<indexterm zone="gp11-attribute-init-empty"><primary sortas="gp11_attribute_init_empty">gp11_attribute_init_empty</primary></indexterm><programlisting><link linkend="void">void</link>                gp11_attribute_init_empty           (<link linkend="GP11Attribute">GP11Attribute</link> *attr,
+                                                         <link linkend="gulong">gulong</link> attr_type);</programlisting>
+<para>
+Initialize a PKCS<link linkend="11--CAPS"><type>11</type></link> attribute to an empty state. The attribute
+type will be set, but no data will be set.
+</para>
+<para>
+When done with the attribute you should use <link linkend="gp11-attribute-clear"><function>gp11_attribute_clear()</function></link>
+to free the internal memory.</para>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>attr</parameter>&#160;:</term>
+<listitem><simpara> An uninitialized attribute.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>attr_type</parameter>&#160;:</term>
+<listitem><simpara> The PKCS<link linkend="11--CAPS"><type>11</type></link> attribute type to set on the attribute.
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="gp11-attribute-init-boolean" role="function">
+<title>gp11_attribute_init_boolean ()</title>
+<indexterm zone="gp11-attribute-init-boolean"><primary sortas="gp11_attribute_init_boolean">gp11_attribute_init_boolean</primary></indexterm><programlisting><link linkend="void">void</link>                gp11_attribute_init_boolean         (<link linkend="GP11Attribute">GP11Attribute</link> *attr,
+                                                         <link linkend="gulong">gulong</link> attr_type,
+                                                         <link linkend="gboolean">gboolean</link> value);</programlisting>
+<para>
+Initialize a PKCS<link linkend="11--CAPS"><type>11</type></link> attribute to boolean. This will result
+in a CK_BBOOL attribute from the PKCS<link linkend="11--CAPS"><type>11</type></link> specs.
+</para>
+<para>
+When done with the attribute you should use <link linkend="gp11-attribute-clear"><function>gp11_attribute_clear()</function></link>
+to free the internal memory.</para>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>attr</parameter>&#160;:</term>
+<listitem><simpara> An uninitialized attribute.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>attr_type</parameter>&#160;:</term>
+<listitem><simpara> The PKCS<link linkend="11--CAPS"><type>11</type></link> attribute type to set on the attribute.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>value</parameter>&#160;:</term>
+<listitem><simpara> The boolean value of the attribute.
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="gp11-attribute-init-date" role="function">
+<title>gp11_attribute_init_date ()</title>
+<indexterm zone="gp11-attribute-init-date"><primary sortas="gp11_attribute_init_date">gp11_attribute_init_date</primary></indexterm><programlisting><link linkend="void">void</link>                gp11_attribute_init_date            (<link linkend="GP11Attribute">GP11Attribute</link> *attr,
+                                                         <link linkend="gulong">gulong</link> attr_type,
+                                                         const <link linkend="GDate">GDate</link> *value);</programlisting>
+<para>
+Initialize a PKCS<link linkend="11--CAPS"><type>11</type></link> attribute to a date. This will result
+in a CK_DATE attribute from the PKCS<link linkend="11--CAPS"><type>11</type></link> specs.
+</para>
+<para>
+When done with the attribute you should use <link linkend="gp11-attribute-clear"><function>gp11_attribute_clear()</function></link>
+to free the internal memory.</para>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>attr</parameter>&#160;:</term>
+<listitem><simpara> An uninitialized attribute.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>attr_type</parameter>&#160;:</term>
+<listitem><simpara> The PKCS<link linkend="11--CAPS"><type>11</type></link> attribute type to set on the attribute.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>value</parameter>&#160;:</term>
+<listitem><simpara> The date value of the attribute.
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="gp11-attribute-init-ulong" role="function">
+<title>gp11_attribute_init_ulong ()</title>
+<indexterm zone="gp11-attribute-init-ulong"><primary sortas="gp11_attribute_init_ulong">gp11_attribute_init_ulong</primary></indexterm><programlisting><link linkend="void">void</link>                gp11_attribute_init_ulong           (<link linkend="GP11Attribute">GP11Attribute</link> *attr,
+                                                         <link linkend="gulong">gulong</link> attr_type,
+                                                         <link linkend="gulong">gulong</link> value);</programlisting>
+<para>
+Initialize a PKCS<link linkend="11--CAPS"><type>11</type></link> attribute to a unsigned long. This will result
+in a CK_ULONG attribute from the PKCS<link linkend="11--CAPS"><type>11</type></link> specs.
+</para>
+<para>
+When done with the attribute you should use <link linkend="gp11-attribute-clear"><function>gp11_attribute_clear()</function></link>
+to free the internal memory.</para>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>attr</parameter>&#160;:</term>
+<listitem><simpara> An uninitialized attribute.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>attr_type</parameter>&#160;:</term>
+<listitem><simpara> The PKCS<link linkend="11--CAPS"><type>11</type></link> attribute type to set on the attribute.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>value</parameter>&#160;:</term>
+<listitem><simpara> The ulong value of the attribute.
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="gp11-attribute-init-string" role="function">
+<title>gp11_attribute_init_string ()</title>
+<indexterm zone="gp11-attribute-init-string"><primary sortas="gp11_attribute_init_string">gp11_attribute_init_string</primary></indexterm><programlisting><link linkend="void">void</link>                gp11_attribute_init_string          (<link linkend="GP11Attribute">GP11Attribute</link> *attr,
+                                                         <link linkend="gulong">gulong</link> attr_type,
+                                                         const <link linkend="gchar">gchar</link> *value);</programlisting>
+<para>
+Initialize a PKCS<link linkend="11--CAPS"><type>11</type></link> attribute to a string. This will result
+in an attribute containing the text, but not the null terminator. 
+The text in the attribute will be of the same encoding as you pass 
+to this function.
+</para>
+<para>
+When done with the attribute you should use <link linkend="gp11-attribute-clear"><function>gp11_attribute_clear()</function></link>
+to free the internal memory.</para>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>attr</parameter>&#160;:</term>
+<listitem><simpara> An uninitialized attribute.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>attr_type</parameter>&#160;:</term>
+<listitem><simpara> The PKCS<link linkend="11--CAPS"><type>11</type></link> attribute type to set on the attribute.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>value</parameter>&#160;:</term>
+<listitem><simpara> The null terminated string value of the attribute.
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="gp11-attribute-init-copy" role="function">
+<title>gp11_attribute_init_copy ()</title>
+<indexterm zone="gp11-attribute-init-copy"><primary sortas="gp11_attribute_init_copy">gp11_attribute_init_copy</primary></indexterm><programlisting><link linkend="void">void</link>                gp11_attribute_init_copy            (<link linkend="GP11Attribute">GP11Attribute</link> *dest,
+                                                         const <link linkend="GP11Attribute">GP11Attribute</link> *src);</programlisting>
+<para>
+Initialize a PKCS<link linkend="11--CAPS"><type>11</type></link> attribute as a copy of another attribute. 
+This copies the value memory as well.
+</para>
+<para>
+When done with the copied attribute you should use 
+<link linkend="gp11-attribute-clear"><function>gp11_attribute_clear()</function></link> to free the internal memory.</para>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>dest</parameter>&#160;:</term>
+<listitem><simpara> An uninitialized attribute.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>src</parameter>&#160;:</term>
+<listitem><simpara> An attribute to copy.
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="gp11-attribute-new" role="function">
+<title>gp11_attribute_new ()</title>
+<indexterm zone="gp11-attribute-new"><primary sortas="gp11_attribute_new">gp11_attribute_new</primary></indexterm><programlisting><link linkend="GP11Attribute">GP11Attribute</link>*      gp11_attribute_new                  (<link linkend="gulong">gulong</link> attr_type,
+                                                         <link linkend="gpointer">gpointer</link> value,
+                                                         <link linkend="gsize">gsize</link> length);</programlisting>
+<para>
+Create a new PKCS<link linkend="11--CAPS"><type>11</type></link> attribute. The value will be copied 
+into the new attribute.</para>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>attr_type</parameter>&#160;:</term>
+<listitem><simpara> The PKCS<link linkend="11--CAPS"><type>11</type></link> attribute type to set on the attribute.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>value</parameter>&#160;:</term>
+<listitem><simpara> The raw value of the attribute.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>length</parameter>&#160;:</term>
+<listitem><simpara> The length of the attribute. 
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara> The new attribute. When done with the attribute use 
+<link linkend="gp11-attribute-free"><function>gp11_attribute_free()</function></link> to free it. 
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="gp11-attribute-new-invalid" role="function">
+<title>gp11_attribute_new_invalid ()</title>
+<indexterm zone="gp11-attribute-new-invalid"><primary sortas="gp11_attribute_new_invalid">gp11_attribute_new_invalid</primary></indexterm><programlisting><link linkend="GP11Attribute">GP11Attribute</link>*      gp11_attribute_new_invalid          (<link linkend="gulong">gulong</link> attr_type);</programlisting>
+<para>
+Create a new PKCS<link linkend="11--CAPS"><type>11</type></link> attribute as 'invalid' or 'not found' 
+state. Specifically this sets the value length to (CK_ULONG)-1
+as specified in the PKCS<link linkend="11--CAPS"><type>11</type></link> specification.</para>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>attr_type</parameter>&#160;:</term>
+<listitem><simpara> The PKCS<link linkend="11--CAPS"><type>11</type></link> attribute type to set on the attribute.
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara> The new attribute. When done with the attribute use 
+<link linkend="gp11-attribute-free"><function>gp11_attribute_free()</function></link> to free it. 
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="gp11-attribute-new-empty" role="function">
+<title>gp11_attribute_new_empty ()</title>
+<indexterm zone="gp11-attribute-new-empty"><primary sortas="gp11_attribute_new_empty">gp11_attribute_new_empty</primary></indexterm><programlisting><link linkend="GP11Attribute">GP11Attribute</link>*      gp11_attribute_new_empty            (<link linkend="gulong">gulong</link> attr_type);</programlisting>
+<para>
+Create a new PKCS<link linkend="11--CAPS"><type>11</type></link> attribute with empty data.</para>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>attr_type</parameter>&#160;:</term>
+<listitem><simpara> The PKCS<link linkend="11--CAPS"><type>11</type></link> attribute type to set on the attribute.
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara> The new attribute. When done with the attribute use 
+<link linkend="gp11-attribute-free"><function>gp11_attribute_free()</function></link> to free it.
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="gp11-attribute-new-boolean" role="function">
+<title>gp11_attribute_new_boolean ()</title>
+<indexterm zone="gp11-attribute-new-boolean"><primary sortas="gp11_attribute_new_boolean">gp11_attribute_new_boolean</primary></indexterm><programlisting><link linkend="GP11Attribute">GP11Attribute</link>*      gp11_attribute_new_boolean          (<link linkend="gulong">gulong</link> attr_type,
+                                                         <link linkend="gboolean">gboolean</link> value);</programlisting>
+<para>
+Initialize a PKCS<link linkend="11--CAPS"><type>11</type></link> attribute to boolean. This will result
+in a CK_BBOOL attribute from the PKCS<link linkend="11--CAPS"><type>11</type></link> specs.</para>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>attr_type</parameter>&#160;:</term>
+<listitem><simpara> The PKCS<link linkend="11--CAPS"><type>11</type></link> attribute type to set on the attribute.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>value</parameter>&#160;:</term>
+<listitem><simpara> The boolean value of the attribute.
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara> The new attribute. When done with the attribute use 
+<link linkend="gp11-attribute-free"><function>gp11_attribute_free()</function></link> to free it. 
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="gp11-attribute-new-date" role="function">
+<title>gp11_attribute_new_date ()</title>
+<indexterm zone="gp11-attribute-new-date"><primary sortas="gp11_attribute_new_date">gp11_attribute_new_date</primary></indexterm><programlisting><link linkend="GP11Attribute">GP11Attribute</link>*      gp11_attribute_new_date             (<link linkend="gulong">gulong</link> attr_type,
+                                                         const <link linkend="GDate">GDate</link> *value);</programlisting>
+<para>
+Initialize a PKCS<link linkend="11--CAPS"><type>11</type></link> attribute to a date. This will result
+in a CK_DATE attribute from the PKCS<link linkend="11--CAPS"><type>11</type></link> specs.</para>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>attr_type</parameter>&#160;:</term>
+<listitem><simpara> The PKCS<link linkend="11--CAPS"><type>11</type></link> attribute type to set on the attribute.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>value</parameter>&#160;:</term>
+<listitem><simpara> The date value of the attribute.
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara> The new attribute. When done with the attribute use 
+<link linkend="gp11-attribute-free"><function>gp11_attribute_free()</function></link> to free it. 
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="gp11-attribute-new-ulong" role="function">
+<title>gp11_attribute_new_ulong ()</title>
+<indexterm zone="gp11-attribute-new-ulong"><primary sortas="gp11_attribute_new_ulong">gp11_attribute_new_ulong</primary></indexterm><programlisting><link linkend="GP11Attribute">GP11Attribute</link>*      gp11_attribute_new_ulong            (<link linkend="gulong">gulong</link> attr_type,
+                                                         <link linkend="gulong">gulong</link> value);</programlisting>
+<para>
+Initialize a PKCS<link linkend="11--CAPS"><type>11</type></link> attribute to a unsigned long. This will result
+in a CK_ULONG attribute from the PKCS<link linkend="11--CAPS"><type>11</type></link> specs.</para>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>attr_type</parameter>&#160;:</term>
+<listitem><simpara> The PKCS<link linkend="11--CAPS"><type>11</type></link> attribute type to set on the attribute.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>value</parameter>&#160;:</term>
+<listitem><simpara> The ulong value of the attribute.
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara> The new attribute. When done with the attribute use 
+<link linkend="gp11-attribute-free"><function>gp11_attribute_free()</function></link> to free it. 
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="gp11-attribute-new-string" role="function">
+<title>gp11_attribute_new_string ()</title>
+<indexterm zone="gp11-attribute-new-string"><primary sortas="gp11_attribute_new_string">gp11_attribute_new_string</primary></indexterm><programlisting><link linkend="GP11Attribute">GP11Attribute</link>*      gp11_attribute_new_string           (<link linkend="gulong">gulong</link> attr_type,
+                                                         const <link linkend="gchar">gchar</link> *value);</programlisting>
+<para>
+Initialize a PKCS<link linkend="11--CAPS"><type>11</type></link> attribute to a string. This will result
+in an attribute containing the text, but not the null terminator. 
+The text in the attribute will be of the same encoding as you pass 
+to this function.</para>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>attr_type</parameter>&#160;:</term>
+<listitem><simpara> The PKCS<link linkend="11--CAPS"><type>11</type></link> attribute type to set on the attribute.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>value</parameter>&#160;:</term>
+<listitem><simpara> The null terminated string value of the attribute.
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara> The new attribute. When done with the attribute use 
+<link linkend="gp11-attribute-free"><function>gp11_attribute_free()</function></link> to free it. 
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="gp11-attribute-is-invalid" role="function">
+<title>gp11_attribute_is_invalid ()</title>
+<indexterm zone="gp11-attribute-is-invalid"><primary sortas="gp11_attribute_is_invalid">gp11_attribute_is_invalid</primary></indexterm><programlisting><link linkend="gboolean">gboolean</link>            gp11_attribute_is_invalid           (<link linkend="GP11Attribute">GP11Attribute</link> *attr);</programlisting>
+<para>
+Check if the PKCS<link linkend="11--CAPS"><type>11</type></link> attribute represents 'invalid' or 'not found' 
+according to the PKCS<link linkend="11--CAPS"><type>11</type></link> spec. That is, having length 
+of (CK_ULONG)-1.</para>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>attr</parameter>&#160;:</term>
+<listitem><simpara> The attribute to check.
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara> Whether the attribute represents invalid or not.
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="gp11-attribute-get-boolean" role="function">
+<title>gp11_attribute_get_boolean ()</title>
+<indexterm zone="gp11-attribute-get-boolean"><primary sortas="gp11_attribute_get_boolean">gp11_attribute_get_boolean</primary></indexterm><programlisting><link linkend="gboolean">gboolean</link>            gp11_attribute_get_boolean          (<link linkend="GP11Attribute">GP11Attribute</link> *attr);</programlisting>
+<para>
+Get the CK_BBOOL of a PKCS<link linkend="11--CAPS"><type>11</type></link> attribute. No conversion
+is performed. It is an error to pass an attribute to this
+function unless you're know it's supposed to contain a 
+boolean value.</para>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>attr</parameter>&#160;:</term>
+<listitem><simpara> The attribute to retrieve value from.
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara> The boolean value of the attribute.
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="gp11-attribute-get-ulong" role="function">
+<title>gp11_attribute_get_ulong ()</title>
+<indexterm zone="gp11-attribute-get-ulong"><primary sortas="gp11_attribute_get_ulong">gp11_attribute_get_ulong</primary></indexterm><programlisting><link linkend="gulong">gulong</link>              gp11_attribute_get_ulong            (<link linkend="GP11Attribute">GP11Attribute</link> *attr);</programlisting>
+<para>
+Get the CK_ULONG value of a PKCS<link linkend="11--CAPS"><type>11</type></link> attribute. No 
+conversion is performed. It is an error to pass an attribute 
+to this function unless you're know it's supposed to contain 
+a value of the right type.</para>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>attr</parameter>&#160;:</term>
+<listitem><simpara> The attribute to retrieve value from.
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara> The ulong value of the attribute.
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="gp11-attribute-get-string" role="function">
+<title>gp11_attribute_get_string ()</title>
+<indexterm zone="gp11-attribute-get-string"><primary sortas="gp11_attribute_get_string">gp11_attribute_get_string</primary></indexterm><programlisting><link linkend="gchar">gchar</link>*              gp11_attribute_get_string           (<link linkend="GP11Attribute">GP11Attribute</link> *attr);</programlisting>
+<para>
+Get the string value of a PKCS<link linkend="11--CAPS"><type>11</type></link> attribute. No 
+conversion is performed. It is an error to pass an attribute 
+to this function unless you're know it's supposed to contain 
+a value of the right type.</para>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>attr</parameter>&#160;:</term>
+<listitem><simpara> The attribute to retrieve value from.
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara> A null terminated string, to be freed with <link linkend="g-free"><function>g_free()</function></link>, 
+or NULL if the value contained a NULL string.
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="gp11-attribute-get-date" role="function">
+<title>gp11_attribute_get_date ()</title>
+<indexterm zone="gp11-attribute-get-date"><primary sortas="gp11_attribute_get_date">gp11_attribute_get_date</primary></indexterm><programlisting><link linkend="void">void</link>                gp11_attribute_get_date             (<link linkend="GP11Attribute">GP11Attribute</link> *attr,
+                                                         <link linkend="GDate">GDate</link> *value);</programlisting>
+<para>
+Get the CK_DATE of a PKCS<link linkend="11--CAPS"><type>11</type></link> attribute. No 
+conversion is performed. It is an error to pass an attribute 
+to this function unless you're know it's supposed to contain 
+a value of the right type.</para>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>attr</parameter>&#160;:</term>
+<listitem><simpara> The attribute to retrieve value from.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>value</parameter>&#160;:</term>
+<listitem><simpara> The date value to fill in with the parsed date.
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="gp11-attribute-dup" role="function">
+<title>gp11_attribute_dup ()</title>
+<indexterm zone="gp11-attribute-dup"><primary sortas="gp11_attribute_dup">gp11_attribute_dup</primary></indexterm><programlisting><link linkend="GP11Attribute">GP11Attribute</link>*      gp11_attribute_dup                  (<link linkend="GP11Attribute">GP11Attribute</link> *attr);</programlisting>
+<para>
+Duplicate the PKCS<link linkend="11--CAPS"><type>11</type></link> attribute. All value memory is 
+also copied.</para>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>attr</parameter>&#160;:</term>
+<listitem><simpara> The attribute to duplicate.
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara> The duplicated attribute. Use <link linkend="gp11-attribute-free"><function>gp11_attribute_free()</function></link>
+to free it.
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="gp11-attribute-clear" role="function">
+<title>gp11_attribute_clear ()</title>
+<indexterm zone="gp11-attribute-clear"><primary sortas="gp11_attribute_clear">gp11_attribute_clear</primary></indexterm><programlisting><link linkend="void">void</link>                gp11_attribute_clear                (<link linkend="GP11Attribute">GP11Attribute</link> *attr);</programlisting>
+<para>
+Clear allocated memory held by a statically allocated attribute.
+These are usually initialized with <link linkend="gp11-attribute-init"><function>gp11_attribute_init()</function></link> or a 
+similar function.
+</para>
+<para>
+The type of the attribute will remain set.</para>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>attr</parameter>&#160;:</term>
+<listitem><simpara> Attribute to clear.
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="gp11-attribute-free" role="function">
+<title>gp11_attribute_free ()</title>
+<indexterm zone="gp11-attribute-free"><primary sortas="gp11_attribute_free">gp11_attribute_free</primary></indexterm><programlisting><link linkend="void">void</link>                gp11_attribute_free                 (<link linkend="GP11Attribute">GP11Attribute</link> *attr);</programlisting>
+<para>
+Free an attribute and its allocated memory. These is usually 
+used with attributes that are allocated by <link linkend="gp11-attribute-new"><function>gp11_attribute_new()</function></link>
+or a similar function.</para>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>attr</parameter>&#160;:</term>
+<listitem><simpara> Attribute to free.
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+
+</refsect1>
+
+
+
+
+</refentry>

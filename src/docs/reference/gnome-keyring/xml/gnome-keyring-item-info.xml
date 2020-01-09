@@ -1,0 +1,242 @@
+<?xml version="1.0"?>
+<!DOCTYPE refentry PUBLIC "-//OASIS//DTD DocBook XML V4.1.2//EN" 
+               "http://www.oasis-open.org/docbook/xml/4.1.2/docbookx.dtd">
+<refentry id="gnome-keyring-gnome-keyring-item-info">
+<refmeta>
+<refentrytitle role="top_of_page" id="gnome-keyring-gnome-keyring-item-info.top_of_page">Item Information</refentrytitle>
+<manvolnum>3</manvolnum>
+<refmiscinfo>GNOME-KEYRING Library</refmiscinfo>
+</refmeta>
+
+<refnamediv>
+<refname>Item Information</refname>
+<refpurpose>Keyring Item Info</refpurpose>
+</refnamediv>
+
+<refsynopsisdiv id="gnome-keyring-gnome-keyring-item-info.synopsis" role="synopsis">
+<title role="synopsis.title">Synopsis</title>
+
+<synopsis>
+enum                <link linkend="GnomeKeyringItemType">GnomeKeyringItemType</link>;
+typedef             <link linkend="GnomeKeyringItemInfo">GnomeKeyringItemInfo</link>;
+<link linkend="void">void</link>                <link linkend="gnome-keyring-item-info-free">gnome_keyring_item_info_free</link>        (<link linkend="GnomeKeyringItemInfo">GnomeKeyringItemInfo</link> *item_info);
+<link linkend="GnomeKeyringItemInfo">GnomeKeyringItemInfo</link> * <link linkend="gnome-keyring-item-info-new">gnome_keyring_item_info_new</link>      (void);
+<link linkend="GnomeKeyringItemInfo">GnomeKeyringItemInfo</link> * <link linkend="gnome-keyring-item-info-copy">gnome_keyring_item_info_copy</link>     (<link linkend="GnomeKeyringItemInfo">GnomeKeyringItemInfo</link> *item_info);
+<link linkend="GnomeKeyringItemType">GnomeKeyringItemType</link>  <link linkend="gnome-keyring-item-info-get-type">gnome_keyring_item_info_get_type</link>  (<link linkend="GnomeKeyringItemInfo">GnomeKeyringItemInfo</link> *item_info);
+<link linkend="void">void</link>                <link linkend="gnome-keyring-item-info-set-type">gnome_keyring_item_info_set_type</link>    (<link linkend="GnomeKeyringItemInfo">GnomeKeyringItemInfo</link> *item_info,
+                                                         <link linkend="GnomeKeyringItemType">GnomeKeyringItemType</link> type);
+<link linkend="char">char</link> *              <link linkend="gnome-keyring-item-info-get-secret">gnome_keyring_item_info_get_secret</link>  (<link linkend="GnomeKeyringItemInfo">GnomeKeyringItemInfo</link> *item_info);
+<link linkend="void">void</link>                <link linkend="gnome-keyring-item-info-set-secret">gnome_keyring_item_info_set_secret</link>  (<link linkend="GnomeKeyringItemInfo">GnomeKeyringItemInfo</link> *item_info,
+                                                         const <link linkend="char">char</link> *value);
+<link linkend="char">char</link> *              <link linkend="gnome-keyring-item-info-get-display-name">gnome_keyring_item_info_get_display_name</link>
+                                                        (<link linkend="GnomeKeyringItemInfo">GnomeKeyringItemInfo</link> *item_info);
+<link linkend="void">void</link>                <link linkend="gnome-keyring-item-info-set-display-name">gnome_keyring_item_info_set_display_name</link>
+                                                        (<link linkend="GnomeKeyringItemInfo">GnomeKeyringItemInfo</link> *item_info,
+                                                         const <link linkend="char">char</link> *value);
+<link linkend="time-t">time_t</link>              <link linkend="gnome-keyring-item-info-get-mtime">gnome_keyring_item_info_get_mtime</link>   (<link linkend="GnomeKeyringItemInfo">GnomeKeyringItemInfo</link> *item_info);
+<link linkend="time-t">time_t</link>              <link linkend="gnome-keyring-item-info-get-ctime">gnome_keyring_item_info_get_ctime</link>   (<link linkend="GnomeKeyringItemInfo">GnomeKeyringItemInfo</link> *item_info);
+</synopsis>
+</refsynopsisdiv>
+
+
+
+
+
+
+
+
+
+<refsect1 id="gnome-keyring-gnome-keyring-item-info.description" role="desc">
+<title role="desc.title">Description</title>
+<para>
+<link linkend="GnomeKeyringItemInfo"><type>GnomeKeyringItemInfo</type></link> represents the basic information about a keyring item.
+Use <link linkend="gnome-keyring-item-get-info"><function>gnome_keyring_item_get_info()</function></link> or <link linkend="gnome-keyring-item-set-info"><function>gnome_keyring_item_set_info()</function></link>.</para>
+<para>
+</para>
+</refsect1>
+
+<refsect1 id="gnome-keyring-gnome-keyring-item-info.details" role="details">
+<title role="details.title">Details</title>
+<refsect2 id="GnomeKeyringItemType" role="enum">
+<title>enum GnomeKeyringItemType</title>
+<indexterm zone="GnomeKeyringItemType"><primary sortas="GnomeKeyringItemType">GnomeKeyringItemType</primary></indexterm><programlisting>typedef enum {
+
+	/* The item types */
+	GNOME_KEYRING_ITEM_GENERIC_SECRET = 0,
+	GNOME_KEYRING_ITEM_NETWORK_PASSWORD,
+	GNOME_KEYRING_ITEM_NOTE,
+	GNOME_KEYRING_ITEM_CHAINED_KEYRING_PASSWORD,
+	GNOME_KEYRING_ITEM_ENCRYPTION_KEY_PASSWORD,
+	
+	GNOME_KEYRING_ITEM_PK_STORAGE = 0x100,
+	
+	/* Not used, remains here only for compatibility */
+	GNOME_KEYRING_ITEM_LAST_TYPE,
+
+} GnomeKeyringItemType;
+</programlisting>
+<para>
+</para></refsect2>
+<refsect2 id="GnomeKeyringItemInfo" role="typedef">
+<title>GnomeKeyringItemInfo</title>
+<indexterm zone="GnomeKeyringItemInfo"><primary sortas="GnomeKeyringItemInfo">GnomeKeyringItemInfo</primary></indexterm><programlisting>typedef struct GnomeKeyringItemInfo GnomeKeyringItemInfo;
+</programlisting>
+<para>
+</para></refsect2>
+<refsect2 id="gnome-keyring-item-info-free" role="function">
+<title>gnome_keyring_item_info_free ()</title>
+<indexterm zone="gnome-keyring-item-info-free"><primary sortas="gnome_keyring_item_info_free">gnome_keyring_item_info_free</primary></indexterm><programlisting><link linkend="void">void</link>                gnome_keyring_item_info_free        (<link linkend="GnomeKeyringItemInfo">GnomeKeyringItemInfo</link> *item_info);</programlisting>
+<para>
+Free the <link linkend="GnomeKeyringItemInfo"><type>GnomeKeyringItemInfo</type></link> object. 
+</para>
+<para>
+A <link linkend="NULL--CAPS"><literal>NULL</literal></link> pointer may be passed, in which case it will be ignored.</para>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>item_info</parameter>&#160;:</term>
+<listitem><simpara> The keyring item info pointer.
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="gnome-keyring-item-info-new" role="function">
+<title>gnome_keyring_item_info_new ()</title>
+<indexterm zone="gnome-keyring-item-info-new"><primary sortas="gnome_keyring_item_info_new">gnome_keyring_item_info_new</primary></indexterm><programlisting><link linkend="GnomeKeyringItemInfo">GnomeKeyringItemInfo</link> * gnome_keyring_item_info_new      (void);</programlisting>
+<para>
+Create a new <link linkend="GnomeKeyringItemInfo"><type>GnomeKeyringItemInfo</type></link> object.
+Free the <link linkend="GnomeKeyringItemInfo"><type>GnomeKeyringItemInfo</type></link> object.</para>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara> A keyring item info pointer.
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="gnome-keyring-item-info-copy" role="function">
+<title>gnome_keyring_item_info_copy ()</title>
+<indexterm zone="gnome-keyring-item-info-copy"><primary sortas="gnome_keyring_item_info_copy">gnome_keyring_item_info_copy</primary></indexterm><programlisting><link linkend="GnomeKeyringItemInfo">GnomeKeyringItemInfo</link> * gnome_keyring_item_info_copy     (<link linkend="GnomeKeyringItemInfo">GnomeKeyringItemInfo</link> *item_info);</programlisting>
+<para>
+Copy a <link linkend="GnomeKeyringItemInfo"><type>GnomeKeyringItemInfo</type></link> object.</para>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>item_info</parameter>&#160;:</term>
+<listitem><simpara> A keyring item info pointer.
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara> A keyring item info pointer.
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="gnome-keyring-item-info-get-type" role="function">
+<title>gnome_keyring_item_info_get_type ()</title>
+<indexterm zone="gnome-keyring-item-info-get-type"><primary sortas="gnome_keyring_item_info_get_type">gnome_keyring_item_info_get_type</primary></indexterm><programlisting><link linkend="GnomeKeyringItemType">GnomeKeyringItemType</link>  gnome_keyring_item_info_get_type  (<link linkend="GnomeKeyringItemInfo">GnomeKeyringItemInfo</link> *item_info);</programlisting>
+<para>
+Get the item type.</para>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>item_info</parameter>&#160;:</term>
+<listitem><simpara> A keyring item info pointer.
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara> The item type
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="gnome-keyring-item-info-set-type" role="function">
+<title>gnome_keyring_item_info_set_type ()</title>
+<indexterm zone="gnome-keyring-item-info-set-type"><primary sortas="gnome_keyring_item_info_set_type">gnome_keyring_item_info_set_type</primary></indexterm><programlisting><link linkend="void">void</link>                gnome_keyring_item_info_set_type    (<link linkend="GnomeKeyringItemInfo">GnomeKeyringItemInfo</link> *item_info,
+                                                         <link linkend="GnomeKeyringItemType">GnomeKeyringItemType</link> type);</programlisting>
+<para>
+Set the type on an item info.</para>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>item_info</parameter>&#160;:</term>
+<listitem><simpara> A keyring item info pointer.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>type</parameter>&#160;:</term>
+<listitem><simpara> The new item type
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="gnome-keyring-item-info-get-secret" role="function">
+<title>gnome_keyring_item_info_get_secret ()</title>
+<indexterm zone="gnome-keyring-item-info-get-secret"><primary sortas="gnome_keyring_item_info_get_secret">gnome_keyring_item_info_get_secret</primary></indexterm><programlisting><link linkend="char">char</link> *              gnome_keyring_item_info_get_secret  (<link linkend="GnomeKeyringItemInfo">GnomeKeyringItemInfo</link> *item_info);</programlisting>
+<para>
+Get the item secret.</para>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>item_info</parameter>&#160;:</term>
+<listitem><simpara> A keyring item info pointer.
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara> The newly allocated string containing the item secret.
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="gnome-keyring-item-info-set-secret" role="function">
+<title>gnome_keyring_item_info_set_secret ()</title>
+<indexterm zone="gnome-keyring-item-info-set-secret"><primary sortas="gnome_keyring_item_info_set_secret">gnome_keyring_item_info_set_secret</primary></indexterm><programlisting><link linkend="void">void</link>                gnome_keyring_item_info_set_secret  (<link linkend="GnomeKeyringItemInfo">GnomeKeyringItemInfo</link> *item_info,
+                                                         const <link linkend="char">char</link> *value);</programlisting>
+<para>
+Set the secret on an item info.</para>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>item_info</parameter>&#160;:</term>
+<listitem><simpara> A keyring item info pointer.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>value</parameter>&#160;:</term>
+<listitem><simpara> The new item secret
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="gnome-keyring-item-info-get-display-name" role="function">
+<title>gnome_keyring_item_info_get_display_name ()</title>
+<indexterm zone="gnome-keyring-item-info-get-display-name"><primary sortas="gnome_keyring_item_info_get_display_name">gnome_keyring_item_info_get_display_name</primary></indexterm><programlisting><link linkend="char">char</link> *              gnome_keyring_item_info_get_display_name
+                                                        (<link linkend="GnomeKeyringItemInfo">GnomeKeyringItemInfo</link> *item_info);</programlisting>
+<para>
+Get the item display name.</para>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>item_info</parameter>&#160;:</term>
+<listitem><simpara> A keyring item info pointer.
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara> The newly allocated string containing the item display name.
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="gnome-keyring-item-info-set-display-name" role="function">
+<title>gnome_keyring_item_info_set_display_name ()</title>
+<indexterm zone="gnome-keyring-item-info-set-display-name"><primary sortas="gnome_keyring_item_info_set_display_name">gnome_keyring_item_info_set_display_name</primary></indexterm><programlisting><link linkend="void">void</link>                gnome_keyring_item_info_set_display_name
+                                                        (<link linkend="GnomeKeyringItemInfo">GnomeKeyringItemInfo</link> *item_info,
+                                                         const <link linkend="char">char</link> *value);</programlisting>
+<para>
+Set the display name on an item info.</para>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>item_info</parameter>&#160;:</term>
+<listitem><simpara> A keyring item info pointer.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>value</parameter>&#160;:</term>
+<listitem><simpara> The new display name.
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="gnome-keyring-item-info-get-mtime" role="function">
+<title>gnome_keyring_item_info_get_mtime ()</title>
+<indexterm zone="gnome-keyring-item-info-get-mtime"><primary sortas="gnome_keyring_item_info_get_mtime">gnome_keyring_item_info_get_mtime</primary></indexterm><programlisting><link linkend="time-t">time_t</link>              gnome_keyring_item_info_get_mtime   (<link linkend="GnomeKeyringItemInfo">GnomeKeyringItemInfo</link> *item_info);</programlisting>
+<para>
+Get the item last modified time.</para>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>item_info</parameter>&#160;:</term>
+<listitem><simpara> A keyring item info pointer.
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara> The item last modified time.
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="gnome-keyring-item-info-get-ctime" role="function">
+<title>gnome_keyring_item_info_get_ctime ()</title>
+<indexterm zone="gnome-keyring-item-info-get-ctime"><primary sortas="gnome_keyring_item_info_get_ctime">gnome_keyring_item_info_get_ctime</primary></indexterm><programlisting><link linkend="time-t">time_t</link>              gnome_keyring_item_info_get_ctime   (<link linkend="GnomeKeyringItemInfo">GnomeKeyringItemInfo</link> *item_info);</programlisting>
+<para>
+Get the item created time.</para>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>item_info</parameter>&#160;:</term>
+<listitem><simpara> A keyring item info pointer.
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara> The item created time.
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+
+</refsect1>
+
+
+
+
+</refentry>

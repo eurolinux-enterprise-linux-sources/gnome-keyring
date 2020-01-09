@@ -1,0 +1,61 @@
+<?xml version="1.0"?>
+<!DOCTYPE refentry PUBLIC "-//OASIS//DTD DocBook XML V4.1.2//EN"
+               "http://www.oasis-open.org/docbook/xml/4.1.2/docbookx.dtd">
+<refentry id="gcr-gcr-types">
+<refmeta>
+<refentrytitle role="top_of_page" id="gcr-gcr-types.top_of_page">gcr-types</refentrytitle>
+<manvolnum>3</manvolnum>
+<refmiscinfo>GCR Library</refmiscinfo>
+</refmeta>
+
+<refnamediv>
+<refname>gcr-types</refname>
+<refpurpose></refpurpose>
+</refnamediv>
+
+<refsynopsisdiv id="gcr-gcr-types.synopsis" role="synopsis">
+<title role="synopsis.title">Synopsis</title>
+
+<synopsis>
+#define             <link linkend="GCR-DATA-ERROR--CAPS">GCR_DATA_ERROR</link>
+<link linkend="GQuark">GQuark</link>              <link linkend="gcr-data-error-get-domain">gcr_data_error_get_domain</link>           (void);
+</synopsis>
+</refsynopsisdiv>
+
+
+
+
+
+
+
+
+
+<refsect1 id="gcr-gcr-types.description" role="desc">
+<title role="desc.title">Description</title>
+<para>
+</para>
+</refsect1>
+
+<refsect1 id="gcr-gcr-types.details" role="details">
+<title role="details.title">Details</title>
+<refsect2 id="GCR-DATA-ERROR--CAPS" role="macro">
+<title>GCR_DATA_ERROR</title>
+<indexterm zone="GCR-DATA-ERROR--CAPS"><primary sortas="GCR_DATA_ERROR">GCR_DATA_ERROR</primary></indexterm><programlisting>#define             GCR_DATA_ERROR                    (gcr_data_error_get_domain ())
+</programlisting>
+<para>
+</para></refsect2>
+<refsect2 id="gcr-data-error-get-domain" role="function">
+<title>gcr_data_error_get_domain ()</title>
+<indexterm zone="gcr-data-error-get-domain"><primary sortas="gcr_data_error_get_domain">gcr_data_error_get_domain</primary></indexterm><programlisting><link linkend="GQuark">GQuark</link>              gcr_data_error_get_domain           (void);</programlisting>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara>
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+
+</refsect1>
+
+
+
+
+</refentry>

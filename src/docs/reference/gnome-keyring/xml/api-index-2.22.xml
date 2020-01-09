@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<!DOCTYPE indexdiv PUBLIC "-//OASIS//DTD DocBook XML V4.1.2//EN" 
+               "http://www.oasis-open.org/docbook/xml/4.1.2/docbookx.dtd">
+<indexdiv>
+<indexdiv><title>G</title>
+<indexentry><primaryie linkends="gnome-keyring-delete-password"><link linkend="gnome-keyring-delete-password">gnome_keyring_delete_password</link></primaryie></indexentry>
+<indexentry><primaryie linkends="gnome-keyring-delete-password-sync"><link linkend="gnome-keyring-delete-password-sync">gnome_keyring_delete_password_sync</link></primaryie></indexentry>
+<indexentry><primaryie linkends="gnome-keyring-find-password"><link linkend="gnome-keyring-find-password">gnome_keyring_find_password</link></primaryie></indexentry>
+<indexentry><primaryie linkends="gnome-keyring-find-password-sync"><link linkend="gnome-keyring-find-password-sync">gnome_keyring_find_password_sync</link></primaryie></indexentry>
+<indexentry><primaryie linkends="gnome-keyring-store-password"><link linkend="gnome-keyring-store-password">gnome_keyring_store_password</link></primaryie></indexentry>
+<indexentry><primaryie linkends="gnome-keyring-store-password-sync"><link linkend="gnome-keyring-store-password-sync">gnome_keyring_store_password_sync</link></primaryie></indexentry>
+</indexdiv>
+</indexdiv>

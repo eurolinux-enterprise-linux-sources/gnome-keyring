@@ -1,0 +1,61 @@
+<?xml version="1.0"?>
+<!DOCTYPE refentry PUBLIC "-//OASIS//DTD DocBook XML V4.1.2//EN"
+               "http://www.oasis-open.org/docbook/xml/4.1.2/docbookx.dtd">
+<refentry id="gcr-GcrImportDialog">
+<refmeta>
+<refentrytitle role="top_of_page" id="gcr-GcrImportDialog.top_of_page">GcrImportDialog</refentrytitle>
+<manvolnum>3</manvolnum>
+<refmiscinfo>GCR Library</refmiscinfo>
+</refmeta>
+
+<refnamediv>
+<refname>GcrImportDialog</refname>
+<refpurpose></refpurpose>
+</refnamediv>
+
+<refsynopsisdiv id="gcr-GcrImportDialog.synopsis" role="synopsis">
+<title role="synopsis.title">Synopsis</title>
+
+<synopsis>
+                    <link linkend="GcrImportDialogPrivate">GcrImportDialogPrivate</link>;
+                    <link linkend="GcrImportDialog">GcrImportDialog</link>;
+</synopsis>
+</refsynopsisdiv>
+
+
+
+
+
+
+
+
+
+<refsect1 id="gcr-GcrImportDialog.description" role="desc">
+<title role="desc.title">Description</title>
+<para>
+</para>
+</refsect1>
+
+<refsect1 id="gcr-GcrImportDialog.details" role="details">
+<title role="details.title">Details</title>
+<refsect2 id="GcrImportDialogPrivate" role="struct">
+<title>GcrImportDialogPrivate</title>
+<indexterm zone="GcrImportDialogPrivate"><primary sortas="GcrImportDialogPrivate">GcrImportDialogPrivate</primary></indexterm><programlisting>typedef struct _GcrImportDialogPrivate GcrImportDialogPrivate;</programlisting>
+<para>
+</para></refsect2>
+<refsect2 id="GcrImportDialog" role="struct">
+<title>GcrImportDialog</title>
+<indexterm zone="GcrImportDialog"><primary sortas="GcrImportDialog">GcrImportDialog</primary></indexterm><programlisting>typedef struct {
+	GtkDialog parent;
+	GcrImportDialogPrivate *pv;
+} GcrImportDialog;
+</programlisting>
+<para>
+</para></refsect2>
+
+</refsect1>
+
+
+
+
+</refentry>

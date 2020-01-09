@@ -1,0 +1,163 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Miscellaneous Functions</title>
+<meta name="generator" content="DocBook XSL Stylesheets V1.75.1">
+<link rel="home" href="index.html" title="GP11 Reference Manual">
+<link rel="up" href="ch01.html" title="PKCS#11 GObject Bindings">
+<link rel="prev" href="gp11-gp11-error.html" title="Errors">
+<meta name="generator" content="GTK-Doc V1.11 (XML mode)">
+<link rel="stylesheet" href="style.css" type="text/css">
+<link rel="chapter" href="ch01.html" title="PKCS#11 GObject Bindings">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<table class="navigation" id="top" width="100%" summary="Navigation header" cellpadding="2" cellspacing="2">
+<tr valign="middle">
+<td><a accesskey="p" href="gp11-gp11-error.html"><img src="left.png" width="24" height="24" border="0" alt="Prev"></a></td>
+<td><a accesskey="u" href="ch01.html"><img src="up.png" width="24" height="24" border="0" alt="Up"></a></td>
+<td><a accesskey="h" href="index.html"><img src="home.png" width="24" height="24" border="0" alt="Home"></a></td>
+<th width="100%" align="center">GP11 Reference Manual</th>
+<td> </td>
+</tr>
+<tr><td colspan="5" class="shortcuts">
+<a href="#gp11-gp11-misc.synopsis" class="shortcut">Top</a>
+                 | 
+                <a href="#gp11-gp11-misc.description" class="shortcut">Description</a>
+</td></tr>
+</table>
+<div class="refentry" title="Miscellaneous Functions">
+<a name="gp11-gp11-misc"></a><div class="titlepage"></div>
+<div class="refnamediv"><table width="100%"><tr>
+<td valign="top">
+<h2><span class="refentrytitle"><a name="gp11-gp11-misc.top_of_page"></a>Miscellaneous Functions</span></h2>
+<p>Miscellaneous Functions — Other miscellaneous functions.</p>
+</td>
+<td valign="top" align="right"></td>
+</tr></table></div>
+<div class="refsynopsisdiv" title="Synopsis">
+<a name="gp11-gp11-misc.synopsis"></a><h2>Synopsis</h2>
+<pre class="synopsis">
+<a
+href="http://library.gnome.org/devel/glib/unstable/glib-Doubly-Linked-Lists.html#GList"
+>GList</a>*              <a class="link" href="gp11-gp11-misc.html#gp11-list-ref-copy" title="gp11_list_ref_copy ()">gp11_list_ref_copy</a>                  (<a
+href="http://library.gnome.org/devel/glib/unstable/glib-Doubly-Linked-Lists.html#GList"
+>GList</a> *reflist);
+void                <a class="link" href="gp11-gp11-misc.html#gp11-list-unref-free" title="gp11_list_unref_free ()">gp11_list_unref_free</a>                (<a
+href="http://library.gnome.org/devel/glib/unstable/glib-Doubly-Linked-Lists.html#GList"
+>GList</a> *reflist);
+<a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"
+>gchar</a>*              <a class="link" href="gp11-gp11-misc.html#gp11-string-from-chars" title="gp11_string_from_chars ()">gp11_string_from_chars</a>              (const <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#guchar"
+>guchar</a> *data,
+                                                         <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gsize"
+>gsize</a> max);
+</pre>
+</div>
+<div class="refsect1" title="Description">
+<a name="gp11-gp11-misc.description"></a><h2>Description</h2>
+<p>
+A few supporting functions that come in handy when dealing with the GP11
+library or PKCS11 in general.</p>
+<p>
+</p>
+</div>
+<div class="refsect1" title="Details">
+<a name="gp11-gp11-misc.details"></a><h2>Details</h2>
+<div class="refsect2" title="gp11_list_ref_copy ()">
+<a name="gp11-list-ref-copy"></a><h3>gp11_list_ref_copy ()</h3>
+<pre class="programlisting"><a
+href="http://library.gnome.org/devel/glib/unstable/glib-Doubly-Linked-Lists.html#GList"
+>GList</a>*              gp11_list_ref_copy                  (<a
+href="http://library.gnome.org/devel/glib/unstable/glib-Doubly-Linked-Lists.html#GList"
+>GList</a> *reflist);</pre>
+<p>
+Copy a list of GObject based pointers. All objects 
+in the list will be reffed and the list will be copied.</p>
+<p>
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>reflist</code></em> :</span></p></td>
+<td>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> The copied and reffed list. When done, free it with 
+<a class="link" href="gp11-gp11-misc.html#gp11-list-unref-free" title="gp11_list_unref_free ()"><code class="function">gp11_list_unref_free()</code></a>
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" title="gp11_list_unref_free ()">
+<a name="gp11-list-unref-free"></a><h3>gp11_list_unref_free ()</h3>
+<pre class="programlisting">void                gp11_list_unref_free                (<a
+href="http://library.gnome.org/devel/glib/unstable/glib-Doubly-Linked-Lists.html#GList"
+>GList</a> *reflist);</pre>
+<p>
+Free a list of GObject based pointers. All objects in the list
+will be unreffed and then the list itself will be freed.</p>
+<p>
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody><tr>
+<td><p><span class="term"><em class="parameter"><code>reflist</code></em> :</span></p></td>
+<td>
+</td>
+</tr></tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" title="gp11_string_from_chars ()">
+<a name="gp11-string-from-chars"></a><h3>gp11_string_from_chars ()</h3>
+<pre class="programlisting"><a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gchar"
+>gchar</a>*              gp11_string_from_chars              (const <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#guchar"
+>guchar</a> *data,
+                                                         <a
+href="http://library.gnome.org/devel/glib/unstable/glib-Basic-Types.html#gsize"
+>gsize</a> max);</pre>
+<p>
+Create a string from a set of PKCS<span class="type">11</span> characters. This is 
+similar to g_strndup, except for that it also strips trailing 
+spaces. These space padded strings are often used in PKCS<span class="type">11</span>
+structures.</p>
+<p>
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>data</code></em> :</span></p></td>
+<td> The character data to turn into a null terminated string.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>max</code></em> :</span></p></td>
+<td> The maximum length of the charater data.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> The null terminated string.
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+</div>
+</div>
+<div class="footer">
+<hr>
+          Generated by GTK-Doc V1.11</div>
+</body>
+</html>

@@ -1,0 +1,298 @@
+<?xml version="1.0"?>
+<!DOCTYPE refentry PUBLIC "-//OASIS//DTD DocBook XML V4.1.2//EN"
+               "http://www.oasis-open.org/docbook/xml/4.1.2/docbookx.dtd">
+<refentry id="GcrImporter">
+<refmeta>
+<refentrytitle role="top_of_page" id="GcrImporter.top_of_page">GcrImporter</refentrytitle>
+<manvolnum>3</manvolnum>
+<refmiscinfo>GCR Library</refmiscinfo>
+</refmeta>
+
+<refnamediv>
+<refname>GcrImporter</refname>
+<refpurpose></refpurpose>
+</refnamediv>
+
+<refsynopsisdiv id="GcrImporter.synopsis" role="synopsis">
+<title role="synopsis.title">Synopsis</title>
+
+<synopsis>
+enum                <link linkend="GcrImporterPromptBehavior">GcrImporterPromptBehavior</link>;
+                    <link linkend="GcrImporterPrivate">GcrImporterPrivate</link>;
+                    <link linkend="GcrImporter-struct">GcrImporter</link>;
+<link linkend="GcrImporter">GcrImporter</link>*        <link linkend="gcr-importer-new">gcr_importer_new</link>                    (void);
+<link linkend="GcrParser">GcrParser</link>*          <link linkend="gcr-importer-get-parser">gcr_importer_get_parser</link>             (<link linkend="GcrImporter">GcrImporter</link> *self);
+<link linkend="void">void</link>                <link linkend="gcr-importer-set-parser">gcr_importer_set_parser</link>             (<link linkend="GcrImporter">GcrImporter</link> *self,
+                                                         <link linkend="GcrParser">GcrParser</link> *parser);
+struct <link linkend="GP11Slot">_GP11Slot</link>*   <link linkend="gcr-importer-get-slot">gcr_importer_get_slot</link>               (<link linkend="GcrImporter">GcrImporter</link> *self);
+<link linkend="void">void</link>                <link linkend="gcr-importer-set-slot">gcr_importer_set_slot</link>               (<link linkend="GcrImporter">GcrImporter</link> *self,
+                                                         <link linkend="struct--GP11Slot">struct _GP11Slot</link> *slot);
+<link linkend="GcrImporterPromptBehavior">GcrImporterPromptBehavior</link>  <link linkend="gcr-importer-get-prompt-behavior">gcr_importer_get_prompt_behavior</link>
+                                                        (<link linkend="GcrImporter">GcrImporter</link> *self);
+<link linkend="void">void</link>                <link linkend="gcr-importer-set-prompt-behavior">gcr_importer_set_prompt_behavior</link>    (<link linkend="GcrImporter">GcrImporter</link> *self,
+                                                         <link linkend="GcrImporterPromptBehavior">GcrImporterPromptBehavior</link> behavior);
+<link linkend="gboolean">gboolean</link>            <link linkend="gcr-importer-import">gcr_importer_import</link>                 (<link linkend="GcrImporter">GcrImporter</link> *self,
+                                                         <link linkend="GInputStream">GInputStream</link> *input,
+                                                         <link linkend="GCancellable">GCancellable</link> *cancel,
+                                                         <link linkend="GError">GError</link> **error);
+<link linkend="void">void</link>                <link linkend="gcr-importer-import-async">gcr_importer_import_async</link>           (<link linkend="GcrImporter">GcrImporter</link> *self,
+                                                         <link linkend="GInputStream">GInputStream</link> *input,
+                                                         <link linkend="GCancellable">GCancellable</link> *cancel,
+                                                         <link linkend="GAsyncReadyCallback">GAsyncReadyCallback</link> callback,
+                                                         <link linkend="gpointer">gpointer</link> user_data);
+<link linkend="gboolean">gboolean</link>            <link linkend="gcr-importer-import-finish">gcr_importer_import_finish</link>          (<link linkend="GcrImporter">GcrImporter</link> *self,
+                                                         <link linkend="GAsyncResult">GAsyncResult</link> *res,
+                                                         <link linkend="GError">GError</link> **error);
+</synopsis>
+</refsynopsisdiv>
+
+<refsect1 id="GcrImporter.object-hierarchy" role="object_hierarchy">
+<title role="object_hierarchy.title">Object Hierarchy</title>
+<synopsis>
+  <link linkend="GObject">GObject</link>
+   +----GcrImporter
+</synopsis>
+</refsect1>
+
+
+
+<refsect1 id="GcrImporter.implemented-interfaces" role="impl_interfaces">
+<title role="impl_interfaces.title">Implemented Interfaces</title>
+<para>
+GcrImporter implements
+ <link linkend="GAsyncResult">GAsyncResult</link>.</para>
+</refsect1>
+
+
+<refsect1 id="GcrImporter.properties" role="properties">
+<title role="properties.title">Properties</title>
+<synopsis>
+  &quot;<link linkend="GcrImporter--parser">parser</link>&quot;                   <link linkend="GcrParser">GcrParser</link>*            : Read / Write
+  &quot;<link linkend="GcrImporter--prompt-behavior">prompt-behavior</link>&quot;          <link linkend="gint">gint</link>                  : Read / Write
+  &quot;<link linkend="GcrImporter--slot">slot</link>&quot;                     <link linkend="GP11Slot">GP11Slot</link>*             : Read / Write
+</synopsis>
+</refsect1>
+
+<refsect1 id="GcrImporter.signals" role="signal_proto">
+<title role="signal_proto.title">Signals</title>
+<synopsis>
+  &quot;<link linkend="GcrImporter-imported">imported</link>&quot;                                       : Run First
+</synopsis>
+</refsect1>
+
+
+<refsect1 id="GcrImporter.description" role="desc">
+<title role="desc.title">Description</title>
+<para>
+</para>
+</refsect1>
+
+<refsect1 id="GcrImporter.details" role="details">
+<title role="details.title">Details</title>
+<refsect2 id="GcrImporterPromptBehavior" role="enum">
+<title>enum GcrImporterPromptBehavior</title>
+<indexterm zone="GcrImporterPromptBehavior"><primary sortas="GcrImporterPromptBehavior">GcrImporterPromptBehavior</primary></indexterm><programlisting>typedef enum {
+	GCR_IMPORTER_PROMPT_NEEDED,
+	GCR_IMPORTER_PROMPT_ALWAYS,
+	GCR_IMPORTER_PROMPT_NEVER
+} GcrImporterPromptBehavior;
+</programlisting>
+<para>
+</para></refsect2>
+<refsect2 id="GcrImporterPrivate" role="struct">
+<title>GcrImporterPrivate</title>
+<indexterm zone="GcrImporterPrivate"><primary sortas="GcrImporterPrivate">GcrImporterPrivate</primary></indexterm><programlisting>typedef struct _GcrImporterPrivate GcrImporterPrivate;</programlisting>
+<para>
+</para></refsect2>
+<refsect2 id="GcrImporter-struct" role="struct">
+<title>GcrImporter</title>
+<indexterm zone="GcrImporter-struct"><primary sortas="GcrImporter">GcrImporter</primary></indexterm><programlisting>typedef struct _GcrImporter GcrImporter;</programlisting>
+<para>
+</para></refsect2>
+<refsect2 id="gcr-importer-new" role="function">
+<title>gcr_importer_new ()</title>
+<indexterm zone="gcr-importer-new"><primary sortas="gcr_importer_new">gcr_importer_new</primary></indexterm><programlisting><link linkend="GcrImporter">GcrImporter</link>*        gcr_importer_new                    (void);</programlisting>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara>
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="gcr-importer-get-parser" role="function">
+<title>gcr_importer_get_parser ()</title>
+<indexterm zone="gcr-importer-get-parser"><primary sortas="gcr_importer_get_parser">gcr_importer_get_parser</primary></indexterm><programlisting><link linkend="GcrParser">GcrParser</link>*          gcr_importer_get_parser             (<link linkend="GcrImporter">GcrImporter</link> *self);</programlisting>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>self</parameter>&#160;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara>
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="gcr-importer-set-parser" role="function">
+<title>gcr_importer_set_parser ()</title>
+<indexterm zone="gcr-importer-set-parser"><primary sortas="gcr_importer_set_parser">gcr_importer_set_parser</primary></indexterm><programlisting><link linkend="void">void</link>                gcr_importer_set_parser             (<link linkend="GcrImporter">GcrImporter</link> *self,
+                                                         <link linkend="GcrParser">GcrParser</link> *parser);</programlisting>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>self</parameter>&#160;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>parser</parameter>&#160;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="gcr-importer-get-slot" role="function">
+<title>gcr_importer_get_slot ()</title>
+<indexterm zone="gcr-importer-get-slot"><primary sortas="gcr_importer_get_slot">gcr_importer_get_slot</primary></indexterm><programlisting>struct <link linkend="GP11Slot">_GP11Slot</link>*   gcr_importer_get_slot               (<link linkend="GcrImporter">GcrImporter</link> *self);</programlisting>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>self</parameter>&#160;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara>
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="gcr-importer-set-slot" role="function">
+<title>gcr_importer_set_slot ()</title>
+<indexterm zone="gcr-importer-set-slot"><primary sortas="gcr_importer_set_slot">gcr_importer_set_slot</primary></indexterm><programlisting><link linkend="void">void</link>                gcr_importer_set_slot               (<link linkend="GcrImporter">GcrImporter</link> *self,
+                                                         <link linkend="struct--GP11Slot">struct _GP11Slot</link> *slot);</programlisting>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>self</parameter>&#160;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>slot</parameter>&#160;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="gcr-importer-get-prompt-behavior" role="function">
+<title>gcr_importer_get_prompt_behavior ()</title>
+<indexterm zone="gcr-importer-get-prompt-behavior"><primary sortas="gcr_importer_get_prompt_behavior">gcr_importer_get_prompt_behavior</primary></indexterm><programlisting><link linkend="GcrImporterPromptBehavior">GcrImporterPromptBehavior</link>  gcr_importer_get_prompt_behavior
+                                                        (<link linkend="GcrImporter">GcrImporter</link> *self);</programlisting>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>self</parameter>&#160;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara>
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="gcr-importer-set-prompt-behavior" role="function">
+<title>gcr_importer_set_prompt_behavior ()</title>
+<indexterm zone="gcr-importer-set-prompt-behavior"><primary sortas="gcr_importer_set_prompt_behavior">gcr_importer_set_prompt_behavior</primary></indexterm><programlisting><link linkend="void">void</link>                gcr_importer_set_prompt_behavior    (<link linkend="GcrImporter">GcrImporter</link> *self,
+                                                         <link linkend="GcrImporterPromptBehavior">GcrImporterPromptBehavior</link> behavior);</programlisting>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>self</parameter>&#160;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>behavior</parameter>&#160;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="gcr-importer-import" role="function">
+<title>gcr_importer_import ()</title>
+<indexterm zone="gcr-importer-import"><primary sortas="gcr_importer_import">gcr_importer_import</primary></indexterm><programlisting><link linkend="gboolean">gboolean</link>            gcr_importer_import                 (<link linkend="GcrImporter">GcrImporter</link> *self,
+                                                         <link linkend="GInputStream">GInputStream</link> *input,
+                                                         <link linkend="GCancellable">GCancellable</link> *cancel,
+                                                         <link linkend="GError">GError</link> **error);</programlisting>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>self</parameter>&#160;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>input</parameter>&#160;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>cancel</parameter>&#160;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>error</parameter>&#160;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara>
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="gcr-importer-import-async" role="function">
+<title>gcr_importer_import_async ()</title>
+<indexterm zone="gcr-importer-import-async"><primary sortas="gcr_importer_import_async">gcr_importer_import_async</primary></indexterm><programlisting><link linkend="void">void</link>                gcr_importer_import_async           (<link linkend="GcrImporter">GcrImporter</link> *self,
+                                                         <link linkend="GInputStream">GInputStream</link> *input,
+                                                         <link linkend="GCancellable">GCancellable</link> *cancel,
+                                                         <link linkend="GAsyncReadyCallback">GAsyncReadyCallback</link> callback,
+                                                         <link linkend="gpointer">gpointer</link> user_data);</programlisting>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>self</parameter>&#160;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>input</parameter>&#160;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>cancel</parameter>&#160;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>callback</parameter>&#160;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>user_data</parameter>&#160;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="gcr-importer-import-finish" role="function">
+<title>gcr_importer_import_finish ()</title>
+<indexterm zone="gcr-importer-import-finish"><primary sortas="gcr_importer_import_finish">gcr_importer_import_finish</primary></indexterm><programlisting><link linkend="gboolean">gboolean</link>            gcr_importer_import_finish          (<link linkend="GcrImporter">GcrImporter</link> *self,
+                                                         <link linkend="GAsyncResult">GAsyncResult</link> *res,
+                                                         <link linkend="GError">GError</link> **error);</programlisting>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>self</parameter>&#160;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>res</parameter>&#160;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>error</parameter>&#160;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara>
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+
+</refsect1>
+<refsect1 id="GcrImporter.property-details" role="property_details">
+<title role="property_details.title">Property Details</title>
+<refsect2 id="GcrImporter--parser" role="property"><title>The <literal>&quot;parser&quot;</literal> property</title>
+<indexterm zone="GcrImporter--parser"><primary sortas="GcrImporter:parser">GcrImporter:parser</primary></indexterm><programlisting>  &quot;parser&quot;                   <link linkend="GcrParser">GcrParser</link>*            : Read / Write</programlisting>
+<para>Parser used to parse imported data.</para></refsect2>
+<refsect2 id="GcrImporter--prompt-behavior" role="property"><title>The <literal>&quot;prompt-behavior&quot;</literal> property</title>
+<indexterm zone="GcrImporter--prompt-behavior"><primary sortas="GcrImporter:prompt-behavior">GcrImporter:prompt-behavior</primary></indexterm><programlisting>  &quot;prompt-behavior&quot;          <link linkend="gint">gint</link>                  : Read / Write</programlisting>
+<para>Import Prompt Behavior.</para><para>Allowed values: &gt;= 0</para>
+<para>Default value: 0</para>
+</refsect2>
+<refsect2 id="GcrImporter--slot" role="property"><title>The <literal>&quot;slot&quot;</literal> property</title>
+<indexterm zone="GcrImporter--slot"><primary sortas="GcrImporter:slot">GcrImporter:slot</primary></indexterm><programlisting>  &quot;slot&quot;                     <link linkend="GP11Slot">GP11Slot</link>*             : Read / Write</programlisting>
+<para>PKCS#11 slot to import data into.</para></refsect2>
+</refsect1>
+
+<refsect1 id="GcrImporter.signal-details" role="signals">
+<title role="signals.title">Signal Details</title>
+<refsect2 id="GcrImporter-imported" role="signal"><title>The <literal>&quot;imported&quot;</literal> signal</title>
+<indexterm zone="GcrImporter-imported"><primary sortas="GcrImporter::imported">GcrImporter::imported</primary></indexterm><programlisting><link linkend="void">void</link>                user_function                      (<link linkend="GcrImporter">GcrImporter</link> *gcrimporter,
+                                                        <link linkend="GP11Object">GP11Object</link>  *arg1,
+                                                        <link linkend="gpointer">gpointer</link>     user_data)        : Run First</programlisting>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>gcrimporter</parameter>&#160;:</term>
+<listitem><simpara>the object which received the signal.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>arg1</parameter>&#160;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>user_data</parameter>&#160;:</term>
+<listitem><simpara>user data set when the signal handler was connected.</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+</refsect1>
+
+
+
+</refentry>

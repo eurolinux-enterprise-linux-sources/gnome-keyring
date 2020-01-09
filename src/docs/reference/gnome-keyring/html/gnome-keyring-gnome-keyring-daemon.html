@@ -1,0 +1,114 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Daemon Management Functions</title>
+<meta name="generator" content="DocBook XSL Stylesheets V1.75.1">
+<link rel="home" href="index.html" title="gnome-keyring Reference Manual">
+<link rel="up" href="ch01.html" title="gnome-keyring API Reference">
+<link rel="prev" href="gnome-keyring-gnome-keyring-misc.html" title="Miscellaneous Functions">
+<link rel="next" href="gnome-keyring-gnome-keyring-generic-callbacks.html" title="Callbacks">
+<meta name="generator" content="GTK-Doc V1.11 (XML mode)">
+<link rel="stylesheet" href="style.css" type="text/css">
+<link rel="chapter" href="ch01.html" title="gnome-keyring API Reference">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<table class="navigation" id="top" width="100%" summary="Navigation header" cellpadding="2" cellspacing="2">
+<tr valign="middle">
+<td><a accesskey="p" href="gnome-keyring-gnome-keyring-misc.html"><img src="left.png" width="24" height="24" border="0" alt="Prev"></a></td>
+<td><a accesskey="u" href="ch01.html"><img src="up.png" width="24" height="24" border="0" alt="Up"></a></td>
+<td><a accesskey="h" href="index.html"><img src="home.png" width="24" height="24" border="0" alt="Home"></a></td>
+<th width="100%" align="center">gnome-keyring Reference Manual</th>
+<td><a accesskey="n" href="gnome-keyring-gnome-keyring-generic-callbacks.html"><img src="right.png" width="24" height="24" border="0" alt="Next"></a></td>
+</tr>
+<tr><td colspan="5" class="shortcuts">
+<a href="#gnome-keyring-gnome-keyring-daemon.synopsis" class="shortcut">Top</a>
+                 | 
+                <a href="#gnome-keyring-gnome-keyring-daemon.description" class="shortcut">Description</a>
+</td></tr>
+</table>
+<div class="refentry" title="Daemon Management Functions">
+<a name="gnome-keyring-gnome-keyring-daemon"></a><div class="titlepage"></div>
+<div class="refnamediv"><table width="100%"><tr>
+<td valign="top">
+<h2><span class="refentrytitle"><a name="gnome-keyring-gnome-keyring-daemon.top_of_page"></a>Daemon Management Functions</span></h2>
+<p>Daemon Management Functions — Functions used by session to run the Gnome Keyring Daemon.</p>
+</td>
+<td valign="top" align="right"></td>
+</tr></table></div>
+<div class="refsynopsisdiv" title="Synopsis">
+<a name="gnome-keyring-gnome-keyring-daemon.synopsis"></a><h2>Synopsis</h2>
+<pre class="synopsis">
+<a class="link" href="gnome-keyring-gnome-keyring-result.html#GnomeKeyringResult" title="enum GnomeKeyringResult">GnomeKeyringResult</a>  <a class="link" href="gnome-keyring-gnome-keyring-daemon.html#gnome-keyring-daemon-set-display-sync" title="gnome_keyring_daemon_set_display_sync ()">gnome_keyring_daemon_set_display_sync</a>
+                                                        (const char *display);
+<a class="link" href="gnome-keyring-gnome-keyring-result.html#GnomeKeyringResult" title="enum GnomeKeyringResult">GnomeKeyringResult</a>  <a class="link" href="gnome-keyring-gnome-keyring-daemon.html#gnome-keyring-daemon-prepare-environment-sync" title="gnome_keyring_daemon_prepare_environment_sync ()">gnome_keyring_daemon_prepare_environment_sync</a>
+                                                        (void);
+</pre>
+</div>
+<div class="refsect1" title="Description">
+<a name="gnome-keyring-gnome-keyring-daemon.description"></a><h2>Description</h2>
+<p>
+These functions are not used by most applications using Gnome Keyring.</p>
+<p>
+</p>
+</div>
+<div class="refsect1" title="Details">
+<a name="gnome-keyring-gnome-keyring-daemon.details"></a><h2>Details</h2>
+<div class="refsect2" title="gnome_keyring_daemon_set_display_sync ()">
+<a name="gnome-keyring-daemon-set-display-sync"></a><h3>gnome_keyring_daemon_set_display_sync ()</h3>
+<pre class="programlisting"><a class="link" href="gnome-keyring-gnome-keyring-result.html#GnomeKeyringResult" title="enum GnomeKeyringResult">GnomeKeyringResult</a>  gnome_keyring_daemon_set_display_sync
+                                                        (const char *display);</pre>
+<p>
+Deprecated. Use <a class="link" href="gnome-keyring-gnome-keyring-daemon.html#gnome-keyring-daemon-prepare-environment-sync" title="gnome_keyring_daemon_prepare_environment_sync ()"><code class="function">gnome_keyring_daemon_prepare_environment_sync()</code></a></p>
+<p>
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>display</code></em> :</span></p></td>
+<td> Deprecated 
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td>
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" title="gnome_keyring_daemon_prepare_environment_sync ()">
+<a name="gnome-keyring-daemon-prepare-environment-sync"></a><h3>gnome_keyring_daemon_prepare_environment_sync ()</h3>
+<pre class="programlisting"><a class="link" href="gnome-keyring-gnome-keyring-result.html#GnomeKeyringResult" title="enum GnomeKeyringResult">GnomeKeyringResult</a>  gnome_keyring_daemon_prepare_environment_sync
+                                                        (void);</pre>
+<p>
+Used by session managers or applications that manage the gnome-keyring-daemon
+process. Prepares the environment of both the daemon and the application
+for successful communication. 
+</p>
+<p>
+This includes telling the daemon the DBUS addresses, X display and related 
+information to use for communication and display. This information is only 
+used by the daemon if it does not already have it. For example the X display
+of the daemon cannot be changed using this call.</p>
+<p>
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody><tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> <code class="literal">GNOME_KEYRING_RESULT_OK</code> if the operation was succcessful or 
+an error result otherwise. 
+</td>
+</tr></tbody>
+</table></div>
+</div>
+</div>
+</div>
+<div class="footer">
+<hr>
+          Generated by GTK-Doc V1.11</div>
+</body>
+</html>

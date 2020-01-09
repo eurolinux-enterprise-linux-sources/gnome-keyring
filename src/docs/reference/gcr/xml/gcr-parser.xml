@@ -1,0 +1,269 @@
+<?xml version="1.0"?>
+<!DOCTYPE refentry PUBLIC "-//OASIS//DTD DocBook XML V4.1.2//EN"
+               "http://www.oasis-open.org/docbook/xml/4.1.2/docbookx.dtd">
+<refentry id="GcrParser">
+<refmeta>
+<refentrytitle role="top_of_page" id="GcrParser.top_of_page">GcrParser</refentrytitle>
+<manvolnum>3</manvolnum>
+<refmiscinfo>GCR Library</refmiscinfo>
+</refmeta>
+
+<refnamediv>
+<refname>GcrParser</refname>
+<refpurpose></refpurpose>
+</refnamediv>
+
+<refsynopsisdiv id="GcrParser.synopsis" role="synopsis">
+<title role="synopsis.title">Synopsis</title>
+
+<synopsis>
+                    <link linkend="GcrParsedItem">GcrParsedItem</link>;
+                    <link linkend="GcrParserPrivate">GcrParserPrivate</link>;
+                    <link linkend="GcrParser-struct">GcrParser</link>;
+<link linkend="GcrParser">GcrParser</link>*          <link linkend="gcr-parser-new">gcr_parser_new</link>                      (void);
+<link linkend="gboolean">gboolean</link>            <link linkend="gcr-parser-format-enable">gcr_parser_format_enable</link>            (<link linkend="GcrParser">GcrParser</link> *self,
+                                                         <link linkend="gint">gint</link> format);
+<link linkend="gboolean">gboolean</link>            <link linkend="gcr-parser-format-disable">gcr_parser_format_disable</link>           (<link linkend="GcrParser">GcrParser</link> *self,
+                                                         <link linkend="gint">gint</link> format);
+<link linkend="gboolean">gboolean</link>            <link linkend="gcr-parser-format-supported">gcr_parser_format_supported</link>         (<link linkend="GcrParser">GcrParser</link> *self,
+                                                         <link linkend="gint">gint</link> format);
+<link linkend="gboolean">gboolean</link>            <link linkend="gcr-parser-parse-data">gcr_parser_parse_data</link>               (<link linkend="GcrParser">GcrParser</link> *self,
+                                                         const <link linkend="guchar">guchar</link> *data,
+                                                         <link linkend="gsize">gsize</link> n_data,
+                                                         <link linkend="GError">GError</link> **err);
+<link linkend="void">void</link>                <link linkend="gcr-parser-add-password">gcr_parser_add_password</link>             (<link linkend="GcrParser">GcrParser</link> *self,
+                                                         const <link linkend="gchar">gchar</link> *password);
+const <link linkend="gchar">gchar</link>*        <link linkend="gcr-parser-get-parsed-label">gcr_parser_get_parsed_label</link>         (<link linkend="GcrParser">GcrParser</link> *self);
+const <link linkend="gchar">gchar</link>*        <link linkend="gcr-parser-get-parsed-description">gcr_parser_get_parsed_description</link>   (<link linkend="GcrParser">GcrParser</link> *self);
+struct <link linkend="GP11Attributes">_GP11Attributes</link>* <link linkend="gcr-parser-get-parsed-attributes">gcr_parser_get_parsed_attributes</link>
+                                                        (<link linkend="GcrParser">GcrParser</link> *self);
+</synopsis>
+</refsynopsisdiv>
+
+<refsect1 id="GcrParser.object-hierarchy" role="object_hierarchy">
+<title role="object_hierarchy.title">Object Hierarchy</title>
+<synopsis>
+  <link linkend="GObject">GObject</link>
+   +----GcrParser
+</synopsis>
+</refsect1>
+
+
+
+
+
+<refsect1 id="GcrParser.properties" role="properties">
+<title role="properties.title">Properties</title>
+<synopsis>
+  &quot;<link linkend="GcrParser--parsed-attributes">parsed-attributes</link>&quot;        <link linkend="GP11Attributes">GP11Attributes</link>*       : Read
+  &quot;<link linkend="GcrParser--parsed-description">parsed-description</link>&quot;       <link linkend="gchar">gchar</link>*                : Read
+  &quot;<link linkend="GcrParser--parsed-label">parsed-label</link>&quot;             <link linkend="gchar">gchar</link>*                : Read
+</synopsis>
+</refsect1>
+
+<refsect1 id="GcrParser.signals" role="signal_proto">
+<title role="signal_proto.title">Signals</title>
+<synopsis>
+  &quot;<link linkend="GcrParser-authenticate">authenticate</link>&quot;                                   : Run Last
+  &quot;<link linkend="GcrParser-parsed">parsed</link>&quot;                                         : Run First
+</synopsis>
+</refsect1>
+
+
+<refsect1 id="GcrParser.description" role="desc">
+<title role="desc.title">Description</title>
+<para>
+</para>
+</refsect1>
+
+<refsect1 id="GcrParser.details" role="details">
+<title role="details.title">Details</title>
+<refsect2 id="GcrParsedItem" role="struct">
+<title>GcrParsedItem</title>
+<indexterm zone="GcrParsedItem"><primary sortas="GcrParsedItem">GcrParsedItem</primary></indexterm><programlisting>typedef struct _GcrParsedItem GcrParsedItem;</programlisting>
+<para>
+</para></refsect2>
+<refsect2 id="GcrParserPrivate" role="struct">
+<title>GcrParserPrivate</title>
+<indexterm zone="GcrParserPrivate"><primary sortas="GcrParserPrivate">GcrParserPrivate</primary></indexterm><programlisting>typedef struct _GcrParserPrivate GcrParserPrivate;</programlisting>
+<para>
+</para></refsect2>
+<refsect2 id="GcrParser-struct" role="struct">
+<title>GcrParser</title>
+<indexterm zone="GcrParser-struct"><primary sortas="GcrParser">GcrParser</primary></indexterm><programlisting>typedef struct _GcrParser GcrParser;</programlisting>
+<para>
+</para></refsect2>
+<refsect2 id="gcr-parser-new" role="function">
+<title>gcr_parser_new ()</title>
+<indexterm zone="gcr-parser-new"><primary sortas="gcr_parser_new">gcr_parser_new</primary></indexterm><programlisting><link linkend="GcrParser">GcrParser</link>*          gcr_parser_new                      (void);</programlisting>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara>
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="gcr-parser-format-enable" role="function">
+<title>gcr_parser_format_enable ()</title>
+<indexterm zone="gcr-parser-format-enable"><primary sortas="gcr_parser_format_enable">gcr_parser_format_enable</primary></indexterm><programlisting><link linkend="gboolean">gboolean</link>            gcr_parser_format_enable            (<link linkend="GcrParser">GcrParser</link> *self,
+                                                         <link linkend="gint">gint</link> format);</programlisting>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>self</parameter>&#160;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>format</parameter>&#160;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara>
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="gcr-parser-format-disable" role="function">
+<title>gcr_parser_format_disable ()</title>
+<indexterm zone="gcr-parser-format-disable"><primary sortas="gcr_parser_format_disable">gcr_parser_format_disable</primary></indexterm><programlisting><link linkend="gboolean">gboolean</link>            gcr_parser_format_disable           (<link linkend="GcrParser">GcrParser</link> *self,
+                                                         <link linkend="gint">gint</link> format);</programlisting>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>self</parameter>&#160;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>format</parameter>&#160;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara>
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="gcr-parser-format-supported" role="function">
+<title>gcr_parser_format_supported ()</title>
+<indexterm zone="gcr-parser-format-supported"><primary sortas="gcr_parser_format_supported">gcr_parser_format_supported</primary></indexterm><programlisting><link linkend="gboolean">gboolean</link>            gcr_parser_format_supported         (<link linkend="GcrParser">GcrParser</link> *self,
+                                                         <link linkend="gint">gint</link> format);</programlisting>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>self</parameter>&#160;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>format</parameter>&#160;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara>
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="gcr-parser-parse-data" role="function">
+<title>gcr_parser_parse_data ()</title>
+<indexterm zone="gcr-parser-parse-data"><primary sortas="gcr_parser_parse_data">gcr_parser_parse_data</primary></indexterm><programlisting><link linkend="gboolean">gboolean</link>            gcr_parser_parse_data               (<link linkend="GcrParser">GcrParser</link> *self,
+                                                         const <link linkend="guchar">guchar</link> *data,
+                                                         <link linkend="gsize">gsize</link> n_data,
+                                                         <link linkend="GError">GError</link> **err);</programlisting>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>self</parameter>&#160;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>data</parameter>&#160;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>n_data</parameter>&#160;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>err</parameter>&#160;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara>
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="gcr-parser-add-password" role="function">
+<title>gcr_parser_add_password ()</title>
+<indexterm zone="gcr-parser-add-password"><primary sortas="gcr_parser_add_password">gcr_parser_add_password</primary></indexterm><programlisting><link linkend="void">void</link>                gcr_parser_add_password             (<link linkend="GcrParser">GcrParser</link> *self,
+                                                         const <link linkend="gchar">gchar</link> *password);</programlisting>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>self</parameter>&#160;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>password</parameter>&#160;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="gcr-parser-get-parsed-label" role="function">
+<title>gcr_parser_get_parsed_label ()</title>
+<indexterm zone="gcr-parser-get-parsed-label"><primary sortas="gcr_parser_get_parsed_label">gcr_parser_get_parsed_label</primary></indexterm><programlisting>const <link linkend="gchar">gchar</link>*        gcr_parser_get_parsed_label         (<link linkend="GcrParser">GcrParser</link> *self);</programlisting>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>self</parameter>&#160;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara>
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="gcr-parser-get-parsed-description" role="function">
+<title>gcr_parser_get_parsed_description ()</title>
+<indexterm zone="gcr-parser-get-parsed-description"><primary sortas="gcr_parser_get_parsed_description">gcr_parser_get_parsed_description</primary></indexterm><programlisting>const <link linkend="gchar">gchar</link>*        gcr_parser_get_parsed_description   (<link linkend="GcrParser">GcrParser</link> *self);</programlisting>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>self</parameter>&#160;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara>
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="gcr-parser-get-parsed-attributes" role="function">
+<title>gcr_parser_get_parsed_attributes ()</title>
+<indexterm zone="gcr-parser-get-parsed-attributes"><primary sortas="gcr_parser_get_parsed_attributes">gcr_parser_get_parsed_attributes</primary></indexterm><programlisting>struct <link linkend="GP11Attributes">_GP11Attributes</link>* gcr_parser_get_parsed_attributes
+                                                        (<link linkend="GcrParser">GcrParser</link> *self);</programlisting>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>self</parameter>&#160;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara>
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+
+</refsect1>
+<refsect1 id="GcrParser.property-details" role="property_details">
+<title role="property_details.title">Property Details</title>
+<refsect2 id="GcrParser--parsed-attributes" role="property"><title>The <literal>&quot;parsed-attributes&quot;</literal> property</title>
+<indexterm zone="GcrParser--parsed-attributes"><primary sortas="GcrParser:parsed-attributes">GcrParser:parsed-attributes</primary></indexterm><programlisting>  &quot;parsed-attributes&quot;        <link linkend="GP11Attributes">GP11Attributes</link>*       : Read</programlisting>
+<para>Parsed PKCS#11 attributes.</para></refsect2>
+<refsect2 id="GcrParser--parsed-description" role="property"><title>The <literal>&quot;parsed-description&quot;</literal> property</title>
+<indexterm zone="GcrParser--parsed-description"><primary sortas="GcrParser:parsed-description">GcrParser:parsed-description</primary></indexterm><programlisting>  &quot;parsed-description&quot;       <link linkend="gchar">gchar</link>*                : Read</programlisting>
+<para>Parsed item description.</para><para>Default value: ""</para>
+</refsect2>
+<refsect2 id="GcrParser--parsed-label" role="property"><title>The <literal>&quot;parsed-label&quot;</literal> property</title>
+<indexterm zone="GcrParser--parsed-label"><primary sortas="GcrParser:parsed-label">GcrParser:parsed-label</primary></indexterm><programlisting>  &quot;parsed-label&quot;             <link linkend="gchar">gchar</link>*                : Read</programlisting>
+<para>Parsed item label.</para><para>Default value: ""</para>
+</refsect2>
+</refsect1>
+
+<refsect1 id="GcrParser.signal-details" role="signals">
+<title role="signals.title">Signal Details</title>
+<refsect2 id="GcrParser-authenticate" role="signal"><title>The <literal>&quot;authenticate&quot;</literal> signal</title>
+<indexterm zone="GcrParser-authenticate"><primary sortas="GcrParser::authenticate">GcrParser::authenticate</primary></indexterm><programlisting><link linkend="gboolean">gboolean</link>            user_function                      (<link linkend="GcrParser">GcrParser</link> *gcrparser,
+                                                        <link linkend="gpointer">gpointer</link>   arg1,
+                                                        <link linkend="gpointer">gpointer</link>   user_data)      : Run Last</programlisting>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>gcrparser</parameter>&#160;:</term>
+<listitem><simpara>the object which received the signal.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>arg1</parameter>&#160;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>user_data</parameter>&#160;:</term>
+<listitem><simpara>user data set when the signal handler was connected.</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara>
+</simpara></listitem></varlistentry>
+</variablelist></refsect2><refsect2 id="GcrParser-parsed" role="signal"><title>The <literal>&quot;parsed&quot;</literal> signal</title>
+<indexterm zone="GcrParser-parsed"><primary sortas="GcrParser::parsed">GcrParser::parsed</primary></indexterm><programlisting><link linkend="void">void</link>                user_function                      (<link linkend="GcrParser">GcrParser</link> *gcrparser,
+                                                        <link linkend="gpointer">gpointer</link>   user_data)      : Run First</programlisting>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>gcrparser</parameter>&#160;:</term>
+<listitem><simpara>the object which received the signal.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>user_data</parameter>&#160;:</term>
+<listitem><simpara>user data set when the signal handler was connected.</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+</refsect1>
+
+
+
+</refentry>

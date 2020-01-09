@@ -1,0 +1,1118 @@
+# GNOME võtmerõnga eesti keele tõlge.
+# Estonian translation of GNOME-keyring.
+#
+# Copyright (C) 2005, 2006 Free Software Foundation, Inc.
+# Copyright (C) 2007-2009 The GNOME Project.
+# This file is distributed under the same license as the gnome-keyring package.
+#
+# Ivar Smolin <okul linux ee>, 2005-2009.
+# Priit Laes <plaes plaes org>, 2005, 2006, 2009
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: gnome-keyring HEAD\n"
+"Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=gnome-"
+"keyring&component=general\n"
+"POT-Creation-Date: 2009-07-23 15:59+0000\n"
+"PO-Revision-Date: 2009-08-12 21:56+0300\n"
+"Last-Translator: Mattias Põldaru <mahfiaz gmail com>\n"
+"Language-Team: Estonian <gnome-et@linux.ee>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#. TRANSLATORS: Don't translate text in markup (ie: HTML or XML tags)
+#, c-format
+msgid ""
+"The application '%s' (%s) wants to access the password for '<object "
+"prop='name'/>' in the default keyring."
+msgstr ""
+"Rakendus '%s' (%s) soovib '<object prop='name'/>' jaoks kasutada parooli, "
+"mis asub vaikimisi võtmerõngas."
+
+#. TRANSLATORS: Don't translate text in markup (ie: HTML or XML tags)
+#, c-format
+msgid ""
+"The application '%s' (%s) wants to access the password for '<object "
+"prop='name'/>' in %s."
+msgstr ""
+"Rakendus '%s' (%s) soovib '<object prop='name'/>' jaoks kasutada parooli, "
+"mis asub võtmerõngas %s."
+
+#. TRANSLATORS: Don't translate text in markup (ie: HTML or XML tags)
+#, c-format
+msgid ""
+"The application '%s' wants to access the password for '<object prop='name'/"
+">' in the default keyring."
+msgstr ""
+"Rakendus '%s' soovib '<object prop='name'/>' jaoks kasutada vaikimisi "
+"võtmerõngas asuvat parooli."
+
+#. TRANSLATORS: Don't translate text in markup (ie: HTML or XML tags)
+#, c-format
+msgid ""
+"The application '%s' wants to access the password for '<object prop='name'/"
+">' in %s."
+msgstr ""
+"Rakendus '%s' soovib '<object prop='name'/>' jaoks kasutada võtmerõngas %s "
+"asuvat parooli."
+
+#. TRANSLATORS: Don't translate text in markup (ie: HTML or XML tags)
+msgid ""
+"An unknown application wants to access the password for '<object prop='name'/"
+">' in the default keyring."
+msgstr ""
+"Tundmatu rakendus soovib '<object prop='name'/>' jaoks kasutada vaikimisi "
+"võtmerõngas asuvat parooli."
+
+#. TRANSLATORS: Don't translate text in markup (ie: HTML or XML tags)
+#, c-format
+msgid ""
+"An unknown application wants to access the password for '<object prop='name'/"
+">' in %s."
+msgstr ""
+"Tundmatu rakendus soovib '<object prop='name'/>' jaoks kasutada võtmerõngas %"
+"s asuvat parooli."
+
+#. And put together the ask request
+msgid "Allow access"
+msgstr "Ligipääsu lubamine"
+
+msgid "Allow application access to keyring?"
+msgstr "Kas lubada rakendusel võtmerõngale ligi pääseda?"
+
+#. TRANSLATORS: The default keyring is locked
+#, c-format
+msgid ""
+"The application '%s' (%s) wants access to the default keyring, but it is "
+"locked"
+msgstr ""
+"Rakendus '%s' (%s) tahab kasutada vaikimisi võtmerõngast, kuid see on lukus"
+
+#. TRANSLATORS: The keyring '%s' is locked
+#, c-format
+msgid ""
+"The application '%s' (%s) wants access to the keyring '%s', but it is locked"
+msgstr "Rakendus '%s' (%s) tahab kasutada võtmerõngast '%s', kuid see on lukus"
+
+#. TRANSLATORS: The default keyring is locked
+#, c-format
+msgid ""
+"The application '%s' wants access to the default keyring, but it is locked"
+msgstr "Rakendus '%s' tahab kasutada vaikimisi võtmerõngast, kuid see on lukus"
+
+#. TRANSLATORS: The keyring '%s' is locked
+#, c-format
+msgid "The application '%s' wants access to the keyring '%s', but it is locked"
+msgstr "Rakendus '%s' tahab kasutada võtmerõngast '%s', kuid see on lukus"
+
+#. TRANSLATORS: The default keyring is locked
+#, c-format
+msgid ""
+"An unknown application wants access to the default keyring, but it is locked"
+msgstr ""
+"Tundmatu rakendus tahab kasutada vaikimisi võtmerõngast, kuid see on lukus"
+
+#. TRANSLATORS: The keyring '%s' is locked
+#, c-format
+msgid ""
+"An unknown application wants access to the keyring '%s', but it is locked"
+msgstr "Tundmatu rakendus tahab kasutada võtmerõngast '%s', kuid see on lukus"
+
+msgid "Enter password for default keyring to unlock"
+msgstr "Sisesta parool vaikimisi võtmerõnga avamiseks"
+
+#, c-format
+msgid "Enter password for keyring '%s' to unlock"
+msgstr "Sisesta parool võtmerõnga '%s' avamiseks"
+
+#. And put together the ask request
+msgid "Unlock Keyring"
+msgstr "Võtmerõnga avamine"
+
+msgid "Automatically unlock this keyring when I log in."
+msgstr "Võtmerõngas võetakse sisselogimisel automaatselt lukust lahti."
+
+#. TRANSLATORS: The password is for the new keyring
+#, c-format
+msgid ""
+"The application '%s' (%s) wants to create a new keyring called '%s'. You "
+"have to choose the password you want to use for it."
+msgstr ""
+"Rakendus '%s' (%s) tahab luua uut võtmerõngast nimega '%s'. Sa pead selle "
+"võtmerõnga jaoks parooli sisestama."
+
+#. TRANSLATORS: The password is for the new keyring
+#, c-format
+msgid ""
+"The application '%s' (%s) wants to create a new default keyring. You have to "
+"choose the password you want to use for it."
+msgstr ""
+"Rakendus '%s' (%s) tahab luua uut vaikimisi võtmerõngast. Sa pead selle "
+"võtmerõnga jaoks parooli sisestama."
+
+#. TRANSLATORS: The password is for the new keyring
+#, c-format
+msgid ""
+"The application '%s' wants to create a new keyring called '%s'. You have to "
+"choose the password you want to use for it."
+msgstr ""
+"Rakendus '%s' tahab luua uut võtmerõngast nimega '%s'. Sa pead selle "
+"võtmerõnga jaoks parooli sisestama."
+
+#. TRANSLATORS: The password is for the new keyring
+#, c-format
+msgid ""
+"The application '%s' wants to create a new default keyring. You have to "
+"choose the password you want to use for it."
+msgstr ""
+"Rakendus '%s' tahab luua uut vaikimisi võtmerõngast. Sa pead selle "
+"võtmerõnga jaoks parooli sisestama."
+
+#. TRANSLATORS: The password is for the new keyring
+#, c-format
+msgid ""
+"An unknown application wants to create a new keyring called '%s'. You have "
+"to choose the password you want to use for it."
+msgstr ""
+"Tundmatu rakendus tahab luua uut võtmerõngast nimega '%s'. Kui sa tahad seda "
+"võtmerõngast kasutada, siis pead sa selle jaoks parooli määrama."
+
+#. TRANSLATORS: The password is for the new keyring
+#, c-format
+msgid ""
+"An unknown application wants to create a new default keyring. You have to "
+"choose the password you want to use for it."
+msgstr ""
+"Tundmatu rakendus tahab luua uut vaikimisi võtmerõngast. Kui sa tahad seda "
+"võtmerõngast kasutada, siis pead sa selle jaoks parooli määrama."
+
+#. And put together the ask request
+msgid "New Keyring Password"
+msgstr "Uue võtmerõnga parool"
+
+msgid "Choose password for new keyring"
+msgstr "Sisesta uue võtmerõnga parool"
+
+#, c-format
+msgid ""
+"The application '%s' (%s) wants to change the password for the '%s' keyring. "
+"You have to choose the password you want to use for it."
+msgstr ""
+"Rakendus '%s' (%s) tahab muuta võtmerõnga '%s' parooli. Sa pead selle "
+"võtmerõnga jaoks parooli sisestama."
+
+#, c-format
+msgid ""
+"The application '%s' (%s) wants to change the password for the default "
+"keyring. You have to choose the password you want to use for it."
+msgstr ""
+"Rakendus '%s' (%s) tahab muuta vaikimisi võtmerõnga parooli. Sa pead selle "
+"võtmerõnga jaoks parooli sisestama."
+
+#, c-format
+msgid ""
+"The application '%s' wants to change the password for the '%s' keyring. You "
+"have to choose the password you want to use for it."
+msgstr ""
+"Rakendus '%s' tahab muuta võtmerõnga '%s' parooli. Sa pead selle võtmerõnga "
+"jaoks parooli sisestama."
+
+#, c-format
+msgid ""
+"The application '%s' wants to change the password for the default keyring. "
+"You have to choose the password you want to use for it."
+msgstr ""
+"Rakendus '%s' tahab muuta vaikimisi võtmerõnga parooli. Sa pead selle "
+"võtmerõnga jaoks parooli sisestama."
+
+#, c-format
+msgid ""
+"An unknown application wants to change the password for the '%s' keyring. "
+"You have to choose the password you want to use for it."
+msgstr ""
+"Tundmatu rakendus tahab muuta võtmerõnga '%s' parooli. Kui sa tahad seda "
+"võtmerõngast kasutada, siis pead sa selle jaoks parooli määrama."
+
+#, c-format
+msgid ""
+"An unknown application wants to change the password for the default keyring. "
+"You have to choose the password you want to use for it."
+msgstr ""
+"Tundmatu rakendus tahab muuta vaikimisi võtmerõnga parooli. Kui sa tahad "
+"seda võtmerõngast kasutada, siis pead sa selle jaoks parooli määrama."
+
+#, c-format
+msgid "Choose a new password for the '%s' keyring."
+msgstr "Määra võtmerõngale '%s' uus parool."
+
+#, c-format
+msgid "Choose a new password for the default keyring."
+msgstr "Määra vaikimisi võtmerõngale uus parool."
+
+#. And put together the ask request
+msgid "Change Keyring Password"
+msgstr "Võtmerõnga parooli vahetamine"
+
+#, c-format
+msgid ""
+"The application '%s' (%s) wants to store a password, but there is no default "
+"keyring. To create one, you need to choose the password you wish to use for "
+"it."
+msgstr ""
+"Rakendus '%s' (%s) soovib salvestada parooli aga siin pole vaikimisi "
+"võtmerõngast. Rõnga loomiseks pead sa sellele parooli valima."
+
+#, c-format
+msgid ""
+"The application '%s' wants to store a password, but there is no default "
+"keyring. To create one, you need to choose the password you wish to use for "
+"it."
+msgstr ""
+"Rakendus '%s' soovib salvestada parooli aga siin pole vaikimisi "
+"võtmerõngast. Rõnga loomiseks pead sa sellele parooli valima."
+
+#, c-format
+msgid ""
+"An unknown application wants to store a password, but there is no default "
+"keyring. To create one, you need to choose the password you wish to use for "
+"it."
+msgstr ""
+"Tundmatu rakendus soovib salvestada parooli aga siin pole vaikimisi "
+"võtmerõngast. Rõnga loomiseks pead sa sellele parooli valima."
+
+#. And put together the ask request
+msgid "Create Default Keyring"
+msgstr "Vaikimisi võtmerõnga loomine"
+
+msgid "Choose password for default keyring"
+msgstr "Sisesta vaikimisi võtmerõnga parool"
+
+msgid ""
+"This option enables the PKCS#11 component in the gnome-keyring daemon. It "
+"only takes effect as gnome-keyring-daemon starts, (ie: when the user logs "
+"in). This setting may be overridden when certain command line arguments are "
+"passed to the daemon."
+msgstr ""
+"Selle võtme abil on võimalik lubada või keelata GNOME võtmerõnga deemonis "
+"PKCS#11 komponenti. See mõjub ainult gnome-keyring-daemon'i käivitamisel, "
+"(ehk siis, kui kasutaja sisse logib). Seda sätet on võimalik mõnede "
+"deemonile antud käsureaargumentidega eirata."
+
+msgid ""
+"This option enables the SSH agent in the gnome-keyring daemon. It only takes "
+"effect as gnome-keyring-daemon starts, (ie: when the user logs in). This "
+"setting may be overridden when certain command line arguments are passed to "
+"the daemon."
+msgstr ""
+"Selle võtme abil on võimalik lubada või keelata GNOME võtmerõnga deemonis "
+"SSH komponenti. See mõjub ainult gnome-keyring-daemon'i käivitamisel, (ehk "
+"siis, kui kasutaja sisse logib). Seda sätet on võimalik mõnede deemonile "
+"antud käsureaargumentidega eirata."
+
+msgid "Whether the gnome-keyring PKCS#11 component is enabled."
+msgstr "Kas gnome võtmerõnga PKCS#11 komponent on lubatud või mitte."
+
+msgid "Whether the gnome-keyring SSH agent is enabled."
+msgstr "Kas gnome võtmerõnga SSH komponent on lubatud või mitte."
+
+msgid "GNOME Keyring Daemon"
+msgstr "GNOME võtmerõnga deemon"
+
+#. And put together the ask request
+msgid "Unlock Login Keyring"
+msgstr "Sisselogimise võtmerõnga lukust lahtivõtmine"
+
+msgid "Enter login password to unlock keyring"
+msgstr "Võtmerõnga lukust lahtivõtmiseks sisesta sisselogimise parool "
+
+msgid ""
+"Your login keyring was not automatically unlocked when you logged into this "
+"computer."
+msgstr ""
+"Sinu sisselogimise võtmerõngast ei võetud automaatselt lukust lahti, kui sa "
+"sellesse arvutisse sisse logisid."
+
+#. And put together the ask request
+msgid "Create Login Keyring"
+msgstr "Sisselogimise võtmerõnga loomine"
+
+msgid "Enter your login password"
+msgstr "Sisesta oma sisselogimise parool"
+
+msgid ""
+"Your login keyring was not automatically created when you logged into this "
+"computer. It will now be created."
+msgstr ""
+"Sinu sisselogimise võtmerõngast ei loodud, kui sa sellesse arvutisse sisse "
+"logisid. See luuakse nüüd."
+
+#, c-format
+msgid "Unlock password for %s keyring"
+msgstr "Võtmerõnga %s lukust lahtivõtmise parool"
+
+msgid "Unlock private key"
+msgstr "Võta salajane võti lukust lahti"
+
+msgid "Unlock certificate"
+msgstr "Võta sertifikaat lukust lahti"
+
+msgid "Unlock public key"
+msgstr "Võta avalik võti lukust lahti"
+
+msgid "Unlock"
+msgstr "Võta lukust lahti"
+
+msgid "Enter password to unlock the private key"
+msgstr "Sisesta salajase võtme lukust lahtivõtmise parool"
+
+msgid "Enter password to unlock the certificate"
+msgstr "Sisesta sertifikaadi lukust lahtivõtmise parool"
+
+msgid "Enter password to unlock the public key"
+msgstr "Sisesta avaliku võtme lukust lahtivõtmise parool"
+
+msgid "Enter password to unlock"
+msgstr "Sisesta lukust lahtivõtmise parool"
+
+#. TRANSLATORS: The private key is locked
+#, c-format
+msgid "An application wants access to the private key '%s', but it is locked"
+msgstr "Rakendus tahab kasutada salajast võtit '%s', kuid see on lukus"
+
+#. TRANSLATORS: The certificate is locked
+#, c-format
+msgid "An application wants access to the certificate '%s', but it is locked"
+msgstr "Rakendus tahab kasutada sertifikaati '%s', kuid see on lukus"
+
+#. TRANSLATORS: The public key is locked
+#, c-format
+msgid "An application wants access to the public key '%s', but it is locked"
+msgstr "Rakendus tahab kasutada avalikku võtit '%s', kuid see on lukus"
+
+#. TRANSLATORS: The object '%s' is locked
+#, c-format
+msgid "An application wants access to '%s', but it is locked"
+msgstr "Rakendus tahab kasutada '%s', kuid see on lukus"
+
+msgid "Automatically unlock this private key when I log in."
+msgstr ""
+"See salajane võti võetakse minu sisselogimisel automaatselt lukust lahti."
+
+msgid "Automatically unlock this certificate when I log in."
+msgstr ""
+"See sertifikaat võetakse minu sisselogimisel automaatselt lukust lahti."
+
+msgid "Automatically unlock this public key when I log in."
+msgstr ""
+"See avalik võti võetakse minu sisselogimisel automaatselt lukust lahti."
+
+msgid "Automatically unlock this when I log in"
+msgstr "See võetakse minu sisselogimisel automaatselt lukust lahti."
+
+msgid "Unlock certificate/key storage"
+msgstr "Võta sertifikaatide--/võtmehoidla lukust lahti"
+
+msgid "Enter password to unlock the certificate/key storage"
+msgstr "Sisesta sertifikaatide-/võtmehoidla lukust lahtivõtmise parool"
+
+#. TRANSLATORS: The storage is locked, and needs unlocking before the application can use it.
+#, c-format
+msgid ""
+"An application wants access to the certificate/key storage '%s', but it is "
+"locked"
+msgstr ""
+"Rakendus tahab kasutada sertifikaatide-/võtmehoidlat '%s', kuid see on lukus"
+
+msgid "Automatically unlock secure storage when I log in."
+msgstr ""
+"See turvahoidla võetakse minu sisselogimisel automaatselt lukust lahti."
+
+msgid "New Password Required"
+msgstr "Vajalik uus parool"
+
+msgid "New password required for secure storage"
+msgstr "Turvahoidla jaoks on vaja uut parooli"
+
+#, c-format
+msgid ""
+"In order to prepare '%s' for storage of certificates or keys, a password is "
+"required"
+msgstr ""
+"'%s' sertide ja võtmete hoidmise jaoks ettevalmistamiseks on vaja parooli"
+
+msgid ""
+"<b><big>Could not grab your mouse.</big></b>\n"
+"\n"
+"A malicious client may be eavesdropping on your session or you may have just "
+"clicked a menu or some application just decided to get focus.\n"
+"\n"
+"Try again."
+msgstr ""
+"<b><big>Hiirt polnud võimalik haarata.</big></b>\n"
+"\n"
+"Pahatahtlik programm võib sinu seanssi pealt kuulata, või klõpsasid sa just "
+"menüül või muul rakendusel, mis haaras fookuse.\n"
+"\n"
+"Proovi uuesti."
+
+msgid ""
+"<b><big>Could not grab your keyboard.</big></b>\n"
+"\n"
+"A malicious client may be eavesdropping on your session or you may have just "
+"clicked a menu or some application just decided to get focus.\n"
+"\n"
+"Try again."
+msgstr ""
+"<b><big>Klaviatuuri polnud võimalik haarata.</big></b>\n"
+"\n"
+"Pahatahtlik programm võib sinu seanssi pealt kuulata, või klõpsasid sa just "
+"menüül või muul rakendusel, mis haaras fookuse.\n"
+"\n"
+"Proovi uuesti."
+
+msgid "Store passwords unencrypted?"
+msgstr "Kas salvestada paroolid krüptimata kujul?"
+
+msgid ""
+"By choosing to use a blank password, your stored passwords will not be "
+"safely encrypted. They will be accessible by anyone with access to your "
+"files."
+msgstr ""
+"Tühja parooli valimise korral pole sul võimalik salvestatud paroole ohtult "
+"kaitsta. Need jäävad avatuks igaühele, kel on sinu failidele ligipääs."
+
+msgid "Use Unsafe Storage"
+msgstr "Kasuta mitteohutut hoidlat"
+
+msgid "_Location:"
+msgstr "_Asukoht:"
+
+msgid "_Old password:"
+msgstr "_Vana parool:"
+
+msgid "_Password:"
+msgstr "_Parool:"
+
+msgid "_Confirm password:"
+msgstr "Parooli _kinnitus:"
+
+msgid "New password strength"
+msgstr "Uue parooli tugevus"
+
+msgid "Passwords do not match."
+msgstr "Paroolid pole vastavuses."
+
+msgid "Password cannot be blank"
+msgstr "Parool ei tohi olla tühi"
+
+msgid "_Deny"
+msgstr "_Keela"
+
+msgid "C_reate"
+msgstr "_Loo"
+
+msgid "C_hange"
+msgstr "_Muuda"
+
+msgid "Allow _Once"
+msgstr "Luba ainult _seekord"
+
+msgid "_Always Allow"
+msgstr "Luba _alati"
+
+#, c-format
+msgid "Removable Disk: %s"
+msgstr "Eemaldatav ketas: %s"
+
+msgid "Removable Disk"
+msgstr "Eemaldatav ketas"
+
+msgid "Home"
+msgstr "Kodu"
+
+msgid "The disk or drive this file is located on is not present"
+msgstr "Selle faili asukohaks määratud ketas või seade pole kättesaadav"
+
+#, c-format
+msgid "Couldn't create directory: %s"
+msgstr "Kataloogi pole võimalik luua: %s"
+
+#, c-format
+msgid "Couldn't delete the file: %s"
+msgstr "Faili pole võimalik kustutada: %s"
+
+msgid "Domain Component"
+msgstr "Domeeni osa"
+
+msgid "User ID"
+msgstr "Kasutaja ID"
+
+msgid "Email"
+msgstr "E-kiri"
+
+msgid "Date of Birth"
+msgstr "Sünniaeg"
+
+msgid "Place of Birth"
+msgstr "Sünnikoht"
+
+msgid "Gender"
+msgstr "Sugu"
+
+msgid "Country of Citizenship"
+msgstr "Koduriik"
+
+msgid "Country of Residence"
+msgstr "Asukohariik"
+
+msgid "Common Name"
+msgstr "Tavanimi"
+
+msgid "Surname"
+msgstr "Perekonnanimi"
+
+msgid "Serial Number"
+msgstr "Seerianumber"
+
+msgid "Country"
+msgstr "Riik"
+
+msgid "Locality"
+msgstr "Paikkond"
+
+msgid "State"
+msgstr "Maakond"
+
+msgid "Street"
+msgstr "Tänav"
+
+msgid "Organization"
+msgstr "Organisatsioon"
+
+msgid "Organizational Unit"
+msgstr "Organisatsiooni üksus"
+
+msgid "Title"
+msgstr "Tiitel"
+
+msgid "Telephone Number"
+msgstr "Telefoni number"
+
+msgid "Given Name"
+msgstr "Eesnimi"
+
+msgid "Initials"
+msgstr "Initsiaalid"
+
+msgid "Generation Qualifier"
+msgstr "Põlvkonna eraldaja"
+
+msgid "DN Qualifier"
+msgstr "Eraldusnime (DN) eraldaja"
+
+msgid "Pseudonym"
+msgstr "Pseudonüüm"
+
+msgid "RSA"
+msgstr "RSA"
+
+msgid "MD2 with RSA"
+msgstr "MD2 koos RSA-ga"
+
+msgid "MD5 with RSA"
+msgstr "MD5 koos RSA-ga"
+
+msgid "SHA1 with RSA"
+msgstr "SHA1 koos RSA-ga"
+
+msgid "DSA"
+msgstr "DSA"
+
+msgid "SHA1 with DSA"
+msgstr "SHA1 koos DSA-ga"
+
+msgid "<i>Not Part of Certificate</i>"
+msgstr "<i>Pole sertifikaadi osa</i>"
+
+msgid "<i>unknown</i>"
+msgstr "<i>tundmatu</i>"
+
+msgid "Extension"
+msgstr "Laiend"
+
+msgid "Identifier"
+msgstr "Identifitseerja"
+
+msgid "Value"
+msgstr "Väärtus"
+
+msgid "Yes"
+msgstr "Jah"
+
+msgid "No"
+msgstr "ei"
+
+msgid "Critical"
+msgstr "Kriitiline"
+
+#. The subject
+msgid "Subject Name"
+msgstr "Subjekti nimi"
+
+#. The Issuer
+msgid "Issuer Name"
+msgstr "Väljaandja nimi"
+
+#. The Issued Parameters
+msgid "Issued Certificate"
+msgstr "Väljastatud sertifikaat"
+
+msgid "Version"
+msgstr "Versioon"
+
+msgid "Not Valid Before"
+msgstr "Pole kehtiv enne"
+
+msgid "Not Valid After"
+msgstr "Pole kehtiv pärast"
+
+#. Signature
+msgid "Signature"
+msgstr "Allkiri"
+
+msgid "Signature Algorithm"
+msgstr "Allkirja algoritm"
+
+msgid "Signature Parameters"
+msgstr "Allkirja parameetrid"
+
+#. Public Key Info
+msgid "Public Key Info"
+msgstr "Avaliku võtme andmed"
+
+msgid "Key Algorithm"
+msgstr "Võtme algoritm"
+
+msgid "Key Parameters"
+msgstr "Võtme parameetrid"
+
+msgid "Key Size"
+msgstr "Võtme suurus"
+
+msgid "Public Key"
+msgstr "Avalik võti"
+
+#. Fingerprints
+msgid "Fingerprints"
+msgstr "Sõrmejäljed"
+
+msgid "The operation was cancelled"
+msgstr "Operatsioon katkestati"
+
+#, c-format
+msgid "No location available to import to"
+msgstr "Asukohta, kuhu importida, pole saadaval"
+
+msgid "Import Certificates/Keys"
+msgstr "Sertifikaadi/võtmete importimine"
+
+msgid "Choose a location to store the imported certificates/keys."
+msgstr "Vali asukoht imporditud sertifikaatide/võtmete säilitamiseks."
+
+#. TRANSLATORS: The key is locked.
+msgid "In order to import the private key, it must be unlocked"
+msgstr "Salajase võtme importimiseks ei tohi see olla lukus"
+
+#. TRANSLATORS: The certificate is locked.
+msgid "In order to import the certificate, it must be unlocked"
+msgstr "Sertifikaadi importimiseks ei tohi see olla lukus"
+
+#. TRANSLATORS: The data is locked.
+msgid "In order to import the data, it must be unlocked"
+msgstr "Andmete importimiseks peavad need olema lukust lahti"
+
+#. TRANSLATORS: The key is locked.
+#, c-format
+msgid "In order to import the private key '%s', it must be unlocked"
+msgstr "Salajase võtme '%s' importimiseks ei tohi see olla lukus"
+
+#. TRANSLATORS: The certificate is locked.
+#, c-format
+msgid "In order to import the certificate '%s', it must be unlocked"
+msgstr "Sertifikaadi '%s' importimiseks ei tohi see olla lukus"
+
+#. TRANSLATORS: The object '%s' is locked.
+#, c-format
+msgid "In order to import '%s', it must be unlocked"
+msgstr "'%s' importimiseks ei tohi see olla lukus"
+
+msgid "Private Key"
+msgstr "Salajane võti"
+
+msgid "Certificate"
+msgstr "Sertifikaat"
+
+msgid "Unrecognized or unsupported data."
+msgstr "Arusaamatud või toetamata andmed."
+
+msgid "Could not parse invalid or corrupted data."
+msgstr "Vigaseid või rikutud andmeid pole võimalik töödelda."
+
+msgid "The data is locked"
+msgstr "Andmed on lukustatud"
+
+msgid "Insufficient memory available"
+msgstr "Vaba mälu pole piisavalt"
+
+msgid "The specified slot ID is not valid"
+msgstr "Määratud siini ID pole sobiv"
+
+msgid "Internal error"
+msgstr "Sisemine viga"
+
+msgid "The operation failed"
+msgstr "Operatsioon nurjus"
+
+msgid "Invalid arguments"
+msgstr "Vigased argumendid"
+
+msgid "The module cannot create needed threads"
+msgstr "Moodulil pole võimalik vajalikke lõimi luua"
+
+msgid "The module cannot lock data properly"
+msgstr "Moodulil pole võimalik andmeid õigel viisil lukustada"
+
+msgid "The field is read-only"
+msgstr "Väli on kirjutuskaitsega"
+
+msgid "The field is sensitive and cannot be revealed"
+msgstr "See väli on tundlik ja seda pole võimalik nähtavale tuua"
+
+msgid "The field is invalid or does not exist"
+msgstr "Väli on vigane või pole seda olemas"
+
+msgid "Invalid value for field"
+msgstr "Vigane väärtus või väli"
+
+msgid "The data is not valid or unrecognized"
+msgstr "Andmed pole sobivad või ei tuntud neid ära"
+
+msgid "The data is too long"
+msgstr "Andmed on liiga pikad"
+
+msgid "An error occurred on the device"
+msgstr "Seadmes esines viga"
+
+msgid "Insufficient memory available on device"
+msgstr "Selles seadmel pole piisavalt mälu saadaval"
+
+msgid "The device was removed or unplugged"
+msgstr "Seade on eemaldatud või lahti ühendatud"
+
+msgid "The encrypted data is not valid or unrecognized"
+msgstr "Krüpteeritud andmed pole sobivad või ei tuntud neid ära"
+
+msgid "The encrypted data is too long"
+msgstr "Krüptitud andmed on liiga pikad"
+
+msgid "This operation is not supported"
+msgstr "See toiming pole toetatud"
+
+msgid "The key is missing or invalid"
+msgstr "Võti puudub või on vigane"
+
+msgid "The key is the wrong size"
+msgstr "Võti on vale suurusega"
+
+msgid "The key is of the wrong type"
+msgstr "Võti on valet liiki"
+
+msgid "No key is needed"
+msgstr "Võtit pole vaja"
+
+msgid "The key is different than before"
+msgstr "Võti erineb varasemast võtmest"
+
+msgid "A key is needed"
+msgstr "Võti on vajalik"
+
+msgid "Cannot include the key in digest"
+msgstr "Võtit pole võimalik sõnumilühendisse kaasata"
+
+msgid "This operation cannot be done with this key"
+msgstr "Selle võtmega pole seda operatsiooni võimalik lõpetada"
+
+msgid "The key cannot be wrapped"
+msgstr "Seda võtit pole võimalik mähkida"
+
+msgid "Cannot export this key"
+msgstr "Seda võtit pole võimalik eksportida"
+
+msgid "The crypto mechanism is invalid or unrecognized"
+msgstr "Krüptomehhanism on tundmatu või vigane"
+
+msgid "The crypto mechanism has an invalid argument"
+msgstr "Krüpteerimismehhanismile edastati sobimatu argument"
+
+msgid "The object is missing or invalid"
+msgstr "Objekt puudub või on vigane"
+
+msgid "Another operation is already taking place"
+msgstr "Samal ajal toimub muu tegevus"
+
+msgid "No operation is taking place"
+msgstr "Operatsioon on töös"
+
+msgid "The password or PIN is incorrect"
+msgstr "Parool või PIN ei ole korrektne"
+
+msgid "The password or PIN is invalid"
+msgstr "Parool või PIN on vigane"
+
+msgid "The password or PIN is of an invalid length"
+msgstr "Parool või PIN on vale pikkusega"
+
+msgid "The password or PIN has expired"
+msgstr "Parool või PIN on aegunud"
+
+msgid "The password or PIN is locked"
+msgstr "Parool või PIN on lukus"
+
+msgid "The session is closed"
+msgstr "Seanss on suletud"
+
+msgid "Too many sessions are active"
+msgstr "Liiga palju seansse on aktiivsed"
+
+msgid "The session is invalid"
+msgstr "Seanss on vigane"
+
+msgid "The session is read-only"
+msgstr "Seanss on kirjutuskaitsega"
+
+msgid "An open session exists"
+msgstr "Avatud seanss on juba olemas"
+
+msgid "A read-only session exists"
+msgstr "Kirjutuskaitsega seanss on olemas"
+
+msgid "An administrator session exists"
+msgstr "Halduri seanss on olemas"
+
+msgid "The signature is bad or corrupted"
+msgstr "Signatuur on vigane või rikutud"
+
+msgid "The signature is unrecognized or corrupted"
+msgstr "Allkirja pole võimalik ära tunda või on see rikutud"
+
+msgid "Certain required fields are missing"
+msgstr "Osad vajalikud väljad on puudu"
+
+msgid "Certain fields have invalid values"
+msgstr "Osad väljad sisaldavad vigaseid väärtuseid"
+
+msgid "The device is not present or unplugged"
+msgstr "Seadet pole või on seade ühendamata"
+
+msgid "The device is invalid or unrecognizable"
+msgstr "Seade on vigane või pole seda võimalik ära tunda"
+
+msgid "The device is write protected"
+msgstr "Seade on kirjutuskaitsega"
+
+msgid "Cannot import because the key is invalid"
+msgstr "Importimine pole võimalik, kuna võti on vigane"
+
+msgid "Cannot import because the key is of the wrong size"
+msgstr "Importimine pole võimalik, kuna võti on vale suurusega"
+
+msgid "Cannot import because the key is of the wrong type"
+msgstr "Importimine pole võimalik, kuna võti on valet liiki"
+
+msgid "You are already logged in"
+msgstr "Sa oled juba sisse logitud"
+
+msgid "No user has logged in"
+msgstr "Kasutaja on sisse logitud"
+
+msgid "The user's password or PIN is not set"
+msgstr "Kasutaja parool või PIN on määramata"
+
+msgid "The user is of an invalid type"
+msgstr "Kasutaja on vigast liiki"
+
+msgid "Another user is already logged in"
+msgstr "Teine kasutaja on juba sisse logitud"
+
+msgid "Too many users of different types logged in"
+msgstr "Liiga palju erinevat tüüpi kasutajaid on sisse logitud"
+
+msgid "Cannot import an invalid key"
+msgstr "Vigast võtit pole võimalik importida"
+
+msgid "Cannot import a key of the wrong size"
+msgstr "Vale suurusega võtit pole võimalik importida"
+
+msgid "Cannot export because the key is invalid"
+msgstr "Eksportimine pole võimalik, kuna võti on vigane"
+
+msgid "Cannot export because the key is of the wrong size"
+msgstr "Eksportimine pole võimalik, kuna võti on vale suurusega"
+
+msgid "Cannot export because the key is of the wrong type"
+msgstr "Eksportimine pole võimalik, kuna võti on valet liiki"
+
+msgid "Unable to initialize the random number generator"
+msgstr "Juhunumbri genereerijat pole võimalik lähtestada"
+
+msgid "No random number generator available"
+msgstr "Juhuarvude generaator pole saadaval"
+
+msgid "The crypto mechanism has an invalid parameter"
+msgstr "Krüpteerimismehhanismi parameeter pole sobiv"
+
+msgid "Not enough space to store the result"
+msgstr "Tulemuse salvestamiseks pole piisavalt vaba ruumi"
+
+msgid "The saved state is invalid"
+msgstr "Salvestatud olek on vigane"
+
+msgid "The information is sensitive and cannot be revealed"
+msgstr "Need andmed on tundlikud ja neid ei saa avaldada"
+
+msgid "The state cannot be saved"
+msgstr "Olekut pole võimalik salvestada"
+
+msgid "The module has not been initialized"
+msgstr "Moodul on lähtestamata"
+
+msgid "The module has already been initialized"
+msgstr "Moodul on juba lähtestatud"
+
+msgid "Cannot lock data"
+msgstr "Andmeid pole võimalik lukustada"
+
+msgid "The data cannot be locked"
+msgstr "Andmeid pole võimalik lukustada"
+
+msgid "The signature request was rejected by the user"
+msgstr "Kasutaja lükkas allkirjapäringu tagasi"
+
+msgid "Unknown error"
+msgstr "Tundmatu viga"
+
+msgid "Access Denied"
+msgstr "Ligipääs keelatud"
+
+msgid "The gnome-keyring-daemon application is not running."
+msgstr "Rakendus gnome-keyring-daemon ei tööta."
+
+msgid "Error communicating with gnome-keyring-daemon"
+msgstr "Viga rakenduseg gnome-keyring-daemon suhtlemisel"
+
+msgid "A keyring with that name already exists"
+msgstr "Selle nimega võtmerõngas on juba olemas"
+
+msgid "Programmer error: The application sent invalid data."
+msgstr "Programmeerija viga: Rakendus saatis vigased andmed."
+
+msgid "No matching results"
+msgstr "Vastavusi pole"
+
+msgid "A keyring with that name does not exist."
+msgstr "Selle nimega võtmerõngast pole olemas."
+
+msgid "The keyring has already been unlocked."
+msgstr "Võtmerõngas on juba lukust lahti võetud."
+
+msgid "Unnamed Certificate"
+msgstr "Nimetu sertifikaat"
+
+msgid "Couldn't parse public SSH key"
+msgstr "Avalikku SSH võtit pole võimalik analüüsida"
+
+#~ msgid "<Not Part of Certificate>"
+#~ msgstr "<pole serdi osa>"
+
+#~ msgid "<b>Fingerprints</b>"
+#~ msgstr "<b>Sõrmejäljed</b>"
+
+#~ msgid "<b>Issued By</b>"
+#~ msgstr "<b>Väljastaja</b>"
+
+#~ msgid "<b>Issued To</b>"
+#~ msgstr "<b>Väljastatud kellele:</b>"
+
+#~ msgid "<b>This certificate has been verified for the following uses:</b>"
+#~ msgstr "<b>See sertifikaat on kinnitatud järgmisteks kasutusviisideks:</b>"
+
+#~ msgid "<b>Validity</b>"
+#~ msgstr "<b>Kehtivus</b>"
+
+#~ msgid "Common Name (CN)"
+#~ msgstr "Tavanimi (CN)"
+
+#~ msgid "Email Recipient Certificate"
+#~ msgstr "Meili vastuvõtja sertifikaat"
+
+#~ msgid "Email Signer Certificate"
+#~ msgstr "Meili allkirjastaja sertifikaat"
+
+#~ msgid "Expires On"
+#~ msgstr "Aegub"
+
+#~ msgid "Issued On"
+#~ msgstr "Väljastatud"
+
+#~ msgid "MD5 Fingerprint"
+#~ msgstr "MD5 sõrmejälg"
+
+#~ msgid "Organization (O)"
+#~ msgstr "Organisatsioon (O)"
+
+#~ msgid "Organizational Unit (OU)"
+#~ msgstr "Organisatsiooni üksus (OU)"
+
+#~ msgid "SHA1 Fingerprint"
+#~ msgstr "SHA1 sõrmejälg"
+
+#~ msgid "SSL Client Certificate"
+#~ msgstr "SSL'i kliendisertifikaat"
+
+#~ msgid "SSL Server Certificate"
+#~ msgstr "SSL'i serverisertifikaat"
+
+#~ msgid "<span size='large' weight='bold'>Import Certificates and Keys</span>"
+#~ msgstr ""
+#~ "<span size='large' weight='bold'>Sertifikaatide ja võtmete importimine</"
+#~ "span>"
+
+#~ msgid "Import Into:"
+#~ msgstr "Impordi kuhu:"
+
+#~ msgid "Password:"
+#~ msgstr "Parool:"
+
+#~ msgid "Import private key"
+#~ msgstr "Salajase võtme importimine"
+
+#~ msgid "Import public key"
+#~ msgstr "Avaliku võtme importimine"
+
+#~ msgid "The system wants to import the public key '%s', but it is locked"
+#~ msgstr "Süsteem tahab importida avalikku võtit '%s', kuid see on lukus"
+
+#~ msgid "Lock"
+#~ msgstr "Lukusta"
+
+#~ msgid "Enter password to protect the private key"
+#~ msgstr "Sisesta salajase võtme kaitsmiseks parool"
+
+#~ msgid ""
+#~ "The system wants to store the private key '%s' on your disk. Please enter "
+#~ "a password to lock it with."
+#~ msgstr ""
+#~ "Süsteem tahab salajast võtit '%s' kettale salvestada. Palun sisesta "
+#~ "salajase võtme lukustamiseks parool."

@@ -1,0 +1,397 @@
+<?xml version="1.0"?>
+<!DOCTYPE refentry PUBLIC "-//OASIS//DTD DocBook XML V4.1.2//EN"
+               "http://www.oasis-open.org/docbook/xml/4.1.2/docbookx.dtd">
+<refentry id="gcr-gcr-certificate">
+<refmeta>
+<refentrytitle role="top_of_page" id="gcr-gcr-certificate.top_of_page">GcrCertificate</refentrytitle>
+<manvolnum>3</manvolnum>
+<refmiscinfo>GCR Library</refmiscinfo>
+</refmeta>
+
+<refnamediv>
+<refname>GcrCertificate</refname>
+<refpurpose>Represents a certificate.</refpurpose>
+</refnamediv>
+
+<refsynopsisdiv id="gcr-gcr-certificate.synopsis" role="synopsis">
+<title role="synopsis.title">Synopsis</title>
+<anchor id="GcrCertificateIface"/>
+<synopsis>
+#define             <link linkend="GCR-CERTIFICATE-GET-INTERFACE--CAPS">GCR_CERTIFICATE_GET_INTERFACE</link>       (inst)
+                    <link linkend="GcrCertificate">GcrCertificate</link>;
+                    <link linkend="GcrCertificateIface-struct">GcrCertificateIface</link>;
+const <link linkend="guchar">guchar</link>*       <link linkend="gcr-certificate-get-der-data">gcr_certificate_get_der_data</link>        (<link linkend="GcrCertificate">GcrCertificate</link> *self,
+                                                         <link linkend="gsize">gsize</link> *n_data);
+<link linkend="gchar">gchar</link>*              <link linkend="gcr-certificate-get-issuer-cn">gcr_certificate_get_issuer_cn</link>       (<link linkend="GcrCertificate">GcrCertificate</link> *self);
+<link linkend="gchar">gchar</link>*              <link linkend="gcr-certificate-get-issuer-dn">gcr_certificate_get_issuer_dn</link>       (<link linkend="GcrCertificate">GcrCertificate</link> *self);
+<link linkend="gchar">gchar</link>*              <link linkend="gcr-certificate-get-issuer-part">gcr_certificate_get_issuer_part</link>     (<link linkend="GcrCertificate">GcrCertificate</link> *self,
+                                                         const <link linkend="gchar">gchar</link> *part);
+<link linkend="gchar">gchar</link>*              <link linkend="gcr-certificate-get-subject-cn">gcr_certificate_get_subject_cn</link>      (<link linkend="GcrCertificate">GcrCertificate</link> *self);
+<link linkend="gchar">gchar</link>*              <link linkend="gcr-certificate-get-subject-dn">gcr_certificate_get_subject_dn</link>      (<link linkend="GcrCertificate">GcrCertificate</link> *self);
+<link linkend="gchar">gchar</link>*              <link linkend="gcr-certificate-get-subject-part">gcr_certificate_get_subject_part</link>    (<link linkend="GcrCertificate">GcrCertificate</link> *self,
+                                                         const <link linkend="gchar">gchar</link> *part);
+<link linkend="GDate">GDate</link>*              <link linkend="gcr-certificate-get-issued-date">gcr_certificate_get_issued_date</link>     (<link linkend="GcrCertificate">GcrCertificate</link> *self);
+<link linkend="GDate">GDate</link>*              <link linkend="gcr-certificate-get-expiry-date">gcr_certificate_get_expiry_date</link>     (<link linkend="GcrCertificate">GcrCertificate</link> *self);
+<link linkend="guchar">guchar</link>*             <link linkend="gcr-certificate-get-serial-number">gcr_certificate_get_serial_number</link>   (<link linkend="GcrCertificate">GcrCertificate</link> *self,
+                                                         <link linkend="gsize">gsize</link> *n_length);
+<link linkend="gchar">gchar</link>*              <link linkend="gcr-certificate-get-serial-number-hex">gcr_certificate_get_serial_number_hex</link>
+                                                        (<link linkend="GcrCertificate">GcrCertificate</link> *self);
+<link linkend="guint">guint</link>               <link linkend="gcr-certificate-get-key-size">gcr_certificate_get_key_size</link>        (<link linkend="GcrCertificate">GcrCertificate</link> *self);
+<link linkend="guchar">guchar</link>*             <link linkend="gcr-certificate-get-fingerprint">gcr_certificate_get_fingerprint</link>     (<link linkend="GcrCertificate">GcrCertificate</link> *self,
+                                                         <link linkend="GChecksumType">GChecksumType</link> type,
+                                                         <link linkend="gsize">gsize</link> *n_length);
+<link linkend="gchar">gchar</link>*              <link linkend="gcr-certificate-get-fingerprint-hex">gcr_certificate_get_fingerprint_hex</link> (<link linkend="GcrCertificate">GcrCertificate</link> *self,
+                                                         <link linkend="GChecksumType">GChecksumType</link> type);
+</synopsis>
+</refsynopsisdiv>
+
+<refsect1 id="gcr-gcr-certificate.object-hierarchy" role="object_hierarchy">
+<title role="object_hierarchy.title">Object Hierarchy</title>
+<synopsis>
+  <link linkend="GInterface">GInterface</link>
+   +----GcrCertificateIface
+</synopsis>
+</refsect1>
+
+<refsect1 id="gcr-gcr-certificate.prerequisites" role="prerequisites">
+<title role="prerequisites.title">Prerequisites</title>
+<para>
+GcrCertificateIface requires
+ <link linkend="GObject">GObject</link>.</para>
+</refsect1>
+
+
+
+<refsect1 id="gcr-gcr-certificate.implementations" role="implementations">
+<title role="implementations.title">Known Implementations</title>
+<para>
+GcrCertificateIface is implemented by
+ <link linkend="GcrSimpleCertificate">GcrSimpleCertificate</link>.</para>
+</refsect1>
+
+
+
+
+<refsect1 id="gcr-gcr-certificate.description" role="desc">
+<title role="desc.title">Description</title>
+<para>
+This is an interface that represents an X509 certificate. Objects can 
+implement this interface to make a certificate usable with the GCR
+library. 
+</para>
+<para>
+You can use <link linkend="GcrSimpleCertificate"><type>GcrSimpleCertificate</type></link> to simply load a certificate.</para>
+<para>
+</para>
+</refsect1>
+
+<refsect1 id="gcr-gcr-certificate.details" role="details">
+<title role="details.title">Details</title>
+<refsect2 id="GCR-CERTIFICATE-GET-INTERFACE--CAPS" role="macro">
+<title>GCR_CERTIFICATE_GET_INTERFACE()</title>
+<indexterm zone="GCR-CERTIFICATE-GET-INTERFACE--CAPS"><primary sortas="GCR_CERTIFICATE_GET_INTERFACE">GCR_CERTIFICATE_GET_INTERFACE</primary></indexterm><programlisting>#define GCR_CERTIFICATE_GET_INTERFACE(inst)  (G_TYPE_INSTANCE_GET_INTERFACE ((inst), GCR_TYPE_CERTIFICATE, GcrCertificateIface))
+</programlisting>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>inst</parameter>&#160;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="GcrCertificate" role="struct">
+<title>GcrCertificate</title>
+<indexterm zone="GcrCertificate"><primary sortas="GcrCertificate">GcrCertificate</primary></indexterm><programlisting>typedef struct _GcrCertificate GcrCertificate;</programlisting>
+<para>
+</para></refsect2>
+<refsect2 id="GcrCertificateIface-struct" role="struct">
+<title>GcrCertificateIface</title>
+<indexterm zone="GcrCertificateIface-struct"><primary sortas="GcrCertificateIface">GcrCertificateIface</primary></indexterm><programlisting>typedef struct _GcrCertificateIface GcrCertificateIface;</programlisting>
+<para>
+</para></refsect2>
+<refsect2 id="gcr-certificate-get-der-data" role="function">
+<title>gcr_certificate_get_der_data ()</title>
+<indexterm zone="gcr-certificate-get-der-data"><primary sortas="gcr_certificate_get_der_data">gcr_certificate_get_der_data</primary></indexterm><programlisting>const <link linkend="guchar">guchar</link>*       gcr_certificate_get_der_data        (<link linkend="GcrCertificate">GcrCertificate</link> *self,
+                                                         <link linkend="gsize">gsize</link> *n_data);</programlisting>
+<para>
+Gets the raw DER data for an X509 certificate.</para>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>self</parameter>&#160;:</term>
+<listitem><simpara> a <link linkend="GcrCertificate"><type>GcrCertificate</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>n_data</parameter>&#160;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara> raw DER data of the X509 certificate.
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="gcr-certificate-get-issuer-cn" role="function">
+<title>gcr_certificate_get_issuer_cn ()</title>
+<indexterm zone="gcr-certificate-get-issuer-cn"><primary sortas="gcr_certificate_get_issuer_cn">gcr_certificate_get_issuer_cn</primary></indexterm><programlisting><link linkend="gchar">gchar</link>*              gcr_certificate_get_issuer_cn       (<link linkend="GcrCertificate">GcrCertificate</link> *self);</programlisting>
+<para>
+Get the common name of the issuer of this certificate. 
+</para>
+<para>
+The string returned should be freed by the caller when no longer
+required.</para>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>self</parameter>&#160;:</term>
+<listitem><simpara> a <link linkend="GcrCertificate"><type>GcrCertificate</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara> The allocated issuer CN, or NULL if no issuer CN present.
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="gcr-certificate-get-issuer-dn" role="function">
+<title>gcr_certificate_get_issuer_dn ()</title>
+<indexterm zone="gcr-certificate-get-issuer-dn"><primary sortas="gcr_certificate_get_issuer_dn">gcr_certificate_get_issuer_dn</primary></indexterm><programlisting><link linkend="gchar">gchar</link>*              gcr_certificate_get_issuer_dn       (<link linkend="GcrCertificate">GcrCertificate</link> *self);</programlisting>
+<para>
+Get the full issuer DN of the certificate as a (mostly) 
+readable string. 
+</para>
+<para>
+The string returned should be freed by the caller when no longer
+required.</para>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>self</parameter>&#160;:</term>
+<listitem><simpara> a <link linkend="GcrCertificate"><type>GcrCertificate</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara> The allocated issuer DN of the certificate.
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="gcr-certificate-get-issuer-part" role="function">
+<title>gcr_certificate_get_issuer_part ()</title>
+<indexterm zone="gcr-certificate-get-issuer-part"><primary sortas="gcr_certificate_get_issuer_part">gcr_certificate_get_issuer_part</primary></indexterm><programlisting><link linkend="gchar">gchar</link>*              gcr_certificate_get_issuer_part     (<link linkend="GcrCertificate">GcrCertificate</link> *self,
+                                                         const <link linkend="gchar">gchar</link> *part);</programlisting>
+<para>
+Get a part of the DN of the issuer of this certificate. 
+</para>
+<para>
+Examples of a <parameter>part</parameter> might be the 'OU' (organizational unit)
+or the 'CN' (common name). Only the value of that part 
+of the DN is returned.
+</para>
+<para>
+The string returned should be freed by the caller when no longer
+required.</para>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>self</parameter>&#160;:</term>
+<listitem><simpara> a <link linkend="GcrCertificate"><type>GcrCertificate</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>part</parameter>&#160;:</term>
+<listitem><simpara> a DN type string or OID.
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara> The allocated part of the issuer DN, or NULL if no such part is present.
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="gcr-certificate-get-subject-cn" role="function">
+<title>gcr_certificate_get_subject_cn ()</title>
+<indexterm zone="gcr-certificate-get-subject-cn"><primary sortas="gcr_certificate_get_subject_cn">gcr_certificate_get_subject_cn</primary></indexterm><programlisting><link linkend="gchar">gchar</link>*              gcr_certificate_get_subject_cn      (<link linkend="GcrCertificate">GcrCertificate</link> *self);</programlisting>
+<para>
+Get the common name of the subject of this certificate. 
+</para>
+<para>
+The string returned should be freed by the caller when no longer
+required.</para>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>self</parameter>&#160;:</term>
+<listitem><simpara> a <link linkend="GcrCertificate"><type>GcrCertificate</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara> The allocated subject CN, or NULL if no subject CN present.
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="gcr-certificate-get-subject-dn" role="function">
+<title>gcr_certificate_get_subject_dn ()</title>
+<indexterm zone="gcr-certificate-get-subject-dn"><primary sortas="gcr_certificate_get_subject_dn">gcr_certificate_get_subject_dn</primary></indexterm><programlisting><link linkend="gchar">gchar</link>*              gcr_certificate_get_subject_dn      (<link linkend="GcrCertificate">GcrCertificate</link> *self);</programlisting>
+<para>
+Get the full subject DN of the certificate as a (mostly) 
+readable string. 
+</para>
+<para>
+The string returned should be freed by the caller when no longer
+required.</para>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>self</parameter>&#160;:</term>
+<listitem><simpara> a <link linkend="GcrCertificate"><type>GcrCertificate</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara> The allocated subject DN of the certificate.
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="gcr-certificate-get-subject-part" role="function">
+<title>gcr_certificate_get_subject_part ()</title>
+<indexterm zone="gcr-certificate-get-subject-part"><primary sortas="gcr_certificate_get_subject_part">gcr_certificate_get_subject_part</primary></indexterm><programlisting><link linkend="gchar">gchar</link>*              gcr_certificate_get_subject_part    (<link linkend="GcrCertificate">GcrCertificate</link> *self,
+                                                         const <link linkend="gchar">gchar</link> *part);</programlisting>
+<para>
+Get a part of the DN of the subject of this certificate. 
+</para>
+<para>
+Examples of a <parameter>part</parameter> might be the 'OU' (organizational unit)
+or the 'CN' (common name). Only the value of that part 
+of the DN is returned.
+</para>
+<para>
+The string returned should be freed by the caller when no longer
+required.</para>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>self</parameter>&#160;:</term>
+<listitem><simpara> a <link linkend="GcrCertificate"><type>GcrCertificate</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>part</parameter>&#160;:</term>
+<listitem><simpara> a DN type string or OID.
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara> The allocated part of the subject DN, or NULL if no such part is present.
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="gcr-certificate-get-issued-date" role="function">
+<title>gcr_certificate_get_issued_date ()</title>
+<indexterm zone="gcr-certificate-get-issued-date"><primary sortas="gcr_certificate_get_issued_date">gcr_certificate_get_issued_date</primary></indexterm><programlisting><link linkend="GDate">GDate</link>*              gcr_certificate_get_issued_date     (<link linkend="GcrCertificate">GcrCertificate</link> *self);</programlisting>
+<para>
+Get the issued date of this certificate.
+</para>
+<para>
+The <link linkend="GDate"><type>GDate</type></link> returned should be freed by the caller using 
+<link linkend="g-date-free"><function>g_date_free()</function></link> when no longer required.</para>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>self</parameter>&#160;:</term>
+<listitem><simpara> a <link linkend="GcrCertificate"><type>GcrCertificate</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara> An allocated issued date of this certificate.
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="gcr-certificate-get-expiry-date" role="function">
+<title>gcr_certificate_get_expiry_date ()</title>
+<indexterm zone="gcr-certificate-get-expiry-date"><primary sortas="gcr_certificate_get_expiry_date">gcr_certificate_get_expiry_date</primary></indexterm><programlisting><link linkend="GDate">GDate</link>*              gcr_certificate_get_expiry_date     (<link linkend="GcrCertificate">GcrCertificate</link> *self);</programlisting>
+<para>
+Get the expiry date of this certificate.
+</para>
+<para>
+The <link linkend="GDate"><type>GDate</type></link> returned should be freed by the caller using 
+<link linkend="g-date-free"><function>g_date_free()</function></link> when no longer required.</para>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>self</parameter>&#160;:</term>
+<listitem><simpara> a <link linkend="GcrCertificate"><type>GcrCertificate</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara> An allocated expiry date of this certificate.
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="gcr-certificate-get-serial-number" role="function">
+<title>gcr_certificate_get_serial_number ()</title>
+<indexterm zone="gcr-certificate-get-serial-number"><primary sortas="gcr_certificate_get_serial_number">gcr_certificate_get_serial_number</primary></indexterm><programlisting><link linkend="guchar">guchar</link>*             gcr_certificate_get_serial_number   (<link linkend="GcrCertificate">GcrCertificate</link> *self,
+                                                         <link linkend="gsize">gsize</link> *n_length);</programlisting>
+<para>
+Get the raw binary serial number of the certificate.
+</para>
+<para>
+The caller should free the returned data using <link linkend="g-free"><function>g_free()</function></link> when
+it is no longer required.</para>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>self</parameter>&#160;:</term>
+<listitem><simpara> a <link linkend="GcrCertificate"><type>GcrCertificate</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>n_length</parameter>&#160;:</term>
+<listitem><simpara> the length of the returned data.
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara> the raw binary serial number.
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="gcr-certificate-get-serial-number-hex" role="function">
+<title>gcr_certificate_get_serial_number_hex ()</title>
+<indexterm zone="gcr-certificate-get-serial-number-hex"><primary sortas="gcr_certificate_get_serial_number_hex">gcr_certificate_get_serial_number_hex</primary></indexterm><programlisting><link linkend="gchar">gchar</link>*              gcr_certificate_get_serial_number_hex
+                                                        (<link linkend="GcrCertificate">GcrCertificate</link> *self);</programlisting>
+<para>
+Get the serial number of the certificate as a hex string.
+</para>
+<para>
+The caller should free the returned data using <link linkend="g-free"><function>g_free()</function></link> when
+it is no longer required.</para>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>self</parameter>&#160;:</term>
+<listitem><simpara> a <link linkend="GcrCertificate"><type>GcrCertificate</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara> an allocated string containing the serial number as hex.
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="gcr-certificate-get-key-size" role="function">
+<title>gcr_certificate_get_key_size ()</title>
+<indexterm zone="gcr-certificate-get-key-size"><primary sortas="gcr_certificate_get_key_size">gcr_certificate_get_key_size</primary></indexterm><programlisting><link linkend="guint">guint</link>               gcr_certificate_get_key_size        (<link linkend="GcrCertificate">GcrCertificate</link> *self);</programlisting>
+<para>
+Get the key size in bits of the public key represented 
+by this certificate.</para>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>self</parameter>&#160;:</term>
+<listitem><simpara> a <link linkend="GcrCertificate"><type>GcrCertificate</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara> The key size of the certificate.
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="gcr-certificate-get-fingerprint" role="function">
+<title>gcr_certificate_get_fingerprint ()</title>
+<indexterm zone="gcr-certificate-get-fingerprint"><primary sortas="gcr_certificate_get_fingerprint">gcr_certificate_get_fingerprint</primary></indexterm><programlisting><link linkend="guchar">guchar</link>*             gcr_certificate_get_fingerprint     (<link linkend="GcrCertificate">GcrCertificate</link> *self,
+                                                         <link linkend="GChecksumType">GChecksumType</link> type,
+                                                         <link linkend="gsize">gsize</link> *n_length);</programlisting>
+<para>
+Calculate the fingerprint for this certificate.
+</para>
+<para>
+You can pass G_CHECKSUM_SHA1 or G_CHECKSUM_MD5 as the <parameter>type</parameter>
+parameter.
+</para>
+<para>
+The caller should free the returned data using <link linkend="g-free"><function>g_free()</function></link> when
+it is no longer required.</para>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>self</parameter>&#160;:</term>
+<listitem><simpara> a <link linkend="GcrCertificate"><type>GcrCertificate</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>type</parameter>&#160;:</term>
+<listitem><simpara> the type of algorithm for the fingerprint.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>n_length</parameter>&#160;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara> the raw binary fingerprint.  
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="gcr-certificate-get-fingerprint-hex" role="function">
+<title>gcr_certificate_get_fingerprint_hex ()</title>
+<indexterm zone="gcr-certificate-get-fingerprint-hex"><primary sortas="gcr_certificate_get_fingerprint_hex">gcr_certificate_get_fingerprint_hex</primary></indexterm><programlisting><link linkend="gchar">gchar</link>*              gcr_certificate_get_fingerprint_hex (<link linkend="GcrCertificate">GcrCertificate</link> *self,
+                                                         <link linkend="GChecksumType">GChecksumType</link> type);</programlisting>
+<para>
+Calculate the fingerprint for this certificate, and return it 
+as a hex string.
+</para>
+<para>
+You can pass G_CHECKSUM_SHA1 or G_CHECKSUM_MD5 as the <parameter>type</parameter>
+parameter.
+</para>
+<para>
+The caller should free the returned data using <link linkend="g-free"><function>g_free()</function></link> when
+it is no longer required.</para>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>self</parameter>&#160;:</term>
+<listitem><simpara> a <link linkend="GcrCertificate"><type>GcrCertificate</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>type</parameter>&#160;:</term>
+<listitem><simpara> the type of algorithm for the fingerprint.
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara> an allocated hex string which contains the fingerprint.  
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+
+</refsect1>
+
+
+
+
+</refentry>

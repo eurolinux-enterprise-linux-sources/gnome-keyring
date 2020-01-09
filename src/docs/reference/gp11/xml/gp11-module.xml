@@ -1,0 +1,562 @@
+<?xml version="1.0"?>
+<!DOCTYPE refentry PUBLIC "-//OASIS//DTD DocBook XML V4.1.2//EN"
+               "http://www.oasis-open.org/docbook/xml/4.1.2/docbookx.dtd">
+<refentry id="gp11-gp11-module">
+<refmeta>
+<refentrytitle role="top_of_page" id="gp11-gp11-module.top_of_page">GP11Module</refentrytitle>
+<manvolnum>3</manvolnum>
+<refmiscinfo>GP11 Library</refmiscinfo>
+</refmeta>
+
+<refnamediv>
+<refname>GP11Module</refname>
+<refpurpose>A loaded and initialized PKCS<link linkend="11--CAPS"><type>11</type></link> module.</refpurpose>
+</refnamediv>
+
+<refsynopsisdiv id="gp11-gp11-module.synopsis" role="synopsis">
+<title role="synopsis.title">Synopsis</title>
+<anchor id="GP11Module"/>
+<synopsis>
+                    <link linkend="GP11Module-struct">GP11Module</link>;
+<link linkend="GP11Module">GP11Module</link>*         <link linkend="gp11-module-new">gp11_module_new</link>                     (<link linkend="CK-FUNCTION-LIST-PTR--CAPS">CK_FUNCTION_LIST_PTR</link> funcs);
+<link linkend="GP11Module">GP11Module</link>*         <link linkend="gp11-module-initialize">gp11_module_initialize</link>              (const <link linkend="gchar">gchar</link> *path,
+                                                         <link linkend="gpointer">gpointer</link> reserved,
+                                                         <link linkend="GError">GError</link> **err);
+<link linkend="gboolean">gboolean</link>            <link linkend="gp11-module-equal">gp11_module_equal</link>                   (<link linkend="gconstpointer">gconstpointer</link> module1,
+                                                         <link linkend="gconstpointer">gconstpointer</link> module2);
+<link linkend="guint">guint</link>               <link linkend="gp11-module-hash">gp11_module_hash</link>                    (<link linkend="gconstpointer">gconstpointer</link> module);
+const <link linkend="gchar">gchar</link>*        <link linkend="gp11-module-get-path">gp11_module_get_path</link>                (<link linkend="GP11Module">GP11Module</link> *self);
+<link linkend="CK-FUNCTION-LIST-PTR--CAPS">CK_FUNCTION_LIST_PTR</link>  <link linkend="gp11-module-get-functions">gp11_module_get_functions</link>         (<link linkend="GP11Module">GP11Module</link> *self);
+<link linkend="GP11ModuleInfo">GP11ModuleInfo</link>*     <link linkend="gp11-module-get-info">gp11_module_get_info</link>                (<link linkend="GP11Module">GP11Module</link> *self);
+<link linkend="GList">GList</link>*              <link linkend="gp11-module-get-slots">gp11_module_get_slots</link>               (<link linkend="GP11Module">GP11Module</link> *self,
+                                                         <link linkend="gboolean">gboolean</link> token_present);
+<link linkend="gboolean">gboolean</link>            <link linkend="gp11-module-get-pool-sessions">gp11_module_get_pool_sessions</link>       (<link linkend="GP11Module">GP11Module</link> *self);
+<link linkend="void">void</link>                <link linkend="gp11-module-set-pool-sessions">gp11_module_set_pool_sessions</link>       (<link linkend="GP11Module">GP11Module</link> *self,
+                                                         <link linkend="gboolean">gboolean</link> pool_sessions);
+<link linkend="gint">gint</link>                <link linkend="gp11-module-get-auto-authenticate">gp11_module_get_auto_authenticate</link>   (<link linkend="GP11Module">GP11Module</link> *self);
+<link linkend="void">void</link>                <link linkend="gp11-module-set-auto-authenticate">gp11_module_set_auto_authenticate</link>   (<link linkend="GP11Module">GP11Module</link> *self,
+                                                         <link linkend="gint">gint</link> auto_authenticate);
+<link linkend="gboolean">gboolean</link>            <link linkend="gp11-module-enumerate-objects">gp11_module_enumerate_objects</link>       (<link linkend="GP11Module">GP11Module</link> *self,
+                                                         <link linkend="GP11ObjectForeachFunc">GP11ObjectForeachFunc</link> func,
+                                                         <link linkend="gpointer">gpointer</link> user_data);
+<link linkend="gboolean">gboolean</link>            (<link linkend="GP11ObjectForeachFunc">*GP11ObjectForeachFunc</link>)            (<link linkend="GP11Object">GP11Object</link> *object,
+                                                         <link linkend="gpointer">gpointer</link> user_data);
+                    <link linkend="GP11ModuleInfo">GP11ModuleInfo</link>;
+<link linkend="void">void</link>                <link linkend="gp11-module-info-free">gp11_module_info_free</link>               (<link linkend="GP11ModuleInfo">GP11ModuleInfo</link> *module_info);
+</synopsis>
+</refsynopsisdiv>
+
+<refsect1 id="gp11-gp11-module.object-hierarchy" role="object_hierarchy">
+<title role="object_hierarchy.title">Object Hierarchy</title>
+<synopsis>
+  <link linkend="GObject">GObject</link>
+   +----GP11Module
+</synopsis>
+</refsect1>
+
+
+
+
+
+<refsect1 id="gp11-gp11-module.properties" role="properties">
+<title role="properties.title">Properties</title>
+<synopsis>
+  &quot;<link linkend="GP11Module--auto-authenticate">auto-authenticate</link>&quot;        <link linkend="gint">gint</link>                  : Read / Write
+  &quot;<link linkend="GP11Module--functions">functions</link>&quot;                <link linkend="gpointer">gpointer</link>              : Read / Write / Construct Only
+  &quot;<link linkend="GP11Module--path">path</link>&quot;                     <link linkend="gchar">gchar</link>*                : Read / Write / Construct Only
+  &quot;<link linkend="GP11Module--pool-sessions">pool-sessions</link>&quot;            <link linkend="gboolean">gboolean</link>              : Read / Write
+</synopsis>
+</refsect1>
+
+<refsect1 id="gp11-gp11-module.signals" role="signal_proto">
+<title role="signal_proto.title">Signals</title>
+<synopsis>
+  &quot;<link linkend="GP11Module-authenticate-object">authenticate-object</link>&quot;                            : Run Last
+  &quot;<link linkend="GP11Module-authenticate-slot">authenticate-slot</link>&quot;                              : Run Last
+</synopsis>
+</refsect1>
+
+
+<refsect1 id="gp11-gp11-module.description" role="desc">
+<title role="desc.title">Description</title>
+<para>
+A GP11Module object holds a loaded PKCS<link linkend="11--CAPS"><type>11</type></link> module. A PKCS<link linkend="11--CAPS"><type>11</type></link> module is a shared library. 
+</para>
+<para>
+You can load and initialize a PKCS<link linkend="11--CAPS"><type>11</type></link> module with the <link linkend="gp11-module-initialize"><function>gp11_module_initialize()</function></link> call. If you already
+have a loaded and initialized module that you'd like to use with the various GP11 functions, then 
+you can use <link linkend="gp11-module-new"><function>gp11_module_new()</function></link>.</para>
+<para>
+</para>
+</refsect1>
+
+<refsect1 id="gp11-gp11-module.details" role="details">
+<title role="details.title">Details</title>
+<refsect2 id="GP11Module-struct" role="struct">
+<title>GP11Module</title>
+<indexterm zone="GP11Module-struct"><primary sortas="GP11Module">GP11Module</primary></indexterm><programlisting>typedef struct _GP11Module GP11Module;</programlisting>
+<para>
+Holds a loaded and initialized PKCS<link linkend="11--CAPS"><type>11</type></link> module.</para>
+<para>
+</para></refsect2>
+<refsect2 id="gp11-module-new" role="function">
+<title>gp11_module_new ()</title>
+<indexterm zone="gp11-module-new"><primary sortas="gp11_module_new">gp11_module_new</primary></indexterm><programlisting><link linkend="GP11Module">GP11Module</link>*         gp11_module_new                     (<link linkend="CK-FUNCTION-LIST-PTR--CAPS">CK_FUNCTION_LIST_PTR</link> funcs);</programlisting>
+<para>
+Create a GP11Module representing a PKCS<link linkend="11--CAPS"><type>11</type></link> module. It is assumed that 
+this the module is already initialized. In addition it will not be 
+finalized when complete.</para>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>funcs</parameter>&#160;:</term>
+<listitem><simpara> Initialized PKCS<link linkend="11--CAPS"><type>11</type></link> function list pointer
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara> The new PKCS<link linkend="11--CAPS"><type>11</type></link> module.
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="gp11-module-initialize" role="function">
+<title>gp11_module_initialize ()</title>
+<indexterm zone="gp11-module-initialize"><primary sortas="gp11_module_initialize">gp11_module_initialize</primary></indexterm><programlisting><link linkend="GP11Module">GP11Module</link>*         gp11_module_initialize              (const <link linkend="gchar">gchar</link> *path,
+                                                         <link linkend="gpointer">gpointer</link> reserved,
+                                                         <link linkend="GError">GError</link> **err);</programlisting>
+<para>
+Load and initialize a PKCS<link linkend="11--CAPS"><type>11</type></link> module represented by a GP11Module object.</para>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>path</parameter>&#160;:</term>
+<listitem><simpara> The file system path to the PKCS<link linkend="11--CAPS"><type>11</type></link> module to load.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>reserved</parameter>&#160;:</term>
+<listitem><simpara> Extra arguments for the PKCS<link linkend="11--CAPS"><type>11</type></link> module, should usually be NULL.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>err</parameter>&#160;:</term>
+<listitem><simpara> A location to store an error resulting from a failed load.
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara> The loaded PKCS<link linkend="11--CAPS"><type>11</type></link> module or NULL if failed.
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="gp11-module-equal" role="function">
+<title>gp11_module_equal ()</title>
+<indexterm zone="gp11-module-equal"><primary sortas="gp11_module_equal">gp11_module_equal</primary></indexterm><programlisting><link linkend="gboolean">gboolean</link>            gp11_module_equal                   (<link linkend="gconstpointer">gconstpointer</link> module1,
+                                                         <link linkend="gconstpointer">gconstpointer</link> module2);</programlisting>
+<para>
+Checks equality of two modules. Two GP11Module objects can point to the same 
+underlying PKCS<link linkend="11--CAPS"><type>11</type></link> module.</para>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>module1</parameter>&#160;:</term>
+<listitem><simpara> A pointer to the first GP11Module
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>module2</parameter>&#160;:</term>
+<listitem><simpara> A pointer to the second GP11Module
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara> TRUE if module1 and module2 are equal. FALSE if either is not a GP11Module.
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="gp11-module-hash" role="function">
+<title>gp11_module_hash ()</title>
+<indexterm zone="gp11-module-hash"><primary sortas="gp11_module_hash">gp11_module_hash</primary></indexterm><programlisting><link linkend="guint">guint</link>               gp11_module_hash                    (<link linkend="gconstpointer">gconstpointer</link> module);</programlisting>
+<para>
+Create a hash value for the GP11Module. 
+</para>
+<para>
+This function is intended for easily hashing a GP11Module to add to 
+a GHashTable or similar data structure.</para>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>module</parameter>&#160;:</term>
+<listitem><simpara> A pointer to a GP11Module
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara> An integer that can be used as a hash value, or 0 if invalid.
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="gp11-module-get-path" role="function">
+<title>gp11_module_get_path ()</title>
+<indexterm zone="gp11-module-get-path"><primary sortas="gp11_module_get_path">gp11_module_get_path</primary></indexterm><programlisting>const <link linkend="gchar">gchar</link>*        gp11_module_get_path                (<link linkend="GP11Module">GP11Module</link> *self);</programlisting>
+<para>
+Get the file path of this module. This may not be an absolute path, and 
+usually reflects the path passed to <link linkend="gp11-module-initialize"><function>gp11_module_initialize()</function></link>.</para>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>self</parameter>&#160;:</term>
+<listitem><simpara> The module for which to get the path.
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara> The path, do not modify or free this value. 
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="gp11-module-get-functions" role="function">
+<title>gp11_module_get_functions ()</title>
+<indexterm zone="gp11-module-get-functions"><primary sortas="gp11_module_get_functions">gp11_module_get_functions</primary></indexterm><programlisting><link linkend="CK-FUNCTION-LIST-PTR--CAPS">CK_FUNCTION_LIST_PTR</link>  gp11_module_get_functions         (<link linkend="GP11Module">GP11Module</link> *self);</programlisting>
+<para>
+Get the PKCS<link linkend="11--CAPS"><type>11</type></link> function list for the module.</para>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>self</parameter>&#160;:</term>
+<listitem><simpara> The module for which to get the function list.
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara> The function list, do not modify this structure. 
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="gp11-module-get-info" role="function">
+<title>gp11_module_get_info ()</title>
+<indexterm zone="gp11-module-get-info"><primary sortas="gp11_module_get_info">gp11_module_get_info</primary></indexterm><programlisting><link linkend="GP11ModuleInfo">GP11ModuleInfo</link>*     gp11_module_get_info                (<link linkend="GP11Module">GP11Module</link> *self);</programlisting>
+<para>
+Get the info about a PKCS<link linkend="11--CAPS"><type>11</type></link> module.</para>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>self</parameter>&#160;:</term>
+<listitem><simpara> The module to get info for.
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara> The module info. Release this with <link linkend="gp11-module-info-free"><function>gp11_module_info_free()</function></link>.
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="gp11-module-get-slots" role="function">
+<title>gp11_module_get_slots ()</title>
+<indexterm zone="gp11-module-get-slots"><primary sortas="gp11_module_get_slots">gp11_module_get_slots</primary></indexterm><programlisting><link linkend="GList">GList</link>*              gp11_module_get_slots               (<link linkend="GP11Module">GP11Module</link> *self,
+                                                         <link linkend="gboolean">gboolean</link> token_present);</programlisting>
+<para>
+Get the GP11Slot objects for a given module.</para>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>self</parameter>&#160;:</term>
+<listitem><simpara> The module for which to get the slots.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>token_present</parameter>&#160;:</term>
+<listitem><simpara> Whether to limit only to slots with a token present.
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara> The possibly empty list of slots. Release this with <link linkend="gp11-list-unref-free"><function>gp11_list_unref_free()</function></link>.
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="gp11-module-get-pool-sessions" role="function">
+<title>gp11_module_get_pool_sessions ()</title>
+<indexterm zone="gp11-module-get-pool-sessions"><primary sortas="gp11_module_get_pool_sessions">gp11_module_get_pool_sessions</primary></indexterm><programlisting><link linkend="gboolean">gboolean</link>            gp11_module_get_pool_sessions       (<link linkend="GP11Module">GP11Module</link> *self);</programlisting>
+<para>
+Get the reuse sessions setting. When this is set, sessions
+will be pooled and reused if their flags match when 
+<link linkend="gp11-slot-open-session"><function>gp11_slot_open_session()</function></link> is called.</para>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>self</parameter>&#160;:</term>
+<listitem><simpara> The module to get setting from.
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara> Whether reusing sessions or not.
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="gp11-module-set-pool-sessions" role="function">
+<title>gp11_module_set_pool_sessions ()</title>
+<indexterm zone="gp11-module-set-pool-sessions"><primary sortas="gp11_module_set_pool_sessions">gp11_module_set_pool_sessions</primary></indexterm><programlisting><link linkend="void">void</link>                gp11_module_set_pool_sessions       (<link linkend="GP11Module">GP11Module</link> *self,
+                                                         <link linkend="gboolean">gboolean</link> pool_sessions);</programlisting>
+<para>
+When this is set, sessions will be pooled and reused
+if their flags match when <link linkend="gp11-slot-open-session"><function>gp11_slot_open_session()</function></link> is called.</para>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>self</parameter>&#160;:</term>
+<listitem><simpara> The module to set the setting on.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>pool_sessions</parameter>&#160;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="gp11-module-get-auto-authenticate" role="function">
+<title>gp11_module_get_auto_authenticate ()</title>
+<indexterm zone="gp11-module-get-auto-authenticate"><primary sortas="gp11_module_get_auto_authenticate">gp11_module_get_auto_authenticate</primary></indexterm><programlisting><link linkend="gint">gint</link>                gp11_module_get_auto_authenticate   (<link linkend="GP11Module">GP11Module</link> *self);</programlisting>
+<para>
+Get the auto login setting. When this is set, this slot 
+will emit the 'authenticate-slot' signal when a session
+requires authentication, and the 'authenticate-object'
+signal when an object requires authintication.</para>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>self</parameter>&#160;:</term>
+<listitem><simpara> The module to get setting from.
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara> Whether auto login or not.
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="gp11-module-set-auto-authenticate" role="function">
+<title>gp11_module_set_auto_authenticate ()</title>
+<indexterm zone="gp11-module-set-auto-authenticate"><primary sortas="gp11_module_set_auto_authenticate">gp11_module_set_auto_authenticate</primary></indexterm><programlisting><link linkend="void">void</link>                gp11_module_set_auto_authenticate   (<link linkend="GP11Module">GP11Module</link> *self,
+                                                         <link linkend="gint">gint</link> auto_authenticate);</programlisting>
+<para>
+When this is set, this slot 
+will emit the 'authenticate-slot' signal when a session
+requires authentication, and the 'authenticate-object'
+signal when an object requires authintication.</para>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>self</parameter>&#160;:</term>
+<listitem><simpara> The module to set the setting on.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>auto_authenticate</parameter>&#160;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="gp11-module-enumerate-objects" role="function">
+<title>gp11_module_enumerate_objects ()</title>
+<indexterm zone="gp11-module-enumerate-objects"><primary sortas="gp11_module_enumerate_objects">gp11_module_enumerate_objects</primary></indexterm><programlisting><link linkend="gboolean">gboolean</link>            gp11_module_enumerate_objects       (<link linkend="GP11Module">GP11Module</link> *self,
+                                                         <link linkend="GP11ObjectForeachFunc">GP11ObjectForeachFunc</link> func,
+                                                         <link linkend="gpointer">gpointer</link> user_data);</programlisting>
+<para>
+Call a function for every matching object on the module. This call may 
+block for an indefinite period.
+</para>
+<para>
+The arguments must be triples of: attribute type, data type, value
+</para>
+<para>
+<para>The variable argument list should contain:
+	<variablelist>
+	<varlistentry>
+			<term>a)</term>
+			<listitem><para>The gulong attribute type (ie: CKA_LABEL). </para></listitem>
+		</varlistentry>
+		<varlistentry>
+			<term>b)</term>
+			<listitem><para>The attribute data type (one of GP11_BOOLEAN, GP11_ULONG, 
+				GP11_STRING, GP11_DATE) orthe raw attribute value length.</para></listitem>
+		</varlistentry>
+		<varlistentry>
+			<term>c)</term>
+			<listitem><para>The attribute value, either a gboolean, gulong, gchar*, GDate* or 
+				a pointer to a raw attribute value.</para></listitem>
+		</varlistentry>
+	</variablelist>
+The variable argument list should be terminated with GP11_INVALID.</para>
+</para>
+<para>
+This function will open a session per slot. It's recommended that you 
+set the 'reuse-sessions' property on each slot if you'll be calling 
+it a lot.
+</para>
+<para>
+You can access the session in which the object was found, by using the 
+<link linkend="gp11-object-get-session"><function>gp11_object_get_session()</function></link> function on the resulting objects.
+</para>
+<para>
+This function skips tokens that are not initialize, and makes a best effort to 
+find objects on valid tokens. 
+</para>
+<para>
+The function can return FALSE to stop the enumeration.</para>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>self</parameter>&#160;:</term>
+<listitem><simpara> The module to enumerate objects.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>func</parameter>&#160;:</term>
+<listitem><simpara> Function to call for each object.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>user_data</parameter>&#160;:</term>
+<listitem><simpara> Data to pass to the function.
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara> If FALSE then an error prevented all matching objects from being enumerated.
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="GP11ObjectForeachFunc" role="function">
+<title>GP11ObjectForeachFunc ()</title>
+<indexterm zone="GP11ObjectForeachFunc"><primary sortas="GP11ObjectForeachFunc">GP11ObjectForeachFunc</primary></indexterm><programlisting><link linkend="gboolean">gboolean</link>            (*GP11ObjectForeachFunc)            (<link linkend="GP11Object">GP11Object</link> *object,
+                                                         <link linkend="gpointer">gpointer</link> user_data);</programlisting>
+<para>
+This function is passed to <link linkend="gp11-module-enumerate-objects"><function>gp11_module_enumerate_objects()</function></link> or a similar function.
+It is called once for each object matched. 
+</para>
+<para>
+The GP11Session through which the object is accessible can be retrieved by calling
+<link linkend="gp11-object-get-session"><function>gp11_object_get_session()</function></link> on object.</para>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>object</parameter>&#160;:</term>
+<listitem><simpara> The enumerated object.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>user_data</parameter>&#160;:</term>
+<listitem><simpara> Data passed to enumerate function.
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara> TRUE to continue enumerating, FALSE to stop.
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="GP11ModuleInfo" role="struct">
+<title>GP11ModuleInfo</title>
+<indexterm zone="GP11ModuleInfo"><primary sortas="GP11ModuleInfo">GP11ModuleInfo</primary></indexterm><programlisting>typedef struct {
+	guint8 pkcs11_version_major;
+	guint8 pkcs11_version_minor;
+	
+	gchar *manufacturer_id;
+	gulong flags;
+	
+	gchar *library_description;
+	guint8 library_version_major;
+	guint8 library_version_minor;
+} GP11ModuleInfo;
+</programlisting>
+<para>
+Holds information about the PKCS&num;11 module. 
+</para>
+<para>
+This structure corresponds to CK_MODULE_INFO in the PKCS<link linkend="11--CAPS"><type>11</type></link> standard. The 
+strings are NULL terminated for easier use. 
+</para>
+<para>
+Use <link linkend="gp11-module-info-free"><function>gp11_module_info_free()</function></link> to release this structure when done with it.</para>
+<para>
+</para><variablelist role="struct">
+<varlistentry>
+<term><link linkend="guint8">guint8</link>&#160;<structfield>pkcs11_version_major</structfield>;</term>
+<listitem><simpara> The major version of the module.
+</simpara></listitem>
+</varlistentry>
+<varlistentry>
+<term><link linkend="guint8">guint8</link>&#160;<structfield>pkcs11_version_minor</structfield>;</term>
+<listitem><simpara> The minor version of the module.
+</simpara></listitem>
+</varlistentry>
+<varlistentry>
+<term><link linkend="gchar">gchar</link>&#160;*<structfield>manufacturer_id</structfield>;</term>
+<listitem><simpara> The module manufacturer.
+</simpara></listitem>
+</varlistentry>
+<varlistentry>
+<term><link linkend="gulong">gulong</link>&#160;<structfield>flags</structfield>;</term>
+<listitem><simpara> The module PKCS&num;11 flags.
+</simpara></listitem>
+</varlistentry>
+<varlistentry>
+<term><link linkend="gchar">gchar</link>&#160;*<structfield>library_description</structfield>;</term>
+<listitem><simpara> The module description.
+</simpara></listitem>
+</varlistentry>
+<varlistentry>
+<term><link linkend="guint8">guint8</link>&#160;<structfield>library_version_major</structfield>;</term>
+<listitem><simpara> The major version of the library.
+</simpara></listitem>
+</varlistentry>
+<varlistentry>
+<term><link linkend="guint8">guint8</link>&#160;<structfield>library_version_minor</structfield>;</term>
+<listitem><simpara> The minor version of the library.
+</simpara></listitem>
+</varlistentry>
+</variablelist></refsect2>
+<refsect2 id="gp11-module-info-free" role="function">
+<title>gp11_module_info_free ()</title>
+<indexterm zone="gp11-module-info-free"><primary sortas="gp11_module_info_free">gp11_module_info_free</primary></indexterm><programlisting><link linkend="void">void</link>                gp11_module_info_free               (<link linkend="GP11ModuleInfo">GP11ModuleInfo</link> *module_info);</programlisting>
+<para>
+Free a GP11ModuleInfo structure.</para>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>module_info</parameter>&#160;:</term>
+<listitem><simpara> The module info to free, or NULL.
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+
+</refsect1>
+<refsect1 id="gp11-gp11-module.property-details" role="property_details">
+<title role="property_details.title">Property Details</title>
+<refsect2 id="GP11Module--auto-authenticate" role="property"><title>The <literal>&quot;auto-authenticate&quot;</literal> property</title>
+<indexterm zone="GP11Module--auto-authenticate"><primary sortas="GP11Module:auto-authenticate">GP11Module:auto-authenticate</primary></indexterm><programlisting>  &quot;auto-authenticate&quot;        <link linkend="gint">gint</link>                  : Read / Write</programlisting>
+<para>
+Whether or not to automatically authenticate token objects that need
+a C_Login call before they can be used.
+</para>
+<para>
+The <link linkend="GP11Module-authenticate-object"><type>"authenticate-object"</type></link> signal will be fired when an
+object needs to be authenticated.</para>
+<para>
+</para><para>Allowed values: &gt;= 0</para>
+<para>Default value: 0</para>
+</refsect2>
+<refsect2 id="GP11Module--functions" role="property"><title>The <literal>&quot;functions&quot;</literal> property</title>
+<indexterm zone="GP11Module--functions"><primary sortas="GP11Module:functions">GP11Module:functions</primary></indexterm><programlisting>  &quot;functions&quot;                <link linkend="gpointer">gpointer</link>              : Read / Write / Construct Only</programlisting>
+<para>
+The raw PKCS&num;11 function list for the module.
+</para>
+<para>
+This points to a CK_FUNCTION_LIST structure.</para>
+<para>
+</para></refsect2>
+<refsect2 id="GP11Module--path" role="property"><title>The <literal>&quot;path&quot;</literal> property</title>
+<indexterm zone="GP11Module--path"><primary sortas="GP11Module:path">GP11Module:path</primary></indexterm><programlisting>  &quot;path&quot;                     <link linkend="gchar">gchar</link>*                : Read / Write / Construct Only</programlisting>
+<para>
+The PKCS&num;11 module file path. 
+</para>
+<para>
+This may be set to NULL if this object was created from an already
+initialized module via the <link linkend="gp11-module-new"><function>gp11_module_new()</function></link> function.</para>
+<para>
+</para><para>Default value: NULL</para>
+</refsect2>
+<refsect2 id="GP11Module--pool-sessions" role="property"><title>The <literal>&quot;pool-sessions&quot;</literal> property</title>
+<indexterm zone="GP11Module--pool-sessions"><primary sortas="GP11Module:pool-sessions">GP11Module:pool-sessions</primary></indexterm><programlisting>  &quot;pool-sessions&quot;            <link linkend="gboolean">gboolean</link>              : Read / Write</programlisting>
+<para>
+Whether or not to pool PKCS&num;11 sessions. When this is set, sessions
+will be pooled and reused if their flags match when <link linkend="gp11-slot-open-session"><function>gp11_slot_open_session()</function></link> 
+is called.</para>
+<para>
+</para><para>Default value: FALSE</para>
+</refsect2>
+
+</refsect1>
+
+<refsect1 id="gp11-gp11-module.signal-details" role="signals">
+<title role="signals.title">Signal Details</title>
+<refsect2 id="GP11Module-authenticate-object" role="signal"><title>The <literal>&quot;authenticate-object&quot;</literal> signal</title>
+<indexterm zone="GP11Module-authenticate-object"><primary sortas="GP11Module::authenticate-object">GP11Module::authenticate-object</primary></indexterm><programlisting><link linkend="gboolean">gboolean</link>            user_function                      (<link linkend="GP11Module">GP11Module</link> *module,
+                                                        <link linkend="GP11Object">GP11Object</link> *object,
+                                                        <link linkend="gchar">gchar</link>      *label,
+                                                        <link linkend="gpointer">gpointer</link>    password,
+                                                        <link linkend="gpointer">gpointer</link>    user_data)      : Run Last</programlisting>
+<para>
+This signal is emitted when a password is needed to authenticate a PKCS&num;11
+object like a key. If the module prompts for passwords itself, then this signal will
+not be emitted.</para>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>module</parameter>&#160;:</term>
+<listitem><simpara> The module.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>object</parameter>&#160;:</term>
+<listitem><simpara> The object to be authenticated.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>label</parameter>&#160;:</term>
+<listitem><simpara> A displayable label which describes the object.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>password</parameter>&#160;:</term>
+<listitem><simpara> A gchar** where a password should be returned.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>user_data</parameter>&#160;:</term>
+<listitem><simpara>user data set when the signal handler was connected.</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara> FALSE if the user cancelled, TRUE if we should proceed.
+</simpara></listitem></varlistentry>
+</variablelist></refsect2><refsect2 id="GP11Module-authenticate-slot" role="signal"><title>The <literal>&quot;authenticate-slot&quot;</literal> signal</title>
+<indexterm zone="GP11Module-authenticate-slot"><primary sortas="GP11Module::authenticate-slot">GP11Module::authenticate-slot</primary></indexterm><programlisting><link linkend="gboolean">gboolean</link>            user_function                      (<link linkend="GP11Module">GP11Module</link> *module,
+                                                        <link linkend="GP11Slot">GP11Slot</link>   *slot,
+                                                        <link linkend="gchar">gchar</link>      *string,
+                                                        <link linkend="gpointer">gpointer</link>    password,
+                                                        <link linkend="gpointer">gpointer</link>    user_data)      : Run Last</programlisting>
+<para>
+This signal is emitted when a password is needed to authenticate a PKCS&num;11 
+slot. If the module prompts for passwords itself, then this signal will 
+not be emitted.</para>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>module</parameter>&#160;:</term>
+<listitem><simpara> The module
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>slot</parameter>&#160;:</term>
+<listitem><simpara> The slot to be authenticated.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>string</parameter>&#160;:</term>
+<listitem><simpara> A displayable label which describes the object.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>password</parameter>&#160;:</term>
+<listitem><simpara> A gchar** where a password should be returned. 
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>user_data</parameter>&#160;:</term>
+<listitem><simpara>user data set when the signal handler was connected.</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara> FALSE if the user cancelled, TRUE if we should proceed.
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+</refsect1>
+
+
+
+</refentry>

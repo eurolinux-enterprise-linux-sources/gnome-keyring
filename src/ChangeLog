@@ -1,0 +1,2266 @@
+# Generate automatically. Do not edit.
+
+commit a019720b537c01441d555de293a141e0d840a19f
+Author: Stef Walter <stef@memberwebs.com>
+Date:   2009-12-03
+
+    Add license to reference documentation.
+    
+    Add a license to the reference documentation. Using the license
+    from Glib.
+
+ docs/reference/COPYING |   30 ++++++++++++++++++++++++++++++
+ 1 files changed, 30 insertions(+), 0 deletions(-)
+
+commit 1f225859713c8fae6d5b58e4d61cfe442e93cc8a
+Author: Stef Walter <stef@memberwebs.com>
+Date:   2009-11-24
+
+    [daemon] Sent output of g_printerr to syslog.
+    
+    In order to catch assertion errors better, send the output of
+    g_printerr to syslog as well as stderr.
+
+ daemon/gkr-daemon.c |    9 +++++++++
+ 1 files changed, 9 insertions(+), 0 deletions(-)
+
+commit 2bcaa443eeee7f2b4bd5ffc56d911d77bd6f9d70
+Author: Stef Walter <stef@memberwebs.com>
+Date:   2009-11-24
+
+    [daemon] No possibly fatal error when can't unlock login keyring.
+    
+    We were using g_warning to print a message when unlocking the
+    login keyring failed. This would cause the daemon to exit in
+    certain configurations. This isn't a critical error.
+
+ daemon/gkr-daemon.c |    2 +-
+ 1 files changed, 1 insertions(+), 1 deletions(-)
+
+commit e06116ecceae745f1b9b609a5776a282005196ae
+Author: Stef Walter <stef@memberwebs.com>
+Date:   2009-11-09
+
+    Ignore anjuta project files.
+
+ .gitignore |    2 +-
+ 1 files changed, 1 insertions(+), 1 deletions(-)
+
+commit 72db76cd8696192433f24b17cf0d76d5809aa6bf
+Author: Stef Walter <stef@memberwebs.com>
+Date:   2009-11-09
+
+    [pkcs11] Fix assertion when comparing attributes.
+    
+    When comparing attributes that both had zero lengths, but one
+    had a null pointer, gck_attribute_equal() used to assert.
+
+ pkcs11/gck/gck-attributes.c             |    4 +++-
+ pkcs11/gck/tests/unit-test-attributes.c |    7 +++++++
+ 2 files changed, 10 insertions(+), 1 deletions(-)
+
+commit 56d26354ead3578d4186d7f0a25870bbf6554ce5
+Author: Thomas Thurman <tthurman@gnome.org>
+Date:   2009-11-16
+
+    Shavian translation
+
+ po/LINGUAS    |    1 +
+ po/en@shaw.po | 1260 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+ 2 files changed, 1261 insertions(+), 0 deletions(-)
+
+commit c33349fbaf8a09104e0b1f208a9c2d7f87e28dfc
+Author: Stefan Walter <stef@ws.local>
+Date:   2009-11-15
+
+    Ignore more built files
+
+ .gitignore |   28 ++++++++++++++++++----------
+ 1 files changed, 18 insertions(+), 10 deletions(-)
+
+commit e7326153a3241092c8df7f7aa4d8a59bddef8ee3
+Author: Stefan Walter <stef@ws.local>
+Date:   2009-11-15
+
+    [pkcs11] Fix freeing of unallocated memory in test.
+
+ pkcs11/gck/tests/unit-test-data-der.c |    3 ++-
+ 1 files changed, 2 insertions(+), 1 deletions(-)
+
+commit 70b4a236c78c60d697419bf59490793d382b4f51
+Author: Stef Walter <stef@memberwebs.com>
+Date:   2009-11-09
+
+    [pkcs11] Don't barf on certificates with unsupported algorithm.
+    
+    Don't barf on ECDSA certificates, or other certificates with
+    an unsupported key algorithm. This adds tests for that. Such
+    certificates simply don't have an attached public key.
+
+ pkcs11/gck/gck-certificate.c                   |   44 +-
+ pkcs11/gck/gck-data-der.c                      |    1 +
+ pkcs11/gck/tests/test-data/ca-certificates.crt | 3601 ++++++++++++++++++++++++
+ pkcs11/gck/tests/unit-test-data-der.c          |   40 +
+ 4 files changed, 3673 insertions(+), 13 deletions(-)
+
+commit ea5fe6215b7a0c25e6f1344b0102a46e4ee175a1
+Author: Stef Walter <stef@memberwebs.com>
+Date:   2009-10-21
+
+    [library] Fix possible memory leak in error condition.
+
+ library/gnome-keyring-proto.c |    6 +++---
+ 1 files changed, 3 insertions(+), 3 deletions(-)
+
+commit e869259a54afe95291dfdcb11a48f3467d6a6451
+Author: Eric Sesterhenn <eric.sesterhenn@lsexperts.de>
+Date:   2009-10-21
+
+    [gp11] Fix memory leak in gp11_slot_get_token_info()
+    
+    Signed-off-by: Stef Walter <stef@memberwebs.com>
+
+ gp11/gp11-slot.c |    1 +
+ 1 files changed, 1 insertions(+), 0 deletions(-)
+
+commit 46079fbfe4f83f8160f43d617900a280e720f961
+Author: Leonid Kanter <leon@asplinux.ru>
+Date:   2009-10-20
+
+    Updated Russian translation
+
+ po/ru.po |  403 +++++++++++++++++++++++++++++++-------------------------------
+ 1 files changed, 201 insertions(+), 202 deletions(-)
+
+commit e27fa586d2ba4008b9f41b70e316112a164806d5
+Author: Stef Walter <stef@memberwebs.com>
+Date:   2009-10-17
+
+    Bump version number
+
+ configure.in |    2 +-
+ 1 files changed, 1 insertions(+), 1 deletions(-)
+
+commit f3b717d2f64ef137dd805167460cf5d0b00e4311
+Author: Stef Walter <stef@memberwebs.com>
+Date:   2009-10-17
+
+    Release 2.28.1
+
+ NEWS |   10 +++++++++-
+ 1 files changed, 9 insertions(+), 1 deletions(-)
+
+commit 1c6fc47e9abaaa25fa2bf2e081f3da81f08d31d4
+Author: Stef Walter <stef@memberwebs.com>
+Date:   2009-10-10
+
+    [pkcs11] Make custom pkcs11 constants unsigned longs.
+    
+    Make our custom PKCS#11 unsigned longs, which could otherwise
+    be problematic on 64-bit platforms. See bug #595543
+
+ pkcs11/pkcs11g.h |    6 +++---
+ pkcs11/pkcs11i.h |    8 ++++----
+ 2 files changed, 7 insertions(+), 7 deletions(-)
+
+commit 7ddaf5e8d62d3c0955915b3202ae1462aae2e932
+Author: Stef Walter <stef@memberwebs.com>
+Date:   2009-10-10
+
+    [gck] Use unsigned long for module handle counter.
+    
+    Fix compiler warning by using unsigned long for module handle
+    counter. See bug #595543
+
+ pkcs11/gck/gck-module.c |    4 ++--
+ 1 files changed, 2 insertions(+), 2 deletions(-)
+
+commit e27b1c9b274fb58dc9724f0d176211312a035053
+Author: Vincent Untz <vuntz@gnome.org>
+Date:   2009-10-08
+
+    Fix support for rsa1 keys
+    
+    Read the comment, instead of ignoring it and using the bytes as if they
+    were constraints.
+    
+    https://bugzilla.gnome.org/show_bug.cgi?id=597813
+    
+    Signed-off-by: Stef Walter <stef@memberwebs.com>
+
+ pkcs11/ssh-agent/gck-ssh-agent-ops.c |   10 ++++++++++
+ 1 files changed, 10 insertions(+), 0 deletions(-)
+
+commit aabb6f6c77796e7d1f8ba961c109fa093291326c
+Author: Vincent Untz <vuntz@gnome.org>
+Date:   2009-10-02
+
+    [daemon] Fix a delay when the daemon quits
+    
+    g-k-d is a multi-threaded program, using a signal thread to stop the
+    main loop. The main thread was using raise() to send SIGTERM to the
+    signal thread, but it actually sends the signal to itself;
+    pthread_kill() has to be used.
+    
+    This also implies a switch to pthread_create() instead of
+    g_thread_create() since the GThread API doesn't cover pthread_kill().
+
+ daemon/gkr-daemon.c |   19 +++++++++++++------
+ 1 files changed, 13 insertions(+), 6 deletions(-)
+
+commit 0eb9a70dfad3ef49cd1688582c9545082181e830
+Author: Jonny Lamb <jonnylamb@gnome.org>
+Date:   2009-10-01
+
+    Use default D-Bus timeout when finding daemon.
+    
+    When we're trying to find the keyring daemon over D-Bus it's likely
+    that we're service activating it. If we've got a timeout of one
+    second and the system is under heavy load (booting, for example), then
+    it will not start in time, and gnome_keyring_is_available() will
+    return FALSE.
+    
+    The default timeout in dbus-daemon is 25 seconds at the time of
+    writing. Although this sounds a lot for a blocking call in
+    _is_available, the only situation where it could take this amount of
+    time is if the keyring daemon is on the bus but is not responding
+    (it's wedged itself somehow). In all other circumstances, a response
+    should come immediately.
+    
+    Signed-off-by: Jonny Lamb <jonnylamb@gnome.org>
+    Signed-off-by: Stef Walter <stef@memberwebs.com>
+
+ library/gnome-keyring-socket.c |    2 +-
+ 1 files changed, 1 insertions(+), 1 deletions(-)
+
+commit 3341fb92230ec4da70290727629c34be2ec5ec61
+Author: Stef Walter <stef@memberwebs.com>
+Date:   2009-09-30
+
+    [egg] Fix assertion when releasing secure memory block.
+    
+    If a secure memory block was allocated that was not multiple of
+    page size, then on releasing that block, an assertion was
+    raised. The source of the problem was a lack of tracking the
+    actually allocated block size.
+
+ egg/egg-secure-memory.c |    2 +-
+ 1 files changed, 1 insertions(+), 1 deletions(-)
+
+commit b7bb8bcfaa02784abc34aa9abde1cebf2219134b
+Author: Stef Walter <stef@memberwebs.com>
+Date:   2009-09-21
+
+    Bump version number
+
+ configure.in |    2 +-
+ 1 files changed, 1 insertions(+), 1 deletions(-)
+
+commit a10c2d4e7fc50ce299fb13854341e0105f14c614
+Author: Stef Walter <stef@memberwebs.com>
+Date:   2009-09-21
+
+    Release version 2.28.0
+
+ NEWS |    3 +++
+ 1 files changed, 3 insertions(+), 0 deletions(-)
+
+commit eaf00c124242f2872d1fff7368b253114ac17a9f
+Author: Nirbheek Chauhan <nirbheek.chauhan@gmail.com>
+Date:   2009-09-21
+
+    Fix linking with --as-needed -- "undefined reference to `g_thread_init'"
+    
+    GNOME Bug 595767
+    
+    Signed-off-by: Stef Walter <stef@memberwebs.com>
+
+ tool/Makefile.am |    1 +
+ 1 files changed, 1 insertions(+), 0 deletions(-)
+
+commit fd4950395ba54d48199986ffd4bf441c95db7417
+Author: Amitakhya Phukan <aphukan@fedoraproject.org>
+Date:   2009-09-21
+
+    Updating Assamese translations
+
+ po/as.po |  494 +++++++++++++++++++++++++++++++-------------------------------
+ 1 files changed, 249 insertions(+), 245 deletions(-)
+
+commit 9dc4f4849c6a77e5761020d519caa45a687730de
+Author: Shankar Prasad <svenkate@redhat.com>
+Date:   2009-09-21
+
+    Updated Kannada(kn) translation
+
+ po/kn.po |  549 +++++++++++++++++++++++++++++++-------------------------------
+ 1 files changed, 272 insertions(+), 277 deletions(-)
+
+commit f9a9731a68e1cb21174dfe11d65b4e5653f9308f
+Author: Joan Duran <jodufi@gmail.com>
+Date:   2009-09-21
+
+    Updated Catalan translation
+
+ po/ca.po |  416 +++++++++++++++++++++++++++++++-------------------------------
+ 1 files changed, 208 insertions(+), 208 deletions(-)
+
+commit b2a92e96b17c4d7b1a303135edbc044b5a93dc2e
+Author: Yavor Doganov <yavor@gnu.org>
+Date:   2009-09-20
+
+    Updated Bulgarian translation
+
+ po/bg.po |  107 +++++++++++++++++++++++++++++++++++++++++++++++++++++++-------
+ 1 files changed, 95 insertions(+), 12 deletions(-)
+
+commit 395f43748b2d349a24e2a24607b0a2747e7b7aa8
+Author: Francesco Marletta <francesco.marletta@tiscali.it>
+Date:   2009-09-19
+
+    Updated Italian translation
+
+ po/it.po |  406 +++++++++++++++++++++++++++++++-------------------------------
+ 1 files changed, 205 insertions(+), 201 deletions(-)
+
+commit a92b121569990b6148e45b320c09808103a47097
+Author: Manoj Kumar Giri <mgiri@mgiri.csb>
+Date:   2009-09-17
+
+    Upadated Oriya Translation
+
+ po/or.po |  162 +++++++++++++++++++++++++++++++++++++++++++++++++-------------
+ 1 files changed, 128 insertions(+), 34 deletions(-)
+
+commit 46d4bbbfa97e5c8235e867c3eab070bcc2538e38
+Author: krishnababu k <kkrothap@redhat.ocm>
+Date:   2009-09-17
+
+    Updated Telugu Translation
+
+ po/te.po |  244 +++++++++++++++++++++++++++++++-------------------------------
+ 1 files changed, 122 insertions(+), 122 deletions(-)
+
+commit 09056f6a484f71bcaa8ca222c6f5ebb572c90c89
+Author: Maxim V. Dziumanenko <dziumanenko@gmail.com>
+Date:   2009-09-17
+
+    Added Ukrainian translation
+
+ po/uk.po |  216 +++++++++++++++++++++++++++++++-------------------------------
+ 1 files changed, 108 insertions(+), 108 deletions(-)
+
+commit 889f236b33d17246682fcd06a518a23966925c6a
+Author: Antón Méixome <meixome@mancomun.org>
+Date:   2009-09-16
+
+    Updated Galician Translation
+
+ po/gl.po |  101 +++++++++++++++++++++++++++++++++++++++++++++++++++++++------
+ 1 files changed, 91 insertions(+), 10 deletions(-)
+
+commit 0fe43f4541ca3ede767068372b6dbfc02fe44734
+Author: Adi Roiban <adi@roiban.ro>
+Date:   2009-09-16
+
+    Updated Romanian translation
+
+ po/ro.po |  774 +++++++++++++++++++++++++++++++++++++-------------------------
+ 1 files changed, 463 insertions(+), 311 deletions(-)
+
+commit b71a090e99b59fe79b343e07943fefefa4f98b56
+Author: Rajesh Ranjan <rranjan@rranjan.csb>
+Date:   2009-09-16
+
+    hindi update by Rajesh Ranjan
+
+ po/hi.po |  479 +++++++++++++++++---------------------------------------------
+ 1 files changed, 129 insertions(+), 350 deletions(-)
+
+commit e87630faf4d7852ed7c122669dc1a2cbbaab2ae6
+Author: Gintautas Miliauskas <gintautas@miliauskas.lt>
+Date:   2009-09-15
+
+    Updated Lithuanian translation.
+
+ po/lt.po |  408 +++++++++++++++++++++++++++++++-------------------------------
+ 1 files changed, 204 insertions(+), 204 deletions(-)
+
+commit 1e0ef5fec5a6afe0071982e484e968c94bc1a803
+Author: Takayuki KUSANO <AE5T-KSN@asahi-net.or.jp>
+Date:   2009-09-14
+
+    Update Japanese translation
+
+ po/ja.po |  424 +++++++++++++++++++++++++++++++-------------------------------
+ 1 files changed, 213 insertions(+), 211 deletions(-)
+
+commit 272fec194df174be437f49f94d2dbd82d2e66efb
+Author: Stef Walter <stef@memberwebs.com>
+Date:   2009-09-13
+
+    [daemon] Possible fix for intermittent deadlock.
+    
+    Do the flag intercharge closer to when poll is actually called
+    in case the cleanup_done_threads() results in other threads
+    running.
+
+ daemon/util/gkr-daemon-async.c |    6 +++---
+ 1 files changed, 3 insertions(+), 3 deletions(-)
+
+commit 94f87d6fb174c9c5604f9462c93c354310e14dc4
+Author: Diego Elio 'Flameeyes' Pettenò <flameeyes@gmail.com>
+Date:   2009-09-13
+
+    Fix parallel build of test sources.
+    
+    When building with make -jX with X greater than 1 (parallel make), if the
+    dependency tree given in the Makefile is not perfect, the build will fail.
+    
+    Since the prep-gtest.sh generates two files, both should be listed in the
+    Makefile, with the latter depending on the former (in order of creation);
+    since the header file is generated slightly earlier than the source file,
+    this is the correct order (wrong order would work on most filesystems but
+    will fail on tmpfs, xfs and ext4).
+    
+    Additionally, make sure to tell automake about the generated sources, the
+    BUILT_SOURCES variable will ensure that the dependencies inside the
+    generated source files will be taken properly care of.
+    
+    Symptoms of the previous brokenness would look like missing includes,
+    because the run-(auto|prompt)-test.h header would be used _after_ the file
+    started being written but _before_ it was completely written (race
+    condition).
+    
+    Additionally, in egg tests, avoid using BUILT_SOURCES to set up UNIT_AUTO,
+    and also append to it after test.make has been included, so that they won't
+    overwrite one the other.
+    
+    Signed-off-by: Stef Walter <stef@memberwebs.com>
+
+ egg/tests/Makefile.am        |   11 +++++------
+ pkcs11/gck/tests/Makefile.am |   15 ++++++---------
+ tests/gtest.make             |   14 ++++++++++++--
+ 3 files changed, 23 insertions(+), 17 deletions(-)
+
+commit 90b08831ceabe526cbb0e7b10e21d008e0b03400
+Author: Stef Walter <stef@memberwebs.com>
+Date:   2009-09-13
+
+    Bump version number
+
+ configure.in |    2 +-
+ 1 files changed, 1 insertions(+), 1 deletions(-)
+
+commit 366cf5529a6cc99a5d0c3f95fb7629299b6b7a41
+Author: Stef Walter <stef@memberwebs.com>
+Date:   2009-09-13
+
+    Release version 2.27.92
+
+ NEWS         |  140 +++++++++++++++++++++++++++++++---------------------------
+ configure.in |    2 +-
+ 2 files changed, 76 insertions(+), 66 deletions(-)
+
+commit fac01200abc986ff73e4928d7be8f1e61905f424
+Author: Stef Walter <stef@memberwebs.com>
+Date:   2009-09-13
+
+    [library] Use glib memory routines to explicitly allocate memory.
+    
+    In some cases there could be a difference between the glibc, and glib
+    routines. This may have been the cause of bug #588443.
+
+ library/gnome-keyring-proto.c |    2 +-
+ 1 files changed, 1 insertions(+), 1 deletions(-)
+
+commit 8970f08b52c847e591ae1b0ea791bbbf52b7194b
+Author: Stef Walter <stef@memberwebs.com>
+Date:   2009-09-13
+
+    [rpc-layer] Fix erroneous assertion. Let error messages handle this case.
+    
+    Fixes bug #533164
+
+ pkcs11/rpc-layer/gck-rpc-module.c |    1 -
+ 1 files changed, 0 insertions(+), 1 deletions(-)
+
+commit 9c9715bf0da4b1ac794c142385299600f94124f7
+Author: Stef Walter <stef@memberwebs.com>
+Date:   2009-09-13
+
+    Revert change which accidentally bumped libtasn1 required version to 1.0.
+    
+    See later comments on Bug #563702
+
+ configure.in |    2 +-
+ 1 files changed, 1 insertions(+), 1 deletions(-)
+
+commit 8769298389682409e475cdca4ab77562afebc3c8
+Author: Ask H. Larsen <asklarsen@gmail.com>
+Date:   2009-09-13
+
+    Updated Danish translation
+
+ po/da.po |  416 +++++++++++++++++++++++++++++++-------------------------------
+ 1 files changed, 208 insertions(+), 208 deletions(-)
+
+commit 4a8ecf54f3439988ee533aad8b8f4f05fe9f6af0
+Author: Philip Withnall <philip@tecnocode.co.uk>
+Date:   2009-09-12
+
+    Updated British English translation
+
+ po/en_GB.po |  420 +++++++++++++++++++++++++++++-----------------------------
+ 1 files changed, 210 insertions(+), 210 deletions(-)
+
+commit c89262471ebaf7003a40fdda44954d7a6781dfae
+Author: Tomasz Dominikowski <dominikowski@gmail.com>
+Date:   2009-09-12
+
+    Updated Polish translation
+
+ po/pl.po |  145 +++++++++++++++++++++++++++++++++++++++-----------------------
+ 1 files changed, 92 insertions(+), 53 deletions(-)
+
+commit dc130376cf4e4bec34200fd0f7e00874a7d445f7
+Author: Ani <peter.ani@gmail.com>
+Date:   2009-09-12
+
+    Updaeted Malayalam Translations
+
+ po/ml.po |  474 +++++++++++++++++++++++++++++---------------------------------
+ 1 files changed, 221 insertions(+), 253 deletions(-)
+
+commit de409ed9e0f01dbb8aa3b21c296ad7e708ca4b56
+Author: Matej Urbančič <mateju@svn.gnome.org>
+Date:   2009-09-12
+
+    Updated Slovenian translation
+
+ po/sl.po |  474 +++++++++++++++++++++++++++++++-------------------------------
+ 1 files changed, 237 insertions(+), 237 deletions(-)
+
+commit 2a50afdbddc2766d481336af97dccd5df27fba12
+Author: Sandeep Shedmake <sshedmak@redhat.com>
+Date:   2009-09-11
+
+    Updated Marathi Translations
+
+ po/mr.po |  597 ++++++++++++++++++++++++++++++--------------------------------
+ 1 files changed, 286 insertions(+), 311 deletions(-)
+
+commit e1994eae66cc2f38347c8fc66b4f1746e99048d7
+Author: A S Alam <aalam@users.sf.net>
+Date:   2009-09-11
+
+    Updating Translation for Punjabi
+
+ po/pa.po |  503 ++++++++++++++++++++++++++++++--------------------------------
+ 1 files changed, 242 insertions(+), 261 deletions(-)
+
+commit 93ccf2461a35ad7d4480d460d0cdc7d56c21c056
+Author: André Gondim <andregondim@ubuntu.com>
+Date:   2009-09-08
+
+    Corrected an access key in Brazilian Portuguese translation
+
+ po/pt_BR.po |  210 ++++++++++++++++++++++++++++++++---------------------------
+ 1 files changed, 115 insertions(+), 95 deletions(-)
+
+commit fa0a7cd9a3f750d4e05f4e96c28dea9cf5d1236a
+Author: Sweta Kothari <swkothar@redhat.com>
+Date:   2009-09-08
+
+    Updated Gujarati Translations
+
+ po/gu.po |  160 ++++++++++++++++++++++++++++++++++++++++++++++++-------------
+ 1 files changed, 126 insertions(+), 34 deletions(-)
+
+commit 7f406fa0e54b774707f18bde38cb97b5c0759c32
+Author: Gabor Kelemen <kelemeng@gnome.hu>
+Date:   2009-09-07
+
+    Hungarian translation updated
+
+ po/hu.po |  471 ++++++++++++++++++++++++++++++++------------------------------
+ 1 files changed, 241 insertions(+), 230 deletions(-)
+
+commit 627c70ee92ffb64fd1000a2fb2de6a749b2fbb93
+Author: Kjartan Maraas <kmaraas@gnome.org>
+Date:   2009-09-01
+
+    Update Norwegian bokmål translation.
+
+ po/nb.po |  225 +++++++++++++++++++++++++++++++++++---------------------------
+ 1 files changed, 127 insertions(+), 98 deletions(-)
+
+commit 1c05c6682823d0d0e6636261a61669751c158fb6
+Author: Jamil Ahmed <itsjamil@gmail.com>
+Date:   2009-09-01
+
+    Updated Bengali translation
+
+ po/bn.po | 1372 +++++++++++++++++++++++++++++++++++++++++++++++++++++---------
+ 1 files changed, 1177 insertions(+), 195 deletions(-)
+
+commit b96f35c47bc65d32fc712d473812d4e89d12f4dc
+Author: Khaled Hosny <khaledhosny@eglug.org>
+Date:   2009-08-31
+
+    Updated Arabic translation
+
+ po/ar.po |  157 +++++++++++++++++++++++++++++++++++++++++--------------------
+ 1 files changed, 105 insertions(+), 52 deletions(-)
+
+commit 519ca498ca7c0b7d1b1ad0ea59834f951c1a11b1
+Author: Duarte Loreto <happyguy_pt@hotmail.com>
+Date:   2009-08-31
+
+    Updated Portuguese translation
+
+ po/pt.po |  412 +++++++++++++++++++++++++++++++-------------------------------
+ 1 files changed, 207 insertions(+), 205 deletions(-)
+
+commit 7396a4fca5b55c6ce0e9e5f2fdd1d04b427e3b13
+Author: Vincent Untz <vuntz@gnome.org>
+Date:   2009-08-30
+
+    [pam] Fix logic for only_if option
+    
+    The logic was reverted, so we were ignoring services that were supposed
+    to be the ones allowed.
+    
+    http://bugzilla.gnome.org/show_bug.cgi?id=593575
+
+ pam/gkr-pam-module.c |    2 +-
+ 1 files changed, 1 insertions(+), 1 deletions(-)
+
+commit ddeadea08913230532f12200cebb74811691ddd3
+Author: Mario Blättermann <mariobl@gnome.org>
+Date:   2009-08-30
+
+    Updated German translation
+
+ po/de.po |  667 +++++++++++++++++++++++---------------------------------------
+ 1 files changed, 243 insertions(+), 424 deletions(-)
+
+commit 0fa6f05cfcedef35dd5de25908cbc1aceb50e61d
+Author: Stef Walter <stef@memberwebs.com>
+Date:   2009-08-30
+
+    [egg] Remove unneeded signal handling code.
+
+ egg/Makefile.am              |    1 -
+ egg/egg-unix-signal.c        |  230 ------------------------------------------
+ egg/egg-unix-signal.h        |   34 ------
+ egg/tests/Makefile.am        |    1 -
+ egg/tests/unit-test-signal.c |  114 ---------------------
+ 5 files changed, 0 insertions(+), 380 deletions(-)
+
+commit 7d19e6eb281a60b6f39af32b1242b808f0f7edd0
+Author: Stef Walter <stef@memberwebs.com>
+Date:   2009-08-30
+
+    [daemon] Rework signal handling, startup procedure.
+    
+    Reworking the signal handling, so we have a specific thread for
+    handling signals. All other threads ignore signals. This is the
+    recommended way to 'mix' signals and threads.
+    
+    In addition we move the part of startup that we can perform
+    after forking into separate procedures. In particular we try
+    to prevent starting threads until after we've forked. Besides
+    the obvious sanity, this helps the signal handling to work
+    for all threads.
+
+ daemon/gkr-daemon-dbus.c                     |    2 +-
+ daemon/gkr-daemon.c                          |  164 +++++++++++++++++++------
+ daemon/gkr-daemon.h                          |    4 +-
+ daemon/pkcs11/gkr-pkcs11-daemon.c            |   43 ++++---
+ daemon/pkcs11/gkr-pkcs11-daemon.h            |    4 +-
+ pkcs11/rpc-layer/gck-rpc-daemon-standalone.c |    6 +-
+ pkcs11/rpc-layer/gck-rpc-dispatch.c          |   68 ++++++++---
+ pkcs11/rpc-layer/gck-rpc-layer.h             |   11 ++-
+ pkcs11/ssh-agent/gck-ssh-agent-private.h     |    2 +-
+ pkcs11/ssh-agent/gck-ssh-agent-standalone.c  |   16 ++-
+ pkcs11/ssh-agent/gck-ssh-agent.c             |  165 ++++++++++++--------------
+ pkcs11/ssh-agent/gck-ssh-agent.h             |    6 +-
+ 12 files changed, 313 insertions(+), 178 deletions(-)
+
+commit 639d8e67269dc13b0ab5b029376b1a9fcf9d3e31
+Author: Stef Walter <stef@memberwebs.com>
+Date:   2009-08-30
+
+    Add silent-rules automake option when running automake 1.11
+    
+    Can now supress most automake output. This makes it easier to
+    see warnings and the like. Use the following to build quietly:
+    
+    make -s V=0
+
+ configure.in |    3 ++-
+ 1 files changed, 2 insertions(+), 1 deletions(-)
+
+commit 13fd62543d55daf4f20cf954b2027bc36d9a92ce
+Author: Stef Walter <stef@memberwebs.com>
+Date:   2009-08-29
+
+    [daemon] No warning when a disk doesn't have a UDI identifier.
+
+ daemon/util/gkr-location.c |    6 +++++-
+ 1 files changed, 5 insertions(+), 1 deletions(-)
+
+commit 0d6d93aabfd6aa447bbad09843201cbb93426eee
+Author: Miloš Popović <mpopovic@src.gnome.org>
+Date:   2009-08-29
+
+    Updated Serbian translation
+
+ po/sr.po       |  220 ++++++++++++++++++++++++++++----------------------------
+ po/sr@latin.po |  220 ++++++++++++++++++++++++++++----------------------------
+ 2 files changed, 222 insertions(+), 218 deletions(-)
+
+commit e1c5db68d690a6a782b7e8051c3260557cc1d671
+Author: Baris Cicek <baris@teamforce.name.tr>
+Date:   2009-08-29
+
+    Updated Turkish translation.
+
+ po/tr.po |  220 +++++++++++++++++++++++++++++++-------------------------------
+ 1 files changed, 110 insertions(+), 110 deletions(-)
+
+commit cb155df155579ba1f40c674c5679214bca8a4610
+Author: Runa Bhattacharjee <runab@redhat.com>
+Date:   2009-08-28
+
+    Updated Bengali India Translations
+
+ po/bn_IN.po |  239 ++++++++++++++++++++++++++++-------------------------------
+ 1 files changed, 114 insertions(+), 125 deletions(-)
+
+commit 51a225aa3f19d51bb1108744990f17ce35ca0627
+Author: Branko Kokanović <branko.kokanovic@gmail.com>
+Date:   2009-08-28
+
+    Updated Serbian translation
+
+ po/sr.po       | 1192 +++++++++++++++++++++++++++++++++++++++++++++++++++-----
+ po/sr@latin.po | 1192 +++++++++++++++++++++++++++++++++++++++++++++++++++-----
+ 2 files changed, 2180 insertions(+), 204 deletions(-)
+
+commit a2ac7c176871813f19747b55b103aebf57eeca39
+Author: Inaki Larranaga Murgoitio <dooteo@zundan.com>
+Date:   2009-08-27
+
+    Updated Basque language
+
+ po/eu.po |   87 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++--
+ 1 files changed, 84 insertions(+), 3 deletions(-)
+
+commit bf1c01ef1b4ed2857cf7e993e63b0c0e7865d540
+Author: Claude Paroz <claude@2xlibre.net>
+Date:   2009-08-26
+
+    Updated French translation
+
+ po/fr.po |  521 +++++++++++++++++++++++++-------------------------------------
+ 1 files changed, 206 insertions(+), 315 deletions(-)
+
+commit 2cdea2e016e4464b90bde3048bf0dd80584036c9
+Author: Claude Paroz <claude@2xlibre.net>
+Date:   2009-08-26
+
+    Missing prefix before gtkbuilder ui files
+
+ po/POTFILES.in |    4 ++--
+ 1 files changed, 2 insertions(+), 2 deletions(-)
+
+commit 2398042c4279fc0f3d0ab9f7fbdfb33afd1079bc
+Author: Inaki Larranaga Murgoitio <dooteo@zundan.com>
+Date:   2009-08-26
+
+    Updated Basque language
+
+ po/eu.po |  465 ++++++++++++++++++++++++++------------------------------------
+ 1 files changed, 192 insertions(+), 273 deletions(-)
+
+commit 6b040de8507e02c7569217dbab7396abb0b77475
+Author: Tomasz Dominikowski <dominikowski@gmail.com>
+Date:   2009-08-25
+
+    Updated Polish translation
+
+ po/pl.po |    4 ++--
+ 1 files changed, 2 insertions(+), 2 deletions(-)
+
+commit 922dc2b1def4601c86309f2c7bb58a5a084b1353
+Author: Tomasz Dominikowski <dominikowski@gmail.com>
+Date:   2009-08-25
+
+    Updated Polish translation
+
+ po/pl.po |  511 +++++++++++++++++++++++++++++---------------------------------
+ 1 files changed, 236 insertions(+), 275 deletions(-)
+
+commit 2dce6c36ff1e00e58dd32d41d04784b45541f7b2
+Author: Sweta Kothari <swkothar@redhat.com>
+Date:   2009-08-24
+
+    Updated Gujarati Translations
+
+ po/gu.po |  221 ++++++++++++++++++++------------------------------------------
+ 1 files changed, 71 insertions(+), 150 deletions(-)
+
+commit f16c577d25587de33db236d3e7e4c0beac33618c
+Author: Changwoo Ryu <cwryu@debian.org>
+Date:   2009-08-23
+
+    Update Korean translation
+
+ po/ko.po |  521 ++++++++++++++++++++++++++++++--------------------------------
+ 1 files changed, 251 insertions(+), 270 deletions(-)
+
+commit 0572bfe3d95b0ee3f016eb113931a433a8eaa956
+Author: Seán de Búrca <leftmostcat@gmail.com>
+Date:   2009-08-15
+
+    Updated Irish translation
+
+ po/ga.po |   35 ++++++++++++++++++++++-------------
+ 1 files changed, 22 insertions(+), 13 deletions(-)
+
+commit b404c5af71bbbc93803ddc8a909fb4340c7fd775
+Author: Rajesh Ranjan <rranjan@rranjan.csb>
+Date:   2009-08-14
+
+    hindi update
+
+ po/hi.po | 1559 ++++++++++++++++++++++++++++++++++++++++++++++++++++++--------
+ 1 files changed, 1367 insertions(+), 192 deletions(-)
+
+commit c2102df0949f7bcf4c1b5fe842ff876bcfbed235
+Author: Tommi Vainikainen <thv@iki.fi>
+Date:   2009-08-14
+
+    Updated Finnish translation
+
+ po/fi.po |  500 ++++++++++++++++++++++++++++++--------------------------------
+ 1 files changed, 240 insertions(+), 260 deletions(-)
+
+commit 61e98d048fbdcbdb6cc3f816b5921c4042a175a9
+Author: Alexander Shopov <ash@contact.bg>
+Date:   2009-08-14
+
+    Updated Bulgarian translation
+
+ po/bg.po |  454 +++++++++++++++++++++++++------------------------------------
+ 1 files changed, 186 insertions(+), 268 deletions(-)
+
+commit da2637e05fe021ed5c514d4183567d3a2b731eb3
+Author: Manoj Kumar Giri <mgiri@mgiri.csb>
+Date:   2009-08-13
+
+    Updated Oriya Translation
+
+ po/or.po |  486 ++++++++++++++++++++++++--------------------------------------
+ 1 files changed, 185 insertions(+), 301 deletions(-)
+
+commit 387c10e80c4c1ad2da5c3199e5316dff729b8fe1
+Author: Leonardo Ferreira Fontenelle <leonardof@gnome.org>
+Date:   2009-08-13
+
+    Updated Brazilian Portuguese translation.
+
+ po/pt_BR.po |  457 ++++++++++++++++++++++++++++-------------------------------
+ 1 files changed, 219 insertions(+), 238 deletions(-)
+
+commit b0785e38813d4f841a5fcf07d787490c99be632b
+Author: Mattias Põldaru <mahfiaz gmail com>
+Date:   2009-08-12
+
+    Updating Estonian translation
+
+ po/et.po |    6 +++---
+ 1 files changed, 3 insertions(+), 3 deletions(-)
+
+commit d110855653817775aadcc9341134255143fc689e
+Author: Antón Méixome <meixome@mancoumun.org>
+Date:   2009-08-12
+
+    Updated Galician translation
+
+ po/gl.po |  567 +++++++++++++++++++++++++-------------------------------------
+ 1 files changed, 231 insertions(+), 336 deletions(-)
+
+commit 4dd3f8eed8f20e36b4cec240f3d7c03d11660867
+Author: Priit Laes <plaes@plaes.org>
+Date:   2009-08-12
+
+    Updating Estonian translation
+
+ po/et.po |   18 +++++++++---------
+ 1 files changed, 9 insertions(+), 9 deletions(-)
+
+commit 4c1f1893f37cb90841bd8d87c0edd3e2e7e1aede
+Author: Stef Walter <stef@memberwebs.com>
+Date:   2009-08-10
+
+    Bump version number
+
+ configure.in |    2 +-
+ 1 files changed, 1 insertions(+), 1 deletions(-)
+
+commit 57d4b5089a69a50c5009f7f5a0ac59d7bcd242a8
+Author: Stef Walter <stef@memberwebs.com>
+Date:   2009-08-10
+
+    Release version 2.27.90
+
+ NEWS |    4 ++++
+ 1 files changed, 4 insertions(+), 0 deletions(-)
+
+commit b363ae95cbc0584b747befeb602b4df7538597ad
+Author: Stef Walter <stef@memberwebs.com>
+Date:   2009-08-10
+
+    [gck] Fix test parsing ASN.1 data.
+
+ pkcs11/gck/tests/unit-test-data-der.c |    2 +-
+ 1 files changed, 1 insertions(+), 1 deletions(-)
+
+commit d0416fb1785af404616a563f5784d2432058a73e
+Author: Seán de Búrca <leftmostcat@gmail.com>
+Date:   2009-08-09
+
+    Added Irish translation
+
+ po/LINGUAS |    1 +
+ po/ga.po   | 1236 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+ 2 files changed, 1237 insertions(+), 0 deletions(-)
+
+commit fa0fb0c9084d02f4a773767892a25f33e312ce07
+Author: Khaled Hosny <khaledhosny@eglug.org>
+Date:   2009-08-08
+
+    Updated Arabic translation
+
+ po/ar.po |  662 ++++++++++++++++++++++++++++----------------------------------
+ 1 files changed, 295 insertions(+), 367 deletions(-)
+
+commit 0bbf7361da926c55a723b2ca0417552c537b4ee1
+Author: Chao-Hsiung Liao <j_h_liau@yahoo.com.tw>
+Date:   2009-08-08
+
+    Updated Traditional Chinese translation(Hong Kong and Taiwan)
+
+ po/zh_HK.po |  737 ++++++++++++++++++++++++++++++--------------------------
+ po/zh_TW.po |  769 ++++++++++++++++++++++++++++++++---------------------------
+ 2 files changed, 818 insertions(+), 688 deletions(-)
+
+commit fc589f391ac9b3ef9d987736cd9d0522a608ea40
+Author: Stefan Walter <Stefan Walter>
+Date:   2009-08-02
+
+    [egg, gcr, pkcs11] Take length of ASN.1 into account, when parsing.
+    
+    When parsing ASN.1, take length of elements into account, in order
+    to prevent null character related vulnerabilities.
+
+ egg/egg-asn1.c                        |  104 ++++++++++++++++++++++----------
+ egg/egg-asn1.h                        |    4 +-
+ egg/tests/unit-test-asn1.c            |    4 +-
+ gcr/gcr-certificate-details-widget.c  |   18 ++----
+ gcr/gcr-certificate.c                 |    3 +-
+ pkcs11/gck/gck-certificate.c          |    7 ++-
+ pkcs11/gck/gck-data-der.c             |    6 +-
+ pkcs11/gck/tests/unit-test-data-der.c |    5 +-
+ 8 files changed, 94 insertions(+), 57 deletions(-)
+
+commit bc68a79d44f4d93f913e312332f8c9c60df3c985
+Author: Kjartan Maraas <kmaraas@gnome.org>
+Date:   2009-08-01
+
+    Updated Norwegian bokmål translation.
+
+ po/nb.po |  218 +++++++++++++++++++++++++++----------------------------------
+ 1 files changed, 97 insertions(+), 121 deletions(-)
+
+commit 9c505e89975af6d8849987e4d1ecb88d1e8482f9
+Author: Stef Walter <stef@memberwebs.com>
+Date:   2009-07-31
+
+    [pam] Fix use of constant not found in Solaris or FreeBSD.
+    
+    The PAM_BAD_ITEM constant is linux specific. We don't need to use it,
+    so I've removed usage. Fixes bug #590268
+
+ pam/gkr-pam-module.c |    8 ++++----
+ 1 files changed, 4 insertions(+), 4 deletions(-)
+
+commit b51aaae5133686190ca8aced6b44f14274feeff0
+Author: drtvasudevan <agnihot3@gmail.com>
+Date:   2009-07-29
+
+    Updated Tamil translation
+
+ po/ta.po |  546 +++++++++++++++++++++++++++++---------------------------------
+ 1 files changed, 254 insertions(+), 292 deletions(-)
+
+commit 8144aa2b90545d9c25e26da63dc9e275396e67b2
+Author: Stef Walter <stef@memberwebs.com>
+Date:   2009-07-27
+
+    Bump version number.
+
+ configure.in |    2 +-
+ 1 files changed, 1 insertions(+), 1 deletions(-)
+
+commit 94d5a4282da6d7bdcc9ed3d29cbb95100318c39b
+Author: Stef Walter <stef@memberwebs.com>
+Date:   2009-07-27
+
+    Release version 2.27.5.
+
+ NEWS         |    6 ++++++
+ configure.in |    2 +-
+ 2 files changed, 7 insertions(+), 1 deletions(-)
+
+commit 8fbb0c3e9df32dc9eb0fb9ebe9e791d5bb39036f
+Author: Stef Walter <stef@memberwebs.com>
+Date:   2009-07-27
+
+    [daemon] Use gio instead of libhal for monitoring volumes.
+    
+    Remove use of libhal from GkrLocationManager. Use GVolumeMonitor
+    from gio instead. Fixes bug #589837
+
+ configure.in               |   29 ---
+ daemon/Makefile.am         |    2 +
+ daemon/util/gkr-location.c |  446 +++++++++++---------------------------------
+ 3 files changed, 114 insertions(+), 363 deletions(-)
+
+commit 04024cd895ad060e1e84e5c1312aa1294ce75cbd
+Author: Andre Klapper <a9016009@gmx.de>
+Date:   2009-07-24
+
+    Update Czech translation.
+
+ po/cs.po |  455 ++++++++++++++++++++++++++++++--------------------------------
+ 1 files changed, 217 insertions(+), 238 deletions(-)
+
+commit 0275804640ccb2d64ab7f28fa23affdc3ba04420
+Author: Stef Walter <stef@memberwebs.com>
+Date:   2009-07-23
+
+    [gck] Add concept of PKCS#11 applications.
+    
+    Remove VirtualSlot stuff and hide a lot of the apartment
+    stuff inside the module whenever possible.
+
+ pkcs11/gck/gck-module.c             |  406 +++++++++++++++++++----------------
+ pkcs11/gck/gck-session.c            |   27 ++-
+ pkcs11/gck/gck-session.h            |    7 +-
+ pkcs11/pkcs11g.h                    |    5 +-
+ pkcs11/pkcs11i.h                    |   57 ++---
+ pkcs11/plex-layer/gck-plex-layer.c  |   14 +-
+ pkcs11/rpc-layer/gck-rpc-dispatch.c |   71 ++++---
+ 7 files changed, 315 insertions(+), 272 deletions(-)
+
+commit b7dd715014c145f43dff2b35a0471357a6ff3ea4
+Author: Ivar Smolin <okul@linux.ee>
+Date:   2009-07-23
+
+    Updating Estonian translation
+
+ po/et.po |  135 +++++++++++++++++++++++++++++++-------------------------------
+ 1 files changed, 68 insertions(+), 67 deletions(-)
+
+commit 5021d8af9b297c97eaf0f93d83a4672250b65971
+Author: Theppitak Karoonboonyanan <thep@linux.thai.net>
+Date:   2009-07-23
+
+    Updated Thai translation.
+
+ po/th.po |  465 ++++++++++++++++++++++++++++++--------------------------------
+ 1 files changed, 222 insertions(+), 243 deletions(-)
+
+commit d8e3f67b1bc68cb2545358d5d4882efc9a1b5376
+Author: Daniel Nylander <po@danielnylander.se>
+Date:   2009-07-22
+
+    Updated Swedish translation
+
+ po/sv.po |  804 ++++++++++++++++++++++---------------------------------------
+ 1 files changed, 290 insertions(+), 514 deletions(-)
+
+commit 6f0865f2489e498352deb022dca7cf0cebf46e78
+Author: Jorge González <jorgegonz@svn.gnome.org>
+Date:   2009-07-21
+
+    Updated Spanish translation
+
+ po/es.po |  475 ++++++++++++++++++++++++++++++--------------------------------
+ 1 files changed, 229 insertions(+), 246 deletions(-)
+
+commit 08977420782b3fe2c7b5f70f517fe37b69dedde2
+Author: Stef Walter <stef@memberwebs.com>
+Date:   2009-07-21
+
+    [daemon] Translatable string fix.
+    
+    Fixes bug #573662. Remove spaces from end of translatable string.
+
+ daemon/gkr-daemon-ops.c |    4 ++--
+ 1 files changed, 2 insertions(+), 2 deletions(-)
+
+commit 767bac01f7800d26553af73dc28c0f4ee9877416
+Author: Stef Walter <stef@memberwebs.com>
+Date:   2009-07-21
+
+    Fix a couple more minor memory leaks.
+    
+    Fix memory leaks highlighted by the valgrind trace on bug #588443
+
+ daemon/gkr-daemon-dbus.c          |    1 +
+ pkcs11/gck/gck-session.c          |    2 ++
+ pkcs11/ssh-store/gck-ssh-module.c |    2 ++
+ 3 files changed, 5 insertions(+), 0 deletions(-)
+
+commit 5a175e3c45883fc43a231f8144fdc8102a28c780
+Author: Stef Walter <stef@memberwebs.com>
+Date:   2009-07-21
+
+    [tests] Fix some minor memory leaks in unit tests.
+
+ pkcs11/gck/tests/unit-test-data-asn1.c |    2 ++
+ tests/gtest-helpers.c                  |    2 ++
+ 2 files changed, 4 insertions(+), 0 deletions(-)
+
+commit 00f08d16d86ee109a73372aa13f8ab7670b4f62b
+Author: Stef Walter <stef@memberwebs.com>
+Date:   2009-07-19
+
+    [gck] Write files without group or world permissions.
+    
+    Fixes bug #587908. Don't use g_file_set_contents() but write our
+    own routines for writing file data from a transaction.
+
+ pkcs11/gck/gck-transaction.c |   68 +++++++++++++++++++++++++++++++++++++----
+ 1 files changed, 61 insertions(+), 7 deletions(-)
+
+commit a957c0ed1fbf61d355e8d0eed8fdfac969ec4e37
+Merge: 40a9f2a 5baf704
+Author: Stef Walter <stef@memberwebs.com>
+Date:   2009-07-19
+
+    Merge branch 'unlock-objects'
+
+commit 5baf7048a690e1d1e6d6b677f19bcd687c92c9ac
+Author: Stef Walter <stef@memberwebs.com>
+Date:   2009-07-19
+
+    [daemon, ssh-agent] Use authenticator objects instead of auth-cache.
+    
+    Now that we have authenticator objects in the actual pkcs#11 modules
+    remove the auth cache for unlocking objects from the daemon, and
+    use authenticator objects to lock objects from the ssh-agent.
+
+ daemon/pkcs11/gkr-pkcs11-auth-ep.c   |  414 +++-------------------------------
+ daemon/pkcs11/gkr-pkcs11-auth.c      |  167 ++------------
+ daemon/pkcs11/gkr-pkcs11-auth.h      |   16 +-
+ pkcs11/pkcs11g.h                     |   11 -
+ pkcs11/ssh-agent/gck-ssh-agent-ops.c |   32 ++-
+ 5 files changed, 76 insertions(+), 564 deletions(-)
+
+commit 71c0f037a3bbcf2ba4e1c46302834b345cf41847
+Author: Stef Walter <stef@memberwebs.com>
+Date:   2009-07-19
+
+    [gck] Pass session to get/set attribute functions.
+    
+    This allows attributes to be different depending on which session or
+    application they're accessed from. Implement CKA_ALWAYS_AUTHENTICATE
+    as a session dependent attribute.
+
+ pkcs11/gck/gck-authenticator.c             |    4 +-
+ pkcs11/gck/gck-certificate-key.c           |    6 +-
+ pkcs11/gck/gck-certificate-trust.c         |   14 ++++---
+ pkcs11/gck/gck-certificate.c               |    6 +-
+ pkcs11/gck/gck-key.c                       |    4 +-
+ pkcs11/gck/gck-manager.c                   |   12 +++---
+ pkcs11/gck/gck-object.c                    |   64 +++++++++++++---------------
+ pkcs11/gck/gck-object.h                    |   19 ++++++--
+ pkcs11/gck/gck-private-key.c               |   21 +++++++---
+ pkcs11/gck/gck-private-key.h               |    3 +-
+ pkcs11/gck/gck-public-key.c                |    4 +-
+ pkcs11/gck/gck-session.c                   |   20 ++++----
+ pkcs11/gck/tests/mock-locked-object.c      |    4 +-
+ pkcs11/roots-store/gck-roots-certificate.c |    4 +-
+ pkcs11/ssh-store/gck-ssh-private-key.c     |    6 +-
+ pkcs11/ssh-store/gck-ssh-public-key.c      |    4 +-
+ pkcs11/user-store/gck-user-private-key.c   |    4 +-
+ pkcs11/user-store/gck-user-storage.c       |    6 +-
+ 18 files changed, 110 insertions(+), 95 deletions(-)
+
+commit 45c79443a280bcda6e4c88f79e5db2f3391ac938
+Author: Stef Walter <stef@memberwebs.com>
+Date:   2009-07-19
+
+    [gck] Don't map object identifiers in plex layer.
+    
+    This conflicts with future plans for having object handles
+    present in the attributes of other objects.
+
+ pkcs11/plex-layer/gck-plex-layer.c |  123 ++++++------------------------------
+ 1 files changed, 20 insertions(+), 103 deletions(-)
+
+commit d5f960e74da3c39c46b358f982e24407c77441b9
+Author: Stef Walter <stef@memberwebs.com>
+Date:   2009-07-19
+
+    [gck] Tweak authenticator enumerator to return boolean.
+    
+    gck_session_for_each_authenticator() now returns a boolean value
+    if any of the callbacks returned successfully.
+
+ pkcs11/gck/gck-session.c |   14 ++++++++------
+ pkcs11/gck/gck-session.h |    2 +-
+ 2 files changed, 9 insertions(+), 7 deletions(-)
+
+commit 6a6d07aa2265ff842b37900faaf13b096c0fdd5a
+Author: Stef Walter <stef@memberwebs.com>
+Date:   2009-07-19
+
+    [gck] Add authenticator objects for storing authenticated state.
+    
+    Authenticator objects are now used for PKCS#11 context specific
+    logins. In the future we'll use them for unlocking stuff on a
+    token, session, or timeout basis.
+
+ pkcs11/gck/Makefile.am                         |    1 +
+ pkcs11/gck/gck-authenticator.c                 |  402 ++++++++++++++++++++++++
+ pkcs11/gck/gck-authenticator.h                 |   77 +++++
+ pkcs11/gck/gck-key.c                           |    4 +-
+ pkcs11/gck/gck-key.h                           |    5 +-
+ pkcs11/gck/gck-login.c                         |    1 +
+ pkcs11/gck/gck-module.c                        |   12 +-
+ pkcs11/gck/gck-object.c                        |   50 +++-
+ pkcs11/gck/gck-object.h                        |    8 +-
+ pkcs11/gck/gck-private-key.c                   |   82 ++++--
+ pkcs11/gck/gck-private-key.h                   |    8 +-
+ pkcs11/gck/gck-public-key.c                    |    2 +-
+ pkcs11/gck/gck-session.c                       |  107 ++++++-
+ pkcs11/gck/gck-session.h                       |    8 +
+ pkcs11/gck/gck-sexp.c                          |    3 +-
+ pkcs11/gck/gck-sexp.h                          |    2 +-
+ pkcs11/gck/gck-types.h                         |    1 +
+ pkcs11/gck/gck-util.c                          |   11 +
+ pkcs11/gck/gck-util.h                          |    2 +
+ pkcs11/gck/tests/Makefile.am                   |    2 +
+ pkcs11/gck/tests/mock-locked-object.c          |   88 +++++
+ pkcs11/gck/tests/mock-locked-object.h          |   52 +++
+ pkcs11/gck/tests/test-module.c                 |   34 ++-
+ pkcs11/gck/tests/test-module.h                 |   10 +-
+ pkcs11/gck/tests/unit-test-authenticator.c     |  254 +++++++++++++++
+ pkcs11/gck/tests/unit-test-memory-store.c      |    6 +-
+ pkcs11/gck/tests/unit-test-object.c            |   23 +--
+ pkcs11/gck/tests/unit-test-store.c             |    7 +-
+ pkcs11/gck/tests/unit-test-timer.c             |    6 +-
+ pkcs11/pkcs11g.h                               |   14 +-
+ pkcs11/ssh-store/gck-ssh-module.c              |    8 +
+ pkcs11/ssh-store/gck-ssh-private-key.c         |   40 ++-
+ pkcs11/ssh-store/tests/Makefile.am             |    4 +-
+ pkcs11/ssh-store/tests/test-ssh-module.c       |  105 ++++++
+ pkcs11/ssh-store/tests/test-ssh-module.h       |   43 +++
+ pkcs11/ssh-store/tests/unit-test-private-key.c |   97 ++++++
+ pkcs11/user-store/gck-user-private-key.c       |    4 +-
+ pkcs11/user-store/gck-user-storage.c           |   10 +-
+ 38 files changed, 1451 insertions(+), 142 deletions(-)
+
+commit 4508771f734590140051391b0a9222451f2aa453
+Author: Stef Walter <stef@memberwebs.com>
+Date:   2009-07-18
+
+    [gck] Add support for transient PKCS#11 objects.
+    
+    Transient objects are not stored permanently. These may be token
+    objects with token 'scope' but dissappear automatically at some
+    point in the future.
+    
+    Auto-destructed objects are always token objects.
+
+ pkcs11/gck/gck-module.c             |  114 +++++++++++++++-
+ pkcs11/gck/gck-object.c             |  132 +++++++++++-------
+ pkcs11/gck/gck-object.h             |   13 +-
+ pkcs11/gck/gck-session.c            |   17 ++-
+ pkcs11/gck/tests/Makefile.am        |    1 +
+ pkcs11/gck/tests/unit-test-object.c |  262 +++++++++++++++++++++++++++++++++++
+ pkcs11/gck/tests/unit-test-timer.c  |    2 +-
+ pkcs11/pkcs11g.h                    |    2 +
+ 8 files changed, 478 insertions(+), 65 deletions(-)
+
+commit 3f7704cd340e9e8ee88dd5180a52cc583bb9daf3
+Author: Stef Walter <stef@memberwebs.com>
+Date:   2009-07-18
+
+    [gck] Add helper function to parse bool attribute.
+
+ pkcs11/gck/gck-attributes.c             |   17 +++++++++++++++++
+ pkcs11/gck/gck-attributes.h             |    5 ++++-
+ pkcs11/gck/tests/unit-test-attributes.c |   27 +++++++++++++++++++++++++++
+ 3 files changed, 48 insertions(+), 1 deletions(-)
+
+commit b98358d3c3e43792474ff2622c6d3397c3a9badf
+Author: Stef Walter <stef@memberwebs.com>
+Date:   2009-07-18
+
+    [gck] PKCS#11 objects now track the module they're in.
+    
+    Since multiple modules share the same address space, this is
+    a necessary change for future robustness and changes.
+
+ pkcs11/gck/gck-certificate-key.c            |    4 +-
+ pkcs11/gck/gck-certificate-key.h            |    3 +-
+ pkcs11/gck/gck-certificate-trust.c          |    4 +-
+ pkcs11/gck/gck-certificate-trust.h          |    3 +-
+ pkcs11/gck/gck-certificate.c                |    5 ++-
+ pkcs11/gck/gck-object.c                     |   41 +++++++++++++++++++++++++-
+ pkcs11/gck/gck-object.h                     |    2 +
+ pkcs11/gck/gck-private-key.c                |    4 ++-
+ pkcs11/gck/gck-public-key.c                 |    4 ++-
+ pkcs11/gck/tests/unit-test-memory-store.c   |   13 +++++++-
+ pkcs11/gck/tests/unit-test-store.c          |    9 ++++++
+ pkcs11/roots-store/gck-roots-certificate.c  |   20 +++++++++++--
+ pkcs11/roots-store/gck-roots-certificate.h  |    3 +-
+ pkcs11/roots-store/gck-roots-module.c       |    2 +-
+ pkcs11/ssh-store/gck-ssh-module.c           |    2 +-
+ pkcs11/ssh-store/gck-ssh-private-key.c      |   11 ++++--
+ pkcs11/ssh-store/gck-ssh-private-key.h      |    3 +-
+ pkcs11/ssh-store/gck-ssh-public-key.c       |    5 ++-
+ pkcs11/ssh-store/gck-ssh-public-key.h       |    3 +-
+ pkcs11/user-store/gck-user-module.c         |    2 +-
+ pkcs11/user-store/gck-user-private-key.c    |    4 ++-
+ pkcs11/user-store/gck-user-public-key.c     |    4 ++-
+ pkcs11/user-store/gck-user-storage.c        |   33 +++++++++++++++++----
+ pkcs11/user-store/gck-user-storage.h        |    2 +-
+ pkcs11/user-store/tests/.gitignore          |    2 +
+ pkcs11/user-store/tests/Makefile.am         |    7 ++++
+ pkcs11/user-store/tests/p11-tests.conf      |    2 +
+ 27 files changed, 159 insertions(+), 38 deletions(-)
+
+commit 508054a15c332a7fa3ba3dd509863ed81eeea188
+Author: Stef Walter <stef@memberwebs.com>
+Date:   2009-07-18
+
+    Figure out CKA_TOKEN for a PKCS#11 object based on manager.
+    
+    Instead of manually setting CKA_TOKEN as the 'permanent' property
+    on an object, we automatically infer it from the manager that
+    the token object is on.
+
+ pkcs11/gck/gck-manager.c |    3 ---
+ pkcs11/gck/gck-object.c  |   23 +++++------------------
+ pkcs11/gck/gck-session.c |    5 -----
+ 3 files changed, 5 insertions(+), 26 deletions(-)
+
+commit 40a9f2aa3e0a888d856981b565d88e4f780df494
+Author: Stef Walter <stef@memberwebs.com>
+Date:   2009-07-18
+
+    Update translatable files for last change
+
+ po/POTFILES.in |    4 ++--
+ 1 files changed, 2 insertions(+), 2 deletions(-)
+
+commit d480df5f8f66478f00ed02bd46b15e9d2783f7d0
+Author: Stef Walter <stef@memberwebs.com>
+Date:   2009-07-18
+
+    Use .ui files directly now that they're supported by glade.
+    
+    Remove old glade files, and the conversion rules from Makefile.am.
+
+ gcr/.gitignore                          |    2 -
+ gcr/Makefile.am                         |   14 +-
+ gcr/gcr-certificate-basics-widget.glade |  512 -------------------------------
+ gcr/gcr-certificate-basics-widget.ui    |  504 ++++++++++++++++++++++++++++++
+ gcr/gcr-import-dialog.glade             |  130 --------
+ gcr/gcr-import-dialog.ui                |  125 ++++++++
+ 6 files changed, 633 insertions(+), 654 deletions(-)
+
+commit 28bf965222e58c0eae7eb76ff0143ce3b86a6fda
+Merge: 92251a5 d69fdd3
+Author: Stef Walter <stef@memberwebs.com>
+Date:   2009-07-18
+
+    Merge branch 'auto-destruct'
+
+commit d69fdd36a70052114b8b0c4cc0efa0868709ebb0
+Author: Stef Walter <stef@memberwebs.com>
+Date:   2009-07-18
+
+    Add support for lifetime constrained identities.
+    
+    We don't support prompt constrained identities, as security
+    wise this is incompatible with the current X11 desktop. And
+    currently amounts to 'security theater'.
+
+ pkcs11/ssh-agent/gck-ssh-agent-ops.c |   74 +++++++++++++++++++++++++++++++--
+ 1 files changed, 69 insertions(+), 5 deletions(-)
+
+commit 274b2f5d8993e7b1b8717b7df50a4c678aa64641
+Author: Stef Walter <stef@memberwebs.com>
+Date:   2009-07-18
+
+    Make standalone socket in a directory we know exists: /tmp
+
+ pkcs11/ssh-agent/gck-ssh-agent-standalone.c |    2 +-
+ 1 files changed, 1 insertions(+), 1 deletions(-)
+
+commit ad2c0e75977c7a76c25ef27fb29b767d3c1e94ad
+Author: Stef Walter <stef@memberwebs.com>
+Date:   2009-07-18
+
+    Add support for auto destructing session objects.
+    
+    These destroy themselves after a certain amount of lifetime
+    controlled by the CKA_GNOME_AUTO_DESTRUCT attribute.
+
+ pkcs11/gck/gck-object.c  |  120 ++++++++++++++++++++++++++++++++++++++++++++++
+ pkcs11/gck/gck-object.h  |    8 +++
+ pkcs11/gck/gck-session.c |   32 ++++++++++++-
+ pkcs11/gck/gck-session.h |    5 ++
+ pkcs11/pkcs11g.h         |    6 ++
+ 5 files changed, 170 insertions(+), 1 deletions(-)
+
+commit 10ecb163793305ceed6a3cee48f2e593daabdd20
+Author: Stef Walter <stef@memberwebs.com>
+Date:   2009-07-18
+
+    Add support for parsing and storing time attributes.
+    
+    These time attributes follow the PKCS#11 clock format.
+    That is: YYYYmmddHHMMSS00 16 chars
+
+ pkcs11/gck/gck-attributes.c             |   97 ++++++++++++++++++++++++
+ pkcs11/gck/gck-attributes.h             |    8 ++
+ pkcs11/gck/tests/Makefile.am            |    1 +
+ pkcs11/gck/tests/unit-test-attributes.c |  125 +++++++++++++++++++++++++++++++
+ 4 files changed, 231 insertions(+), 0 deletions(-)
+
+commit 30d87d669ce3c17a3de5de1e065ddc09357d2170
+Author: Stef Walter <stef@memberwebs.com>
+Date:   2009-07-18
+
+    Add support for thread timers.
+    
+    We can't use mainloop timers from PKCS#11 modules, since no
+    mainloop runs in those modules. Thread timers all share a
+    single thread and callback into the module at the given time.
+
+ pkcs11/gck/Makefile.am             |    1 +
+ pkcs11/gck/gck-module-ep.h         |    4 +-
+ pkcs11/gck/gck-module.c            |   32 +++++-
+ pkcs11/gck/gck-module.h            |    6 +-
+ pkcs11/gck/gck-timer.c             |  225 ++++++++++++++++++++++++++++++++++++
+ pkcs11/gck/gck-timer.h             |   43 +++++++
+ pkcs11/gck/gck-types.h             |    1 +
+ pkcs11/gck/tests/Makefile.am       |    2 +
+ pkcs11/gck/tests/test-module.c     |   70 +++++++++++
+ pkcs11/gck/tests/test-module.h     |   41 +++++++
+ pkcs11/gck/tests/unit-test-timer.c |  159 +++++++++++++++++++++++++
+ 11 files changed, 578 insertions(+), 6 deletions(-)
+
+commit 92251a5d0995fb04ea54d148d7825b19d1c430b4
+Author: Sweta Kothari <swkothar@redhat.com>
+Date:   2009-07-14
+
+    Updated Gujarati Translations
+
+ po/gu.po |  206 ++++++++++++++++++++++++++++++++-----------------------------
+ 1 files changed, 108 insertions(+), 98 deletions(-)
+
+commit 8261600a736854d44c869cf8077776b286e80680
+Author: Sweta Kothari <swkothar@redhat.com>
+Date:   2009-07-14
+
+    Updated Gujarati Translations
+
+ po/gu.po |   37 +++++++++++++++++++------------------
+ 1 files changed, 19 insertions(+), 18 deletions(-)
+
+commit 28005c65148d730e417669f227d8db35e2db2cac
+Author: Stef Walter <stef@memberwebs.com>
+Date:   2009-07-13
+
+    Release version 2.27.4
+
+ NEWS         |   12 ++++++++++++
+ configure.in |    2 +-
+ 2 files changed, 13 insertions(+), 1 deletions(-)
+
+commit 5f7e6f921cb4bc01aca90416ba83cb046fee1506
+Author: Stef Walter <stef@memberwebs.com>
+Date:   2009-07-13
+
+    Fix tests so they work from 'make distwcheck'
+    
+    Fix path issues in the tests which need data from their
+    test-data directory, so that they work when running 'make distcheck'
+
+ daemon/keyrings/tests/unit-test-keyring-file.c |   20 ++++--------
+ gcr/gcr-library.c                              |    2 +-
+ gcr/tests/unit-test-certificate.c              |   11 ++-----
+ gcr/tests/unit-test-parser.c                   |    2 +-
+ pkcs11/gck/tests/unit-test-data-der.c          |    2 +-
+ pkcs11/gck/tests/unit-test-data-file.c         |    4 +-
+ pkcs11/ssh-store/tests/Makefile.am             |    4 ++-
+ tests/gtest-helpers.c                          |   38 ++++++++++++++++++++---
+ tests/gtest-helpers.h                          |    1 +
+ tests/gtest.make                               |    2 +-
+ 10 files changed, 53 insertions(+), 33 deletions(-)
+
+commit a786f3e04907797eb72e5632d737661f9cbd791c
+Author: Stef Walter <stef@memberwebs.com>
+Date:   2009-07-13
+
+    Make gkr_proto_get_raw_secret work as null-terminated when poss.
+    
+    Add an extra zero byte at the end of the returned secret, so that
+    it can work as a string where possible
+
+ library/gnome-keyring-proto.c |    3 ++-
+ 1 files changed, 2 insertions(+), 1 deletions(-)
+
+commit 3b9592e09fab786ef8518ac49269314a6c08a521
+Author: Stef Walter <stef@memberwebs.com>
+Date:   2009-07-13
+
+    Cleanup tests, hook into 'make check'.
+    
+    Hook tests into make check. Fix some assumptions in tests
+    about the order of setup functions being run.
+
+ Makefile.am                                     |    9 -------
+ daemon/keyrings/tests/unit-test-keyring-login.c |   16 ++++++++++---
+ tests/Makefile.am                               |   13 -----------
+ tests/gtest.make                                |    7 ++++-
+ tests/run-tests.sh                              |   27 -----------------------
+ 5 files changed, 17 insertions(+), 55 deletions(-)
+
+commit cb32f8b10ca51afa699afdaf339029aa5fbd0e74
+Merge: 6c92cd1 eccba13
+Author: Stef Walter <stef@memberwebs.com>
+Date:   2009-07-13
+
+    Merge branch 'gnome-2-26'
+
+commit 6c92cd1c56f34e29e750aa595e8884fbb27eb684
+Author: Stef Walter <stef@memberwebs.com>
+Date:   2009-07-13
+
+    Parse, but don't use non-utf8 secrets in keyrings.
+    
+    This is a change for future backwards compatibility.
+
+ daemon/keyrings/gkr-keyring-binary.c |   13 +++++++++++--
+ egg/egg-buffer.c                     |    4 ++--
+ library/gnome-keyring-proto.c        |   19 +++++++++++++++++++
+ library/gnome-keyring-proto.h        |    5 +++++
+ 4 files changed, 37 insertions(+), 4 deletions(-)
+
+commit a55053287ab6710bd882246aeb44267a7391d758
+Author: Stef Walter <stef@memberwebs.com>
+Date:   2009-07-13
+
+    Don't be as strict with reserved/unused areas in keyrings.
+    
+    This will be used for future backwards compatibility where possible.
+
+ daemon/keyrings/gkr-keyring-binary.c |   34 +++++++++-------------------------
+ 1 files changed, 9 insertions(+), 25 deletions(-)
+
+commit 07935696286dcb99d6ec48eae0309d9dab1ec618
+Author: Stef Walter <stef@memberwebs.com>
+Date:   2009-07-09
+
+    Add support in pam module for use_authtok
+    
+    The use_authtok option can be used to prevent prompting for
+    a password by the pam module, if one was not already supplied.
+    See bug #587164.
+
+ pam/gkr-pam-module.c |   14 ++++++++++++--
+ 1 files changed, 12 insertions(+), 2 deletions(-)
+
+commit eccba135c041cd2894737657c37a28a4fff1d0fa
+Author: Stef Walter <stef@memberwebs.com>
+Date:   2009-06-29
+
+    Release version 2.26.3
+
+ ChangeLog    |   37 +++++++++++++++++++++++++++++++++++++
+ NEWS         |    6 ++++++
+ configure.in |    2 +-
+ po/ChangeLog |    2 ++
+ 4 files changed, 46 insertions(+), 1 deletions(-)
+
+commit 0ac8ef230ab893e303765ea0bfcb5cd15f0de693
+Author: Stef Walter <stef@memberwebs.com>
+Date:   2009-06-27
+
+    Fix build problem that resulted from recent merge.
+    
+    Accidentally merged this line back in from gnome-2-26.
+
+ pkcs11/rpc-layer/Makefile.am |    3 +--
+ 1 files changed, 1 insertions(+), 2 deletions(-)
+
+commit 3407fca4e68a8d7dcbdc63f5fc7fde8d811932ab
+Author: Stef Walter <stef@memberwebs.com>
+Date:   2009-06-27
+
+    Remove == bashisms from 'test' calls configure.
+    
+    Patch by Alexis Ballier. POSIX does not document the == construction
+    for test. Fixes bug #587118
+
+ configure.in |   14 +++++++-------
+ 1 files changed, 7 insertions(+), 7 deletions(-)
+
+commit 1166aab82a8d2152ea3259d75c3ec99ae02e625a
+Merge: f824505 bea1715
+Author: Stef Walter <stef@memberwebs.com>
+Date:   2009-06-26
+
+    Merge branch 'gnome-2-26'
+
+commit f824505952f17804d447179ef2bd38f81805eb16
+Author: Stef Walter <stef@memberwebs.com>
+Date:   2009-06-26
+
+    Better message when gck-ssh-agent-standalone (test binary) used wrong.
+    
+    Add a better message when this test binary is used in the wrong way.
+    Fixes bug #581782 Research by Jon Downland.
+
+ pkcs11/ssh-agent/gck-ssh-agent-standalone.c |    5 +++++
+ 1 files changed, 5 insertions(+), 0 deletions(-)
+
+commit 19bdcf05461175d40ea8c5c324146379e028c38a
+Author: Stef Walter <stef@memberwebs.com>
+Date:   2009-06-26
+
+    Add only_if= option to pam module, can limit services its enabled for.
+    
+    By Vincent Untz. The only_if= option allows administrators to disable
+    the gnome-keyring pam module to only run under certain pam services.
+    This is useful if gnome-keyring is to be included in a common pam
+    included config file. Fixes bug #559781
+
+ pam/gkr-pam-module.c |   85 ++++++++++++++++++++++++++++++++++++++++++++------
+ 1 files changed, 75 insertions(+), 10 deletions(-)
+
+commit 039311c6022e5068f92418ac1cc641e092a50915
+Author: Stef Walter <stef@memberwebs.com>
+Date:   2009-06-26
+
+    Make "Password: " prompt be translated in pam module.
+    
+    Fixed on Linux. I'm not an expert in this area, and have no idea
+    how make other desktops work. Patches are welcome.
+    Patch from Vincent Untz. Fixes bug #572360
+
+ pam/gkr-pam-module.c |    9 ++++++++-
+ 1 files changed, 8 insertions(+), 1 deletions(-)
+
+commit bea17154da4c84f54064489e8ea875b74c7a6256
+Author: Stef Walter <stef@memberwebs.com>
+Date:   2009-06-26
+
+    Fixed problem with RSA key sizes that were not a multiple of 8.
+    
+    This was a problem in the PKCS#1 padding functions, which calculated
+    the padding length incorrectly. All instances of this have been
+    searched out and fixed. Should fix bug #576700 at least with the
+    key that Robert Ancell posted.
+
+ pkcs11/gck/gck-crypto.c |   13 ++++++++-----
+ 1 files changed, 8 insertions(+), 5 deletions(-)
+
+commit 6ddb14eef4368d63ce7055ee52718010a8f8190a
+Author: Stef Walter <stef@memberwebs.com>
+Date:   2009-06-26
+
+    Fix linking problem on FreeBSD.
+    
+    The dlopen function is in libc rather than libdl, so add a check for
+    that in configure.in. Fixes bug #584307
+
+ configure.in                 |   11 +++++++++++
+ pkcs11/rpc-layer/Makefile.am |    2 +-
+ 2 files changed, 12 insertions(+), 1 deletions(-)
+
+commit 41a1e0202d70a39f2e446f2eafafafe3d6b749cc
+Author: Stef Walter <stef@memberwebs.com>
+Date:   2009-06-26
+
+    Add missing header.
+    
+    Fixes compilation problem on OS X 10.4. Bug #584781. Patch by Daniel Macks.
+
+ library/gnome-keyring-socket.c |    1 +
+ 1 files changed, 1 insertions(+), 0 deletions(-)
+
+commit 0c5d330655fff930a0afedc426254bca7922f1b0
+Author: Stef Walter <stef@memberwebs.com>
+Date:   2009-06-26
+
+    Use proper functions to free secure memory.
+    
+    Fixes crash reported in bug #586192. Patch by Ryan Beasley.
+
+ pkcs11/gck/gck-data-der.c          |    2 +-
+ pkcs11/ssh-store/gck-ssh-openssh.c |    3 ++-
+ 2 files changed, 3 insertions(+), 2 deletions(-)
+
+commit ae87daa1f3840b643abac4ea84507fe7663910ec
+Author: Stef Walter <stef@memberwebs.com>
+Date:   2009-06-26
+
+    Ignore more built files
+
+ .gitignore |    4 +++-
+ 1 files changed, 3 insertions(+), 1 deletions(-)
+
+commit 4c3220df49733c460cb7964962bc1a9701c54978
+Author: Ivar Smolin <okul@linux.ee>
+Date:   2009-06-26
+
+    Updating Estonian translation
+
+ po/et.po |   99 +++++++++++++++++++------------------------------------------
+ 1 files changed, 31 insertions(+), 68 deletions(-)
+
+commit 9e7b99f18680d0299299c0e6d61378aaabd4f5a6
+Author: Mattias Põldaru <mahfiaz gmail com>
+Date:   2009-06-25
+
+    Updating Estonian translation
+
+ po/et.po |  824 ++++++++++++++++++++++++++++++++++----------------------------
+ 1 files changed, 457 insertions(+), 367 deletions(-)
+
+commit 6207f9ba46946b39b3a8d8ea7f197dc1f2d67744
+Author: Stef Walter <stef@memberwebs.com>
+Date:   2009-06-21
+
+    Make translation file not be executable.
+    
+    I'm trying to branch, but I have to placate this dumb hook
+    first. Somehow the po/mai.po file was executable.
+
+ 0 files changed, 0 insertions(+), 0 deletions(-)
+
+commit ba8ed988b599c53d5c82e8a2df592b70da7c3a5f
+Author: Stef Walter <stef@memberwebs.com>
+Date:   2009-06-19
+
+    Use gcrypt to generate encryption iv/salt.
+    
+    Remove needlessly duplicated code init_salt(), and use libcrypt
+    to generate salt.
+
+ daemon/keyrings/gkr-keyring-binary.c |   31 +------------------------------
+ 1 files changed, 1 insertions(+), 30 deletions(-)
+
+commit 1ee5080bfc5f234b587fe089ed9827603998afbe
+Author: Runa Bhattacharjee <runab@redhat.com>
+Date:   2009-06-15
+
+    Updated Bengali India Translations
+
+ po/bn_IN.po |  406 +++++++++++++++++++++++++++++------------------------------
+ 1 files changed, 202 insertions(+), 204 deletions(-)
+
+commit f62e1ef19faefa53406ec81ef02300c662e4085a
+Author: Runa Bhattacharjee <runab@redhat.com>
+Date:   2009-06-15
+
+    Updated Bengali India Translations
+
+ po/bn_IN.po |  295 ++++++++++++++++++++++++++++-------------------------------
+ 1 files changed, 140 insertions(+), 155 deletions(-)
+
+commit fb5cc2d33f12648e7093589b7ed07665cf03c727
+Author: Rajesh Ranjan <rranjan@rranjan.csb>
+Date:   2009-06-11
+
+    hindi update
+
+ po/hi.po | 1536 ++++++++++++--------------------------------------------------
+ 1 files changed, 292 insertions(+), 1244 deletions(-)
+
+commit 6086364cd1bb7f23ac2cde8e678d78578b47a84b
+Author: Manoj Kumar Giri <mgiri@mgiri.csb>
+Date:   2009-06-10
+
+    Added entries for Hindi Translation updated by Rajesh Ranjan
+
+ po/ChangeLog |    4 ++++
+ 1 files changed, 4 insertions(+), 0 deletions(-)
+
+commit 68897290bb901679aaf66d22d29687b7f9351a0f
+Author: Manoj Kumar Giri <mgiri@mgiri.csb>
+Date:   2009-06-10
+
+    Updated Hindi Translation on behalf of Rajesh Ranjan
+
+ po/hi.po |  435 +++++++++++++++++++++++++++++++-------------------------------
+ 1 files changed, 219 insertions(+), 216 deletions(-)
+
+commit 99f66f4ff38b8385a7aa41a7c76b01a6ac06b20d
+Author: Manoj Kumar Giri <mgiri@mgiri.csb>
+Date:   2009-06-10
+
+    Added entries for Hindi Translation updated by Rajesh Ranjan
+
+ po/ChangeLog |    4 ++++
+ 1 files changed, 4 insertions(+), 0 deletions(-)
+
+commit 8d5c44ce94693ab2d97a98661189a3f11c4a3b65
+Author: Manoj Kumar Giri <mgiri@mgiri.csb>
+Date:   2009-06-10
+
+    Updated Hindi Translation on behalf of Rajesh Ranjan
+
+ po/hi.po |  435 +++++++++++++++++++++++++++++++-------------------------------
+ 1 files changed, 219 insertions(+), 216 deletions(-)
+
+commit fb88a646f2e15ac8ba62ea211fbc844388df5985
+Author: Kjartan Maraas <kmaraas@gnome.org>
+Date:   2009-06-10
+
+    Fix path to a file
+
+ po/POTFILES.in |    2 +-
+ 1 files changed, 1 insertions(+), 1 deletions(-)
+
+commit 13fc43c5f9e1611b99c02b271873a9180da08d68
+Author: Kjartan Maraas <kmaraas@gnome.org>
+Date:   2009-06-10
+
+    Updated Norwegian bokmål translation.
+
+ po/nb.po |   81 ++++++++++++++++++++++++++++++++-----------------------------
+ 1 files changed, 42 insertions(+), 39 deletions(-)
+
+commit 0a2d392a8eb2dee71d063da05d3eb9c4ff8f9ede
+Author: Stef Walter <stef@memberwebs.com>
+Date:   2009-05-12
+
+    Fix problems when no tests exist in a test directory.
+
+ tests/prep-gtest.sh |    8 ++++++--
+ 1 files changed, 6 insertions(+), 2 deletions(-)
+
+commit 0854932ebd93cf247097506f6a87c65f75bfa08a
+Author: Stef Walter <stef@memberwebs.com>
+Date:   2009-05-10
+
+    Move remainder to new style tests.
+    
+    Remove old tests based on cu-test package, and use glib tests
+    exclusively.
+
+ daemon/keyrings/tests/Makefile.am               |    2 +-
+ daemon/keyrings/tests/unit-test-keyring-file.c  |  147 +++--
+ daemon/keyrings/tests/unit-test-keyring-login.c |   72 ++--
+ daemon/keyrings/tests/unit-test-login-prompt.c  |   55 ++-
+ daemon/util/tests/.gitignore                    |    1 +
+ egg/tests/.gitignore                            |    2 +
+ gcr/tests/.gitignore                            |    2 +
+ library/tests/Makefile.am                       |    5 +-
+ library/tests/unit-test-daemon-setup.c          |   17 +-
+ library/tests/unit-test-keyrings-prompt.c       |  102 ++--
+ library/tests/unit-test-keyrings.c              |  257 +++++----
+ library/tests/unit-test-login-prompt.c          |   41 +-
+ library/tests/unit-test-memory.c                |   61 +--
+ library/tests/unit-test-other.c                 |   41 +-
+ pam/tests/Makefile.am                           |    5 +-
+ pam/tests/unit-test-pam-setup.c                 |   17 +-
+ pam/tests/unit-test-pam.c                       |   32 +-
+ pkcs11/rpc-layer/Makefile.am                    |    1 -
+ pkcs11/ssh-store/tests/.gitignore               |    5 +-
+ tests/Makefile.am                               |    8 +-
+ tests/cu-test/AllTests.c                        |   25 -
+ tests/cu-test/CuTest.c                          |  309 ----------
+ tests/cu-test/CuTest.h                          |  111 ----
+ tests/cu-test/CuTestTest.c                      |  709 -----------------------
+ tests/cu-test/README                            |  209 -------
+ tests/cu-test/license.txt                       |   38 --
+ tests/cu-test/make-tests.sh                     |   51 --
+ tests/gtest-helpers.c                           |   10 +-
+ tests/gtest-helpers.h                           |   10 +
+ tests/gtest.make                                |   21 +-
+ tests/prep-gtest.sh                             |   31 +-
+ tests/prep-tests.sh                             |  115 ----
+ tests/test-helpers.c                            |  122 ----
+ tests/test-helpers.h                            |   33 -
+ tests/test.make                                 |   62 --
+ 35 files changed, 479 insertions(+), 2250 deletions(-)
+
+commit cd4f164f26188719e8130b94b7eca6e7f8772696
+Author: Stef Walter <stef@memberwebs.com>
+Date:   2009-05-10
+
+    Move gkr_location stuff into daemon component.
+    
+    It's only used in the daemon component. Also update tests of location stuff.
+    Also remove common component all together.
+
+ Makefile.am                                     |    1 -
+ common/.gitignore                               |    4 -
+ common/Makefile.am                              |   37 -
+ common/gkr-location-watch.c                     |  365 -------
+ common/gkr-location-watch.h                     |   70 --
+ common/gkr-location.c                           | 1177 -----------------------
+ common/gkr-location.h                           |  130 ---
+ common/tests/.gitignore                         |    4 -
+ common/tests/Makefile.am                        |   15 -
+ common/tests/unit-test-location-watch.c         |  234 -----
+ common/tests/unit-test-location.c               |  177 ----
+ configure.in                                    |    2 -
+ daemon/Makefile.am                              |    1 -
+ daemon/gkr-daemon-ops.c                         |    3 +-
+ daemon/keyrings/gkr-keyring-login.c             |    3 +-
+ daemon/keyrings/gkr-keyring.c                   |    3 +-
+ daemon/keyrings/gkr-keyrings.c                  |    6 +-
+ daemon/keyrings/tests/Makefile.am               |    3 +-
+ daemon/keyrings/tests/unit-test-keyring-file.c  |    4 +-
+ daemon/keyrings/tests/unit-test-keyring-login.c |    4 +-
+ daemon/ui/gkr-ask-request.c                     |    4 +-
+ daemon/util/Makefile.am                         |    6 +-
+ daemon/util/gkr-location-watch.c                |  365 +++++++
+ daemon/util/gkr-location-watch.h                |   70 ++
+ daemon/util/gkr-location.c                      | 1177 +++++++++++++++++++++++
+ daemon/util/gkr-location.h                      |  130 +++
+ daemon/util/tests/Makefile.am                   |    8 +-
+ daemon/util/tests/unit-test-location-watch.c    |  245 +++++
+ daemon/util/tests/unit-test-location.c          |  209 ++++
+ pkcs11/rpc-layer/Makefile.am                    |    5 +-
+ 30 files changed, 2225 insertions(+), 2237 deletions(-)
+
+commit 7ee0ec368642c482d5f67e275c54cce815b05b53
+Author: Stef Walter <stef@memberwebs.com>
+Date:   2009-05-10
+
+    Move gkr_async code into daemon component
+    
+    That's where it's only used. Update tests to new style.
+
+ common/Makefile.am                  |    1 -
+ common/gkr-async.c                  |  624 ----------------------------------
+ common/gkr-async.h                  |  171 ----------
+ common/tests/Makefile.am            |    4 +-
+ common/tests/unit-test-async.c      |  228 -------------
+ configure.in                        |    2 +
+ daemon/Makefile.am                  |    7 +-
+ daemon/gkr-daemon-dbus.c            |    3 +-
+ daemon/gkr-daemon-io.c              |   32 +-
+ daemon/gkr-daemon-ops.c             |    3 +-
+ daemon/gkr-daemon-util.c            |  557 -------------------------------
+ daemon/gkr-daemon-util.h            |   78 -----
+ daemon/gkr-daemon.c                 |   12 +-
+ daemon/keyrings/tests/Makefile.am   |    9 +-
+ daemon/pkcs11/gkr-pkcs11-auth-ep.c  |    6 +-
+ daemon/pkcs11/gkr-pkcs11-daemon.c   |   41 ++--
+ daemon/ui/gkr-ask-daemon.c          |   17 +-
+ daemon/ui/gkr-ask-request.c         |   24 +-
+ daemon/util/.gitignore              |    5 +
+ daemon/util/Makefile.am             |   30 ++
+ daemon/util/gkr-daemon-async.c      |  627 +++++++++++++++++++++++++++++++++++
+ daemon/util/gkr-daemon-async.h      |  171 ++++++++++
+ daemon/util/gkr-daemon-util.c       |  556 +++++++++++++++++++++++++++++++
+ daemon/util/gkr-daemon-util.h       |   78 +++++
+ daemon/util/tests/.gitignore        |    6 +
+ daemon/util/tests/Makefile.am       |   11 +
+ daemon/util/tests/unit-test-async.c |  222 +++++++++++++
+ tests/test-helpers.c                |    4 +-
+ 28 files changed, 1790 insertions(+), 1739 deletions(-)
+
+commit 6208f071cf6b2b08e0c939104c9981ad9a3505a4
+Author: Stef Walter <stef@memberwebs.com>
+Date:   2009-05-10
+
+    Move gkr_cleanup code into egg component.
+    
+    Update tests to new style as well.
+
+ common/Makefile.am                |    1 -
+ common/gkr-cleanup.c              |   88 -------------------
+ common/gkr-cleanup.h              |   35 --------
+ common/gkr-location.c             |    5 +-
+ common/tests/Makefile.am          |    1 -
+ common/tests/unit-test-cleanup.c  |  166 -------------------------------------
+ daemon/gkr-daemon-dbus.c          |    5 +-
+ daemon/gkr-daemon-io.c            |    5 +-
+ daemon/gkr-daemon-util.c          |    7 +-
+ daemon/gkr-daemon.c               |   10 +-
+ daemon/keyrings/gkr-keyrings.c    |    5 +-
+ daemon/pkcs11/gkr-pkcs11-auth.c   |    2 +-
+ daemon/pkcs11/gkr-pkcs11-daemon.c |    9 +-
+ daemon/ui/gkr-ask-daemon.c        |    5 +-
+ egg/Makefile.am                   |    1 +
+ egg/egg-cleanup.c                 |   88 +++++++++++++++++++
+ egg/egg-cleanup.h                 |   35 ++++++++
+ egg/tests/Makefile.am             |    1 +
+ egg/tests/unit-test-cleanup.c     |  153 ++++++++++++++++++++++++++++++++++
+ 19 files changed, 306 insertions(+), 316 deletions(-)
+
+commit e78027e151bbaff82ab8799aec13c7be5002311b
+Author: Stef Walter <stef@memberwebs.com>
+Date:   2009-05-10
+
+    Cleanup gkr_unix_signal and move to egg component
+    
+    Also update tests to new style.
+
+ common/Makefile.am              |    3 +-
+ common/gkr-unix-signal.c        |  230 ---------------------------------------
+ common/gkr-unix-signal.h        |   34 ------
+ common/tests/Makefile.am        |    3 +-
+ common/tests/unit-test-signal.c |  117 --------------------
+ daemon/gkr-daemon.c             |    8 +-
+ egg/Makefile.am                 |    1 +
+ egg/egg-unix-signal.c           |  230 +++++++++++++++++++++++++++++++++++++++
+ egg/egg-unix-signal.h           |   34 ++++++
+ egg/tests/Makefile.am           |    1 +
+ egg/tests/unit-test-signal.c    |  114 +++++++++++++++++++
+ 11 files changed, 386 insertions(+), 389 deletions(-)
+
+commit a85e0dd4b3bddb1be7e359d05bb4a6ee35ead3e8
+Author: Stef Walter <stef@memberwebs.com>
+Date:   2009-05-10
+
+    Cleanup extra gkr_wakeup functionality
+    
+    Use g_main_context_wakeup where appropriate, and move some code
+    into the gkr_unix_signal stuff.
+
+ common/Makefile.am       |    3 +-
+ common/gkr-async.c       |   12 +----
+ common/gkr-unix-signal.c |   96 ++++++++++++++++++++++++++++++++++++++---
+ common/gkr-wakeup.c      |  107 ----------------------------------------------
+ common/gkr-wakeup.h      |   37 ----------------
+ 5 files changed, 93 insertions(+), 162 deletions(-)
+
+commit 2e331bf3f47d7ae91f4939919c3a43c86199a4e0
+Merge: 7a71860 e26bf33
+Author: Stefan Walter <Stefan Walter>
+Date:   2009-05-03
+
+    Merge branch 'gnome-2-26'
+    
+    Conflicts:
+    	ChangeLog
+    	po/ca@valencia.po
+    	po/uk.po
+
+commit e26bf33456cc80277885eaf68ecb5d77234ac0fd
+Author: Maxim V. Dziumanenko <dziumanenko@gmail.com>
+Date:   2009-04-27
+
+    Updated Ukrainian translation
+
+ po/uk.po | 1008 ++++++++++++++++++++++++++++++++++++++++----------------------
+ 1 files changed, 649 insertions(+), 359 deletions(-)
+
+commit 7a71860ef8c194d040917ec5604e6f238c2029ab
+Author: Maxim V. Dziumanenko <dziumanenko@gmail.com>
+Date:   2009-04-27
+
+    Updated Ukrainian translation
+
+ po/uk.po | 1008 ++++++++++++++++++++++++++++++++++++++++----------------------
+ 1 files changed, 649 insertions(+), 359 deletions(-)
+
+commit 72c60e72f8eae337c915bbe32a41930cc1d53cf3
+Author: Olav Vitters <olav@bkor.dhs.org>
+Date:   2009-04-23
+
+    doap: Add desktop category
+
+ gnome-keyring.doap |    1 +
+ 1 files changed, 1 insertions(+), 0 deletions(-)
+
+commit e3917a94bfda558f080a162d75ea15faeffa8e70
+Author: Miquel Esplà <miquelespla@gmail.com>
+Date:   2009-04-21
+
+    Added Valencian-Catalan translation
+
+ po/LINGUAS        |    1 +
+ po/ca@valencia.po | 1549 +++++++++++++++++++++++++++++++++++++++++++++++++++++
+ 2 files changed, 1550 insertions(+), 0 deletions(-)
+
+commit 4e505fe4974471989dc8f089e002ef62d31e5633
+Author: Miquel Esplà <miquelespla@gmail.com>
+Date:   2009-04-21
+
+    Added Valencian-Catalan translation
+
+ po/LINGUAS        |    1 +
+ po/ca@valencia.po | 1549 +++++++++++++++++++++++++++++++++++++++++++++++++++++
+ 2 files changed, 1550 insertions(+), 0 deletions(-)
+
+commit d80360ff55372eb24382e19acc6e80cd4919fd7b
+Author: krishnababu k <kkrothap@redhat.ocm>
+Date:   2009-04-20
+
+    Updated Telugu translation
+
+ po/te.po |  399 ++++++++++++++++++++++++++++++--------------------------------
+ 1 files changed, 194 insertions(+), 205 deletions(-)
+
+commit 99a11e50218017fb94a23f2fddefe133ce832fe7
+Author: Stef Walter <stef@memberwebs.com>
+Date:   2009-04-18
+
+    Some tweaks to the autogenerated ChangeLog.
+    
+    Less output and don't wrap stat lines.
+
+ Makefile.am |    2 +-
+ 1 files changed, 1 insertions(+), 1 deletions(-)
+
+commit f2bf836abf7b779236469d34848656e5d314fdcd
+Author: Stef Walter <stef@memberwebs.com>
+Date:   2009-04-18
+
+    Add project description DOAP file.
+    
+    This is used by the cgit web interface, and some other uses
+    in the future.
+
+ gnome-keyring.doap |   23 +++++++++++++++++++++++
+ 1 files changed, 23 insertions(+), 0 deletions(-)
+
+commit bf7ff5505040f5ccedfdd8184c2e67fd500b4887
+Author: Stef Walter <stef@memberwebs.com>
+Date:   2009-04-18
+
+    Autogenerate the ChangeLog from git history
+    
+    Moved the old ChangeLog out of the way. Place instructions in a
+    placeholder ChangeLog.
+
+ ChangeLog     | 6177 +--------------------------------------------------------
+ ChangeLog.old | 6166 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+ Makefile.am   |   18 +-
+ 3 files changed, 6205 insertions(+), 6156 deletions(-)
+
+commit 3167f637394703b11325f6e6f630cf6a8414afab
+Author: stefw <stefw@localhost>
+Date:   2009-04-12
+
+    Release 2.26.1
+    
+    svn path=/branches/gnome-2-26/; revision=1722
+
+ ChangeLog                                |    9 +++++++++
+ NEWS                                     |   12 ++++++++++++
+ docs/reference/gcr/Makefile.am           |    2 +-
+ docs/reference/gnome-keyring/Makefile.am |    2 +-
+ docs/reference/gp11/Makefile.am          |    2 +-
+ po/ChangeLog                             |    2 ++
+ 6 files changed, 26 insertions(+), 3 deletions(-)
+
+commit 23871133bccec3756c921317ca595009bb4d993b
+Author: stefw <stefw@localhost>
+Date:   2009-04-12
+
+    Fill in some API documentation.
+    
+    svn path=/branches/gnome-2-26/; revision=1721
+
+ ChangeLog             |    4 +
+ gcr/gcr-certificate.c |  185 +++++++++++++++++++++++++++++++++++++++++++++++++
+ 2 files changed, 189 insertions(+), 0 deletions(-)
+
+commit 5cee5736d6e10181eeb747a9e3964e86a61db214
+Author: stefw <stefw@localhost>
+Date:   2009-04-11
+
+    Don't use g_warning when the problem originated outside of our own process, just print a message.
+    
+    svn path=/branches/gnome-2-26/; revision=1720
+
+ ChangeLog                |    5 +++++
+ daemon/gkr-daemon-dbus.c |   16 ++++++++--------
+ 2 files changed, 13 insertions(+), 8 deletions(-)
+
+commit 33c9c3526dac9c5e53dce204d43b4433f4136ee4
+Author: stefw <stefw@localhost>
+Date:   2009-04-11
+
+    Don't autostart another gnome-keyring-daemon if one has already started.
+    Just initialize the one that's already running.
+    
+    svn path=/branches/gnome-2-26/; revision=1719
+
+ ChangeLog                           |    6 ++++++
+ daemon/org.gnome.keyring.service.in |    2 +-
+ 2 files changed, 7 insertions(+), 1 deletions(-)
+
+commit 811209c2c9a01724c98a61b5bbc0190b3e0c83ee
+Author: stefw <stefw@localhost>
+Date:   2009-04-10
+
+    Bump glib dependency to 2.16, in all the pkg-config checks.
+    
+    svn path=/branches/gnome-2-26/; revision=1718
+
+ ChangeLog    |    5 +++++
+ configure.in |    4 ++--
+ 2 files changed, 7 insertions(+), 2 deletions(-)
+
+commit d070a88dd0cf72992c77183d77360db403fab809
+Author: stefw <stefw@localhost>
+Date:   2009-04-10
+
+    Fix problem with integer overflow in memory allocator.
+    
+    svn path=/branches/gnome-2-26/; revision=1717
+
+ ChangeLog                    |    5 +++++
+ egg/egg-secure-memory.c      |    2 +-
+ egg/tests/unit-test-secmem.c |    4 ++--
+ 3 files changed, 8 insertions(+), 3 deletions(-)
+
+commit 9f6679d57d536051d40f72e0390b0e517e0d2bfe
+Author: stefw <stefw@localhost>
+Date:   2009-04-10
+
+    Add DBus method for getting the important environment variables
+    that the gnome-keyring daemon wants to set. See bug #577614
+    
+    svn path=/branches/gnome-2-26/; revision=1716
+
+ ChangeLog                |    6 ++++
+ daemon/gkr-daemon-dbus.c |   74 +++++++++++++++++++++++++++++++++------------
+ tests/dbus-test.py       |   16 ++++++++++
+ 3 files changed, 76 insertions(+), 20 deletions(-)
+
+commit e4030a9808f24fba468816f1c12b58aeb7d2d3f1
+Author: stefw <stefw@localhost>
+Date:   2009-04-10
+
+    Fix crash caused by not holding	a reference to the keyring while prompting.
+    
+    svn path=/branches/gnome-2-26/; revision=1715
+
+ ChangeLog               |    5 +++++
+ daemon/gkr-daemon-ops.c |    8 ++++++--
+ 2 files changed, 11 insertions(+), 2 deletions(-)

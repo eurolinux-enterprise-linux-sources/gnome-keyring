@@ -1,0 +1,181 @@
+<?xml version="1.0"?>
+<!DOCTYPE refentry PUBLIC "-//OASIS//DTD DocBook XML V4.1.2//EN" 
+               "http://www.oasis-open.org/docbook/xml/4.1.2/docbookx.dtd">
+<refentry id="gnome-keyring-gnome-keyring-attributes">
+<refmeta>
+<refentrytitle role="top_of_page" id="gnome-keyring-gnome-keyring-attributes.top_of_page">Item Attributes</refentrytitle>
+<manvolnum>3</manvolnum>
+<refmiscinfo>GNOME-KEYRING Library</refmiscinfo>
+</refmeta>
+
+<refnamediv>
+<refname>Item Attributes</refname>
+<refpurpose>Attributes of individual keyring items.</refpurpose>
+</refnamediv>
+
+<refsynopsisdiv id="gnome-keyring-gnome-keyring-attributes.synopsis" role="synopsis">
+<title role="synopsis.title">Synopsis</title>
+
+<synopsis>
+enum                <link linkend="GnomeKeyringAttributeType">GnomeKeyringAttributeType</link>;
+typedef             <link linkend="GnomeKeyringAttributeList">GnomeKeyringAttributeList</link>;
+                    <link linkend="GnomeKeyringAttribute">GnomeKeyringAttribute</link>;
+#define             <link linkend="gnome-keyring-attribute-list-index">gnome_keyring_attribute_list_index</link>  (a, i)
+#define             <link linkend="gnome-keyring-attribute-list-new">gnome_keyring_attribute_list_new</link>    ()
+<link linkend="void">void</link>                <link linkend="gnome-keyring-attribute-list-append-string">gnome_keyring_attribute_list_append_string</link>
+                                                        (<link linkend="GnomeKeyringAttributeList">GnomeKeyringAttributeList</link> *attributes,
+                                                         const <link linkend="char">char</link> *name,
+                                                         const <link linkend="char">char</link> *value);
+<link linkend="void">void</link>                <link linkend="gnome-keyring-attribute-list-append-uint32">gnome_keyring_attribute_list_append_uint32</link>
+                                                        (<link linkend="GnomeKeyringAttributeList">GnomeKeyringAttributeList</link> *attributes,
+                                                         const <link linkend="char">char</link> *name,
+                                                         <link linkend="guint32">guint32</link> value);
+<link linkend="void">void</link>                <link linkend="gnome-keyring-attribute-list-free">gnome_keyring_attribute_list_free</link>   (<link linkend="GnomeKeyringAttributeList">GnomeKeyringAttributeList</link> *attributes);
+<link linkend="GnomeKeyringAttributeList">GnomeKeyringAttributeList</link> * <link linkend="gnome-keyring-attribute-list-copy">gnome_keyring_attribute_list_copy</link>
+                                                        (<link linkend="GnomeKeyringAttributeList">GnomeKeyringAttributeList</link> *attributes);
+</synopsis>
+</refsynopsisdiv>
+
+
+
+
+
+
+
+
+
+<refsect1 id="gnome-keyring-gnome-keyring-attributes.description" role="desc">
+<title role="desc.title">Description</title>
+<para>
+Attributes allow various other pieces of information to be associated with an item. 
+These can also be used to search for relevant items. Use <link linkend="gnome-keyring-item-get-attributes"><function>gnome_keyring_item_get_attributes()</function></link> 
+or <link linkend="gnome-keyring-item-set-attributes"><function>gnome_keyring_item_set_attributes()</function></link>.
+</para>
+<para>
+Each attribute has either a string, or unsigned integer value.</para>
+<para>
+</para>
+</refsect1>
+
+<refsect1 id="gnome-keyring-gnome-keyring-attributes.details" role="details">
+<title role="details.title">Details</title>
+<refsect2 id="GnomeKeyringAttributeType" role="enum">
+<title>enum GnomeKeyringAttributeType</title>
+<indexterm zone="GnomeKeyringAttributeType"><primary sortas="GnomeKeyringAttributeType">GnomeKeyringAttributeType</primary></indexterm><programlisting>typedef enum {
+	GNOME_KEYRING_ATTRIBUTE_TYPE_STRING,
+	GNOME_KEYRING_ATTRIBUTE_TYPE_UINT32
+} GnomeKeyringAttributeType;
+</programlisting>
+<para>
+</para></refsect2>
+<refsect2 id="GnomeKeyringAttributeList" role="typedef">
+<title>GnomeKeyringAttributeList</title>
+<indexterm zone="GnomeKeyringAttributeList"><primary sortas="GnomeKeyringAttributeList">GnomeKeyringAttributeList</primary></indexterm><programlisting>typedef GArray GnomeKeyringAttributeList;
+</programlisting>
+<para>
+</para></refsect2>
+<refsect2 id="GnomeKeyringAttribute" role="struct">
+<title>GnomeKeyringAttribute</title>
+<indexterm zone="GnomeKeyringAttribute"><primary sortas="GnomeKeyringAttribute">GnomeKeyringAttribute</primary></indexterm><programlisting>typedef struct {
+	char *name;
+	GnomeKeyringAttributeType type;
+	union {
+		char *string;
+		guint32 integer;
+	} value;
+} GnomeKeyringAttribute;
+</programlisting>
+<para>
+</para></refsect2>
+<refsect2 id="gnome-keyring-attribute-list-index" role="macro">
+<title>gnome_keyring_attribute_list_index()</title>
+<indexterm zone="gnome-keyring-attribute-list-index"><primary sortas="gnome_keyring_attribute_list_index">gnome_keyring_attribute_list_index</primary></indexterm><programlisting>#define             gnome_keyring_attribute_list_index(a, i)</programlisting>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>a</parameter>&#160;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>i</parameter>&#160;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="gnome-keyring-attribute-list-new" role="macro">
+<title>gnome_keyring_attribute_list_new()</title>
+<indexterm zone="gnome-keyring-attribute-list-new"><primary sortas="gnome_keyring_attribute_list_new">gnome_keyring_attribute_list_new</primary></indexterm><programlisting>#define             gnome_keyring_attribute_list_new()</programlisting>
+<para>
+</para></refsect2>
+<refsect2 id="gnome-keyring-attribute-list-append-string" role="function">
+<title>gnome_keyring_attribute_list_append_string ()</title>
+<indexterm zone="gnome-keyring-attribute-list-append-string"><primary sortas="gnome_keyring_attribute_list_append_string">gnome_keyring_attribute_list_append_string</primary></indexterm><programlisting><link linkend="void">void</link>                gnome_keyring_attribute_list_append_string
+                                                        (<link linkend="GnomeKeyringAttributeList">GnomeKeyringAttributeList</link> *attributes,
+                                                         const <link linkend="char">char</link> *name,
+                                                         const <link linkend="char">char</link> *value);</programlisting>
+<para>
+Store a key-value-pair with a string value in <parameter>attributes</parameter>.</para>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>attributes</parameter>&#160;:</term>
+<listitem><simpara> A <link linkend="GnomeKeyringAttributeList"><type>GnomeKeyringAttributeList</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>name</parameter>&#160;:</term>
+<listitem><simpara> The name of the new attribute
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>value</parameter>&#160;:</term>
+<listitem><simpara> The value to store in <parameter>attributes</parameter>
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="gnome-keyring-attribute-list-append-uint32" role="function">
+<title>gnome_keyring_attribute_list_append_uint32 ()</title>
+<indexterm zone="gnome-keyring-attribute-list-append-uint32"><primary sortas="gnome_keyring_attribute_list_append_uint32">gnome_keyring_attribute_list_append_uint32</primary></indexterm><programlisting><link linkend="void">void</link>                gnome_keyring_attribute_list_append_uint32
+                                                        (<link linkend="GnomeKeyringAttributeList">GnomeKeyringAttributeList</link> *attributes,
+                                                         const <link linkend="char">char</link> *name,
+                                                         <link linkend="guint32">guint32</link> value);</programlisting>
+<para>
+Store a key-value-pair with an unsigned 32bit number value in <parameter>attributes</parameter>.</para>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>attributes</parameter>&#160;:</term>
+<listitem><simpara> A <link linkend="GnomeKeyringAttributeList"><type>GnomeKeyringAttributeList</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>name</parameter>&#160;:</term>
+<listitem><simpara> The name of the new attribute
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>value</parameter>&#160;:</term>
+<listitem><simpara> The value to store in <parameter>attributes</parameter>
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="gnome-keyring-attribute-list-free" role="function">
+<title>gnome_keyring_attribute_list_free ()</title>
+<indexterm zone="gnome-keyring-attribute-list-free"><primary sortas="gnome_keyring_attribute_list_free">gnome_keyring_attribute_list_free</primary></indexterm><programlisting><link linkend="void">void</link>                gnome_keyring_attribute_list_free   (<link linkend="GnomeKeyringAttributeList">GnomeKeyringAttributeList</link> *attributes);</programlisting>
+<para>
+Free the memory used by <parameter>attributes</parameter>.
+</para>
+<para>
+If a <link linkend="NULL--CAPS"><literal>NULL</literal></link> pointer is passed, it is ignored.</para>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>attributes</parameter>&#160;:</term>
+<listitem><simpara> A <link linkend="GnomeKeyringAttributeList"><type>GnomeKeyringAttributeList</type></link>
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="gnome-keyring-attribute-list-copy" role="function">
+<title>gnome_keyring_attribute_list_copy ()</title>
+<indexterm zone="gnome-keyring-attribute-list-copy"><primary sortas="gnome_keyring_attribute_list_copy">gnome_keyring_attribute_list_copy</primary></indexterm><programlisting><link linkend="GnomeKeyringAttributeList">GnomeKeyringAttributeList</link> * gnome_keyring_attribute_list_copy
+                                                        (<link linkend="GnomeKeyringAttributeList">GnomeKeyringAttributeList</link> *attributes);</programlisting>
+<para>
+Copy a list of item attributes.</para>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>attributes</parameter>&#160;:</term>
+<listitem><simpara> A <link linkend="GnomeKeyringAttributeList"><type>GnomeKeyringAttributeList</type></link> to copy.
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara> The new <link linkend="GnomeKeyringAttributeList"><type>GnomeKeyringAttributeList</type></link>
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+
+</refsect1>
+
+
+
+
+</refentry>
