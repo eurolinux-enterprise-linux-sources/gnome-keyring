@@ -1,0 +1,37 @@
+From 5cc525ed768527b05ab13efa24f55dd5e91df8af Mon Sep 17 00:00:00 2001
+From: Stef Walter <stefw@gnome.org>
+Date: Tue, 18 Sep 2012 17:14:59 +0200
+Subject: [PATCH] daemon: Uncoditionally wakeup the main loop when locking
+
+ * Fix occasional deadlock in gnome-keyring wher a thread
+   leaves concurrent mode, grabs the big lock, but the main loop
+   doesn't wake up.
+---
+ daemon/util/gkr-daemon-async.c | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/daemon/util/gkr-daemon-async.c b/daemon/util/gkr-daemon-async.c
+index ce25ca5..be2f447 100644
+--- a/daemon/util/gkr-daemon-async.c
++++ b/daemon/util/gkr-daemon-async.c
+@@ -41,7 +41,7 @@
+ #define DO_LOCK(mtx) G_STMT_START { \
+ 		g_printerr ("%s LOCK %s\n", __func__, G_STRINGIFY(mtx));  \
+ 		g_atomic_int_inc (&waiting_on_lock); \
+-		if (g_atomic_int_get (&waiting_on_poll)) g_main_context_wakeup (main_ctx); \
++		g_main_context_wakeup (main_ctx); \
+ 		g_mutex_lock (mtx);  \
+ 		g_atomic_int_add (&waiting_on_lock, -1); \
+         } G_STMT_END
+@@ -52,7 +52,7 @@
+ #else
+ #define DO_LOCK(mtx) G_STMT_START { \
+ 		g_atomic_int_inc (&waiting_on_lock); \
+-		if (g_atomic_int_get (&waiting_on_poll)) g_main_context_wakeup (main_ctx); \
++		g_main_context_wakeup (main_ctx); \
+ 		g_mutex_lock (mtx); \
+ 		g_atomic_int_add (&waiting_on_lock, -1); \
+ 	} G_STMT_END
+-- 
+1.7.12
+
