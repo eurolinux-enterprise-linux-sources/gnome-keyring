@@ -8,7 +8,7 @@
 Summary: Framework for managing passwords and other secrets
 Name: gnome-keyring
 Version: 2.28.2
-Release: 6%{?dist}
+Release: 7%{?dist}
 License: GPLv2+ and LGPLv2+
 Group: System Environment/Libraries
 Source: http://download.gnome.org/sources/gnome-keyring/2.28/gnome-keyring-%{version}.tar.bz2
@@ -22,6 +22,11 @@ Patch3: gnome-keyring-dir-prefix.patch
 # https://bugzilla.redhat.com/show_bug.cgi?id=589203
 Patch4: gnome-keyring-translations.patch
 Patch5: gnome-keyring-translations-2.patch
+
+# [abrt] gnome-keyring-2.28.2-6.el6: sec_free: Process /usr/bin/gnome-keyring-daemon was killed by signal 6 (SIGABRT)
+# https://bugzilla.redhat.com//show_bug.cgi?id=745695
+Patch6: gnome-keyring-2.31.92-securefree-pool_free.patch
+Patch7: gnome-keyring-2.28.2-secure-memory-locking.patch
 
 URL: http://www.gnome.org
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
@@ -79,6 +84,8 @@ automatically unlock the "login" keyring when the user logs in.
 %patch3 -p1 -b .dir-prefix
 %patch4 -p1 -b .translations
 %patch5 -p2 -b .translations2
+%patch6 -p1 -b .securefree-pool_free
+%patch7 -p1 -b .secure-memory-locking
 
 %build
 %configure --disable-gtk-doc --with-pam-dir=/%{_lib}/security --disable-acl-prompts
@@ -157,6 +164,9 @@ fi
 /%{_lib}/security/*.so
 
 %changelog
+* Mon Feb 27 2012 Tomas Bzatek <tbzatek@redhat.com> - 2.28.2-7
+- Fix secure memory locking for integrated ssh-agent (#745695)
+
 * Wed Jul 28 2010 Tomas Bzatek <tbzatek@redhat.com> - 2.28.2-6
 - Additional translations (#589203)
 

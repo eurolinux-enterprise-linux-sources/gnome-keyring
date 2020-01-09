@@ -1,0 +1,33 @@
+From 53391e4f569f1a3d8e4fb47502b480bc50e7e131 Mon Sep 17 00:00:00 2001
+From: Stef Walter <stef@memberwebs.com>
+Date: Sat, 11 Sep 2010 23:38:46 +0000
+Subject: [egg] Fix secure memory assertion.
+
+Fix assertion that occurs when searching for pool to free memory from.
+
+https://bugzilla.gnome.org/show_bug.cgi?id=616175
+---
+(limited to 'egg/egg-secure-memory.c')
+
+diff --git a/egg/egg-secure-memory.c b/egg/egg-secure-memory.c
+index 07f57d1..f699203 100644
+--- a/egg/egg-secure-memory.c
++++ b/egg/egg-secure-memory.c
+@@ -235,11 +235,12 @@ pool_free (void* item)
+ 			break;
+ 		}
+ 	}
+-	
++
+ 	/* Otherwise invalid meta */
+-	ASSERT (pool && *at);
++	ASSERT (at);
++	ASSERT (pool);
+ 	ASSERT (pool->used > 0);
+-	
++
+ 	/* No more meta cells used in this block, remove from list, destroy */
+ 	if (pool->used == 1) {
+ 		*at = pool->next;
+--
+cgit v0.9.0.2
