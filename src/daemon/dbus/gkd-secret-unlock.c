@@ -14,9 +14,8 @@
  * Lesser General Public License for more details.
  *
  * You should have received a copy of the GNU Lesser General Public
- * License along with this program; if not, write to the Free Software
- * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA
- * 02111-1307, USA.
+ * License along with this program; if not, see
+ * <http://www.gnu.org/licenses/>.
  */
 
 #include "config.h"
@@ -35,7 +34,7 @@
 #include "egg/egg-error.h"
 #include "egg/egg-secure-memory.h"
 
-#include "login/gkd-login.h"
+#include "daemon/login/gkd-login.h"
 
 #include "pkcs11/pkcs11i.h"
 

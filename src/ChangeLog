@@ -1,16 +1,1888 @@
 # Generate automatically. Do not edit.
 
-commit 93efd69d157e00ed06ad86e4b0f872f8f9d2a614
+commit 32900996ac1d913bbae6e378a0a974d207d81c8e
 Author: Stef Walter <stefw@gnome.org>
-Date:   2013-05-04
+Date:   2014-09-23
 
-    Release version 3.8.2
+    Release version 3.14.0
 
  NEWS         | 5 +++++
  configure.ac | 2 +-
  2 files changed, 6 insertions(+), 1 deletion(-)
 
-commit a82b583ed598e453c90068243d94b6caffbe4560
+commit f094c832805dac7cc4456b431c522b34258dd844
+Author: tomsod-m@ya.ru <tomsod-m@ya.ru>
+Date:   2014-09-19
+
+    tool: Remove residual GTK+ usage
+    
+    https://bugzilla.gnome.org/show_bug.cgi?id=736973
+
+ tool/gkr-tool.c | 3 ---
+ 1 file changed, 3 deletions(-)
+
+commit b95868c7f8c6489ac328a9970c62515244a2faa2
+Author: Pawan Chitrakar <chautari@gmail.com>
+Date:   2014-09-22
+
+    Updated Nepali translation
+
+ po/ne.po | 613 +++++++++++++++++++++++++++++++++------------------------------
+ 1 file changed, 324 insertions(+), 289 deletions(-)
+
+commit 45bb5bebf422a83137f8b69c9e726c3bdaf021c5
+Author: Stef Walter <stefw@redhat.com>
+Date:   2014-09-13
+
+    egg: Fix libgcrypt initialization for libgcrypt older than 1.6
+    
+    A header was missing
+
+ egg/egg-libgcrypt.c | 1 +
+ 1 file changed, 1 insertion(+)
+
+commit 8c9c1a8fcadff500bc39f71acb411763e7afbe3f
+Author: Stef Walter <stefw@redhat.com>
+Date:   2014-08-30
+
+    egg: Move file tracker code to egg/ directory
+    
+    So that it can be used in other parts of gnome-keyring.
+
+ .gitignore                              |   2 +-
+ egg/Makefile.am                         |   6 +
+ egg/egg-file-tracker.c                  | 303 ++++++++++++++++++++++++++++++++
+ egg/egg-file-tracker.h                  |  59 +++++++
+ egg/test-file-tracker.c                 | 251 ++++++++++++++++++++++++++
+ pkcs11/gkm/Makefile.am                  |   6 -
+ pkcs11/gkm/gkm-file-tracker.c           | 303 --------------------------------
+ pkcs11/gkm/gkm-file-tracker.h           |  61 -------
+ pkcs11/gkm/test-file-tracker.c          | 245 --------------------------
+ pkcs11/secret-store/gkm-secret-module.c |  17 +-
+ pkcs11/ssh-store/gkm-ssh-module.c       |  17 +-
+ pkcs11/xdg-store/gkm-xdg-module.c       |  16 +-
+ 12 files changed, 651 insertions(+), 635 deletions(-)
+
+commit 1dedc7c174c65f9e1680e19b53c0f44295bd03c5
+Author: Stef Walter <stefw@gnome.org>
+Date:   2014-09-09
+
+    Release version 3.13.91
+
+ NEWS         | 6 ++++++
+ configure.ac | 2 +-
+ 2 files changed, 7 insertions(+), 1 deletion(-)
+
+commit ef1fb4e8bc25c88f75a5576178086a4ef76dc87b
+Author: Stef Walter <stefw@gnome.org>
+Date:   2014-09-09
+
+    configure: Use subdir-objects automake option
+    
+    In order to shut up automake 1.14
+
+ configure.ac | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+commit 7e75a62e846551c19b9c875f7b237a07ee3b93e1
+Author: Stef Walter <stefw@gnome.org>
+Date:   2014-09-09
+
+    build: Fix tap-driver to respect tests that skip completely
+
+ build/tap-driver | 9 ++++++---
+ 1 file changed, 6 insertions(+), 3 deletions(-)
+
+commit ee0fc2dfbb4ee80221acabccec3409d25487d35e
+Author: Stef Walter <stefw@gnome.org>
+Date:   2014-09-09
+
+    gkm: Fix test for libgcrypt 1.6+ version
+
+ pkcs11/gkm/test-data-asn1.c | 6 ++++++
+ 1 file changed, 6 insertions(+)
+
+commit fa25db485279f5bc99a202db2ebeff00819a097f
+Author: Stef Walter <stefw@gnome.org>
+Date:   2014-09-09
+
+    egg: Accomodate thread-safe libgcrypt 1.6+
+    
+    libcrypt no longer supports setting our own threading callbacks,
+    and is thread-safe if we call gcry_check_version() before creating
+    threads.
+    
+    Unfortunately we can't guarantee that we call gcry_check_version()
+    early enough, we try our best. Most of the callers of Gcr either
+    don't use libgcrypt, or also initialize it appropriately themselves.
+    
+    Bump libgcrypt dependency to 1.4.5+, and have earlier versions use
+    the native pthread implementation of locking.
+
+ egg/egg-libgcrypt.c | 45 ++++++++-------------------------------------
+ 1 file changed, 8 insertions(+), 37 deletions(-)
+
+commit 2440aac3bc29890e07ce9a4260b0c6ad8d7bc037
+Author: Jiro Matsuzawa <jmatsuzawa@gnome.org>
+Date:   2014-09-08
+
+    l10n: Update Japanese translation
+
+ po/ja.po | 6 +++---
+ 1 file changed, 3 insertions(+), 3 deletions(-)
+
+commit 49cce3da0e76ddd677e0f92a1d09ad65e9ebd1bb
+Author: Jiro Matsuzawa <jmatsuzawa@gnome.org>
+Date:   2014-09-08
+
+    l10n: Update Japanese translation
+    
+    Merge the latest pot.
+
+ po/ja.po | 222 +++++++++++++++++++++++++++++++--------------------------------
+ 1 file changed, 111 insertions(+), 111 deletions(-)
+
+commit febfe504f96f12c7a0e8c6a7484ee28fb6c84b9f
+Author: Jasper St. Pierre <jstpierre@mecheye.net>
+Date:   2014-09-04
+
+    gkr-pam-module: Don't use password to determine whether this is a login
+    
+    NULL or empty passwords are also valid passwords, so add a separate flag
+    to determine whether to pass --login.
+    
+    https://bugzilla.gnome.org/show_bug.cgi?id=736085
+
+ pam/gkr-pam-module.c | 10 ++++++----
+ 1 file changed, 6 insertions(+), 4 deletions(-)
+
+commit 3f98e6cb4c0cdf86460bdfe9930bacea007d7bab
+Author: Yuri Myasoedov <ymyasoedov@yandex.ru>
+Date:   2014-08-29
+
+    Updated Russian translation
+
+ po/ru.po | 139 ++++++++++++++++++++++++++++++---------------------------------
+ 1 file changed, 67 insertions(+), 72 deletions(-)
+
+commit 368b4cfb8bebf791363be4ee318452546abce605
+Author: Tom Tryfonidis <tomtryf@gmail.com>
+Date:   2014-08-13
+
+    Updated Greek translation
+
+ po/el.po | 236 ++++++++++++++++++++++++++++++++-------------------------------
+ 1 file changed, 119 insertions(+), 117 deletions(-)
+
+commit d5cffa1503b9513231e626b79ae7ca117f8e6f95
+Author: Stef Walter <stefw@redhat.com>
+Date:   2014-07-28
+
+    pam: Don't use geteuid() to get uid for authenticated user
+    
+    Instead we use the 'struct passwd' that we looked up earlier.
+    
+    This causes issues when the PAM stack is not running as the user
+    but as root or someone else.
+    
+    https://bugzilla.gnome.org/show_bug.cgi?id=733418
+
+ pam/gkr-pam-client.c | 28 ++++++++++++++++------------
+ 1 file changed, 16 insertions(+), 12 deletions(-)
+
+commit 1b1f475c81d598e3d4b5c033b98d1ee2ffae2605
+Author: Piotr Drąg <piotrdrag@gmail.com>
+Date:   2014-07-31
+
+    doap: add <programming-language>
+
+ gnome-keyring.doap | 1 +
+ 1 file changed, 1 insertion(+)
+
+commit b04fec11310498714bc3a93e243510692d3597ae
+Author: Olav Vitters <olav@vitters.nl>
+Date:   2014-07-30
+
+    doap category core
+
+ gnome-keyring.doap | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+commit 804eab1f3653f655f14a626eddfd3a6bac3a4049
+Author: Johannes Löthberg <johannes@kyriasis.com>
+Date:   2014-05-18
+
+    autogen.sh: Change CVS to Git in error message
+    
+    GNOME has migrated to Git, so the error message should no longer refer
+    to the GNOME CVS.
+    
+    https://bugzilla.gnome.org/show_bug.cgi?id=730340
+
+ autogen.sh | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+commit be70f66ccb20c2f09ed176b27027eaf7024f58c8
+Author: Stef Walter <stefw@gnome.org>
+Date:   2014-05-13
+
+    Release version 3.12.2
+
+ NEWS         | 3 +++
+ configure.ac | 2 +-
+ 2 files changed, 4 insertions(+), 1 deletion(-)
+
+commit 9f50ef3050a4924ae95742bcd4de73342c5f2fcc
+Author: Stef Walter <stefw@gnome.org>
+Date:   2014-05-13
+
+    Fix build when configure is called with --disable-doc
+
+ Makefile.am  | 5 ++++-
+ configure.ac | 1 +
+ 2 files changed, 5 insertions(+), 1 deletion(-)
+
+commit d4303bd6e8a10b5449f489d402d5353390022b85
+Author: Stef Walter <stefw@gnome.org>
+Date:   2014-05-13
+
+    Remove useless output from configure status
+
+ configure.ac | 1 -
+ 1 file changed, 1 deletion(-)
+
+commit 1fdc7a48650cedc15921a878fae557f9aa4e6c08
+Author: Stef Walter <stefw@gnome.org>
+Date:   2014-05-13
+
+    Revert "Revert "Add docs/ directory back into Makefile""
+    
+    This reverts commit b324fe2d976512b7705beca57ff9a62630cc6c83.
+
+ Makefile.am      |  1 +
+ docs/Makefile.am | 34 +++++++++++++++++++---------------
+ 2 files changed, 20 insertions(+), 15 deletions(-)
+
+commit b324fe2d976512b7705beca57ff9a62630cc6c83
+Author: Jasper St. Pierre <jstpierre@mecheye.net>
+Date:   2014-05-01
+
+    Revert "Add docs/ directory back into Makefile"
+    
+    This reverts commit 8ac66bf0d2befdef3b8c96ef147e4e60fa7df0f7.
+    
+    This broke the build. Probably srcdir != builddir troubles.
+
+ Makefile.am      |  1 -
+ docs/Makefile.am | 18 ++++++++----------
+ 2 files changed, 8 insertions(+), 11 deletions(-)
+
+commit 8ac66bf0d2befdef3b8c96ef147e4e60fa7df0f7
+Author: Stef Walter <stefw@gnome.org>
+Date:   2014-05-01
+
+    Add docs/ directory back into Makefile
+    
+    https://bugzilla.gnome.org/show_bug.cgi?id=727010
+
+ Makefile.am      |  1 +
+ docs/Makefile.am | 18 ++++++++++--------
+ 2 files changed, 11 insertions(+), 8 deletions(-)
+
+commit fba0600503cca64666e90aaccdfe35603631bce3
+Author: Piotr Drąg <piotrdrag@gmail.com>
+Date:   2014-04-04
+
+    doap: update URLs
+
+ README             | 6 +++---
+ gnome-keyring.doap | 6 +++---
+ 2 files changed, 6 insertions(+), 6 deletions(-)
+
+commit 4e795c98ccc79080f92bf19f2f813c4a0d420b18
+Author: Stef Walter <stefw@redhat.com>
+Date:   2014-03-23
+
+    Release version 3.12.0
+
+ NEWS         | 3 +++
+ configure.ac | 2 +-
+ 2 files changed, 4 insertions(+), 1 deletion(-)
+
+commit dfb55f4ad2554127db5610b151c507613ed82b38
+Author: Stef Walter <stefw@redhat.com>
+Date:   2014-03-23
+
+    build: Use /usr/bin/env to find python
+    
+    https://bugzilla.gnome.org/show_bug.cgi?id=726909
+
+ build/tap-driver  | 2 +-
+ build/tap-gtester | 2 +-
+ 2 files changed, 2 insertions(+), 2 deletions(-)
+
+commit 431939fcf6a2e81ab0b41db6d15a0316a97e1dfa
+Author: Stef Walter <stefw@gnome.org>
+Date:   2014-03-19
+
+    gkm: A testing reliability fix
+
+ pkcs11/gkm/test-timer.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+commit 6fa69d9629f3b95b958a39ec2fc80f52292dab8f
+Author: Stef Walter <stefw@gnome.org>
+Date:   2014-03-19
+
+    Makefile.am: Fixes for building with/without optional components
+    
+    Make build with --disable-pam work again. And enforce that we have
+    all the optional components when doing a 'make distcheck'
+
+ Makefile.am | 8 +++++---
+ 1 file changed, 5 insertions(+), 3 deletions(-)
+
+commit a19d736e4176b5215b611dfe5fa29c34fa582fc1
+Author: Stef Walter <stefw@gnome.org>
+Date:   2014-03-16
+
+    Release version 3.11.92
+
+ NEWS         | 18 ++++++++++++++++++
+ configure.ac |  2 +-
+ 2 files changed, 19 insertions(+), 1 deletion(-)
+
+commit 808d1890ca287102ab44d7418f64bd9591991445
+Author: Stef Walter <stefw@gnome.org>
+Date:   2014-03-14
+
+    pam: Fix issue with changed password not unlocking keyring
+    
+    If a user (needs to) change their password while authenticating (via
+    GDM for example), and pam_gnome_keyring is configured to start the
+    daemon from the session PAM stage, then we were failing to pass the
+    changed password to our session handler.
+    
+    Fix this issue so that this workflow works.
+    
+    https://bugzilla.gnome.org/show_bug.cgi?id=726196
+
+ pam/gkr-pam-module.c | 46 +++++++++++++++++++++++++++++++---------------
+ pam/test-pam.c       | 45 +++++++++++++++++++++++++++++++++++++++++++++
+ 2 files changed, 76 insertions(+), 15 deletions(-)
+
+commit deae9b5b34d35acc62cd045dcf187e40b8c46200
+Author: Stef Walter <stefw@gnome.org>
+Date:   2014-03-14
+
+    pam: Pass XDG_RUNTIME_DIR to new process
+    
+    If XDG_RUNTIME_DIR is not in the PAM envlist, but *is* in the
+    process environment, then steal it from there similar to how
+    we handle DISPLAY.
+    
+    https://bugzilla.gnome.org/show_bug.cgi?id=726196
+
+ pam/gkr-pam-module.c | 8 +++++++-
+ pam/test-pam.c       | 9 +++++++++
+ 2 files changed, 16 insertions(+), 1 deletion(-)
+
+commit ce8b568934fcb621f7ffaef18d55f0218d7b76d2
+Author: Stef Walter <stefw@gnome.org>
+Date:   2014-03-13
+
+    pam: Allow unlock_keyring() to be called with a NULL password
+    
+    This happens when doing auto-login. The various side effects
+    of unlock_keyring (including setting *need_daemon) are valuable
+    even in the cases where password is NULL.
+    
+    Add a test that checks that the daemon starts as expected when
+    the user did not authenticate.
+    
+    http://bugzilla.gnome.org/show_bug.cgi?id=726245
+
+ pam/gkr-pam-module.c |  1 -
+ pam/test-pam.c       | 30 ++++++++++++++++++++++++++++++
+ 2 files changed, 30 insertions(+), 1 deletion(-)
+
+commit d1c549afe6319fe8e4b1c00a253a85b31441d6dd
+Author: Stef Walter <stefw@gnome.org>
+Date:   2014-03-13
+
+    pam: Export a pam_sm_close_session() function entry point
+    
+    Some PAM callers want this even though we don't do anything
+    interesting in here.
+    
+    https://bugzilla.gnome.org/show_bug.cgi?id=726245
+
+ pam/gkr-pam-module.c | 7 +++++++
+ 1 file changed, 7 insertions(+)
+
+commit 61cc045d145e2211a5d4993b9f1f29f548a0177e
+Author: Stef Walter <stefw@gnome.org>
+Date:   2014-03-14
+
+    daemon: Provide caller syncronization for quitting the daemon
+    
+    Quit control messages are a bit strange because the daemon will quit
+    shortly afterwards.  There are three syncronization issues here.
+    
+    1. We need the response to be written right away, because if
+       we wait for the main loop it might not be written.
+    2. Callers may want to wait for the daemon to exit, so keep the
+       socket open until we do.
+    3. Prevent additional connections on the control socket.
+
+ daemon/control/gkd-control-client.c |  5 +++++
+ daemon/control/gkd-control-server.c | 42 +++++++++++++++++++++++++------------
+ daemon/control/gkd-control.h        |  3 +++
+ daemon/gkd-main.c                   |  2 ++
+ pam/gkr-pam-client.c                | 33 +++++++++++++++++++++++------
+ 5 files changed, 66 insertions(+), 19 deletions(-)
+
+commit 90a3ae6656960b36a1d2277f336222bd49d5eece
+Author: Stef Walter <stefw@gnome.org>
+Date:   2014-03-06
+
+    daemon: Stop exposing a GNOME_KEYRING_PID variable
+    
+    We exit with the DBus session bus. Remove this clutter from the
+    environment.  PAM module no longer cares about the lifetime of
+    the deamon, except in one case: where it started the daemon in
+    order to change a password and the auto_start argument wasn't set.
+    
+    https://bugzilla.gnome.org/show_bug.cgi?id=725801
+
+ daemon/gkd-main.c    |  16 ++++----
+ daemon/gkd-util.c    |   1 -
+ pam/gkr-pam-client.c |   4 +-
+ pam/gkr-pam-module.c | 101 ++++++++++++---------------------------------------
+ 4 files changed, 34 insertions(+), 88 deletions(-)
+
+commit 2ca51a0aef5b1bc41f2e71d2b65edc8478dab69d
+Author: Stef Walter <stefw@gnome.org>
+Date:   2014-03-06
+
+    daemon: Stop exporting the $GNOME_KEYRING_CONTROL env variable
+    
+    In cases where we're using $XDG_RUNTIME_DIR to create a predictable
+    control socket directory, stop setting the $GNOME_KEYRING_CONTROL
+    environment variable.
+    
+    Note that we don't use the $XDG_RUNTIME_DIR fallback. This is because
+    two of our clients don't link in GLib, both the pam and pkcs11
+    modules. Getting involved in the whole tree of fallback possibilities
+    for how to resolve $XDG_RUNTIME_DIR is not something I'm interested
+    in duplicating.
+    
+    So instead what we do is if $XDG_RUNTIME_DIR is not set, we fall back
+    to using the old $GNOME_KEYRING_CONTROL environment variable.
+    
+    We use the GLib logic when looking for XDG_RUNTIME_DIR. The variable
+    is considered present even when empty.
+    
+    https://bugzilla.gnome.org/show_bug.cgi?id=725801
+
+ daemon/control/gkd-control-codes.h |   3 +-
+ daemon/gkd-main.c                  |  10 +++
+ daemon/gkd-util.c                  |   8 +-
+ daemon/test-shutdown.c             |  14 +--
+ daemon/test-startup.c              |  41 ++++++++-
+ pam/gkr-pam-client.c               |  95 +++++++++++++-------
+ pam/gkr-pam-module.c               | 173 +++++++++++++------------------------
+ pam/test-pam.c                     |  32 +++----
+ pkcs11/rpc-layer/gkm-rpc-module.c  |  11 +++
+ pkcs11/rpc-layer/test-initialize.c |  42 ++++++++-
+ 10 files changed, 252 insertions(+), 177 deletions(-)
+
+commit 275a696131e41ea4be3d3ddf6690b8bcd0fe0105
+Author: Stef Walter <stefw@gnome.org>
+Date:   2014-03-06
+
+    daemon: Use $XDG_RUNTIME_DIR to create keyring socket directory
+    
+    We create a predictable location under $XDG_RUNTIME_DIR. GNOME does
+    not support multiple GUI sessions per user, so using a predictable
+    directory works well for us.
+    
+    If someone somewhere still wants an alternate location use the
+    --control-directory argument.
+    
+    https://bugzilla.gnome.org/show_bug.cgi?id=725801
+
+ daemon/gkd-util.c     | 84 ++++++++++++++++++++++++++++++++-------------------
+ daemon/test-startup.c | 34 +++++++++++++++++++++
+ 2 files changed, 87 insertions(+), 31 deletions(-)
+
+commit 43e71fef72da611bf6f806c3769a19e1c92c50bd
+Author: Stef Walter <stefw@gnome.org>
+Date:   2014-03-06
+
+    pam: Fix starting the daemon to change password
+    
+    This was broken and would cause the daemon to fail internally.
+    The daemon wasn't being initialized due to the --login argument.
+
+ pam/gkr-pam-module.c | 29 +++++++++++++++++++----------
+ 1 file changed, 19 insertions(+), 10 deletions(-)
+
+commit 02d7fd262a5bff089925029cae85c3586a850986
+Author: Stef Walter <stefw@gnome.org>
+Date:   2014-03-06
+
+    pam: Add some tests for the PAM module
+    
+    These require you to install some pam configs into /etc/pam.d. You
+    can do it with the following commands:
+    
+    $ make enable-pam-tests
+    $ make disable-pam-tests
+
+ HACKING                                       |   6 +
+ Makefile.am                                   |   2 +
+ pam/Makefile.am                               |  54 +++
+ pam/fixtures/gnome-keyring-test-auth-start    |   8 +
+ pam/fixtures/gnome-keyring-test-no-start      |   8 +
+ pam/fixtures/gnome-keyring-test-session-start |   8 +
+ pam/fixtures/login.keyring                    | Bin 0 -> 180 bytes
+ pam/mock-pam.c                                | 125 +++++++
+ pam/test-pam.c                                | 518 ++++++++++++++++++++++++++
+ 9 files changed, 729 insertions(+)
+
+commit 86bd8c5a8eb9b0bd299645b5d2eaa6dd043b355f
+Author: Stef Walter <stefw@gnome.org>
+Date:   2014-03-06
+
+    daemon: Don't log debug messages to syslog
+    
+    https://bugzilla.gnome.org/show_bug.cgi?id=711537
+
+ daemon/gkd-main.c | 12 +++++++-----
+ 1 file changed, 7 insertions(+), 5 deletions(-)
+
+commit f63d9c0972b821fa48f357e391e6ca2e00a400a1
+Author: Stef Walter <stefw@gnome.org>
+Date:   2014-03-06
+
+    egg: Add egg_tests_copy_scratch_file() method for fixture files
+
+ egg/egg-testing.c | 8 ++++----
+ egg/egg-testing.h | 3 +++
+ 2 files changed, 7 insertions(+), 4 deletions(-)
+
+commit 924b7704010b2a61d93640b63b5089176c026fbf
+Author: Stef Walter <stefw@gnome.org>
+Date:   2014-03-06
+
+    daemon: Don't initialize in an idle handler, this is racy
+    
+    This races with things connecting over the control socket and
+    trying to initialize the daemon
+
+ daemon/gkd-main.c | 37 ++++++++++++++++---------------------
+ 1 file changed, 16 insertions(+), 21 deletions(-)
+
+commit 8272724a3970cd3e8f5d32dd5e640c0119596fb0
+Author: Stef Walter <stefw@gnome.org>
+Date:   2014-03-06
+
+    daemon: During testing write aliases to right directory
+
+ daemon/dbus/gkd-secret-service.c | 10 ++++++++++
+ 1 file changed, 10 insertions(+)
+
+commit cad5ed78f44e8546df2c824aa7b3b5e660a32d61
+Author: Stef Walter <stefw@gnome.org>
+Date:   2014-03-06
+
+    daemon: More indicative preconditions when startup ordering goes bad
+
+ daemon/dbus/gkd-dbus-secrets.c | 6 +++++-
+ daemon/login/gkd-login.c       | 8 +++++++-
+ 2 files changed, 12 insertions(+), 2 deletions(-)
+
+commit 7941abe62bf7a0f26b92095d930e7872a970e948
+Author: Stef Walter <stefw@gnome.org>
+Date:   2014-03-06
+
+    rpc-layer: Add tests of initializing with/without daemon
+
+ pkcs11/rpc-layer/Makefile.am       |  21 +++++-
+ pkcs11/rpc-layer/test-initialize.c | 140 +++++++++++++++++++++++++++++++++++++
+ 2 files changed, 160 insertions(+), 1 deletion(-)
+
+commit 5a8275348a250824491ccf559f9192a1abb38fc3
+Author: Stef Walter <stefw@gnome.org>
+Date:   2014-03-06
+
+    daemon: Use GLib unix signal handling
+    
+    Rather than our own home rolled version.
+
+ daemon/control/gkd-control-server.c |  15 ++++-
+ daemon/gkd-main.c                   | 113 +++++++-----------------------------
+ daemon/test-shutdown.c              |  32 ++++++++++
+ 3 files changed, 67 insertions(+), 93 deletions(-)
+
+commit 636113849f970af6819ef599d207419c4881f8fb
+Author: Stef Walter <stefw@gnome.org>
+Date:   2014-03-06
+
+    daemon: Exit gnome-keyring-daemon when the DBus connection closes
+    
+    We don't do this via the standard mechanism, as it means that libdbus
+    just calls _exit() (not even exit()) when the connection goes away.
+    
+    This can lead to inconsistent state. Shutdown should be orderly.
+    
+    https://bugzilla.gnome.org/show_bug.cgi?id=708765
+
+ daemon/Makefile.am     |   7 ++-
+ daemon/dbus/gkd-dbus.c |  10 ++++-
+ daemon/gkd-main.c      |   4 +-
+ daemon/test-shutdown.c | 115 +++++++++++++++++++++++++++++++++++++++++++++++++
+ egg/egg-dbus.c         |  21 +++++++--
+ egg/egg-dbus.h         |   4 +-
+ 6 files changed, 152 insertions(+), 9 deletions(-)
+
+commit 3debf372273293ebb247a00a4e70c5ab7a399c13
+Author: Stef Walter <stefw@gnome.org>
+Date:   2014-03-06
+
+    daemon: Add a test of the control directory and environment variables
+    
+    Combine some code for starting a test daemon into a new internal
+    utility functions.
+
+ daemon/Makefile.am         |  32 ++++++++
+ daemon/dbus/Makefile.am    |   1 +
+ daemon/dbus/test-service.c |  33 ++------
+ daemon/gkd-test.c          | 103 ++++++++++++++++++++++++
+ daemon/gkd-test.h          |  31 +++++++
+ daemon/test-startup.c      | 195 +++++++++++++++++++++++++++++++++++++++++++++
+ 6 files changed, 369 insertions(+), 26 deletions(-)
+
+commit a909e7a5b0cf1f02d498ff6475aad4173409c3b0
+Author: Stef Walter <stefw@gnome.org>
+Date:   2014-03-06
+
+    HACKING: Update with description of how to run tests
+
+ HACKING | 12 ++++++++++++
+ 1 file changed, 12 insertions(+)
+
+commit a2ebd3ca4f7569baeeac0b917a057e0392d15412
+Author: Stef Walter <stefw@gnome.org>
+Date:   2014-03-06
+
+    egg: Support nested directories in egg_tests_remove_scratch_directory()
+    
+    Call 'rm' to cleanup the directory instead of removing files ourselves.
+    We want to use nested directories in some tests.
+
+ egg/egg-testing.c | 24 ++++++++----------------
+ 1 file changed, 8 insertions(+), 16 deletions(-)
+
+commit 0e3cf35b6d5b899897367d6db637b3294dd5bf7d
+Author: Stef Walter <stefw@gnome.org>
+Date:   2014-03-06
+
+    daemon: When in foreground mode, close stdout when done initializing
+    
+    This indicates to the caller both that it's the end of the environment
+    variables, and also provides a synchronization point where tests can
+    wait for the daemon.
+
+ daemon/gkd-main.c | 13 +++++++++++++
+ 1 file changed, 13 insertions(+)
+
+commit c7fc0421ece00e684f5932a6285c122a917bf610
+Author: Stef Walter <stefw@gnome.org>
+Date:   2014-03-06
+
+    egg: Remove egg_mkdtemp() functions and use g_mkdtemp() instead
+
+ configure.ac      |   2 -
+ daemon/gkd-util.c |   3 +-
+ egg/Makefile.am   |   2 -
+ egg/egg-mkdtemp.c | 196 ------------------------------------------------------
+ egg/egg-mkdtemp.h |  27 --------
+ egg/egg-testing.c |   3 +-
+ egg/egg-timegm.c  |   2 -
+ egg/egg-timegm.h  |   2 -
+ 8 files changed, 2 insertions(+), 235 deletions(-)
+
+commit 6a603979122abd1279e5e6b930a2f61b28f806e8
+Author: Stef Walter <stefw@gnome.org>
+Date:   2014-03-06
+
+    Makefile.am: Remove coverage files when doing 'make clean'
+
+ Makefile.am | 6 +++++-
+ 1 file changed, 5 insertions(+), 1 deletion(-)
+
+commit 6210ba499e0df2341a1660c35d6c9c2c74611c8b
+Author: Stef Walter <stefw@gnome.org>
+Date:   2014-03-05
+
+    tap-gtester: Set the HARNESS_ACTIVE environment variable
+    
+    This allows tests to detect whether they're running under a harness
+    or not.
+    
+    In addition handle the way GTests skips better.
+
+ build/tap-gtester | 11 +++++++----
+ 1 file changed, 7 insertions(+), 4 deletions(-)
+
+commit b545c0a41f9b2b95680e79d6637aa298a3f6cfb0
+Author: Stef Walter <stefw@gnome.org>
+Date:   2014-03-05
+
+    configure.ac: Drop required automake to 1.12 or later
+    
+    build.gnome.org doesn't have automake 1.13 yet and I guess
+    others may not either.
+
+ configure.ac | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+commit ed727e39f52069176ca0325d8f51f3f4e7e2cc3e
+Author: Stef Walter <stefw@gnome.org>
+Date:   2013-10-15
+
+    daemon: Add new --unlock option to prompt for login password
+    
+    https://bugzilla.gnome.org/show_bug.cgi?id=710187
+
+ daemon/gkd-main.c             | 18 ++++++++++++++++--
+ docs/gnome-keyring-daemon.xml | 11 ++++++++++-
+ 2 files changed, 26 insertions(+), 3 deletions(-)
+
+commit 533044c5ef208543b00e5f56635dcaae1b93d31b
+Author: Stef Walter <stefw@gnome.org>
+Date:   2014-03-05
+
+    Makefile.am: Use parallel tests for 'make check'
+    
+    Also build in a 'make check-memory' and related functionality
+    which drives valgrind.
+
+ .gitignore                      |  11 +-
+ Makefile.am                     |  75 +++----
+ build/gcr.supp                  |  14 ++
+ build/gcrypt.supp               |  39 ++++
+ build/glib.supp                 | 419 +++++++++++++++++++++++++++++++++++++++
+ build/glibc.supp                |  13 ++
+ build/p11-kit.supp              |   6 +
+ build/pixman.supp               |   6 +
+ build/pthread.supp              |   7 +
+ build/tap-driver                | 357 ++++++++++++++++++++++++++++++++++
+ build/tap-gtester               | 176 +++++++++++++++++
+ build/unknown.supp              | 420 ++++++++++++++++++++++++++++++++++++++++
+ configure.ac                    |   2 +-
+ daemon/dbus/Makefile.am         |   5 +-
+ egg/Makefile.am                 |   5 +-
+ egg/egg-asn1x.c                 |   8 +-
+ pkcs11/gkm/Makefile.am          |   5 +-
+ pkcs11/gnome2-store/Makefile.am |   5 +-
+ pkcs11/secret-store/Makefile.am |   5 +-
+ pkcs11/ssh-store/Makefile.am    |   8 +-
+ pkcs11/wrap-layer/Makefile.am   |   5 +-
+ pkcs11/xdg-store/Makefile.am    |   8 +-
+ 22 files changed, 1546 insertions(+), 53 deletions(-)
+
+commit 4f0b8a25630d6555cf0d91b849273e0e24a174ad
+Author: Stef Walter <stefw@gnome.org>
+Date:   2014-03-05
+
+    Makefile.am: Don't do 'make distcheck' with silent make rules
+
+ Makefile.am | 1 +
+ 1 file changed, 1 insertion(+)
+
+commit 51a455ef499543dd8f72890be6795da9d2c4037d
+Author: Stef Walter <stefw@gnome.org>
+Date:   2014-03-05
+
+    configure.ac: Put various autofoo litter in build/ an build/m4
+    
+    Coverage also goes to build/coverage instead of testing/
+
+ .gitignore          | 40 +++++++++++++++++++++-------------------
+ CVSVERSION          |  0
+ build/m4/.gitignore |  1 +
+ configure.ac        |  2 ++
+ testing/.gitignore  |  2 --
+ testing/Makefile.am |  4 ----
+ 6 files changed, 24 insertions(+), 25 deletions(-)
+
+commit 0b751a90927f0f9768cd587fe8cab5e72a74517f
+Author: Stef Walter <stefw@gnome.org>
+Date:   2014-03-04
+
+    Makefile.am: Use a single non-recursive Makefile
+    
+    This allows all the code to be built in parallel, and only
+    rebuilding stuff that's changed when developing. Much quicker.
+    
+    In the meantime disable the p11-tests checks, which
+    were very rarely used. We'll need to migrate them to TAP.
+
+ Makefile.am                                   | 168 +++++-
+ Makefile.decl                                 |  60 --
+ configure.ac                                  |  44 +-
+ daemon/Makefile.am                            |  99 ++--
+ daemon/control/Makefile.am                    |  70 +--
+ daemon/control/frob-control-change.c          |   2 +-
+ daemon/control/frob-control-init.c            |   2 +-
+ daemon/control/frob-control-quit.c            |   2 +-
+ daemon/control/frob-control-unlock.c          |   2 +-
+ daemon/control/gkd-control-server.c           |   6 +-
+ daemon/dbus/Makefile.am                       | 130 +++--
+ daemon/dbus/gkd-dbus-environment.c            |   4 +-
+ daemon/dbus/gkd-dbus-session.c                |   3 +-
+ daemon/dbus/gkd-dbus.c                        |   2 +-
+ daemon/dbus/gkd-secret-unlock.c               |   2 +-
+ daemon/dbus/test-dbus-items.c                 | 198 +++++++
+ daemon/dbus/test-dbus-lock.c                  | 133 +++++
+ daemon/dbus/test-dbus-search.c                | 135 +++++
+ daemon/dbus/test-dbus-signals.c               | 782 ++++++++++++++++++++++++++
+ daemon/dbus/test-dbus-util.c                  |  53 ++
+ daemon/dbus/test-secret-items.c               | 200 -------
+ daemon/dbus/test-secret-lock.c                | 133 -----
+ daemon/dbus/test-secret-search.c              | 137 -----
+ daemon/dbus/test-secret-signals.c             | 782 --------------------------
+ daemon/dbus/test-secret-util.c                |  53 --
+ daemon/dbus/test-service.c                    |   8 +-
+ daemon/gnome-keyring-gpg.desktop.in.in        |   2 +-
+ daemon/gnome-keyring-pkcs11.desktop.in.in     |   2 +-
+ daemon/gnome-keyring-secrets.desktop.in.in    |   2 +-
+ daemon/gnome-keyring-ssh.desktop.in.in        |   2 +-
+ daemon/gpg-agent/Makefile.am                  |  29 +-
+ daemon/login/Makefile.am                      |  23 +-
+ daemon/org.freedesktop.secrets.service.in     |   2 +-
+ daemon/org.gnome.keyring.service.in           |   2 +-
+ daemon/ssh-agent/Makefile.am                  |  31 +-
+ egg/Makefile.am                               | 163 +++---
+ egg/egg-mkdtemp.c                             |   1 +
+ egg/egg-mkdtemp.h                             |   1 +
+ egg/egg-timegm.c                              |   1 +
+ egg/egg-timegm.h                              |   1 +
+ egg/test-asn1.c                               |   2 +-
+ egg/test-asn1x.c                              |  14 +-
+ egg/test-dn.c                                 |   2 +-
+ egg/test-openssl.c                            |   2 +-
+ egg/test-spawn.c                              |  10 +-
+ pam/Makefile.am                               |  25 +-
+ pkcs11/Makefile.am                            |  19 +-
+ pkcs11/gkm/Makefile.am                        | 251 +++++----
+ pkcs11/gkm/mock-module.c                      |   2 +-
+ pkcs11/gkm/test-certificate.c                 |   2 +-
+ pkcs11/gkm/test-data-asn1.c                   |   2 +-
+ pkcs11/gkm/test-data-der.c                    |  12 +-
+ pkcs11/gkm/test-object.c                      |   2 +-
+ pkcs11/gnome2-store/Makefile.am               | 115 ++--
+ pkcs11/gnome2-store/gkm-gnome2-file.c         |   3 +-
+ pkcs11/gnome2-store/test-gnome2-file.c        |   4 +-
+ pkcs11/gnome2-store/test-gnome2-private-key.c |   2 +-
+ pkcs11/gnome2-store/test-gnome2-storage.c     |   6 +-
+ pkcs11/gnome2-store/test-import.c             |   4 +-
+ pkcs11/rpc-layer/Makefile.am                  |  57 +-
+ pkcs11/secret-store/Makefile.am               | 117 ++--
+ pkcs11/secret-store/mock-secret-module.c      |   4 +-
+ pkcs11/secret-store/test-secret-binary.c      |  16 +-
+ pkcs11/secret-store/test-secret-collection.c  |  12 +-
+ pkcs11/secret-store/test-secret-schema.c      |   2 +-
+ pkcs11/secret-store/test-secret-textual.c     |  10 +-
+ pkcs11/ssh-store/Makefile.am                  |  96 ++--
+ pkcs11/ssh-store/test-private-key.c           |   8 +-
+ pkcs11/ssh-store/test-ssh-openssh.c           |  12 +-
+ pkcs11/wrap-layer/Makefile.am                 |  72 ++-
+ pkcs11/xdg-store/Makefile.am                  | 101 ++--
+ pkcs11/xdg-store/mock-xdg-module.c            |   4 +-
+ pkcs11/xdg-store/test-xdg-module.c            |   2 +-
+ pkcs11/xdg-store/test-xdg-trust.c             |   2 +-
+ po/POTFILES.skip                              |   9 +-
+ schema/Makefile.am                            |  16 +-
+ tool/Makefile.am                              |  34 +-
+ 77 files changed, 2244 insertions(+), 2281 deletions(-)
+
+commit 9300894079d184a1362e8f80ae695ede6d7e9e75
+Author: Stef Walter <stefw@gnome.org>
+Date:   2014-03-04
+
+    configure.ac: Modernize the autoconf/automake invocation
+
+ configure.ac | 9 +++++++--
+ 1 file changed, 7 insertions(+), 2 deletions(-)
+
+commit 50e0feec5d80263ba2c65d005290a3e9837905f4
+Author: Stef Walter <stefw@gnome.org>
+Date:   2014-03-04
+
+    Makefile.am: Move tests into same directories as tested code
+    
+    This allows for a cleaner build tree, and will provide benefits
+    when moving to a single Makefile.
+
+ configure.ac                                       |    9 -
+ daemon/control/Makefile.am                         |   52 +-
+ daemon/control/frob-control-change.c               |   31 +
+ daemon/control/frob-control-init.c                 |   31 +
+ daemon/control/frob-control-quit.c                 |   26 +
+ daemon/control/frob-control-unlock.c               |   25 +
+ daemon/control/tests/.gitignore                    |    4 -
+ daemon/control/tests/Makefile.am                   |   55 -
+ daemon/control/tests/frob-control-change.c         |   31 -
+ daemon/control/tests/frob-control-init.c           |   31 -
+ daemon/control/tests/frob-control-quit.c           |   26 -
+ daemon/control/tests/frob-control-unlock.c         |   25 -
+ daemon/dbus/Makefile.am                            |   40 +-
+ daemon/dbus/fixtures/test.keyring                  |  Bin 0 -> 180 bytes
+ daemon/dbus/test-secret-items.c                    |  200 ++
+ daemon/dbus/test-secret-lock.c                     |  133 +
+ daemon/dbus/test-secret-search.c                   |  137 +
+ daemon/dbus/test-secret-signals.c                  |  782 +++++
+ daemon/dbus/test-secret-util.c                     |   53 +
+ daemon/dbus/test-service.c                         |  185 +
+ daemon/dbus/test-service.h                         |   47 +
+ daemon/dbus/tests/Makefile.am                      |   44 -
+ daemon/dbus/tests/files/test.keyring               |  Bin 180 -> 0 bytes
+ daemon/dbus/tests/test-secret-items.c              |  200 --
+ daemon/dbus/tests/test-secret-lock.c               |  133 -
+ daemon/dbus/tests/test-secret-search.c             |  137 -
+ daemon/dbus/tests/test-secret-signals.c            |  782 -----
+ daemon/dbus/tests/test-secret-util.c               |   53 -
+ daemon/dbus/tests/test-service.c                   |  185 -
+ daemon/dbus/tests/test-service.h                   |   47 -
+ egg/Makefile.am                                    |   58 +-
+ egg/fixtures/dh-params.pem                         |    5 +
+ egg/fixtures/echo-script.sh                        |   12 +
+ egg/fixtures/pem-rsa-enc.key                       |   18 +
+ egg/fixtures/test-certificate-1.der                |  Bin 0 -> 813 bytes
+ egg/fixtures/test-personalname-invalid.der         |    1 +
+ egg/fixtures/test-pkcs12-1.der                     |  Bin 0 -> 2824 bytes
+ egg/fixtures/test-pkcs7-1.der                      |  Bin 0 -> 1002 bytes
+ egg/fixtures/test-pkcs7-2.der                      |  Bin 0 -> 1002 bytes
+ egg/fixtures/test-pkcs8-1.der                      |  Bin 0 -> 335 bytes
+ egg/fixtures/test-rsakey-1.der                     |  Bin 0 -> 609 bytes
+ egg/test-armor.c                                   |  159 +
+ egg/test-asn1.c                                    | 2559 ++++++++++++++
+ egg/test-asn1x.c                                   |  200 ++
+ egg/test-cleanup.c                                 |  167 +
+ egg/test-dh.c                                      |  208 ++
+ egg/test-dn.c                                      |  232 ++
+ egg/test-hex.c                                     |  123 +
+ egg/test-hkdf.c                                    |  344 ++
+ egg/test-oid.c                                     |   53 +
+ egg/test-openssl.c                                 |  223 ++
+ egg/test-padding.c                                 |  221 ++
+ egg/test-secmem.c                                  |  269 ++
+ egg/test-spawn.c                                   |  291 ++
+ egg/test-symkey.c                                  |  668 ++++
+ egg/test.asn                                       |  102 +
+ egg/test.asn.h                                     |   87 +
+ egg/tests/.gitignore                               |    1 -
+ egg/tests/Makefile.am                              |   54 -
+ egg/tests/files/dh-params.pem                      |    5 -
+ egg/tests/files/echo-script.sh                     |   12 -
+ egg/tests/files/pem-rsa-enc.key                    |   18 -
+ egg/tests/files/test-certificate-1.der             |  Bin 813 -> 0 bytes
+ egg/tests/files/test-personalname-invalid.der      |    1 -
+ egg/tests/files/test-pkcs12-1.der                  |  Bin 2824 -> 0 bytes
+ egg/tests/files/test-pkcs7-1.der                   |  Bin 1002 -> 0 bytes
+ egg/tests/files/test-pkcs7-2.der                   |  Bin 1002 -> 0 bytes
+ egg/tests/files/test-pkcs8-1.der                   |  Bin 335 -> 0 bytes
+ egg/tests/files/test-rsakey-1.der                  |  Bin 609 -> 0 bytes
+ egg/tests/test-armor.c                             |  159 -
+ egg/tests/test-asn1.c                              | 2559 --------------
+ egg/tests/test-asn1x.c                             |  200 --
+ egg/tests/test-cleanup.c                           |  167 -
+ egg/tests/test-dh.c                                |  208 --
+ egg/tests/test-dn.c                                |  232 --
+ egg/tests/test-hex.c                               |  123 -
+ egg/tests/test-hkdf.c                              |  344 --
+ egg/tests/test-oid.c                               |   53 -
+ egg/tests/test-openssl.c                           |  223 --
+ egg/tests/test-padding.c                           |  221 --
+ egg/tests/test-secmem.c                            |  269 --
+ egg/tests/test-spawn.c                             |  291 --
+ egg/tests/test-symkey.c                            |  668 ----
+ egg/tests/test.asn                                 |  102 -
+ egg/tests/test.asn.h                               |   87 -
+ pkcs11/gkm/Makefile.am                             |   73 +-
+ pkcs11/gkm/asn1-def-test.h                         |   17 +
+ pkcs11/gkm/fixtures/ca-certificates.crt            | 3601 ++++++++++++++++++++
+ pkcs11/gkm/fixtures/der-key-PBE-MD5-DES.p8         |  Bin 0 -> 677 bytes
+ pkcs11/gkm/fixtures/der-key-PBE-SHA1-3DES.p8       |  Bin 0 -> 678 bytes
+ pkcs11/gkm/fixtures/der-key-PBE-SHA1-DES.p8        |  Bin 0 -> 677 bytes
+ pkcs11/gkm/fixtures/der-key-PBE-SHA1-RC2-40.p8     |  Bin 0 -> 678 bytes
+ pkcs11/gkm/fixtures/der-key-PBE-SHA1-RC4-128.p8    |  Bin 0 -> 673 bytes
+ pkcs11/gkm/fixtures/der-key-dsa.p8                 |  Bin 0 -> 335 bytes
+ pkcs11/gkm/fixtures/der-key-encrypted-pkcs5.p8     |  Bin 0 -> 677 bytes
+ pkcs11/gkm/fixtures/der-key-v2-des.p8              |  Bin 0 -> 711 bytes
+ pkcs11/gkm/fixtures/der-key-v2-des3.p8             |  Bin 0 -> 714 bytes
+ pkcs11/gkm/fixtures/der-key.p8                     |  Bin 0 -> 635 bytes
+ pkcs11/gkm/fixtures/pem-rsa-enc.key                |   18 +
+ pkcs11/gkm/fixtures/test-certificate-1.der         |  Bin 0 -> 813 bytes
+ pkcs11/gkm/fixtures/test-certificate-2.der         |  Bin 0 -> 1346 bytes
+ pkcs11/gkm/mock-locked-object.c                    |   90 +
+ pkcs11/gkm/mock-locked-object.h                    |   51 +
+ pkcs11/gkm/mock-module.c                           |  125 +
+ pkcs11/gkm/mock-module.h                           |   44 +
+ pkcs11/gkm/test-attributes.c                       |  914 +++++
+ pkcs11/gkm/test-certificate.c                      |  206 ++
+ pkcs11/gkm/test-credential.c                       |  376 ++
+ pkcs11/gkm/test-data-asn1.c                        |  116 +
+ pkcs11/gkm/test-data-der.c                         |  613 ++++
+ pkcs11/gkm/test-file-tracker.c                     |  245 ++
+ pkcs11/gkm/test-memory-store.c                     |  483 +++
+ pkcs11/gkm/test-object.c                           |  306 ++
+ pkcs11/gkm/test-secret.c                           |  207 ++
+ pkcs11/gkm/test-sexp.c                             |  155 +
+ pkcs11/gkm/test-store.c                            |  103 +
+ pkcs11/gkm/test-timer.c                            |  176 +
+ pkcs11/gkm/test-transaction.c                      |  557 +++
+ pkcs11/gkm/test.asn                                |   16 +
+ pkcs11/gkm/test.asn.h                              |   17 +
+ pkcs11/gkm/tests/.gitignore                        |    2 -
+ pkcs11/gkm/tests/Makefile.am                       |   79 -
+ pkcs11/gkm/tests/files/ca-certificates.crt         | 3601 --------------------
+ pkcs11/gkm/tests/files/der-key-PBE-MD5-DES.p8      |  Bin 677 -> 0 bytes
+ pkcs11/gkm/tests/files/der-key-PBE-SHA1-3DES.p8    |  Bin 678 -> 0 bytes
+ pkcs11/gkm/tests/files/der-key-PBE-SHA1-DES.p8     |  Bin 677 -> 0 bytes
+ pkcs11/gkm/tests/files/der-key-PBE-SHA1-RC2-40.p8  |  Bin 678 -> 0 bytes
+ pkcs11/gkm/tests/files/der-key-PBE-SHA1-RC4-128.p8 |  Bin 673 -> 0 bytes
+ pkcs11/gkm/tests/files/der-key-dsa.p8              |  Bin 335 -> 0 bytes
+ pkcs11/gkm/tests/files/der-key-encrypted-pkcs5.p8  |  Bin 677 -> 0 bytes
+ pkcs11/gkm/tests/files/der-key-v2-des.p8           |  Bin 711 -> 0 bytes
+ pkcs11/gkm/tests/files/der-key-v2-des3.p8          |  Bin 714 -> 0 bytes
+ pkcs11/gkm/tests/files/der-key.p8                  |  Bin 635 -> 0 bytes
+ pkcs11/gkm/tests/files/pem-rsa-enc.key             |   18 -
+ pkcs11/gkm/tests/files/test-certificate-1.der      |  Bin 813 -> 0 bytes
+ pkcs11/gkm/tests/files/test-certificate-2.der      |  Bin 1346 -> 0 bytes
+ pkcs11/gkm/tests/mock-locked-object.c              |   90 -
+ pkcs11/gkm/tests/mock-locked-object.h              |   51 -
+ pkcs11/gkm/tests/mock-module.c                     |  125 -
+ pkcs11/gkm/tests/mock-module.h                     |   44 -
+ pkcs11/gkm/tests/test-attributes.c                 |  914 -----
+ pkcs11/gkm/tests/test-certificate.c                |  206 --
+ pkcs11/gkm/tests/test-credential.c                 |  376 --
+ pkcs11/gkm/tests/test-data-asn1.c                  |  116 -
+ pkcs11/gkm/tests/test-data-der.c                   |  613 ----
+ pkcs11/gkm/tests/test-file-tracker.c               |  245 --
+ pkcs11/gkm/tests/test-memory-store.c               |  483 ---
+ pkcs11/gkm/tests/test-object.c                     |  306 --
+ pkcs11/gkm/tests/test-secret.c                     |  207 --
+ pkcs11/gkm/tests/test-sexp.c                       |  155 -
+ pkcs11/gkm/tests/test-store.c                      |  103 -
+ pkcs11/gkm/tests/test-timer.c                      |  176 -
+ pkcs11/gkm/tests/test-transaction.c                |  557 ---
+ pkcs11/gkm/tests/test.asn                          |   16 -
+ pkcs11/gkm/tests/test.asn.h                        |   17 -
+ pkcs11/gnome2-store/Makefile.am                    |   59 +-
+ pkcs11/gnome2-store/check-gnome2-module.c          |   69 +
+ pkcs11/gnome2-store/fixtures/.gitempty             |    0
+ .../fixtures/Thawte_Personal_Premium_CA.cer        |  Bin 0 -> 813 bytes
+ .../gnome2-store/fixtures/data-file-private.store  |  Bin 0 -> 494 bytes
+ .../gnome2-store/fixtures/data-file-public.store   |  Bin 0 -> 216 bytes
+ pkcs11/gnome2-store/fixtures/der-key-v2-des3.p8    |  Bin 0 -> 714 bytes
+ pkcs11/gnome2-store/fixtures/personal.p12          |  Bin 0 -> 3396 bytes
+ pkcs11/gnome2-store/fixtures/test-certificate.cer  |  Bin 0 -> 1857 bytes
+ pkcs11/gnome2-store/fixtures/user.keystore         |  Bin 0 -> 226 bytes
+ pkcs11/gnome2-store/frob-gnome2-file.c             |   99 +
+ pkcs11/gnome2-store/mock-gnome2-module.c           |  110 +
+ pkcs11/gnome2-store/mock-gnome2-module.h           |   42 +
+ pkcs11/gnome2-store/p11-tests.conf.in              |    2 +
+ pkcs11/gnome2-store/test-gnome2-file.c             |  643 ++++
+ pkcs11/gnome2-store/test-gnome2-private-key.c      |  264 ++
+ pkcs11/gnome2-store/test-gnome2-storage.c          |  490 +++
+ pkcs11/gnome2-store/test-import.c                  |  185 +
+ pkcs11/gnome2-store/tests/.gitignore               |    1 -
+ pkcs11/gnome2-store/tests/Makefile.am              |   66 -
+ pkcs11/gnome2-store/tests/check-gnome2-module.c    |   69 -
+ pkcs11/gnome2-store/tests/files/.gitempty          |    0
+ .../tests/files/Thawte_Personal_Premium_CA.cer     |  Bin 813 -> 0 bytes
+ .../tests/files/data-file-private.store            |  Bin 494 -> 0 bytes
+ .../tests/files/data-file-public.store             |  Bin 216 -> 0 bytes
+ pkcs11/gnome2-store/tests/files/der-key-v2-des3.p8 |  Bin 714 -> 0 bytes
+ pkcs11/gnome2-store/tests/files/personal.p12       |  Bin 3396 -> 0 bytes
+ .../gnome2-store/tests/files/test-certificate.cer  |  Bin 1857 -> 0 bytes
+ pkcs11/gnome2-store/tests/files/user.keystore      |  Bin 226 -> 0 bytes
+ pkcs11/gnome2-store/tests/frob-gnome2-file.c       |   99 -
+ pkcs11/gnome2-store/tests/mock-gnome2-module.c     |  110 -
+ pkcs11/gnome2-store/tests/mock-gnome2-module.h     |   42 -
+ pkcs11/gnome2-store/tests/p11-tests.conf.in        |    2 -
+ pkcs11/gnome2-store/tests/test-gnome2-file.c       |  643 ----
+ .../gnome2-store/tests/test-gnome2-private-key.c   |  264 --
+ pkcs11/gnome2-store/tests/test-gnome2-storage.c    |  490 ---
+ pkcs11/gnome2-store/tests/test-import.c            |  185 -
+ pkcs11/secret-store/Makefile.am                    |   42 +-
+ pkcs11/secret-store/dump-keyring0-format.c         |  963 ++++++
+ .../secret-store/fixtures/created-on-rhel.keyring  |  Bin 0 -> 105 bytes
+ .../fixtures/created-on-solaris-opencsw.keyring    |  Bin 0 -> 105 bytes
+ .../fixtures/encrypted-with-schema.keyring         |  Bin 0 -> 404 bytes
+ pkcs11/secret-store/fixtures/encrypted.keyring     |  Bin 0 -> 733 bytes
+ .../secret-store/fixtures/plain-bad-number.keyring |   23 +
+ .../fixtures/plain-with-schema.keyring             |   23 +
+ pkcs11/secret-store/fixtures/plain.keyring         |   55 +
+ pkcs11/secret-store/fixtures/schema1.keyring       |  Bin 0 -> 769 bytes
+ pkcs11/secret-store/fixtures/schema2.keyring       |  Bin 0 -> 1005 bytes
+ pkcs11/secret-store/mock-secret-module.c           |  278 ++
+ pkcs11/secret-store/mock-secret-module.h           |   50 +
+ pkcs11/secret-store/test-secret-binary.c           |  266 ++
+ pkcs11/secret-store/test-secret-collection.c       |  599 ++++
+ pkcs11/secret-store/test-secret-compat.c           |  129 +
+ pkcs11/secret-store/test-secret-data.c             |  246 ++
+ pkcs11/secret-store/test-secret-fields.c           |  510 +++
+ pkcs11/secret-store/test-secret-item.c             |  483 +++
+ pkcs11/secret-store/test-secret-object.c           |  309 ++
+ pkcs11/secret-store/test-secret-schema.c           |  241 ++
+ pkcs11/secret-store/test-secret-search.c           |  454 +++
+ pkcs11/secret-store/test-secret-textual.c          |  229 ++
+ pkcs11/secret-store/tests/Makefile.am              |   48 -
+ pkcs11/secret-store/tests/dump-keyring0-format.c   |  963 ------
+ .../tests/files/created-on-rhel.keyring            |  Bin 105 -> 0 bytes
+ .../tests/files/created-on-solaris-opencsw.keyring |  Bin 105 -> 0 bytes
+ .../tests/files/encrypted-with-schema.keyring      |  Bin 404 -> 0 bytes
+ pkcs11/secret-store/tests/files/encrypted.keyring  |  Bin 733 -> 0 bytes
+ .../tests/files/plain-bad-number.keyring           |   23 -
+ .../tests/files/plain-with-schema.keyring          |   23 -
+ pkcs11/secret-store/tests/files/plain.keyring      |   55 -
+ pkcs11/secret-store/tests/files/schema1.keyring    |  Bin 769 -> 0 bytes
+ pkcs11/secret-store/tests/files/schema2.keyring    |  Bin 1005 -> 0 bytes
+ pkcs11/secret-store/tests/mock-secret-module.c     |  278 --
+ pkcs11/secret-store/tests/mock-secret-module.h     |   50 -
+ pkcs11/secret-store/tests/test-secret-binary.c     |  266 --
+ pkcs11/secret-store/tests/test-secret-collection.c |  599 ----
+ pkcs11/secret-store/tests/test-secret-compat.c     |  129 -
+ pkcs11/secret-store/tests/test-secret-data.c       |  246 --
+ pkcs11/secret-store/tests/test-secret-fields.c     |  510 ---
+ pkcs11/secret-store/tests/test-secret-item.c       |  483 ---
+ pkcs11/secret-store/tests/test-secret-object.c     |  309 --
+ pkcs11/secret-store/tests/test-secret-schema.c     |  241 --
+ pkcs11/secret-store/tests/test-secret-search.c     |  454 ---
+ pkcs11/secret-store/tests/test-secret-textual.c    |  229 --
+ pkcs11/ssh-store/Makefile.am                       |   52 +-
+ pkcs11/ssh-store/check-ssh-module.c                |   69 +
+ pkcs11/ssh-store/fixtures/id_dsa_encrypted         |   15 +
+ pkcs11/ssh-store/fixtures/id_dsa_encrypted.pub     |    1 +
+ pkcs11/ssh-store/fixtures/id_dsa_plain             |   12 +
+ pkcs11/ssh-store/fixtures/id_dsa_plain.pub         |    1 +
+ pkcs11/ssh-store/fixtures/id_dsa_test.pub          |    7 +
+ pkcs11/ssh-store/fixtures/id_rsa_encrypted         |   30 +
+ pkcs11/ssh-store/fixtures/id_rsa_encrypted.pub     |    1 +
+ pkcs11/ssh-store/fixtures/id_rsa_plain             |   27 +
+ pkcs11/ssh-store/fixtures/id_rsa_plain.pub         |    1 +
+ pkcs11/ssh-store/fixtures/id_rsa_test.pub          |    1 +
+ pkcs11/ssh-store/mock-ssh-module.c                 |  109 +
+ pkcs11/ssh-store/mock-ssh-module.h                 |   42 +
+ pkcs11/ssh-store/p11-tests.conf.in                 |    3 +
+ pkcs11/ssh-store/test-private-key.c                |  139 +
+ pkcs11/ssh-store/test-ssh-openssh.c                |  138 +
+ pkcs11/ssh-store/tests/Makefile.am                 |   58 -
+ pkcs11/ssh-store/tests/check-ssh-module.c          |   69 -
+ pkcs11/ssh-store/tests/files/id_dsa_encrypted      |   15 -
+ pkcs11/ssh-store/tests/files/id_dsa_encrypted.pub  |    1 -
+ pkcs11/ssh-store/tests/files/id_dsa_plain          |   12 -
+ pkcs11/ssh-store/tests/files/id_dsa_plain.pub      |    1 -
+ pkcs11/ssh-store/tests/files/id_dsa_test.pub       |    7 -
+ pkcs11/ssh-store/tests/files/id_rsa_encrypted      |   30 -
+ pkcs11/ssh-store/tests/files/id_rsa_encrypted.pub  |    1 -
+ pkcs11/ssh-store/tests/files/id_rsa_plain          |   27 -
+ pkcs11/ssh-store/tests/files/id_rsa_plain.pub      |    1 -
+ pkcs11/ssh-store/tests/files/id_rsa_test.pub       |    1 -
+ pkcs11/ssh-store/tests/mock-ssh-module.c           |  109 -
+ pkcs11/ssh-store/tests/mock-ssh-module.h           |   42 -
+ pkcs11/ssh-store/tests/p11-tests.conf.in           |    3 -
+ pkcs11/ssh-store/tests/test-private-key.c          |  139 -
+ pkcs11/ssh-store/tests/test-ssh-openssh.c          |  138 -
+ pkcs11/wrap-layer/Makefile.am                      |   34 +-
+ pkcs11/wrap-layer/mock-secret-store.c              |  285 ++
+ pkcs11/wrap-layer/test-create-credential.c         |  181 +
+ pkcs11/wrap-layer/test-init-pin.c                  |  115 +
+ pkcs11/wrap-layer/test-login-auto.c                |  260 ++
+ pkcs11/wrap-layer/test-login-hints.c               |   65 +
+ pkcs11/wrap-layer/test-login-keyring.c             |  347 ++
+ pkcs11/wrap-layer/test-login-specific.c            |  162 +
+ pkcs11/wrap-layer/test-login-user.c                |  179 +
+ pkcs11/wrap-layer/test-set-pin.c                   |  116 +
+ pkcs11/wrap-layer/tests/Makefile.am                |   42 -
+ pkcs11/wrap-layer/tests/mock-secret-store.c        |  285 --
+ pkcs11/wrap-layer/tests/test-create-credential.c   |  181 -
+ pkcs11/wrap-layer/tests/test-init-pin.c            |  115 -
+ pkcs11/wrap-layer/tests/test-login-auto.c          |  260 --
+ pkcs11/wrap-layer/tests/test-login-hints.c         |   65 -
+ pkcs11/wrap-layer/tests/test-login-keyring.c       |  347 --
+ pkcs11/wrap-layer/tests/test-login-specific.c      |  162 -
+ pkcs11/wrap-layer/tests/test-login-user.c          |  179 -
+ pkcs11/wrap-layer/tests/test-set-pin.c             |  116 -
+ pkcs11/xdg-store/Makefile.am                       |   53 +-
+ pkcs11/xdg-store/check-xdg-module.c                |   69 +
+ pkcs11/xdg-store/dump-trust-file.c                 |  197 ++
+ pkcs11/xdg-store/fixtures/test-certificate-1.cer   |  Bin 0 -> 813 bytes
+ pkcs11/xdg-store/fixtures/test-certificate-2.cer   |  Bin 0 -> 813 bytes
+ pkcs11/xdg-store/fixtures/test-refer-1.trust       |  Bin 0 -> 241 bytes
+ pkcs11/xdg-store/frob-trust-file.c                 |  248 ++
+ pkcs11/xdg-store/mock-xdg-module.c                 |  195 ++
+ pkcs11/xdg-store/mock-xdg-module.h                 |   50 +
+ pkcs11/xdg-store/p11-tests.conf                    |    2 +
+ pkcs11/xdg-store/test-xdg-module.c                 |  285 ++
+ pkcs11/xdg-store/test-xdg-trust.c                  |  880 +++++
+ pkcs11/xdg-store/tests/Makefile.am                 |   54 -
+ pkcs11/xdg-store/tests/check-xdg-module.c          |   69 -
+ pkcs11/xdg-store/tests/dump-trust-file.c           |  197 --
+ .../xdg-store/tests/files/test-certificate-1.cer   |  Bin 813 -> 0 bytes
+ .../xdg-store/tests/files/test-certificate-2.cer   |  Bin 813 -> 0 bytes
+ pkcs11/xdg-store/tests/files/test-refer-1.trust    |  Bin 241 -> 0 bytes
+ pkcs11/xdg-store/tests/frob-trust-file.c           |  248 --
+ pkcs11/xdg-store/tests/mock-xdg-module.c           |  195 --
+ pkcs11/xdg-store/tests/mock-xdg-module.h           |   50 -
+ pkcs11/xdg-store/tests/p11-tests.conf              |    2 -
+ pkcs11/xdg-store/tests/test-xdg-module.c           |  285 --
+ pkcs11/xdg-store/tests/test-xdg-trust.c            |  880 -----
+ 316 files changed, 27466 insertions(+), 27541 deletions(-)
+
+commit beea17679b71bdcb5363bc5844f1ed826d4424be
+Author: Shankar Prasad <prasad.mvs@gmail.com>
+Date:   2014-02-05
+
+    updated kn.po
+
+ po/kn.po | 69 ++++++++++++++++++----------------------------------------------
+ 1 file changed, 19 insertions(+), 50 deletions(-)
+
+commit 44ee25a1c17acab10c26f01520a15e1efdec600d
+Author: GunChleoc <fios@foramnagaidhlig.net>
+Date:   2014-01-22
+
+    Added Scottish Gaelic translation
+
+ po/LINGUAS |   3 +-
+ po/gd.po   | 533 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+ 2 files changed, 535 insertions(+), 1 deletion(-)
+
+commit bdaf2fc4485c180ab6f66d965a6323fbe2f0fd5c
+Author: Stef Walter <stefw@gnome.org>
+Date:   2014-01-08
+
+    Remove old FSF license from header files
+    
+    And refresh the COPYING and COPYING.LIB files
+    
+    https://bugzilla.gnome.org/show_bug.cgi?id=721549
+
+ COPYING                                            |  41 ++--
+ COPYING.LIB                                        | 217 +++++++++++----------
+ daemon/control/gkd-control-client.c                |   5 +-
+ daemon/control/gkd-control-codes.h                 |   5 +-
+ daemon/control/gkd-control-server.c                |   5 +-
+ daemon/control/gkd-control.h                       |   5 +-
+ daemon/dbus/gkd-dbus-environment.c                 |   3 +-
+ daemon/dbus/gkd-dbus-private.h                     |   3 +-
+ daemon/dbus/gkd-dbus-secrets.c                     |   3 +-
+ daemon/dbus/gkd-dbus-session.c                     |   3 +-
+ daemon/dbus/gkd-dbus-util.c                        |   3 +-
+ daemon/dbus/gkd-dbus-util.h                        |   3 +-
+ daemon/dbus/gkd-dbus.c                             |   3 +-
+ daemon/dbus/gkd-dbus.h                             |   3 +-
+ daemon/dbus/gkd-secret-change.c                    |   5 +-
+ daemon/dbus/gkd-secret-change.h                    |   5 +-
+ daemon/dbus/gkd-secret-create.c                    |   5 +-
+ daemon/dbus/gkd-secret-create.h                    |   5 +-
+ daemon/dbus/gkd-secret-dispatch.c                  |   5 +-
+ daemon/dbus/gkd-secret-dispatch.h                  |   5 +-
+ daemon/dbus/gkd-secret-error.c                     |   5 +-
+ daemon/dbus/gkd-secret-error.h                     |   5 +-
+ daemon/dbus/gkd-secret-exchange.c                  |   5 +-
+ daemon/dbus/gkd-secret-exchange.h                  |   5 +-
+ daemon/dbus/gkd-secret-introspect.c                |   5 +-
+ daemon/dbus/gkd-secret-introspect.h                |   5 +-
+ daemon/dbus/gkd-secret-lock.c                      |   5 +-
+ daemon/dbus/gkd-secret-lock.h                      |   5 +-
+ daemon/dbus/gkd-secret-objects.c                   |   5 +-
+ daemon/dbus/gkd-secret-objects.h                   |   5 +-
+ daemon/dbus/gkd-secret-prompt.c                    |   5 +-
+ daemon/dbus/gkd-secret-prompt.h                    |   5 +-
+ daemon/dbus/gkd-secret-property.c                  |   5 +-
+ daemon/dbus/gkd-secret-property.h                  |   5 +-
+ daemon/dbus/gkd-secret-secret.c                    |   5 +-
+ daemon/dbus/gkd-secret-secret.h                    |   5 +-
+ daemon/dbus/gkd-secret-service.c                   |   5 +-
+ daemon/dbus/gkd-secret-service.h                   |   5 +-
+ daemon/dbus/gkd-secret-session.c                   |   5 +-
+ daemon/dbus/gkd-secret-session.h                   |   5 +-
+ daemon/dbus/gkd-secret-types.h                     |   5 +-
+ daemon/dbus/gkd-secret-unlock.c                    |   5 +-
+ daemon/dbus/gkd-secret-unlock.h                    |   5 +-
+ daemon/dbus/gkd-secret-util.c                      |   5 +-
+ daemon/dbus/gkd-secret-util.h                      |   5 +-
+ daemon/dbus/tests/test-secret-items.c              |   3 +-
+ daemon/dbus/tests/test-secret-lock.c               |   3 +-
+ daemon/dbus/tests/test-secret-search.c             |   3 +-
+ daemon/dbus/tests/test-secret-signals.c            |   3 +-
+ daemon/dbus/tests/test-secret-util.c               |   3 +-
+ daemon/dbus/tests/test-service.c                   |   3 +-
+ daemon/dbus/tests/test-service.h                   |   3 +-
+ daemon/gkd-capability.c                            |   5 +-
+ daemon/gkd-capability.h                            |   5 +-
+ daemon/gkd-glue.c                                  |   5 +-
+ daemon/gkd-glue.h                                  |   5 +-
+ daemon/gkd-main.h                                  |   5 +-
+ daemon/gkd-pkcs11.c                                |   5 +-
+ daemon/gkd-pkcs11.h                                |   5 +-
+ daemon/gkd-util.c                                  |   3 +-
+ daemon/gkd-util.h                                  |   3 +-
+ daemon/gpg-agent/gkd-gpg-agent-ops.c               |   5 +-
+ daemon/gpg-agent/gkd-gpg-agent-private.h           |   5 +-
+ daemon/gpg-agent/gkd-gpg-agent-standalone.c        |   5 +-
+ daemon/gpg-agent/gkd-gpg-agent.c                   |   5 +-
+ daemon/gpg-agent/gkd-gpg-agent.h                   |   5 +-
+ daemon/login/gkd-login.c                           |   5 +-
+ daemon/login/gkd-login.h                           |   5 +-
+ egg/egg-armor.c                                    |   3 +-
+ egg/egg-armor.h                                    |   3 +-
+ egg/egg-asn1-defs.c                                |   3 +-
+ egg/egg-asn1-defs.h                                |   3 +-
+ egg/egg-asn1x.c                                    |   5 +-
+ egg/egg-asn1x.h                                    |   3 +-
+ egg/egg-buffer.c                                   |   3 +-
+ egg/egg-buffer.h                                   |   3 +-
+ egg/egg-byte-array.c                               |   5 +-
+ egg/egg-byte-array.h                               |   5 +-
+ egg/egg-cleanup.c                                  |   3 +-
+ egg/egg-cleanup.h                                  |   3 +-
+ egg/egg-dbus.c                                     |   3 +-
+ egg/egg-dbus.h                                     |   3 +-
+ egg/egg-dh.c                                       |   5 +-
+ egg/egg-dh.h                                       |   5 +-
+ egg/egg-dn.c                                       |   3 +-
+ egg/egg-dn.h                                       |   3 +-
+ egg/egg-error.h                                    |   5 +-
+ egg/egg-hkdf.c                                     |   5 +-
+ egg/egg-hkdf.h                                     |   5 +-
+ egg/egg-libgcrypt.c                                |   5 +-
+ egg/egg-libgcrypt.h                                |   5 +-
+ egg/egg-mkdtemp.c                                  |   3 +-
+ egg/egg-mkdtemp.h                                  |   3 +-
+ egg/egg-oid.c                                      |   3 +-
+ egg/egg-oid.h                                      |   3 +-
+ egg/egg-openssl.c                                  |   3 +-
+ egg/egg-openssl.h                                  |   3 +-
+ egg/egg-padding.c                                  |   5 +-
+ egg/egg-padding.h                                  |   5 +-
+ egg/egg-secure-memory.c                            |   3 +-
+ egg/egg-secure-memory.h                            |   3 +-
+ egg/egg-spawn.c                                    |   5 +-
+ egg/egg-symkey.c                                   |   5 +-
+ egg/egg-symkey.h                                   |   5 +-
+ egg/egg-testing.c                                  |   5 +-
+ egg/egg-testing.h                                  |   5 +-
+ egg/egg-timegm.c                                   |   3 +-
+ egg/egg-timegm.h                                   |   3 +-
+ egg/tests/test-armor.c                             |   3 +-
+ egg/tests/test-asn1.c                              |   3 +-
+ egg/tests/test-asn1x.c                             |   3 +-
+ egg/tests/test-cleanup.c                           |   3 +-
+ egg/tests/test-dh.c                                |   3 +-
+ egg/tests/test-dn.c                                |   3 +-
+ egg/tests/test-hex.c                               |   3 +-
+ egg/tests/test-hkdf.c                              |   3 +-
+ egg/tests/test-oid.c                               |   3 +-
+ egg/tests/test-openssl.c                           |   3 +-
+ egg/tests/test-padding.c                           |   3 +-
+ egg/tests/test-secmem.c                            |   3 +-
+ egg/tests/test-spawn.c                             |   3 +-
+ egg/tests/test-symkey.c                            |   3 +-
+ pam/gkr-pam-client.c                               |   3 +-
+ pam/gkr-pam-module.c                               |   3 +-
+ pam/gkr-pam-stubs.c                                |   3 +-
+ pam/gkr-pam.h                                      |   3 +-
+ pkcs11/gkm/gkm-aes-key.c                           |   5 +-
+ pkcs11/gkm/gkm-aes-key.h                           |   5 +-
+ pkcs11/gkm/gkm-aes-mechanism.c                     |   5 +-
+ pkcs11/gkm/gkm-aes-mechanism.h                     |   5 +-
+ pkcs11/gkm/gkm-assertion.c                         |   5 +-
+ pkcs11/gkm/gkm-assertion.h                         |   5 +-
+ pkcs11/gkm/gkm-attributes.c                        |   5 +-
+ pkcs11/gkm/gkm-attributes.h                        |   5 +-
+ pkcs11/gkm/gkm-certificate-key.c                   |   5 +-
+ pkcs11/gkm/gkm-certificate-key.h                   |   5 +-
+ pkcs11/gkm/gkm-certificate.c                       |   5 +-
+ pkcs11/gkm/gkm-certificate.h                       |   5 +-
+ pkcs11/gkm/gkm-credential.c                        |   5 +-
+ pkcs11/gkm/gkm-credential.h                        |   5 +-
+ pkcs11/gkm/gkm-crypto.c                            |   5 +-
+ pkcs11/gkm/gkm-crypto.h                            |   5 +-
+ pkcs11/gkm/gkm-data-asn1.c                         |   3 +-
+ pkcs11/gkm/gkm-data-asn1.h                         |   3 +-
+ pkcs11/gkm/gkm-data-der.c                          |   3 +-
+ pkcs11/gkm/gkm-data-der.h                          |   3 +-
+ pkcs11/gkm/gkm-dh-key.c                            |   5 +-
+ pkcs11/gkm/gkm-dh-key.h                            |   5 +-
+ pkcs11/gkm/gkm-dh-mechanism.c                      |   5 +-
+ pkcs11/gkm/gkm-dh-mechanism.h                      |   5 +-
+ pkcs11/gkm/gkm-dh-private-key.c                    |   5 +-
+ pkcs11/gkm/gkm-dh-private-key.h                    |   5 +-
+ pkcs11/gkm/gkm-dh-public-key.c                     |   5 +-
+ pkcs11/gkm/gkm-dh-public-key.h                     |   5 +-
+ pkcs11/gkm/gkm-dsa-mechanism.c                     |   5 +-
+ pkcs11/gkm/gkm-dsa-mechanism.h                     |   5 +-
+ pkcs11/gkm/gkm-factory.c                           |   5 +-
+ pkcs11/gkm/gkm-factory.h                           |   5 +-
+ pkcs11/gkm/gkm-file-tracker.c                      |   3 +-
+ pkcs11/gkm/gkm-file-tracker.h                      |   3 +-
+ pkcs11/gkm/gkm-generic-key.c                       |   5 +-
+ pkcs11/gkm/gkm-generic-key.h                       |   5 +-
+ pkcs11/gkm/gkm-hkdf-mechanism.c                    |   5 +-
+ pkcs11/gkm/gkm-hkdf-mechanism.h                    |   5 +-
+ pkcs11/gkm/gkm-log.c                               |   5 +-
+ pkcs11/gkm/gkm-log.h                               |   5 +-
+ pkcs11/gkm/gkm-manager.c                           |   5 +-
+ pkcs11/gkm/gkm-manager.h                           |   5 +-
+ pkcs11/gkm/gkm-memory-store.c                      |   5 +-
+ pkcs11/gkm/gkm-memory-store.h                      |   5 +-
+ pkcs11/gkm/gkm-mock.c                              |   5 +-
+ pkcs11/gkm/gkm-mock.h                              |   5 +-
+ pkcs11/gkm/gkm-module-ep.h                         |   5 +-
+ pkcs11/gkm/gkm-module.c                            |   5 +-
+ pkcs11/gkm/gkm-module.h                            |   5 +-
+ pkcs11/gkm/gkm-null-key.c                          |   5 +-
+ pkcs11/gkm/gkm-null-key.h                          |   5 +-
+ pkcs11/gkm/gkm-null-mechanism.c                    |   5 +-
+ pkcs11/gkm/gkm-null-mechanism.h                    |   5 +-
+ pkcs11/gkm/gkm-object.c                            |   5 +-
+ pkcs11/gkm/gkm-object.h                            |   5 +-
+ pkcs11/gkm/gkm-oids.h                              |   5 +-
+ pkcs11/gkm/gkm-private-xsa-key.c                   |   5 +-
+ pkcs11/gkm/gkm-private-xsa-key.h                   |   5 +-
+ pkcs11/gkm/gkm-public-xsa-key.c                    |   5 +-
+ pkcs11/gkm/gkm-public-xsa-key.h                    |   5 +-
+ pkcs11/gkm/gkm-rsa-mechanism.c                     |   5 +-
+ pkcs11/gkm/gkm-rsa-mechanism.h                     |   5 +-
+ pkcs11/gkm/gkm-secret-key.c                        |   5 +-
+ pkcs11/gkm/gkm-secret-key.h                        |   5 +-
+ pkcs11/gkm/gkm-secret.c                            |   5 +-
+ pkcs11/gkm/gkm-secret.h                            |   5 +-
+ pkcs11/gkm/gkm-serializable.c                      |   5 +-
+ pkcs11/gkm/gkm-serializable.h                      |   5 +-
+ pkcs11/gkm/gkm-session.c                           |   5 +-
+ pkcs11/gkm/gkm-session.h                           |   5 +-
+ pkcs11/gkm/gkm-sexp-key.c                          |   5 +-
+ pkcs11/gkm/gkm-sexp-key.h                          |   5 +-
+ pkcs11/gkm/gkm-sexp.c                              |   5 +-
+ pkcs11/gkm/gkm-sexp.h                              |   5 +-
+ pkcs11/gkm/gkm-store.c                             |   5 +-
+ pkcs11/gkm/gkm-store.h                             |   5 +-
+ pkcs11/gkm/gkm-test.c                              |   5 +-
+ pkcs11/gkm/gkm-test.h                              |   5 +-
+ pkcs11/gkm/gkm-timer.c                             |   5 +-
+ pkcs11/gkm/gkm-timer.h                             |   5 +-
+ pkcs11/gkm/gkm-transaction.c                       |   5 +-
+ pkcs11/gkm/gkm-transaction.h                       |   5 +-
+ pkcs11/gkm/gkm-trust.c                             |   5 +-
+ pkcs11/gkm/gkm-trust.h                             |   5 +-
+ pkcs11/gkm/gkm-types.h                             |   5 +-
+ pkcs11/gkm/gkm-util.c                              |  10 +-
+ pkcs11/gkm/gkm-util.h                              |   5 +-
+ pkcs11/gkm/tests/mock-locked-object.c              |   5 +-
+ pkcs11/gkm/tests/mock-locked-object.h              |   5 +-
+ pkcs11/gkm/tests/mock-module.c                     |   3 +-
+ pkcs11/gkm/tests/mock-module.h                     |   3 +-
+ pkcs11/gkm/tests/test-attributes.c                 |   3 +-
+ pkcs11/gkm/tests/test-certificate.c                |   3 +-
+ pkcs11/gkm/tests/test-credential.c                 |   3 +-
+ pkcs11/gkm/tests/test-data-asn1.c                  |   3 +-
+ pkcs11/gkm/tests/test-data-der.c                   |   3 +-
+ pkcs11/gkm/tests/test-file-tracker.c               |   3 +-
+ pkcs11/gkm/tests/test-memory-store.c               |   3 +-
+ pkcs11/gkm/tests/test-object.c                     |   3 +-
+ pkcs11/gkm/tests/test-secret.c                     |   3 +-
+ pkcs11/gkm/tests/test-sexp.c                       |   3 +-
+ pkcs11/gkm/tests/test-store.c                      |   3 +-
+ pkcs11/gkm/tests/test-timer.c                      |   3 +-
+ pkcs11/gkm/tests/test-transaction.c                |   3 +-
+ pkcs11/gnome2-store/gkm-gnome2-file.c              |   5 +-
+ pkcs11/gnome2-store/gkm-gnome2-file.h              |   5 +-
+ pkcs11/gnome2-store/gkm-gnome2-module.c            |   5 +-
+ pkcs11/gnome2-store/gkm-gnome2-module.h            |   5 +-
+ pkcs11/gnome2-store/gkm-gnome2-private-key.c       |   5 +-
+ pkcs11/gnome2-store/gkm-gnome2-private-key.h       |   5 +-
+ pkcs11/gnome2-store/gkm-gnome2-public-key.c        |   5 +-
+ pkcs11/gnome2-store/gkm-gnome2-public-key.h        |   5 +-
+ pkcs11/gnome2-store/gkm-gnome2-standalone.c        |   3 +-
+ pkcs11/gnome2-store/gkm-gnome2-storage.c           |   5 +-
+ pkcs11/gnome2-store/gkm-gnome2-storage.h           |   5 +-
+ pkcs11/gnome2-store/gkm-gnome2-store.h             |   5 +-
+ pkcs11/gnome2-store/tests/check-gnome2-module.c    |   3 +-
+ pkcs11/gnome2-store/tests/frob-gnome2-file.c       |   3 +-
+ pkcs11/gnome2-store/tests/mock-gnome2-module.c     |   3 +-
+ pkcs11/gnome2-store/tests/mock-gnome2-module.h     |   3 +-
+ pkcs11/gnome2-store/tests/test-gnome2-file.c       |   3 +-
+ .../gnome2-store/tests/test-gnome2-private-key.c   |   3 +-
+ pkcs11/gnome2-store/tests/test-gnome2-storage.c    |   3 +-
+ pkcs11/gnome2-store/tests/test-import.c            |   3 +-
+ pkcs11/pkcs11i.h                                   |   3 +-
+ pkcs11/rpc-layer/gkm-rpc-daemon-standalone.c       |   3 +-
+ pkcs11/rpc-layer/gkm-rpc-dispatch.c                |   3 +-
+ pkcs11/rpc-layer/gkm-rpc-message.c                 |   3 +-
+ pkcs11/rpc-layer/gkm-rpc-module.c                  |   3 +-
+ pkcs11/rpc-layer/gkm-rpc-private.h                 |   3 +-
+ pkcs11/rpc-layer/gkm-rpc-util.c                    |   3 +-
+ pkcs11/secret-store/gkm-secret-binary.h            |   5 +-
+ pkcs11/secret-store/gkm-secret-collection.c        |   5 +-
+ pkcs11/secret-store/gkm-secret-collection.h        |   5 +-
+ pkcs11/secret-store/gkm-secret-compat.c            |   5 +-
+ pkcs11/secret-store/gkm-secret-compat.h            |   5 +-
+ pkcs11/secret-store/gkm-secret-data.c              |   5 +-
+ pkcs11/secret-store/gkm-secret-data.h              |   5 +-
+ pkcs11/secret-store/gkm-secret-fields.c            |   5 +-
+ pkcs11/secret-store/gkm-secret-fields.h            |   5 +-
+ pkcs11/secret-store/gkm-secret-item.c              |   5 +-
+ pkcs11/secret-store/gkm-secret-item.h              |   5 +-
+ pkcs11/secret-store/gkm-secret-module.c            |   5 +-
+ pkcs11/secret-store/gkm-secret-module.h            |   5 +-
+ pkcs11/secret-store/gkm-secret-object.c            |   5 +-
+ pkcs11/secret-store/gkm-secret-object.h            |   5 +-
+ pkcs11/secret-store/gkm-secret-search.c            |   5 +-
+ pkcs11/secret-store/gkm-secret-search.h            |   5 +-
+ pkcs11/secret-store/gkm-secret-standalone.c        |   3 +-
+ pkcs11/secret-store/gkm-secret-store.h             |   5 +-
+ pkcs11/secret-store/gkm-secret-textual.c           |   3 +-
+ pkcs11/secret-store/gkm-secret-textual.h           |   5 +-
+ pkcs11/secret-store/gkm-secret-types.h             |   5 +-
+ pkcs11/secret-store/tests/mock-secret-module.c     |   3 +-
+ pkcs11/secret-store/tests/mock-secret-module.h     |   3 +-
+ pkcs11/secret-store/tests/test-secret-binary.c     |   3 +-
+ pkcs11/secret-store/tests/test-secret-collection.c |   3 +-
+ pkcs11/secret-store/tests/test-secret-compat.c     |   3 +-
+ pkcs11/secret-store/tests/test-secret-data.c       |   3 +-
+ pkcs11/secret-store/tests/test-secret-fields.c     |   3 +-
+ pkcs11/secret-store/tests/test-secret-item.c       |   3 +-
+ pkcs11/secret-store/tests/test-secret-object.c     |   3 +-
+ pkcs11/secret-store/tests/test-secret-schema.c     |   3 +-
+ pkcs11/secret-store/tests/test-secret-search.c     |   3 +-
+ pkcs11/secret-store/tests/test-secret-textual.c    |   3 +-
+ pkcs11/ssh-store/gkm-ssh-module.c                  |   5 +-
+ pkcs11/ssh-store/gkm-ssh-module.h                  |   5 +-
+ pkcs11/ssh-store/gkm-ssh-private-key.c             |   5 +-
+ pkcs11/ssh-store/gkm-ssh-private-key.h             |   5 +-
+ pkcs11/ssh-store/gkm-ssh-public-key.c              |   5 +-
+ pkcs11/ssh-store/gkm-ssh-public-key.h              |   5 +-
+ pkcs11/ssh-store/gkm-ssh-standalone.c              |   3 +-
+ pkcs11/ssh-store/gkm-ssh-store.h                   |   5 +-
+ pkcs11/ssh-store/tests/check-ssh-module.c          |   3 +-
+ pkcs11/ssh-store/tests/mock-ssh-module.c           |   3 +-
+ pkcs11/ssh-store/tests/mock-ssh-module.h           |   3 +-
+ pkcs11/ssh-store/tests/test-private-key.c          |   3 +-
+ pkcs11/ssh-store/tests/test-ssh-openssh.c          |   3 +-
+ pkcs11/template/gkm-xxx.c                          |   5 +-
+ pkcs11/template/gkm-xxx.h                          |   5 +-
+ pkcs11/template/gkm-zzz.c                          |   5 +-
+ pkcs11/template/gkm-zzz.h                          |   5 +-
+ pkcs11/wrap-layer/gkm-wrap-layer.c                 |   5 +-
+ pkcs11/wrap-layer/gkm-wrap-layer.h                 |   5 +-
+ pkcs11/wrap-layer/gkm-wrap-login.c                 |   5 +-
+ pkcs11/wrap-layer/gkm-wrap-login.h                 |   5 +-
+ pkcs11/wrap-layer/gkm-wrap-prompt.c                |   5 +-
+ pkcs11/wrap-layer/gkm-wrap-prompt.h                |   5 +-
+ pkcs11/wrap-layer/tests/mock-secret-store.c        |   5 +-
+ pkcs11/wrap-layer/tests/test-create-credential.c   |   5 +-
+ pkcs11/wrap-layer/tests/test-init-pin.c            |   5 +-
+ pkcs11/wrap-layer/tests/test-login-auto.c          |   5 +-
+ pkcs11/wrap-layer/tests/test-login-hints.c         |   5 +-
+ pkcs11/wrap-layer/tests/test-login-keyring.c       |   5 +-
+ pkcs11/wrap-layer/tests/test-login-specific.c      |   5 +-
+ pkcs11/wrap-layer/tests/test-login-user.c          |   5 +-
+ pkcs11/wrap-layer/tests/test-set-pin.c             |   5 +-
+ pkcs11/xdg-store/gkm-xdg-asn1-defs.c               |   3 +-
+ pkcs11/xdg-store/gkm-xdg-asn1-defs.h               |   3 +-
+ pkcs11/xdg-store/gkm-xdg-assertion.c               |   5 +-
+ pkcs11/xdg-store/gkm-xdg-assertion.h               |   5 +-
+ pkcs11/xdg-store/gkm-xdg-module.c                  |   5 +-
+ pkcs11/xdg-store/gkm-xdg-module.h                  |   5 +-
+ pkcs11/xdg-store/gkm-xdg-standalone.c              |   3 +-
+ pkcs11/xdg-store/gkm-xdg-store.h                   |   5 +-
+ pkcs11/xdg-store/gkm-xdg-trust.c                   |   5 +-
+ pkcs11/xdg-store/gkm-xdg-trust.h                   |   5 +-
+ pkcs11/xdg-store/tests/check-xdg-module.c          |   3 +-
+ pkcs11/xdg-store/tests/dump-trust-file.c           |   5 +-
+ pkcs11/xdg-store/tests/frob-trust-file.c           |   5 +-
+ pkcs11/xdg-store/tests/mock-xdg-module.c           |   3 +-
+ pkcs11/xdg-store/tests/mock-xdg-module.h           |   3 +-
+ pkcs11/xdg-store/tests/test-xdg-module.c           |   3 +-
+ pkcs11/xdg-store/tests/test-xdg-trust.c            |   3 +-
+ tool/gkr-tool-import.c                             |   3 +-
+ tool/gkr-tool-trust.c                              |   3 +-
+ tool/gkr-tool-version.c                            |   3 +-
+ tool/gkr-tool.c                                    |   3 +-
+ tool/gkr-tool.h                                    |   3 +-
+ 345 files changed, 699 insertions(+), 1023 deletions(-)
+
+commit 9bda57a2b02e8cd8c55cea4dc88a9849ae86f859
+Author: Stef Walter <stefw@gnome.org>
+Date:   2013-12-02
+
+    egg: Move away from deprecated g_test_trap_fork()
+    
+    Bump glib dependency to 2.38.x
+
+ configure.ac          |  4 ++--
+ egg/tests/test-asn1.c | 20 ++++++++++++--------
+ 2 files changed, 14 insertions(+), 10 deletions(-)
+
+commit 111cbac349a159126719f6a25597375ccbb9a086
+Author: Stef Walter <stefw@gnome.org>
+Date:   2013-12-02
+
+    configure: Be more explicit about gnome-keyring dependencies
+
+ configure.ac | 48 ++++++++++++++++++++++++++++--------------------
+ 1 file changed, 28 insertions(+), 20 deletions(-)
+
+commit aecc860794082bd50d41152e8e65bb58f52db5ee
+Author: Matthias Clasen <mclasen@redhat.com>
+Date:   2013-11-06
+
+    Add an alias man page for gnome-keyring-3
+    
+    Signed-off-by: Stef Walter <stefw@redhat.com>
+     - Distribute gnome-keyring-3.1
+    
+    https://bugzilla.gnome.org/show_bug.cgi?id=711581
+
+ INSTALL                | 235 +++++++++++++++++++++++++++++++++++++++----------
+ docs/Makefile.am       |  14 ++-
+ docs/gnome-keyring-3.1 |   1 +
+ 3 files changed, 199 insertions(+), 51 deletions(-)
+
+commit 03a2caea1f0873fec1081eb28c427b40fb16155e
+Author: Matthias Clasen <mclasen@redhat.com>
+Date:   2013-11-06
+
+    Add a man page for the gnome-keyring tool
+    
+    Signed-off-by: Stef Walter <stefw@redhat.com>
+    
+    https://bugzilla.gnome.org/show_bug.cgi?id=711581
+
+ docs/Makefile.am       |  3 +-
+ docs/gnome-keyring.xml | 95 ++++++++++++++++++++++++++++++++++++++++++++++++++
+ 2 files changed, 97 insertions(+), 1 deletion(-)
+
+commit c7d0a8da52fc279e11b6cc28c8c402e9abc4f83b
+Author: Matthias Clasen <mclasen@redhat.com>
+Date:   2013-11-06
+
+    Some man page updates for gnome-keyring-daemon
+    
+    https://bugzilla.gnome.org/show_bug.cgi?id=711581
+
+ docs/gnome-keyring-daemon.xml | 31 +++++++++++++++++++------------
+ 1 file changed, 19 insertions(+), 12 deletions(-)
+
+commit 27b81b609b5ab0831e475a537566457122a83d67
+Author: Colin Walters <walters@verbum.org>
+Date:   2013-10-24
+
+    pam: de-duplicate log message text and comment
+    
+    I was reading the source to this for other reasons, just a drive by...
+    
+    https://bugzilla.gnome.org/show_bug.cgi?id=710827
+
+ pam/gkr-pam-module.c | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+commit 19fe1ca0aa34e3a9e46a94ca58dfd972d8ca14b8
+Author: Stef Walter <stefw@gnome.org>
+Date:   2013-10-17
+
+    Release version 3.10.1
+
+ NEWS         | 6 ++++++
+ configure.ac | 2 +-
+ 2 files changed, 7 insertions(+), 1 deletion(-)
+
+commit d231d9c50dd0be1beb8d1d9293005d49cc90e7f8
+Author: Stef Walter <stefw@gnome.org>
+Date:   2013-10-15
+
+    daemon: Add gnome-keyring-daemon manual page
+
+ .gitignore                    |   1 +
+ Makefile.am                   |  17 ++++-
+ configure.ac                  |  38 ++++++++--
+ daemon/gkd-main.c             |   2 +-
+ docs/Makefile.am              |  27 ++++++-
+ docs/gnome-keyring-daemon.xml | 160 ++++++++++++++++++++++++++++++++++++++++++
+ 6 files changed, 234 insertions(+), 11 deletions(-)
+
+commit 2ec2e06691b0e99815b9a13a8682eda90d3ffaf9
+Author: Stef Walter <stefw@gnome.org>
+Date:   2013-10-15
+
+    daemon: Add new line at the end of startup messages
+
+ daemon/gkd-main.c | 8 ++++----
+ 1 file changed, 4 insertions(+), 4 deletions(-)
+
+commit 0a82e3357c9fd17479d2a614dc64594b3349d138
+Author: Antoine Jacoutot <ajacoutot@gnome.org>
+Date:   2013-08-20
+
+    buffer_get_time: use time_t as last argument
+    
+    ctime and mtime are time_t values.
+    However, buffer_get_time() takes glong as its last argument.
+    This is problematic because depending on the operating system and arch,
+    time_t can be different.
+    For e.g. on OpenBSD it is both long long for 32-bit and 64-bit
+    architectures while on Linux, it is long for 32-bit.
+    
+    https://bugzilla.gnome.org/show_bug.cgi?id=706405
+
+ pkcs11/secret-store/gkm-secret-binary.c          | 2 +-
+ pkcs11/secret-store/tests/dump-keyring0-format.c | 2 +-
+ 2 files changed, 2 insertions(+), 2 deletions(-)
+
+commit fa8a3f8ce52483345d540c0bdda0ed099fb8e137
+Author: Muhammet Kara <muhammetk@gmail.com>
+Date:   2013-09-26
+
+    [l10n]Updated Turkish translation
+
+ po/tr.po | 216 ++++++++++++++++++++++++++++++++++-----------------------------
+ 1 file changed, 115 insertions(+), 101 deletions(-)
+
+commit 0c462fd1db180f46201b07d1562871a2d1d39845
+Author: Chao-Hsiung Liao <j_h_liau@yahoo.com.tw>
+Date:   2013-09-24
+
+    Updated Traditional Chinese translation(Hong Kong and Taiwan)
+
+ po/zh_HK.po | 172 ++++++++++++++++++++++++++++++------------------------------
+ po/zh_TW.po | 170 +++++++++++++++++++++++++++++------------------------------
+ 2 files changed, 171 insertions(+), 171 deletions(-)
+
+commit 3f7f6f9b34998624248f705b85622851cc4a589c
+Author: Stef Walter <stefw@gnome.org>
+Date:   2013-09-23
+
+    Release version 3.10.0
+
+ NEWS         | 3 +++
+ configure.ac | 2 +-
+ 2 files changed, 4 insertions(+), 1 deletion(-)
+
+commit 5c2a67ee425b12fb5b141d145c7bf0a36042257b
+Author: Lars Seipel <ls@slrz.net>
+Date:   2013-09-19
+
+    daemon: Fix lapse where the login password is read in pointer-sized chunks
+    
+    https://bugzilla.gnome.org/show_bug.cgi?id=708483
+
+ daemon/gkd-main.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+commit d9d3b4922c5a210a9e82bc099505c1952c555826
+Author: Stef Walter <stefw@gnome.org>
+Date:   2013-08-26
+
+    Release version 3.9.90
+
+ Makefile.am  | 3 ++-
+ NEWS         | 4 ++++
+ configure.ac | 2 +-
+ 3 files changed, 7 insertions(+), 2 deletions(-)
+
+commit b8ad18fd3c49f744c4f744eae241c18f8fb8a953
+Author: Stef Walter <stefw@gnome.org>
+Date:   2013-08-17
+
+    daemon: Fix running gnome-keyring-daemon under test harness
+
+ daemon/dbus/tests/test-service.c | 10 ++++------
+ 1 file changed, 4 insertions(+), 6 deletions(-)
+
+commit 1533e463d4263d3b4ec65750fb2f2ac7203edf73
+Author: Stef Walter <stefw@gnome.org>
+Date:   2013-08-15
+
+    More reliable means of checking if object was finalized
+    
+    Don't try to use G_IS_OBJECT() to see if an object was finalized
+    as this segfaults in corner cases, even with our crafty check
+    for a pointer within our memory space.
+
+ pkcs11/gnome2-store/tests/test-gnome2-storage.c | 3 ++-
+ 1 file changed, 2 insertions(+), 1 deletion(-)
+
+commit 99b6f5aa5bf2d216fa4ad47a94cde21f87f1af38
+Author: Stef Walter <stefw@gnome.org>
+Date:   2013-06-18
+
+    daemon: Fix running tests without installed gnome-keyring
+    
+    https://bugzilla.gnome.org/show_bug.cgi?id=702367
+
+ .gitignore                       | 2 ++
+ daemon/dbus/tests/test-service.c | 9 ++++++++-
+ schema/Makefile.am               | 8 ++++++++
+ 3 files changed, 18 insertions(+), 1 deletion(-)
+
+commit 8b3f300761edbb1ef9fcf434ccc3150ca3a1eef9
+Author: Martin Olsson <martin@minimum.se>
+Date:   2013-06-13
+
+    Fixed typo in string. Fixes bug #697502
+
+ daemon/control/gkd-control-client.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+commit 769e917fc0b330d5d19f93c050870f7bc6d5555a
+Author: Stef Walter <stefw@gnome.org>
+Date:   2013-04-30
+
+    Release version 3.9.1
+
+ NEWS         | 5 +++++
+ configure.ac | 2 +-
+ 2 files changed, 6 insertions(+), 1 deletion(-)
+
+commit b570ac71b7e037abbb7b14d246d5a37f0afd6ba8
+Author: Stef Walter <stefw@gnome.org>
+Date:   2013-04-27
+
+    Fix implementation of LockService dbus method
+    
+    This prevented gnome_keyring_lock_all() in libgnome-keyring from
+    working as expected.
+    
+    https://bugzilla.gnome.org/show_bug.cgi?id=690466
+
+ daemon/dbus/gkd-secret-lock.c        |  50 +++++++++++++
+ daemon/dbus/gkd-secret-lock.h        |   3 +
+ daemon/dbus/gkd-secret-service.c     |  12 +++-
+ daemon/dbus/gkd-secret-unlock.c      |   1 +
+ daemon/dbus/tests/Makefile.am        |   3 +-
+ daemon/dbus/tests/test-secret-lock.c | 134 +++++++++++++++++++++++++++++++++++
+ 6 files changed, 201 insertions(+), 2 deletions(-)
+
+commit 6f955eeed2728f0d8cf6dc7adb4265a8725d7d50
+Author: Wouter Bolsterlee <uws@xs4all.nl>
+Date:   2013-04-19
+
+    Updated Dutch translation
+
+ po/nl.po | 370 +++++++++++++++++++++++++++++++++++++++------------------------
+ 1 file changed, 231 insertions(+), 139 deletions(-)
+
+commit 0281ae4118690abe8631c601c8719b2a7a82a305
 Author: Stef Walter <stefw@gnome.org>
 Date:   2013-04-19
 
@@ -32,7 +1904,7 @@ Date:   2013-04-19
  pkcs11/xdg-store/xdg.asn.h   |   40 ++
  14 files changed, 1529 insertions(+), 99 deletions(-)
 
-commit da49bf53791f8cba6a257625d56d2ab4b1dfe2f1
+commit 87d5307b91d733dac7277c28f4b760d4f90a5a4a
 Author: Stef Walter <stefw@gnome.org>
 Date:   2012-12-22
 
@@ -47,25 +1919,6 @@ Date:   2012-12-22
  pkcs11/gkm/gkm-timer.c         |  31 +++--
  pkcs11/gkm/tests/mock-module.c |   4 +-
  5 files changed, 155 insertions(+), 157 deletions(-)
-
-commit 491fdec1850860f28c84daeeb1bd6aaf6036b534
-Author: Stef Walter <stefw@gnome.org>
-Date:   2013-04-27
-
-    Fix implementation of LockService dbus method
-    
-    This prevented gnome_keyring_lock_all() in libgnome-keyring from
-    working as expected.
-    
-    https://bugzilla.gnome.org/show_bug.cgi?id=690466
-
- daemon/dbus/gkd-secret-lock.c        |  50 +++++++++++++
- daemon/dbus/gkd-secret-lock.h        |   3 +
- daemon/dbus/gkd-secret-service.c     |  12 +++-
- daemon/dbus/gkd-secret-unlock.c      |   1 +
- daemon/dbus/tests/Makefile.am        |   3 +-
- daemon/dbus/tests/test-secret-lock.c | 134 +++++++++++++++++++++++++++++++++++
- 6 files changed, 201 insertions(+), 2 deletions(-)
 
 commit 4c0b5cd06cf4606c6faec96d68a82a4fb5639347
 Author: Stef Walter <stefw@gnome.org>

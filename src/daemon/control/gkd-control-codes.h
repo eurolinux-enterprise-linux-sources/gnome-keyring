@@ -14,9 +14,8 @@
  * Lesser General Public License for more details.
  *
  * You should have received a copy of the GNU Lesser General Public
- * License along with this program; if not, write to the Free Software
- * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA
- * 02111-1307, USA.
+ * License along with this program; if not, see
+ * <http://www.gnu.org/licenses/>.
  */
 
 #ifndef __GKD_CONTROL_CODES_H__
@@ -32,7 +31,8 @@ enum {
 enum {
 	GKD_CONTROL_RESULT_OK,
 	GKD_CONTROL_RESULT_DENIED,
-	GKD_CONTROL_RESULT_FAILED
+	GKD_CONTROL_RESULT_FAILED,
+	GKD_CONTROL_RESULT_NO_DAEMON
 };
 
 #endif /* __GKD_CONTROL_CODES_H__ */

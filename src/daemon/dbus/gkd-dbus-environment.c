@@ -15,17 +15,16 @@
 
    You should have received a copy of the GNU Library General Public
    License along with the Gnome Library; see the file COPYING.LIB.  If not,
-   write to the Free Software Foundation, Inc., 59 Temple Place - Suite 330,
-   Boston, MA 02111-1307, USA.
+   <http://www.gnu.org/licenses/>.
 
    Author: Stef Walter <stef@memberwebs.com>
 */
 
 #include "config.h"
 
-
 #include "gkd-dbus-private.h"
-#include "gkd-util.h"
+
+#include "daemon/gkd-util.h"
 
 #include <dbus/dbus.h>
 

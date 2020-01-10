@@ -14,16 +14,14 @@
  * Lesser General Public License for more details.
  *
  * You should have received a copy of the GNU Lesser General Public
- * License along with this program; if not, write to the Free Software
- * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA
- * 02111-1307, USA.
+ * License along with this program; if not, see
+ * <http://www.gnu.org/licenses/>.
  *
  * Stef Walter <stefw@collabora.co.uk>
  */
 
 #include "config.h"
 
-#include "egg-mkdtemp.h"
 #include "egg-testing.h"
 
 #include <glib/gstdio.h>
@@ -232,9 +230,9 @@ egg_tests_run_with_loop (void)
 	return ret;
 }
 
-static void
-copy_scratch_file (const gchar *filename,
-                   const gchar *directory)
+void
+egg_tests_copy_scratch_file (const gchar *directory,
+                             const gchar *filename)
 {
 	GError *error = NULL;
 	gchar *basename;
@@ -269,13 +267,13 @@ egg_tests_create_scratch_directory (const gchar *file_to_copy,
 	directory = g_strdup_printf ("/tmp/scratch-%s.XXXXXX", basename);
 	g_free (basename);
 
-	if (!egg_mkdtemp (directory))
+	if (!g_mkdtemp (directory))
 		g_assert_not_reached ();
 
 	va_start (va, file_to_copy);
 
 	while (file_to_copy != NULL) {
-		copy_scratch_file (file_to_copy, directory);
+		egg_tests_copy_scratch_file (directory, file_to_copy);
 		file_to_copy = va_arg (va, const gchar *);
 	}
 
@@ -287,23 +285,15 @@ egg_tests_create_scratch_directory (const gchar *file_to_copy,
 void
 egg_tests_remove_scratch_directory (const gchar *directory)
 {
-	GDir *dir;
+	gchar *argv[] = { "rm", "-r", (gchar *)directory, NULL };
 	GError *error = NULL;
-	const gchar *name;
-	gchar *filename;
+	gint rm_status;
 
-	dir = g_dir_open (directory, 0, &error);
+	g_assert_cmpstr (directory, !=, "");
+	g_assert_cmpstr (directory, !=, "/");
+
+	g_spawn_sync (NULL, argv, NULL, G_SPAWN_SEARCH_PATH, NULL,
+	              NULL, NULL, NULL, &rm_status, &error);
 	g_assert_no_error (error);
-
-	while ((name = g_dir_read_name (dir)) != NULL) {
-		filename = g_build_filename (directory, name, NULL);
-		if (g_unlink (filename) < 0)
-			g_assert_not_reached ();
-		g_free (filename);
-	}
-
-	g_dir_close (dir);
-
-	if (g_rmdir (directory) < 0)
-		g_assert_not_reached ();
+	g_assert_cmpint (rm_status, ==, 0);
 }

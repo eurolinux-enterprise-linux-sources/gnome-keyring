@@ -14,9 +14,8 @@
  * Lesser General Public License for more details.
  *
  * You should have received a copy of the GNU Lesser General Public
- * License along with this program; if not, write to the Free Software
- * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA
- * 02111-1307, USA.
+ * License along with this program; if not, see
+ * <http://www.gnu.org/licenses/>.
  */
 
 #include "config.h"
@@ -24,15 +23,15 @@
 #include "gkd-control.h"
 #include "gkd-control-codes.h"
 
-#include "gkd-main.h"
-#include "gkd-util.h"
+#include "daemon/gkd-main.h"
+#include "daemon/gkd-util.h"
 
 #include "egg/egg-buffer.h"
 #include "egg/egg-cleanup.h"
 #include "egg/egg-secure-memory.h"
 #include "egg/egg-unix-credentials.h"
 
-#include "login/gkd-login.h"
+#include "daemon/login/gkd-login.h"
 
 #include <errno.h>
 #include <fcntl.h>
@@ -48,6 +47,8 @@ typedef struct _ControlData {
 } ControlData;
 
 EGG_SECURE_DECLARE (control_server);
+
+static gchar *control_path;
 
 /* -----------------------------------------------------------------------------------
  * CONTROL SERVER
@@ -242,8 +243,32 @@ control_process (EggBuffer *req, GIOChannel *channel)
 	if (cdata) {
 		g_return_if_fail (!egg_buffer_has_error (&cdata->buffer));
 		egg_buffer_set_uint32 (&cdata->buffer, 0, cdata->buffer.len);
-		g_io_add_watch_full (channel, G_PRIORITY_DEFAULT, G_IO_OUT | G_IO_HUP,
-		                     control_output, cdata, control_data_free);
+
+		/*
+		 * Quit messages are a bit strange because the daemon will quit.
+		 * There are three syncronization issues here.
+		 * 1. We need the response to be written right away, because if
+		 *    we wait for the main loop it might not be written.
+		 * 2. Callers may want to wait for the daemon to exit, so keep the
+		 *    socket open until we do.
+		 * 3. Prevent additional connections on the control socket (done via
+		 *    gkd_control_stop()).
+		 */
+		if (op == GKD_CONTROL_OP_QUIT) {
+			if (write (g_io_channel_unix_get_fd (channel),
+			           cdata->buffer.buf, cdata->buffer.len) != cdata->buffer.len)
+				g_message ("couldn't write response to close control request");
+			if (res == GKD_CONTROL_RESULT_OK) {
+				egg_cleanup_register ((GDestroyNotify)g_io_channel_unref,
+				                      g_io_channel_ref (channel));
+			}
+			control_data_free (cdata);
+
+		/* Any other response, send in the main loop */
+		} else {
+			g_io_add_watch_full (channel, G_PRIORITY_DEFAULT, G_IO_OUT | G_IO_HUP,
+			                     control_output, cdata, control_data_free);
+		}
 	}
 }
 
@@ -363,12 +388,14 @@ control_accept (GIOChannel *channel, GIOCondition cond, gpointer callback_data)
 	return TRUE;
 }
 
-static void
-control_cleanup_channel (gpointer user_data)
+void
+gkd_control_stop (void)
 {
-	gchar *path = user_data;
-	unlink (path);
-	g_free (path);
+	if (control_path) {
+		unlink (control_path);
+		g_free (control_path);
+		control_path = NULL;
+	}
 }
 
 gboolean
@@ -376,13 +403,12 @@ gkd_control_listen (void)
 {
 	struct sockaddr_un addr;
 	GIOChannel *channel;
-	gchar *path;
 	int sock;
 
-	path = g_strdup_printf ("%s/control", gkd_util_get_master_directory ());
-	egg_cleanup_register (control_cleanup_channel, path);
+	control_path = g_strdup_printf ("%s/control", gkd_util_get_master_directory ());
+	egg_cleanup_register ((GDestroyNotify)gkd_control_stop, NULL);
 
-	unlink (path);
+	unlink (control_path);
 
 	sock = socket (AF_UNIX, SOCK_STREAM, 0);
 	if (sock < 0) {
@@ -392,15 +418,15 @@ gkd_control_listen (void)
 
 	memset (&addr, 0, sizeof (addr));
 	addr.sun_family = AF_UNIX;
-	g_strlcpy (addr.sun_path, path, sizeof (addr.sun_path));
+	g_strlcpy (addr.sun_path, control_path, sizeof (addr.sun_path));
 	if (bind (sock, (struct sockaddr*) &addr, sizeof (addr)) < 0) {
-		g_warning ("couldn't bind to control socket: %s: %s", path, g_strerror (errno));
+		g_warning ("couldn't bind to control socket: %s: %s", control_path, g_strerror (errno));
 		close (sock);
 		return FALSE;
 	}
 
 	if (listen (sock, 128) < 0) {
-		g_warning ("couldn't listen on control socket: %s: %s", path, g_strerror (errno));
+		g_warning ("couldn't listen on control socket: %s: %s", control_path, g_strerror (errno));
 		close (sock);
 		return FALSE;
 	}

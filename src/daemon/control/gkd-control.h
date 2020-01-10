@@ -14,9 +14,8 @@
  * Lesser General Public License for more details.
  *
  * You should have received a copy of the GNU Lesser General Public
- * License along with this program; if not, write to the Free Software
- * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA
- * 02111-1307, USA.
+ * License along with this program; if not, see
+ * <http://www.gnu.org/licenses/>.
  */
 
 #ifndef __GKD_CONTROL_H__
@@ -26,9 +25,12 @@
 
 typedef enum {
 	GKD_CONTROL_QUIET_IF_NO_PEER = 1 << 0,
+	GKD_CONTROL_WAIT_FOR_CLOSE = 1 << 1,
 } GkdControlFlags;
 
 gboolean          gkd_control_listen        (void);
+
+void              gkd_control_stop          (void);
 
 gchar**           gkd_control_initialize    (const gchar *directory,
                                              const gchar *components,

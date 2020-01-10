@@ -1,24 +1,20 @@
-%define glib2_version 2.32.0
+%define glib2_version 2.38.0
 %define gcr_version 3.5.3
-%define dbus_version 1.0
+%define dbus_version 1.1.1
 %define gcrypt_version 1.2.2
 %define libtasn1_version 0.3.4
 
+%define _hardened_build 1
+
 Summary: Framework for managing passwords and other secrets
 Name: gnome-keyring
-Version: 3.8.2
-Release: 8%{?dist}
+Version: 3.14.0
+Release: 1%{?dist}
 License: GPLv2+ and LGPLv2+
 Group: System Environment/Libraries
 #VCS: git:git://git.gnome.org/gnome-keyring
-Source: http://download.gnome.org/sources/gnome-keyring/3.8/gnome-keyring-%{version}.tar.xz
+Source: http://download.gnome.org/sources/gnome-keyring/3.14/gnome-keyring-%{version}.tar.xz
 URL: http://www.gnome.org
-
-Patch0: 0002-daemon-Add-gnome-keyring-daemon-manual-page.patch
-Patch1: 0001-Some-man-page-updates-for-gnome-keyring-daemon.patch
-Patch2: 0002-Add-a-man-page-for-the-gnome-keyring-tool.patch
-Patch3: 0003-Add-an-alias-man-page-for-gnome-keyring-3.patch
-Patch4: 0001-pam-Fix-issue-with-changed-password-not-unlocking-ke.patch
 
 BuildRequires: glib2-devel >= %{glib2_version}
 BuildRequires: gcr-devel >= %{gcr_version}
@@ -26,7 +22,6 @@ BuildRequires: dbus-devel >= %{dbus_version}
 BuildRequires: libgcrypt-devel >= %{gcrypt_version}
 BuildRequires: libtasn1-devel >= %{libtasn1_version}
 BuildRequires: pam-devel
-BuildRequires: autoconf, automake, libtool
 BuildRequires: gettext
 BuildRequires: intltool
 BuildRequires: libtasn1-tools
@@ -35,8 +30,6 @@ BuildRequires: libcap-ng-devel
 BuildRequires: libselinux-devel
 BuildRequires: p11-kit-devel
 BuildRequires: gcr-devel
-BuildRequires: libxslt
-BuildRequires: docbook-style-xsl
 
 # we no longer have a devel subpackage
 Obsoletes: %{name}-devel < 3.3.0
@@ -51,9 +44,9 @@ Applications can use the gnome-keyring library to integrate with the keyring.
 Summary: Pam module for unlocking keyrings
 License: LGPLv2+
 Group: Development/Libraries
-Requires: %{name} = %{version}-%{release}
+Requires: %{name}%{?_isa} = %{version}-%{release}
 # for /lib/security
-Requires: pam
+Requires: pam%{?_isa}
 
 %description pam
 The gnome-keyring-pam package contains a pam module that can
@@ -62,24 +55,16 @@ automatically unlock the "login" keyring when the user logs in.
 
 %prep
 %setup -q -n gnome-keyring-%{version}
-%patch0 -p1
-%patch1 -p1
-%patch2 -p1
-%patch3 -p1
-%patch4 -p1
-
-autoreconf -i -f
 
 %build
 %configure \
-	   --enable-doc \
            --with-pam-dir=%{_libdir}/security \
            --enable-pam
 
 # avoid unneeded direct dependencies
 sed -i -e 's/ -shared / -Wl,-O1,--as-needed\0 /g' libtool
 
-make %{?_smp_mflags}
+make %{?_smp_mflags} V=1
 
 %install
 make install DESTDIR=$RPM_BUILD_ROOT
@@ -90,11 +75,7 @@ rm $RPM_BUILD_ROOT%{_libdir}/gnome-keyring/devel/*.la
 
 %find_lang gnome-keyring
 
-%post
-/sbin/ldconfig
-
 %postun
-/sbin/ldconfig
 if [ $1 -eq 0 ]; then
   glib-compile-schemas %{_datadir}/glib-2.0/schemas >&/dev/null || :
 fi
@@ -120,15 +101,26 @@ glib-compile-schemas %{_datadir}/glib-2.0/schemas >&/dev/null || :
 %{_datadir}/GConf/gsettings/*.convert
 %{_datadir}/glib-2.0/schemas/*.gschema.xml
 %{_datadir}/p11-kit/modules/gnome-keyring.module
-%{_mandir}/man1/gnome-keyring-daemon.1.gz
-%{_mandir}/man1/gnome-keyring.1.gz
-%{_mandir}/man1/gnome-keyring-3.1.gz
+%{_mandir}/man1/gnome-keyring.1*
+%{_mandir}/man1/gnome-keyring-3.1*
+%{_mandir}/man1/gnome-keyring-daemon.1*
 
 %files pam
 %{_libdir}/security/*.so
 
 
 %changelog
+* Mon Mar 23 2015 Richard Hughes <rhughes@redhat.com> - 3.14.0-1
+- Update to 3.14.0
+- Resolves: #1174714
+
+* Thu Sep 04 2014 David King <dking@redhat.com> - 3.8.2-10
+- Apply gkm timer test patch (#1118760)
+
+* Fri Aug 15 2014 David King <dking@redhat.com> - 3.8.2-9
+- Enable hardening flags (#1092550)
+- Improve reliability of gkm timer test (#1118760)
+
 * Wed Apr 23 2014 Zeeshan Ali <zeenix@redhat.com> - 3.8.2-8
 - Remove patch 'daemon: Exit gnome-keyring-daemon when the DBus connection
   closes' (related: rhbz#1030671).

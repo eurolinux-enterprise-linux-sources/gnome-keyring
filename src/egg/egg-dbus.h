@@ -17,8 +17,7 @@
  * GNU General Public License for more details.
  * 
  * You should have received a copy of the GNU General Public License
- * along with this program; if not, write to the Free Software
- * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
+ * along with this program; if not, see
  *
  */
 
@@ -28,7 +27,9 @@
 #include <glib.h>
 #include <dbus/dbus.h>
 
-void egg_dbus_connect_with_mainloop (DBusConnection *connection, GMainContext *context);
+void    egg_dbus_connect_with_mainloop     (DBusConnection *connection,
+                                            GMainContext *context,
+                                            GDestroyNotify close_callback);
 
 void egg_dbus_disconnect_from_mainloop (DBusConnection *connection, GMainContext *context);
 

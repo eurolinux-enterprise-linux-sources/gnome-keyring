@@ -12,6 +12,12 @@
 /* always defined to indicate that i18n is enabled */
 #undef ENABLE_NLS
 
+/* Nod nod */
+#undef GCK_API_SUBJECT_TO_CHANGE
+
+/* Nod nod */
+#undef GCR_API_SUBJECT_TO_CHANGE
+
 /* The gettext domain name */
 #undef GETTEXT_PACKAGE
 
@@ -76,9 +82,6 @@
 /* Define to 1 if you have the <memory.h> header file. */
 #undef HAVE_MEMORY_H
 
-/* Define to 1 if you have the `mkdtemp' function. */
-#undef HAVE_MKDTEMP
-
 /* Define to 1 if you have the `mlock' function. */
 #undef HAVE_MLOCK
 
@@ -135,9 +138,6 @@
    */
 #undef LT_OBJDIR
 
-/* Define to 1 if your C compiler doesn't accept -c and -o together. */
-#undef NO_MINUS_C_MINUS_O
-
 /* Name of package */
 #undef PACKAGE
 
@@ -189,12 +189,6 @@
 # undef __EXTENSIONS__
 #endif
 
-
-/* Path to valgrind executable */
-#undef VALGRIND
-
-/* Valgrind arguments */
-#undef VALGRIND_ARG
 
 /* Version number of package */
 #undef VERSION

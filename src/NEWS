@@ -1,6 +1,54 @@
-Changes in version 3.8.2 are:
+Changes in version 3.14.0 are:
+ * Remove residual GTK+ usage
+ * Updated translations
+ * Build fixes
+
+Changes in version 3.13.91 are:
+ * Initialize correctly with empty passwords during login [#736085]
+ * Don't use geteuid() to get UID for user in PAM module [#733418]
+ * Fix for libgcrypt 1.6+
+ * Build fixes
+
+Changes in version 3.12.2 are:
+ * Build fixes
+
+Changes in version 3.12.0 are:
+ * Build and testing fixes
+
+Changes in version 3.11.92 are:
+ * Use $XDG_RUNTIME_DIR to create keyring socket directory [#725801]
+ * Stop exporting the $GNOME_KEYRING_CONTROL env variable [#725801]
+ * Stop exposing a GNOME_KEYRING_PID variable [#725801]
+ * Pass XDG_RUNTIME_DIR to new gnome-keyring-daemon process [#726196]
+ * Fix issue with changed password not unlocking keyring [#726196]
+ * Add new --unlock option to prompt for login password [#710187]
+ * When in foreground mode, close stdout when done initializing
+ * Exit gnome-keyring-daemon when the DBus connection closes [#708765]
+ * Don't initialize in an idle handler, this is racy
+ * Don't log debug messages to syslog [#711537]
+ * Documentation fixes [#711581 ...]
+ * License fixes [#721549]
+ * Dependency on GLib 2.38+
+ * Updated translations
+ * Modernize autotools setup and other build fixes
+ * Parallel testing and add new tests
+
+Changes in version 3.10.1 are:
+ * Build fix on OpenBSD [#706405]
+ * Add manual page
+ * Minor error message fixes
+ * Updated translations
+
+Changes in version 3.10.0 are:
+ * Minor logic fix [#708483]
+
+Changes in version 3.9.90 are:
+ * Fix running gnome-keyring-daemon under test harness
+ * Test fixes [#702367]
+
+Changes in version 3.9.1 are:
  * Fix implementation of LockService dbus method [#690466]
- * Update for recent changes in libtasn1
+ * Updated translations [nl]
  * Build fixes
 
 Changes in version 3.8.1 are:

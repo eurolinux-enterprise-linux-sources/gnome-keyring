@@ -15,8 +15,7 @@
 
    You should have received a copy of the GNU Library General Public
    License along with the Gnome Library; see the file COPYING.LIB.  If not,
-   write to the Free Software Foundation, Inc., 59 Temple Place - Suite 330,
-   Boston, MA 02111-1307, USA.
+   <http://www.gnu.org/licenses/>.
 
    Author: Stef Walter <stef@memberwebs.com>
 */
@@ -26,7 +25,8 @@
 #include "gkd-dbus.h"
 #include "gkd-dbus-private.h"
 
-#include "gkd-util.h"
+#include "daemon/gkd-main.h"
+#include "daemon/gkd-util.h"
 
 #include "egg/egg-cleanup.h"
 #include "egg/egg-dbus.h"
@@ -55,6 +55,13 @@ cleanup_session_bus (gpointer unused)
 	dbus_conn = NULL;
 }
 
+static void
+on_connection_close (gpointer user_data)
+{
+	g_debug ("dbus connection closed, exiting");
+	gkd_main_quit ();
+}
+
 static gboolean
 connect_to_session_bus (void)
 {
@@ -73,7 +80,7 @@ connect_to_session_bus (void)
 		return FALSE;
 	}
 
-	egg_dbus_connect_with_mainloop (dbus_conn, NULL);
+	egg_dbus_connect_with_mainloop (dbus_conn, NULL, on_connection_close);
 	dbus_connection_set_exit_on_disconnect (dbus_conn, FALSE);
 	egg_cleanup_register (cleanup_session_bus, NULL);
 	return TRUE;

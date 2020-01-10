@@ -14,9 +14,8 @@
  * Lesser General Public License for more details.
  *
  * You should have received a copy of the GNU Lesser General Public
- * License along with this program; if not, write to the Free Software
- * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA
- * 02111-1307, USA.
+ * License along with this program; if not, see
+ * <http://www.gnu.org/licenses/>.
  */
 
 #include "config.h"
@@ -40,7 +39,13 @@
 static GList*
 module_instances (void)
 {
-	GckModule *module = gck_module_new (gkd_pkcs11_get_base_functions ());
+	CK_FUNCTION_LIST_PTR funcs;
+	GckModule *module;
+
+	funcs = gkd_pkcs11_get_base_functions ();
+	g_return_val_if_fail (funcs != NULL && "instances", NULL);
+
+	module = gck_module_new (funcs);
 	g_return_val_if_fail (module, NULL);
 	return g_list_append (NULL, module);
 }

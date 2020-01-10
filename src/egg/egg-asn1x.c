@@ -15,8 +15,7 @@
 
    You should have received a copy of the GNU Library General Public
    License along with the Gnome Library; see the file COPYING.LIB.  If not,
-   write to the Free Software Foundation, Inc., 59 Temple Place - Suite 330,
-   Boston, MA 02111-1307, USA.
+   <http://www.gnu.org/licenses/>.
 
    Author: Stef Walter <stef@memberwebs.com>
 */
@@ -40,7 +39,7 @@
  * Lesser General Public License for more details.
  *
  * You should have received a copy of the GNU Lesser General Public
- * License along with this library; if not, write to the Free Software
+ * License along with this library; if not, see
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA
  * 02110-1301, USA
  */
@@ -4514,7 +4513,7 @@ traverse_and_dump (GNode *node, gpointer unused)
 
 	depth = g_node_depth (node);
 	for (i = 0; i < depth - 1; ++i)
-		g_printerr ("    ");
+		g_print ("    ");
 
 	an = node->data;
 	output = g_string_new ("");
@@ -4522,14 +4521,14 @@ traverse_and_dump (GNode *node, gpointer unused)
 	dump_append_flags (output, anode_def_flags (node));
 	string = g_utf8_casefold (output->str, output->len - 1);
 	g_string_free (output, TRUE);
-	g_printerr ("+ %s: %s [%s]%s\n", anode_def_name (node), anode_def_value (node),
+	g_print ("+ %s: %s [%s]%s\n", anode_def_name (node), anode_def_value (node),
 	            string, an->parsed || an->value ? " *" : "");
 	g_free (string);
 
 	/* Print out all the options */
 	for (l = an->opts; l; l = g_list_next (l)) {
 		for (i = 0; i < depth; ++i)
-			g_printerr ("    ");
+			g_print ("    ");
 
 		def = l->data;
 		output = g_string_new ("");
@@ -4537,7 +4536,7 @@ traverse_and_dump (GNode *node, gpointer unused)
 		dump_append_flags (output, def->type);
 		string = g_utf8_casefold (output->str, output->len - 1);
 		g_string_free (output, TRUE);
-		g_printerr ("- %s: %s [%s]\n", def->name, (const gchar*)def->value, string);
+		g_print ("- %s: %s [%s]\n", def->name, (const gchar*)def->value, string);
 		g_free (string);
 	}
 

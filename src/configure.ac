@@ -1,9 +1,23 @@
-AC_INIT(daemon/gkd-main.c)
+AC_INIT(gnome-keyring,
+        3.14.0,
+        [gnome-keyring-list@gnome.org],
+        [gnome-keyring],
+        [https://wiki.gnome.org/Projects/GnomeKeyring])
 
-AM_INIT_AUTOMAKE(gnome-keyring, 3.8.2)
+dnl ****************************************************************************
+dnl Dependency versions
 
-AC_CONFIG_HEADERS(config.h)
-m4_ifdef([AM_SILENT_RULES], [AM_SILENT_RULES([yes])])
+GLIB_REQ=2.38.0
+GLIB_MIN=GLIB_VERSION_2_38
+GLIB_MAX=GLIB_VERSION_2_38
+
+GCK_REQ=3.3.4
+GCR_REQ=3.5.3
+
+DBUS_REQ=1.1.1
+
+GCRYPT_REQ=1.2.2
+GCRYPT_LIBVER=1
 
 dnl ****************************************************************************
 
@@ -12,6 +26,13 @@ GKR_MAJOR=3
 version_bits=`echo $VERSION | tr '.' ' '`
 full_version=`printf %03d%03d%03d $version_bits`
 AC_DEFINE_UNQUOTED(GKR_VERSION, $full_version, [The gnome-keyring version as a number])
+
+AC_CONFIG_MACRO_DIR([build/m4])
+AC_CONFIG_AUX_DIR([build])
+AC_CONFIG_HEADERS(config.h)
+AC_CONFIG_SRCDIR([daemon/gkd-main.c])
+AM_INIT_AUTOMAKE([1.12 foreign dist-bzip2 no-dist-gzip parallel-tests subdir-objects])
+m4_ifdef([AM_SILENT_RULES], [AM_SILENT_RULES([yes])])
 
 AM_SANITY_CHECK
 AM_MAINTAINER_MODE([enable])
@@ -34,11 +55,12 @@ AC_TYPE_SIGNAL
 AC_TYPE_SIZE_T
 AC_TYPE_UID_T
 
-GTK_DOC_CHECK(1.9)
-DISTCHECK_CONFIGURE_FLAGS="--enable-gtk-doc"
+DISTCHECK_CONFIGURE_FLAGS="--enable-doc"
 AC_SUBST(DISTCHECK_CONFIGURE_FLAGS)
 
-PKG_CHECK_MODULES(GLIB, glib-2.0 >= 2.32.0)
+PKG_CHECK_MODULES(GLIB, glib-2.0 >= $GLIB_REQ)
+GLIB_CFLAGS="$GLIB_CFLAGS -DGLIB_VERSION_MIN_REQUIRED=$GLIB_MIN"
+GLIB_CFLAGS="$GLIB_CFLAGS -DGLIB_VERSION_MAX_ALLOWED=$GLIB_MAX"
 AC_SUBST(GLIB_CFLAGS)
 AC_SUBST(GLIB_LIBS)
 
@@ -46,15 +68,11 @@ PKG_CHECK_MODULES(GMODULE, gmodule-no-export-2.0)
 AC_SUBST(GMODULE_CFLAGS)
 AC_SUBST(GMODULE_LIBS)
 
-PKG_CHECK_MODULES(GTHREAD, gthread-2.0 >= 2.8.0)
-AC_SUBST(GTHREAD_CFLAGS)
-AC_SUBST(GTHREAD_LIBS)
-
-PKG_CHECK_MODULES(GOBJECT, glib-2.0 >= 2.16.0 gobject-2.0 >= 2.8.0)
+PKG_CHECK_MODULES(GOBJECT, glib-2.0 gobject-2.0)
 AC_SUBST(GOBJECT_CFLAGS)
 AC_SUBST(GOBJECT_LIBS)
 
-PKG_CHECK_MODULES(GIO, glib-2.0 >= 2.25.0 gio-2.0)
+PKG_CHECK_MODULES(GIO, glib-2.0 gio-2.0)
 AC_SUBST(GIO_CFLAGS)
 AC_SUBST(GIO_LIBS)
 
@@ -134,8 +152,6 @@ AC_CHECK_FUNCS(flock, AC_DEFINE(HAVE_FLOCK,1,[Have flock]))
 
 AC_CHECK_FUNCS(timegm, AC_DEFINE(HAVE_TIMEGM,1,[Have timegm]))
 
-dnl mkdtemp replacement from gettext
-AC_REPLACE_FUNCS(mkdtemp)
 AC_STAT_MACROS_BROKEN
   AC_CACHE_CHECK([for inttypes.h], jm_ac_cv_header_inttypes_h,
   [AC_TRY_COMPILE(
@@ -192,9 +208,9 @@ fi
 # --------------------------------------------------------------------
 # GCR and GCK libraries
 
-PKG_CHECK_MODULES(GCK, gck-1 >= 3.3.4)
-PKG_CHECK_MODULES(GCR, gcr-3 >= 3.3.3)
-PKG_CHECK_MODULES(GCR_BASE, gcr-base-3 >= 3.5.3)
+PKG_CHECK_MODULES(GCK, gck-1 >= $GCK_REQ)
+PKG_CHECK_MODULES(GCR, gcr-3 >= $GCR_REQ)
+PKG_CHECK_MODULES(GCR_BASE, gcr-base-3 >= $GCR_REQ)
 
 DAEMON_CFLAGS="$DAEMON_CFLAGS $GCK_CFLAGS $GCR_BASE_CFLAGS"
 DAEMON_LIBS="$DAEMON_LIBS $GCK_LIBS $GCR_BASE_LIBS"
@@ -206,12 +222,14 @@ AC_SUBST(GCK_LIBS)
 AC_SUBST(GCR_LIBS)
 AC_SUBST(GCR_BASE_LIBS)
 
+AC_DEFINE(GCK_API_SUBJECT_TO_CHANGE, 1, [Nod nod])
+AC_DEFINE(GCR_API_SUBJECT_TO_CHANGE, 1, [Nod nod])
+
 # --------------------------------------------------------------------
 # DBus Checks
 #
 
-DBUS_REQUIRED=1.0
-PKG_CHECK_MODULES([DBUS], dbus-1 >= 1.1.1)
+PKG_CHECK_MODULES([DBUS], dbus-1 >= $DBUS_REQ)
 
 DAEMON_CFLAGS="$DAEMON_CFLAGS $DBUS_CFLAGS"
 DAEMON_LIBS="$DAEMON_LIBS $DBUS_LIBS"
@@ -352,10 +370,7 @@ AM_CONDITIONAL(WITH_GPG, test "$enable_gpg_agent" != "no")
 # libgcrypt
 #
 
-GCRYPT_VERSION=1.2.2
-GCRYPT_LIBVER=1
-
-AM_PATH_LIBGCRYPT($GCRYPT_LIBVER:$GCRYPT_VERSION,,
+AM_PATH_LIBGCRYPT($GCRYPT_LIBVER:$GCRYPT_REQ,,
 	AC_MSG_ERROR([[
 ***
 *** libgcrypt was not found. You may want to get it from
@@ -363,7 +378,7 @@ AM_PATH_LIBGCRYPT($GCRYPT_LIBVER:$GCRYPT_VERSION,,
 ***
 ]]))
 libgcrypt=yes
-AC_DEFINE_UNQUOTED(LIBGCRYPT_VERSION, "$GCRYPT_VERSION", [Version of GCRYPT we expect])
+AC_DEFINE_UNQUOTED(LIBGCRYPT_VERSION, "$GCRYPT_REQ", [Version of GCRYPT we expect])
 
 DAEMON_CFLAGS="$DAEMON_CFLAGS $LIBGCRYPT_CFLAGS"
 DAEMON_LIBS="$DAEMON_LIBS $LIBGCRYPT_LIBS"
@@ -447,6 +462,37 @@ if test "$p11_tests_status" = "yes"; then
 fi
 
 # --------------------------------------------------------------------
+# Documentation options
+
+AC_MSG_CHECKING([whether to build documentation])
+AC_ARG_ENABLE(doc,
+              AC_HELP_STRING([--enable-doc],
+                             [Disable building documentation])
+             )
+
+if test "$enable_doc" = "no"; then
+	AC_MSG_RESULT($enable_doc)
+
+else
+	if test "$enable_doc" = ""; then
+		disable_msg="(perhaps --disable-doc)"
+	fi
+
+	enable_doc="yes"
+	AC_MSG_RESULT($enable_doc)
+
+	AC_PATH_PROG([XSLTPROC], [xsltproc], [no])
+	if test "$XSLTPROC" = "no"; then
+		AC_MSG_ERROR([the xsltproc command was not found $disable_msg])
+	fi
+
+	AC_SUBST(XSLTPROC)
+fi
+
+AM_CONDITIONAL([ENABLE_DOC], [test "$enable_doc" = "yes"])
+doc_status=$enable_doc
+
+# --------------------------------------------------------------------
 # Compilation and linking options
 #
 
@@ -482,10 +528,6 @@ if test "$GCC" = "yes"; then
 	-Wnested-externs -Wpointer-arith \
 	-Wcast-align -Wsign-compare \
 	$CFLAGS"
-
-	# Disable -Werror for now, because of issues with
-	# strange gtk-doc programs not building cleanly.
-	# -Werror \
 
 	for option in -Wno-strict-aliasing -Wno-sign-compare; do
 		SAVE_CFLAGS="$CFLAGS"
@@ -578,27 +620,6 @@ valgrind_status="yes"
 
 AM_CONDITIONAL(WITH_VALGRIND, test "$enable_valgrind" = "run")
 
-# Run gnome-keyring-daemon under valgrind as default
-if test "$enable_valgrind" = "run"; then
-	AC_PATH_PROG(VALGRIND, valgrind, no)
-	if test "$VALGRIND" = "no" ; then
-		AC_MSG_ERROR(valgrind tool is not installed)
-	fi
-
-	VALGRIND_ARG="--log-file=/tmp/gkr-valgrind.log.%p"
-	VALGRIND_RUN="$VALGRIND $VALGRIND_ARG "
-
-	AC_DEFINE_UNQUOTED(VALGRIND, "$VALGRIND", [Path to valgrind executable])
-	AC_DEFINE_UNQUOTED(VALGRIND_ARG, "$VALGRIND_ARG", [Valgrind arguments])
-
-	enable_valgrind="yes"
-	valgrind_status="run"
-fi
-
-AC_SUBST(VALGRIND)
-AC_SUBST(VALGRIND_ARG)
-AC_SUBST(VALGRIND_RUN)
-
 # Build valgrind support into code
 if test "$enable_valgrind" = "yes"; then
 	AC_CHECK_HEADER([valgrind/valgrind.h], have_valgrind=yes, have_valgrind=no)
@@ -627,37 +648,8 @@ AC_SUBST(P11_TESTS_LIBS)
 
 AC_OUTPUT([
 Makefile
-daemon/Makefile
-daemon/control/Makefile
-daemon/control/tests/Makefile
-daemon/dbus/Makefile
-daemon/dbus/tests/Makefile
-daemon/gpg-agent/Makefile
-daemon/login/Makefile
-daemon/ssh-agent/Makefile
-docs/Makefile
-egg/Makefile
-egg/tests/Makefile
-pam/Makefile
-pkcs11/Makefile
-pkcs11/gkm/Makefile
-pkcs11/gkm/tests/Makefile
-pkcs11/gnome2-store/Makefile
-pkcs11/gnome2-store/tests/Makefile
-pkcs11/rpc-layer/Makefile
 pkcs11/rpc-layer/gnome-keyring.module
-pkcs11/secret-store/Makefile
-pkcs11/secret-store/tests/Makefile
-pkcs11/ssh-store/Makefile
-pkcs11/ssh-store/tests/Makefile
-pkcs11/wrap-layer/Makefile
-pkcs11/wrap-layer/tests/Makefile
-pkcs11/xdg-store/Makefile
-pkcs11/xdg-store/tests/Makefile
 po/Makefile.in
-schema/Makefile
-testing/Makefile
-tool/Makefile
 ])
 
 # ------------------------------------------------------------------------------
@@ -673,7 +665,6 @@ echo
 echo "CONFIGURATION"
 echo "  SSH Agent:            $ssh_status"
 echo "  GPG Agent:            $gpg_status"
-echo "  Root Certificates:    $root_status"
 echo
 echo "BUILD"
 echo "  Debug Build:          $debug_status"
@@ -681,4 +672,5 @@ echo "  Strict Compilation:   $strict_status"
 echo "  Valgrind:             $valgrind_status"
 echo "  PKCS#11 Tests         $p11_tests_status"
 echo "  Test Coverage:        $enable_coverage"
+echo "  Documentation:        $doc_status"
 echo

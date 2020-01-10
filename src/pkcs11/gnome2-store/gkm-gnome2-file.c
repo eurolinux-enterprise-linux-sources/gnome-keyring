@@ -14,9 +14,8 @@
  * Lesser General Public License for more details.
  *
  * You should have received a copy of the GNU Lesser General Public
- * License along with this program; if not, write to the Free Software
- * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA
- * 02111-1307, USA.
+ * License along with this program; if not, see
+ * <http://www.gnu.org/licenses/>.
  */
 
 #include "config.h"
@@ -26,8 +25,9 @@
 #include "gkm/gkm-attributes.h"
 #include "gkm/gkm-crypto.h"
 #include "gkm/gkm-data-types.h"
-#include "gkm/gkm-marshal.h"
 #include "gkm/gkm-util.h"
+
+#include "gkm-marshal.h"
 
 #include "egg/egg-buffer.h"
 #include "egg/egg-hex.h"
