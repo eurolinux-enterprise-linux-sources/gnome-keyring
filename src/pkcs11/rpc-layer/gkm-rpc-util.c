@@ -15,7 +15,8 @@
 
    You should have received a copy of the GNU Library General Public
    License along with the Gnome Library; see the file COPYING.LIB.  If not,
-   <http://www.gnu.org/licenses/>.
+   write to the Free Software Foundation, Inc., 59 Temple Place - Suite 330,
+   Boston, MA 02111-1307, USA.
 
    Author: Stef Walter <stef@memberwebs.com>
 */
@@ -81,10 +82,9 @@ gkm_rpc_mechanism_list_purge (CK_MECHANISM_TYPE_PTR mechs, CK_ULONG* n_mechs)
 	for (i = 0; i < (int)(*n_mechs); ++i) {
 		if (!gkm_rpc_mechanism_has_no_parameters (mechs[i]) &&
 		    !gkm_rpc_mechanism_has_sane_parameters (mechs[i])) {
-			if (*n_mechs - i - 1 > 0) {
-				/* Remove the mechanism from the list */
-				memmove (&mechs[i], &mechs[i + 1], (*n_mechs - i - 1) * sizeof (CK_MECHANISM_TYPE));
-			}
+
+			/* Remove the mechanism from the list */
+			memmove (&mechs[i], &mechs[i + 1], (*n_mechs - i) * sizeof (CK_MECHANISM_TYPE));
 
 			--(*n_mechs);
 			--i;

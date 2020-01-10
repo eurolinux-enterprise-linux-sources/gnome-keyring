@@ -14,8 +14,9 @@
  * Lesser General Public License for more details.
  *
  * You should have received a copy of the GNU Lesser General Public
- * License along with this program; if not, see
- * <http://www.gnu.org/licenses/>.
+ * License along with this program; if not, write to the Free Software
+ * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA
+ * 02111-1307, USA.
  */
 
 #include "config.h"
@@ -173,8 +174,6 @@ factory_create_assertion (GkmSession *session, GkmTransaction *transaction,
 	                          "purpose", purpose,
 	                          "peer", peer,
 	                          NULL);
-	g_free (purpose);
-	g_free (peer);
 
 	/* Add the assertion to the trust object */
 	if (!gkm_transaction_get_failed (transaction)) {

@@ -14,8 +14,9 @@
  * Lesser General Public License for more details.
  *
  * You should have received a copy of the GNU Lesser General Public
- * License along with this program; if not, see
- * <http://www.gnu.org/licenses/>.
+ * License along with this program; if not, write to the Free Software
+ * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA
+ * 02111-1307, USA.
  */
 
 #include "config.h"
@@ -30,8 +31,7 @@
 #include <gck/gck.h>
 
 gboolean
-gkd_secret_lock (GckObject *collection,
-		 GError **error_out)
+gkd_secret_lock (GckObject *collection, DBusError *derr)
 {
 	GckBuilder builder = GCK_BUILDER_INIT;
 	GError *error = NULL;
@@ -50,9 +50,7 @@ gkd_secret_lock (GckObject *collection,
 
 	if (error != NULL) {
 		g_warning ("couldn't search for credential objects: %s", egg_error_message (error));
-		g_set_error_literal (error_out, G_DBUS_ERROR,
-				     G_DBUS_ERROR_FAILED,
-				     "Couldn't lock collection");
+		dbus_set_error (derr, DBUS_ERROR_FAILED, "Couldn't lock collection");
 		g_clear_error (&error);
 		return FALSE;
 	}
@@ -70,7 +68,7 @@ gkd_secret_lock (GckObject *collection,
 
 gboolean
 gkd_secret_lock_all (GckSession *session,
-		     GError **error_out)
+                     DBusError *derr)
 {
 	GckBuilder builder = GCK_BUILDER_INIT;
 	GError *error = NULL;
@@ -83,7 +81,7 @@ gkd_secret_lock_all (GckSession *session,
 	objects = gck_session_find_objects (session, gck_builder_end (&builder), NULL, &error);
 	if (error != NULL) {
 		g_warning ("couldn't search for credential objects: %s", egg_error_message (error));
-		g_set_error (error_out, G_DBUS_ERROR, G_DBUS_ERROR_FAILED, "Couldn't lock service");
+		dbus_set_error (derr, DBUS_ERROR_FAILED, "Couldn't lock service");
 		g_clear_error (&error);
 		return FALSE;
 	}
@@ -102,7 +100,7 @@ gkd_secret_lock_all (GckSession *session,
 	objects = gck_session_find_objects (session, gck_builder_end (&builder), NULL, &error);
 	if (error != NULL) {
 		g_warning ("couldn't search for session items: %s", egg_error_message (error));
-		g_set_error (error_out, G_DBUS_ERROR, G_DBUS_ERROR_FAILED, "Couldn't lock service");
+		dbus_set_error (derr, DBUS_ERROR_FAILED, "Couldn't lock service");
 		g_clear_error (&error);
 		return FALSE;
 	}

@@ -14,8 +14,9 @@
  * Lesser General Public License for more details.
  *
  * You should have received a copy of the GNU Lesser General Public
- * License along with this program; if not, see
- * <http://www.gnu.org/licenses/>.
+ * License along with this program; if not, write to the Free Software
+ * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA
+ * 02111-1307, USA.
  */
 
 #include "config.h"
@@ -312,7 +313,8 @@ remove_object (GkmSession *self, GkmTransaction *transaction, GkmObject *object)
 	g_object_ref (object);
 
 	gkm_object_expose_full (object, transaction, FALSE);
-	g_hash_table_remove (self->pv->objects, object);
+	if (!g_hash_table_remove (self->pv->objects, object))
+		g_return_if_reached ();
 	g_object_set (object, "store", NULL, NULL);
 
 	if (transaction)

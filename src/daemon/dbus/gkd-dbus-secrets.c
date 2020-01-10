@@ -15,7 +15,8 @@
 
    You should have received a copy of the GNU Library General Public
    License along with the Gnome Library; see the file COPYING.LIB.  If not,
-   <http://www.gnu.org/licenses/>.
+   write to the Free Software Foundation, Inc., 59 Temple Place - Suite 330,
+   Boston, MA 02111-1307, USA.
 
    Author: Stef Walter <stef@memberwebs.com>
 */
@@ -33,7 +34,7 @@
 
 #include <gck/gck.h>
 
-static GDBusConnection *dbus_conn = NULL;
+static DBusConnection *dbus_conn = NULL;
 static GkdSecretService *secrets_service = NULL;
 
 static GckSlot*
@@ -43,13 +44,9 @@ calculate_secrets_slot (void)
 	GckModule *module;
 	GList *modules;
 	GError *err = NULL;
-	CK_FUNCTION_LIST_PTR funcs;
 
 	/* TODO: Should we be handling just one module here? */
-	funcs = gkd_pkcs11_get_functions ();
-	g_return_val_if_fail (funcs != NULL, NULL);
-
-	module = gck_module_new (funcs);
+	module = gck_module_new (gkd_pkcs11_get_functions ());
 	g_return_val_if_fail (module, NULL);
 
 	modules = g_list_prepend (NULL, module);
@@ -66,20 +63,18 @@ calculate_secrets_slot (void)
 gboolean
 gkd_dbus_secrets_startup (void)
 {
+	DBusError error = DBUS_ERROR_INIT;
+	dbus_uint32_t result = 0;
 	const gchar *service = NULL;
 	unsigned int flags = 0;
 	GckSlot *slot;
-	GError *error = NULL;
-	GVariant *request_variant;
-	guint res;
 
 	g_return_val_if_fail (dbus_conn, FALSE);
-	g_return_val_if_fail (!secrets_service, FALSE);
 
 #ifdef WITH_DEBUG
 	service = g_getenv ("GNOME_KEYRING_TEST_SERVICE");
 	if (service && service[0])
-		flags = G_BUS_NAME_OWNER_FLAGS_ALLOW_REPLACEMENT | G_BUS_NAME_OWNER_FLAGS_REPLACE;
+		flags = DBUS_NAME_FLAG_ALLOW_REPLACEMENT | DBUS_NAME_FLAG_REPLACE_EXISTING;
 	else
 #endif
 		service = SECRET_SERVICE;
@@ -87,49 +82,42 @@ gkd_dbus_secrets_startup (void)
 	/* Figure out which slot to use */
 	slot = calculate_secrets_slot ();
 	g_return_val_if_fail (slot, FALSE);
-	secrets_service = g_object_new (GKD_SECRET_TYPE_SERVICE,
-					"connection", dbus_conn, "pkcs11-slot", slot, NULL);
-	g_object_unref (slot);
 
 	/* Try and grab our name */
-	request_variant = g_dbus_connection_call_sync (dbus_conn,
-						       "org.freedesktop.DBus",  /* bus name */
-						       "/org/freedesktop/DBus", /* object path */
-						       "org.freedesktop.DBus",  /* interface name */
-						       "RequestName",           /* method name */
-						       g_variant_new ("(su)",
-								      service,
-								      flags),
-						       G_VARIANT_TYPE ("(u)"),
-						       G_DBUS_CALL_FLAGS_NONE,
-						       -1, NULL, &error);
-
-	if (error != NULL) {
+	result = dbus_bus_request_name (dbus_conn, service, flags, &error);
+	if (dbus_error_is_set (&error)) {
 		g_message ("couldn't request name '%s' on session bus: %s",
-			   service, error->message);
-		g_error_free (error);
-	} else {
-		g_variant_get (request_variant, "(u)", &res);
-		g_variant_unref (request_variant);
+		           service, error.message);
+		dbus_error_free (&error);
 
-		switch (res) {
+	} else {
+		switch (result) {
+
 		/* We acquired the service name */
-		case 1: /* DBUS_REQUEST_NAME_REPLY_PRIMARY_OWNER */
-		/* We already acquired the service name. */
-		case 4: /* DBUS_REQUEST_NAME_REPLY_ALREADY_OWNER */
+		case DBUS_REQUEST_NAME_REPLY_PRIMARY_OWNER:
 			break;
+
+		/* We already acquired the service name. */
+		case DBUS_REQUEST_NAME_REPLY_ALREADY_OWNER:
+			break;
+
 		/* Another daemon is running */
-		case 2: /* DBUS_REQUEST_NAME_REPLY_IN_QUEUE */
-		case 3: /* DBUS_REQUEST_NAME_REPLY_EXISTS */
+		case DBUS_REQUEST_NAME_REPLY_IN_QUEUE:
+		case DBUS_REQUEST_NAME_REPLY_EXISTS:
 			g_message ("another secret service is running");
 			break;
+
 		default:
-			g_clear_object (&secrets_service);
 			g_return_val_if_reached (FALSE);
 			break;
 		};
 	}
 
+	g_return_val_if_fail (!secrets_service, FALSE);
+	secrets_service = g_object_new (GKD_SECRET_TYPE_SERVICE,
+	                                "connection", dbus_conn, "pkcs11-slot", slot, NULL);
+
+	g_object_unref (slot);
 	return TRUE;
 }
 
@@ -137,18 +125,19 @@ static void
 cleanup_dbus_conn (gpointer unused)
 {
 	g_assert (dbus_conn);
-	g_clear_object (&dbus_conn);
+	dbus_connection_unref (dbus_conn);
+	dbus_conn = NULL;
 }
 
 void
-gkd_dbus_secrets_init (GDBusConnection *conn)
+gkd_dbus_secrets_init (DBusConnection *conn)
 {
-	dbus_conn = g_object_ref (conn);
+	dbus_conn = dbus_connection_ref (conn);
 	egg_cleanup_register (cleanup_dbus_conn, NULL);
 }
 
 void
-gkd_dbus_secrets_cleanup (GDBusConnection *conn)
+gkd_dbus_secrets_cleanup (DBusConnection *conn)
 {
 	if (secrets_service) {
 		g_object_run_dispose (G_OBJECT (secrets_service));

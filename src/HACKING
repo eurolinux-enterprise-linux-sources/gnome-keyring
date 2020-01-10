@@ -40,6 +40,9 @@ daemon/control
 daemon/dbus
    Various DBus bits of the daemon including the Secret Service API.
 
+daemon/gpg-agent
+   A GPG agent implementation that uses a PKCS#11 module for it's password storage.
+
 daemon/login
    Used to lock and unlock the daemon.
 
@@ -85,24 +88,6 @@ tool
 
 ui
    Prompting the user, asking for passwords.
-
-
-TESTING
-----------
-
-Significant new code should be testable via:
-
-$ make check
-
-You check for memory errors by doing:
-
-$ make check-memory
-
-To test the pam code, you must first place some custom PAM configuration
-in your /etc/pam.d. This will not be used by anything else. To do this:
-
-$ sudo make enable-pam-tests
-$ sudo make disable-pam-tests
 
 
 ----------------------------------------------------------------------------------

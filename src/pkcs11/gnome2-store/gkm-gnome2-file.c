@@ -14,8 +14,9 @@
  * Lesser General Public License for more details.
  *
  * You should have received a copy of the GNU Lesser General Public
- * License along with this program; if not, see
- * <http://www.gnu.org/licenses/>.
+ * License along with this program; if not, write to the Free Software
+ * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA
+ * 02111-1307, USA.
  */
 
 #include "config.h"
@@ -25,9 +26,8 @@
 #include "gkm/gkm-attributes.h"
 #include "gkm/gkm-crypto.h"
 #include "gkm/gkm-data-types.h"
+#include "gkm/gkm-marshal.h"
 #include "gkm/gkm-util.h"
-
-#include "gkm-marshal.h"
 
 #include "egg/egg-buffer.h"
 #include "egg/egg-hex.h"
@@ -127,7 +127,7 @@ attributes_new (void)
 static GHashTable*
 entries_new (void)
 {
-	return g_hash_table_new_full (g_str_hash, g_str_equal, (GDestroyNotify)g_free, (GDestroyNotify)g_hash_table_unref);
+	return g_hash_table_new_full (g_str_hash, g_str_equal, NULL, (GDestroyNotify)g_hash_table_unref);
 }
 
 static gboolean
@@ -309,7 +309,6 @@ validate_buffer (EggBuffer *buffer, gsize *offset)
 	gsize n_hash, hash_offset;
 	guint32 length;
 	int algo;
-	gboolean valid;
 
 	g_assert (buffer);
 	g_assert (offset);
@@ -338,10 +337,10 @@ validate_buffer (EggBuffer *buffer, gsize *offset)
 
 	check = g_malloc0 (n_hash);
 	gcry_md_hash_buffer (algo, check, buffer->buf, length);
-	valid = (memcmp (check, hash, n_hash) == 0);
-	g_free (check);
+	if (memcmp (check, hash, n_hash) != 0)
+		return FALSE;
 
-	return valid;
+	return TRUE;
 }
 
 static gboolean
@@ -363,24 +362,31 @@ create_cipher (GkmSecret *login, int calgo, int halgo, const guchar *salt,
 	n_block = gcry_cipher_get_algo_blklen (calgo);
 	g_return_val_if_fail (n_block, FALSE);
 
+	/* Allocate memory for the keys */
+	key = gcry_malloc_secure (n_key);
+	g_return_val_if_fail (key, FALSE);
+	iv = g_malloc0 (n_block);
+
 	password = gkm_secret_get_password (login, &n_password);
 
 	if (!egg_symkey_generate_simple (calgo, halgo, password, n_password,
 	                                 salt, n_salt, iterations, &key, &iv)) {
+		gcry_free (key);
+		g_free (iv);
 		return FALSE;
 	}
 
 	gcry = gcry_cipher_open (cipher, calgo, GCRY_CIPHER_MODE_CBC, 0);
 	if (gcry) {
 		g_warning ("couldn't create cipher context: %s", gcry_strerror (gcry));
-		egg_secure_free (key);
+		gcry_free (key);
 		g_free (iv);
 		return FALSE;
 	}
 
 	gcry = gcry_cipher_setkey (*cipher, key, n_key);
 	g_return_val_if_fail (!gcry, FALSE);
-	egg_secure_free (key);
+	gcry_free (key);
 
 	gcry = gcry_cipher_setiv (*cipher, iv, n_block);
 	g_return_val_if_fail (!gcry, FALSE);

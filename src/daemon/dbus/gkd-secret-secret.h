@@ -14,8 +14,9 @@
  * Lesser General Public License for more details.
  *
  * You should have received a copy of the GNU Lesser General Public
- * License along with this program; if not, see
- * <http://www.gnu.org/licenses/>.
+ * License along with this program; if not, write to the Free Software
+ * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA
+ * 02111-1307, USA.
  */
 
 #ifndef __GKD_SECRET_SECRET_H__
@@ -24,6 +25,8 @@
 #include "gkd-secret-types.h"
 
 #include <glib.h>
+
+#include <dbus/dbus.h>
 
 struct _GkdSecretSecret {
 	GkdSecretSession *session;
@@ -50,11 +53,12 @@ GkdSecretSecret*       gkd_secret_secret_new_take_memory          (GkdSecretSess
                                                                    gsize n_value);
 
 GkdSecretSecret*       gkd_secret_secret_parse                    (GkdSecretService *service,
-                                                                   const char *sender,
-                                                                   GVariant *variant,
-                                                                   GError **error);
+                                                                   DBusMessage *message,
+                                                                   DBusMessageIter *iter,
+                                                                   DBusError *derr);
 
-GVariant *             gkd_secret_secret_append                   (GkdSecretSecret *secret);
+void                   gkd_secret_secret_append                   (GkdSecretSecret *secret,
+                                                                   DBusMessageIter *iter);
 
 void                   gkd_secret_secret_free                     (gpointer data);
 

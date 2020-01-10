@@ -14,8 +14,9 @@
  * Lesser General Public License for more details.
  *
  * You should have received a copy of the GNU Lesser General Public
- * License along with this program; if not, see
- * <http://www.gnu.org/licenses/>.
+ * License along with this program; if not, write to the Free Software
+ * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA
+ * 02111-1307, USA.
  */
 
 #ifndef __GKD_SECRET_SERVICE_H__
@@ -24,6 +25,8 @@
 #include "gkd-secret-types.h"
 
 #include <gck/gck.h>
+
+#include <dbus/dbus.h>
 
 #include <glib-object.h>
 
@@ -42,7 +45,7 @@ struct _GkdSecretServiceClass {
 
 GType                   gkd_secret_service_get_type                (void);
 
-GDBusConnection*        gkd_secret_service_get_connection          (GkdSecretService *self);
+DBusConnection*         gkd_secret_service_get_connection          (GkdSecretService *self);
 
 GckSlot*                gkd_secret_service_get_pkcs11_slot         (GkdSecretService *self);
 
@@ -62,6 +65,9 @@ GkdSecretSession*       gkd_secret_service_lookup_session          (GkdSecretSer
 void                    gkd_secret_service_close_session           (GkdSecretService *self,
                                                                     GkdSecretSession *sess);
 
+void                    gkd_secret_service_send                    (GkdSecretService *self,
+                                                                    DBusMessage *message);
+
 const gchar*            gkd_secret_service_get_alias               (GkdSecretService *self,
                                                                     const gchar *alias);
 
@@ -78,10 +84,5 @@ void                    gkd_secret_service_emit_collection_created (GkdSecretSer
 
 void                    gkd_secret_service_emit_collection_deleted (GkdSecretService *self,
                                                                     const gchar *collection_path);
-
-void                    gkd_secret_service_emit_collection_changed (GkdSecretService *self,
-                                                                    const gchar *collection_path);
-
-gchar **                gkd_secret_service_get_collections         (GkdSecretService *self);
 
 #endif /* ___SECRET_SERVICE_H__ */

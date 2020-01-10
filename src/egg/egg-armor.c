@@ -15,7 +15,8 @@
 
    You should have received a copy of the GNU Library General Public
    License along with the Gnome Library; see the file COPYING.LIB.  If not,
-   <http://www.gnu.org/licenses/>.
+   write to the Free Software Foundation, Inc., 59 Temple Place - Suite 330,
+   Boston, MA 02111-1307, USA.
 
    Author: Stef Walter <stef@memberwebs.com>
 */
@@ -180,7 +181,7 @@ armor_find_end (const gchar *data,
 	 * does not insist that we validate this line, and is more useful
 	 * for PGP messages, rather than the keys we usually see.
 	 */
-	line = g_strrstr_len (data, (pref - 1) - data, "\n");
+	line = memrchr (data, '\n', (pref - 1) - data);
 	if (line && line[1] == '=')
 		pref = line;
 

@@ -14,8 +14,9 @@
  * Lesser General Public License for more details.
  *
  * You should have received a copy of the GNU Lesser General Public
- * License along with this program; if not, see
- * <http://www.gnu.org/licenses/>.
+ * License along with this program; if not, write to the Free Software
+ * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA
+ * 02111-1307, USA.
  */
 
 #ifndef __GKM_SEXP_KEY_H__
@@ -62,14 +63,6 @@ int                  gkm_sexp_key_get_algorithm           (GkmSexpKey *self);
 CK_RV                gkm_sexp_key_set_part                (GkmSexpKey *self,
                                                            int algorithm,
                                                            const char *part,
-                                                           CK_ATTRIBUTE_PTR attr);
-
-CK_RV                gkm_sexp_key_set_ec_params           (GkmSexpKey *self,
-                                                           int algo,
-                                                           CK_ATTRIBUTE_PTR attr);
-
-CK_RV                gkm_sexp_key_set_ec_q                (GkmSexpKey *self,
-                                                           int algo,
                                                            CK_ATTRIBUTE_PTR attr);
 
 GkmSexp*             gkm_sexp_key_acquire_crypto_sexp     (GkmSexpKey *self,

@@ -14,8 +14,9 @@
  * Lesser General Public License for more details.
  *
  * You should have received a copy of the GNU Lesser General Public
- * License along with this program; if not, see
- * <http://www.gnu.org/licenses/>.
+ * License along with this program; if not, write to the Free Software
+ * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA
+ * 02111-1307, USA.
  */
 
 #include "config.h"
@@ -347,12 +348,8 @@ write_sync_close (int fd, const guchar *data, gsize n_data)
 				close (fd);
 				return FALSE;
 			}
-			continue;
 		}
-		g_assert (res <= n_data);
-
-		data += res;
-		n_data -= res;
+		n_data -= MAX (res, n_data);
 	}
 
 #ifdef HAVE_FSYNC
@@ -632,7 +629,7 @@ gkm_transaction_unique_file (GkmTransaction *self, const gchar *directory,
 	g_return_val_if_fail (basename, NULL);
 	g_return_val_if_fail (!gkm_transaction_get_failed (self), NULL);
 
-	if (g_mkdir_with_parents (directory, S_IRWXU) < 0) {
+	if (!g_mkdir_with_parents (directory, S_IRWXU) < 0) {
 		g_warning ("couldn't create directory: %s: %s", directory, g_strerror (errno));
 		gkm_transaction_fail (self, CKR_DEVICE_ERROR);
 		return NULL;

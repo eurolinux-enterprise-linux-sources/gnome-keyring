@@ -15,7 +15,8 @@
 
    You should have received a copy of the GNU Library General Public
    License along with the Gnome Library; see the file COPYING.LIB.  If not,
-   <http://www.gnu.org/licenses/>.
+   write to the Free Software Foundation, Inc., 59 Temple Place - Suite 330,
+   Boston, MA 02111-1307, USA.
 
    Author: Stef Walter <stef@memberwebs.com>
 */
@@ -1198,17 +1199,6 @@ rpc_C_Initialize (CK_VOID_PTR init_args)
 					goto done;
 				}
 				sprintf (pkcs11_socket_path, "%s/pkcs11", path);
-			} else {
-				path = getenv ("XDG_RUNTIME_DIR");
-				if (path) {
-					pkcs11_socket_path = malloc (strlen (path) + strlen ("/keyring/pkcs11") + 1);
-					if (pkcs11_socket_path == NULL) {
-						warning (("can't malloc memory"));
-						ret = CKR_HOST_MEMORY;
-						goto done;
-					}
-					sprintf (pkcs11_socket_path, "%s/keyring/pkcs11", path);
-				}
 			}
 		}
 

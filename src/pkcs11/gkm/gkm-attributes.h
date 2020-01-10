@@ -14,8 +14,9 @@
  * Lesser General Public License for more details.
  *
  * You should have received a copy of the GNU Lesser General Public
- * License along with this program; if not, see
- * <http://www.gnu.org/licenses/>.
+ * License along with this program; if not, write to the Free Software
+ * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA
+ * 02111-1307, USA.
  */
 
 #ifndef GKM_ATTRIBUTE_H_
@@ -38,9 +39,6 @@ CK_RV                 gkm_attribute_get_time                           (CK_ATTRI
 
 CK_RV                 gkm_attribute_get_string                         (CK_ATTRIBUTE_PTR attr,
                                                                         gchar **value);
-
-CK_RV                 gkm_attribute_get_bytes                          (CK_ATTRIBUTE_PTR attr,
-                                                                        GBytes **value);
 
 CK_RV                 gkm_attribute_get_mpi                            (CK_ATTRIBUTE_PTR attr,
                                                                         gcry_mpi_t *value);
@@ -124,11 +122,6 @@ gboolean              gkm_attributes_find_string                       (CK_ATTRI
                                                                         CK_ULONG n_attrs,
                                                                         CK_ATTRIBUTE_TYPE type,
                                                                         gchar **value);
-
-gboolean              gkm_attributes_find_bytes                        (CK_ATTRIBUTE_PTR attrs,
-                                                                        CK_ULONG n_attrs,
-                                                                        CK_ATTRIBUTE_TYPE type,
-                                                                        GBytes **value);
 
 GArray*               gkm_template_new                                 (CK_ATTRIBUTE_PTR attrs,
                                                                         CK_ULONG n_attrs);

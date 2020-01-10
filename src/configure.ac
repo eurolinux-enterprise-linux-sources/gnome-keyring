@@ -1,21 +1,9 @@
-AC_INIT(gnome-keyring,
-        3.28.2,
-        [gnome-keyring-list@gnome.org],
-        [gnome-keyring],
-        [https://wiki.gnome.org/Projects/GnomeKeyring])
+AC_INIT(daemon/gkd-main.c)
 
-dnl ****************************************************************************
-dnl Dependency versions
+AM_INIT_AUTOMAKE(gnome-keyring, 3.8.2)
 
-GLIB_REQ=2.44.0
-GLIB_MIN=GLIB_VERSION_2_44
-GLIB_MAX=GLIB_VERSION_2_44
-
-GCK_REQ=3.3.4
-GCR_REQ=3.27.90
-
-GCRYPT_REQ=1.2.2
-GCRYPT_LIBVER=1
+AC_CONFIG_HEADERS(config.h)
+m4_ifdef([AM_SILENT_RULES], [AM_SILENT_RULES([yes])])
 
 dnl ****************************************************************************
 
@@ -24,13 +12,6 @@ GKR_MAJOR=3
 version_bits=`echo $VERSION | tr '.' ' '`
 full_version=`printf %03d%03d%03d $version_bits`
 AC_DEFINE_UNQUOTED(GKR_VERSION, $full_version, [The gnome-keyring version as a number])
-
-AC_CONFIG_MACRO_DIR([build/m4])
-AC_CONFIG_AUX_DIR([build])
-AC_CONFIG_HEADERS(config.h)
-AC_CONFIG_SRCDIR([daemon/gkd-main.c])
-AM_INIT_AUTOMAKE([1.12 foreign dist-xz no-dist-gzip parallel-tests subdir-objects])
-m4_ifdef([AM_SILENT_RULES], [AM_SILENT_RULES([yes])])
 
 AM_SANITY_CHECK
 AM_MAINTAINER_MODE([enable])
@@ -45,19 +26,19 @@ AC_PROG_LN_S
 AC_PROG_MAKE_SET
 AM_DISABLE_STATIC
 AM_PROG_LIBTOOL
-PKG_PROG_PKG_CONFIG
+IT_PROG_INTLTOOL([0.35.0])
+AC_PATH_PROG(PKG_CONFIG, pkg-config, no)
 
 AC_TYPE_PID_T
 AC_TYPE_SIGNAL
 AC_TYPE_SIZE_T
 AC_TYPE_UID_T
 
-DISTCHECK_CONFIGURE_FLAGS="--enable-doc"
+GTK_DOC_CHECK(1.9)
+DISTCHECK_CONFIGURE_FLAGS="--enable-gtk-doc"
 AC_SUBST(DISTCHECK_CONFIGURE_FLAGS)
 
-PKG_CHECK_MODULES(GLIB, glib-2.0 >= $GLIB_REQ)
-GLIB_CFLAGS="$GLIB_CFLAGS -DGLIB_VERSION_MIN_REQUIRED=$GLIB_MIN"
-GLIB_CFLAGS="$GLIB_CFLAGS -DGLIB_VERSION_MAX_ALLOWED=$GLIB_MAX"
+PKG_CHECK_MODULES(GLIB, glib-2.0 >= 2.32.0)
 AC_SUBST(GLIB_CFLAGS)
 AC_SUBST(GLIB_LIBS)
 
@@ -65,22 +46,26 @@ PKG_CHECK_MODULES(GMODULE, gmodule-no-export-2.0)
 AC_SUBST(GMODULE_CFLAGS)
 AC_SUBST(GMODULE_LIBS)
 
-PKG_CHECK_MODULES(GOBJECT, glib-2.0 gobject-2.0)
+PKG_CHECK_MODULES(GTHREAD, gthread-2.0 >= 2.8.0)
+AC_SUBST(GTHREAD_CFLAGS)
+AC_SUBST(GTHREAD_LIBS)
+
+PKG_CHECK_MODULES(GOBJECT, glib-2.0 >= 2.16.0 gobject-2.0 >= 2.8.0)
 AC_SUBST(GOBJECT_CFLAGS)
 AC_SUBST(GOBJECT_LIBS)
 
-PKG_CHECK_MODULES(GIO, glib-2.0 gio-2.0 gio-unix-2.0)
+PKG_CHECK_MODULES(GIO, glib-2.0 >= 2.25.0 gio-2.0)
 AC_SUBST(GIO_CFLAGS)
 AC_SUBST(GIO_LIBS)
 
 DAEMON_CFLAGS="$DAEMON_CFLAGS $GLIB_CFLAGS $GTHREAD_CFLAGS $GOBJECT_CFLAGS $GIO_CFLAGS"
 DAEMON_LIBS="$DAEMON_LIBS $GLIB_LIBS $GTHREAD_LIBS $GOBJECT_LIBS $GIO_LIBS"
 
-AM_GNU_GETTEXT([external])
-AM_GNU_GETTEXT_VERSION([0.19.8])
 GETTEXT_PACKAGE=gnome-keyring
 AC_DEFINE_UNQUOTED(GETTEXT_PACKAGE,"$GETTEXT_PACKAGE", [The gettext domain name])
 AC_SUBST(GETTEXT_PACKAGE)
+
+AM_GLIB_GNU_GETTEXT
 
 AC_PATH_PROG(GLIB_GENMARSHAL, glib-genmarshal)
 
@@ -149,6 +134,8 @@ AC_CHECK_FUNCS(flock, AC_DEFINE(HAVE_FLOCK,1,[Have flock]))
 
 AC_CHECK_FUNCS(timegm, AC_DEFINE(HAVE_TIMEGM,1,[Have timegm]))
 
+dnl mkdtemp replacement from gettext
+AC_REPLACE_FUNCS(mkdtemp)
 AC_STAT_MACROS_BROKEN
   AC_CACHE_CHECK([for inttypes.h], jm_ac_cv_header_inttypes_h,
   [AC_TRY_COMPILE(
@@ -205,9 +192,9 @@ fi
 # --------------------------------------------------------------------
 # GCR and GCK libraries
 
-PKG_CHECK_MODULES(GCK, gck-1 >= $GCK_REQ)
-PKG_CHECK_MODULES(GCR, gcr-3 >= $GCR_REQ)
-PKG_CHECK_MODULES(GCR_BASE, gcr-base-3 >= $GCR_REQ)
+PKG_CHECK_MODULES(GCK, gck-1 >= 3.3.4)
+PKG_CHECK_MODULES(GCR, gcr-3 >= 3.3.3)
+PKG_CHECK_MODULES(GCR_BASE, gcr-base-3 >= 3.5.3)
 
 DAEMON_CFLAGS="$DAEMON_CFLAGS $GCK_CFLAGS $GCR_BASE_CFLAGS"
 DAEMON_LIBS="$DAEMON_LIBS $GCK_LIBS $GCR_BASE_LIBS"
@@ -219,12 +206,15 @@ AC_SUBST(GCK_LIBS)
 AC_SUBST(GCR_LIBS)
 AC_SUBST(GCR_BASE_LIBS)
 
-AC_DEFINE(GCK_API_SUBJECT_TO_CHANGE, 1, [Nod nod])
-AC_DEFINE(GCR_API_SUBJECT_TO_CHANGE, 1, [Nod nod])
-
 # --------------------------------------------------------------------
 # DBus Checks
 #
+
+DBUS_REQUIRED=1.0
+PKG_CHECK_MODULES([DBUS], dbus-1 >= 1.1.1)
+
+DAEMON_CFLAGS="$DAEMON_CFLAGS $DBUS_CFLAGS"
+DAEMON_LIBS="$DAEMON_LIBS $DBUS_LIBS"
 
 AC_ARG_WITH(dbus-services,
 		  [AC_HELP_STRING([--with-dbus-services=<dir>],
@@ -262,26 +252,11 @@ fi
 # --------------------------------------------------------------------
 # Find DL functionality
 
-dnl *** dlopen() and dlsym() in system libraries
-AS_IF([ test -z "$HAVE_DL"], [
-	AC_CHECK_FUNC(dlopen,
-		      [AC_CHECK_FUNC(dlsym,
-			             [HAVE_DL=c],[])],
-		      [])
-])
-
-dnl *** dlopen() and dlsym() in libdl
-AS_IF([ test -z "$HAVE_DL"], [
-	AC_CHECK_LIB(dl, dlopen,
-		     [AC_CHECK_LIB(dl, dlsym,
-			           [DL_LIBS=-ldl
-		                   HAVE_DL=dl],[])],
-		     [])
-])
-
-AS_IF([ test -z "$HAVE_DL"], [
-	AC_MSG_ERROR([Could not find a library with the dlopen and dlsym functions])
-])
+AC_CHECK_LIB(c, dlopen, DL_LIBS="",
+	AC_CHECK_LIB(dl, dlopen, DL_LIBS="-ldl",
+		AC_MSG_ERROR([Could not find a library with the dlopen function])
+	)
+)
 
 AC_SUBST(DL_LIBS)
 
@@ -347,31 +322,40 @@ AC_ARG_ENABLE([ssh-agent],
 		AC_HELP_STRING([--disable-ssh-agent],
 		[Don't include SSH agent in gnome-keyring]))
 
-if test "$enable_ssh_agent" = "no"; then
-	SSH_AGENT=false
-	SSH_ADD=false
+if test "$enable_ssh_agent" != "no"; then
+	AC_DEFINE(WITH_SSH, 1, [Whether to build SSH agent or not])
+	ssh_status="yes"
 else
-	AC_PATH_PROG([SSH_AGENT], [ssh-agent], [no])
-	AC_PATH_PROG([SSH_ADD], [ssh-add], [no])
-	if test "$SSH_AGENT" = "no" -o "$SSH_ADD" = "no"; then
-		AC_MSG_ERROR([the ssh-agent and ssh-add commands were not found])
-	else
-		enable_ssh_agent=yes
-		AC_DEFINE(WITH_SSH, 1, [Whether to build SSH agent or not])
-	fi
+	ssh_status="no"
 fi
 
-AC_DEFINE_UNQUOTED(SSH_AGENT, "$SSH_AGENT", [The path to ssh-agent])
-AC_DEFINE_UNQUOTED(SSH_ADD, "$SSH_ADD", [The path to ssh-add])
-
 AM_CONDITIONAL(WITH_SSH, test "$enable_ssh_agent" != "no")
-ssh_status="$enable_ssh_agent"
+
+# --------------------------------------------------------------------
+# GPG Agent support
+#
+
+AC_ARG_ENABLE([gpg-agent],
+		AC_HELP_STRING([--disable-gpg-agent],
+		[Don't include GPG agent in gnome-keyring]))
+
+if test "$enable_gpg_agent" != "no"; then
+	AC_DEFINE(WITH_GPG, 1, [Whether to build GPG agent or not])
+	gpg_status="yes"
+else
+	gpg_status="no"
+fi
+
+AM_CONDITIONAL(WITH_GPG, test "$enable_gpg_agent" != "no")
 
 # --------------------------------------------------------------------
 # libgcrypt
 #
 
-AM_PATH_LIBGCRYPT($GCRYPT_LIBVER:$GCRYPT_REQ,,
+GCRYPT_VERSION=1.2.2
+GCRYPT_LIBVER=1
+
+AM_PATH_LIBGCRYPT($GCRYPT_LIBVER:$GCRYPT_VERSION,,
 	AC_MSG_ERROR([[
 ***
 *** libgcrypt was not found. You may want to get it from
@@ -379,7 +363,7 @@ AM_PATH_LIBGCRYPT($GCRYPT_LIBVER:$GCRYPT_REQ,,
 ***
 ]]))
 libgcrypt=yes
-AC_DEFINE_UNQUOTED(LIBGCRYPT_VERSION, "$GCRYPT_REQ", [Version of GCRYPT we expect])
+AC_DEFINE_UNQUOTED(LIBGCRYPT_VERSION, "$GCRYPT_VERSION", [Version of GCRYPT we expect])
 
 DAEMON_CFLAGS="$DAEMON_CFLAGS $LIBGCRYPT_CFLAGS"
 DAEMON_LIBS="$DAEMON_LIBS $LIBGCRYPT_LIBS"
@@ -463,37 +447,6 @@ if test "$p11_tests_status" = "yes"; then
 fi
 
 # --------------------------------------------------------------------
-# Documentation options
-
-AC_MSG_CHECKING([whether to build documentation])
-AC_ARG_ENABLE(doc,
-              AC_HELP_STRING([--enable-doc],
-                             [Disable building documentation])
-             )
-
-if test "$enable_doc" = "no"; then
-	AC_MSG_RESULT($enable_doc)
-
-else
-	if test "$enable_doc" = ""; then
-		disable_msg="(perhaps --disable-doc)"
-	fi
-
-	enable_doc="yes"
-	AC_MSG_RESULT($enable_doc)
-
-	AC_PATH_PROG([XSLTPROC], [xsltproc], [no])
-	if test "$XSLTPROC" = "no"; then
-		AC_MSG_ERROR([the xsltproc command was not found $disable_msg])
-	fi
-
-	AC_SUBST(XSLTPROC)
-fi
-
-AM_CONDITIONAL([ENABLE_DOC], [test "$enable_doc" = "yes"])
-doc_status=$enable_doc
-
-# --------------------------------------------------------------------
 # Compilation and linking options
 #
 
@@ -529,6 +482,10 @@ if test "$GCC" = "yes"; then
 	-Wnested-externs -Wpointer-arith \
 	-Wcast-align -Wsign-compare \
 	$CFLAGS"
+
+	# Disable -Werror for now, because of issues with
+	# strange gtk-doc programs not building cleanly.
+	# -Werror \
 
 	for option in -Wno-strict-aliasing -Wno-sign-compare; do
 		SAVE_CFLAGS="$CFLAGS"
@@ -621,6 +578,27 @@ valgrind_status="yes"
 
 AM_CONDITIONAL(WITH_VALGRIND, test "$enable_valgrind" = "run")
 
+# Run gnome-keyring-daemon under valgrind as default
+if test "$enable_valgrind" = "run"; then
+	AC_PATH_PROG(VALGRIND, valgrind, no)
+	if test "$VALGRIND" = "no" ; then
+		AC_MSG_ERROR(valgrind tool is not installed)
+	fi
+
+	VALGRIND_ARG="--log-file=/tmp/gkr-valgrind.log.%p"
+	VALGRIND_RUN="$VALGRIND $VALGRIND_ARG "
+
+	AC_DEFINE_UNQUOTED(VALGRIND, "$VALGRIND", [Path to valgrind executable])
+	AC_DEFINE_UNQUOTED(VALGRIND_ARG, "$VALGRIND_ARG", [Valgrind arguments])
+
+	enable_valgrind="yes"
+	valgrind_status="run"
+fi
+
+AC_SUBST(VALGRIND)
+AC_SUBST(VALGRIND_ARG)
+AC_SUBST(VALGRIND_RUN)
+
 # Build valgrind support into code
 if test "$enable_valgrind" = "yes"; then
 	AC_CHECK_HEADER([valgrind/valgrind.h], have_valgrind=yes, have_valgrind=no)
@@ -649,7 +627,37 @@ AC_SUBST(P11_TESTS_LIBS)
 
 AC_OUTPUT([
 Makefile
+daemon/Makefile
+daemon/control/Makefile
+daemon/control/tests/Makefile
+daemon/dbus/Makefile
+daemon/dbus/tests/Makefile
+daemon/gpg-agent/Makefile
+daemon/login/Makefile
+daemon/ssh-agent/Makefile
+docs/Makefile
+egg/Makefile
+egg/tests/Makefile
+pam/Makefile
+pkcs11/Makefile
+pkcs11/gkm/Makefile
+pkcs11/gkm/tests/Makefile
+pkcs11/gnome2-store/Makefile
+pkcs11/gnome2-store/tests/Makefile
+pkcs11/rpc-layer/Makefile
+pkcs11/rpc-layer/gnome-keyring.module
+pkcs11/secret-store/Makefile
+pkcs11/secret-store/tests/Makefile
+pkcs11/ssh-store/Makefile
+pkcs11/ssh-store/tests/Makefile
+pkcs11/wrap-layer/Makefile
+pkcs11/wrap-layer/tests/Makefile
+pkcs11/xdg-store/Makefile
+pkcs11/xdg-store/tests/Makefile
 po/Makefile.in
+schema/Makefile
+testing/Makefile
+tool/Makefile
 ])
 
 # ------------------------------------------------------------------------------
@@ -664,6 +672,8 @@ echo "  SELinux:              $selinux_status"
 echo
 echo "CONFIGURATION"
 echo "  SSH Agent:            $ssh_status"
+echo "  GPG Agent:            $gpg_status"
+echo "  Root Certificates:    $root_status"
 echo
 echo "BUILD"
 echo "  Debug Build:          $debug_status"
@@ -671,5 +681,4 @@ echo "  Strict Compilation:   $strict_status"
 echo "  Valgrind:             $valgrind_status"
 echo "  PKCS#11 Tests         $p11_tests_status"
 echo "  Test Coverage:        $enable_coverage"
-echo "  Documentation:        $doc_status"
 echo

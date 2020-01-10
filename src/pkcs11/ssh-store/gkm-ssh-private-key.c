@@ -14,8 +14,9 @@
  * Lesser General Public License for more details.
  *
  * You should have received a copy of the GNU Lesser General Public
- * License along with this program; if not, see
- * <http://www.gnu.org/licenses/>.
+ * License along with this program; if not, write to the Free Software
+ * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA
+ * 02111-1307, USA.
  */
 
 #include "config.h"
@@ -338,7 +339,7 @@ gkm_ssh_private_key_parse (GkmSshPrivateKey *self, const gchar *public_path,
 	if (res == GKM_DATA_UNRECOGNIZED) {
 		return FALSE;
 	} else if (res != GKM_DATA_SUCCESS) {
-		g_set_error_literal (error, GKM_DATA_ERROR, res, _("Couldn’t parse public SSH key"));
+		g_set_error_literal (error, GKM_DATA_ERROR, res, _("Couldn't parse public SSH key"));
 		return FALSE;
 	}
 

@@ -1,0 +1,25 @@
+From c15de770a49866a1c35b57994fa514dbefef141e Mon Sep 17 00:00:00 2001
+From: Stef Walter <stefw@gnome.org>
+Date: Wed, 19 Mar 2014 20:25:43 +0100
+Subject: [PATCH] gkm: A testing reliability fix
+
+---
+ pkcs11/gkm/tests/test-timer.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/pkcs11/gkm/tests/test-timer.c b/pkcs11/gkm/tests/test-timer.c
+index 92f12da..1b1d825 100644
+--- a/pkcs11/gkm/tests/test-timer.c
++++ b/pkcs11/gkm/tests/test-timer.c
+@@ -91,7 +91,7 @@ test_cancel (Test* test, gconstpointer unused)
+ 	gkm_timer_cancel (timer);
+ 
+ 	mock_module_leave ();
+-	egg_test_wait_until (2000);
++	egg_test_wait_until (3000);
+ 	mock_module_enter ();
+ 
+ 	/* The callback should not have been called */
+-- 
+1.8.3.1
+

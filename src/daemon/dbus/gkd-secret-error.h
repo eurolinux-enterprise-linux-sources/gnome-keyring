@@ -14,8 +14,9 @@
  * Lesser General Public License for more details.
  *
  * You should have received a copy of the GNU Lesser General Public
- * License along with this program; if not, see
- * <http://www.gnu.org/licenses/>.
+ * License along with this program; if not, write to the Free Software
+ * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA
+ * 02111-1307, USA.
  */
 
 #ifndef __GKD_SECRET_ERROR_H__
@@ -25,27 +26,15 @@
 
 #include <glib.h>
 
-#include <gio/gio.h>
+#include <dbus/dbus.h>
 
-enum _GkdSecretDaemonError {
-  GKD_SECRET_DAEMON_ERROR_DENIED
-};
+DBusMessage *     gkd_secret_error_no_such_object             (DBusMessage *message);
 
-enum _GkdSecretError {
-  GKD_SECRET_ERROR_ALREADY_EXISTS,
-  GKD_SECRET_ERROR_IS_LOCKED,
-  GKD_SECRET_ERROR_NO_SESSION,
-  GKD_SECRET_ERROR_NO_SUCH_OBJECT
-};
-
-#define GKD_SECRET_DAEMON_ERROR gkd_secret_daemon_error_quark ()
-GQuark            gkd_secret_daemon_error_quark (void);
-
-#define GKD_SECRET_ERROR gkd_secret_error_quark ()
-GQuark            gkd_secret_error_quark (void);
-
-void              gkd_secret_propagate_error                  (GDBusMethodInvocation *invocation,
+DBusMessage *     gkd_secret_propagate_error                  (DBusMessage *message,
                                                                const gchar *description,
                                                                GError *error);
+
+DBusMessage *     gkd_secret_error_to_reply                   (DBusMessage *message,
+                                                               DBusError *derr);
 
 #endif /* __GKD_SECRET_ERROR_H__ */

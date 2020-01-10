@@ -14,8 +14,9 @@
  * Lesser General Public License for more details.
  *
  * You should have received a copy of the GNU Lesser General Public
- * License along with this program; if not, see
- * <http://www.gnu.org/licenses/>.
+ * License along with this program; if not, write to the Free Software
+ * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA
+ * 02111-1307, USA.
  */
 
 #ifndef GKM_SEXP_H_
@@ -50,15 +51,6 @@ gboolean       gkm_sexp_key_to_public            (gcry_sexp_t sexp,
 
 gboolean       gkm_sexp_extract_mpi              (gcry_sexp_t sexp,
                                                   gcry_mpi_t *mpi,
-                                                  ...) G_GNUC_NULL_TERMINATED;
-
-gboolean       gkm_sexp_extract_string           (gcry_sexp_t sexp,
-                                                  gchar **buf,
-                                                  ...) G_GNUC_NULL_TERMINATED;
-
-gboolean       gkm_sexp_extract_buffer           (gcry_sexp_t sexp,
-                                                  gchar **buf,
-                                                  gsize *bufsize,
                                                   ...) G_GNUC_NULL_TERMINATED;
 
 gcry_sexp_t    gkm_sexp_get_childv               (gcry_sexp_t sexp,

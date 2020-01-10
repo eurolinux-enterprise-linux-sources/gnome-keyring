@@ -14,8 +14,9 @@
  * Lesser General Public License for more details.
  *
  * You should have received a copy of the GNU Lesser General Public
- * License along with this program; if not, see
- * <http://www.gnu.org/licenses/>.
+ * License along with this program; if not, write to the Free Software
+ * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA
+ * 02111-1307, USA.
  */
 
 #ifndef __GKD_SECRET_UTIL_H__
@@ -24,6 +25,8 @@
 #include "gkd-secret-types.h"
 
 #include <glib.h>
+
+#include <dbus/dbus.h>
 
 gboolean          gkd_secret_util_parse_path                            (const gchar *path,
                                                                          gchar **collection,

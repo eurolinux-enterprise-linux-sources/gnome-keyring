@@ -14,8 +14,9 @@
  * Lesser General Public License for more details.
  *
  * You should have received a copy of the GNU Lesser General Public
- * License along with this program; if not, see
- * <http://www.gnu.org/licenses/>.
+ * License along with this program; if not, write to the Free Software
+ * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA
+ * 02111-1307, USA.
  */
 
 #include "config.h"
@@ -247,7 +248,6 @@ factory_create_search (GkmSession *session, GkmTransaction *transaction,
 	                       "schema-name", schema_name,
 	                       "collection-id", identifier,
 	                       NULL);
-	g_free (identifier);
 
 	/* Load any new items or collections */
 	gkm_module_refresh_token (module);

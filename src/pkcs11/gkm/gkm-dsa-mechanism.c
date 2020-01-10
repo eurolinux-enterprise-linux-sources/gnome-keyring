@@ -14,8 +14,9 @@
  * Lesser General Public License for more details.
  *
  * You should have received a copy of the GNU Lesser General Public
- * License along with this program; if not, see
- * <http://www.gnu.org/licenses/>.
+ * License along with this program; if not, write to the Free Software
+ * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA
+ * 02111-1307, USA.
  */
 
 #include "config.h"
@@ -90,7 +91,7 @@ gkm_dsa_mechanism_sign (gcry_sexp_t sexp, CK_BYTE_PTR data, CK_ULONG n_data,
 	}
 
 	gcry_sexp_release (ssig);
-	return rv;
+	return CKR_OK;
 }
 
 CK_RV
@@ -135,7 +136,7 @@ gkm_dsa_mechanism_verify (gcry_sexp_t sexp, CK_BYTE_PTR data, CK_ULONG n_data,
 	if (gcry_err_code (gcry) == GPG_ERR_BAD_SIGNATURE) {
 		return CKR_SIGNATURE_INVALID;
 	} else if (gcry) {
-		g_message ("verifying of the data failed: %s", gcry_strerror (gcry));
+		g_message ("signing of the data failed: %s", gcry_strerror (gcry));
 		return CKR_FUNCTION_FAILED;
 	}
 

@@ -14,8 +14,9 @@
  * Lesser General Public License for more details.
  *
  * You should have received a copy of the GNU Lesser General Public
- * License along with this program; if not, see
- * <http://www.gnu.org/licenses/>.
+ * License along with this program; if not, write to the Free Software
+ * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA
+ * 02111-1307, USA.
  */
 
 #ifndef __GKM_PUBLIC_XSA_KEY_H__
@@ -55,14 +56,5 @@ GkmSexp*                  gkm_public_xsa_key_create_sexp        (GkmSession *ses
                                                                  GkmTransaction *transaction,
                                                                  CK_ATTRIBUTE_PTR attrs,
                                                                  CK_ULONG n_attrs);
-
-extern gboolean           gkm_attributes_find_ecc_oid           (CK_ATTRIBUTE_PTR attrs,
-                                                                 CK_ULONG n_attrs,
-                                                                 GQuark *value);
-
-extern gboolean           gkm_attributes_find_ecc_q             (CK_ATTRIBUTE_PTR attrs,
-                                                                 CK_ULONG n_attrs,
-                                                                 CK_ATTRIBUTE_TYPE type,
-                                                                 GBytes **value);
 
 #endif /* __GKM_PUBLIC_XSA_KEY_H__ */

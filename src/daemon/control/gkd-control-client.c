@@ -14,8 +14,9 @@
  * Lesser General Public License for more details.
  *
  * You should have received a copy of the GNU Lesser General Public
- * License along with this program; if not, see
- * <http://www.gnu.org/licenses/>.
+ * License along with this program; if not, write to the Free Software
+ * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA
+ * 02111-1307, USA.
  */
 
 #include "config.h"
@@ -48,7 +49,7 @@ control_connect (const gchar *path,
 	/* First a bunch of checks to make sure nothing funny is going on */
 	if (lstat (path, &st) < 0) {
 		if (!(flags & GKD_CONTROL_QUIET_IF_NO_PEER) || errno != ENOENT)
-			g_message ("couldn't access control socket: %s: %s", path, g_strerror (errno));
+			g_message ("couldn't access conrol socket: %s: %s", path, g_strerror (errno));
 		return -1;
 
 	} else if (st.st_uid != geteuid ()) {
@@ -181,11 +182,6 @@ control_chat (const gchar *directory,
 		return FALSE;
 
 	ret = control_write (sock, buffer) && control_read (sock, buffer);
-
-	if (flags & GKD_CONTROL_WAIT_FOR_CLOSE) {
-		while (read (sock, &path, sizeof (path)) < 0);
-	}
-
 	close (sock);
 	return ret;
 }

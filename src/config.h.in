@@ -9,15 +9,8 @@
 /* Define if POSIX threads are in use. */
 #undef DOTLOCK_USE_PTHREAD
 
-/* Define to 1 if translation of program messages to the user's native
-   language is requested. */
+/* always defined to indicate that i18n is enabled */
 #undef ENABLE_NLS
-
-/* Nod nod */
-#undef GCK_API_SUBJECT_TO_CHANGE
-
-/* Nod nod */
-#undef GCR_API_SUBJECT_TO_CHANGE
 
 /* The gettext domain name */
 #undef GETTEXT_PACKAGE
@@ -28,19 +21,13 @@
 /* Disable glib assertions */
 #undef G_DISABLE_ASSERT
 
-/* Define to 1 if you have the Mac OS X function CFLocaleCopyCurrent in the
-   CoreFoundation framework. */
-#undef HAVE_CFLOCALECOPYCURRENT
-
-/* Define to 1 if you have the Mac OS X function CFPreferencesCopyAppValue in
-   the CoreFoundation framework. */
-#undef HAVE_CFPREFERENCESCOPYAPPVALUE
+/* Define to 1 if you have the `bind_textdomain_codeset' function. */
+#undef HAVE_BIND_TEXTDOMAIN_CODESET
 
 /* Have cmsgcred structure */
 #undef HAVE_CMSGCRED
 
-/* Define if the GNU dcgettext() function is already present or preinstalled.
-   */
+/* Define to 1 if you have the `dcgettext' function. */
 #undef HAVE_DCGETTEXT
 
 /* Define to 1 if you have the <dlfcn.h> header file. */
@@ -67,9 +54,6 @@
 /* Define to 1 if you have the `gettimeofday' function. */
 #undef HAVE_GETTIMEOFDAY
 
-/* Define if you have the iconv() function and it works. */
-#undef HAVE_ICONV
-
 /* Define to 1 if you have the <inttypes.h> header file. */
 #undef HAVE_INTTYPES_H
 
@@ -77,14 +61,23 @@
    declares uintmax_t. */
 #undef HAVE_INTTYPES_H_WITH_UINTMAX
 
+/* Define if your <locale.h> file defines LC_MESSAGES. */
+#undef HAVE_LC_MESSAGES
+
 /* have libcap-ng headers and library */
 #undef HAVE_LIBCAPNG
 
 /* Define to 1 if you have the `socket' library (-lsocket). */
 #undef HAVE_LIBSOCKET
 
+/* Define to 1 if you have the <locale.h> header file. */
+#undef HAVE_LOCALE_H
+
 /* Define to 1 if you have the <memory.h> header file. */
 #undef HAVE_MEMORY_H
+
+/* Define to 1 if you have the `mkdtemp' function. */
+#undef HAVE_MKDTEMP
 
 /* Define to 1 if you have the `mlock' function. */
 #undef HAVE_MLOCK
@@ -138,8 +131,12 @@
 /* Version of GCRYPT we expect */
 #undef LIBGCRYPT_VERSION
 
-/* Define to the sub-directory where libtool stores uninstalled libraries. */
+/* Define to the sub-directory in which libtool stores uninstalled libraries.
+   */
 #undef LT_OBJDIR
+
+/* Define to 1 if your C compiler doesn't accept -c and -o together. */
+#undef NO_MINUS_C_MINUS_O
 
 /* Name of package */
 #undef PACKAGE
@@ -164,12 +161,6 @@
 
 /* Define as the return type of signal handlers (`int' or `void'). */
 #undef RETSIGTYPE
-
-/* The path to ssh-add */
-#undef SSH_ADD
-
-/* The path to ssh-agent */
-#undef SSH_AGENT
 
 /* Define to 1 if the `S_IS*' macros in <sys/stat.h> do not work properly. */
 #undef STAT_MACROS_BROKEN
@@ -199,11 +190,20 @@
 #endif
 
 
+/* Path to valgrind executable */
+#undef VALGRIND
+
+/* Valgrind arguments */
+#undef VALGRIND_ARG
+
 /* Version number of package */
 #undef VERSION
 
 /* Print debug output */
 #undef WITH_DEBUG
+
+/* Whether to build GPG agent or not */
+#undef WITH_GPG
 
 /* Run p11-tests module testing */
 #undef WITH_P11_TESTS

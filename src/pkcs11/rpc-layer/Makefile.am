@@ -1,25 +1,31 @@
 
-noinst_LTLIBRARIES += \
+noinst_LTLIBRARIES = \
 	libgkm-rpc-layer.la
 
-noinst_PROGRAMS += \
+noinst_PROGRAMS = \
 	gkm-rpc-daemon-standalone
+
+INCLUDES = -I. \
+	-I$(top_srcdir) \
+	-I$(top_builddir)
 
 # ------------------------------------------------------------------------------
 # The dispatch code
 
 libgkm_rpc_layer_la_SOURCES = \
-	pkcs11/rpc-layer/gkm-rpc-dispatch.c \
-	pkcs11/rpc-layer/gkm-rpc-layer.h \
-	pkcs11/rpc-layer/gkm-rpc-message.c \
-	pkcs11/rpc-layer/gkm-rpc-private.h \
-	pkcs11/rpc-layer/gkm-rpc-util.c
+	gkm-rpc-dispatch.c \
+	gkm-rpc-layer.h \
+	gkm-rpc-message.c \
+	gkm-rpc-private.h \
+	gkm-rpc-util.c
+
 libgkm_rpc_layer_la_LIBADD = \
-	libegg-buffer.la \
-	libegg-creds.la \
+	$(top_builddir)/egg/libegg-buffer.la \
+	$(top_builddir)/egg/libegg-creds.la \
 	$(GOBJECT_LIBS) \
 	$(GTHREAD_LIBS) \
 	$(GLIB_LIBS)
+
 libgkm_rpc_layer_la_CFLAGS = \
 	$(GOBJECT_CFLAGS) \
 	$(GTHREAD_CFLAGS) \
@@ -29,49 +35,40 @@ libgkm_rpc_layer_la_CFLAGS = \
 # The module code, built as the public gnome-keyring module
 
 # This is the location that some older software looks for modules
-pkcs11moduledir = $(P11_MODULE_PATH)
-pkcs11module_LTLIBRARIES = \
+moduledir = $(P11_MODULE_PATH)
+
+module_LTLIBRARIES = \
 	gnome-keyring-pkcs11.la
 
 gnome_keyring_pkcs11_la_SOURCES = \
-	pkcs11/rpc-layer/gkm-rpc-private.h \
-	pkcs11/rpc-layer/gkm-rpc-module.c \
-	pkcs11/rpc-layer/gkm-rpc-message.c \
-	pkcs11/rpc-layer/gkm-rpc-util.c
+	gkm-rpc-private.h \
+	gkm-rpc-module.c \
+	gkm-rpc-message.c \
+	gkm-rpc-util.c
+
 gnome_keyring_pkcs11_la_LIBADD = \
-	libegg-buffer.la \
-	libegg-creds.la
+	$(top_builddir)/egg/libegg-buffer.la \
+	$(top_builddir)/egg/libegg-creds.la
+
 gnome_keyring_pkcs11_la_LDFLAGS = \
 	-module -avoid-version \
 	-no-undefined -export-symbols-regex 'C_GetFunctionList'
 
+# This is the configuration file that p11-kit uses to load the module
+configdir = $(P11_SYSTEM_CONFIG_MODULES)
+
+config_DATA = \
+	gnome-keyring.module
+
 # -----------------------------------------------------------------------------
-# The tests
+# The test daemon
 
 gkm_rpc_daemon_standalone_SOURCES = \
-	pkcs11/rpc-layer/gkm-rpc-daemon-standalone.c
+	gkm-rpc-daemon-standalone.c
+
 gkm_rpc_daemon_standalone_LDADD = \
-	$(DL_LIBS) \
-	libgkm-rpc-layer.la \
+	$(DL_LIBS) libgkm-rpc-layer.la \
 	$(GLIB_LIBS)
+
 gkm_rpc_daemon_standalone_CFLAGS = \
 	$(GLIB_CFLAGS)
-
-rpc_layer_CFLAGS = \
-	$(GCK_CFLAGS)
-
-rpc_layer_LIBS = \
-	libegg-test.la \
-	$(GCK_LIBS) \
-	$(GIO_LIBS) \
-	$(GLIB_LIBS)
-
-rpc_layer_TESTS = \
-	test-initialize
-
-test_initialize_SOURCES = pkcs11/rpc-layer/test-initialize.c
-test_initialize_LDADD = $(daemon_LIBS)
-test_initialize_CFLAGS = $(daemon_CFLAGS)
-
-check_PROGRAMS += $(rpc_layer_TESTS)
-TESTS += $(rpc_layer_TESTS)

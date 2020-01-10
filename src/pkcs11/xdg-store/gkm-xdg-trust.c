@@ -14,8 +14,9 @@
  * Lesser General Public License for more details.
  *
  * You should have received a copy of the GNU Lesser General Public
- * License along with this program; if not, see
- * <http://www.gnu.org/licenses/>.
+ * License along with this program; if not, write to the Free Software
+ * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA
+ * 02111-1307, USA.
  */
 
 #include "config.h"
@@ -371,7 +372,7 @@ lookup_or_create_assertion_key (GkmAssertion *assertion)
 		key = create_assertion_key (gkm_assertion_get_purpose (assertion),
 		                            gkm_assertion_get_peer (assertion));
 		g_object_set_qdata_full (G_OBJECT (assertion), QDATA_ASSERTION_KEY,
-		                         key, (GDestroyNotify)g_bytes_unref);
+		                         g_bytes_ref (key), (GDestroyNotify)g_bytes_unref);
 	}
 
 	return key;
@@ -439,7 +440,6 @@ remove_assertion_from_trust (GkmXdgTrust *self, GkmAssertion *assertion,
 		if (!g_hash_table_steal (self->pv->assertions, key))
 			g_return_if_reached ();
 		gkm_transaction_add (transaction, self, complete_remove_assertion, assertion);
-		g_bytes_unref (key);
 	}
 }
 
@@ -707,10 +707,6 @@ gkm_xdg_trust_finalize (GObject *obj)
 		g_hash_table_destroy (self->pv->assertions);
 	self->pv->assertions = NULL;
 
-	if (self->pv->bytes)
-		g_bytes_unref (self->pv->bytes);
-	self->pv->bytes = NULL;
-
 	G_OBJECT_CLASS (gkm_xdg_trust_parent_class)->finalize (obj);
 }
 
@@ -880,6 +876,7 @@ gkm_xdg_trust_replace_assertion (GkmXdgTrust *self, GkmAssertion *assertion,
 		remove_assertion_from_trust (self, previous, transaction);
 	add_assertion_to_trust (self, assertion, transaction);
 
+	g_bytes_unref (key);
 }
 
 void

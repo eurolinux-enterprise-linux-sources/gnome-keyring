@@ -15,7 +15,8 @@
 
    You should have received a copy of the GNU Library General Public
    License along with the Gnome Library; see the file COPYING.LIB.  If not,
-   <http://www.gnu.org/licenses/>.
+   write to the Free Software Foundation, Inc., 59 Temple Place - Suite 330,
+   Boston, MA 02111-1307, USA.
 
    Author: Stef Walter <stef@memberwebs.com>
 */
@@ -25,6 +26,7 @@
 #include "gkr-tool.h"
 
 #include <glib/gi18n.h>
+#include <gtk/gtk.h>
 
 #include <locale.h>
 #include <string.h>
@@ -117,8 +119,10 @@ main (int argc, char *argv[])
 	g_type_init ();
 #endif
 
+#ifdef HAVE_LOCALE_H
 	/* internationalisation */
 	setlocale (LC_ALL, "");
+#endif
 
 #ifdef HAVE_GETTEXT
 	bindtextdomain (GETTEXT_PACKAGE, GNOMELOCALEDIR);
@@ -126,6 +130,8 @@ main (int argc, char *argv[])
 	bind_textdomain_codeset (GETTEXT_PACKAGE, "UTF-8");
 #endif
 
+	gtk_init (&argc, &argv);
+	
 	/* The first argument is the command */
 	if (argc < 2) {
 		print_general_usage ();

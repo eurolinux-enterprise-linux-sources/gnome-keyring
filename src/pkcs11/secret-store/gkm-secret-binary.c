@@ -106,7 +106,7 @@ buffer_add_time (EggBuffer *buffer, glong time)
 }
 
 static gboolean
-buffer_get_time (EggBuffer *buffer, gsize offset, gsize *next_offset, time_t *time)
+buffer_get_time (EggBuffer *buffer, gsize offset, gsize *next_offset, glong *time)
 {
 	guint32 a, b;
 	guint64 val;
@@ -846,7 +846,7 @@ free_item_info (ItemInfo *info)
 	gkm_secret_compat_acl_free (info->acl);
 }
 
-GkmDataResult
+gint
 gkm_secret_binary_read (GkmSecretCollection *collection, GkmSecretData *sdata,
                         gconstpointer data, gsize n_data)
 {

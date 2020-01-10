@@ -14,8 +14,9 @@
  * Lesser General Public License for more details.
  *  
  * You should have received a copy of the GNU Lesser General Public
- * License along with this program; if not, see
- * <http://www.gnu.org/licenses/>.
+ * License along with this program; if not, write to the Free Software
+ * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA
+ * 02111-1307, USA.  
  */
 
 #include "config.h"
@@ -26,9 +27,6 @@
 #include <glib.h>
 
 #include <gcrypt.h>
-
-#include <errno.h>
-#include <pthread.h>
 
 EGG_SECURE_DECLARE (libgcrypt);
 
@@ -55,9 +53,42 @@ fatal_handler (gpointer unused, int unknown, const gchar *msg)
 	g_log ("gcrypt", G_LOG_LEVEL_ERROR, "%s", msg);
 }
 
-#if GCRYPT_VERSION_NUMBER < 0x010600
-GCRY_THREAD_OPTION_PTHREAD_IMPL;
-#endif
+static int
+glib_thread_mutex_init (void **lock)
+{
+	*lock = g_new0 (GMutex, 1);
+	g_mutex_init (*lock);
+	return 0;
+}
+
+static int 
+glib_thread_mutex_destroy (void **lock)
+{
+	g_mutex_clear (*lock);
+	g_free (*lock);
+	return 0;
+}
+
+static int 
+glib_thread_mutex_lock (void **lock)
+{
+	g_mutex_lock (*lock);
+	return 0;
+}
+
+static int 
+glib_thread_mutex_unlock (void **lock)
+{
+	g_mutex_unlock (*lock);
+	return 0;
+}
+
+static struct gcry_thread_cbs glib_thread_cbs = {
+	GCRY_THREAD_OPTION_USER, NULL,
+	glib_thread_mutex_init, glib_thread_mutex_destroy,
+	glib_thread_mutex_lock, glib_thread_mutex_unlock,
+	NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL 
+};
 
 void
 egg_libgcrypt_initialize (void)
@@ -69,9 +100,7 @@ egg_libgcrypt_initialize (void)
 		
 		/* Only initialize libgcrypt if it hasn't already been initialized */
 		if (!gcry_control (GCRYCTL_INITIALIZATION_FINISHED_P)) {
-#if GCRYPT_VERSION_NUMBER < 0x010600
-			gcry_control (GCRYCTL_SET_THREAD_CBS, &gcry_threads_pthread);
-#endif
+			gcry_control (GCRYCTL_SET_THREAD_CBS, &glib_thread_cbs);
 			gcry_check_version (LIBGCRYPT_VERSION);
 			gcry_set_log_handler (log_handler, NULL);
 			gcry_set_outofcore_handler (no_mem_handler, NULL);

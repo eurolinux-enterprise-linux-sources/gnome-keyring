@@ -14,8 +14,10 @@
 
    You should have received a copy of the GNU Library General Public
    License along with the GNU C Library; see the file COPYING.LIB.  If not,
-   <http://www.gnu.org/licenses/>.
-*/
+   write to the Free Software Foundation, Inc., 59 Temple Place - Suite 330,
+   Boston, MA 02111-1307, USA.  */
+
+/* Extracted from misc/mkdtemp.c and sysdeps/posix/tempname.c.  */
 
 #ifndef EGG_TIMEGM_H_
 #define EGG_TIMEGM_H_

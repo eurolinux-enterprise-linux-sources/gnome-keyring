@@ -14,8 +14,9 @@
  * Lesser General Public License for more details.
  *
  * You should have received a copy of the GNU Lesser General Public
- * License along with this program; if not, see
- * <http://www.gnu.org/licenses/>.
+ * License along with this program; if not, write to the Free Software
+ * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA
+ * 02111-1307, USA.
  */
 
 #include "config.h"
@@ -390,9 +391,6 @@ gkm_secret_item_finalize (GObject *obj)
 	if (self->fields)
 		g_hash_table_unref (self->fields);
 	self->fields = NULL;
-
-	g_free (self->schema);
-	self->schema = NULL;
 
 	G_OBJECT_CLASS (gkm_secret_item_parent_class)->finalize (obj);
 }

@@ -14,8 +14,9 @@
  * Lesser General Public License for more details.
  *
  * You should have received a copy of the GNU Lesser General Public
- * License along with this program; if not, see
- * <http://www.gnu.org/licenses/>.
+ * License along with this program; if not, write to the Free Software
+ * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA
+ * 02111-1307, USA.
  */
 
 #ifndef __GKD_SECRET_PROMPT_H__
@@ -27,6 +28,8 @@
 
 #include <gck/gck.h>
 #include <gcr/gcr-base.h>
+
+#include <dbus/dbus.h>
 
 #define GKD_SECRET_TYPE_PROMPT               (gkd_secret_prompt_get_type ())
 #define GKD_SECRET_PROMPT(obj)               (G_TYPE_CHECK_INSTANCE_CAST ((obj), GKD_SECRET_TYPE_PROMPT, GkdSecretPrompt))
@@ -48,7 +51,8 @@ struct _GkdSecretPromptClass {
 
 	void       (*prompt_ready)       (GkdSecretPrompt *self);
 
-	GVariant * (*encode_result)      (GkdSecretPrompt *self);
+	void       (*encode_result)      (GkdSecretPrompt *self,
+	                                  DBusMessageIter *iter);
 };
 
 GType               gkd_secret_prompt_get_type                (void) G_GNUC_CONST;
@@ -76,8 +80,5 @@ void                gkd_secret_prompt_dismiss                 (GkdSecretPrompt *
 
 void                gkd_secret_prompt_dismiss_with_error      (GkdSecretPrompt *self,
                                                                GError *error);
-
-/* Used by derived classes */
-void                gkd_secret_prompt_unexport                (GkdSecretPrompt *self);
 
 #endif /* __GKD_SECRET_PROMPT_H__ */

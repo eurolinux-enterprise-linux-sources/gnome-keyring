@@ -14,14 +14,16 @@
  * Lesser General Public License for more details.
  *
  * You should have received a copy of the GNU Lesser General Public
- * License along with this program; if not, see
- * <http://www.gnu.org/licenses/>.
+ * License along with this program; if not, write to the Free Software
+ * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA
+ * 02111-1307, USA.
  */
 
 #ifndef __GKD_SECRET_TYPES_H__
 #define __GKD_SECRET_TYPES_H__
 
 #define INTERNAL_SERVICE_INTERFACE     "org.gnome.keyring.InternalUnsupportedGuiltRiddenInterface"
+#define INTERNAL_ERROR_DENIED          "org.gnome.keyring.Error.Denied"
 
 #define SECRET_COLLECTION_INTERFACE    "org.freedesktop.Secret.Collection"
 #define SECRET_ITEM_INTERFACE          "org.freedesktop.Secret.Item"
@@ -38,8 +40,10 @@
 #define SECRET_PROMPT_PREFIX           "/org/freedesktop/secrets/prompt"
 #define SECRET_ALIAS_PREFIX            "/org/freedesktop/secrets/aliases"
 
-typedef enum _GkdSecretDaemonError GkdSecretDaemonError;
-typedef enum _GkdSecretError GkdSecretError;
+#define SECRET_ERROR_ALREADY_EXISTS    "org.freedesktop.Secret.Error.AlreadyExists"
+#define SECRET_ERROR_IS_LOCKED         "org.freedesktop.Secret.Error.IsLocked"
+#define SECRET_ERROR_NO_SESSION        "org.freedesktop.Secret.Error.NoSession"
+#define SECRET_ERROR_NO_SUCH_OBJECT    "org.freedesktop.Secret.Error.NoSuchObject"
 
 typedef struct _GkdSecretCollection GkdSecretCollection;
 typedef struct _GkdSecretChange GkdSecretChange;

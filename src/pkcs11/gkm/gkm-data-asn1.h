@@ -15,7 +15,8 @@
 
    You should have received a copy of the GNU Library General Public
    License along with the Gnome Library; see the file COPYING.LIB.  If not,
-   <http://www.gnu.org/licenses/>.
+   write to the Free Software Foundation, Inc., 59 Temple Place - Suite 330,
+   Boston, MA 02111-1307, USA.
 
    Author: Stef Walter <stef@memberwebs.com>
 */
@@ -31,31 +32,5 @@ gboolean           gkm_data_asn1_read_mpi                      (GNode *asn,
 
 gboolean           gkm_data_asn1_write_mpi                     (GNode *asn,
                                                                 gcry_mpi_t mpi);
-
-gboolean           gkm_data_asn1_read_string_mpi               (GNode *asn,
-                                                                gcry_mpi_t *mpi);
-
-gboolean           gkm_data_asn1_write_string_mpi              (GNode *asn,
-                                                                gcry_mpi_t mpi);
-
-gboolean           gkm_data_asn1_read_string                   (GNode *asn,
-                                                                GBytes **data);
-
-gboolean           gkm_data_asn1_write_string                  (GNode *asn,
-                                                                GBytes *data);
-
-gboolean           gkm_data_asn1_read_bit_string               (GNode *asn,
-                                                                GBytes **data,
-                                                                gsize *data_bits);
-
-gboolean           gkm_data_asn1_write_bit_string              (GNode *asn,
-                                                                GBytes *data,
-                                                                gsize data_bits);
-
-gboolean           gkm_data_asn1_read_oid                      (GNode *asn,
-                                                                GQuark *oid);
-
-gboolean           gkm_data_asn1_write_oid                     (GNode *asn,
-                                                                GQuark oid);
 
 #endif /*GKM_DATA_ASN_H_*/

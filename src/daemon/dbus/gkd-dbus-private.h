@@ -15,7 +15,8 @@
 
    You should have received a copy of the GNU Library General Public
    License along with the Gnome Library; see the file COPYING.LIB.  If not,
-   <http://www.gnu.org/licenses/>.
+   write to the Free Software Foundation, Inc., 59 Temple Place - Suite 330,
+   Boston, MA 02111-1307, USA.
 
    Author: Stef Walter <stef@memberwebs.com>
 */
@@ -24,22 +25,22 @@
 #define GKD_DBUS_PRIVATE_H
 
 #include <glib.h>
-#include <gio/gio.h>
+#include <dbus/dbus.h>
 
 /* DBus environment variables sent to session */
-void   gkd_dbus_environment_init        (GDBusConnection *conn);
-void   gkd_dbus_environment_cleanup     (GDBusConnection *conn);
+void   gkd_dbus_environment_init        (DBusConnection *conn);
+void   gkd_dbus_environment_cleanup     (DBusConnection *conn);
 
 /* The gnome-keyring Dbus service, very simple */
-void   gkd_dbus_service_init            (GDBusConnection *conn);
-void   gkd_dbus_service_cleanup         (GDBusConnection *conn);
+void   gkd_dbus_service_init            (DBusConnection *conn);
+void   gkd_dbus_service_cleanup         (DBusConnection *conn);
 
 /* DBus desktop session interaction */
-void   gkd_dbus_session_init            (GDBusConnection *conn);
-void   gkd_dbus_session_cleanup         (GDBusConnection *conn);
+void   gkd_dbus_session_init            (DBusConnection *conn);
+void   gkd_dbus_session_cleanup         (DBusConnection *conn);
 
 /* DBus secrets API */
-void   gkd_dbus_secrets_init            (GDBusConnection *conn);
-void   gkd_dbus_secrets_cleanup         (GDBusConnection *conn);
+void   gkd_dbus_secrets_init            (DBusConnection *conn);
+void   gkd_dbus_secrets_cleanup         (DBusConnection *conn);
 
 #endif /* GKD_DBUS_PRIVATE_H */

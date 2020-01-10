@@ -14,8 +14,9 @@
  * Lesser General Public License for more details.
  *
  * You should have received a copy of the GNU Lesser General Public
- * License along with this program; if not, see
- * <http://www.gnu.org/licenses/>.
+ * License along with this program; if not, write to the Free Software
+ * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA
+ * 02111-1307, USA.
  */
 
 #include "config.h"
@@ -31,24 +32,15 @@
 #include "pkcs11/wrap-layer/gkm-wrap-layer.h"
 
 #include <gck/gck.h>
-#include <gcr/gcr-unlock-options.h>
 
 #include <glib/gi18n.h>
 
 #include <string.h>
 
-EGG_SECURE_DECLARE (gkd_login);
-
 static GList*
 module_instances (void)
 {
-	CK_FUNCTION_LIST_PTR funcs;
-	GckModule *module;
-
-	funcs = gkd_pkcs11_get_base_functions ();
-	g_return_val_if_fail (funcs != NULL && "instances", NULL);
-
-	module = gck_module_new (funcs);
+	GckModule *module = gck_module_new (gkd_pkcs11_get_base_functions ());
 	g_return_val_if_fail (module, NULL);
 	return g_list_append (NULL, module);
 }
@@ -85,18 +77,10 @@ lookup_login_session (GList *modules)
 	GckSlot *slot = NULL;
 	GError *error = NULL;
 	GckSession *session;
-	GList *owned = NULL;
-
-	if (modules == NULL)
-		modules = owned = module_instances ();
 
 	slot = gck_modules_token_for_uri (modules, "pkcs11:token=Secret%20Store", &error);
 	if (!slot) {
-		if (error) {
-			g_warning ("couldn't find secret store module: %s", egg_error_message (error));
-			g_error_free (error);
-		}
-		g_list_free_full (owned, g_object_unref);
+		g_warning ("couldn't find secret store module: %s", egg_error_message (error));
 		return NULL;
 	}
 
@@ -107,7 +91,6 @@ lookup_login_session (GList *modules)
 	}
 
 	g_object_unref (slot);
-	g_list_free_full (owned, g_object_unref);
 
 	return session;
 }
@@ -277,8 +260,8 @@ gkd_login_unlock (const gchar *master)
 	GList *modules;
 	gboolean result;
 
-	/* We don't support null as master password */
-	if (!master)
+	/* We don't support null or empty master passwords */
+	if (!master || !master[0])
 		return FALSE;
 
 	modules = module_instances ();
@@ -426,355 +409,4 @@ gkd_login_change_lock (const gchar *original, const gchar *master)
 
 	gck_list_unref_free (modules);
 	return result;
-}
-
-gboolean
-gkd_login_available (GckSession *session)
-{
-	GckBuilder builder = GCK_BUILDER_INIT;
-	gboolean available = FALSE;
-	GError *error = NULL;
-	GList *objects;
-
-	if (!session)
-		session = lookup_login_session (NULL);
-	else
-		g_object_ref (session);
-
-	if (session) {
-		gck_builder_add_ulong (&builder, CKA_CLASS, CKO_G_COLLECTION);
-		gck_builder_add_string (&builder, CKA_ID, "login");
-		gck_builder_add_boolean (&builder, CKA_G_LOCKED, FALSE);
-
-		/* Check if the login keyring is usable */
-		objects = gck_session_find_objects (session, gck_builder_end (&builder), NULL, &error);
-		if (error) {
-			g_warning ("couldn't lookup login keyring: %s", error->message);
-			g_clear_error (&error);
-		} else if (objects) {
-			available = TRUE;
-		}
-		g_list_free_full (objects, g_object_unref);
-		g_object_unref (session);
-	}
-
-	return available;
-}
-
-static GList *
-find_saved_items (GckSession *session,
-                  GckAttributes *attrs)
-{
-	GckBuilder builder = GCK_BUILDER_INIT;
-	GError *error = NULL;
-	const GckAttribute *attr;
-	GckObject *search;
-	GList *results;
-	gpointer data;
-	gsize n_data;
-
-	gck_builder_add_ulong (&builder, CKA_CLASS, CKO_G_SEARCH);
-	gck_builder_add_boolean (&builder, CKA_TOKEN, FALSE);
-
-	attr = gck_attributes_find (attrs, CKA_G_COLLECTION);
-	if (attr != NULL)
-		gck_builder_add_attribute (&builder, attr);
-
-	attr = gck_attributes_find (attrs, CKA_G_FIELDS);
-	g_return_val_if_fail (attr != NULL, NULL);
-	gck_builder_add_attribute (&builder, attr);
-
-	search = gck_session_create_object (session, gck_builder_end (&builder), NULL, &error);
-	if (search == NULL) {
-		g_warning ("couldn't perform search for stored passphrases: %s",
-		           egg_error_message (error));
-		g_clear_error (&error);
-		return NULL;
-	}
-
-	data = gck_object_get_data (search, CKA_G_MATCHED, NULL, &n_data, &error);
-	gck_object_destroy (search, NULL, NULL);
-	g_object_unref (search);
-
-	if (data == NULL) {
-		g_warning ("couldn't retrieve list of stored passphrases: %s",
-		           egg_error_message (error));
-		g_clear_error (&error);
-		return NULL;
-	}
-
-	results = gck_objects_from_handle_array (session, data, n_data / sizeof (CK_ULONG));
-
-	g_free (data);
-	return results;
-}
-
-static gboolean
-fields_to_attribute (GckBuilder *builder,
-                     GHashTable *fields)
-{
-	GString *concat = g_string_sized_new (128);
-	const gchar *field;
-	const gchar *value;
-	GList *keys, *l;
-
-	keys = g_hash_table_get_keys (fields);
-	for (l = g_list_sort (keys, (GCompareFunc) g_strcmp0); l; l = l->next) {
-		field = l->data;
-		value = g_hash_table_lookup (fields, field);
-		g_return_val_if_fail (value != NULL, FALSE);
-
-		g_string_append (concat, field);
-		g_string_append_c (concat, '\0');
-		g_string_append (concat, value);
-		g_string_append_c (concat, '\0');
-	}
-
-	gck_builder_add_data (builder, CKA_G_FIELDS, (const guchar *)concat->str, concat->len);
-	g_string_free (concat, TRUE);
-	return TRUE;
-}
-
-gchar *
-gkd_login_lookup_password (GckSession *session,
-                           const gchar *field,
-                           ...)
-{
-	GHashTable *fields;
-	const gchar *value;
-	gchar *result;
-	va_list va;
-
-	fields = g_hash_table_new (g_str_hash, g_str_equal);
-
-	va_start (va, field);
-	while (field) {
-		value = va_arg (va, const gchar *);
-		g_hash_table_insert (fields, (gpointer)field, (gpointer)value);
-		field = va_arg (va, const gchar *);
-	}
-	va_end (va);
-
-	result = gkd_login_lookup_passwordv (session, fields);
-	g_hash_table_unref (fields);
-	return result;
-}
-
-gchar *
-gkd_login_lookup_passwordv (GckSession *session,
-			    GHashTable *fields)
-{
-	GckBuilder builder = GCK_BUILDER_INIT;
-	GckAttributes *attrs;
-	GList *objects, *l;
-	GError *error = NULL;
-	gpointer data = NULL;
-	gsize length;
-
-	if (!session)
-		session = lookup_login_session (NULL);
-	else
-		session = g_object_ref (session);
-	if (!session)
-		return NULL;
-
-	gck_builder_add_ulong (&builder, CKA_CLASS, CKO_SECRET_KEY);
-
-	if (!fields_to_attribute (&builder, fields))
-		g_return_val_if_reached (FALSE);
-
-	attrs = gck_attributes_ref_sink (gck_builder_end (&builder));
-	objects = find_saved_items (session, attrs);
-	gck_attributes_unref (attrs);
-
-	/* Return first password */
-	data = NULL;
-	for (l = objects; l; l = g_list_next (l)) {
-		data = gck_object_get_data_full (l->data, CKA_VALUE, egg_secure_realloc, NULL, &length, &error);
-		if (error) {
-			if (!g_error_matches (error, GCK_ERROR, CKR_USER_NOT_LOGGED_IN))
-				g_warning ("couldn't lookup password: %s", egg_error_message (error));
-			g_clear_error (&error);
-			data = NULL;
-		} else {
-			break;
-		}
-	}
-
-	g_list_free_full (objects, g_object_unref);
-	g_object_unref (session);
-
-	/* Data is null terminated */
-	return data;
-}
-
-void
-gkd_login_clear_password (GckSession *session,
-                          const gchar *field,
-                          ...)
-{
-	GHashTable *fields;
-	const gchar *value;
-	va_list va;
-
-	fields = g_hash_table_new (g_str_hash, g_str_equal);
-
-	va_start (va, field);
-	while (field) {
-		value = va_arg (va, const gchar *);
-		g_hash_table_insert (fields, (gpointer)field, (gpointer)value);
-		field = va_arg (va, const gchar *);
-	}
-	va_end (va);
-
-	gkd_login_clear_passwordv (session, fields);
-	g_hash_table_unref (fields);
-}
-
-void
-gkd_login_clear_passwordv (GckSession *session,
-			   GHashTable *fields)
-{
-	GckBuilder builder = GCK_BUILDER_INIT;
-	GckAttributes *attrs;
-	GList *objects, *l;
-	GError *error = NULL;
-
-	if (!session)
-		session = lookup_login_session (NULL);
-	else
-		session = g_object_ref (session);
-	if (!session)
-		return;
-
-	gck_builder_add_ulong (&builder, CKA_CLASS, CKO_SECRET_KEY);
-
-	if (!fields_to_attribute (&builder, fields))
-		g_return_if_reached ();
-
-	attrs = gck_attributes_ref_sink (gck_builder_end (&builder));
-	objects = find_saved_items (session, attrs);
-	gck_attributes_unref (attrs);
-
-	/* Delete first item */
-	for (l = objects; l; l = g_list_next (l)) {
-		if (gck_object_destroy (l->data, NULL, &error))
-			break; /* Only delete the first item */
-		g_warning ("couldn't clear password: %s", error->message);
-		g_clear_error (&error);
-	}
-
-	g_list_free_full (objects, g_object_unref);
-	g_object_unref (session);
-}
-
-gboolean
-gkd_login_store_password (GckSession *session,
-                          const gchar *password,
-                          const gchar *label,
-                          const gchar *method,
-                          gint lifetime,
-                          const gchar *field,
-                          ...)
-{
-	GHashTable *fields;
-	const gchar *value;
-	gboolean result;
-	va_list va;
-
-	fields = g_hash_table_new (g_str_hash, g_str_equal);
-
-	va_start (va, field);
-	while (field) {
-		value = va_arg (va, const gchar *);
-		g_hash_table_insert (fields, (gpointer)field, (gpointer)value);
-		field = va_arg (va, const gchar *);
-	}
-	va_end (va);
-
-	result = gkd_login_store_passwordv (session, password, label, method, lifetime, fields);
-	g_hash_table_unref (fields);
-	return result;
-}
-
-gboolean
-gkd_login_store_passwordv (GckSession *session,
-			   const gchar *password,
-			   const gchar *label,
-			   const gchar *method,
-			   gint lifetime,
-			   GHashTable *fields)
-{
-	GckBuilder builder = GCK_BUILDER_INIT;
-	GckAttributes *attrs;
-	guchar *identifier;
-	GList *previous;
-	gboolean ret = FALSE;
-	GckObject *item;
-	GError *error = NULL;
-	gsize length;
-
-	if (!method)
-		method = GCR_UNLOCK_OPTION_SESSION;
-
-	if (!session)
-		session = lookup_login_session (NULL);
-	else
-		session = g_object_ref (session);
-	if (!session)
-		return FALSE;
-
-	if (!fields_to_attribute (&builder, fields))
-		g_return_val_if_reached (FALSE);
-
-	if (g_str_equal (method, GCR_UNLOCK_OPTION_ALWAYS)) {
-		gck_builder_add_string (&builder, CKA_G_COLLECTION, "login");
-
-	} else {
-		if (g_str_equal (method, GCR_UNLOCK_OPTION_IDLE)) {
-			gck_builder_add_boolean (&builder, CKA_GNOME_TRANSIENT, TRUE);
-			gck_builder_add_ulong (&builder, CKA_G_DESTRUCT_IDLE, lifetime);
-
-		} else if (g_str_equal (method, GCR_UNLOCK_OPTION_TIMEOUT)) {
-			gck_builder_add_boolean (&builder, CKA_GNOME_TRANSIENT, TRUE);
-			gck_builder_add_ulong (&builder, CKA_G_DESTRUCT_AFTER, lifetime);
-
-		} else if (!g_str_equal (method, GCR_UNLOCK_OPTION_SESSION)) {
-			g_message ("Unsupported gpg-cache-method setting: %s", method);
-		}
-		gck_builder_add_string (&builder, CKA_G_COLLECTION, "session");
-	}
-
-	gck_builder_add_boolean (&builder, CKA_TOKEN, TRUE);
-	gck_builder_add_ulong (&builder, CKA_CLASS, CKO_SECRET_KEY);
-
-	/* Find a previously stored object like this, and replace if so */
-	attrs = gck_attributes_ref_sink (gck_builder_end (&builder));
-	previous = find_saved_items (session, attrs);
-	if (previous) {
-		identifier = gck_object_get_data (previous->data, CKA_ID, NULL, &length, NULL);
-		if (identifier != NULL)
-			gck_builder_add_data (&builder, CKA_ID, identifier, length);
-		g_free (identifier);
-		g_list_free_full (previous, g_object_unref);
-	}
-
-	/* Put in the remainder of the attributes */
-	gck_builder_add_all (&builder, attrs);
-	gck_builder_add_string (&builder, CKA_VALUE, password);
-	gck_builder_add_string (&builder, CKA_LABEL, label);
-	gck_attributes_unref (attrs);
-
-	item = gck_session_create_object (session, gck_builder_end (&builder), NULL, &error);
-	if (item == NULL) {
-		g_warning ("couldn't store password: %s", egg_error_message (error));
-		g_clear_error (&error);
-		ret = FALSE;
-	} else {
-		g_object_unref (item);
-		ret = TRUE;
-	}
-
-	g_object_unref (session);
-	return ret;
 }

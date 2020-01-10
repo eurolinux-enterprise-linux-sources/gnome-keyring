@@ -14,8 +14,9 @@
  * Lesser General Public License for more details.
  *
  * You should have received a copy of the GNU Lesser General Public
- * License along with this program; if not, see
- * <http://www.gnu.org/licenses/>.
+ * License along with this program; if not, write to the Free Software
+ * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA
+ * 02111-1307, USA.
  */
 
 #include "config.h"
@@ -208,10 +209,6 @@ gkm_credential_dispose (GObject *obj)
 	if (self->pv->object)
 		g_object_weak_unref (G_OBJECT (self->pv->object), object_went_away, self);
 	self->pv->object = NULL;
-
-	if (self->pv->secret)
-		g_object_unref (G_OBJECT (self->pv->secret));
-	self->pv->secret = NULL;
 
 	clear_data (self);
 

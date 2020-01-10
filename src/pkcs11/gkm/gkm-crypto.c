@@ -14,8 +14,9 @@
  * Lesser General Public License for more details.
  *
  * You should have received a copy of the GNU Lesser General Public
- * License along with this program; if not, see
- * <http://www.gnu.org/licenses/>.
+ * License along with this program; if not, write to the Free Software
+ * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA
+ * 02111-1307, USA.
  */
 
 #include "config.h"
@@ -24,7 +25,6 @@
 #include "gkm-aes-mechanism.h"
 #include "gkm-dh-mechanism.h"
 #include "gkm-dsa-mechanism.h"
-#include "gkm-ecdsa-mechanism.h"
 #include "gkm-hkdf-mechanism.h"
 #include "gkm-null-mechanism.h"
 #include "gkm-rsa-mechanism.h"
@@ -108,7 +108,7 @@ gkm_crypto_sexp_to_data (gcry_sexp_t sexp, guint bits, CK_BYTE_PTR data,
 
 	/* Parse out the MPI */
 	mpi = gcry_sexp_nth_mpi (at, 1, GCRYMPI_FMT_USG);
-	g_return_val_if_fail (mpi != NULL, CKR_GENERAL_ERROR);
+	g_return_val_if_fail (at != NULL, CKR_GENERAL_ERROR);
 	gcry_sexp_release (at);
 
 	/* Print out the MPI into the end of a temporary buffer */
@@ -263,7 +263,6 @@ gkm_crypto_sign (GkmSession *session, CK_MECHANISM_TYPE mech, CK_BYTE_PTR data,
 	case CKM_RSA_PKCS:
 	case CKM_RSA_X_509:
 	case CKM_DSA:
-	case CKM_ECDSA:
 		sexp = gkm_session_get_crypto_state (session);
 		g_return_val_if_fail (sexp, CKR_GENERAL_ERROR);
 		return gkm_crypto_sign_xsa (gkm_sexp_get (sexp), mech, data, n_data, signature, n_signature);
@@ -305,10 +304,6 @@ gkm_crypto_sign_xsa (gcry_sexp_t sexp, CK_MECHANISM_TYPE mech, CK_BYTE_PTR data,
 		g_return_val_if_fail (algorithm == GCRY_PK_DSA, CKR_GENERAL_ERROR);
 		rv = gkm_dsa_mechanism_sign (sexp, data, n_data, signature, n_signature);
 		break;
-	case CKM_ECDSA:
-		g_return_val_if_fail (algorithm == GCRY_PK_ECC, CKR_GENERAL_ERROR);
-		rv = gkm_ecdsa_mechanism_sign (sexp, data, n_data, signature, n_signature);
-		break;
 	default:
 		/* Again shouldn't be reached */
 		g_return_val_if_reached (CKR_GENERAL_ERROR);
@@ -327,7 +322,6 @@ gkm_crypto_verify (GkmSession *session, CK_MECHANISM_TYPE mech, CK_BYTE_PTR data
 	case CKM_RSA_PKCS:
 	case CKM_RSA_X_509:
 	case CKM_DSA:
-	case CKM_ECDSA:
 		sexp = gkm_session_get_crypto_state (session);
 		g_return_val_if_fail (sexp, CKR_GENERAL_ERROR);
 		return gkm_crypto_verify_xsa (gkm_sexp_get (sexp), mech, data, n_data, signature, n_signature);
@@ -368,10 +362,6 @@ gkm_crypto_verify_xsa (gcry_sexp_t sexp, CK_MECHANISM_TYPE mech, CK_BYTE_PTR dat
 	case CKM_DSA:
 		g_return_val_if_fail (algorithm == GCRY_PK_DSA, CKR_GENERAL_ERROR);
 		rv = gkm_dsa_mechanism_verify (sexp, data, n_data, signature, n_signature);
-		break;
-	case CKM_ECDSA:
-		g_return_val_if_fail (algorithm == GCRY_PK_ECC, CKR_GENERAL_ERROR);
-		rv = gkm_ecdsa_mechanism_verify (sexp, data, n_data, signature, n_signature);
 		break;
 	default:
 		/* Again shouldn't be reached */
@@ -517,7 +507,6 @@ gkm_crypto_prepare (GkmSession *session, CK_MECHANISM_TYPE mech, GkmObject *key)
 	switch (mech) {
 	case CKM_RSA_PKCS:
 	case CKM_RSA_X_509:
-	case CKM_ECDSA:
 	case CKM_DSA:
 		return gkm_crypto_prepare_xsa (session, mech, key);
 	default:

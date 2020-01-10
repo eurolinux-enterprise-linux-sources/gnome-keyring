@@ -14,8 +14,9 @@
  * Lesser General Public License for more details.
  *
  * You should have received a copy of the GNU Lesser General Public
- * License along with this program; if not, see
- * <http://www.gnu.org/licenses/>.
+ * License along with this program; if not, write to the Free Software
+ * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA
+ * 02111-1307, USA.
  */
 
 #include "config.h"
@@ -47,8 +48,8 @@ decode_object_identifier (const gchar* enc, gssize length)
 
 		/* Underscores get special handling */
 		if (G_UNLIKELY (ch == '_' &&
-				g_ascii_isxdigit(enc[0]) &&
-				g_ascii_isxdigit (enc[1]))) {
+		                g_ascii_isxdigit(enc[0]) &&
+		                g_ascii_isxdigit (enc[1]))) {
 			ch = (g_ascii_xdigit_value (enc[0]) * 16) +
 			     (g_ascii_xdigit_value (enc[1]));
 			enc += 2;
@@ -134,8 +135,8 @@ gkd_secret_util_build_path (const gchar *base, gconstpointer identifier, gssize 
 
 		/* Normal characters can go right through */
 		if (G_LIKELY ((ch >= 'A' && ch <= 'Z') ||
-			      (ch >= 'a' && ch <= 'z') ||
-			      (ch >= '0' && ch <= '9'))) {
+		              (ch >= 'a' && ch <= 'z') ||
+		              (ch >= '0' && ch <= '9'))) {
 			g_string_append_c (result, ch);
 
 		/* Special characters are encoded with a _ */

@@ -15,7 +15,8 @@
 
    You should have received a copy of the GNU Library General Public
    License along with the Gnome Library; see the file COPYING.LIB.  If not,
-   <http://www.gnu.org/licenses/>.
+   write to the Free Software Foundation, Inc., 59 Temple Place - Suite 330,
+   Boston, MA 02111-1307, USA.
 
    Author: Stef Walter <stef@memberwebs.com>
 */
@@ -23,7 +24,6 @@
 #ifndef GKD_DBUS_H
 #define GKD_DBUS_H
 
-#include <gio/gio.h>
 #include <glib.h>
 
 gboolean      gkd_dbus_setup                    (void);
@@ -33,9 +33,5 @@ gboolean  gkd_dbus_secrets_startup  (void);
 gboolean      gkd_dbus_singleton_acquire        (gboolean *acquired);
 
 gchar*        gkd_dbus_singleton_control        (void);
-
-/* DBus utils */
-gboolean      gkd_dbus_invocation_matches_caller (GDBusMethodInvocation *invocation,
-						  const char            *caller);
 
 #endif /* GKD_DBUS_H */

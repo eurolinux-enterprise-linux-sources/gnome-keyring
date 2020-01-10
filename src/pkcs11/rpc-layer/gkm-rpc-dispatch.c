@@ -15,7 +15,8 @@
 
    You should have received a copy of the GNU Library General Public
    License along with the Gnome Library; see the file COPYING.LIB.  If not,
-   <http://www.gnu.org/licenses/>.
+   write to the Free Software Foundation, Inc., 59 Temple Place - Suite 330,
+   Boston, MA 02111-1307, USA.
 
    Author: Stef Walter <stef@memberwebs.com>
 */
@@ -77,29 +78,16 @@ gkm_rpc_log (const char *line)
  * CALL STRUCTURES
  */
 
-typedef struct _ClientInstance {
-	struct _ClientInstance *next;
-	CK_G_APPLICATION application;
-	pid_t pid;
-	uid_t uid;
-	int refcount;
-} ClientInstance;
-
 typedef struct _CallState {
 	GkmRpcMessage *req;
 	GkmRpcMessage *resp;
 	void *allocated;
-	ClientInstance *client;
+	CK_G_APPLICATION application;
 } CallState;
 
-static ClientInstance *clients = NULL;
-static pthread_mutex_t clients_mutex = PTHREAD_MUTEX_INITIALIZER;
-
 static int
-call_init (CallState *cs, uid_t uid, pid_t pid)
+call_init (CallState *cs)
 {
-	ClientInstance *cl;
-
 	assert (cs);
 
 	cs->req = gkm_rpc_message_new ((EggBufferAllocator)realloc);
@@ -110,34 +98,9 @@ call_init (CallState *cs, uid_t uid, pid_t pid)
 		return 0;
 	}
 
-	pthread_mutex_lock (&clients_mutex);
+	memset (&cs->application, 0, sizeof (cs->application));
+	cs->application.applicationData = cs;
 
-	for (cl = clients; cl; cl = cl->next) {
-		if (cl->uid == uid && cl->pid == pid) {
-			cl->refcount++;
-			break;
-		}
-	}
-	if (!cl) {
-		cl = malloc (sizeof (*cl));
-		if (!cl) {
-			pthread_mutex_unlock (&clients_mutex);
-			return 0;
-		}
-		cl->next = clients;
-		clients = cl;
-
-		cl->uid = uid;
-		cl->pid = pid;
-		cl->refcount = 1;
-
-		memset (&cl->application, 0, sizeof (cl->application));
-		cl->application.applicationData = cl;
-	}
-
-	pthread_mutex_unlock (&clients_mutex);
-
-	cs->client = cl;
 	cs->allocated = NULL;
 	return 1;
 }
@@ -836,7 +799,7 @@ rpc_C_Finalize (CallState *cs)
 	 * we call C_CloseAllSessions for each slot for this client application.
 	 */
 
-	if (cs->client->application.applicationId) {
+	if (cs->application.applicationId) {
 		ret = (pkcs11_module->C_GetSlotList) (TRUE, NULL, &n_slots);
 		if (ret == CKR_OK) {
 			slots = calloc (n_slots, sizeof (CK_SLOT_ID));
@@ -845,7 +808,7 @@ rpc_C_Finalize (CallState *cs)
 			} else {
 				ret = (pkcs11_module->C_GetSlotList) (TRUE, slots, &n_slots);
 				for (i = 0; ret == CKR_OK && i < n_slots; ++i)
-					ret = (pkcs11_module->C_CloseAllSessions) (slots[i] | cs->client->application.applicationId);
+					ret = (pkcs11_module->C_CloseAllSessions) (slots[i] | cs->application.applicationId);
 				free (slots);
 			}
 		}
@@ -999,7 +962,7 @@ rpc_C_OpenSession (CallState *cs)
 		IN_ULONG (slot_id);
 		IN_ULONG (flags);
 		flags |= CKF_G_APPLICATION_SESSION;
-	PROCESS_CALL ((slot_id, flags, &cs->client->application, NULL, &session));
+	PROCESS_CALL ((slot_id, flags, &cs->application, NULL, &session));
 		OUT_ULONG (session);
 	END_CALL;
 }
@@ -1025,7 +988,7 @@ rpc_C_CloseAllSessions (CallState *cs)
 
 	BEGIN_CALL (C_CloseAllSessions);
 		IN_ULONG (slot_id);
-		slot_id |= cs->client->application.applicationId;
+		slot_id |= cs->application.applicationId;
 	PROCESS_CALL ((slot_id));
 	END_CALL;
 }
@@ -2125,13 +2088,13 @@ run_dispatch_loop (int sock)
 
 	assert (sock != -1);
 
-	if (egg_unix_credentials_read (sock, &pid, &uid) < 0) {
+	if (!egg_unix_credentials_read (sock, &pid, &uid) < 0) {
 		gkm_rpc_warn ("couldn't read socket credentials");
 		return;
 	}
 
 	/* Setup our buffers */
-	if (!call_init (&cs, uid, pid)) {
+	if (!call_init (&cs)) {
 		gkm_rpc_warn ("out of memory");
 		return;
 	}
@@ -2187,25 +2150,8 @@ run_dispatch_loop (int sock)
 	 * as slot ids. Calling with an application identifier closes all
 	 * sessions for just that application identifier.
 	 */
-	pthread_mutex_lock (&clients_mutex);
-
-	if (!--cs.client->refcount) {
-		ClientInstance **cl = &clients;
-
-		while (*cl) {
-			if (*cl == cs.client) {
-				*cl = cs.client->next;
-				break;
-			}
-			cl = &(*cl)->next;
-		}
-		if (cs.client->application.applicationId)
-			(pkcs11_module->C_CloseAllSessions) (cs.client->application.applicationId);
-		free (cs.client);
-		cs.client = NULL;
-	}
-
-	pthread_mutex_unlock (&clients_mutex);
+	if (cs.application.applicationId)
+		(pkcs11_module->C_CloseAllSessions) (cs.application.applicationId);
 
 	call_uninit (&cs);
 }

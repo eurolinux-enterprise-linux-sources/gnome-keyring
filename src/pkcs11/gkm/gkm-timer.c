@@ -14,8 +14,9 @@
  * Lesser General Public License for more details.
  *
  * You should have received a copy of the GNU Lesser General Public
- * License along with this program; if not, see
- * <http://www.gnu.org/licenses/>.
+ * License along with this program; if not, write to the Free Software
+ * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA
+ * 02111-1307, USA.
  */
 
 #include "config.h"
@@ -27,7 +28,7 @@
 #include <glib.h>
 
 struct _GkmTimer {
-	gint64 when;
+	glong when;
 	GMutex *mutex;
 	gpointer identifier;
 	GkmTimerFunc callback;
@@ -69,7 +70,8 @@ timer_thread_func (gpointer unused)
 		}
 
 		if (timer->when) {
-			gint64 offset = timer->when - g_get_monotonic_time ();
+			gint64 when = ((gint64)timer->when) * G_TIME_SPAN_SECOND;
+			gint64 offset = when - g_get_real_time ();
 			if (offset > 0) {
 				g_cond_wait_until (timer_cond, &timer_mutex, g_get_monotonic_time () + offset);
 				continue;
@@ -164,12 +166,15 @@ GkmTimer*
 gkm_timer_start (GkmModule *module, glong seconds, GkmTimerFunc callback, gpointer user_data)
 {
 	GkmTimer *timer;
+	GTimeVal tv;
 
 	g_return_val_if_fail (callback, NULL);
 	g_return_val_if_fail (timer_queue, NULL);
 
+	g_get_current_time (&tv);
+
 	timer = g_slice_new (GkmTimer);
-	timer->when = g_get_monotonic_time () + seconds * G_TIME_SPAN_SECOND;
+	timer->when = seconds + tv.tv_sec;
 	timer->callback = callback;
 	timer->user_data = user_data;
 

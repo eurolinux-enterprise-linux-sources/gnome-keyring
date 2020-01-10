@@ -1,94 +1,79 @@
+include $(top_srcdir)/Makefile.decl
 
-bin_PROGRAMS += \
+SUBDIRS = \
+	login \
+	control \
+	ssh-agent \
+	gpg-agent \
+	dbus
+
+bin_PROGRAMS= \
 	gnome-keyring-daemon
 
+INCLUDES=	\
+	-DPREFIX=\""$(prefix)"\" 			\
+	-DBINDIR=\""$(bindir)"\" 			\
+	-DLIBEXECDIR=\""$(libexecdir)"\"		\
+	-DGNOMELOCALEDIR=\""$(datadir)/locale"\"	\
+	-I$(top_srcdir) 				\
+	-I$(top_srcdir)/daemon 				\
+	-I$(top_builddir) 				\
+	$(DAEMON_CFLAGS)				\
+	-DGCK_API_SUBJECT_TO_CHANGE
+
 gnome_keyring_daemon_SOURCES = \
-	daemon/gkd-glue.c \
-	daemon/gkd-glue.h \
-	daemon/gkd-main.c \
-	daemon/gkd-main.h \
-	daemon/gkd-capability.c \
-	daemon/gkd-capability.h \
-	daemon/gkd-pkcs11.c \
-	daemon/gkd-pkcs11.h \
-	daemon/gkd-util.c \
-	daemon/gkd-util.h \
-	$(NULL)
+	gkd-glue.c gkd-glue.h \
+	gkd-main.c gkd-main.h \
+	gkd-capability.c gkd-capability.h \
+	gkd-pkcs11.c gkd-pkcs11.h \
+	gkd-util.c gkd-util.h
+
 gnome_keyring_daemon_LDADD = \
-	libgkd-dbus.la \
-	libgkd-control.la \
-	libgkd-ssh-agent.la \
-	libgkd-login.la \
-	libgkm-wrap-layer.la \
-	libgkm-rpc-layer.la \
-	libgkm-secret-store.la \
-	libgkm-ssh-store.la \
-	libgkm-gnome2-store.la \
-	libgkm-xdg-store.la \
-	libgkm.la \
+	$(top_builddir)/daemon/dbus/libgkd-dbus.la \
+	$(top_builddir)/daemon/login/libgkd-login.la \
+	$(top_builddir)/daemon/control/libgkd-control.la \
+	$(top_builddir)/daemon/ssh-agent/libgkd-ssh-agent.la \
+	$(top_builddir)/daemon/gpg-agent/libgkd-gpg-agent.la \
+	$(top_builddir)/pkcs11/wrap-layer/libgkm-wrap-layer.la \
+	$(top_builddir)/pkcs11/rpc-layer/libgkm-rpc-layer.la \
+	$(top_builddir)/pkcs11/secret-store/libgkm-secret-store.la \
+	$(top_builddir)/pkcs11/ssh-store/libgkm-ssh-store.la \
+	$(top_builddir)/pkcs11/gnome2-store/libgkm-gnome2-store.la \
+	$(top_builddir)/pkcs11/xdg-store/libgkm-xdg-store.la \
+	$(top_builddir)/pkcs11/gkm/libgkm.la \
+	$(top_builddir)/egg/libegg-dbus.la \
 	$(DAEMON_LIBS)
-gnome_keyring_daemon_CFLAGS = \
-	$(DAEMON_CFLAGS)
 
 service_in_files = \
-	daemon/org.gnome.keyring.service.in \
-	daemon/org.freedesktop.secrets.service.in
-servicedir = $(DBUS_SERVICES_DIR)
-service_DATA = $(service_in_files:.service.in=.service)
+	org.gnome.keyring.service.in \
+	org.freedesktop.secrets.service.in
 
-desktopdir = $(sysconfdir)/xdg/autostart
+servicedir       = $(DBUS_SERVICES_DIR)
+service_DATA     = $(service_in_files:.service.in=.service)
+service_PATH     = $(VALGRIND_RUN)$(bindir)
+
 desktop_in_in_files = \
-	daemon/gnome-keyring-pkcs11.desktop.in.in \
-	daemon/gnome-keyring-secrets.desktop.in.in \
-	daemon/gnome-keyring-ssh.desktop.in.in \
-	$(NULL)
+	gnome-keyring-pkcs11.desktop.in.in \
+	gnome-keyring-secrets.desktop.in.in \
+	gnome-keyring-ssh.desktop.in.in \
+	gnome-keyring-gpg.desktop.in.in
 desktop_in_files = $(desktop_in_in_files:.desktop.in.in=.desktop.in)
-desktop_DATA = $(desktop_in_files:.desktop.in=.desktop)
-.desktop.in.in.desktop.in:
-	$(AM_V_GEN) $(MSGFMT) --desktop --template $< -d $(top_srcdir)/po -o $@
+desktopdir       = $(sysconfdir)/xdg/autostart
+desktop_DATA     = $(desktop_in_files:.desktop.in=.desktop)
 
-EXTRA_DIST += \
+EXTRA_DIST = \
 	$(service_in_files) \
-	$(desktop_in_files) \
 	$(desktop_in_in_files)
 
-CLEANFILES += \
+CLEANFILES = \
+	$(desktop_in_files) \
 	$(service_DATA) \
 	$(desktop_DATA)
 
-# -------------------------------------------------------------------
-# TESTS
+if WITH_CAPS
 
-noinst_LTLIBRARIES += libgkd-test.la
+# Set the relevant capabilities on the daemon
+install-exec-hook:
+	setcap cap_ipc_lock=ep $(DESTDIR)$(bindir)/gnome-keyring-daemon || true
 
-libgkd_test_la_SOURCES = \
-	daemon/gkd-test.c \
-	daemon/gkd-test.h
-
-daemon_CFLAGS = \
-	$(GIO_CFLAGS) \
-	$(GCR_CFLAGS)
-
-daemon_LIBS = \
-	libgkd-control-client.la \
-	libgkd-test.la \
-	libegg.la \
-	libegg-test.la \
-	$(GCR_BASE_LIBS) \
-	$(GIO_LIBS) \
-	$(GLIB_LIBS)
-
-daemon_TESTS = \
-	test-startup \
-	test-shutdown
-
-test_startup_SOURCES = daemon/test-startup.c
-test_startup_LDADD = $(daemon_LIBS)
-test_statrup_CFLAGS = $(daemon_CFLAGS)
-
-test_shutdown_SOURCES = daemon/test-shutdown.c
-test_shutdown_LDADD = $(daemon_LIBS)
-test_shutdown_CFLAGS = $(daemon_CFLAGS)
-
-check_PROGRAMS += $(daemon_TESTS)
-TESTS += $(daemon_TESTS)
+endif

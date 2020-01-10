@@ -1,10 +1,10 @@
 [Desktop Entry]
 Type=Application
-Name=SSH Key Agent
-Comment=GNOME Keyring: SSH Agent
-Exec=@bindir@/gnome-keyring-daemon --start --components=ssh
+_Name=SSH Key Agent
+_Comment=GNOME Keyring: SSH Agent
+Exec=@VALGRIND_RUN@@bindir@/gnome-keyring-daemon --start --components=ssh
 OnlyShowIn=GNOME;Unity;MATE;
-X-GNOME-Autostart-Phase=PreDisplayServer
+X-GNOME-Autostart-Phase=Initialization
 X-GNOME-AutoRestart=false
 X-GNOME-Autostart-Notify=true
 X-GNOME-Bugzilla-Bugzilla=GNOME

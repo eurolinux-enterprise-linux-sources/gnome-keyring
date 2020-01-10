@@ -14,8 +14,9 @@
  * Lesser General Public License for more details.
  *
  * You should have received a copy of the GNU Lesser General Public
- * License along with this program; if not, see
- * <http://www.gnu.org/licenses/>.
+ * License along with this program; if not, write to the Free Software
+ * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA
+ * 02111-1307, USA.
  */
 
 #ifndef __GKD_SECRET_SESSION_H__
@@ -53,16 +54,18 @@ gboolean            gkd_secret_session_complete                (GkdSecretSession
 
 const gchar*        gkd_secret_session_get_caller              (GkdSecretSession *self);
 
+const gchar*        gkd_secret_session_get_caller_executable   (GkdSecretSession *self);
+
 GckSession*         gkd_secret_session_get_pkcs11_session      (GkdSecretSession *self);
 
 GkdSecretSecret*    gkd_secret_session_get_item_secret         (GkdSecretSession *self,
                                                                 GckObject *item,
-                                                                GError **error);
+                                                                DBusError *derr);
 
 gboolean            gkd_secret_session_set_item_secret         (GkdSecretSession *self,
                                                                 GckObject *item,
                                                                 GkdSecretSecret *secret,
-                                                                GError **error);
+                                                                DBusError *derr);
 
 GckObject*          gkd_secret_session_create_credential       (GkdSecretSession *self,
                                                                 GckSession *session,
@@ -70,11 +73,7 @@ GckObject*          gkd_secret_session_create_credential       (GkdSecretSession
                                                                 GkdSecretSecret *secret,
                                                                 GError **error);
 
-gboolean            gkd_secret_session_handle_open             (GkdSecretSession *self,
-                                                                const gchar *algorithm,
-                                                                GVariant *input,
-                                                                GVariant **output,
-                                                                gchar **result,
-                                                                GError **error);
+DBusMessage*        gkd_secret_session_handle_open             (GkdSecretSession *self,
+                                                                DBusMessage *message);
 
 #endif /* __GKD_SECRET_SESSION_H__ */

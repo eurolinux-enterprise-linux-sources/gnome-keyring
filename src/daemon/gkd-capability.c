@@ -14,8 +14,9 @@
  * Lesser General Public License for more details.
  *
  * You should have received a copy of the GNU Lesser General Public
- * License along with this program; if not, see
- * <http://www.gnu.org/licenses/>.
+ * License along with this program; if not, write to the Free Software
+ * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA
+ * 02111-1307, USA.
  *
  * Author: Steve Grubb <sgrubb@redhat.com>
  */
@@ -80,11 +81,11 @@ gkd_capability_obtain_capability_and_drop_privileges (void)
 			early_error ("error getting process capabilities");
 			break;
 		case CAPNG_NONE:
-			early_warning ("insufficient process capabilities, insecure memory might get used");
+			early_warning ("insufficient process capabilities, unsecure memory might get used");
 			break;
 		case CAPNG_PARTIAL: /* File system based capabilities */
 			if (!capng_have_capability (CAPNG_EFFECTIVE, CAP_IPC_LOCK)) {
-				early_warning ("insufficient process capabilities, insecure memory might get used");
+				early_warning ("insufficient process capabilities, unsecure memory might get used");
 				/* Drop all capabilities */
 				capng_clear (CAPNG_SELECT_BOTH);
 				capng_apply (CAPNG_SELECT_BOTH);

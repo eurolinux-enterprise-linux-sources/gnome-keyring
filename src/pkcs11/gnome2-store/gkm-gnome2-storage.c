@@ -14,8 +14,9 @@
  * Lesser General Public License for more details.
  *
  * You should have received a copy of the GNU Lesser General Public
- * License along with this program; if not, see
- * <http://www.gnu.org/licenses/>.
+ * License along with this program; if not, write to the Free Software
+ * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA
+ * 02111-1307, USA.
  */
 
 #include "config.h"
@@ -286,8 +287,8 @@ complete_write_state (GkmTransaction *transaction, GObject *object, gpointer unu
 	g_return_val_if_fail (GKM_IS_TRANSACTION (transaction), FALSE);
 	g_return_val_if_fail (self->transaction == transaction, FALSE);
 
+	/* Transaction succeeded, overwrite the old with the new */
 	if (!gkm_transaction_get_failed (transaction)) {
-		/* Transaction succeeded, overwrite the old with the new */
 
 		if (g_rename (self->write_path, self->filename) == -1) {
 			g_warning ("couldn't rename temporary store file: %s", self->write_path);
@@ -296,10 +297,6 @@ complete_write_state (GkmTransaction *transaction, GObject *object, gpointer unu
 			if (fstat (self->write_fd, &sb) >= 0)
 				self->last_mtime = sb.st_mtime;
 		}
-	} else {
-		/* Transaction failed, remove temporary file */
-		if (g_unlink (self->write_path) == -1)
-			g_warning ("couldn't delete temporary store file: %s", self->write_path);
 	}
 
 	/* read_fd is closed by complete_lock_file */
@@ -919,10 +916,6 @@ gkm_gnome2_storage_dispose (GObject *obj)
 	if (self->manager)
 		g_object_unref (self->manager);
 	self->manager = NULL;
-
-	if (self->login)
-		g_object_unref (self->login);
-	self->login = NULL;
 
 	g_signal_handlers_disconnect_by_func (self->file, data_file_entry_added, self);
 	g_signal_handlers_disconnect_by_func (self->file, data_file_entry_changed, self);

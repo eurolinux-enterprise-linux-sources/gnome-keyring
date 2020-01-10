@@ -14,8 +14,9 @@
  * Lesser General Public License for more details.
  *
  * You should have received a copy of the GNU Lesser General Public
- * License along with this program; if not, see
- * <http://www.gnu.org/licenses/>.
+ * License along with this program; if not, write to the Free Software
+ * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA
+ * 02111-1307, USA.
  */
 
 #ifndef __GKD_LOGIN_H__
@@ -23,42 +24,9 @@
 
 #include <glib.h>
 
-typedef struct _GckSession GckSession;
-
 gboolean          gkd_login_unlock                   (const gchar *master);
 
 gboolean          gkd_login_change_lock              (const gchar *original,
                                                       const gchar *master);
-
-gboolean          gkd_login_available                (GckSession *session);
-
-gchar *           gkd_login_lookup_password          (GckSession *session,
-						      const gchar *field,
-						      ...) G_GNUC_NULL_TERMINATED;
-
-void              gkd_login_clear_password           (GckSession *session,
-						      const gchar *field,
-						      ...) G_GNUC_NULL_TERMINATED;
-
-gboolean          gkd_login_store_password           (GckSession *session,
-						      const gchar *password,
-						      const gchar *label,
-						      const gchar *method,
-						      gint lifetime,
-						      const gchar *field,
-						      ...) G_GNUC_NULL_TERMINATED;
-
-gchar *           gkd_login_lookup_passwordv         (GckSession *session,
-						      GHashTable *fields);
-
-void              gkd_login_clear_passwordv          (GckSession *session,
-						      GHashTable *fields);
-
-gboolean          gkd_login_store_passwordv          (GckSession *session,
-						      const gchar *password,
-						      const gchar *label,
-						      const gchar *method,
-						      gint lifetime,
-						      GHashTable *fields);
 
 #endif /* __GKD_LOGIN_H__ */

@@ -14,8 +14,9 @@
  * Lesser General Public License for more details.
  *
  * You should have received a copy of the GNU Lesser General Public
- * License along with this program; if not, see
- * <http://www.gnu.org/licenses/>.
+ * License along with this program; if not, write to the Free Software
+ * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA
+ * 02111-1307, USA.
  */
 
 #ifndef __GKD_SECRET_PROPERTY_H__
@@ -25,23 +26,25 @@
 
 #include <gck/gck.h>
 
-#include <gio/gio.h>
+#include <dbus/dbus.h>
 
 gboolean               gkd_secret_property_get_type               (const gchar *property,
                                                                    CK_ATTRIBUTE_TYPE *type);
 
-GVariant *             gkd_secret_property_append_variant         (const GckAttribute *attr);
+gboolean               gkd_secret_property_append_variant         (DBusMessageIter *iter,
+                                                                   const GckAttribute *attr);
 
-GVariant *             gkd_secret_property_append_all             (GckAttributes *attrs);
+gboolean               gkd_secret_property_append_all             (DBusMessageIter *array,
+                                                                   GckAttributes *attrs);
 
-gboolean               gkd_secret_property_parse_variant          (GVariant *variant,
+gboolean               gkd_secret_property_parse_variant          (DBusMessageIter *iter,
                                                                    const gchar *property,
                                                                    GckBuilder *builder);
 
-gboolean               gkd_secret_property_parse_fields           (GVariant *variant,
+gboolean               gkd_secret_property_parse_fields           (DBusMessageIter *iter,
                                                                    GckBuilder *builder);
 
-gboolean               gkd_secret_property_parse_all              (GVariant *variant,
+gboolean               gkd_secret_property_parse_all              (DBusMessageIter *array,
                                                                    const gchar *interface,
                                                                    GckBuilder *builder);
 

@@ -14,8 +14,9 @@
  * Lesser General Public License for more details.
  *
  * You should have received a copy of the GNU Lesser General Public
- * License along with this program; if not, see
- * <http://www.gnu.org/licenses/>.
+ * License along with this program; if not, write to the Free Software
+ * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA
+ * 02111-1307, USA.
  *
  * Author: Stef Walter <stefw@collabora.co.uk>
  */
@@ -58,9 +59,6 @@ gboolean   egg_test_wait_until                 (int timeout);
 gint       egg_tests_run_with_loop             (void);
 
 gint       egg_tests_run_in_thread_with_loop   (void);
-
-void       egg_tests_copy_scratch_file         (const gchar *directory,
-                                                const gchar *file_to_copy);
 
 gchar *    egg_tests_create_scratch_directory  (const gchar *file_to_copy,
                                                 ...) G_GNUC_NULL_TERMINATED;

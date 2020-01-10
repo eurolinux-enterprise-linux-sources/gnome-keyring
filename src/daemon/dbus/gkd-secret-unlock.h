@@ -14,8 +14,9 @@
  * Lesser General Public License for more details.
  *
  * You should have received a copy of the GNU Lesser General Public
- * License along with this program; if not, see
- * <http://www.gnu.org/licenses/>.
+ * License along with this program; if not, write to the Free Software
+ * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA
+ * 02111-1307, USA.
  */
 
 #ifndef __GKD_SECRET_UNLOCK_H__
@@ -66,6 +67,6 @@ gboolean            gkd_secret_unlock_with_secret             (GckObject *collec
 gboolean            gkd_secret_unlock_with_password           (GckObject *collection,
                                                                const guchar *password,
                                                                gsize n_password,
-                                                               GError **error);
+                                                               DBusError *derr);
 
 #endif /* __GKD_SECRET_UNLOCK_H__ */

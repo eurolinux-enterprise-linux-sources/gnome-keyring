@@ -14,8 +14,9 @@
  * Lesser General Public License for more details.
  *
  * You should have received a copy of the GNU Lesser General Public
- * License along with this program; if not, see
- * <http://www.gnu.org/licenses/>.
+ * License along with this program; if not, write to the Free Software
+ * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA
+ * 02111-1307, USA.
  */
 
 #include "config.h"
@@ -160,12 +161,6 @@ static const MechanismAndInfo mechanism_list[] = {
 	 * For DH derivation the min and max are sizes of output key in bytes.
 	 */
 	{ CKM_DH_PKCS_DERIVE, { 1, 255, CKF_DERIVE } },
-
-	/*
-	 * CKM_ECDSA
-	 * For ECDSA, min and max are the minimum and maximum modulus in bits
-	 */
-	{ CKM_ECDSA, { 256, 521, CKF_SIGN | CKF_VERIFY } },
 
 	/*
 	 * CKM_G_HKDF_DERIVE

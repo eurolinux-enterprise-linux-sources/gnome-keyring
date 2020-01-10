@@ -14,8 +14,9 @@
  * Lesser General Public License for more details.
  *
  * You should have received a copy of the GNU Lesser General Public
- * License along with this program; if not, see
- * <http://www.gnu.org/licenses/>.
+ * License along with this program; if not, write to the Free Software
+ * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA
+ * 02111-1307, USA.
  */
 
 #include "config.h"
@@ -52,6 +53,14 @@ gkd_secret_dispatch_get_type (void)
 	}
 
 	return type;
+}
+
+DBusMessage*
+gkd_secret_dispatch_message (GkdSecretDispatch *self, DBusMessage *message)
+{
+	g_return_val_if_fail (GKD_SECRET_IS_DISPATCH (self), NULL);
+	g_return_val_if_fail (GKD_SECRET_DISPATCH_GET_INTERFACE (self)->dispatch_message, NULL);
+	return GKD_SECRET_DISPATCH_GET_INTERFACE (self)->dispatch_message (self, message);
 }
 
 const gchar*

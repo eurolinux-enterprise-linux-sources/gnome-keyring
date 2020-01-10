@@ -15,7 +15,8 @@
 
    You should have received a copy of the GNU Library General Public
    License along with the Gnome Library; see the file COPYING.LIB.  If not,
-   <http://www.gnu.org/licenses/>.
+   write to the Free Software Foundation, Inc., 59 Temple Place - Suite 330,
+   Boston, MA 02111-1307, USA.
 
    Author: Stef Walter <stef@memberwebs.com>
 */
@@ -227,7 +228,7 @@ egg_dn_read_part (GNode *asn, const gchar *match)
 			/* Does it match either the OID or the displayable? */
 			if (g_ascii_strcasecmp (g_quark_to_string (oid), match) != 0) {
 				name = egg_oid_get_name (oid);
-				if (g_ascii_strcasecmp (name, match) != 0)
+				if (!g_ascii_strcasecmp (name, match) == 0)
 					continue;
 			}
 

@@ -58,12 +58,9 @@
 #include <sys/stat.h>
 #include <sys/wait.h>
 
-#include <gio/gunixinputstream.h>
-#include <gio/gunixoutputstream.h>
 #include <glib.h>
 #include <glib/gi18n.h>
 #include <glib-object.h>
-#include <glib-unix.h>
 
 #include <gcrypt.h>
 
@@ -80,6 +77,7 @@ typedef int socklen_t;
 #define GKD_COMP_PKCS11     "pkcs11"
 #define GKD_COMP_SECRETS    "secrets"
 #define GKD_COMP_SSH        "ssh"
+#define GKD_COMP_GPG        "gpg"
 
 EGG_SECURE_DECLARE (daemon_main);
 
@@ -113,22 +111,21 @@ static gchar* run_components = DEFAULT_COMPONENTS;
 static gboolean pkcs11_started = FALSE;
 static gboolean secrets_started = FALSE;
 static gboolean ssh_started = FALSE;
+static gboolean gpg_started = FALSE;
 static gboolean dbus_started = FALSE;
 
 static gboolean run_foreground = FALSE;
 static gboolean run_daemonized = FALSE;
 static gboolean run_version = FALSE;
 static gboolean run_for_login = FALSE;
-static gboolean perform_unlock = FALSE;
 static gboolean run_for_start = FALSE;
 static gboolean run_for_replace = FALSE;
 static gchar* login_password = NULL;
 static gchar* control_directory = NULL;
 static guint timeout_id = 0;
 static gboolean initialization_completed = FALSE;
-static GMainLoop *loop = NULL;
-static int parent_wakeup_fd = -1;
-static GDBusConnection *system_bus_connection = NULL;
+static gboolean sig_thread_valid = FALSE;
+static pthread_t sig_thread;
 
 static GOptionEntry option_entries[] = {
 	{ "start", 's', 0, G_OPTION_ARG_NONE, &run_for_start,
@@ -140,9 +137,7 @@ static GOptionEntry option_entries[] = {
 	{ "daemonize", 'd', 0, G_OPTION_ARG_NONE, &run_daemonized,
 	  "Run as a daemon", NULL },
 	{ "login", 'l', 0, G_OPTION_ARG_NONE, &run_for_login,
-	  "Run by PAM for a user login. Read login password from stdin", NULL },
-	{ "unlock", 0, 0, G_OPTION_ARG_NONE, &perform_unlock,
-	  "Prompt for login keyring password, or read from stdin", NULL },
+	  "Run for a user login. Read login password from stdin", NULL },
 	{ "components", 'c', 0, G_OPTION_ARG_STRING, &run_components,
 	  "The optional components to run", DEFAULT_COMPONENTS },
 	{ "control-directory", 'C', 0, G_OPTION_ARG_FILENAME, &control_directory,
@@ -162,7 +157,7 @@ parse_arguments (int *argc, char** argv[])
 	g_option_context_add_main_entries (context, option_entries, GETTEXT_PACKAGE);
 
 	if (!g_option_context_parse (context, argc, argv, &err)) {
-		g_printerr ("gnome-keyring-daemon: %s\n", egg_error_message (err));
+		g_printerr ("gnome-keyring-daemon: %s", egg_error_message (err));
 		g_clear_error (&err);
 	}
 
@@ -175,27 +170,19 @@ parse_arguments (int *argc, char** argv[])
 
 	/* Check the arguments */
 	if (run_for_login && run_for_start) {
-		g_printerr ("gnome-keyring-daemon: The --start option is incompatible with --login\n");
+		g_printerr ("gnome-keyring-daemon: The --start option is incompatible with --login");
 		run_for_login = FALSE;
 	}
 
 	if (run_for_login && run_for_replace) {
-		g_printerr ("gnome-keyring-daemon: The --replace option is incompatible with --login\n");
+		g_printerr ("gnome-keyring-daemon: The --replace option is incompatible with --login");
 		run_for_login = FALSE;
 	}
 
 	if (run_for_start && run_for_replace) {
-		g_printerr ("gnome-keyring-daemon: The --replace option is incompatible with --start\n");
+		g_printerr ("gnome-keyring-daemon: The --replace option is incompatible with --start");
 		run_for_start = FALSE;
 	}
-
-	if (run_for_start && perform_unlock) {
-		g_printerr ("gnome-keyring-daemon: The --start option is incompatible with --unlock");
-		perform_unlock = FALSE;
-	}
-
-	if (run_for_login)
-		perform_unlock = TRUE;
 
 	g_option_context_free (context);
 }
@@ -298,7 +285,7 @@ log_handler (const gchar *log_domain, GLogLevelFlags log_level,
 		level = LOG_INFO;
 		break;
 	case G_LOG_LEVEL_DEBUG:
-		level = -1;
+		level = LOG_DEBUG;
 		break;
 	default:
 		level = LOG_ERR;
@@ -306,12 +293,10 @@ log_handler (const gchar *log_domain, GLogLevelFlags log_level,
 	}
 
 	/* Log to syslog first */
-	if (level != -1) {
-		if (log_domain)
-			syslog (level, "%s: %s", log_domain, message);
-		else
-			syslog (level, "%s", message);
-	}
+	if (log_domain)
+		syslog (level, "%s: %s", log_domain, message);
+	else
+		syslog (level, "%s", message);
 
 	/* And then to default handler for aborting and stuff like that */
 	g_log_default_handler (log_domain, log_level, message, user_data);
@@ -398,29 +383,96 @@ dump_diagnostics (void)
  * SIGNALS
  */
 
+static sigset_t signal_set;
+static gint signal_quitting = 0;
+
+static gpointer
+signal_thread (gpointer user_data)
+{
+	GMainLoop *loop = user_data;
+	int sig, err;
+
+	for (;;) {
+		err = sigwait (&signal_set, &sig);
+		if (err != EINTR && err != 0) {
+			g_warning ("couldn't wait for signals: %s", g_strerror (err));
+			return NULL;
+		}
+
+		switch (sig) {
+		case SIGUSR1:
+#ifdef WITH_DEBUG
+			dump_diagnostics ();
+#endif /* WITH_DEBUG */
+			break;
+		case SIGPIPE:
+			/* Ignore */
+			break;
+		case SIGHUP:
+		case SIGTERM:
+			g_atomic_int_set (&signal_quitting, 1);
+			g_main_loop_quit (loop);
+			return NULL;
+		default:
+			g_warning ("received unexpected signal when waiting for signals: %d", sig);
+			break;
+		}
+	}
+
+	g_assert_not_reached ();
+	return NULL;
+}
+
+static void
+setup_signal_handling (GMainLoop *loop)
+{
+	int res;
+
+	/*
+	 * Block these signals for this thread, and any threads
+	 * started up after this point (so essentially all threads).
+	 *
+	 * We also start a signal handling thread which uses signal_set
+	 * to catch the various signals we're interested in.
+	 */
+
+	sigemptyset (&signal_set);
+	sigaddset (&signal_set, SIGPIPE);
+	sigaddset (&signal_set, SIGHUP);
+	sigaddset (&signal_set, SIGTERM);
+	sigaddset (&signal_set, SIGUSR1);
+	pthread_sigmask (SIG_BLOCK, &signal_set, NULL);
+
+	res = pthread_create (&sig_thread, NULL, signal_thread, loop);
+	if (res == 0) {
+		sig_thread_valid = TRUE;
+	} else {
+		g_warning ("couldn't startup thread for signal handling: %s",
+		           g_strerror (res));
+	}
+}
+
 void
 gkd_main_quit (void)
 {
-	/* Always stop accepting control connections immediately */
-	gkd_control_stop ();
-	g_main_loop_quit (loop);
+	/*
+	 * Send a signal to terminate our signal thread,
+	 * which in turn runs stops the main loop and that
+	 * starts the shutdown process.
+	 */
+
+	if (sig_thread_valid)
+		pthread_kill (sig_thread, SIGTERM);
+	else
+		raise (SIGTERM);
 }
 
-static gboolean
-on_signal_term (gpointer user_data)
+static void
+cleanup_signal_handling (void)
 {
-	gkd_main_quit ();
-	g_debug ("received signal, terminating");
-	return FALSE;
-}
-
-static gboolean
-on_signal_usr1 (gpointer user_data)
-{
-#ifdef WITH_DEBUG
-	dump_diagnostics ();
-#endif
-	return TRUE;
+	/* The thread is not joinable, so cleans itself up */
+	if (!g_atomic_int_get (&signal_quitting))
+		g_warning ("gkr_daemon_quit() was not used to shutdown the daemon");
 }
 
 /* -----------------------------------------------------------------------------
@@ -458,7 +510,7 @@ read_login_password (int fd)
 	int r, len = 0;
 
 	for (;;) {
-		r = read (fd, buf, MAX_BLOCK);
+		r = read (fd, buf, sizeof (buf));
 		if (r < 0) {
 			if (errno == EAGAIN)
 				continue;
@@ -497,12 +549,13 @@ clear_login_password (void)
 }
 
 static void
-print_environment (void)
+print_environment (pid_t pid)
 {
 	const gchar **env;
 	for (env = gkd_util_get_environment (); *env; ++env)
 		printf ("%s\n", *env);
-	fflush (stdout);
+	if (pid)
+		printf ("GNOME_KEYRING_PID=%d\n", (gint)pid);
 }
 
 static gboolean
@@ -535,7 +588,7 @@ replace_daemon_at (const gchar *directory)
 
 	/*
 	 * The first control_directory is the environment one, always
-	 * prefer that since it's the one that ssh will connect to
+	 * prefer that since it's the one that ssh and gpg will connect to
 	 */
 	if (control_directory == NULL)
 		control_directory = g_strdup (directory);
@@ -579,16 +632,6 @@ discover_other_daemon (DiscoverFunc callback, gboolean acquire)
 			return TRUE;
 	}
 
-	/* Or the default location when no evironment variable */
-	control_env = g_getenv ("XDG_RUNTIME_DIR");
-	if (control_env) {
-		control = g_build_filename (control_env, "keyring", NULL);
-		ret = (callback) (control);
-		g_free (control);
-		if (ret == TRUE)
-			return TRUE;
-	}
-
 	/* See if we can contact a daemon running, that didn't set an env variable */
 	if (acquire && !gkd_dbus_singleton_acquire (&acquired))
 		return FALSE;
@@ -609,43 +652,22 @@ discover_other_daemon (DiscoverFunc callback, gboolean acquire)
 }
 
 static void
-redirect_fds_after_fork (void)
-{
-	int fd, i;
-
-	for (i = 0; i < 3; ++i) {
-		fd = open ("/dev/null", O_RDONLY);
-		sane_dup2 (fd, i);
-		close (fd);
-	}
-}
-
-static void
-block_on_fd (int fd)
-{
-	unsigned char dummy;
-	read (fd, &dummy, 1);
-}
-
-static int
 fork_and_print_environment (void)
 {
 	int status;
 	pid_t pid;
-	int wakeup_fds[2] = { -1, -1 };
+	int fd, i;
 
 	if (run_foreground) {
-		return -1;
+		print_environment (getpid ());
+		return;
 	}
-
-	if (!g_unix_open_pipe (wakeup_fds, FD_CLOEXEC, NULL))
-		exit (1);
 
 	pid = fork ();
 
 	if (pid != 0) {
+
 		/* Here we are in the initial process */
-		close (wakeup_fds[1]);
 
 		if (run_daemonized) {
 
@@ -658,8 +680,8 @@ fork_and_print_environment (void)
 				exit (WEXITSTATUS (status));
 
 		} else {
-			/* Not double forking, wait for child */
-			block_on_fd (wakeup_fds[0]);
+			/* Not double forking, we know the PID */
+			print_environment (pid);
 		}
 
 		/* The initial process exits successfully */
@@ -679,7 +701,6 @@ fork_and_print_environment (void)
 		pid = fork ();
 
 		if (pid != 0) {
-			close (wakeup_fds[1]);
 
 			/* Here we are in the intermediate child process */
 
@@ -690,8 +711,8 @@ fork_and_print_environment (void)
 			if (pid == -1)
 				exit (1);
 
-			/* We've done two forks. */
-			block_on_fd (wakeup_fds[0]);
+			/* We've done two forks. Now we know the PID */
+			print_environment (pid);
 
 			/* The intermediate child exits */
 			exit (0);
@@ -700,7 +721,12 @@ fork_and_print_environment (void)
 	}
 
 	/* Here we are in the resulting daemon or background process. */
-	return wakeup_fds[1];
+
+	for (i = 0; i < 3; ++i) {
+		fd = open ("/dev/null", O_RDONLY);
+		sane_dup2 (fd, i);
+		close (fd);
+	}
 }
 
 static gboolean
@@ -722,6 +748,20 @@ gkr_daemon_startup_steps (const gchar *components)
 			ssh_started = TRUE;
 			if (!gkd_daemon_startup_ssh ()) {
 				ssh_started = FALSE;
+				return FALSE;
+			}
+		}
+	}
+#endif
+
+#ifdef WITH_GPG
+	if (strstr (components, GKD_COMP_GPG)) {
+		if (gpg_started) {
+			g_message ("The GPG agent was already initialized");
+		} else {
+			gpg_started = TRUE;
+			if (!gkd_daemon_startup_gpg ()) {
+				gpg_started = FALSE;
 				return FALSE;
 			}
 		}
@@ -828,166 +868,18 @@ on_login_timeout (gpointer data)
 	return FALSE;
 }
 
-static void
-on_vanished_quit_loop (GDBusConnection *connection,
-                       const gchar *name,
-                       gpointer user_data)
+static gboolean
+on_idle_initialize (gpointer data)
 {
-	g_main_loop_quit (user_data);
-}
-
-static void on_logind_session_property_get (GObject *connection,
-					    GAsyncResult *res,
-					    gpointer user_data G_GNUC_UNUSED)
-{
-	GError *error = NULL;
-	GVariant *result, *resultv;
-	const gchar *state;
-	gboolean should_quit;
-
-	result = g_dbus_connection_call_finish (G_DBUS_CONNECTION (connection), res, &error);
-
-	if (error) {
-		if (!g_error_matches (error, G_IO_ERROR, G_IO_ERROR_CANCELLED))
-			g_critical ("%s Couldn't get session state: %s", G_STRLOC, error->message);
-		g_error_free (error);
-		return;
-	}
-
-	g_variant_get (result, "(v)", &resultv, NULL);
-	state = g_variant_get_string (resultv, NULL);
-
-	should_quit = g_strcmp0 (state, "closing") == 0;
-
-	g_clear_pointer (&result, g_variant_unref);
-	g_clear_pointer (&resultv, g_variant_unref);
-
-	/* yes, the session is closing, so we'll quit now */
-	if (should_quit)
-		cleanup_and_exit (0);
-}
-
-static void on_logind_session_properties_changed (GDBusConnection *connection,
-						  const gchar *sender_name G_GNUC_UNUSED,
-						  const gchar *object_path,
-						  const gchar *interface_name G_GNUC_UNUSED,
-						  const gchar *signal_name G_GNUC_UNUSED,
-						  GVariant *parameters,
-						  gpointer user_data G_GNUC_UNUSED)
-{
-	const gchar *prop_iface;
-	gboolean active;
-	GVariant* changed_properties;
-
-	g_variant_get (parameters, "(&s@a{sv}^as)", &prop_iface, &changed_properties, NULL);
-
-	if (g_variant_lookup (changed_properties, "Active", "b", &active, NULL)) {
-		if (!active) {
-			/* ok, the session went inactive, let's see if that is because
-			 * it is closing */
-			g_dbus_connection_call (
-				connection,
-				"org.freedesktop.login1",
-				object_path,
-				"org.freedesktop.DBus.Properties",
-				"Get",
-				g_variant_new ("(ss)", prop_iface, "State"),
-				G_VARIANT_TYPE ("(v)"),
-				G_DBUS_CALL_FLAGS_NONE,
-				-1,
-				NULL,
-				on_logind_session_property_get,
-				NULL
-			);
-		}
-	}
-
-	g_variant_unref (changed_properties);
-}
-
-static void
-on_logind_object_path_get (GObject *connection,
-			   GAsyncResult *res,
-			   gpointer user_data G_GNUC_UNUSED)
-{
-	GError *error = NULL;
-	GVariant *result;
-	const gchar *object_path;
-	gchar *remote_error;
-	gboolean is_cancelled, is_name_has_no_owner;
-
-	result = g_dbus_connection_call_finish (G_DBUS_CONNECTION (connection), res, &error);
-
-	/* If there's an error we always want to quit - but we only tell the
-	 * user about it if something went wrong. Cancelling the operation or
-	 * not having logind available are okay. */
-	if (error) {
-		is_cancelled = g_error_matches (error, G_IO_ERROR, G_IO_ERROR_CANCELLED);
-
-		remote_error = g_dbus_error_get_remote_error (error);
-		is_name_has_no_owner = g_strcmp0 (remote_error, "org.freedesktop.DBus.Error.NameHasNoOwner") == 0;
-
-		if (!is_cancelled && !is_name_has_no_owner)
-			g_critical ("%s Couldn't get object path: %s", G_STRLOC, error->message);
-
-		g_free (remote_error);
-		g_error_free (error);
-		return;
-	}
-
-	/* now we know which object path to look on, watch for
-	 * PropertiesChanged. Note that, per logind's documentation, we only
-	 * get notified for 'Active' changing */
-	g_variant_get (result, "(&o)", &object_path, NULL);
-
-	g_dbus_connection_signal_subscribe (
-		G_DBUS_CONNECTION (connection),
-		"org.freedesktop.login1",
-		"org.freedesktop.DBus.Properties",
-		"PropertiesChanged",
-		object_path,
-		NULL,
-		G_DBUS_SIGNAL_FLAGS_NONE,
-		on_logind_session_properties_changed,
-		NULL,
-		NULL
-	);
-
-	g_clear_pointer (&result, g_variant_unref);
-}
-
-static void
-start_watching_logind_for_session_closure ()
-{
-	g_return_if_fail (system_bus_connection != NULL);
-
-	const gchar *xdg_session_id;
-
-	xdg_session_id = g_getenv ("XDG_SESSION_ID");
-
-	if (!xdg_session_id)
-		return;
-
-	/* get the right object path */
-	g_dbus_connection_call (
-		system_bus_connection,
-		"org.freedesktop.login1",
-		"/org/freedesktop/login1",
-		"org.freedesktop.login1.Manager",
-		"GetSession",
-		g_variant_new ("(s)", xdg_session_id, NULL),
-		G_VARIANT_TYPE ("(o)"),
-		G_DBUS_CALL_FLAGS_NO_AUTO_START,
-		-1,
-		NULL,
-		on_logind_object_path_get,
-		NULL
-	);
+	gkr_daemon_initialize_steps (run_components);
+	return FALSE; /* don't run again */
 }
 
 int
 main (int argc, char *argv[])
 {
+	GMainLoop *loop;
+
 	/*
 	 * The gnome-keyring startup is not as simple as I wish it could be.
 	 *
@@ -1008,9 +900,6 @@ main (int argc, char *argv[])
 	 * predictable startup.
 	 */
 
-	GDBusConnection *connection = NULL;
-	GError *error = NULL;
-
 	/*
 	 * Before we do ANYTHING, we drop privileges so we don't become
 	 * a security issue ourselves.
@@ -1027,8 +916,10 @@ main (int argc, char *argv[])
 	g_type_init ();
 #endif
 
+#ifdef HAVE_LOCALE_H
 	/* internationalisation */
 	setlocale (LC_ALL, "");
+#endif
 
 #ifdef HAVE_GETTEXT
 	bindtextdomain (GETTEXT_PACKAGE, GNOMELOCALEDIR);
@@ -1055,37 +946,16 @@ main (int argc, char *argv[])
 		exit (0);
 	}
 
-	if (perform_unlock) {
-		login_password = read_login_password (STDIN);
-		atexit (clear_login_password);
-	}
-
-	/* The whole forking and daemonizing dance starts here. */
-	parent_wakeup_fd = fork_and_print_environment();
-
 	/* The --start option */
 	if (run_for_start) {
 		if (discover_other_daemon (initialize_daemon_at, TRUE)) {
 			/*
-			 * Another daemon was initialized, print out environment,
-			 * tell parent we're done, and quit or go comatose.
+			 * Another daemon was initialized, print out environment
+			 * for any callers, and quit or go comatose.
 			 */
-			print_environment ();
-			close (parent_wakeup_fd);
-			if (run_foreground) {
-				connection = g_bus_get_sync (G_BUS_TYPE_SESSION, NULL, &error);
-				if (error) {
-					g_warning ("Couldn't connect to session bus: %s", error->message);
-					g_clear_error (&error);
-				}
-				loop = g_main_loop_new (NULL, FALSE);
-				g_bus_watch_name (G_BUS_TYPE_SESSION, "org.gnome.keyring",
-				                  G_BUS_NAME_WATCHER_FLAGS_NONE,
-				                  NULL, on_vanished_quit_loop, loop, NULL);
-				g_main_loop_run (loop);
-				g_clear_pointer (&loop, g_main_loop_unref);
-				g_clear_object (&connection);
-			}
+			print_environment (0);
+			if (run_foreground)
+				while (sleep(0x08000000) == 0);
 			cleanup_and_exit (0);
 		}
 
@@ -1110,6 +980,8 @@ main (int argc, char *argv[])
 
 	/* The --login option. Delayed initialization */
 	if (run_for_login) {
+		login_password = read_login_password (STDIN);
+		atexit (clear_login_password);
 		timeout_id = g_timeout_add_seconds (LOGIN_TIMEOUT, (GSourceFunc) on_login_timeout, NULL);
 
 	/* Not a login daemon. Startup stuff now.*/
@@ -1119,56 +991,27 @@ main (int argc, char *argv[])
 			cleanup_and_exit (1);
 	}
 
-	/* if we can get a connection to the system bus, watch it and then kill
-	 * ourselves when our session closes */
+	/* The whole forking and daemonizing dance starts here. */
+	fork_and_print_environment();
 
-	system_bus_connection = g_bus_get_sync (G_BUS_TYPE_SYSTEM, NULL, NULL);
-
-	if (system_bus_connection)
-		start_watching_logind_for_session_closure ();
-
-	signal (SIGPIPE, SIG_IGN);
-
-	/* Print the environment and tell the parent we're done */
-	print_environment ();
-
-	if (!run_foreground) {
-		close (parent_wakeup_fd);
-		redirect_fds_after_fork ();
-	}
-
-	g_unix_signal_add (SIGTERM, on_signal_term, loop);
-	g_unix_signal_add (SIGHUP, on_signal_term, loop);
-	g_unix_signal_add (SIGUSR1, on_signal_usr1, loop);
+	setup_signal_handling (loop);
 
 	/* Prepare logging a second time, since we may be in a different process */
 	prepare_logging();
 
 	/* Remainder initialization after forking, if initialization not delayed */
-	if (!run_for_login) {
-		gkr_daemon_initialize_steps (run_components);
-
-		/*
-		 * Close stdout and so that the caller knows that we're
-		 * all initialized, (when run in foreground mode).
-		 *
-		 * However since some logging goes to stdout, redirect that
-		 * to stderr. We don't want the caller confusing that with
-		 * valid output anyway.
-		 */
-		if (dup2 (2, 1) < 1)
-			g_warning ("couldn't redirect stdout to stderr");
-
-		g_debug ("initialization complete");
-	}
+	if (!run_for_login)
+		g_idle_add (on_idle_initialize, NULL);
 
 	g_main_loop_run (loop);
 
 	/* This wraps everything up in order */
 	egg_cleanup_perform ();
 
+	/* Wrap up signal handling here */
+	cleanup_signal_handling ();
+
 	g_free (control_directory);
 
-	g_debug ("exiting cleanly");
 	return 0;
 }

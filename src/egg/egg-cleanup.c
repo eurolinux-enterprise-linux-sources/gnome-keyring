@@ -15,7 +15,8 @@
 
    You should have received a copy of the GNU Library General Public
    License along with the Gnome Library; see the file COPYING.LIB.  If not,
-   <http://www.gnu.org/licenses/>.
+   write to the Free Software Foundation, Inc., 59 Temple Place - Suite 330,
+   Boston, MA 02111-1307, USA.
 
    Author: Stef Walter <stef@memberwebs.com>
 */
@@ -52,7 +53,6 @@ egg_cleanup_unregister (GDestroyNotify notify, gpointer user_data)
 		cleanup = (EggCleanup*)l->data;
 		if (cleanup->notify == notify && cleanup->user_data == user_data) {
 			registered_cleanups = g_slist_remove (registered_cleanups, cleanup);
-			g_free (cleanup);
 			break;
 		}
 	}
