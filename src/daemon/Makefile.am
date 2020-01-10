@@ -16,9 +16,9 @@ gnome_keyring_daemon_SOURCES = \
 	$(NULL)
 gnome_keyring_daemon_LDADD = \
 	libgkd-dbus.la \
-	libgkd-login.la \
 	libgkd-control.la \
 	libgkd-ssh-agent.la \
+	libgkd-login.la \
 	libgkm-wrap-layer.la \
 	libgkm-rpc-layer.la \
 	libgkm-secret-store.la \
@@ -44,9 +44,12 @@ desktop_in_in_files = \
 	$(NULL)
 desktop_in_files = $(desktop_in_in_files:.desktop.in.in=.desktop.in)
 desktop_DATA = $(desktop_in_files:.desktop.in=.desktop)
+.desktop.in.in.desktop.in:
+	$(AM_V_GEN) $(MSGFMT) --desktop --template $< -d $(top_srcdir)/po -o $@
 
 EXTRA_DIST += \
 	$(service_in_files) \
+	$(desktop_in_files) \
 	$(desktop_in_in_files)
 
 CLEANFILES += \

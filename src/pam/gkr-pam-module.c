@@ -640,7 +640,8 @@ unlock_keyring (pam_handle_t *ph,
 	control = get_any_env (ph, ENV_CONTROL);
 	argv[0] = password;
 
-	res = gkr_pam_client_run_operation (pwd, control, GKD_CONTROL_OP_UNLOCK, 1, argv);
+	res = gkr_pam_client_run_operation (pwd, control, GKD_CONTROL_OP_UNLOCK,
+					    (argv[0] == NULL) ? 0 : 1, argv);
 	/* An error unlocking */
 	if (res == GKD_CONTROL_RESULT_NO_DAEMON) {
 		if (need_daemon)
@@ -891,6 +892,12 @@ pam_sm_open_session (pam_handle_t *ph, int flags, int argc, const char **argv)
 		ret = unlock_keyring (ph, pwd, password, &need_daemon);
 		if (ret != PAM_SUCCESS && need_daemon && (args & ARG_AUTO_START))
 			ret = start_daemon (ph, pwd, true, password);
+	}
+
+	/* Destroy the stored authtok once it has been used */
+	if (password && pam_set_data (ph, "gkr_system_authtok", NULL, NULL) != PAM_SUCCESS) {
+		syslog (GKR_LOG_ERR, "gkr-pam: error destroying the password");
+		return PAM_SERVICE_ERR;
 	}
 
 	return PAM_SUCCESS;

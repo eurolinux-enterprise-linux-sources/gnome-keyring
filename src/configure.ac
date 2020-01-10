@@ -1,5 +1,5 @@
 AC_INIT(gnome-keyring,
-        3.20.0,
+        3.28.2,
         [gnome-keyring-list@gnome.org],
         [gnome-keyring],
         [https://wiki.gnome.org/Projects/GnomeKeyring])
@@ -7,12 +7,12 @@ AC_INIT(gnome-keyring,
 dnl ****************************************************************************
 dnl Dependency versions
 
-GLIB_REQ=2.38.0
-GLIB_MIN=GLIB_VERSION_2_38
-GLIB_MAX=GLIB_VERSION_2_38
+GLIB_REQ=2.44.0
+GLIB_MIN=GLIB_VERSION_2_44
+GLIB_MAX=GLIB_VERSION_2_44
 
 GCK_REQ=3.3.4
-GCR_REQ=3.5.3
+GCR_REQ=3.27.90
 
 GCRYPT_REQ=1.2.2
 GCRYPT_LIBVER=1
@@ -29,7 +29,7 @@ AC_CONFIG_MACRO_DIR([build/m4])
 AC_CONFIG_AUX_DIR([build])
 AC_CONFIG_HEADERS(config.h)
 AC_CONFIG_SRCDIR([daemon/gkd-main.c])
-AM_INIT_AUTOMAKE([1.12 foreign dist-bzip2 no-dist-gzip parallel-tests subdir-objects])
+AM_INIT_AUTOMAKE([1.12 foreign dist-xz no-dist-gzip parallel-tests subdir-objects])
 m4_ifdef([AM_SILENT_RULES], [AM_SILENT_RULES([yes])])
 
 AM_SANITY_CHECK
@@ -45,8 +45,7 @@ AC_PROG_LN_S
 AC_PROG_MAKE_SET
 AM_DISABLE_STATIC
 AM_PROG_LIBTOOL
-IT_PROG_INTLTOOL([0.35.0])
-AC_PATH_PROG(PKG_CONFIG, pkg-config, no)
+PKG_PROG_PKG_CONFIG
 
 AC_TYPE_PID_T
 AC_TYPE_SIGNAL
@@ -77,11 +76,11 @@ AC_SUBST(GIO_LIBS)
 DAEMON_CFLAGS="$DAEMON_CFLAGS $GLIB_CFLAGS $GTHREAD_CFLAGS $GOBJECT_CFLAGS $GIO_CFLAGS"
 DAEMON_LIBS="$DAEMON_LIBS $GLIB_LIBS $GTHREAD_LIBS $GOBJECT_LIBS $GIO_LIBS"
 
+AM_GNU_GETTEXT([external])
+AM_GNU_GETTEXT_VERSION([0.19.8])
 GETTEXT_PACKAGE=gnome-keyring
 AC_DEFINE_UNQUOTED(GETTEXT_PACKAGE,"$GETTEXT_PACKAGE", [The gettext domain name])
 AC_SUBST(GETTEXT_PACKAGE)
-
-AM_GLIB_GNU_GETTEXT
 
 AC_PATH_PROG(GLIB_GENMARSHAL, glib-genmarshal)
 
@@ -263,11 +262,26 @@ fi
 # --------------------------------------------------------------------
 # Find DL functionality
 
-AC_CHECK_LIB(c, dlopen, DL_LIBS="",
-	AC_CHECK_LIB(dl, dlopen, DL_LIBS="-ldl",
-		AC_MSG_ERROR([Could not find a library with the dlopen function])
-	)
-)
+dnl *** dlopen() and dlsym() in system libraries
+AS_IF([ test -z "$HAVE_DL"], [
+	AC_CHECK_FUNC(dlopen,
+		      [AC_CHECK_FUNC(dlsym,
+			             [HAVE_DL=c],[])],
+		      [])
+])
+
+dnl *** dlopen() and dlsym() in libdl
+AS_IF([ test -z "$HAVE_DL"], [
+	AC_CHECK_LIB(dl, dlopen,
+		     [AC_CHECK_LIB(dl, dlsym,
+			           [DL_LIBS=-ldl
+		                   HAVE_DL=dl],[])],
+		     [])
+])
+
+AS_IF([ test -z "$HAVE_DL"], [
+	AC_MSG_ERROR([Could not find a library with the dlopen and dlsym functions])
+])
 
 AC_SUBST(DL_LIBS)
 
@@ -333,14 +347,25 @@ AC_ARG_ENABLE([ssh-agent],
 		AC_HELP_STRING([--disable-ssh-agent],
 		[Don't include SSH agent in gnome-keyring]))
 
-if test "$enable_ssh_agent" != "no"; then
-	AC_DEFINE(WITH_SSH, 1, [Whether to build SSH agent or not])
-	ssh_status="yes"
+if test "$enable_ssh_agent" = "no"; then
+	SSH_AGENT=false
+	SSH_ADD=false
 else
-	ssh_status="no"
+	AC_PATH_PROG([SSH_AGENT], [ssh-agent], [no])
+	AC_PATH_PROG([SSH_ADD], [ssh-add], [no])
+	if test "$SSH_AGENT" = "no" -o "$SSH_ADD" = "no"; then
+		AC_MSG_ERROR([the ssh-agent and ssh-add commands were not found])
+	else
+		enable_ssh_agent=yes
+		AC_DEFINE(WITH_SSH, 1, [Whether to build SSH agent or not])
+	fi
 fi
 
+AC_DEFINE_UNQUOTED(SSH_AGENT, "$SSH_AGENT", [The path to ssh-agent])
+AC_DEFINE_UNQUOTED(SSH_ADD, "$SSH_ADD", [The path to ssh-add])
+
 AM_CONDITIONAL(WITH_SSH, test "$enable_ssh_agent" != "no")
+ssh_status="$enable_ssh_agent"
 
 # --------------------------------------------------------------------
 # libgcrypt
@@ -624,7 +649,6 @@ AC_SUBST(P11_TESTS_LIBS)
 
 AC_OUTPUT([
 Makefile
-pkcs11/rpc-layer/gnome-keyring.module
 po/Makefile.in
 ])
 

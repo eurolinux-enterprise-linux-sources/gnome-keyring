@@ -92,7 +92,8 @@ libegg_hex_la_LIBS = \
 	$(GLIB_LIBS)
 
 libegg_test_la_SOURCES = \
-	egg/egg-testing.c egg/egg-testing.h
+	egg/egg-testing.c egg/egg-testing.h \
+	egg/mock-interaction.c egg/mock-interaction.h
 
 libegg_test_la_CFLAGS = \
 	$(GLIB_CFLAGS)

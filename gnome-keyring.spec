@@ -1,20 +1,19 @@
 %global _hardened_build 1
 
-%global glib2_version 2.38.0
-%global gcr_version 3.5.3
+%global glib2_version 2.44.0
+%global gcr_version 3.27.90
 %global gcrypt_version 1.2.2
 
-Summary: Framework for managing passwords and other secrets
 Name: gnome-keyring
-Version: 3.20.0
-Release: 3%{?dist}
+Version: 3.28.2
+Release: 1%{?dist}
+Summary: Framework for managing passwords and other secrets
+
 License: GPLv2+ and LGPLv2+
-Group: System Environment/Libraries
-#VCS: git:git://git.gnome.org/gnome-keyring
-Source:  https://download.gnome.org/sources/%{name}/3.20/%{name}-%{version}.tar.xz
-# https://bugzilla.redhat.com/show_bug.cgi?id=1325993
-Patch0:  gnome-keyring-3.20.0-fix-invalid-secret-transfer.patch
 URL:     https://wiki.gnome.org/Projects/GnomeKeyring
+Source0: https://download.gnome.org/sources/%{name}/3.28/%{name}-%{version}.tar.xz
+# Downstream patch to fix the build with RHEL 7 gcrypt
+Patch0:  0001-Fix-the-build-with-older-gcrypt-in-RHEL-7.patch
 
 BuildRequires: pkgconfig(gcr-3) >= %{gcr_version}
 BuildRequires: pkgconfig(glib-2.0) >= %{glib2_version}
@@ -27,7 +26,13 @@ BuildRequires: libcap-ng-devel
 BuildRequires: libgcrypt-devel >= %{gcrypt_version}
 BuildRequires: libselinux-devel
 BuildRequires: pam-devel
+BuildRequires: /usr/bin/ssh-add
+BuildRequires: /usr/bin/ssh-agent
 BuildRequires: /usr/bin/xsltproc
+
+Requires: /usr/bin/ssh-add
+Requires: /usr/bin/ssh-agent
+Requires: /usr/libexec/gcr-ssh-askpass
 
 # we no longer have a devel subpackage
 Obsoletes: %{name}-devel < 3.3.0
@@ -38,10 +43,10 @@ The gnome-keyring session daemon manages passwords and other types of
 secrets for the user, storing them encrypted with a main password.
 Applications can use the gnome-keyring library to integrate with the keyring.
 
+
 %package pam
 Summary: Pam module for unlocking keyrings
 License: LGPLv2+
-Group: Development/Libraries
 Requires: %{name}%{?_isa} = %{version}-%{release}
 # for /lib/security
 Requires: pam%{?_isa}
@@ -52,8 +57,7 @@ automatically unlock the "login" keyring when the user logs in.
 
 
 %prep
-%setup -q -n gnome-keyring-%{version}
-%patch0 -p1
+%autosetup -p1
 
 
 %build
@@ -66,6 +70,7 @@ sed -i -e 's/ -shared / -Wl,-O1,--as-needed\0 /g' libtool
 
 make %{?_smp_mflags}
 
+
 %install
 %make_install
 
@@ -74,6 +79,7 @@ rm $RPM_BUILD_ROOT%{_libdir}/pkcs11/*.la
 rm $RPM_BUILD_ROOT%{_libdir}/gnome-keyring/devel/*.la
 
 %find_lang gnome-keyring
+
 
 %postun
 if [ $1 -eq 0 ]; then
@@ -101,7 +107,6 @@ glib-compile-schemas %{_datadir}/glib-2.0/schemas >&/dev/null || :
 %{_sysconfdir}/xdg/autostart/*
 %{_datadir}/GConf/gsettings/*.convert
 %{_datadir}/glib-2.0/schemas/*.gschema.xml
-%{_datadir}/p11-kit/modules/gnome-keyring.module
 %{_mandir}/man1/gnome-keyring.1*
 %{_mandir}/man1/gnome-keyring-3.1*
 %{_mandir}/man1/gnome-keyring-daemon.1*
@@ -111,6 +116,10 @@ glib-compile-schemas %{_datadir}/glib-2.0/schemas >&/dev/null || :
 
 
 %changelog
+* Tue May 08 2018 Kalev Lember <klember@redhat.com> - 3.28.2-1
+- Update to 3.28.2
+- Resolves: #1568176
+
 * Tue Mar 21 2017 David King <dking@redhat.com> - 3.20.0-3
 - Enable hardened build flags (#1386951)
 

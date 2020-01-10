@@ -17,10 +17,7 @@ DISTCHECK_CONFIGURE_FLAGS = \
 	--with-pkcs11-config=$(abs_srcdir)/$(top_distdir)/_inst/etc/pkcs11 \
 	$(NULL)
 
-DISTCLEANFILES = \
-	intltool-extract \
-	intltool-merge \
-	intltool-update
+DISTCLEANFILES =
 
 CHANGELOG_START = \
 	efb922c92fae5929ecc8c702770ebb6c390d38a4
@@ -136,15 +133,13 @@ SED_SUBST = sed \
 	-e 's,[@]VERSION[@],$(VERSION),g' \
 	$(NULL)
 
-SUFFIXES = .desktop.in .desktop.in.in .service .service.in
+SUFFIXES = .desktop .desktop.in .desktop.in.in .service .service.in
 
 .service.in.service:
 	$(V_SED) ( $(SED_SUBST) $< > $@.tmp ) && mv $@.tmp $@
 
-.desktop.in.in.desktop.in:
+.desktop.in.desktop:
 	$(V_SED) ( $(SED_SUBST) $< > $@.tmp ) && mv $@.tmp $@
-
-@INTLTOOL_DESKTOP_RULE@
 
 all-local:
 	$(MKDIR_P) $(builddir)/daemon
@@ -182,9 +177,6 @@ CLEANFILES = \
 	*.gcda
 
 EXTRA_DIST = \
-	intltool-extract.in \
-	intltool-merge.in \
-	intltool-update.in \
 	ChangeLog.old \
 	HACKING \
 	$(ASN1_FILES) \

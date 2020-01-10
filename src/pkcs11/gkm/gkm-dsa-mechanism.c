@@ -90,7 +90,7 @@ gkm_dsa_mechanism_sign (gcry_sexp_t sexp, CK_BYTE_PTR data, CK_ULONG n_data,
 	}
 
 	gcry_sexp_release (ssig);
-	return CKR_OK;
+	return rv;
 }
 
 CK_RV
@@ -135,7 +135,7 @@ gkm_dsa_mechanism_verify (gcry_sexp_t sexp, CK_BYTE_PTR data, CK_ULONG n_data,
 	if (gcry_err_code (gcry) == GPG_ERR_BAD_SIGNATURE) {
 		return CKR_SIGNATURE_INVALID;
 	} else if (gcry) {
-		g_message ("signing of the data failed: %s", gcry_strerror (gcry));
+		g_message ("verifying of the data failed: %s", gcry_strerror (gcry));
 		return CKR_FUNCTION_FAILED;
 	}
 

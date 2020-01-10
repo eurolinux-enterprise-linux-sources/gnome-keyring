@@ -92,7 +92,11 @@ lookup_login_session (GList *modules)
 
 	slot = gck_modules_token_for_uri (modules, "pkcs11:token=Secret%20Store", &error);
 	if (!slot) {
-		g_warning ("couldn't find secret store module: %s", egg_error_message (error));
+		if (error) {
+			g_warning ("couldn't find secret store module: %s", egg_error_message (error));
+			g_error_free (error);
+		}
+		g_list_free_full (owned, g_object_unref);
 		return NULL;
 	}
 
@@ -451,9 +455,9 @@ gkd_login_available (GckSession *session)
 			available = TRUE;
 		}
 		g_list_free_full (objects, g_object_unref);
+		g_object_unref (session);
 	}
 
-	g_object_unref (session);
 	return available;
 }
 
@@ -507,33 +511,27 @@ find_saved_items (GckSession *session,
 
 static gboolean
 fields_to_attribute (GckBuilder *builder,
-                     const gchar *field,
-                     va_list va)
+                     GHashTable *fields)
 {
-	GString *fields = g_string_sized_new (128);
-	const gchar *last = NULL;
+	GString *concat = g_string_sized_new (128);
+	const gchar *field;
 	const gchar *value;
+	GList *keys, *l;
 
-	while (field) {
-		if (g_strcmp0 (last, field) >= 0) {
-			g_critical ("lookup fields must be sorted '%s' >= '%s'", last, field);
-			return FALSE;
-		}
-
-		last = field;
-		value = va_arg (va, const gchar *);
+	keys = g_hash_table_get_keys (fields);
+	for (l = g_list_sort (keys, (GCompareFunc) g_strcmp0); l; l = l->next) {
+		field = l->data;
+		value = g_hash_table_lookup (fields, field);
 		g_return_val_if_fail (value != NULL, FALSE);
 
-		g_string_append (fields, field);
-		g_string_append_c (fields, '\0');
-		g_string_append (fields, value);
-		g_string_append_c (fields, '\0');
-
-		field = va_arg (va, const gchar *);
+		g_string_append (concat, field);
+		g_string_append_c (concat, '\0');
+		g_string_append (concat, value);
+		g_string_append_c (concat, '\0');
 	}
 
-	gck_builder_add_data (builder, CKA_G_FIELDS, (const guchar *)fields->str, fields->len);
-	g_string_free (fields, TRUE);
+	gck_builder_add_data (builder, CKA_G_FIELDS, (const guchar *)concat->str, concat->len);
+	g_string_free (concat, TRUE);
 	return TRUE;
 }
 
@@ -542,13 +540,36 @@ gkd_login_lookup_password (GckSession *session,
                            const gchar *field,
                            ...)
 {
+	GHashTable *fields;
+	const gchar *value;
+	gchar *result;
+	va_list va;
+
+	fields = g_hash_table_new (g_str_hash, g_str_equal);
+
+	va_start (va, field);
+	while (field) {
+		value = va_arg (va, const gchar *);
+		g_hash_table_insert (fields, (gpointer)field, (gpointer)value);
+		field = va_arg (va, const gchar *);
+	}
+	va_end (va);
+
+	result = gkd_login_lookup_passwordv (session, fields);
+	g_hash_table_unref (fields);
+	return result;
+}
+
+gchar *
+gkd_login_lookup_passwordv (GckSession *session,
+			    GHashTable *fields)
+{
 	GckBuilder builder = GCK_BUILDER_INIT;
 	GckAttributes *attrs;
 	GList *objects, *l;
 	GError *error = NULL;
 	gpointer data = NULL;
 	gsize length;
-	va_list va;
 
 	if (!session)
 		session = lookup_login_session (NULL);
@@ -559,10 +580,8 @@ gkd_login_lookup_password (GckSession *session,
 
 	gck_builder_add_ulong (&builder, CKA_CLASS, CKO_SECRET_KEY);
 
-	va_start (va, field);
-	if (!fields_to_attribute (&builder, field, va))
+	if (!fields_to_attribute (&builder, fields))
 		g_return_val_if_reached (FALSE);
-	va_end (va);
 
 	attrs = gck_attributes_ref_sink (gck_builder_end (&builder));
 	objects = find_saved_items (session, attrs);
@@ -594,11 +613,32 @@ gkd_login_clear_password (GckSession *session,
                           const gchar *field,
                           ...)
 {
+	GHashTable *fields;
+	const gchar *value;
+	va_list va;
+
+	fields = g_hash_table_new (g_str_hash, g_str_equal);
+
+	va_start (va, field);
+	while (field) {
+		value = va_arg (va, const gchar *);
+		g_hash_table_insert (fields, (gpointer)field, (gpointer)value);
+		field = va_arg (va, const gchar *);
+	}
+	va_end (va);
+
+	gkd_login_clear_passwordv (session, fields);
+	g_hash_table_unref (fields);
+}
+
+void
+gkd_login_clear_passwordv (GckSession *session,
+			   GHashTable *fields)
+{
 	GckBuilder builder = GCK_BUILDER_INIT;
 	GckAttributes *attrs;
 	GList *objects, *l;
 	GError *error = NULL;
-	va_list va;
 
 	if (!session)
 		session = lookup_login_session (NULL);
@@ -609,10 +649,8 @@ gkd_login_clear_password (GckSession *session,
 
 	gck_builder_add_ulong (&builder, CKA_CLASS, CKO_SECRET_KEY);
 
-	va_start (va, field);
-	if (!fields_to_attribute (&builder, field, va))
+	if (!fields_to_attribute (&builder, fields))
 		g_return_if_reached ();
-	va_end (va);
 
 	attrs = gck_attributes_ref_sink (gck_builder_end (&builder));
 	objects = find_saved_items (session, attrs);
@@ -639,6 +677,34 @@ gkd_login_store_password (GckSession *session,
                           const gchar *field,
                           ...)
 {
+	GHashTable *fields;
+	const gchar *value;
+	gboolean result;
+	va_list va;
+
+	fields = g_hash_table_new (g_str_hash, g_str_equal);
+
+	va_start (va, field);
+	while (field) {
+		value = va_arg (va, const gchar *);
+		g_hash_table_insert (fields, (gpointer)field, (gpointer)value);
+		field = va_arg (va, const gchar *);
+	}
+	va_end (va);
+
+	result = gkd_login_store_passwordv (session, password, label, method, lifetime, fields);
+	g_hash_table_unref (fields);
+	return result;
+}
+
+gboolean
+gkd_login_store_passwordv (GckSession *session,
+			   const gchar *password,
+			   const gchar *label,
+			   const gchar *method,
+			   gint lifetime,
+			   GHashTable *fields)
+{
 	GckBuilder builder = GCK_BUILDER_INIT;
 	GckAttributes *attrs;
 	guchar *identifier;
@@ -647,7 +713,6 @@ gkd_login_store_password (GckSession *session,
 	GckObject *item;
 	GError *error = NULL;
 	gsize length;
-	va_list va;
 
 	if (!method)
 		method = GCR_UNLOCK_OPTION_SESSION;
@@ -659,10 +724,8 @@ gkd_login_store_password (GckSession *session,
 	if (!session)
 		return FALSE;
 
-	va_start (va, field);
-	if (!fields_to_attribute (&builder, field, va))
+	if (!fields_to_attribute (&builder, fields))
 		g_return_val_if_reached (FALSE);
-	va_end (va);
 
 	if (g_str_equal (method, GCR_UNLOCK_OPTION_ALWAYS)) {
 		gck_builder_add_string (&builder, CKA_G_COLLECTION, "login");

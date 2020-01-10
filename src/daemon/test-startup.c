@@ -245,6 +245,29 @@ test_daemon_replace (Test *test,
 	g_assert_cmpint (status, ==, 0);
 }
 
+#ifdef WITH_SSH
+static void
+test_ssh_agent (Test *test,
+                        gconstpointer unused)
+{
+	gchar *auth_sock = g_build_filename (test->directory, "keyring", "ssh", NULL);
+
+	const gchar *argv[] = {
+		BUILDDIR "/gnome-keyring-daemon", "--foreground",
+		"--components=ssh-agent", NULL
+	};
+
+	gchar **output;
+
+	output = gkd_test_launch_daemon (test->directory, argv, &test->pid, NULL);
+	g_assert_cmpstr (g_environ_getenv (output, "SSH_AUTH_SOCK"), ==, auth_sock);
+	g_strfreev (output);
+
+	g_assert (g_file_test (auth_sock, G_FILE_TEST_EXISTS));
+	g_free (auth_sock);
+}
+#endif
+
 int
 main (int argc, char **argv)
 {
@@ -263,6 +286,10 @@ main (int argc, char **argv)
 
 	g_test_add ("/daemon/startup/replace", Test, NULL,
 	            setup, test_daemon_replace, teardown);
+#ifdef WITH_SSH
+	g_test_add ("/daemon/startup/ssh-agent", Test, NULL,
+	            setup, test_ssh_agent, teardown);
+#endif
 
 	return g_test_run ();
 }
