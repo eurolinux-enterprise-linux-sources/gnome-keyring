@@ -19,7 +19,6 @@ gnome_keyring_daemon_LDADD = \
 	libgkd-login.la \
 	libgkd-control.la \
 	libgkd-ssh-agent.la \
-	libgkd-gpg-agent.la \
 	libgkm-wrap-layer.la \
 	libgkm-rpc-layer.la \
 	libgkm-secret-store.la \
@@ -27,8 +26,9 @@ gnome_keyring_daemon_LDADD = \
 	libgkm-gnome2-store.la \
 	libgkm-xdg-store.la \
 	libgkm.la \
-	libegg-dbus.la \
 	$(DAEMON_LIBS)
+gnome_keyring_daemon_CFLAGS = \
+	$(DAEMON_CFLAGS)
 
 service_in_files = \
 	daemon/org.gnome.keyring.service.in \
@@ -41,7 +41,7 @@ desktop_in_in_files = \
 	daemon/gnome-keyring-pkcs11.desktop.in.in \
 	daemon/gnome-keyring-secrets.desktop.in.in \
 	daemon/gnome-keyring-ssh.desktop.in.in \
-	daemon/gnome-keyring-gpg.desktop.in.in
+	$(NULL)
 desktop_in_files = $(desktop_in_in_files:.desktop.in.in=.desktop.in)
 desktop_DATA = $(desktop_in_files:.desktop.in=.desktop)
 
@@ -63,7 +63,7 @@ libgkd_test_la_SOURCES = \
 	daemon/gkd-test.h
 
 daemon_CFLAGS = \
-	$(DBUS_CFLAGS) \
+	$(GIO_CFLAGS) \
 	$(GCR_CFLAGS)
 
 daemon_LIBS = \

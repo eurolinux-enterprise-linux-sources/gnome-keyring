@@ -58,6 +58,8 @@
 #include <sys/stat.h>
 #include <sys/wait.h>
 
+#include <gio/gunixinputstream.h>
+#include <gio/gunixoutputstream.h>
 #include <glib.h>
 #include <glib/gi18n.h>
 #include <glib-object.h>
@@ -78,7 +80,6 @@ typedef int socklen_t;
 #define GKD_COMP_PKCS11     "pkcs11"
 #define GKD_COMP_SECRETS    "secrets"
 #define GKD_COMP_SSH        "ssh"
-#define GKD_COMP_GPG        "gpg"
 
 EGG_SECURE_DECLARE (daemon_main);
 
@@ -112,7 +113,6 @@ static gchar* run_components = DEFAULT_COMPONENTS;
 static gboolean pkcs11_started = FALSE;
 static gboolean secrets_started = FALSE;
 static gboolean ssh_started = FALSE;
-static gboolean gpg_started = FALSE;
 static gboolean dbus_started = FALSE;
 
 static gboolean run_foreground = FALSE;
@@ -127,6 +127,7 @@ static gchar* control_directory = NULL;
 static guint timeout_id = 0;
 static gboolean initialization_completed = FALSE;
 static GMainLoop *loop = NULL;
+static int parent_wakeup_fd = -1;
 
 static GOptionEntry option_entries[] = {
 	{ "start", 's', 0, G_OPTION_ARG_NONE, &run_for_start,
@@ -533,7 +534,7 @@ replace_daemon_at (const gchar *directory)
 
 	/*
 	 * The first control_directory is the environment one, always
-	 * prefer that since it's the one that ssh and gpg will connect to
+	 * prefer that since it's the one that ssh will connect to
 	 */
 	if (control_directory == NULL)
 		control_directory = g_strdup (directory);
@@ -607,22 +608,43 @@ discover_other_daemon (DiscoverFunc callback, gboolean acquire)
 }
 
 static void
+redirect_fds_after_fork (void)
+{
+	int fd, i;
+
+	for (i = 0; i < 3; ++i) {
+		fd = open ("/dev/null", O_RDONLY);
+		sane_dup2 (fd, i);
+		close (fd);
+	}
+}
+
+static void
+block_on_fd (int fd)
+{
+	unsigned char dummy;
+	read (fd, &dummy, 1);
+}
+
+static int
 fork_and_print_environment (void)
 {
 	int status;
 	pid_t pid;
-	int fd, i;
+	int wakeup_fds[2] = { -1, -1 };
 
 	if (run_foreground) {
-		print_environment ();
-		return;
+		return -1;
 	}
+
+	if (!g_unix_open_pipe (wakeup_fds, FD_CLOEXEC, NULL))
+		exit (1);
 
 	pid = fork ();
 
 	if (pid != 0) {
-
 		/* Here we are in the initial process */
+		close (wakeup_fds[1]);
 
 		if (run_daemonized) {
 
@@ -635,8 +657,8 @@ fork_and_print_environment (void)
 				exit (WEXITSTATUS (status));
 
 		} else {
-			/* Not double forking */
-			print_environment ();
+			/* Not double forking, wait for child */
+			block_on_fd (wakeup_fds[0]);
 		}
 
 		/* The initial process exits successfully */
@@ -656,6 +678,7 @@ fork_and_print_environment (void)
 		pid = fork ();
 
 		if (pid != 0) {
+			close (wakeup_fds[1]);
 
 			/* Here we are in the intermediate child process */
 
@@ -667,7 +690,7 @@ fork_and_print_environment (void)
 				exit (1);
 
 			/* We've done two forks. */
-			print_environment ();
+			block_on_fd (wakeup_fds[0]);
 
 			/* The intermediate child exits */
 			exit (0);
@@ -676,12 +699,7 @@ fork_and_print_environment (void)
 	}
 
 	/* Here we are in the resulting daemon or background process. */
-
-	for (i = 0; i < 3; ++i) {
-		fd = open ("/dev/null", O_RDONLY);
-		sane_dup2 (fd, i);
-		close (fd);
-	}
+	return wakeup_fds[1];
 }
 
 static gboolean
@@ -703,20 +721,6 @@ gkr_daemon_startup_steps (const gchar *components)
 			ssh_started = TRUE;
 			if (!gkd_daemon_startup_ssh ()) {
 				ssh_started = FALSE;
-				return FALSE;
-			}
-		}
-	}
-#endif
-
-#ifdef WITH_GPG
-	if (strstr (components, GKD_COMP_GPG)) {
-		if (gpg_started) {
-			g_message ("The GPG agent was already initialized");
-		} else {
-			gpg_started = TRUE;
-			if (!gkd_daemon_startup_gpg ()) {
-				gpg_started = FALSE;
 				return FALSE;
 			}
 		}
@@ -823,6 +827,14 @@ on_login_timeout (gpointer data)
 	return FALSE;
 }
 
+static void
+on_vanished_quit_loop (GDBusConnection *connection,
+                       const gchar *name,
+                       gpointer user_data)
+{
+	g_main_loop_quit (user_data);
+}
+
 int
 main (int argc, char *argv[])
 {
@@ -845,6 +857,9 @@ main (int argc, char *argv[])
 	 * Without either of these options, we follow a more boring and
 	 * predictable startup.
 	 */
+
+	GDBusConnection *connection = NULL;
+	GError *error = NULL;
 
 	/*
 	 * Before we do ANYTHING, we drop privileges so we don't become
@@ -892,16 +907,37 @@ main (int argc, char *argv[])
 		exit (0);
 	}
 
+	if (perform_unlock) {
+		login_password = read_login_password (STDIN);
+		atexit (clear_login_password);
+	}
+
+	/* The whole forking and daemonizing dance starts here. */
+	parent_wakeup_fd = fork_and_print_environment();
+
 	/* The --start option */
 	if (run_for_start) {
 		if (discover_other_daemon (initialize_daemon_at, TRUE)) {
 			/*
-			 * Another daemon was initialized, print out environment
-			 * for any callers, and quit or go comatose.
+			 * Another daemon was initialized, print out environment,
+			 * tell parent we're done, and quit or go comatose.
 			 */
 			print_environment ();
-			if (run_foreground)
-				while (sleep(0x08000000) == 0);
+			close (parent_wakeup_fd);
+			if (run_foreground) {
+				connection = g_bus_get_sync (G_BUS_TYPE_SESSION, NULL, &error);
+				if (error) {
+					g_warning ("Couldn't connect to session bus: %s", error->message);
+					g_clear_error (&error);
+				}
+				loop = g_main_loop_new (NULL, FALSE);
+				g_bus_watch_name (G_BUS_TYPE_SESSION, "org.gnome.keyring",
+				                  G_BUS_NAME_WATCHER_FLAGS_NONE,
+				                  NULL, on_vanished_quit_loop, loop, NULL);
+				g_main_loop_run (loop);
+				g_clear_pointer (&loop, g_main_loop_unref);
+				g_clear_object (&connection);
+			}
 			cleanup_and_exit (0);
 		}
 
@@ -924,11 +960,6 @@ main (int argc, char *argv[])
 	if (!gkd_control_listen ())
 		return FALSE;
 
-	if (perform_unlock) {
-		login_password = read_login_password (STDIN);
-		atexit (clear_login_password);
-	}
-
 	/* The --login option. Delayed initialization */
 	if (run_for_login) {
 		timeout_id = g_timeout_add_seconds (LOGIN_TIMEOUT, (GSourceFunc) on_login_timeout, NULL);
@@ -942,8 +973,12 @@ main (int argc, char *argv[])
 
 	signal (SIGPIPE, SIG_IGN);
 
-	/* The whole forking and daemonizing dance starts here. */
-	fork_and_print_environment();
+	/* Print the environment and tell the parent we're done */
+	print_environment ();
+	close (parent_wakeup_fd);
+
+	if (!run_foreground)
+		redirect_fds_after_fork ();
 
 	g_unix_signal_add (SIGTERM, on_signal_term, loop);
 	g_unix_signal_add (SIGHUP, on_signal_term, loop);

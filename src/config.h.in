@@ -134,8 +134,7 @@
 /* Version of GCRYPT we expect */
 #undef LIBGCRYPT_VERSION
 
-/* Define to the sub-directory in which libtool stores uninstalled libraries.
-   */
+/* Define to the sub-directory where libtool stores uninstalled libraries. */
 #undef LT_OBJDIR
 
 /* Name of package */
@@ -195,9 +194,6 @@
 
 /* Print debug output */
 #undef WITH_DEBUG
-
-/* Whether to build GPG agent or not */
-#undef WITH_GPG
 
 /* Run p11-tests module testing */
 #undef WITH_P11_TESTS

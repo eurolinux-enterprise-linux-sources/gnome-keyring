@@ -1,5 +1,2204 @@
 # Generate automatically. Do not edit.
 
+commit daabb5f5e3d1b2741b0f1f0601c0e8b789409f08
+Author: Stef Walter <stefw@gnome.org>
+Date:   2016-03-25
+
+    Bump version number
+
+ NEWS         | 3 +++
+ configure.ac | 2 +-
+ 2 files changed, 4 insertions(+), 1 deletion(-)
+
+commit b1e43c2df4ef286ea469dc8ce77cb89a7ff887e4
+Author: Ask Hjorth Larsen <asklarsen@gmail.com>
+Date:   2016-03-20
+
+    Updated Danish translation
+
+ po/da.po | 241 ++++++++++++++++++++++++++++++---------------------------------
+ 1 file changed, 114 insertions(+), 127 deletions(-)
+
+commit c2868b17c3979a4710a9d4bd26da4d35cff1378e
+Author: Cédric Valmary <cvalmary@yahoo.fr>
+Date:   2016-02-26
+
+    Updated Occitan translation
+
+ po/oc.po | 180 ++++++++++++++++++++++++++++-----------------------------------
+ 1 file changed, 81 insertions(+), 99 deletions(-)
+
+commit e697ce5b854d808227432ec4636842595afcb40e
+Author: Matthias Clasen <mclasen@redhat.com>
+Date:   2016-02-17
+
+    3.19.90
+
+ NEWS         | 5 +++++
+ configure.ac | 2 +-
+ 2 files changed, 6 insertions(+), 1 deletion(-)
+
+commit c5da2060b1b6f7649463dacdfcb55dd6bee803af
+Author: Matthias Clasen <mclasen@redhat.com>
+Date:   2016-02-15
+
+    Don't reject empty passwords for --unlock
+    
+    gnome-initial-setup is creating a keyring by calling
+    gnome-keyring-daemon --unlock. Since we don't have a password
+    at that time yet, it passes "" as the password. Just accept
+    this and create an unencrypted keyring.
+    
+    https://bugzilla.gnome.org/show_bug.cgi?id=762095
+
+ daemon/login/gkd-login.c | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+commit 324f2d2e1a7c7391c9b7d794265c07af7767dd95
+Author: Stef Walter <stefw@gnome.org>
+Date:   2016-02-13
+
+    build: Make it easy to run 'make' when $srcdir != $builddir
+
+ autogen.sh              | 7 +++++++
+ build/Makefile.redirect | 9 +++++++++
+ 2 files changed, 16 insertions(+)
+
+commit 562a3f5e62876a9bbadb135c049a828e303afe0e
+Author: Fábio Nogueira <fnogueira@gnome.org>
+Date:   2016-02-10
+
+    Updated Brazilian Portuguese translation
+    (cherry picked from commit 1a068b97500e0d92e454e93893fd5093eb4d9ea6)
+
+ po/pt_BR.po | 234 ++++++++++++++++++++++++++++--------------------------------
+ 1 file changed, 111 insertions(+), 123 deletions(-)
+
+commit 395a11c2ff52a5dcd21e683900e069285163bda9
+Author: Stef Walter <stefw@gnome.org>
+Date:   2016-01-19
+
+    Bump version number.
+
+ NEWS         | 6 ++++++
+ configure.ac | 2 +-
+ 2 files changed, 7 insertions(+), 1 deletion(-)
+
+commit c9f3f435589b58676a0c00e1f0f5b0628b20b3e3
+Author: Aurimas Černius <aurisc4@gmail.com>
+Date:   2016-01-10
+
+    Updated Lithuanian translation
+
+ po/lt.po | 40 ++++++++++++++++------------------------
+ 1 file changed, 16 insertions(+), 24 deletions(-)
+
+commit 28d07c9d9bf9ca6af5bedeeae482f70976cff1d3
+Author: Cosimo Cecchi <cosimoc@gnome.org>
+Date:   2015-12-28
+
+    pkcs11: fix return value of method
+    
+    Use the correct enum value instead of int.
+    
+    https://bugzilla.gnome.org/show_bug.cgi?id=753698
+
+ pkcs11/secret-store/gkm-secret-binary.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+commit e97bedada6f6aa6eab0cad5d630e9a2ec455e089
+Author: tomsod <tomsod-m@ya.ru>
+Date:   2015-12-16
+
+    Fix DBus "Type" property of org.freedesktop.Secret.Item
+    
+    https://bugzilla.gnome.org/show_bug.cgi?id=759399
+
+ daemon/dbus/org.freedesktop.Secrets.xml | 2 ++
+ 1 file changed, 2 insertions(+)
+
+commit eb16c037431da14d4f1c396357f82f2b35e76e23
+Author: Giovanni Campagna <gcampagn@cs.stanford.edu>
+Date:   2015-10-09
+
+    Remove egg-spawn
+    
+    In looking for places where gnome-keyring-daemon potentially
+    spawns subprocesses, I found this piece of unused code. Remove it.
+    
+    https://bugzilla.gnome.org/show_bug.cgi?id=756324
+
+ egg/Makefile.am  |   7 +-
+ egg/egg-spawn.c  | 377 -------------------------------------------------------
+ egg/egg-spawn.h  |  65 ----------
+ egg/test-spawn.c | 297 -------------------------------------------
+ po/POTFILES.in   |   1 -
+ 5 files changed, 1 insertion(+), 746 deletions(-)
+
+commit 607855dc188607f2c2cafaf8c02cbf465b7d6c78
+Author: Giovanni Campagna <gcampagn@cs.stanford.edu>
+Date:   2015-10-09
+
+    daemon: reduce the amount of environment to send to the master process
+    
+    Let's keep the environment vars that the daemon can depend upon
+    to a minimum, so that we reduce the dependency to the initialization
+    order and we avoid inverse dependencies with gnome-shell/XWayland.
+    The daemon was already ignoring most of these.
+    
+    https://bugzilla.gnome.org/show_bug.cgi?id=756324
+
+ daemon/gkd-util.c | 5 -----
+ 1 file changed, 5 deletions(-)
+
+commit 7a475c66b1502b9b553603167730fa83e51791b6
+Author: Giovanni Campagna <gcampagn@cs.stanford.edu>
+Date:   2015-10-09
+
+    daemon: move autostart to PreDisplayServer phase
+    
+    Which, as the name implies, runs before the DisplayServer, ie,
+    before gnome-shell-wayland, and makes sure gnome-shell and
+    its descendants see the right environment variable.
+    
+    https://bugzilla.gnome.org/show_bug.cgi?id=756324
+
+ daemon/gnome-keyring-pkcs11.desktop.in.in  | 2 +-
+ daemon/gnome-keyring-secrets.desktop.in.in | 2 +-
+ daemon/gnome-keyring-ssh.desktop.in.in     | 2 +-
+ 3 files changed, 3 insertions(+), 3 deletions(-)
+
+commit 6cb5a319437842c308d02e3e75a106b0cf069869
+Author: Daniel Șerbănescu <daniel@serbanescu.dk>
+Date:   2015-11-09
+
+    Updated Romanian translation
+
+ po/ro.po | 500 ++++++++++++++++++++++++++++++++++++---------------------------
+ 1 file changed, 288 insertions(+), 212 deletions(-)
+
+commit 41cd0b3ddbd069af30e0f54050e6b69a03a493cc
+Author: Michael Catanzaro <mcatanzaro@gnome.org>
+Date:   2015-11-02
+
+    daemon: Fix amusing typo
+
+ daemon/login/gkd-login.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+commit 11260bd25da002a825665f91e18670087caa6a98
+Author: Stef Walter <stefw@gnome.org>
+Date:   2015-10-26
+
+    Bump version number
+
+ NEWS         | 5 +++++
+ configure.ac | 2 +-
+ 2 files changed, 6 insertions(+), 1 deletion(-)
+
+commit 603884fb5842fc2cc6098e4aac107b11d094adaf
+Author: Aurimas Černius <aurisc4@gmail.com>
+Date:   2015-10-25
+
+    Lithuanian translation fixes
+
+ po/lt.po | 314 +++++++++++++++++++++++++++++++++++----------------------------
+ 1 file changed, 174 insertions(+), 140 deletions(-)
+
+commit 2f5e4db43492c8c15577ca18081d06d1bf38ae60
+Author: Dmitry Shachnev <mitya57@ubuntu.com>
+Date:   2015-10-21
+
+    dbus: Correctly handle alias paths in lookup_collection
+    
+    https://bugzilla.gnome.org/show_bug.cgi?id=756865
+
+ daemon/dbus/gkd-secret-objects.c | 8 +++++++-
+ 1 file changed, 7 insertions(+), 1 deletion(-)
+
+commit a4b6f789a7b53315e6824d29bd5f858b37144800
+Author: Anders Jonsson <anders.jonsson@norsjovallen.se>
+Date:   2015-10-22
+
+    daemon: Fix manpage typos
+    
+    https://bugzilla.gnome.org/show_bug.cgi?id=756812
+
+ docs/gnome-keyring-daemon.xml | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+commit 9c8c48f62ecb76adad23fba886497c4b69a58c3d
+Author: Stef Walter <stefw@gnome.org>
+Date:   2015-10-20
+
+    Bump version number
+
+ NEWS         | 4 ++++
+ configure.ac | 2 +-
+ 2 files changed, 5 insertions(+), 1 deletion(-)
+
+commit 66a360bfeb5e2a5fb12323b03b9c7e3844a8e159
+Author: Stef Walter <stefw@gnome.org>
+Date:   2015-10-19
+
+    egg: Fix bad precondation checking timegm() result
+    
+    https://bugs.freedesktop.org/show_bug.cgi?id=92383
+
+ egg/egg-asn1x.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+commit e53af4d55052b879581abf6af66b8a067dfb86df
+Author: Cosimo Cecchi <cosimoc@gnome.org>
+Date:   2015-10-17
+
+    secret-prompt: don't explicitly disconnect skeleton signals
+    
+    After we are unexported, those signals will not be emitted anymore.
+
+ daemon/dbus/gkd-secret-prompt.c | 2 --
+ 1 file changed, 2 deletions(-)
+
+commit 7840cb97902c952c34831cc63dcba00ececabd0c
+Author: Stef Walter <stefw@gnome.org>
+Date:   2015-10-16
+
+    dbus: Fix object path regression from GDBus port
+    
+    Previously objects were only explicitly exported on the bus when
+    they were ready. However now due to GDBus handler connections
+    they are exported earlier.
+    
+    Make sure to export a prompt object before something is exported
+    at the same object path to take its place.
+    
+    https://bugzilla.gnome.org/show_bug.cgi?id=756032
+
+ daemon/dbus/gkd-secret-create.c |  1 +
+ daemon/dbus/gkd-secret-prompt.c | 10 ++++++++++
+ daemon/dbus/gkd-secret-prompt.h |  3 +++
+ 3 files changed, 14 insertions(+)
+
+commit 91dfc6a365f3d12e87769680c2dedc2bc1e57b23
+Author: Stef Walter <stefw@gnome.org>
+Date:   2015-10-16
+
+    Bump version number
+
+ NEWS         | 6 ++++++
+ configure.ac | 2 +-
+ 2 files changed, 7 insertions(+), 1 deletion(-)
+
+commit bf560bd195919d79a59a8642923ccac80c437bb1
+Author: Ray Strode <rstrode@redhat.com>
+Date:   2015-10-15
+
+    daemon: Kill off foreground proceses when session dies
+    
+    Right now gnome-keyring will keep processes around forever
+    in some cases.  They need to die when the session goes away,
+    at least.
+    
+    Signed-off-by: Cosimo Cecchi <cosimoc@gnome.org>
+     * Don't leak a DBus connection
+    
+    Signed-off-by: Stef Walter <stefw@gnome.org>
+     * Print error message if we cannot connect to bus
+     * Wait for gnome-keyring-daemon when --foreground
+    
+    https://bugzilla.gnome.org/show_bug.cgi?id=756059
+
+ daemon/gkd-main.c | 27 +++++++++++++++++++++++++--
+ 1 file changed, 25 insertions(+), 2 deletions(-)
+
+commit ac9492a929d364685da8c8cb4152bf2534ddfb6f
+Author: Cosimo Cecchi <cosimoc@gnome.org>
+Date:   2015-10-16
+
+    daemon: adjust CFLAGS for daemon
+    
+    https://bugzilla.gnome.org/show_bug.cgi?id=756059
+
+ daemon/Makefile.am | 4 +++-
+ 1 file changed, 3 insertions(+), 1 deletion(-)
+
+commit 6040bdb2a0ee9ee1f8e308b8cdede6d3fe5c94bf
+Author: Ray Strode <rstrode@redhat.com>
+Date:   2015-10-15
+
+    daemon: fork before threads are spawned
+    
+    It's not really a good idea to fork after glib has initialized,
+    since it has helper threads that may have taken locks etc.
+    
+    This commit forks really early to prevent locks from leaking
+    and causing deadlock.
+    
+    Signed-off-by: Cosimo Cecchi <cosimoc@gnome.org>
+     * Split out separate function
+     * Check return value of g_unix_open_pipe()
+     * Don't fork when running foreground
+     * Read login password before fork()
+    
+    Signed-off-by: Stef Walter <stefw@gnome.org>
+     * Since stdout is open, just print evironment directly
+    
+    https://bugzilla.gnome.org/show_bug.cgi?id=756059
+
+ daemon/gkd-main.c | 72 ++++++++++++++++++++++++++++++++++++++-----------------
+ 1 file changed, 50 insertions(+), 22 deletions(-)
+
+commit 74fc065e3c3e04a5cd5dfa0e725f7664825a5b1e
+Author: Stef Walter <stefw@gnome.org>
+Date:   2015-10-13
+
+    pam: Stop using deprecated <selinux/flask.h> header
+    
+    And use the more complex function call instead.
+    
+    Fixes this warning:
+    
+    /usr/include/selinux/flask.h:5:2: error: #warning "Please remove any #include's of this header in your source code." [-Werror=cpp]
+     #warning "Please remove any #include's of this header in your source code."
+      ^
+
+ pam/gkr-pam-module.c | 3 +--
+ 1 file changed, 1 insertion(+), 2 deletions(-)
+
+commit b84b9205f9f3ccf7c05f16cac561e8e16eebbefa
+Author: Tom Tryfonidis <tomtryf@gmail.com>
+Date:   2015-10-08
+
+    Updated Greek translation
+
+ po/el.po | 135 +++++++++++++++++++++++++++++----------------------------------
+ 1 file changed, 61 insertions(+), 74 deletions(-)
+
+commit 3cf744f67939dc23c2cc8715cda999a7ec13f1b6
+Author: Jan Alexander Steffens (heftig) <jan.steffens@gmail.com>
+Date:   2015-10-06
+
+    dbus: Initialize secret service before claiming name
+    
+    Otherwise incoming calls can race with our initialization. Activating
+    calls are even guaranteed to arrive before we have set up the service.
+    
+    https://bugzilla.gnome.org/show_bug.cgi?id=756006
+
+ daemon/dbus/gkd-dbus-secrets.c | 10 +++++-----
+ 1 file changed, 5 insertions(+), 5 deletions(-)
+
+commit 918ab836fd23f9b2c0bf655c7f4f575bffff3189
+Author: Dmitry Shachnev <mitya57@ubuntu.com>
+Date:   2015-09-30
+
+    build: Make tap-gtester handle skipped tests correctly
+    
+    In pam/test-pam.c, the skip_test function either prints the status
+    itself, or relies on g_test_skip (depending on GLib version).
+    
+    The tap-gtester script should handle both cases, not only the first
+    one.
+    
+    https://bugzilla.gnome.org/show_bug.cgi?id=755873
+
+ build/tap-gtester | 2 ++
+ 1 file changed, 2 insertions(+)
+
+commit cc0d05adb11f1bcbc9a8be33a29a34cd20a9a57f
+Author: Dmitry Shachnev <mitya57@ubuntu.com>
+Date:   2015-09-30
+
+    egg: Make sure names for encode-decode tests are different
+    
+    https://bugzilla.gnome.org/show_bug.cgi?id=755873
+
+ egg/test-asn1x.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+commit 3c424be597a2e4164348bc087882a7ed376df163
+Author: Dmitry Shachnev <mitya57@ubuntu.com>
+Date:   2015-09-30
+
+    tests: Make sure names for write_large_file tests are different
+    
+    https://bugzilla.gnome.org/show_bug.cgi?id=755873
+
+ pkcs11/gkm/test-transaction.c | 7 +++++--
+ 1 file changed, 5 insertions(+), 2 deletions(-)
+
+commit 2425dab6765cb67b3c08e4143d70421a98f997d1
+Author: Dmitry Shachnev <mitya57@ubuntu.com>
+Date:   2015-09-30
+
+    tests: Fix name of note-xdg-schema-without-schema-locked test
+    
+    https://bugzilla.gnome.org/show_bug.cgi?id=755873
+
+ pkcs11/secret-store/test-secret-schema.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+commit 8b24acb220cf5355596c562532ac494a9f1a6388
+Author: Trần Ngọc Quân <vnwildman@gmail.com>
+Date:   2015-10-01
+
+    Updated Vietnamese translation
+    
+    Signed-off-by: Trần Ngọc Quân <vnwildman@gmail.com>
+
+ po/vi.po | 136 +++++++++++++++++++++++++++++----------------------------------
+ 1 file changed, 62 insertions(+), 74 deletions(-)
+
+commit b1aee9c01f647f084e6c0ae2b4810c9ec7d0fd0d
+Author: Stef Walter <stefw@gnome.org>
+Date:   2015-09-28
+
+    Bump version number
+
+ NEWS         | 3 +++
+ configure.ac | 2 +-
+ 2 files changed, 4 insertions(+), 1 deletion(-)
+
+commit c4957ebe3d50965373200be9940bf192cabe806c
+Author: Dmitry Shachnev <mitya57@ubuntu.com>
+Date:   2015-09-06
+
+    test-import: Initialize error with NULL to fix segfault
+    
+    https://bugzilla.gnome.org/show_bug.cgi?id=731802
+
+ pkcs11/gnome2-store/test-import.c | 1 +
+ 1 file changed, 1 insertion(+)
+
+commit 4307ec560e48ab5b05fecaa12b98978eab4e1b82
+Author: Stef Walter <stefw@redhat.com>
+Date:   2015-09-05
+
+    Release version 3.17.91
+
+ NEWS         | 4 ++++
+ configure.ac | 2 +-
+ 2 files changed, 5 insertions(+), 1 deletion(-)
+
+commit 28ff2955d733f137d7fec22f91b65b9a36bff54c
+Author: Cosimo Cecchi <cosimoc@gnome.org>
+Date:   2015-08-31
+
+    dbus: don't initialize aliases lazily
+    
+    Since we call gkd_secret_service_get_alias() from a worker thread, we
+    should not modify the aliases hash table, or doing I/O from there.
+    Just initialize the aliases hash table during construction.
+
+ daemon/dbus/gkd-secret-service.c | 46 ++++++++++++++--------------------------
+ 1 file changed, 16 insertions(+), 30 deletions(-)
+
+commit d89331f4e1b0602612d3b9bce9de5e4969a06833
+Author: Cosimo Cecchi <cosimoc@gnome.org>
+Date:   2015-08-31
+
+    dbus: simplify setting default path
+    
+    Initialize the default path with the service, with the goal of
+    eventually making gkd_secret_service_get_alias() be thread-safe.
+
+ daemon/dbus/gkd-secret-service.c | 40 +++++++++++++++++-----------------------
+ 1 file changed, 17 insertions(+), 23 deletions(-)
+
+commit ee081695bf91fe8b9d0888f2f8424c6d36b875d0
+Author: Cosimo Cecchi <cosimoc@gnome.org>
+Date:   2015-08-31
+
+    dbus: remove unused code path
+    
+    The "force" parameter is always TRUE.
+
+ daemon/dbus/gkd-secret-service.c | 13 +++----------
+ 1 file changed, 3 insertions(+), 10 deletions(-)
+
+commit 04cef4e869bdb839a2f50aed8870611b8fdb6809
+Author: Cosimo Cecchi <cosimoc@gnome.org>
+Date:   2015-08-29
+
+    dbus: fix warning messages syntax
+    
+    Use %s instead of %p for strings, to get a more useful output.
+
+ daemon/dbus/gkd-secret-objects.c | 8 ++++----
+ 1 file changed, 4 insertions(+), 4 deletions(-)
+
+commit 2f5e38abe67a34d3f068d1203c9b4c678b362b68
+Author: Cosimo Cecchi <cosimoc@gnome.org>
+Date:   2015-08-28
+
+    dbus: cosmetic cleanups
+
+ daemon/dbus/gkd-secret-objects.c | 13 -------------
+ daemon/dbus/gkd-secret-session.c | 23 -----------------------
+ daemon/dbus/gkd-secret-session.h |  2 --
+ 3 files changed, 38 deletions(-)
+
+commit ec4216448381cadd9920d1382725fa1848f3b8ac
+Author: Cosimo Cecchi <cosimoc@gnome.org>
+Date:   2015-08-15
+
+    dbus: use g_memdup()
+    
+    Instead of g_strndup(), for consistency with other similar code above.
+
+ daemon/dbus/gkd-secret-secret.c | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+commit cb5c096854c2ade3747c6100341893e11e2881b7
+Author: Cosimo Cecchi <cosimoc@gnome.org>
+Date:   2015-08-29
+
+    dbus: fix marshalling of GkdSecretSecret
+    
+    We need to use g_variant_new_fixed_array(), as the parameter and value
+    are not bytestrings. This fixes another regression from the GDBus port.
+
+ daemon/dbus/gkd-secret-secret.c | 14 ++++++--------
+ 1 file changed, 6 insertions(+), 8 deletions(-)
+
+commit 0268ca317e4c9c1f453041b6b10d58eda332329e
+Author: Cosimo Cecchi <cosimoc@gnome.org>
+Date:   2015-08-28
+
+    dbus: fix marshalling of OpenSession result
+    
+    We should use g_variant_new_fixed_array() in this case, as what we have
+    is not a bytestring.
+    Fixes a regression from the GDBus port.
+
+ daemon/dbus/gkd-secret-session.c | 8 +++-----
+ 1 file changed, 3 insertions(+), 5 deletions(-)
+
+commit a79d4ad21c0ae044b6586750d43f2bf441e34aac
+Author: Cosimo Cecchi <cosimoc@gnome.org>
+Date:   2015-08-15
+
+    dbus: use sizeof(guchar) instead of sizeof(guint8)
+    
+    Does not make a difference, but it makes more logical sense.
+
+ daemon/dbus/gkd-secret-secret.c  | 4 ++--
+ daemon/dbus/gkd-secret-session.c | 2 +-
+ 2 files changed, 3 insertions(+), 3 deletions(-)
+
+commit 24f3d5518af4b14c9658bfa4ffe6b1607755381e
+Author: Cosimo Cecchi <cosimoc@gnome.org>
+Date:   2015-08-29
+
+    dbus: fix wrong unpacking of Attributes variant
+    
+    gkd_exported_item_set_attributes() takes the variant we receive from the
+    property setter, and trying to call g_variant_get_variant() on it will
+    hit an assertion failure.
+
+ daemon/dbus/gkd-secret-objects.c | 3 +--
+ 1 file changed, 1 insertion(+), 2 deletions(-)
+
+commit 29633784624cbbbace70e10f72d452049d204c28
+Author: Cosimo Cecchi <cosimoc@gnome.org>
+Date:   2015-08-29
+
+    dbus: rewrite default alias in message filter
+    
+    Instead of trying to parse the default alias when receiving every
+    method, rewrite it directly in our message filter.
+    This fixes a regression from the GDBus port where requests for the
+    default collection weren't being handled.
+
+ daemon/dbus/gkd-secret-objects.c | 42 ++++------------------------
+ daemon/dbus/gkd-secret-service.c | 60 ++++++++++++++++++++++++++++++++++++++--
+ 2 files changed, 64 insertions(+), 38 deletions(-)
+
+commit 4c4ab1149b0f71baaf88ff80e0a5d21fe253e9ab
+Author: Cosimo Cecchi <cosimoc@gnome.org>
+Date:   2015-08-28
+
+    dbus: only emit 'Completed' signal to original caller
+    
+    Matches the pre-GDBus behavior.
+
+ daemon/dbus/gkd-secret-prompt.c |  9 +++++++--
+ daemon/dbus/gkd-secret-unlock.c | 12 +++++++++---
+ 2 files changed, 16 insertions(+), 5 deletions(-)
+
+commit 5b597626b8ae137836b524bf814cf904c8c9c450
+Author: Cosimo Cecchi <cosimoc@gnome.org>
+Date:   2015-08-07
+
+    dbus: do not handle methods when they don't match initial caller
+    
+    Match the previous behavior in GkdSecretPrompt, GkdSecretSession and
+    GkdSecretUnlock, where we do not reply to dbus methods that are being
+    invoked for a caller different than the one initially requesting the
+    object.
+    
+    https://bugzilla.gnome.org/show_bug.cgi?id=622905
+
+ daemon/dbus/gkd-dbus.c           | 17 +++++++++++++++++
+ daemon/dbus/gkd-dbus.h           |  5 +++++
+ daemon/dbus/gkd-secret-prompt.c  |  7 +++++++
+ daemon/dbus/gkd-secret-session.c |  4 ++++
+ daemon/dbus/gkd-secret-unlock.c  |  7 +++++++
+ 5 files changed, 40 insertions(+)
+
+commit 7130003e27cc1616140fe0aeeab41dc26177275c
+Author: Piotr Drąg <piotrdrag@gmail.com>
+Date:   2015-08-25
+
+    Updated Polish translation
+
+ po/pl.po | 309 +++++++++++++++++++++++++++++----------------------------------
+ 1 file changed, 140 insertions(+), 169 deletions(-)
+
+commit 760f60931a13c6c422a09dca47eb8cb69898d0ec
+Author: Milan Crha <mcrha@redhat.com>
+Date:   2015-08-06
+
+    Fix issue found by address sanitizer
+    
+    There was done a read of one item more than the array was allocated.
+    This patch fixes the issue.
+    
+    https://bugzilla.gnome.org/show_bug.cgi?id=752919
+
+ pkcs11/rpc-layer/gkm-rpc-util.c | 7 ++++---
+ 1 file changed, 4 insertions(+), 3 deletions(-)
+
+commit aca66ebce1e23687ce3897814da5e1ef73dd28d4
+Author: Stef Walter <stefw@gnome.org>
+Date:   2015-08-03
+
+    Release version 3.17.4
+
+ NEWS         | 6 ++++++
+ configure.ac | 2 +-
+ 2 files changed, 7 insertions(+), 1 deletion(-)
+
+commit 9d3b99e3da8d6c8cd4dcbe182f76088a913c5349
+Author: Stef Walter <stefw@gnome.org>
+Date:   2015-07-26
+
+    dbus: Fix regression endless loop when handling GetEnvironment
+
+ daemon/dbus/gkd-dbus.c | 3 +--
+ 1 file changed, 1 insertion(+), 2 deletions(-)
+
+commit 26da7fed823b60f83c59b8fc9b78d49f0169d2b8
+Author: Giovanni Campagna <scampa.giovanni@gmail.com>
+Date:   2015-03-17
+
+    gnome2-store: remove temporary files on failure
+    
+    Let's avoid littering ~/.local/share/keyrings with user.keystore.*
+    empty files
+    
+    https://bugzilla.gnome.org/show_bug.cgi?id=746334
+
+ pkcs11/gnome2-store/gkm-gnome2-storage.c | 6 +++++-
+ 1 file changed, 5 insertions(+), 1 deletion(-)
+
+commit edfd067c3e867653ad3a831405edf4a1170d5aca
+Author: Stef Walter <stefw@gnome.org>
+Date:   2015-07-01
+
+    dbus: Clearer message for unlock prompt failure
+
+ daemon/dbus/gkd-secret-unlock.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+commit 077a3174dff35aacfc6c287f2866eaccfaae5a12
+Author: Stef Walter <stefw@gnome.org>
+Date:   2015-07-01
+
+    dbus: Fix another GVariant type string
+
+ daemon/dbus/gkd-secret-objects.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+commit bb6dfc6cca89f7381e5d90660fee1fc12133c1f7
+Author: Stef Walter <stefw@gnome.org>
+Date:   2015-07-01
+
+    dbus: Fix GVariant signature used to encode secret
+
+ daemon/dbus/gkd-secret-objects.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+commit 452659ec669096b0a987442b0d991bc7e896a2dd
+Author: Stef Walter <stefw@gnome.org>
+Date:   2015-06-30
+
+    dbus: Fix inverted g_strcmp0 check when initializing gnome-session
+
+ daemon/dbus/gkd-dbus-environment.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+commit b7e8081e78cef8a56c47fd4361069edfa1ae865e
+Author: Stef Walter <stefw@gnome.org>
+Date:   2015-06-30
+
+    daemon: Don't rebuild DBus generated files on every make
+
+ daemon/dbus/Makefile.am | 6 +++---
+ 1 file changed, 3 insertions(+), 3 deletions(-)
+
+commit c0b02d973b2169ce773efb6b436737de321162e2
+Author: Pedro Albuquerque <palbuquerque73@gmail.com>
+Date:   2015-06-29
+
+    Updated Portuguese translation
+
+ po/pt.po | 384 ++++++++++++++++++++++++++++++++-------------------------------
+ 1 file changed, 193 insertions(+), 191 deletions(-)
+
+commit 113648d357ea5cd4fcc7813b3c6b6756bb907845
+Author: Cosimo Cecchi <cosimoc@gnome.org>
+Date:   2015-06-29
+
+    dbus: try again to fix builddir != srcdir
+
+ daemon/dbus/Makefile.am | 6 +++---
+ 1 file changed, 3 insertions(+), 3 deletions(-)
+
+commit 4d09b2ce3303f49ab7fc86abc5f4e11fd227f769
+Author: Cosimo Cecchi <cosimoc@gnome.org>
+Date:   2015-06-29
+
+    dbus: try to fix srcdir != builddir
+
+ daemon/dbus/Makefile.am | 6 +++---
+ 1 file changed, 3 insertions(+), 3 deletions(-)
+
+commit 74167eb0afbf355fd431e88cb0a5a8779eaa0356
+Author: Cosimo Cecchi <cosimoc@gnome.org>
+Date:   2015-06-29
+
+    Fix distcheck
+
+ Makefile.am             | 4 ++--
+ daemon/dbus/Makefile.am | 6 ++++++
+ 2 files changed, 8 insertions(+), 2 deletions(-)
+
+commit f24e3748d0c92937fee9e167536153b260d78500
+Author: Cosimo Cecchi <cosimoc@gnome.org>
+Date:   2015-04-25
+
+    Fix spaces -> tabs
+
+ daemon/dbus/gkd-dbus-environment.c |   2 +-
+ daemon/dbus/gkd-dbus-secrets.c     |   4 +-
+ daemon/dbus/gkd-dbus.c             |  22 +++---
+ daemon/dbus/gkd-secret-change.c    |  74 ++++++++++----------
+ daemon/dbus/gkd-secret-create.c    |  62 ++++++++---------
+ daemon/dbus/gkd-secret-error.c     |  52 +++++++-------
+ daemon/dbus/gkd-secret-exchange.c  |  74 ++++++++++----------
+ daemon/dbus/gkd-secret-lock.c      |  14 ++--
+ daemon/dbus/gkd-secret-objects.c   | 134 ++++++++++++++++++-------------------
+ daemon/dbus/gkd-secret-prompt.c    |  36 +++++-----
+ daemon/dbus/gkd-secret-property.c  |  66 +++++++++---------
+ daemon/dbus/gkd-secret-secret.c    |  50 +++++++-------
+ daemon/dbus/gkd-secret-service.c   | 124 +++++++++++++++++-----------------
+ daemon/dbus/gkd-secret-session.c   |  64 +++++++++---------
+ daemon/dbus/gkd-secret-unlock.c    |  66 +++++++++---------
+ daemon/dbus/gkd-secret-util.c      |   8 +--
+ 16 files changed, 426 insertions(+), 426 deletions(-)
+
+commit 6acc9bb2fba9daedc814507bc5a59cdbc0c015dd
+Author: Cosimo Cecchi <cosimoc@gnome.org>
+Date:   2015-04-25
+
+    Annotate generated types from gdbus-codegen
+    
+    Give these generated classes some sensible names.
+
+ daemon/dbus/Makefile.am          |  7 ++++
+ daemon/dbus/gkd-dbus.c           | 18 ++++-----
+ daemon/dbus/gkd-secret-objects.c | 84 ++++++++++++++++++++--------------------
+ daemon/dbus/gkd-secret-prompt.c  | 16 ++++----
+ daemon/dbus/gkd-secret-service.c | 82 +++++++++++++++++++--------------------
+ daemon/dbus/gkd-secret-session.c |  8 ++--
+ daemon/dbus/gkd-secret-unlock.c  | 18 ++++-----
+ 7 files changed, 120 insertions(+), 113 deletions(-)
+
+commit 974165fa6bdd81a419c80d94b0f95150832e2e55
+Author: Cosimo Cecchi <cosimoc@gnome.org>
+Date:   2014-11-14
+
+    dbus-error: fix error message
+
+ daemon/dbus/gkd-secret-error.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+commit 2821bc32e3280439382c6e600efaf8dc4763732c
+Author: Cosimo Cecchi <cosimoc@gnome.org>
+Date:   2014-11-14
+
+    dbus-objects: return correct DBus error codes
+
+ daemon/dbus/gkd-secret-objects.c | 6 +++---
+ 1 file changed, 3 insertions(+), 3 deletions(-)
+
+commit b1879da839882e4232be7884219324995eb9e0e3
+Author: Cosimo Cecchi <cosimoc@gnome.org>
+Date:   2014-11-14
+
+    dbus-error: check for error != NULL
+    
+    It's a programmer error to call this without a GError.
+
+ daemon/dbus/gkd-secret-error.c | 2 ++
+ 1 file changed, 2 insertions(+)
+
+commit 5d6c9d37c1adf1414a3b63a2a2a1cc764591caf6
+Author: Cosimo Cecchi <cosimoc@gnome.org>
+Date:   2014-11-14
+
+    dbus: plug some memory leaks
+
+ daemon/dbus/gkd-dbus-session.c    | 45 ++++++++++++++++++++++-----------------
+ daemon/dbus/gkd-secret-property.c |  8 +++++--
+ 2 files changed, 32 insertions(+), 21 deletions(-)
+
+commit 3d91423537093cbc2814a7278e1cb8311202eeaa
+Author: Cosimo Cecchi <cosimoc@gnome.org>
+Date:   2014-11-14
+
+    build: don't put generated files in $(srcdir)
+
+ daemon/dbus/Makefile.am | 6 +++---
+ 1 file changed, 3 insertions(+), 3 deletions(-)
+
+commit c705262e4906e201a1d0ed19ee0663325208adb1
+Author: Cosimo Cecchi <cosimoc@gnome.org>
+Date:   2014-11-09
+
+    dbus: cleanup error handling
+
+ daemon/dbus/gkd-dbus.c | 6 +++---
+ 1 file changed, 3 insertions(+), 3 deletions(-)
+
+commit 7e78262511c58cb55ccbbd23ffb3307c19a95e84
+Author: Cosimo Cecchi <cosimoc@gnome.org>
+Date:   2014-11-09
+
+    dbus-session: don't forget to assign signal registration ID
+
+ daemon/dbus/gkd-dbus-session.c | 12 ++++++------
+ 1 file changed, 6 insertions(+), 6 deletions(-)
+
+commit 7dabccd8c3d62063367eb947c58f4622911301ce
+Author: Cosimo Cecchi <cosimoc@gnome.org>
+Date:   2014-11-09
+
+    dbus-environment: plug a memory leak
+
+ daemon/dbus/gkd-dbus-environment.c | 5 ++++-
+ 1 file changed, 4 insertions(+), 1 deletion(-)
+
+commit 3c68e9accc7b7f4ed6786247b9a00d06a8196f9d
+Author: Cosimo Cecchi <cosimoc@gnome.org>
+Date:   2014-11-09
+
+    dbus-service: make sure all clients are registered before handling requests
+    
+    To ensure this, we install a filter on our DBus connection, and remove
+    the call to fetch the caller credentials, since we don't use them (and
+    we wouldn't want to do that from the message processing worker thread).
+
+ daemon/dbus/gkd-secret-service.c | 134 +++++++++++++++++++--------------------
+ 1 file changed, 67 insertions(+), 67 deletions(-)
+
+commit ed390c9dc561121e4ed9bde2078ccbbf1f619244
+Author: Cosimo Cecchi <cosimoc@gnome.org>
+Date:   2014-11-08
+
+    Update .gitignore
+    
+    https://bugzilla.gnome.org/show_bug.cgi?id=622905
+
+ .gitignore | 7 +++++++
+ 1 file changed, 7 insertions(+)
+
+commit a590a9f987c7fe0f0014f2d9c64236db7cd1d74e
+Author: Cosimo Cecchi <cosimoc@gnome.org>
+Date:   2014-11-08
+
+    test: adapt for gdbus-codegen PropertiesChanged behavior
+    
+    Before using gdbus-codegen for the secret objects, property signals
+    would be emitted synchronously before returning the method call.
+    Generated GDBus skeletons will queue signalling of property changes in
+    an idle, so we can't rely on the same timing behavior as before.
+    
+    See code comment for more details.
+    
+    https://bugzilla.gnome.org/show_bug.cgi?id=622905
+
+ daemon/dbus/test-dbus-signals.c | 48 ++++++++++++++++++++++++++++++++++-------
+ 1 file changed, 40 insertions(+), 8 deletions(-)
+
+commit 08051920c7bf7a1a51b8aad90dfdb362fd2fa4ed
+Author: Cosimo Cecchi <cosimoc@gnome.org>
+Date:   2014-11-08
+
+    build: remove dbus checks
+    
+    We don't depend on libdbus anymore.
+    
+    https://bugzilla.gnome.org/show_bug.cgi?id=622905
+
+ configure.ac | 7 -------
+ 1 file changed, 7 deletions(-)
+
+commit 1d26d1a83f669c895e8a9e84d626a45a89e5e567
+Author: Cosimo Cecchi <cosimoc@gnome.org>
+Date:   2014-11-08
+
+    egg: remove egg-dbus.[ch]
+    
+    They're not used anymore.
+    
+    https://bugzilla.gnome.org/show_bug.cgi?id=622905
+
+ daemon/Makefile.am     |   1 -
+ daemon/dbus/gkd-dbus.c |   1 -
+ egg/Makefile.am        |  14 +-
+ egg/egg-dbus.c         | 420 -------------------------------------------------
+ egg/egg-dbus.h         |  36 -----
+ 5 files changed, 1 insertion(+), 471 deletions(-)
+
+commit c459da1c8af39f23c6d160a7bc694496ad17cada
+Author: Cosimo Cecchi <cosimoc@gnome.org>
+Date:   2014-11-01
+
+    Port gnome-keyring-daemon to GDBus
+    
+    This commit ports gnome-keyring-daemon from libdbus1 to GDBus.
+    Unfortunately it's not really possible to split this commit into
+    multiple while keeping the code building.
+    
+    Noteworthy is the different approach that GDBus allows us to use;
+    instead of filtering every message and writing our own internal message
+    routing, we can more naturally use generated skeletons and
+    register/unregister them on the bus as needed.
+    
+    https://bugzilla.gnome.org/show_bug.cgi?id=622905
+
+ configure.ac                                       |    2 +-
+ daemon/dbus/Makefile.am                            |   39 +-
+ daemon/dbus/gkd-dbus-environment.c                 |   78 +-
+ daemon/dbus/gkd-dbus-private.h                     |   18 +-
+ daemon/dbus/gkd-dbus-secrets.c                     |   54 +-
+ daemon/dbus/gkd-dbus-session.c                     |  183 +--
+ daemon/dbus/gkd-dbus-util.c                        |  134 --
+ daemon/dbus/gkd-dbus-util.h                        |   40 -
+ daemon/dbus/gkd-dbus.c                             |  255 ++-
+ daemon/dbus/gkd-secret-change.c                    |   12 +-
+ daemon/dbus/gkd-secret-create.c                    |    9 +-
+ daemon/dbus/gkd-secret-dispatch.c                  |    8 -
+ daemon/dbus/gkd-secret-dispatch.h                  |    6 -
+ daemon/dbus/gkd-secret-error.c                     |   70 +-
+ daemon/dbus/gkd-secret-error.h                     |   24 +-
+ daemon/dbus/gkd-secret-introspect.c                |  283 ----
+ daemon/dbus/gkd-secret-introspect.h                |   35 -
+ daemon/dbus/gkd-secret-lock.c                      |   13 +-
+ daemon/dbus/gkd-secret-lock.h                      |    6 +-
+ daemon/dbus/gkd-secret-objects.c                   | 1621 ++++++++++----------
+ daemon/dbus/gkd-secret-objects.h                   |   45 +-
+ daemon/dbus/gkd-secret-prompt.c                    |  127 +-
+ daemon/dbus/gkd-secret-prompt.h                    |    5 +-
+ daemon/dbus/gkd-secret-property.c                  |  235 ++-
+ daemon/dbus/gkd-secret-property.h                  |   14 +-
+ daemon/dbus/gkd-secret-secret.c                    |  121 +-
+ daemon/dbus/gkd-secret-secret.h                    |   11 +-
+ daemon/dbus/gkd-secret-service.c                   | 1240 +++++++--------
+ daemon/dbus/gkd-secret-service.h                   |   12 +-
+ daemon/dbus/gkd-secret-session.c                   |  264 ++--
+ daemon/dbus/gkd-secret-session.h                   |   12 +-
+ daemon/dbus/gkd-secret-types.h                     |    7 +-
+ daemon/dbus/gkd-secret-unlock.c                    |  145 +-
+ daemon/dbus/gkd-secret-unlock.h                    |    2 +-
+ daemon/dbus/gkd-secret-util.h                      |    2 -
+ daemon/dbus/org.freedesktop.Secrets.xml            |  167 ++
+ daemon/dbus/org.gnome.keyring.Daemon.xml           |   13 +
+ ...ing.InternalUnsupportedGuiltRiddenInterface.xml |   25 +
+ 38 files changed, 2312 insertions(+), 3025 deletions(-)
+
+commit 3c05553258d2442f90e806f3eb045ce84c7afec8
+Author: David Woodhouse <David.Woodhouse@intel.com>
+Date:   2015-06-23
+
+    Fix PKCS#11 RPC handling of multi-threaded clients
+    
+    In a multi-threaded client which makes concurrent calls into the PKCS#11
+    module (which is permitted as long as it's for separate sessions), we
+    might end up with multiple RPC connections to the dæmon.
+    
+    These are currently being treated as independent client applications,
+    which leads to spurious CKR_USER_NOT_LOGGED_IN and other errors as
+    described at https://bugzilla.redhat.com/show_bug.cgi?id=1173279
+    
+    Fix this by moving the CK_G_APPLICATION state out of the CallState and
+    into a separate refcounted ClientInstance data structure, and looking up
+    the appropriate ClientInstance for new connections before creating a new
+    one.
+    
+    The ClientInstance is accessed without locking during certain calls
+    because we know it *cannot* go away while a refcount is still held on it.
+
+ pkcs11/rpc-layer/gkm-rpc-dispatch.c | 77 +++++++++++++++++++++++++++++++------
+ 1 file changed, 66 insertions(+), 11 deletions(-)
+
+commit a8862f74aaed5ac7ea7b3d72984ddd9c40febd34
+Author: Stef Walter <stefw@gnome.org>
+Date:   2015-06-07
+
+    daemon: Remove the GnuPG agent
+    
+    The GnuPG agent is incomplete and incompatible with many uses of
+    GnuPG 2.x.
+    
+    There is a new pinentry that replaces this. It prompts via system
+    modal dialogs, and allows optional caching of passphrases.
+    
+    https://bugzilla.gnome.org/show_bug.cgi?id=750514
+
+ HACKING                                     |   3 -
+ Makefile.am                                 |   2 -
+ configure.ac                                |  18 -
+ daemon/.gitignore                           |   2 -
+ daemon/Makefile.am                          |   3 +-
+ daemon/gkd-glue.c                           |  41 --
+ daemon/gkd-glue.h                           |   2 -
+ daemon/gkd-main.c                           |  18 +-
+ daemon/gkd-pkcs11.c                         |   5 +-
+ daemon/gnome-keyring-gpg.desktop.in.in      |  13 -
+ daemon/gpg-agent/.gitignore                 |   1 -
+ daemon/gpg-agent/Makefile.am                |  15 -
+ daemon/gpg-agent/gkd-gpg-agent-ops.c        | 665 ----------------------------
+ daemon/gpg-agent/gkd-gpg-agent-private.h    | 118 -----
+ daemon/gpg-agent/gkd-gpg-agent-standalone.c | 123 -----
+ daemon/gpg-agent/gkd-gpg-agent.c            | 506 ---------------------
+ daemon/gpg-agent/gkd-gpg-agent.h            |  39 --
+ daemon/login/gkd-login.c                    |   8 +-
+ docs/gnome-keyring-daemon.xml               |   4 +-
+ po/POTFILES.in                              |   2 -
+ po/POTFILES.skip                            |   3 +-
+ schema/org.gnome.crypto.cache.gschema.xml   |   5 -
+ 22 files changed, 10 insertions(+), 1586 deletions(-)
+
+commit ab2182a1efedaae28a58d2a239cdf224da6249ce
+Author: Stef Walter <stefw@gnome.org>
+Date:   2015-06-07
+
+    Bump version number
+
+ configure.ac | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+commit ea4b2de2ad71ad98ca973500d8d4f5a5b572c5b6
+Author: Cédric Valmary <cvalmary@yahoo.fr>
+Date:   2015-05-20
+
+    Updated Occitan translation
+
+ po/oc.po | 626 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++------
+ 1 file changed, 570 insertions(+), 56 deletions(-)
+
+commit 7274742a82278965f2cc4908a631822d5ef21328
+Author: Changwoo Ryu <cwryu@debian.org>
+Date:   2015-05-08
+
+    Updated Korean translation
+
+ po/ko.po | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+commit 011a3d1317621e9ae0511b78d8dc93a45d659171
+Author: Cédric Valmary <cvalmary@yahoo.fr>
+Date:   2015-04-28
+
+    Updated Occitan translation
+
+ po/oc.po | 536 ++++++---------------------------------------------------------
+ 1 file changed, 45 insertions(+), 491 deletions(-)
+
+commit ba898d755267b33eeb944971c518e7718f76f397
+Author: Changwoo Ryu <cwryu@debian.org>
+Date:   2015-04-28
+
+    Updated Korean translation
+
+ po/ko.po | 36 +++++++++++++++++-------------------
+ 1 file changed, 17 insertions(+), 19 deletions(-)
+
+commit a870db16ead465adc04b34d922b4e14c37b03c22
+Author: Stef Walter <stefw@gnome.org>
+Date:   2015-04-08
+
+    Release version 3.16.0
+
+ NEWS         | 4 ++++
+ configure.ac | 2 +-
+ 2 files changed, 5 insertions(+), 1 deletion(-)
+
+commit c6dad0a7a26a1aad773b663d4a1cb3c2d4a80493
+Author: Stef Walter <stefw@gnome.org>
+Date:   2015-04-08
+
+    gkm: Objects can remove each-other recursively
+    
+    For instance, if an object has a credential, and the object is
+    removed, then the credential self-destructs. Now if both of those
+    are owned by a session, and the session is closed, then all the
+    objects are removed at once. The self-destruct should become
+    a noop instead of complaining.
+
+ pkcs11/gkm/gkm-session.c | 3 +--
+ 1 file changed, 1 insertion(+), 2 deletions(-)
+
+commit 55e0b1a607bec29b5c0711741765250742c79666
+Author: Stef Walter <stefw@gnome.org>
+Date:   2015-04-08
+
+    egg: Don't crash tests if test directory was removed
+    
+    It's okay if the directory is gone, it may have been
+    removed by a test.
+
+ egg/egg-testing.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+commit 993100c570dd99723254006adb5219838bbd1e1d
+Author: Stef Walter <stefw@gnome.org>
+Date:   2015-04-08
+
+    egg: Fix regression caused by earlier GCC fix
+
+ egg/egg-dn.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+commit 2411d155e180da712c53eb0d67e4a5eaaea214b3
+Author: Stef Walter <stefw@gnome.org>
+Date:   2015-03-23
+
+    Fix issues highlighted by GCC 5.0.x
+
+ daemon/control/gkd-control-server.c | 2 +-
+ egg/egg-dn.c                        | 2 +-
+ pkcs11/gkm/gkm-transaction.c        | 2 +-
+ pkcs11/rpc-layer/gkm-rpc-dispatch.c | 2 +-
+ 4 files changed, 4 insertions(+), 4 deletions(-)
+
+commit bf43581f4248dea3595b9c329938acd03c8e5bc4
+Author: Adrian Bunk <bunk@stusta.de>
+Date:   2012-08-29
+
+    remove the .cvsignore files
+    
+    No longer needed after the switch to git.
+    
+    https://bugzilla.gnome.org/show_bug.cgi?id=682978
+
+ .cvsignore    | 45 ---------------------------------------------
+ po/.cvsignore | 14 --------------
+ 2 files changed, 59 deletions(-)
+
+commit 1aa906d985c40022d602d3c72de700c68918e667
+Author: Muhammet Kara <muhammetk@gmail.com>
+Date:   2015-03-22
+
+    Updated Turkish translation
+
+ po/tr.po | 11 +++++------
+ 1 file changed, 5 insertions(+), 6 deletions(-)
+
+commit e5d445e9321a6f4d2b89e33139f1b136ecc06ef7
+Author: Matthias Clasen <mclasen@redhat.com>
+Date:   2015-03-17
+
+    3.15.92
+
+ NEWS         | 5 +++++
+ configure.ac | 2 +-
+ 2 files changed, 6 insertions(+), 1 deletion(-)
+
+commit 36785e07d5b49c6cbe2a412fc1e77e1782eaa28c
+Author: Samir Ribic <samir.ribic@etf.unsa.ba>
+Date:   2015-03-13
+
+    Updated Bosnian translation
+
+ po/bs.po | 634 ++++++++++++++++++++++++++++++++++-----------------------------
+ 1 file changed, 340 insertions(+), 294 deletions(-)
+
+commit 06422ea18cebfd6d4d554d01445eafb3d140d6b8
+Author: Christophe Fergeau <cfergeau@redhat.com>
+Date:   2015-03-06
+
+    Revert "ssh-agent: Fix leak in search_keys_like_attributes()"
+    
+    This reverts commit d177a8b5353f3156ab504f39c20753d6786e5e4d.
+    
+    This breaks the ssh agent as this causes it to fail to remember unlocked
+    keys, and to always ask for a key passphrase when attempting an ssh
+    connection.
+    From https://bugzilla.gnome.org/show_bug.cgi?id=744280 :
+    « ssh foo.example.com is always asking to unlock the corresponding key
+    while before this commit this works fine.
+    
+    gkd-ssh-agent-ops.c:op_sign_request has:
+    result = unlock_and_sign (session, key, mech, hash, n_hash, &n_result,
+    &error);
+    g_object_unref (session);
+    g_object_unref (key);
+    
+    After the leak fix mentioned above, unreffing 'key' causes the last
+    reference to be released, so it's destroyed, and this locks the just
+    unlocked key.
+    Removing the g_object_unref() avoids this issue, but readds a leak. I
+    assume 'key' should be added somewhere so that it's kept alive, but I'm
+    not really sure where/how »
+
+ daemon/ssh-agent/gkd-ssh-agent-ops.c | 5 +----
+ 1 file changed, 1 insertion(+), 4 deletions(-)
+
+commit a942c8f458e337d90101e6a81654478fda6ccfa9
+Author: Clement Lefebvre <clement.lefebvre@linuxmint.com>
+Date:   2015-03-05
+
+    pam: Make sure to never block SIGCHLD
+    
+    Blocking this signal prevented MDM logins, as the slave
+    couldn't notice the death of the greeter)
+    
+    Signed-off-by: Stef Walter <stefw@gnome.org>
+     * Use goto and a single return path
+    
+    https://bugzilla.gnome.org/show_bug.cgi?id=745673
+
+ pam/gkr-pam-client.c | 5 +++--
+ 1 file changed, 3 insertions(+), 2 deletions(-)
+
+commit bf38a2eca54dc8360bce074887a2abd4f63eaeb9
+Author: Stef Walter <stefw@gnome.org>
+Date:   2015-02-25
+
+    Release version 3.15.90
+
+ NEWS         | 6 ++++++
+ configure.ac | 2 +-
+ 2 files changed, 7 insertions(+), 1 deletion(-)
+
+commit a3a45e283275887947182177deb4185304593fbc
+Author: Muhammet Kara <muhammetk@gmail.com>
+Date:   2014-12-06
+
+    Updated Turkish translation
+
+ po/tr.po | 255 +++++++++++++++++++++++++++++++--------------------------------
+ 1 file changed, 127 insertions(+), 128 deletions(-)
+
+commit 3eb2019cfd558f3f6a4b1d3fe6c0f9dc60c6457f
+Author: Trần Ngọc Quân <vnwildman@gmail.com>
+Date:   2014-11-21
+
+    Updated Vietnamese translation
+    
+    Signed-off-by: Trần Ngọc Quân <vnwildman@gmail.com>
+
+ po/vi.po | 1102 +++++++++-----------------------------------------------------
+ 1 file changed, 158 insertions(+), 944 deletions(-)
+
+commit f59fb0646dedd4e730c9e8e3c090d7cd52ac5278
+Author: Ting-Wei Lan <lantw@src.gnome.org>
+Date:   2014-11-16
+
+    Fix "void function should not return a value" error for clang
+    
+    https://bugzilla.gnome.org/show_bug.cgi?id=740190
+
+ daemon/login/gkd-login.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+commit 28f04eb2bcff369ab13f3c98c00b7bcbf91594d3
+Author: Christophe Fergeau <cfergeau@redhat.com>
+Date:   2014-09-15
+
+    asn1x: Sanitize use of asn1_set_value/asn1_take_value
+    
+    Most callers of asn1_set_value() seems to assume this function will take
+    ownership of the passed in GBytes, while it actually takes an additional
+    reference.
+    
+    https://bugzilla.gnome.org/show_bug.cgi?id=738508
+
+ egg/egg-asn1x.c | 14 +++++++-------
+ 1 file changed, 7 insertions(+), 7 deletions(-)
+
+commit 6da13bb815c3893ab305316ca3f08faaf0093953
+Author: Christophe Fergeau <cfergeau@redhat.com>
+Date:   2014-10-15
+
+    daemon: Fix GStrv leak in DBus message handler
+    
+    https://bugzilla.gnome.org/show_bug.cgi?id=738508
+
+ daemon/dbus/gkd-dbus.c | 7 +++++--
+ 1 file changed, 5 insertions(+), 2 deletions(-)
+
+commit b087539a6cdd624fc4e0d6ae7de2811ab96864e6
+Author: Christophe Fergeau <cfergeau@redhat.com>
+Date:   2014-09-21
+
+    Don't leak password data in gkm_wrap_prompt_do_credential
+    
+    Memory returned by auto_unlock_lookup_object() must be freed
+    while memory returned by gkm_wrap_prompt_request_password() must
+    not be freed. Depending on the situation, CredentialPrompt::password
+    will contain one or the other, and currently this field is never
+    freed, causing leaks when the password comes from
+    auto_unlock_lookup_object().
+    
+    This commit will always free CredentialPrompt::password when it's
+    no longer needed, and will create a copy of the returned string
+    when gkm_wrap_prompt_request_password() is called.
+    
+    This fixes (line numbers from 3.13.91-2-g45bb5be):
+    
+    ==2190== 8 bytes in 1 blocks are definitely lost in loss record 58 of 1,294
+    ==2190==    at 0x4A0645D: malloc (in /usr/lib64/valgrind/vgpreload_memcheck-amd64-linux.so)
+    ==2190==    by 0x5DE6DE6: g_malloc (gmem.c:97)
+    ==2190==    by 0x5E024B5: g_memdup (gstrfuncs.c:384)
+    ==2190==    by 0x41296C: gkm_template_set (gkm-attributes.c:600)
+    ==2190==    by 0x4129F0: gkm_template_set_value (gkm-attributes.c:614)
+    ==2190==    by 0x419BCD: mock_secret_C_CreateObject (mock-secret-store.c:174)
+    ==2190==    by 0x40646E: wrap_C_CreateObject (gkm-wrap-layer.c:741)
+    ==2190==    by 0x418985: find_login_keyring_item (gkm-wrap-login.c:254)
+    ==2190==    by 0x4190AF: gkm_wrap_login_lookup_secret (gkm-wrap-login.c:396)
+    ==2190==    by 0x407E8D: auto_unlock_lookup_object (gkm-wrap-prompt.c:198)
+    ==2190==    by 0x40B9B0: login_prompt_do_specific (gkm-wrap-prompt.c:1453)
+    ==2190==    by 0x40C13A: gkm_wrap_prompt_do_login (gkm-wrap-prompt.c:1591)
+    ==2190==    by 0x406384: auth_C_Login (gkm-wrap-layer.c:706)
+    ==2190==    by 0x40472A: test_specific (test-login-auto.c:156)
+    ==2190==    by 0x5E0A27A: test_case_run (gtestutils.c:2059)
+    ==2190==    by 0x5E0A602: g_test_run_suite_internal (gtestutils.c:2120)
+    ==2190==    by 0x5E0A6C4: g_test_run_suite_internal (gtestutils.c:2131)
+    ==2190==    by 0x5E0A6C4: g_test_run_suite_internal (gtestutils.c:2131)
+    ==2190==    by 0x5E0A847: g_test_run_suite (gtestutils.c:2184)
+    ==2190==    by 0x5E09551: g_test_run (gtestutils.c:1488)
+    ==2190==    by 0x410851: testing_thread (egg-testing.c:142)
+    ==2190==    by 0x5E0D2F4: g_thread_proxy (gthread.c:764)
+    ==2190==    by 0x3B7AE07F34: start_thread (pthread_create.c:309)
+    ==2190==    by 0x3B7AAF4C3C: clone (clone.S:111)
+    
+    https://bugzilla.gnome.org/show_bug.cgi?id=738508
+
+ pkcs11/wrap-layer/gkm-wrap-prompt.c | 10 +++++++---
+ 1 file changed, 7 insertions(+), 3 deletions(-)
+
+commit dc5a7dc4e5690e258a90d8ddfc39e17c1f8d4938
+Author: Christophe Fergeau <cfergeau@redhat.com>
+Date:   2014-09-21
+
+    Don't leak password in login_prompt_do_{specific, user)
+    
+    login_prompt_do_specific() and login_prompt_do_user() both
+    set GkmWrapPrompt::prompt_data to either memory which must be freed
+    with egg_secure_memory_strfree (through a call to
+    auto_unlock_lookup_*) or to const memory which must not be freed
+    (through a call to gkm_wrap_prompt_request_password).
+    
+    These methods currently assume the password memory does not need
+    to be freed, which leads to this leak in test-login-auto (line numbers
+    from 3.13.91-2-g45bb5be):
+    
+    ==2190== 5 bytes in 1 blocks are definitely lost in loss record 17 of 1,294
+    ==2190==    at 0x40F8E4: egg_secure_alloc_full (egg-secure-memory.c:1056)
+    ==2190==    by 0x417F5E: egg_secure_alloc (gkm-wrap-login.c:42)
+    ==2190==    by 0x419157: gkm_wrap_login_lookup_secret (gkm-wrap-login.c:409)
+    ==2190==    by 0x407E8D: auto_unlock_lookup_object (gkm-wrap-prompt.c:198)
+    ==2190==    by 0x40B9B0: login_prompt_do_specific (gkm-wrap-prompt.c:1453)
+    ==2190==    by 0x40C13A: gkm_wrap_prompt_do_login (gkm-wrap-prompt.c:1591)
+    ==2190==    by 0x406384: auth_C_Login (gkm-wrap-layer.c:706)
+    ==2190==    by 0x40472A: test_specific (test-login-auto.c:156)
+    ==2190==    by 0x5E0A27A: test_case_run (gtestutils.c:2059)
+    ==2190==    by 0x5E0A602: g_test_run_suite_internal (gtestutils.c:2120)
+    ==2190==    by 0x5E0A6C4: g_test_run_suite_internal (gtestutils.c:2131)
+    ==2190==    by 0x5E0A6C4: g_test_run_suite_internal (gtestutils.c:2131)
+    ==2190==    by 0x5E0A847: g_test_run_suite (gtestutils.c:2184)
+    ==2190==    by 0x5E09551: g_test_run (gtestutils.c:1488)
+    ==2190==    by 0x410851: testing_thread (egg-testing.c:142)
+    ==2190==    by 0x5E0D2F4: g_thread_proxy (gthread.c:764)
+    ==2190==    by 0x3B7AE07F34: start_thread (pthread_create.c:309)
+    ==2190==    by 0x3B7AAF4C3C: clone (clone.S:111)
+    
+    https://bugzilla.gnome.org/show_bug.cgi?id=738508
+
+ pkcs11/wrap-layer/gkm-wrap-prompt.c | 62 ++++++++++++++++++++++++++-----------
+ 1 file changed, 44 insertions(+), 18 deletions(-)
+
+commit abf3473a9a14784a76911ef35c0916d462d55402
+Author: Stef Walter <stefw@redhat.com>
+Date:   2014-10-26
+
+    gpg-agent: Use common code for storing/retrieving passwords
+
+ daemon/gpg-agent/gkd-gpg-agent-ops.c | 269 +++--------------------------------
+ 1 file changed, 21 insertions(+), 248 deletions(-)
+
+commit 354f9887eef1c2c6144b904739ca0230bc2f2a4e
+Author: Stef Walter <stefw@redhat.com>
+Date:   2014-10-26
+
+    login: Factor out the code for storing/retrieving login keyring passwords
+    
+    This was in the gpg-agent, and want to use it in our ssh-agent wrapper
+
+ daemon/login/Makefile.am |   1 +
+ daemon/login/gkd-login.c | 300 +++++++++++++++++++++++++++++++++++++++++++++++
+ daemon/login/gkd-login.h |  20 ++++
+ 3 files changed, 321 insertions(+)
+
+commit d9df0a179fbfae82f8cec20cf46e8b9f03c044ba
+Author: Stef Walter <stefw@redhat.com>
+Date:   2014-10-26
+
+    gpg-agent: No longer build the testing standalone agent
+    
+    This just caused more unneccessary code that we'd never use.
+
+ daemon/gpg-agent/Makefile.am | 15 ---------------
+ 1 file changed, 15 deletions(-)
+
+commit ea36fd9182c143348851be2053bce9b6da052bc8
+Author: Baurzhan Muftakhidinov <baurthefirst@gmail.com>
+Date:   2014-10-28
+
+    Added Kazakh translation
+
+ po/LINGUAS |   1 +
+ po/kk.po   | 572 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+ 2 files changed, 573 insertions(+)
+
+commit 082a2fe3278c37b9899c23ebac003791a8999ea5
+Author: Stef Walter <stefw@redhat.com>
+Date:   2014-10-25
+
+    Ignore vim swp temporary files
+
+ .gitignore | 1 +
+ 1 file changed, 1 insertion(+)
+
+commit 39aeef6f368e4d8517f19b83c33d55b9cc87f44f
+Author: Christophe Fergeau <cfergeau@redhat.com>
+Date:   2014-10-14
+
+    GkdGpgAgent: Unref GIOChannel when no longer needed
+    
+    This fixes a memory leak reported by valgrind on daemon shutdown
+    (tested by starting a new daemon instance with --replace).
+    
+    https://bugzilla.gnome.org/show_bug.cgi?id=738508
+
+ daemon/gpg-agent/gkd-gpg-agent.c | 1 +
+ 1 file changed, 1 insertion(+)
+
+commit 3db6f3bbbd13d6eec29cf96f103975f793b24e4e
+Author: Christophe Fergeau <cfergeau@redhat.com>
+Date:   2014-10-14
+
+    Free GkdSecretService::alias_directory in finalize()
+    
+    This fixes a memory leak reported by valgrind on daemon shutdown
+    (tested by starting a new daemon instance with --replace).
+    
+    https://bugzilla.gnome.org/show_bug.cgi?id=738508
+
+ daemon/dbus/gkd-secret-service.c | 3 +++
+ 1 file changed, 3 insertions(+)
+
+commit ddcdccbf98ba71547c6494db07b3ece505ec769b
+Author: Christophe Fergeau <cfergeau@redhat.com>
+Date:   2014-10-13
+
+    GkmMock: Fix handling of CKA_G_CREDENTIAL_TEMPLATE attributes
+    
+    These are special as their value is an array of CK_ATTRIBUTE pointing to
+    allocated memory. Moreover, when gkm_mock_C_SetAttributeValue() is
+    called, this memory is owned by the caller, so it needs to be duplicated
+    as the caller may free it before GkmMock no longer needs it.
+    
+    We also need to make sure this memory we just duplicated is correctly
+    freed when no longer needed.
+    
+    This is achieved by introducing an additional global variable,
+    the_credential_template. This is similar to how this type of attributes
+    is handled in GkmSecretCollection.
+    
+    Without this, running test-login-auto in valgrind causes invalid reads:
+    
+    ==5954== Invalid read of size 1
+    ==5954==    at 0x4123D4: gkm_attributes_find_boolean (gkm-attributes.c:503)
+    ==5954==    by 0x408C00: set_unlock_options_on_prompt (gkm-wrap-prompt.c:520)
+    ==5954==    by 0x40A3E8: gkm_wrap_prompt_do_credential (gkm-wrap-prompt.c:1055)
+    ==5954==    by 0x40641C: auth_C_CreateObject (gkm-wrap-layer.c:764)
+    ==5954==    by 0x404D7B: test_unlock_keyring (test-login-auto.c:243)
+    ==5954==    by 0x5E04A8B: test_case_run (gtestutils.c:2059)
+    ==5954==    by 0x5E04E2D: g_test_run_suite_internal (gtestutils.c:2120)
+    ==5954==    by 0x5E04EEF: g_test_run_suite_internal (gtestutils.c:2131)
+    ==5954==    by 0x5E04EEF: g_test_run_suite_internal (gtestutils.c:2131)
+    ==5954==    by 0x5E0506F: g_test_run_suite (gtestutils.c:2184)
+    ==5954==    by 0x5E03D5C: g_test_run (gtestutils.c:1488)
+    ==5954==    by 0x410725: testing_thread (egg-testing.c:142)
+    ==5954==    by 0x5E07B29: g_thread_proxy (gthread.c:764)
+    ==5954==    by 0x3899207529: start_thread (pthread_create.c:310)
+    ==5954==    by 0x3898F0077C: clone (clone.S:109)
+    ==5954==  Address 0x85bad90 is 0 bytes inside a block of size 1 free'd
+    ==5954==    at 0x4A07CE9: free (in /usr/lib64/valgrind/vgpreload_memcheck-amd64-linux.so)
+    ==5954==    by 0x5DE1A0D: g_free (gmem.c:190)
+    ==5954==    by 0x409E54: gkm_wrap_prompt_finalize (gkm-wrap-prompt.c:933)
+    ==5954==    by 0x590293A: g_object_unref (gobject.c:3170)
+    ==5954==    by 0x40644A: auth_C_CreateObject (gkm-wrap-layer.c:771)
+    ==5954==    by 0x404CD5: test_unlock_keyring (test-login-auto.c:234)
+    ==5954==    by 0x5E04A8B: test_case_run (gtestutils.c:2059)
+    ==5954==    by 0x5E04E2D: g_test_run_suite_internal (gtestutils.c:2120)
+    ==5954==    by 0x5E04EEF: g_test_run_suite_internal (gtestutils.c:2131)
+    ==5954==    by 0x5E04EEF: g_test_run_suite_internal (gtestutils.c:2131)
+    ==5954==    by 0x5E0506F: g_test_run_suite (gtestutils.c:2184)
+    ==5954==    by 0x5E03D5C: g_test_run (gtestutils.c:1488)
+    ==5954==    by 0x410725: testing_thread (egg-testing.c:142)
+    ==5954==    by 0x5E07B29: g_thread_proxy (gthread.c:764)
+    ==5954==    by 0x3899207529: start_thread (pthread_create.c:310)
+    ==5954==    by 0x3898F0077C: clone (clone.S:109)
+    
+    https://bugzilla.gnome.org/show_bug.cgi?id=738508
+
+ pkcs11/gkm/gkm-mock.c | 27 +++++++++++++++++++++++++--
+ 1 file changed, 25 insertions(+), 2 deletions(-)
+
+commit 87f82c227694279d7e6ad26ca90112835a69c7c5
+Author: Christophe Fergeau <cfergeau@redhat.com>
+Date:   2014-10-01
+
+    test-spawn: Fix leaks of EchoData content
+    
+    EchoData::error and EchoData::output must be freed after
+    use.
+    
+    https://bugzilla.gnome.org/show_bug.cgi?id=738508
+
+ egg/test-spawn.c | 6 ++++++
+ 1 file changed, 6 insertions(+)
+
+commit 0db2253d64b5607bf20e4e17060de81450e91797
+Author: Christophe Fergeau <cfergeau@redhat.com>
+Date:   2014-09-22
+
+    xdg: Fix ref leak in remove_assertion_from_trust()
+    
+    When a transaction is used, remove_assertion_from_trust() will
+    steal the assertion and its key from the 'assertions' hash table.
+    The stolen assertion will then be added to the transaction and be
+    unreferenced later, but the key must be unref'ed as the hash table
+    owned a reference on it.
+    
+    This fixes:
+    
+    ==9337== 104 (40 direct, 64 indirect) bytes in 1 blocks are definitely lost in loss record 614 of 678
+    ==9337==    at 0x4A0645D: malloc (in /usr/lib64/valgrind/vgpreload_memcheck-amd64-linux.so)
+    ==9337==    by 0x4EEADE6: g_malloc (gmem.c:97)
+    ==9337==    by 0x4F03A22: g_slice_alloc (gslice.c:1007)
+    ==9337==    by 0x4EB6954: g_bytes_new_with_free_func (gbytes.c:183)
+    ==9337==    by 0x4EB68D5: g_bytes_new_take (gbytes.c:126)
+    ==9337==    by 0x4116D4: create_assertion_key (gkm-xdg-trust.c:355)
+    ==9337==    by 0x411755: lookup_or_create_assertion_key (gkm-xdg-trust.c:371)
+    ==9337==    by 0x41312C: gkm_xdg_trust_replace_assertion (gkm-xdg-trust.c:874)
+    ==9337==    by 0x413B62: factory_create_assertion (gkm-xdg-assertion.c:181)
+    ==9337==    by 0x4338A3: gkm_session_create_object_for_factory (gkm-session.c:778)
+    ==9337==    by 0x433A5B: gkm_session_create_object_for_attributes (gkm-session.c:820)
+    ==9337==    by 0x434222: gkm_session_C_CreateObject (gkm-session.c:954)
+    ==9337==    by 0x40A1D0: test_create_assertion_twice (test-xdg-trust.c:497)
+    ==9337==    by 0x4F0E27A: test_case_run (gtestutils.c:2059)
+    ==9337==    by 0x4F0E602: g_test_run_suite_internal (gtestutils.c:2120)
+    ==9337==    by 0x4F0E6C4: g_test_run_suite_internal (gtestutils.c:2131)
+    ==9337==    by 0x4F0E6C4: g_test_run_suite_internal (gtestutils.c:2131)
+    ==9337==    by 0x4F0E847: g_test_run_suite (gtestutils.c:2184)
+    ==9337==    by 0x4F0D551: g_test_run (gtestutils.c:1488)
+    ==9337==    by 0x4516AD: testing_thread (egg-testing.c:142)
+    ==9337==    by 0x4F112F4: g_thread_proxy (gthread.c:764)
+    ==9337==    by 0x3B7AE07F34: start_thread (pthread_create.c:309)
+    ==9337==    by 0x3B7AAF4C3C: clone (clone.S:111)
+    
+    https://bugzilla.gnome.org/show_bug.cgi?id=738508
+
+ pkcs11/xdg-store/gkm-xdg-trust.c | 1 +
+ 1 file changed, 1 insertion(+)
+
+commit 37c493c086f1721d6dea77bac462e60dc23096df
+Author: Christophe Fergeau <cfergeau@redhat.com>
+Date:   2014-09-22
+
+    xdg: Remove wrong unref in gkm_xdg_trust_replace_assertion
+    
+    Callers of lookup_or_create_assertion_key() don't own a reference
+    on the returned GBytes so it should not be unref'fed before exiting
+    gkm_xdg_trust_replace_assertion.
+    This solves the following errors from valgrind when running test-xdg-trust
+    
+    ==15477==
+    ==15477== Thread 2 testing:
+    ==15477== Invalid read of size 4
+    ==15477==    at 0x4EB6B75: g_bytes_unref (gbytes.c:306)
+    ==15477==    by 0x4EC2692: g_datalist_clear (gdataset.c:273)
+    ==15477==    by 0x4C284A3: g_object_finalize (gobject.c:1033)
+    ==15477==    by 0x42B35E: gkm_object_finalize (gkm-object.c:448)
+    ==15477==    by 0x414134: gkm_assertion_finalize (gkm-assertion.c:134)
+    ==15477==    by 0x4C2D256: g_object_unref (gobject.c:3170)
+    ==15477==    by 0x43B9C7: gkm_util_dispose_unref (gkm-util.c:137)
+    ==15477==    by 0x4ECEBD1: g_hash_table_remove_all_nodes (ghash.c:503)
+    ==15477==    by 0x4ECFC02: g_hash_table_remove_all (ghash.c:1371)
+    ==15477==    by 0x431DBB: gkm_session_dispose (gkm-session.c:409)
+    ==15477==    by 0x4C2D131: g_object_unref (gobject.c:3133)
+    ==15477==    by 0x425391: apartment_free (gkm-module.c:241)
+    ==15477==    by 0x4ECEBD1: g_hash_table_remove_all_nodes (ghash.c:503)
+    ==15477==    by 0x4ECFC02: g_hash_table_remove_all (ghash.c:1371)
+    ==15477==    by 0x4267F9: gkm_module_dispose (gkm-module.c:633)
+    ==15477==    by 0x4107D3: gkm_xdg_module_dispose (gkm-xdg-module.c:553)
+    ==15477==    by 0x4C28648: g_object_run_dispose (gobject.c:1076)
+    ==15477==    by 0x40CCDD: gkm_C_Finalize (gkm-module-ep.h:102)
+    ==15477==    by 0x40C7F0: mock_xdg_module_leave_and_finalize (mock-xdg-module.c:151)
+    ==15477==    by 0x408585: teardown (test-xdg-trust.c:138)
+    ==15477==    by 0x4F0E2FE: test_case_run (gtestutils.c:2069)
+    ==15477==    by 0x4F0E602: g_test_run_suite_internal (gtestutils.c:2120)
+    ==15477==    by 0x4F0E6C4: g_test_run_suite_internal (gtestutils.c:2131)
+    ==15477==    by 0x4F0E6C4: g_test_run_suite_internal (gtestutils.c:2131)
+    ==15477==    by 0x4F0E847: g_test_run_suite (gtestutils.c:2184)
+    ==15477==    by 0x4F0D551: g_test_run (gtestutils.c:1488)
+    ==15477==    by 0x4516B9: testing_thread (egg-testing.c:142)
+    ==15477==    by 0x4F112F4: g_thread_proxy (gthread.c:764)
+    ==15477==    by 0x3B7AE07F34: start_thread (pthread_create.c:309)
+    ==15477==    by 0x3B7AAF4C3C: clone (clone.S:111)
+    ==15477==  Address 0x52b6100 is 16 bytes inside a block of size 40 free'd
+    ==15477==    at 0x4A07577: free (in /usr/lib64/valgrind/vgpreload_memcheck-amd64-linux.so)
+    ==15477==    by 0x4EEAF5F: g_free (gmem.c:190)
+    ==15477==    by 0x4F03C59: g_slice_free1 (gslice.c:1112)
+    ==15477==    by 0x4EB6BB8: g_bytes_unref (gbytes.c:310)
+    ==15477==    by 0x4ECEBB3: g_hash_table_remove_all_nodes (ghash.c:500)
+    ==15477==    by 0x4ECFC02: g_hash_table_remove_all (ghash.c:1371)
+    ==15477==    by 0x4ECF7C4: g_hash_table_destroy (ghash.c:1067)
+    ==15477==    by 0x4127E9: gkm_xdg_trust_finalize (gkm-xdg-trust.c:706)
+    ==15477==    by 0x4C2D256: g_object_unref (gobject.c:3170)
+    ==15477==    by 0x43B9C7: gkm_util_dispose_unref (gkm-util.c:137)
+    ==15477==    by 0x4ECEBD1: g_hash_table_remove_all_nodes (ghash.c:503)
+    ==15477==    by 0x4ECFC02: g_hash_table_remove_all (ghash.c:1371)
+    ==15477==    by 0x431DBB: gkm_session_dispose (gkm-session.c:409)
+    ==15477==    by 0x4C2D131: g_object_unref (gobject.c:3133)
+    ==15477==    by 0x425391: apartment_free (gkm-module.c:241)
+    ==15477==    by 0x4ECEBD1: g_hash_table_remove_all_nodes (ghash.c:503)
+    ==15477==    by 0x4ECFC02: g_hash_table_remove_all (ghash.c:1371)
+    ==15477==    by 0x4267F9: gkm_module_dispose (gkm-module.c:633)
+    ==15477==    by 0x4107D3: gkm_xdg_module_dispose (gkm-xdg-module.c:553)
+    ==15477==    by 0x4C28648: g_object_run_dispose (gobject.c:1076)
+    ==15477==    by 0x40CCDD: gkm_C_Finalize (gkm-module-ep.h:102)
+    ==15477==    by 0x40C7F0: mock_xdg_module_leave_and_finalize (mock-xdg-module.c:151)
+    ==15477==    by 0x408585: teardown (test-xdg-trust.c:138)
+    ==15477==    by 0x4F0E2FE: test_case_run (gtestutils.c:2069)
+    ==15477==    by 0x4F0E602: g_test_run_suite_internal (gtestutils.c:2120)
+    ==15477==    by 0x4F0E6C4: g_test_run_suite_internal (gtestutils.c:2131)
+    ==15477==    by 0x4F0E6C4: g_test_run_suite_internal (gtestutils.c:2131)
+    ==15477==    by 0x4F0E847: g_test_run_suite (gtestutils.c:2184)
+    ==15477==    by 0x4F0D551: g_test_run (gtestutils.c:1488)
+    ==15477==    by 0x4516B9: testing_thread (egg-testing.c:142)
+    ==15477==    by 0x4F112F4: g_thread_proxy (gthread.c:764)
+    ==15477==    by 0x3B7AE07F34: start_thread (pthread_create.c:309)
+    ==15477==    by 0x3B7AAF4C3C: clone (clone.S:111)
+    
+    https://bugzilla.gnome.org/show_bug.cgi?id=738508
+
+ pkcs11/xdg-store/gkm-xdg-trust.c | 1 -
+ 1 file changed, 1 deletion(-)
+
+commit f2e759970c1a3a42378528a15166221715493288
+Author: Christophe Fergeau <cfergeau@redhat.com>
+Date:   2014-09-21
+
+    test-xdg-trust: Fix GChecksum leaks
+    
+    'md' is created using g_checksum_new() so it must be destroyed
+    with g_checksum_free() after use.
+    
+    https://bugzilla.gnome.org/show_bug.cgi?id=738508
+
+ pkcs11/gkm/gkm-attributes.c       | 1 +
+ pkcs11/xdg-store/test-xdg-trust.c | 1 +
+ 2 files changed, 2 insertions(+)
+
+commit a88f4fcf255495ee575b4b7b94574c3ca0b66ca1
+Author: Christophe Fergeau <cfergeau@redhat.com>
+Date:   2014-09-21
+
+    Unref GkmXdgTrust::bytes in finalize()
+    
+    This will cause leaks otherwise, for example in test-xdg-module.
+    
+    https://bugzilla.gnome.org/show_bug.cgi?id=738508
+
+ pkcs11/xdg-store/gkm-xdg-trust.c | 4 ++++
+ 1 file changed, 4 insertions(+)
+
+commit 621a86e8b1b14a387cf1dd895005007570c3d2c3
+Author: Christophe Fergeau <cfergeau@redhat.com>
+Date:   2014-09-21
+
+    test-xdg-module: Fix memory leak
+    
+    Memory from g_file_get_contents() was never freed.
+    
+    https://bugzilla.gnome.org/show_bug.cgi?id=738508
+
+ pkcs11/xdg-store/test-xdg-module.c | 1 +
+ 1 file changed, 1 insertion(+)
+
+commit bbb96835cc4120d6c9f0d7bf272f6eb386a07468
+Author: Christophe Fergeau <cfergeau@redhat.com>
+Date:   2014-09-21
+
+    xdg: Don't leak ref in lookup_or_create_assertion_key()
+    
+    When lookup_or_create_assertion_key() creates a new assertion key,
+    it own a reference on the GBytes created by create_assertion_key()
+    and it will then take an extra ref on it when associating it with a
+    GkmAssertion instance.
+    
+    This will cause a leak of the memory returned by create_assertion_key()
+    as one of these references will never be dropped.
+    
+    https://bugzilla.gnome.org/show_bug.cgi?id=738508
+
+ pkcs11/xdg-store/gkm-xdg-trust.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+commit bc17247fdd1fa843560ecebb4f20a10460df0d63
+Author: Christophe Fergeau <cfergeau@redhat.com>
+Date:   2014-09-21
+
+    Fix leak in gkm_mock_C_SetPIN()
+    
+    https://bugzilla.gnome.org/show_bug.cgi?id=738508
+
+ pkcs11/gkm/gkm-mock.c | 5 ++++-
+ 1 file changed, 4 insertions(+), 1 deletion(-)
+
+commit 670fe30c2dfe7accc738c8def6c1ccf047c944b6
+Author: Christophe Fergeau <cfergeau@redhat.com>
+Date:   2014-10-01
+
+    gkm-xdg-assertion: Fix leak in factory_create_assertion()
+    
+    'purpose' and 'peer' were allocated through gkm_attributes_find_string()
+    and must thus be freed after use.
+    
+    https://bugzilla.gnome.org/show_bug.cgi?id=738508
+
+ pkcs11/xdg-store/gkm-xdg-assertion.c | 2 ++
+ 1 file changed, 2 insertions(+)
+
+commit ca2b73954d497ea36b94b547649a08dd85ec38e1
+Author: Christophe Fergeau <cfergeau@redhat.com>
+Date:   2014-10-01
+
+    Fix leak in mock_secret_C_CreateObject
+    
+    'template' is created with gkm_template_new() so it must be freed
+    using gkm_template_free().
+    
+    https://bugzilla.gnome.org/show_bug.cgi?id=738508
+
+ pkcs11/wrap-layer/mock-secret-store.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+commit 165f0e3210e32538c847be91896736c17a1f6ad6
+Author: Christophe Fergeau <cfergeau@redhat.com>
+Date:   2014-10-01
+
+    gkm-secret-textual: Fix leak in generate_attribute()
+    
+    The GList returned by gkm_secret_fields_get_names() must be
+    freed with g_list_free after use as this is created using
+    g_hash_table_get_keys().
+    
+    https://bugzilla.gnome.org/show_bug.cgi?id=738508
+
+ pkcs11/secret-store/gkm-secret-textual.c | 1 +
+ 1 file changed, 1 insertion(+)
+
+commit 750047bc77edc730e76fc536ce17151b52ae22da
+Author: Christophe Fergeau <cfergeau@redhat.com>
+Date:   2014-10-01
+
+    gkm-secret-search: Fix leak in factory_create_search()
+    
+    gkm_attribute_get_string() returns a newly allocated string which must
+    be freed when no longer useful.
+    
+    https://bugzilla.gnome.org/show_bug.cgi?id=738508
+
+ pkcs11/secret-store/gkm-secret-search.c | 1 +
+ 1 file changed, 1 insertion(+)
+
+commit a1984261cb2aabf20d2014a987e2adfbfbae7fc1
+Author: Christophe Fergeau <cfergeau@redhat.com>
+Date:   2014-10-01
+
+    gkm-gnome2-storage: Unref GkmGnome2Storage::login in dispose()
+    
+    https://bugzilla.gnome.org/show_bug.cgi?id=738508
+
+ pkcs11/gnome2-store/gkm-gnome2-storage.c | 4 ++++
+ 1 file changed, 4 insertions(+)
+
+commit bf96feaff541668ead5438ee074c4318165a3962
+Author: Christophe Fergeau <cfergeau@redhat.com>
+Date:   2014-10-01
+
+    secret-store/test*: Don't leak secret data memory
+    
+    Both test-secret-binary and test-secret-textual call
+    g_file_get_contents() but never free the returned data, causing a memory
+    leak.
+    
+    https://bugzilla.gnome.org/show_bug.cgi?id=738508
+
+ pkcs11/secret-store/test-secret-binary.c  | 1 +
+ pkcs11/secret-store/test-secret-textual.c | 1 +
+ 2 files changed, 2 insertions(+)
+
+commit 9421bf589095380286bed90bca67f6ae2746ce0b
+Author: Christophe Fergeau <cfergeau@redhat.com>
+Date:   2014-10-01
+
+    test-import: Don't leak args.pReserved
+    
+    It's allocated with g_strdup_printf and must thus be freed after use.
+    
+    https://bugzilla.gnome.org/show_bug.cgi?id=738508
+
+ pkcs11/gnome2-store/test-import.c | 1 +
+ 1 file changed, 1 insertion(+)
+
+commit c2870de15ba639b6a02916a89be07274c2b5895b
+Author: Christophe Fergeau <cfergeau@redhat.com>
+Date:   2014-10-01
+
+    egg-hkdf: Fix gcry_md_ht_t leak in egg_hkdf_perform
+    
+    The 'md2' gcry_md_ht_t variable is opened with gcry_md_open() in that
+    method but is never closed, which causes a leak.
+    
+    https://bugzilla.gnome.org/show_bug.cgi?id=738508
+
+ egg/egg-hkdf.c | 1 +
+ 1 file changed, 1 insertion(+)
+
+commit 1581f4a33e350de62cf98bec0530934dcf2a0272
+Author: Christophe Fergeau <cfergeau@redhat.com>
+Date:   2014-10-01
+
+    egg-asn1x: Fix memory leak in egg_asn1x_set_any_raw()
+    
+    In error cases, the Atlv variable 'tlv' which was created in this
+    function is not going to be used, so we must free it before returning.
+    
+    https://bugzilla.gnome.org/show_bug.cgi?id=738508
+
+ egg/egg-asn1x.c | 1 +
+ 1 file changed, 1 insertion(+)
+
+commit 17b429de6d2d911fcfac3fbc042aa5579a3a4535
+Author: Christophe Fergeau <cfergeau@redhat.com>
+Date:   2014-10-01
+
+    test-sexp: Fix 2 leaks
+    
+    gcry_sexp_t objects created with gkm_sexp_parse_key() must be freed with
+    gcry_sexp_release(), and gcry_mpi_t objects created with
+    gkm_sexp_extract_mpi() must be freed with gcry_mpi_release() when no
+    longer used.
+    
+    https://bugzilla.gnome.org/show_bug.cgi?id=738508
+
+ pkcs11/gkm/test-sexp.c | 2 ++
+ 1 file changed, 2 insertions(+)
+
+commit 33793e57c557830cda36af68376f5dfd2130c073
+Author: Christophe Fergeau <cfergeau@redhat.com>
+Date:   2014-10-01
+
+    test-secret: Don't leak new secrets in test_equal()
+    
+    Secrets created with gkm_secret_new* must be unref'fed when no longer
+    used.
+    
+    https://bugzilla.gnome.org/show_bug.cgi?id=738508
+
+ pkcs11/gkm/test-secret.c | 3 +++
+ 1 file changed, 3 insertions(+)
+
+commit 75c1fb8b8e3eb0df794bd80ed883fdc16a865664
+Author: Christophe Fergeau <cfergeau@redhat.com>
+Date:   2014-10-01
+
+    test-pam: Fix GError leak in error case
+    
+    When g_file_get_contents() fails and sets an error, it must be freed.
+    
+    https://bugzilla.gnome.org/show_bug.cgi?id=738508
+
+ pam/test-pam.c | 1 +
+ 1 file changed, 1 insertion(+)
+
+commit dbc6af0ea986a4840e6a8a06d632435332c6d2a4
+Author: Christophe Fergeau <cfergeau@redhat.com>
+Date:   2014-10-01
+
+    test-padding: Don't leak egg_padding_pkcs1_pad_02 return value
+    
+    egg_padding_pkcs1_pad_02 returns newly allocated data which must be
+    g_free'ed after use.
+    
+    https://bugzilla.gnome.org/show_bug.cgi?id=738508
+
+ egg/test-padding.c | 1 +
+ 1 file changed, 1 insertion(+)
+
+commit 610a177931675a08a13681d6741a1d18baaa92ee
+Author: Christophe Fergeau <cfergeau@redhat.com>
+Date:   2014-10-01
+
+    test-asn1: Don't leak 'asn' in test_create_quark()
+    
+    https://bugzilla.gnome.org/show_bug.cgi?id=738508
+
+ egg/test-asn1.c | 1 +
+ 1 file changed, 1 insertion(+)
+
+commit 1e18f347a1a3444b3fc7126af087d0c90a791e57
+Author: Christophe Fergeau <cfergeau@redhat.com>
+Date:   2014-10-01
+
+    test-startup: Use g_strfreev to free GStrv variable
+    
+    gkd_test_launch_daemon returns a "transfer full" GStrv, so it must be
+    freed with g_strfreev after use.
+    
+    https://bugzilla.gnome.org/show_bug.cgi?id=738508
+
+ daemon/test-startup.c | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+commit 6c2d07a4faea639ed2b2bcf1815fdb5cbfa4945e
+Author: Christophe Fergeau <cfergeau@redhat.com>
+Date:   2014-09-17
+
+    gkm-gnome2-file: Free keys to 'entries' hash tables
+    
+    The keys to the 'publics' and 'privates' hash tables are strdup'ed
+    strings, but these strings are never freed. This commit adds a free
+    function for hash table keys to the g_hash_table_new_full call.
+    
+    https://bugzilla.gnome.org/show_bug.cgi?id=738508
+
+ pkcs11/gnome2-store/gkm-gnome2-file.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+commit 0fc832aa65e2d125459c9fb43c4d3ba4697270d6
+Author: Christophe Fergeau <cfergeau@redhat.com>
+Date:   2014-09-17
+
+    test-data-der: Fix various memory leaks
+    
+    https://bugzilla.gnome.org/show_bug.cgi?id=738508
+
+ pkcs11/gkm/test-data-der.c | 13 +++++++++++++
+ 1 file changed, 13 insertions(+)
+
+commit 298d910cfe2e468ad0005646e8a00b5fc8116e10
+Author: Christophe Fergeau <cfergeau@redhat.com>
+Date:   2014-09-17
+
+    test-data-asn1: Fix memory leaks in test_asn1_integers
+    
+    https://bugzilla.gnome.org/show_bug.cgi?id=738508
+
+ pkcs11/gkm/test-data-asn1.c | 3 +++
+ 1 file changed, 3 insertions(+)
+
+commit c5083ba0216b15e8f9ed842b7097e7fa6c60c25b
+Author: Christophe Fergeau <cfergeau@redhat.com>
+Date:   2014-09-17
+
+    gkm-data-asn1: Unref buffer we got from egg_asn1x_get_integer_as_raw()
+    
+    Otherwise we will be leaking a reference to that buffer, and it will
+    never get destroyed. This showed up as a memory leaked in test-data-der.
+    
+    https://bugzilla.gnome.org/show_bug.cgi?id=738508
+
+ pkcs11/gkm/gkm-data-asn1.c | 1 +
+ 1 file changed, 1 insertion(+)
+
+commit 326a94543c5cc6c44d3fd9e1b7fd6eb11a2ea998
+Author: Christophe Fergeau <cfergeau@redhat.com>
+Date:   2014-09-17
+
+    egg/test-dn: Don't leak GBytes created in test_dn_value()
+    
+    https://bugzilla.gnome.org/show_bug.cgi?id=738508
+
+ egg/test-dn.c | 1 +
+ 1 file changed, 1 insertion(+)
+
+commit 8ea8329cc09e263d9628e791e0f5a464bde63413
+Author: Christophe Fergeau <cfergeau@redhat.com>
+Date:   2014-09-17
+
+    egg-cleanup: Don't leak 'cleanup' on unregister
+    
+    When unregistering a cleanup instance, the memory allocated for the cleanup
+    was not freed causing a memory leak.
+    
+    https://bugzilla.gnome.org/show_bug.cgi?id=738508
+
+ egg/egg-cleanup.c | 1 +
+ 1 file changed, 1 insertion(+)
+
+commit 9af2db3f41e713c02e36dc71f0d6295db7d9e408
+Author: Christophe Fergeau <cfergeau@redhat.com>
+Date:   2014-09-17
+
+    test-dbus-items: Fix memory leak
+    
+    https://bugzilla.gnome.org/show_bug.cgi?id=738508
+
+ daemon/dbus/test-dbus-items.c | 4 +++-
+ 1 file changed, 3 insertions(+), 1 deletion(-)
+
+commit 0c9c4a549e770e89e51d5f39995fdfc8c1af71ec
+Author: Christophe Fergeau <cfergeau@redhat.com>
+Date:   2014-09-15
+
+    Free GkmSecretItem::schema in ::finalize()
+    
+    https://bugzilla.gnome.org/show_bug.cgi?id=738508
+
+ pkcs11/secret-store/gkm-secret-item.c | 3 +++
+ 1 file changed, 3 insertions(+)
+
+commit 04129e8d2c1cb8a0f5d6944d4bb7fa45f7171a2a
+Author: Christophe Fergeau <cfergeau@redhat.com>
+Date:   2014-09-15
+
+    gkm-gnome2-file: Fix leaks in create_cipher()
+    
+    'key' and 'iv' were allocated before calling
+    egg_symkey_generate_simple() but this function allocates the memory
+    needed for the 'key' and 'iv' return value, so the memory which was
+    allocated in create_cipher() is lost and leaked.
+    This also uses egg_secure_memory_free() to free 'key' memory as
+    egg_symkey_generate_simple() allocates it with egg_secure_alloc().
+    
+    https://bugzilla.gnome.org/show_bug.cgi?id=738508
+
+ pkcs11/gnome2-store/gkm-gnome2-file.c | 11 ++---------
+ 1 file changed, 2 insertions(+), 9 deletions(-)
+
+commit 5a98866f4b7c89451c95e8d559e8f2021c5e1456
+Author: Christophe Fergeau <cfergeau@redhat.com>
+Date:   2014-09-15
+
+    gkm-gnome2-file: Fix leak in validate_buffer()
+    
+    'check' is allocated in this function but never freed.
+    
+    https://bugzilla.gnome.org/show_bug.cgi?id=738508
+
+ pkcs11/gnome2-store/gkm-gnome2-file.c | 7 ++++---
+ 1 file changed, 4 insertions(+), 3 deletions(-)
+
+commit 24ff22e04c86885aa4f7f877d612c94e2e2d8f6d
+Author: Christophe Fergeau <cfergeau@redhat.com>
+Date:   2014-09-15
+
+    Unref GkmCredential::secret in ::dispose
+    
+    This fixes a memory leak.
+    
+    https://bugzilla.gnome.org/show_bug.cgi?id=738508
+
+ pkcs11/gkm/gkm-credential.c | 4 ++++
+ 1 file changed, 4 insertions(+)
+
+commit 9bfe73731316389a9975fd440992afa914070467
+Author: Christophe Fergeau <cfergeau@redhat.com>
+Date:   2014-10-14
+
+    ssh-agent: Fix leak in op_request_identities
+    
+    The object returned by gck_enumerator_next() must be unref'ed.
+    
+    https://bugzilla.gnome.org/show_bug.cgi?id=738508
+
+ daemon/ssh-agent/gkd-ssh-agent-ops.c | 7 ++++---
+ 1 file changed, 4 insertions(+), 3 deletions(-)
+
+commit f81fa15dcbbc3a7ce3e8be9a229e13a0678a606b
+Author: Christophe Fergeau <cfergeau@redhat.com>
+Date:   2014-10-01
+
+    ssh-agent: Fix leak in op_v1_request_identities
+    
+    The object returned by gck_enumerator_next() must be unref'ed
+    as this method is "transfer full".
+    
+    https://bugzilla.gnome.org/show_bug.cgi?id=738508
+
+ daemon/ssh-agent/gkd-ssh-agent-ops.c | 8 ++++----
+ 1 file changed, 4 insertions(+), 4 deletions(-)
+
+commit d177a8b5353f3156ab504f39c20753d6786e5e4d
+Author: Christophe Fergeau <cfergeau@redhat.com>
+Date:   2014-09-15
+
+    ssh-agent: Fix leak in search_keys_like_attributes()
+    
+    gck_enumerator_next() return value must be unref'fed as it's transfer
+    full.
+    
+    https://bugzilla.gnome.org/show_bug.cgi?id=738508
+
+ daemon/ssh-agent/gkd-ssh-agent-ops.c | 5 ++++-
+ 1 file changed, 4 insertions(+), 1 deletion(-)
+
+commit 04b9de9fd806598bb49e6b9d49d2697156f6f39d
+Author: Christophe Fergeau <cfergeau@redhat.com>
+Date:   2014-10-01
+
+    ssh-agent: Fix leak in remove_by_public_key()
+    
+    gck_attributes_find_string() returns a newly allocated string, so it
+    must be g_free'ed after use.
+    
+    https://bugzilla.gnome.org/show_bug.cgi?id=738508
+
+ daemon/ssh-agent/gkd-ssh-agent-ops.c | 1 +
+ 1 file changed, 1 insertion(+)
+
 commit 32900996ac1d913bbae6e378a0a974d207d81c8e
 Author: Stef Walter <stefw@gnome.org>
 Date:   2014-09-23

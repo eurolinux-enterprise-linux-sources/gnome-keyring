@@ -10,7 +10,6 @@ DISTCHECK_CONFIGURE_FLAGS = \
 	--enable-doc \
 	--enable-pam \
 	--enable-ssh-agent \
-	--enable-gpg-agent \
 	--disable-strict \
 	--disable-coverage \
 	--disable-silent-rules \
@@ -147,7 +146,7 @@ SUFFIXES = .desktop.in .desktop.in.in .service .service.in
 
 @INTLTOOL_DESKTOP_RULE@
 
-prep-builddir:
+all-local:
 	$(MKDIR_P) $(builddir)/daemon
 	$(MKDIR_P) $(builddir)/schema
 
@@ -164,6 +163,7 @@ AM_CPPFLAGS = \
 	$(GLIB_CFLAGS)
 
 bin_PROGRAMS =
+BUILT_SOURCES =
 check_PROGRAMS =
 noinst_DATA =
 noinst_LIBRARIES =
@@ -172,7 +172,6 @@ noinst_PROGRAMS = $(check_PROGRAMS)
 TESTS =
 
 ASN1_FILES =
-BUILT_SOURCES = prep-builddir
 
 moduledir = $(pkcs11standalonedir)
 module_LTLIBRARIES =
@@ -198,7 +197,6 @@ include egg/Makefile.am
 include daemon/Makefile.am
 include daemon/control/Makefile.am
 include daemon/dbus/Makefile.am
-include daemon/gpg-agent/Makefile.am
 include daemon/login/Makefile.am
 include daemon/ssh-agent/Makefile.am
 include pkcs11/Makefile.am

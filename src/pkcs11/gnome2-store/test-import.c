@@ -62,6 +62,7 @@ setup (Test *test,
 
 	test->funcs = gkm_gnome2_store_get_functions ();
 	rv = (test->funcs->C_Initialize) (&args);
+	g_free (args.pReserved);
 	gkm_assert_cmprv (rv, ==, CKR_OK);
 
 	/* And now need to log in */
@@ -131,6 +132,7 @@ test_pkcs12_import (Test *test,
 	gsize length;
 	GList *l;
 
+	error = NULL;
 	g_file_get_contents (SRCDIR "/pkcs11/gnome2-store/fixtures/personal.p12", &contents, &length, &error);
 	g_assert_no_error (error);
 

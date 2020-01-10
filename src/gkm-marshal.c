@@ -61,9 +61,9 @@ gkm_marshal_BOOLEAN__VOID (GClosure     *closure,
 {
   typedef gboolean (*GMarshalFunc_BOOLEAN__VOID) (gpointer     data1,
                                                   gpointer     data2);
-  register GMarshalFunc_BOOLEAN__VOID callback;
-  register GCClosure *cc = (GCClosure*) closure;
-  register gpointer data1, data2;
+  GMarshalFunc_BOOLEAN__VOID callback;
+  GCClosure *cc = (GCClosure*) closure;
+  gpointer data1, data2;
   gboolean v_return;
 
   g_return_if_fail (return_value != NULL);
@@ -100,9 +100,9 @@ gkm_marshal_VOID__STRING_ULONG (GClosure     *closure,
                                                    gpointer     arg_1,
                                                    gulong       arg_2,
                                                    gpointer     data2);
-  register GMarshalFunc_VOID__STRING_ULONG callback;
-  register GCClosure *cc = (GCClosure*) closure;
-  register gpointer data1, data2;
+  GMarshalFunc_VOID__STRING_ULONG callback;
+  GCClosure *cc = (GCClosure*) closure;
+  gpointer data1, data2;
 
   g_return_if_fail (n_param_values == 3);
 
@@ -137,9 +137,9 @@ gkm_marshal_VOID__OBJECT_ULONG (GClosure     *closure,
                                                    gpointer     arg_1,
                                                    gulong       arg_2,
                                                    gpointer     data2);
-  register GMarshalFunc_VOID__OBJECT_ULONG callback;
-  register GCClosure *cc = (GCClosure*) closure;
-  register gpointer data1, data2;
+  GMarshalFunc_VOID__OBJECT_ULONG callback;
+  GCClosure *cc = (GCClosure*) closure;
+  gpointer data1, data2;
 
   g_return_if_fail (n_param_values == 3);
 

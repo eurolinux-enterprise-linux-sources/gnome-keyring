@@ -4,7 +4,6 @@ noinst_LTLIBRARIES += \
 	libegg-asn1x.la \
 	libegg-buffer.la \
 	libegg-creds.la \
-	libegg-dbus.la \
 	libegg-secure.la \
 	libegg-prompt.la \
 	libegg-hex.la \
@@ -34,7 +33,6 @@ libegg_la_SOURCES = \
 	egg/egg-openssl.c egg/egg-openssl.h \
 	egg/egg-unix-credentials.c egg/egg-unix-credentials.h \
 	egg/egg-secure-memory.c egg/egg-secure-memory.h \
-	egg/egg-spawn.c egg/egg-spawn.h \
 	egg/egg-symkey.c egg/egg-symkey.h \
 	egg/egg-testing.c egg/egg-testing.h \
 	egg/egg-timegm.c egg/egg-timegm.h \
@@ -46,7 +44,7 @@ ASN1_FILES += \
 	egg/pk.asn \
 	egg/pkix.asn \
 	$(NULL)
-	
+
 # --------------------------------------------------------------------
 # COMMON STUFF COMPILED INTO SMALLER COMPONENTS
 
@@ -66,17 +64,6 @@ libegg_buffer_la_SOURCES = \
 
 libegg_creds_la_SOURCES = \
 	egg/egg-unix-credentials.c egg/egg-unix-credentials.h
-
-libegg_dbus_la_SOURCES = \
-	egg/egg-dbus.c egg/egg-dbus.h
-
-libegg_dbus_la_CFLAGS = \
-	$(DBUS_CFLAGS) \
-	$(GLIB_CFLAGS)
-
-libegg_dbus_la_LIBADD = \
-	$(DBUS_LIBS) \
-	$(GLIB_LIBS)
 
 libegg_prompt_la_SOURCES = \
 	egg/egg-dh.c egg/egg-dh.h \
@@ -144,8 +131,7 @@ egg_TESTS = \
 	test-armor \
 	test-openssl \
 	test-dh \
-	test-file-tracker \
-	test-spawn
+	test-file-tracker
 
 test_asn1_SOURCES = egg/test-asn1.c egg/test.asn.h
 test_asn1_LDADD = $(egg_LIBS)
@@ -188,9 +174,6 @@ test_openssl_LDADD = $(egg_LIBS)
 
 test_dh_SOURCES = egg/test-dh.c
 test_dh_LDADD = $(egg_LIBS)
-
-test_spawn_SOURCES = egg/test-spawn.c
-test_spawn_LDADD = $(egg_LIBS)
 
 check_PROGRAMS += $(egg_TESTS)
 TESTS += $(egg_TESTS)

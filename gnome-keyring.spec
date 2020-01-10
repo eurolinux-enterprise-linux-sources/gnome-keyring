@@ -1,35 +1,33 @@
-%define glib2_version 2.38.0
-%define gcr_version 3.5.3
-%define dbus_version 1.1.1
-%define gcrypt_version 1.2.2
-%define libtasn1_version 0.3.4
+%global _hardened_build 1
 
-%define _hardened_build 1
+%global glib2_version 2.38.0
+%global gcr_version 3.5.3
+%global gcrypt_version 1.2.2
 
 Summary: Framework for managing passwords and other secrets
 Name: gnome-keyring
-Version: 3.14.0
-Release: 1%{?dist}
+Version: 3.20.0
+Release: 3%{?dist}
 License: GPLv2+ and LGPLv2+
 Group: System Environment/Libraries
 #VCS: git:git://git.gnome.org/gnome-keyring
-Source: http://download.gnome.org/sources/gnome-keyring/3.14/gnome-keyring-%{version}.tar.xz
-URL: http://www.gnome.org
+Source:  https://download.gnome.org/sources/%{name}/3.20/%{name}-%{version}.tar.xz
+# https://bugzilla.redhat.com/show_bug.cgi?id=1325993
+Patch0:  gnome-keyring-3.20.0-fix-invalid-secret-transfer.patch
+URL:     https://wiki.gnome.org/Projects/GnomeKeyring
 
-BuildRequires: glib2-devel >= %{glib2_version}
-BuildRequires: gcr-devel >= %{gcr_version}
-BuildRequires: dbus-devel >= %{dbus_version}
-BuildRequires: libgcrypt-devel >= %{gcrypt_version}
-BuildRequires: libtasn1-devel >= %{libtasn1_version}
-BuildRequires: pam-devel
+BuildRequires: pkgconfig(gcr-3) >= %{gcr_version}
+BuildRequires: pkgconfig(glib-2.0) >= %{glib2_version}
+BuildRequires: pkgconfig(p11-kit-1)
+BuildRequires: docbook-dtds
+BuildRequires: docbook-style-xsl
 BuildRequires: gettext
 BuildRequires: intltool
-BuildRequires: libtasn1-tools
-BuildRequires: gtk-doc
 BuildRequires: libcap-ng-devel
+BuildRequires: libgcrypt-devel >= %{gcrypt_version}
 BuildRequires: libselinux-devel
-BuildRequires: p11-kit-devel
-BuildRequires: gcr-devel
+BuildRequires: pam-devel
+BuildRequires: /usr/bin/xsltproc
 
 # we no longer have a devel subpackage
 Obsoletes: %{name}-devel < 3.3.0
@@ -55,6 +53,8 @@ automatically unlock the "login" keyring when the user logs in.
 
 %prep
 %setup -q -n gnome-keyring-%{version}
+%patch0 -p1
+
 
 %build
 %configure \
@@ -64,10 +64,10 @@ automatically unlock the "login" keyring when the user logs in.
 # avoid unneeded direct dependencies
 sed -i -e 's/ -shared / -Wl,-O1,--as-needed\0 /g' libtool
 
-make %{?_smp_mflags} V=1
+make %{?_smp_mflags}
 
 %install
-make install DESTDIR=$RPM_BUILD_ROOT
+%make_install
 
 rm $RPM_BUILD_ROOT%{_libdir}/security/*.la
 rm $RPM_BUILD_ROOT%{_libdir}/pkcs11/*.la
@@ -85,7 +85,8 @@ glib-compile-schemas %{_datadir}/glib-2.0/schemas >&/dev/null || :
 
 
 %files -f gnome-keyring.lang
-%doc AUTHORS NEWS README COPYING COPYING.LIB
+%doc AUTHORS NEWS README
+%license COPYING COPYING.LIB
 # LGPL
 %dir %{_libdir}/gnome-keyring
 %dir %{_libdir}/gnome-keyring/devel
@@ -110,6 +111,15 @@ glib-compile-schemas %{_datadir}/glib-2.0/schemas >&/dev/null || :
 
 
 %changelog
+* Tue Mar 21 2017 David King <dking@redhat.com> - 3.20.0-3
+- Enable hardened build flags (#1386951)
+
+* Tue Mar 21 2017 David King <dking@redhat.com> - 3.20.0-2
+- Fix invalid secret transfer error (#1325993)
+
+* Thu Mar 02 2017 David King <dking@redhat.com> - 3.20.0-1
+- Update to 3.20.0 (#1386951)
+
 * Mon Mar 23 2015 Richard Hughes <rhughes@redhat.com> - 3.14.0-1
 - Update to 3.14.0
 - Resolves: #1174714

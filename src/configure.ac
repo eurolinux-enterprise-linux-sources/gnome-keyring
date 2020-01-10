@@ -1,5 +1,5 @@
 AC_INIT(gnome-keyring,
-        3.14.0,
+        3.20.0,
         [gnome-keyring-list@gnome.org],
         [gnome-keyring],
         [https://wiki.gnome.org/Projects/GnomeKeyring])
@@ -13,8 +13,6 @@ GLIB_MAX=GLIB_VERSION_2_38
 
 GCK_REQ=3.3.4
 GCR_REQ=3.5.3
-
-DBUS_REQ=1.1.1
 
 GCRYPT_REQ=1.2.2
 GCRYPT_LIBVER=1
@@ -72,7 +70,7 @@ PKG_CHECK_MODULES(GOBJECT, glib-2.0 gobject-2.0)
 AC_SUBST(GOBJECT_CFLAGS)
 AC_SUBST(GOBJECT_LIBS)
 
-PKG_CHECK_MODULES(GIO, glib-2.0 gio-2.0)
+PKG_CHECK_MODULES(GIO, glib-2.0 gio-2.0 gio-unix-2.0)
 AC_SUBST(GIO_CFLAGS)
 AC_SUBST(GIO_LIBS)
 
@@ -229,11 +227,6 @@ AC_DEFINE(GCR_API_SUBJECT_TO_CHANGE, 1, [Nod nod])
 # DBus Checks
 #
 
-PKG_CHECK_MODULES([DBUS], dbus-1 >= $DBUS_REQ)
-
-DAEMON_CFLAGS="$DAEMON_CFLAGS $DBUS_CFLAGS"
-DAEMON_LIBS="$DAEMON_LIBS $DBUS_LIBS"
-
 AC_ARG_WITH(dbus-services,
 		  [AC_HELP_STRING([--with-dbus-services=<dir>],
 		  [where D-BUS session services directory is])])
@@ -348,23 +341,6 @@ else
 fi
 
 AM_CONDITIONAL(WITH_SSH, test "$enable_ssh_agent" != "no")
-
-# --------------------------------------------------------------------
-# GPG Agent support
-#
-
-AC_ARG_ENABLE([gpg-agent],
-		AC_HELP_STRING([--disable-gpg-agent],
-		[Don't include GPG agent in gnome-keyring]))
-
-if test "$enable_gpg_agent" != "no"; then
-	AC_DEFINE(WITH_GPG, 1, [Whether to build GPG agent or not])
-	gpg_status="yes"
-else
-	gpg_status="no"
-fi
-
-AM_CONDITIONAL(WITH_GPG, test "$enable_gpg_agent" != "no")
 
 # --------------------------------------------------------------------
 # libgcrypt
@@ -664,7 +640,6 @@ echo "  SELinux:              $selinux_status"
 echo
 echo "CONFIGURATION"
 echo "  SSH Agent:            $ssh_status"
-echo "  GPG Agent:            $gpg_status"
 echo
 echo "BUILD"
 echo "  Debug Build:          $debug_status"
