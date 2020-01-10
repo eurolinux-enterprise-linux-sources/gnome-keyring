@@ -1,0 +1,314 @@
+diff -up gnome-keyring-3.8.2/Makefile.am.patch1 gnome-keyring-3.8.2/Makefile.am
+--- gnome-keyring-3.8.2/Makefile.am.patch1	2013-05-01 12:39:36.000000000 -0400
++++ gnome-keyring-3.8.2/Makefile.am	2013-11-06 22:35:14.524543800 -0500
+@@ -15,8 +15,7 @@ SUBDIRS = \
+ 	tool \
+ 	testing \
+ 	$(PAM_DIR) \
+-	po \
+-	docs
++	po
+ 
+ ACLOCAL_AMFLAGS = ${ACLOCAL_FLAGS}
+ 
+@@ -28,7 +27,7 @@ EXTRA_DIST = \
+ 	HACKING
+ 
+ DISTCHECK_CONFIGURE_FLAGS = \
+-	--enable-gtk-doc \
++	--enable-doc \
+ 	--disable-strict \
+ 	--disable-coverage \
+ 	--disable-update-mime \
+@@ -75,5 +74,17 @@ clear-coverage:
+ 
+ endif
+ 
++if ENABLE_DOC
++SUBDIRS += docs
++
++distcheck-hook:
++	@true
++
++else
++distcheck-hook:
++	@echo "*** doc must be enabled  (with --enable-doc) in order to make distcheck"
++	@false
++endif
++
+ upload-release: $(DIST_ARCHIVES)
+ 		scp $(DIST_ARCHIVES) master.gnome.org:
+diff -up gnome-keyring-3.8.2/configure.ac.patch1 gnome-keyring-3.8.2/configure.ac
+--- gnome-keyring-3.8.2/configure.ac.patch1	2013-05-04 15:55:14.000000000 -0400
++++ gnome-keyring-3.8.2/configure.ac	2013-11-06 22:34:15.649700316 -0500
+@@ -34,8 +34,7 @@ AC_TYPE_SIGNAL
+ AC_TYPE_SIZE_T
+ AC_TYPE_UID_T
+ 
+-GTK_DOC_CHECK(1.9)
+-DISTCHECK_CONFIGURE_FLAGS="--enable-gtk-doc"
++DISTCHECK_CONFIGURE_FLAGS="--enable-doc"
+ AC_SUBST(DISTCHECK_CONFIGURE_FLAGS)
+ 
+ PKG_CHECK_MODULES(GLIB, glib-2.0 >= 2.32.0)
+@@ -447,6 +446,37 @@ if test "$p11_tests_status" = "yes"; the
+ fi
+ 
+ # --------------------------------------------------------------------
++# Documentation options
++
++AC_MSG_CHECKING([whether to build documentation])
++AC_ARG_ENABLE(doc,
++              AC_HELP_STRING([--enable-doc],
++                             [Disable building documentation])
++             )
++
++if test "$enable_doc" = "no"; then
++	AC_MSG_RESULT($enable_doc)
++
++else
++	if test "$enable_doc" = ""; then
++		disable_msg="(perhaps --disable-doc)"
++	fi
++
++	enable_doc="yes"
++	AC_MSG_RESULT($enable_doc)
++
++	AC_PATH_PROG([XSLTPROC], [xsltproc], [no])
++	if test "$XSLTPROC" = "no"; then
++		AC_MSG_ERROR([the xsltproc command was not found $disable_msg])
++	fi
++
++	AC_SUBST(XSLTPROC)
++fi
++
++AM_CONDITIONAL([ENABLE_DOC], [test "$enable_doc" = "yes"])
++doc_status=$enable_doc
++
++# --------------------------------------------------------------------
+ # Compilation and linking options
+ #
+ 
+@@ -483,10 +513,6 @@ if test "$GCC" = "yes"; then
+ 	-Wcast-align -Wsign-compare \
+ 	$CFLAGS"
+ 
+-	# Disable -Werror for now, because of issues with
+-	# strange gtk-doc programs not building cleanly.
+-	# -Werror \
+-
+ 	for option in -Wno-strict-aliasing -Wno-sign-compare; do
+ 		SAVE_CFLAGS="$CFLAGS"
+ 		CFLAGS="$CFLAGS $option"
+diff -up gnome-keyring-3.8.2/daemon/gkd-main.c.patch1 gnome-keyring-3.8.2/daemon/gkd-main.c
+--- gnome-keyring-3.8.2/daemon/gkd-main.c.patch1	2013-05-04 15:44:29.000000000 -0400
++++ gnome-keyring-3.8.2/daemon/gkd-main.c	2013-11-06 22:34:15.649700316 -0500
+@@ -137,7 +137,7 @@ static GOptionEntry option_entries[] = {
+ 	{ "daemonize", 'd', 0, G_OPTION_ARG_NONE, &run_daemonized,
+ 	  "Run as a daemon", NULL },
+ 	{ "login", 'l', 0, G_OPTION_ARG_NONE, &run_for_login,
+-	  "Run for a user login. Read login password from stdin", NULL },
++	  "Run by PAM for a user login. Read login password from stdin", NULL },
+ 	{ "components", 'c', 0, G_OPTION_ARG_STRING, &run_components,
+ 	  "The optional components to run", DEFAULT_COMPONENTS },
+ 	{ "control-directory", 'C', 0, G_OPTION_ARG_FILENAME, &control_directory,
+diff -up gnome-keyring-3.8.2/docs/Makefile.am.patch1 gnome-keyring-3.8.2/docs/Makefile.am
+--- gnome-keyring-3.8.2/docs/Makefile.am.patch1	2013-05-01 12:34:54.000000000 -0400
++++ gnome-keyring-3.8.2/docs/Makefile.am	2013-11-06 22:34:15.650700313 -0500
+@@ -1,5 +1,30 @@
+ 
++man1_MANS = \
++	gnome-keyring-daemon.1
++	$(NULL)
++
++MAN_IN_FILES = \
++	$(man1_MANS:.1=.xml)
++
++CLEANFILES = \
++	$(man1_MANS)
++
++XSLTPROC_FLAGS = \
++	--nonet \
++	--stringparam man.output.quietly 1 \
++	--stringparam funcsynopsis.style ansi \
++	--stringparam man.th.extra1.suppress 1 \
++	--stringparam man.authors.section.enabled 0 \
++	--stringparam man.copyright.section.enabled 0
++
++XSLTPROC_MAN = \
++	$(XSLTPROC) $(XSLTPROC_FLAGS) http://docbook.sourceforge.net/release/xsl/current/manpages/docbook.xsl
++
++.xml.1:
++	$(AM_V_GEN) $(XSLTPROC_MAN) $<
++
+ EXTRA_DIST = \
+ 	file-format.txt \
+ 	keyring-intro.txt \
+-	gnome-keyring.svg
+\ No newline at end of file
++	gnome-keyring.svg \
++	$(MAN_IN_FILES)
+diff -up gnome-keyring-3.8.2/docs/gnome-keyring-daemon.xml.patch1 gnome-keyring-3.8.2/docs/gnome-keyring-daemon.xml
+--- gnome-keyring-3.8.2/docs/gnome-keyring-daemon.xml.patch1	2013-11-06 22:34:15.650700313 -0500
++++ gnome-keyring-3.8.2/docs/gnome-keyring-daemon.xml	2013-11-06 22:34:15.650700313 -0500
+@@ -0,0 +1,160 @@
++<?xml version='1.0'?>
++<!DOCTYPE refentry PUBLIC "-//OASIS//DTD DocBook XML V4.3//EN"
++	"http://www.oasis-open.org/docbook/xml/4.3/docbookx.dtd">
++
++<refentry id="adcli">
++
++<refentryinfo>
++	<title>gnome-keyring-daemon</title>
++	<productname>gnome-keyring</productname>
++	<authorgroup>
++		<author>
++			<contrib>Maintainer</contrib>
++			<firstname>Stef</firstname>
++			<surname>Walter</surname>
++			<email>stefw@redhat.com</email>
++		</author>
++	</authorgroup>
++</refentryinfo>
++
++<refmeta>
++	<refentrytitle>gnome-keyring-daemon</refentrytitle>
++	<manvolnum>1</manvolnum>
++	<refmiscinfo class="manual">User Commands</refmiscinfo>
++</refmeta>
++
++<refnamediv>
++	<refname>gnome-keyring-daemon</refname>
++	<refpurpose>The gnome-keyring daemon</refpurpose>
++</refnamediv>
++
++<refsynopsisdiv>
++	<cmdsynopsis>
++		<command>gnome-keyring</command>
++		<arg choice="opt">--replace</arg>
++		<arg choice="opt">--unlock</arg>
++	</cmdsynopsis>
++</refsynopsisdiv>
++
++<refsect1>
++	<title>Description</title>
++	<para>The <command>gnome-keyring-daemon</command> is a service that stores
++	your passwords and secrets. It is normally started automatically when
++	a user logs into a desktop session.</para>
++
++	<para>The <command>gnome-keyring-daemon</command> implements the DBus
++	Secret Service API, and you can use tools like <command>seahorse</command>
++	or <command>secret-tool</command> to interact with it.</para>
++
++	<para>The daemon also implements a GnuPG and SSH agent both of which
++	automatically load the user's keys, and prompt for passwords when necessary.</para>
++
++	<para>The daemon will print out various environment variables which should
++	be set in the user's environment, in order to interact with the daemon.</para>
++</refsect1>
++
++<refsect1>
++	<title>Options</title>
++
++	<para>The various startup arguments below can be used:</para>
++
++	<variablelist>
++		<varlistentry>
++			<term><option>--components=<parameter>ssh,secrets,gpg,pkcs11</parameter></option></term>
++			<listitem>
++			<para>Ask the daemon to only initialize certain components. Valid
++				components are <literal>ssh</literal>, <literal>gpg</literal>,
++				<literal>secrets</literal>, <literal>pkcs11</literal>.</para>
++			<para>By default all components are initialized.</para>
++			</listitem>
++		</varlistentry>
++		<varlistentry>
++			<term><option>--control-directory=<parameter>/path/to/directory</parameter></option></term>
++			<listitem>
++			<para>Use this directory for creating communication sockets. By default
++				a temporary directory is automatically created.</para>
++			</listitem>
++		</varlistentry>
++		<varlistentry>
++			<term><option>--daemonize</option></term>
++			<listitem>
++			<para>Run as a real daemon, disconnected from the terminal.</para>
++			</listitem>
++		</varlistentry>
++		<varlistentry>
++			<term><option>--foreground</option></term>
++			<listitem>
++			<para>Run in the foreground, and do not fork or become
++				a daemon.</para>
++			</listitem>
++		</varlistentry>
++		<varlistentry>
++			<term><option>--login</option></term>
++			<listitem>
++			<para>This argument tells the daemon it is being run by PAM. It
++				reads all of stdin (including any newlines) as a login
++				password and does not complete actual initialization.</para>
++			<para>The daemon should later be initialized with a
++				<command>gnome-keyring-daemon</command>&nbsp;<option>--start</option>
++				invocation.</para>
++			<para>This option may not be used together with either the
++				<option>--replace</option> or <option>--start</option>
++				arguments.</para>
++			</listitem>
++		</varlistentry>
++		<varlistentry>
++			<term><option>--replace</option></term>
++			<listitem>
++			<para>Try to replace a running keyring daemon, and assume its
++				environment avriables. A successful replacement depends
++				on the <literal>GNOMKE_KEYRING_CONTROL</literal>
++				environment variable being set by an earlier daemon.</para>
++			<para>This option may not be used together with either the
++				<option>--login</option> or <option>--start</option>
++				arguments.</para>
++			</listitem>
++		</varlistentry>
++		<varlistentry>
++			<term><option>--start</option></term>
++			<listitem>
++			<para>Connect to an already running daemon and  initialize it.
++				This is often used to complete initialization of a daemon
++				that was started by PAM using the <option>--login</option>
++				argument.</para>
++			<para>This option may not be used together with either the
++				<option>--login</option> or <option>--replace</option>
++				arguments.</para>
++			</listitem>
++		</varlistentry>
++		<varlistentry>
++			<term><option>--version</option></term>
++			<listitem>
++			<para>Print out the gnome-keyring version and then exit.</para>
++			</listitem>
++		</varlistentry>
++	</variablelist>
++
++</refsect1>
++
++<refsect1>
++	<title>Bugs</title>
++	<para>
++		Please send bug reports to either the distribution bug tracker
++		or the upstream bug tracker at
++		<ulink url="https://bugzilla.gnome.org/enter_bug.cgi?product=gnome-keyring">https://bugzilla.gnome.org/enter_bug.cgi?product=gnome-keyring</ulink>
++	</para>
++</refsect1>
++
++<refsect1>
++	<title>See also</title>
++	<simplelist type="inline">
++		<member><citerefentry><refentrytitle>secret-tool</refentrytitle><manvolnum>1</manvolnum></citerefentry></member>
++		<member><citerefentry><refentrytitle>seahorse</refentrytitle><manvolnum>1</manvolnum></citerefentry></member>
++	</simplelist>
++	<para>
++		Further details available in the realmd online documentation at
++		<ulink url="http://standards.freedesktop.org/secret-service/">http://standards.freedesktop.org/secret-service/</ulink>
++	</para>
++</refsect1>
++
++</refentry>

@@ -1,0 +1,4 @@
+
+CLEANFILES = \
+	coverage \
+	coverage.info
